@@ -2,7 +2,6 @@ id: obsessive-concentration
 name: "Obsessive Concentration"
 trade: arcanist
 types: [resource]
-provides: { obsession: 1 }
 text: |
   This resource may only be played from your hand face-down. PROVIDES - [O].
   FLIP IT [O]

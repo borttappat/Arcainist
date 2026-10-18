@@ -2,8 +2,6 @@ id: jackmove
 name: "Jackmove"
 trade: rogue
 types: [tactic]
-cost: 0
-threshold: { deception: 5 }
 text: |
   COST - Pick a number for X. Pay twice X.
   EFFECT - Reveal the top X cards of your opponent's deck. Put all revealed characters and items into play under your control, and the remaining cards into your opponent's discard pile.

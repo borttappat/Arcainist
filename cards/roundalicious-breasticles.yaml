@@ -2,8 +2,6 @@ id: roundalicious-breasticles
 name: "Roundalicious Breasticles"
 trade: rogue
 types: [item]
-cost: 2
-threshold: { deception: 1 }
 text: |
   At the end of your turn, put a token on this card.
   JIGGLE JIGGLE

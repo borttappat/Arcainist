@@ -2,8 +2,6 @@ id: obsessive-compulsion
 name: "Obsessive Compulsion"
 trade: arcanist
 types: [tactic]
-cost: 1
-threshold: { obsession: 2 }
 text: |
   Look at the top 3 cards of your deck. You may put any number of those cards on the bottom of your deck in any order. Put the remaining cards on the top of your deck in any order. Draw a card.
 rules:

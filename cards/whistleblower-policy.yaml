@@ -2,8 +2,6 @@ id: whistleblower-policy
 name: "Whistleblower Policy"
 trade: banker
 types: [tactic]
-cost: 2
-threshold: { greed: 1 }
 text: |
   EXTRA COST - You may pick a location. If you picked a location as part of this card's cost, add 3 damage markers to the location. If you deployed this card using FLIP UP, draw a card for each different staple resource you control.
   FLIP UP - 3 [G].

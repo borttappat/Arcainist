@@ -2,8 +2,6 @@ id: ameliorate
 name: "Ameliorate"
 trade: arcanist
 types: [tactic]
-cost: 1
-threshold: { obsession: 1 }
 text: |
   Put any number of cards from your hand on the bottom of your deck in any order. Put the top X cards of your deck into your hand, where X is the number of cards you put on the bottom plus 1.
 rules:

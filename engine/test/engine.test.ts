@@ -103,6 +103,30 @@ describe("deploying and the stack", () => {
     expectPending(g, "main", p);
   });
 
+  it("hides a failed attempt from the opponent's log", () => {
+    const g = newGame();
+    const p = toMain(g);
+    const o = other(p);
+    const ma = put(g, p, "martial-artist", "hand");
+    resources(g, p, "deception", 2); // threshold met, but 6 resources short of the cost
+    const before = viewFor(g, o).log.length;
+    act(g, p, { type: "deploy", iid: ma });
+    expect(g.s.cards[ma].zone).toBe("hand");
+    expect(viewFor(g, o).log.length).toBe(before);
+    expect(viewFor(g, p).log.some((e) => e.text.startsWith("Illegal"))).toBe(true);
+    expect(viewFor(g, p).log.some((e) => e.text.includes("plays Martial Artist"))).toBe(false);
+  });
+
+  it("publishes the log lines once the card is on the stack", () => {
+    const g = newGame();
+    const p = toMain(g);
+    const o = other(p);
+    resources(g, p, "obsession", 3);
+    const w = put(g, p, "wanton-wizard", "hand");
+    act(g, p, { type: "deploy", iid: w });
+    expect(viewFor(g, o).log.some((e) => e.text.includes("plays Wanton Wizard"))).toBe(true);
+  });
+
   it("rolls back when the numeric cost is unaffordable", () => {
     const g = newGame();
     const p = toMain(g);

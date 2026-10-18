@@ -2,8 +2,6 @@ id: one-legged-hopping-pogo-bear
 name: "One-Legged Hopping Pogo-Bear"
 trade: gearsmith
 types: [item]
-cost: 0
-threshold: { elitism: 3 }
 text: |
   RAAR!
   COST - Pay 2.

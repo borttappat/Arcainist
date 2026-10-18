@@ -34,6 +34,39 @@ export const EVENTS = new Set([
   "influence_lost", "start_of_turn", "end_of_turn", "draw", "picked", "discarded",
 ]);
 
+/**
+ * Card numbers live in cards/<id>.json, everything else in cards/<id>.yaml.
+ * These are the only keys allowed in the JSON file, and they're rejected in YAML.
+ */
+export const NUMBER_KEYS = ["cost", "threshold", "stats", "structure", "gear", "provides", "influence", "starting_resources", "starting_draw"] as const;
+
+const ICON_NAMES = ["obsession", "greed", "elitism", "deception", "rage", "volition"];
+
+/** Check a card's numbers file: known keys, whole numbers >= 0, known icon and stat names. */
+export function validateNumbers(n: any): string[] {
+  const errs: string[] = [];
+  if (!n || typeof n !== "object" || Array.isArray(n)) return ["must be a JSON object"];
+  const whole = (v: unknown) => Number.isInteger(v) && (v as number) >= 0;
+  const map = (k: string, allowed: string[]) => {
+    const v = n[k];
+    if (v === undefined) return;
+    if (!v || typeof v !== "object") return errs.push(`${k} must be an object`);
+    for (const [kk, vv] of Object.entries(v)) {
+      if (!allowed.includes(kk)) errs.push(`${k}.${kk} is not one of ${allowed.join(", ")}`);
+      if (!whole(vv)) errs.push(`${k}.${kk} must be a whole number >= 0`);
+    }
+  };
+  for (const k of Object.keys(n)) if (!(NUMBER_KEYS as readonly string[]).includes(k)) errs.push(`unknown key "${k}" (allowed: ${NUMBER_KEYS.join(", ")})`);
+  for (const k of ["cost", "structure", "influence"]) if (n[k] !== undefined && !whole(n[k])) errs.push(`${k} must be a whole number >= 0`);
+  map("threshold", ICON_NAMES);
+  map("provides", ICON_NAMES);
+  map("stats", ["str", "life", "spd"]);
+  map("gear", ["str", "life", "spd"]);
+  map("starting_resources", ["any_staples", "different_staples"]);
+  map("starting_draw", ["first", "second"]);
+  return errs;
+}
+
 export function loadLibrary(dir: string): CardLibrary {
   const lib: CardLibrary = {};
   const errors: string[] = [];
@@ -54,12 +87,40 @@ export function loadLibrary(dir: string): CardLibrary {
       errors.push(`${file}: needs id, name and types`);
       continue;
     }
+    // Numbers come from the matching JSON file.
+    const jsonFile = file.replace(/\.ya?ml$/, ".json");
+    for (const k of NUMBER_KEYS) {
+      const v = (def as any)[k];
+      if (v === undefined) continue;
+      // Factions keep their starting-draw steps (`before`) in YAML.
+      if (k === "starting_draw" && Object.keys(v).every((x) => x === "before")) continue;
+      errors.push(`${file}: "${k}" is a number and belongs in ${jsonFile}`);
+    }
+    let numbers: any;
+    try {
+      numbers = JSON.parse(readFileSync(join(dir, jsonFile), "utf8"));
+    } catch (e) {
+      errors.push(`${jsonFile}: ${(e as NodeJS.ErrnoException).code === "ENOENT" ? "missing (every card needs a numbers file, even if it is just {})" : (e as Error).message}`);
+      continue;
+    }
+    for (const e of validateNumbers(numbers)) errors.push(`${jsonFile}: ${e}`);
+    def = mergeNumbers(def, numbers);
     if (lib[def.id]) errors.push(`${file}: duplicate id "${def.id}"`);
     for (const e of validate(def)) errors.push(`${file}: ${e}`);
     lib[def.id] = def;
   }
+  for (const file of readdirSync(dir).filter((f) => f.endsWith(".json"))) {
+    if (!readdirSync(dir).includes(file.replace(/\.json$/, ".yaml"))) errors.push(`${file}: no matching .yaml file`);
+  }
   if (errors.length) throw new Error("Card data errors:\n  " + errors.join("\n  "));
   return lib;
+}
+
+/** Card definition = YAML (text and rules) + JSON (numbers). */
+export function mergeNumbers(def: CardDef, numbers: Record<string, any>): CardDef {
+  const out: any = { ...def, ...numbers };
+  if (def.starting_draw || numbers.starting_draw) out.starting_draw = { ...(def.starting_draw ?? {}), ...(numbers.starting_draw ?? {}) };
+  return out;
 }
 
 export function validate(def: CardDef): string[] {

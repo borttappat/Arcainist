@@ -3,9 +3,6 @@ name: "633fy 31f"
 trade: gearsmith
 types: [character]
 subtypes: [31f]
-cost: 2
-threshold: { elitism: 2 }
-stats: { str: 4, life: 4, spd: 3 }
 text: |
   COST - Play this only if you have played at least 2 other non-resource cards this turn.
 rules:

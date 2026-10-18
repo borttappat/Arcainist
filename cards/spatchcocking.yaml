@@ -2,8 +2,6 @@ id: spatchcocking
 name: "Spatchcocking"
 trade: arcanist
 types: [tactic]
-cost: 4
-threshold: { obsession: 4 }
 text: |
   Each player chooses a card of each non-resource type they control. Put all remaining non-resource cards into their owner's hand.
   RECUR [O][O][O][O]

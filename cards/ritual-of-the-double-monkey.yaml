@@ -2,8 +2,6 @@ id: ritual-of-the-double-monkey
 name: "Ritual of the Double Monkey"
 trade: arcanist
 types: [tactic]
-cost: 1
-threshold: { obsession: 1 }
 text: |
   Your opponent discards a card. If you control [O][O][O], your opponent discards another card. If you control [O]x6, your opponent discards another card.
   FLIP UP - 2 [O].

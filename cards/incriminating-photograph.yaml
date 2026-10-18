@@ -2,8 +2,6 @@ id: incriminating-photograph
 name: "Incriminating Photograph"
 trade: rogue
 types: [item]
-cost: 3
-threshold: { deception: 1 }
 text: |
   When this card enters play, name a non-resource card. The named card cannot be played.
 rules:

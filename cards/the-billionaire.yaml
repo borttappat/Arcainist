@@ -3,9 +3,6 @@ name: "The Billionaire"
 trade: rogue
 types: [character]
 subtypes: [pluck, grifter]
-cost: 5
-threshold: { deception: 4 }
-stats: { str: 2, life: 3, spd: 4 }
 text: |
   UNIQUE PLUCK. You may use abilities on your opponent's cards as though you were your opponent. (The effect still happens to your opponent.)
   CHANGE COSTUME

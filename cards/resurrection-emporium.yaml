@@ -2,9 +2,6 @@ id: resurrection-emporium
 name: "Resurrection Emporium"
 trade: banker
 types: [location]
-cost: 0
-threshold: { greed: 2 }
-structure: 3
 text: |
   If a character would be put into your discard pile from anywhere, remove it from the game instead.
   RESURRECT

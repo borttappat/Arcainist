@@ -2,8 +2,6 @@ id: voidal-poisoning
 name: "Voidal Poisoning"
 trade: arcanist
 types: [tactic]
-cost: 3
-threshold: { obsession: 3 }
 text: |
   You may remove any number of tokens from cards you control. Use the tokens to generate the following effects any number of times:
   1 TOKEN - Pick a character. Inflict 1 damage to it.

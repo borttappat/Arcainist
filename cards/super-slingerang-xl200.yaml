@@ -2,8 +2,6 @@ id: super-slingerang-xl200
 name: "Super Slingerang XL200"
 trade: rogue
 types: [item]
-cost: 1
-threshold: { deception: 1 }
 text: |
   When this card enters play you may discard a card at random. If you do, you may pick a character and destroy it.
   SLING

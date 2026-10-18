@@ -3,8 +3,6 @@ name: "Hidden Sandwich"
 trade: gearsmith
 types: [item]
 subtypes: [gear]
-cost: 3
-threshold: { elitism: 2 }
 text: |
   ATTACH TO CHARACTER. You may play this card whenever you could play a tactic. If the attached character would be destroyed, instead destroy this card. Treat the character as though it has received no damage this turn.
 attach_to: character

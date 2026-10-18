@@ -2,8 +2,6 @@ id: ritual-of-the-shattering-teeth
 name: "Ritual of the Shattering Teeth"
 trade: arcanist
 types: [tactic]
-cost: 0
-threshold: { obsession: 3 }
 text: |
   COST - Choose a number for X. Pay X+X.
   EFFECT - Look at your opponent's hand and choose X or fewer cards in it. Your opponent discards those cards.

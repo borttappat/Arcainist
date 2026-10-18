@@ -2,8 +2,6 @@ id: hollow-moose
 name: "Hollow Moose"
 trade: rogue
 types: [item]
-cost: 0
-threshold: { deception: 2 }
 text: |
   This card enters play under your opponent's control. At the start of your turn, your faction loses 1 influence.
   INFILTRATE

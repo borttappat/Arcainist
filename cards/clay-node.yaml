@@ -3,9 +3,6 @@ name: "Clay Node"
 trade: gearsmith
 types: [character]
 subtypes: [node]
-cost: 2
-threshold: { elitism: 3 }
-stats: { str: 2, life: 1, spd: 3 }
 text: |
   When this card enters play, you may search your deck for a "node" card and reveal it. If you do, put it into your hand. When this card leaves play, destroy all other "node" cards.
   DISSOLVE

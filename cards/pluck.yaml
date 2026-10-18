@@ -3,9 +3,6 @@ name: "Pluck"
 trade: rogue
 types: [character]
 subtypes: [pluck, grifter]
-cost: 2
-threshold: { deception: 2 }
-stats: { str: 1, life: 2, spd: 3 }
 text: |
   UNIQUE PLUCK.
   GRIFT

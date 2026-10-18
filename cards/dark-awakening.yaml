@@ -3,8 +3,6 @@ name: Dark Awakening
 flavor_title: welcome back to the land of the living
 trade: warlord
 types: [tactic]
-cost: 2
-threshold: { rage: 1 }
 text: |
   COST - Pick a non-resource card in your discard pile.
   EFFECT - You may play the card. Draw a card.

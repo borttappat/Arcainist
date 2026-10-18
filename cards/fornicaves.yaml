@@ -3,9 +3,6 @@ name: Fornicaves
 flavor_title: totally a thing
 trade: rogue
 types: [location]
-cost: 3
-threshold: { deception: 2 }
-structure: 1
 text: |
   UNIQUE FORNICAVES
   All characters lose X life, where X is their printed life minus 2.

@@ -2,9 +2,6 @@ id: port-manteau
 name: "Port Manteau"
 trade: banker
 types: [location]
-cost: 2
-threshold: { greed: 1 }
-structure: 3
 text: |
   When this card enters play, name a card subtype. Players must pay 2 to play cards with the named subtype.
 rules:

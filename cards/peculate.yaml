@@ -2,8 +2,6 @@ id: peculate
 name: "Peculate"
 trade: rogue
 types: [tactic]
-cost: 0
-threshold: { deception: 3 }
 text: |
   COST - Pick a character, item, or location in your opponent's discard pile. Pay X, where X is its numeric cost.
   EFFECT - Put the card into play under your control.

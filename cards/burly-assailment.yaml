@@ -2,8 +2,6 @@ id: burly-assailment
 name: "Burly Assailment"
 trade: rogue
 types: [tactic]
-cost: 1
-threshold: { deception: 1 }
 text: |
   EXTRA COST - Reveal a face-down character you control. You may deploy the character. Draw a card. While this card is in your discard pile, when a card that provides at least [D] enters play under your control, you may pay 2. If you do, put this card into play under your control as a face-down resource.
   FLIP UP - 1 [D].

@@ -2,7 +2,6 @@ id: violence
 name: "Violence"
 trade: warlord
 types: [resource]
-provides: { rage: 2 }
 text: |
   This card provides - [R][R]. When this card enters play, your faction loses 1 influence.
 rules:

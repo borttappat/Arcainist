@@ -2,8 +2,6 @@ id: revivitate
 name: "Revivitate"
 trade: banker
 types: [tactic]
-cost: 6
-threshold: { greed: 5 }
 text: |
   COST - Play this only during your turn. Pick 2 characters in your discard pile.
   EFFECT - Put 1 of the characters into play under your control and 1 into your hand.

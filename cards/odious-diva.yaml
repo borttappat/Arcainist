@@ -3,9 +3,6 @@ name: "Odious Diva"
 trade: arcanist
 types: [character]
 subtypes: [diva]
-cost: 2
-threshold: { obsession: 1 }
-stats: { str: 1, life: 2, spd: 3 }
 text: |
   Your opponent's hand is revealed at all times.
   DISAPPROVE

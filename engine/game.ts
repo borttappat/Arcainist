@@ -188,22 +188,42 @@ export class Game {
     return "wait";
   }
 
+  /**
+   * Undo an action whose costs couldn't be paid (or were cancelled). Log lines
+   * written while paying were private to the acting player; drop them, so the
+   * opponent never learns the attempt happened.
+   */
   private rollback(msg: string): void {
+    const actor = this.s.costActor!;
     const restored = JSON.parse(this.s.snapshot!) as GameState;
-    restored.log = this.s.log;
+    restored.log = this.s.log.filter((e) => !e.held);
     for (const k of Object.keys(this.s)) delete (this.s as any)[k];
     Object.assign(this.s, restored);
     this.s.snapshot = null;
+    this.s.costActor = null;
     this.s.pending = null;
     this.s.waiting = null;
-    this.log(msg);
+    this.log(msg, actor);
   }
 
-  private takeSnapshot(): void {
+  /** Start paying costs for player p: snapshot for rollback and hold log lines. */
+  private takeSnapshot(p: PlayerId): void {
     this.s.snapshot = null;
+    this.s.costActor = p;
     const { log, ...rest } = this.s;
     void log;
     this.s.snapshot = JSON.stringify({ ...rest, log: [] });
+  }
+
+  /** Costs are paid and the card or ability is on the stack: publish the held log lines. */
+  private commitCosts(): void {
+    this.s.snapshot = null;
+    this.s.costActor = null;
+    for (const e of this.s.log) {
+      if (!e.held) continue;
+      delete e.held;
+      delete e.to;
+    }
   }
 
   // -------------------------------------------------------------------------
@@ -561,7 +581,7 @@ export class Game {
     const iid = task.iid as string;
     const c = this.q.card(iid);
     const def = this.q.def(iid);
-    if (!task.nested) this.takeSnapshot();
+    if (!task.nested) this.takeSnapshot(p);
     const ctx = this.newCtx(p, iid);
     ctx.responding = task.responding;
     ctx.via = task.flipUp ? "flip_up" : task.viaEffect ? "effect" : "normal";
@@ -593,7 +613,7 @@ export class Game {
   protected t_activate(task: Task): void {
     const p = task.p as PlayerId;
     const ab = this.q.abilities(task.iid).find((x) => x.index === task.index)!;
-    this.takeSnapshot();
+    this.takeSnapshot(p);
     const src = this.q.card(task.iid);
     // Borrowed abilities (The Billionaire) keep the card's controller as "you".
     const ctx = this.newCtx(src.zone === "play" ? src.controller : p, task.iid);
@@ -685,7 +705,7 @@ export class Game {
 
   protected t_deployed(task: Task): void {
     const ctx = this.s.ctxs[task.ctx];
-    this.s.snapshot = null;
+    this.commitCosts();
     const iid = task.iid as string;
     this.s.stack.push({ id: rng.id(this.s), kind: "card", controller: ctx.controller, iid, ctx: ctx.id, label: task.label, noResponse: task.noResponse, pickedInCost: ctx.picked });
     this.s.priority = other(ctx.controller);
@@ -695,7 +715,7 @@ export class Game {
 
   protected t_activated(task: Task): void {
     const ctx = this.s.ctxs[task.ctx];
-    this.s.snapshot = null;
+    this.commitCosts();
     this.s.stack.push({ id: rng.id(this.s), kind: "ability", controller: ctx.actor, iid: task.iid, rule: task.index, ctx: ctx.id, label: task.label, noResponse: task.noResponse, pickedInCost: ctx.picked });
     this.s.priority = other(ctx.actor);
     this.emit({ e: "ability_used", iid: task.iid, player: ctx.actor });
@@ -1794,14 +1814,14 @@ export class Game {
     const ctx = this.newCtx(task.p, task.source);
     ctx.vars.__dupDef = task.defId;
     ctx.free = true;
-    this.takeSnapshot();
+    this.takeSnapshot(task.p);
     this.log(`${def.name} is duplicated.`);
     this.push(...this.steps(play.cost ?? [], ctx, "cost"), { t: "payNumeric", ctx: ctx.id, base: 0 }, { t: "duplicated", ctx: ctx.id, label: `${def.name} (duplicate)` });
   }
 
   protected t_duplicated(task: Task): void {
     const ctx = this.s.ctxs[task.ctx];
-    this.s.snapshot = null;
+    this.commitCosts();
     this.s.stack.push({ id: rng.id(this.s), kind: "duplicate", controller: ctx.controller, iid: ctx.source, ctx: ctx.id, label: task.label, noResponse: true });
     this.s.priority = other(ctx.controller);
   }
@@ -2397,6 +2417,12 @@ export class Game {
   }
 
   log(text: string, to?: PlayerId): void {
+    // While a player is paying costs, public lines are held privately until the
+    // action is committed (see takeSnapshot / commitCosts / rollback).
+    if (!to && this.s.snapshot && this.s.costActor) {
+      this.s.log.push({ n: this.s.log.length, text, to: this.s.costActor, held: true });
+      return;
+    }
     this.s.log.push({ n: this.s.log.length, text, ...(to ? { to } : {}) });
   }
 

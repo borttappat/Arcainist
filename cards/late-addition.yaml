@@ -2,8 +2,6 @@ id: late-addition
 name: "Late Addition"
 trade: rogue
 types: [tactic]
-cost: 1
-threshold: { deception: 1 }
 text: |
   You may play a character card from your hand. Draw a card. (You still pay all the character's costs.)
 rules:

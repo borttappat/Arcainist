@@ -3,9 +3,6 @@ name: "Party Clowns"
 trade: rogue
 types: [character]
 subtypes: [clowns]
-cost: 4
-threshold: { deception: 1 }
-stats: { str: 2, life: 2, spd: 3 }
 text: |
   You may include as many copies of this card in your deck as you want. At the start of your turn, you may pay 1. If you do, search your deck for a card named "Party Clowns" and reveal it. Put it into play under your control.
 deck_limit: null

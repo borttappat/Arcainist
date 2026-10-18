@@ -39,7 +39,7 @@ Other commands: `npm test` (engine tests), `npm run typecheck`.
 | `engine/test/` | Scenario tests per mechanic, plus a fuzz test that plays random games with every card. |
 | `server/` | WebSocket server: identity, rooms, sends each player their view. |
 | `client/` | React UI. |
-| `cards/` | One YAML file per card (121 cards, 120 automated). |
+| `cards/` | Two files per card: `<id>.json` (numbers) and `<id>.yaml` (text and rules). 121 cards, 120 automated. |
 | `decks/` | Sample decklists; every file here shows up as a sample in the lobby. |
 
 **Identity.** The browser generates a random key and stores it locally. The server
@@ -56,10 +56,12 @@ are logged in orange and let you play cards the engine doesn't handle yet.
 
 ## Adding or changing cards
 
-Add a YAML file to `cards/` and restart the server. The card language is
-documented in `docs/CARDS.md`, and the existing files are the best examples. Card
-files are validated at startup, so an unknown instruction is reported immediately
-rather than failing mid-game.
+Each card is `cards/<id>.json` (cost, threshold, stats and other numbers) plus
+`cards/<id>.yaml` (name, text and rules). To rebalance a card, edit its JSON. To
+add one, create both files and restart the server. The card language is documented
+in `docs/CARDS.md`, and the existing files are the best examples. Card files are
+validated at startup, so a mistake is reported immediately rather than failing
+mid-game.
 
 Decklists reference cards by name:
 

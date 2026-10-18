@@ -3,9 +3,6 @@ name: "Martial Artist"
 trade: rogue
 types: [character]
 subtypes: [martial artist]
-cost: 6
-threshold: { deception: 2 }
-stats: { str: 4, life: 3, spd: 4 }
 text: |
   Your opponent cannot pick this card.
 rules:

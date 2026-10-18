@@ -2,8 +2,6 @@ id: spackle
 name: "Spackle"
 trade: gearsmith
 types: [item]
-cost: 1
-threshold: { elitism: 1 }
 text: |
   REPAIR
   COST - Deplete this card. Pick a location.

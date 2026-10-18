@@ -2,9 +2,6 @@ id: escrow-office
 name: "Escrow Office"
 trade: banker
 types: [location]
-cost: 2
-threshold: { greed: 1 }
-structure: 3
 text: |
   DEPOSIT
   COST - Pay 1.

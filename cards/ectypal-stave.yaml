@@ -2,8 +2,6 @@ id: ectypal-stave
 name: "Ectypal Stave"
 trade: arcanist
 types: [item]
-cost: 2
-threshold: { obsession: 4 }
 text: |
   COUNTERFEIT
   COST - Use this only if a tactic has been played this turn. Pay 2*X, where X is the numeric cost of the last tactic played this turn. Deplete this card.

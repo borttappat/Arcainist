@@ -3,9 +3,6 @@ name: "Ferrous Ferret"
 trade: rogue
 types: [character]
 subtypes: [beast]
-cost: 2
-threshold: { deception: 1 }
-stats: { str: 1, life: 1, spd: 4 }
 text: |
   Anything that can pick this card must pick it. (This effect is only active while this card is in play.) If this card is picked, put a token on it. This card gains 1 strength and 1 life for each token on it.
 rules:

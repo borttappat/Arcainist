@@ -3,9 +3,6 @@ name: "Rudo Mangod"
 trade: warlord
 types: [character]
 subtypes: [fighter]
-cost: 5
-threshold: { rage: 3 }
-stats: { str: 4, life: 3, spd: 3 }
 text: |
   UNIQUE RUDOLPHUS.
   PUNCH

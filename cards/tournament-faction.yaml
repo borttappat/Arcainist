@@ -2,9 +2,6 @@ id: tournament-faction
 name: The Tournament Faction
 trade: staple
 types: [faction]
-influence: 25
-starting_resources: { any_staples: 2 }
-starting_draw: { first: 8, second: 9 }
 restore_rule:
   - restore_all_depleted: you
   - detach_all_resources: you

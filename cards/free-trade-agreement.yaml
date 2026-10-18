@@ -2,8 +2,6 @@ id: free-trade-agreement
 name: "Free Trade Agreement"
 trade: banker
 types: [item]
-cost: 2
-threshold: { greed: 2 }
 text: |
   At the start of each player's turn, that player chooses one of the following:
   OPTION 1 - That player may draw a card and their opponent may play a resource.

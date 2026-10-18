@@ -3,9 +3,6 @@ name: "Erotic Assassin"
 trade: banker
 types: [character]
 subtypes: [mercenary, assassin]
-cost: 0
-threshold: { greed: 2 }
-stats: { str: 3, life: 3, spd: 3 }
 text: |
   This card cannot be restored by your faction's RESTORE RULE. This card can attack only once each turn.
   RESTORE

@@ -2,8 +2,6 @@ id: expedition-autoblind
 name: "Expedition AutoBlind"
 trade: rogue
 types: [item]
-cost: 0
-threshold: { deception: 1 }
 text: |
   HUNKER
   DOWN

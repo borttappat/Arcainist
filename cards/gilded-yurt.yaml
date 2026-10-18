@@ -2,9 +2,6 @@ id: gilded-yurt
 name: "Gilded Yurt"
 trade: banker
 types: [location]
-cost: 1
-threshold: { greed: 2 }
-structure: 3
 text: |
   CHILLAX
   COST - Deplete this card. Pick a character you control.

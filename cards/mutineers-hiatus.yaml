@@ -3,8 +3,6 @@ name: Mutineer's Hiatus
 flavor_title: a lovely view and all the seagulls you can eat
 trade: banker
 types: [tactic]
-cost: 1
-threshold: { greed: 1 }
 text: |
   COST - Destroy a character you own.
   EFFECT - Draw 2 cards.

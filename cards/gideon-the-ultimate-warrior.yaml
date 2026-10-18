@@ -3,9 +3,6 @@ name: "Gideon, the Ultimate Warrior"
 trade: warlord
 types: [character]
 subtypes: [gideon, sword of great justice]
-cost: 1
-threshold: { rage: 3 }
-stats: { str: 2, life: 3, spd: 3 }
 text: |
   UNIQUE GIDEON. If battle damage is inflicted to this card while it's attacking, reduce the amount to 0. If your opponent's faction loses influence, increase the amount by 1.
 rules:

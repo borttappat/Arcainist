@@ -3,9 +3,6 @@ name: "Deceptive Muddler"
 trade: arcanist
 types: [character]
 subtypes: [muddler]
-cost: 4
-threshold: { obsession: 1 }
-stats: { str: 2, life: 1, spd: 3 }
 text: |
   COVERT. If this card inflicts damage to a faction, your opponent must put a card from their hand on the top of their deck.
 keywords: [covert]

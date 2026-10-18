@@ -2,8 +2,6 @@ id: ritual-of-the-screaming-cheese
 name: "Ritual of the Screaming Cheese"
 trade: arcanist
 types: [tactic]
-cost: 1
-threshold: { obsession: 1 }
 text: |
   Your opponent must pick one of the following:
   OPTION 1 - They discard 2 cards.

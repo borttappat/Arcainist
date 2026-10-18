@@ -2,9 +2,6 @@ id: forbidden-bibliotheca
 name: "Forbidden Bibliotheca"
 trade: arcanist
 types: [location]
-cost: 3
-threshold: { obsession: 3 }
-structure: 0
 text: |
   UNIQUE BIBLIOTHECA. This card enters play with 3 tokens on it. This card gains 1 structure for each token on it.
   RESEARCH

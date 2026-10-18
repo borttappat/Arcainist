@@ -3,9 +3,6 @@ name: "Menacing Mauler"
 trade: warlord
 types: [character]
 subtypes: [berserker]
-cost: 5
-threshold: { rage: 3 }
-stats: { str: 5, life: 4, spd: 3 }
 text: |
   If this card is blocked, inflict 1 damage to each member of the blocking party.
 rules:

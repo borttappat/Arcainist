@@ -1,15 +1,17 @@
 # The card language
 
-Every card is one YAML file in `cards/`. The server loads and validates them at
-startup, so a typo (an unknown instruction, modifier or event) is reported
-immediately with the file and path. Restart the server after editing a card.
+Every card is two files in `cards/` with the same name:
 
-A card has two parts:
+- **`<id>.json`: the numbers.** Cost, threshold, stats, structure, gear bonus,
+  provided icons, and for factions influence and starting resources and draw. This
+  is the file to edit when rebalancing.
+- **`<id>.yaml`: everything else.** Name, type line, printed `text` (display only)
+  and `rules`, the behaviour, written with the building blocks below.
 
-- **Printed data**: name, cost, threshold, type line, stats and the printed `text`.
-  The text is only for display.
-- **`rules`**: what the engine actually does, written with the building blocks
-  below.
+The server loads and validates both at startup, so a typo (an unknown instruction,
+modifier, event or number key, a number left in the YAML, a missing JSON file) is
+reported immediately with the file and path. Restart the server after editing a
+card.
 
 A card with no `rules` (or an instruction the engine doesn't know) is still
 playable: players use the manual controls, as on Jinteki.
@@ -29,6 +31,32 @@ playable: players use the manual controls, as on Jinteki.
 
 ## 1. Printed data
 
+`cards/fired-hand.json`, the numbers:
+
+```json
+{
+  "cost": 6,
+  "threshold": { "deception": 1 },
+  "stats": { "str": 5, "life": 4, "spd": 3 }
+}
+```
+
+| Key | Meaning |
+|---|---|
+| `cost` | Cost number. |
+| `threshold` | Icons: `obsession`, `greed`, `elitism`, `deception`, `rage`, `volition`. |
+| `stats` | `str`, `life`, `spd` (characters). |
+| `structure` | Locations. |
+| `gear` | `str`, `life`, `spd` bonus a gear item gives the character it's attached to. |
+| `provides` | Icons a face-up non-staple resource provides (Violence: `{ "rage": 2 }`). |
+| `influence`, `starting_resources`, `starting_draw` | Factions: `{ "any_staples": 2 }` or `{ "different_staples": 2 }`; `{ "first": 8, "second": 9 }`. |
+
+Every value is a whole number of 0 or more. A card with no numbers (a staple)
+still has a JSON file, containing `{}`. Numbers written inside `rules` ("Pay 3",
+"draw 2") stay in the YAML, because they're part of the effect.
+
+`cards/fired-hand.yaml`, everything else:
+
 ```yaml
 id: fired-hand              # unique, used in code and tests (quote it if it looks like a number)
 name: Fired Hand            # what decklists use
@@ -36,31 +64,27 @@ flavor_title: '"I''m finished!"'
 trade: rogue                # arcanist | banker | gearsmith | rogue | warlord | universal | staple
 types: [character]          # character | tactic | item | location | resource | faction
 subtypes: [miner]
-cost: 6
-threshold: { deception: 1 } # obsession | greed | elitism | deception | rage | volition
-stats: { str: 5, life: 4, spd: 3 }
 text: |
   Printed rules text, shown on hover.
+rules: [ ... ]
 ```
 
-Other optional fields:
+Other optional YAML fields:
 
 | Field | Meaning |
 |---|---|
-| `structure: 4` | Locations. |
-| `gear: { str: 2, life: 2, spd: 0 }` | Stat bonus a gear item gives the character it's attached to. |
 | `attach_to: character` | "Attach to Character": picking the host is part of the cost. |
 | `keywords: [covert, aggro, tactical]` | Built-in keywords (section 6 can grant them too). |
 | `staple: true`, `icon: rage` | Staple resources. |
-| `provides: { rage: 2 }` | Icons a face-up non-staple resource provides (Violence). |
 | `face_down_only: true` | Resource that may only be played face-down. |
 | `enters_with_tokens: 3` | Tokens when entering play. A value, so `{ cost: d }` works. |
 | `enters_under: opponent` | Hollow Moose. |
 | `deck_limit: null` | Any number of copies (Party Clowns). |
 
-Factions also have `influence`, `starting_resources`, `starting_draw`, and
-`restore_rule` / `develop_rule`, which are lists of steps run at the start of each
-of the owner's turns. See `cards/tournament-faction.yaml`.
+Factions also have `restore_rule` / `develop_rule` in YAML: lists of steps run at
+the start of each of the owner's turns. A faction's extra starting-draw steps
+(Unlikely Heroes' search) go in YAML as `starting_draw: { before: [ ... ] }`; the
+draw counts are in the JSON. See `cards/tournament-faction.*`.
 
 ## 2. Rules
 

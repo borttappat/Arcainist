@@ -2,13 +2,9 @@ id: unlikely-heroes
 name: Unlikely Heroes
 trade: staple
 types: [faction]
-influence: 22
-starting_resources: { different_staples: 2 }
 starting_draw:
   before:
     - search: { deck: you, for: { staple_not_among: starting_resources }, count: 1, to: hand, reveal: true }
-  first: 7
-  second: 8
 restore_rule:
   - restore_all_depleted: you
   - detach_all_resources: you

@@ -3,8 +3,6 @@ name: Invent
 flavor_title: that's the best one of those I've ever seen
 trade: gearsmith
 types: [tactic]
-cost: 0
-threshold: { elitism: 3 }
 text: |
   COST - Choose a number for X. Pay X+X.
   EFFECT - Search your deck for X-1 cards. Put them into your hand.

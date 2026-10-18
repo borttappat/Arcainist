@@ -3,9 +3,6 @@ name: "700160x 31f"
 trade: gearsmith
 types: [character]
 subtypes: [31f]
-cost: 3
-threshold: { elitism: 2 }
-stats: { str: 1, life: 1, spd: 3 }
 text: |
   When this card enters play, you may search your deck for a gear card with numeric cost 5 or less and reveal it. If you do, put it into play attached to this card.
 rules:

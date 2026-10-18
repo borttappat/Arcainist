@@ -2,8 +2,6 @@ id: siege-machine
 name: "Siege Machine"
 trade: warlord
 types: [item]
-cost: 0
-threshold: { rage: 4 }
 text: |
   BATTERING
   RAM

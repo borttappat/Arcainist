@@ -2,8 +2,6 @@ id: eccentric-inquisition
 name: "Eccentric Inquisition"
 trade: arcanist
 types: [tactic]
-cost: 2
-threshold: { obsession: 3 }
 text: |
   Reveal the top 7 cards of your opponent's deck. Remove all revealed tactics from the game and put the remaining cards on the bottom of your opponent's deck in any order. For the rest of the game, you may play tactics removed from the game by this card as though they were in your hand and without having the proper resource icons.
 rules:

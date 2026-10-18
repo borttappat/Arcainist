@@ -2,8 +2,6 @@ id: misappropriation-machine
 name: "Misappropriation Machine"
 trade: rogue
 types: [item]
-cost: 3
-threshold: { deception: 2 }
 text: |
   STEAL
   COST - Deplete this card. Pick a character or item in your opponent's discard pile.

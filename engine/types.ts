@@ -232,6 +232,8 @@ export interface LogEntry {
   /** Private entries are only shown to this player. */
   to?: PlayerId;
   manual?: boolean;
+  /** Written while costs were being paid; public only once the action commits. */
+  held?: boolean;
 }
 
 export interface TurnLog {
@@ -263,6 +265,8 @@ export interface GameState {
   waiting: Task | null;
   /** Serialized state taken before paying costs, for rollback. */
   snapshot: string | null;
+  /** Player whose costs are being paid while `snapshot` is set. */
+  costActor?: PlayerId | null;
   log: LogEntry[];
 }
 

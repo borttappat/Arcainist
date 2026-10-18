@@ -2,8 +2,6 @@ id: cock-block
 name: "Cock Block"
 trade: gearsmith
 types: [tactic]
-cost: 3
-threshold: { elitism: 1 }
 text: |
   COST - Play this only in response to an ability.
   EFFECT - Terminate the ability. Put this card into play under its owner's control as a face-down resource instead of into its owner's discard pile.

@@ -4,9 +4,6 @@ flavor_title: '"I''m finished!"'
 trade: rogue
 types: [character]
 subtypes: [miner]
-cost: 6
-threshold: { deception: 1 }
-stats: { str: 5, life: 4, spd: 3 }
 text: |
   If this card is destroyed, flip it face-down under its owner's control instead.
   PETTY VENGEANCE

@@ -3,9 +3,6 @@ name: "Sadistic Colonel"
 trade: warlord
 types: [character]
 subtypes: [soldier]
-cost: 3
-threshold: { rage: 1 }
-stats: { str: 3, life: 1, spd: 3 }
 text: |
   If your opponent plays a tactic, inflict 2 damage to their faction.
 rules:

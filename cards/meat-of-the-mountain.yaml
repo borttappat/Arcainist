@@ -2,8 +2,6 @@ id: meat-of-the-mountain
 name: "Meat of the Mountain"
 trade: arcanist
 types: [item]
-cost: 2
-threshold: { obsession: 2 }
 text: |
   If a player draws any number of cards, that player may add or remove a token from this card. If they do, generate the effect which corresponds to the new number of tokens on this card:
   0 TOKENS - That player's opponent discards a card.

@@ -3,8 +3,6 @@ name: Alluring Quicksand
 flavor_title: like taking a baby from its candy
 trade: banker
 types: [tactic]
-cost: 4
-threshold: { greed: 2 }
 text: |
   EXTRA COST - Pick a character.
   Flip the character face-down under its owner's control.
