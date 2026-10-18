@@ -1,0 +1,14 @@
+id: lucky-charm
+name: "Lucky Charm"
+trade: rogue
+types: [item]
+cost: 2
+threshold: { deception: 1 }
+text: |
+  When this card enters play, draw a card. Your opponents must pay 1 to pick a character you control.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect: [ draw: 1 ]
+  - static:
+      mods:
+        - { pick_tax: 1, by: opponent, target: { character: { controller: you } } }

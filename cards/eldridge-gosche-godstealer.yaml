@@ -1,0 +1,42 @@
+id: eldridge-gosche-godstealer
+name: "Eldridge Gosche, Godstealer"
+trade: arcanist
+types: [character]
+subtypes: [ritualist, eldridge]
+cost: 6
+threshold: { obsession: 3 }
+stats: { str: 4, life: 5, spd: 3 }
+text: |
+  UNIQUE ELDRIDGE. When this card enters play or is destroyed, you may pick 3 or fewer non-resource cards you control. If you do, put up to 3 tokens divided however you want on those cards.
+  READY THE RITE
+  COST - Remove 2 tokens from this card. Pick a tactic you own in the void or in your discard pile.
+  EFFECT - Put the tactic into your hand.
+  TRIBUTE
+  COST - Pay 1. Destroy this card. Pick a player.
+  EFFECT - That player discards 2 cards. Draw a card.
+rules:
+  - unique: Eldridge
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may: [ distribute_tokens: { total: 3, from: { card: { controller: you, not_type: resource } } } ]
+  - trigger: { on: destroyed, card: self }
+    effect:
+      - may: [ distribute_tokens: { total: 3, from: { card: { controller: you, not_type: resource } } } ]
+  - ability:
+      name: Ready the Rite
+      cost:
+        - tokens: { remove: 2 }
+        - pick: { as: t, from: [ { tactic: { zone: void, owner: you } }, { tactic: { zone: discard, owner: you } } ] }
+      effect:
+        - move: { card: t, to: hand }
+  - ability:
+      name: Tribute
+      cost:
+        - pay: 1
+        - destroy: self
+      effect:
+        - choose_one:
+            options:
+              - { label: "You discard 2 cards", steps: [ discard: { who: you, count: 2 } ] }
+              - { label: "Your opponent discards 2 cards", steps: [ discard: { who: opponent, count: 2 } ] }
+        - draw: 1

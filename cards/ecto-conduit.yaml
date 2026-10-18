@@ -1,0 +1,27 @@
+id: ecto-conduit
+name: "Ecto-Conduit"
+trade: arcanist
+types: [item]
+cost: 3
+threshold: { obsession: 3 }
+text: |
+  At the start of your turn, you may draw three cards, then put two cards from your hand on top of your deck in any order.
+  HARNESS
+  COST - Destroy this card.
+  EFFECT - Void the top card of your deck. If it is a tactic, you may deploy it as though it was in your hand even if you cannot meet its threshold.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - may:
+          - draw: 3
+          - pick: { as: two, from: { card: { zone: hand, owner: you } }, count: 2, choose: true, prompt: "Ecto-Conduit: put two cards from your hand on top of your deck." }
+          - move: { card: two, to: deck_top, silent: true }
+  - ability:
+      name: Harness
+      cost: [ destroy: self ]
+      effect:
+        - mill: { who: you, count: 1, to: void, as: top }
+        - if:
+            cond: { matches: [ top, { tactic: { zone: void } } ] }
+            then:
+              - may: [ play_card: { card: top, ignore_threshold: true } ]

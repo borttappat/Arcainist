@@ -1,0 +1,18 @@
+id: snooty-doorman
+name: "Snooty Doorman"
+trade: banker
+types: [character]
+subtypes: [lackey]
+cost: 3
+threshold: { greed: 1 }
+stats: { str: 2, life: 2, spd: 3 }
+text: |
+  DENIED!
+  COST - Use this only in response to a character being played. Destroy this card.
+  EFFECT - Terminate the character.
+rules:
+  - ability:
+      name: Denied!
+      timing: { response_to: { deploying: { character: any } } }
+      cost: [ destroy: self ]
+      effect: [ terminate: responded ]

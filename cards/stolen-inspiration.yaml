@@ -1,0 +1,20 @@
+id: stolen-inspiration
+name: "Stolen Inspiration"
+trade: arcanist
+types: [tactic]
+cost: 3
+threshold: { obsession: 2 }
+text: |
+  Look at your opponent's hand and pick a non-resource card. Your opponent must discard that card. You may play a non-resource card with numeric cost X or less for free, where X is half the numeric cost of the discarded card, rounded up. (You still need the proper resource icons and must pay any additional costs.)
+rules:
+  - play:
+      effect:
+        - reveal_hand: opponent
+        - pick: { as: d, from: { card: { zone: hand, owner: opponent, not_type: resource } } }
+        - discard: { who: opponent, cards: d }
+        - let: { X: { half_up: { cost: d } } }
+        - may:
+            prompt: "play a non-resource card with numeric cost X or less for free"
+            steps:
+              - pick: { as: c, from: { card: { zone: hand, owner: you, not_type: resource, cost_lte: X } }, choose: true }
+              - play_card: { card: c, free: true }

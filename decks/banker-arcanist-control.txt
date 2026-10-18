@@ -1,0 +1,18 @@
+# Banker / Arcanist control: tokens, card draw and hand disruption.
+Faction: Unlikely Heroes
+13 Greed
+12 Obsession
+3 Dwarvish Grimalkin
+2 Death Investor
+3 Snooty Doorman
+2 Canny Bailiff
+2 Escrow Office
+2 Cash Out
+3 Ritual of the Double Monkey
+2 Ritual of the Screaming Cheese
+2 Obsessive Compulsion
+2 Forbidden Bibliotheca
+2 Voidal Poisoning
+2 Odious Diva
+2 Ghostly Auditor
+2 Eldridge Gosche, Godstealer

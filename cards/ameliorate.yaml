@@ -1,0 +1,14 @@
+id: ameliorate
+name: "Ameliorate"
+trade: arcanist
+types: [tactic]
+cost: 1
+threshold: { obsession: 1 }
+text: |
+  Put any number of cards from your hand on the bottom of your deck in any order. Put the top X cards of your deck into your hand, where X is the number of cards you put on the bottom plus 1.
+rules:
+  - play:
+      effect:
+        - pick: { as: put, from: { card: { zone: hand, owner: you } }, count: { hand_size: you }, up_to: true, choose: true, prompt: "Ameliorate: put any number of cards from your hand on the bottom of your deck." }
+        - move: { card: put, to: deck_bottom }
+        - mill: { who: you, count: { sum: [ { len: put }, 1 ] }, to: hand }

@@ -1,0 +1,13 @@
+id: armored-keep
+name: "Armored Keep"
+trade: banker
+types: [location]
+cost: 6
+threshold: { greed: 3 }
+structure: 5
+text: |
+  UNIQUE ARMORED KEEP. You may play this card whenever you could play a tactic. You do not lose the game while your faction has 0 influence.
+keywords: [tactical]
+rules:
+  - unique: Armored Keep
+  - static: { mods: [ { cannot: lose_game } ] }

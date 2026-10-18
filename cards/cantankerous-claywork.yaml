@@ -1,0 +1,18 @@
+id: cantankerous-claywork
+name: "Cantankerous Claywork"
+trade: gearsmith
+types: [character]
+subtypes: [golem]
+cost: 7
+threshold: { elitism: 3 }
+stats: { str: 6, life: 5, spd: 3 }
+text: |
+  AGGRO. When this card attacks, all your other characters gain 1 strength and 1 life this turn.
+keywords: [aggro]
+rules:
+  - trigger: { on: attacks, card: self }
+    effect:
+      - create_effect:
+          duration: turn
+          mods:
+            - { stat: { str: 1, life: 1 }, target: { character: { controller: you, not_self: true } } }

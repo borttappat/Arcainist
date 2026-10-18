@@ -1,0 +1,22 @@
+id: spatchcocking
+name: "Spatchcocking"
+trade: arcanist
+types: [tactic]
+cost: 4
+threshold: { obsession: 4 }
+text: |
+  Each player chooses a card of each non-resource type they control. Put all remaining non-resource cards into their owner's hand.
+  RECUR [O][O][O][O]
+  COST - Use this only if this card is in your discard pile. Pay 4. Remove this card from the game.
+  EFFECT - Each opponent reveals their hand, chooses a card of each non-resource type in it, and discards the remaining non-resource cards.
+rules:
+  - play:
+      effect: [ script: spatchcocking ]
+  - ability:
+      name: Recur
+      threshold: { obsession: 4 }
+      from: discard
+      cost:
+        - pay: 4
+        - void: self
+      effect: [ script: spatchcocking_recur ]

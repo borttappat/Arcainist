@@ -1,0 +1,7 @@
+id: greed
+name: Greed
+trade: banker
+types: [resource]
+staple: true
+icon: greed
+text: Staple resource. Provides one Greed icon.

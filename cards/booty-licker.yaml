@@ -1,0 +1,23 @@
+id: booty-licker
+name: "Booty Licker"
+trade: rogue
+types: [character]
+subtypes: [thief]
+cost: 4
+threshold: { deception: 3 }
+stats: { str: 1, life: 1, spd: 3 }
+text: |
+  CLAIM
+  COST - Deplete this card. Pick an item. X is its numeric cost. Pay X.
+  EFFECT - Take control of the item.
+  FLIP UP - 2 [D][D][D].
+rules:
+  - ability:
+      name: Claim
+      cost:
+        - deplete: self
+        - pick: { as: i, from: { item: any } }
+        - pay: { cost: i }
+      effect:
+        - take_control: { card: i }
+  - flip_up: { pay: 2, threshold: { deception: 3 } }

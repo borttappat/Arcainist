@@ -1,0 +1,24 @@
+id: obsessive-concentration
+name: "Obsessive Concentration"
+trade: arcanist
+types: [resource]
+provides: { obsession: 1 }
+text: |
+  This resource may only be played from your hand face-down. PROVIDES - [O].
+  FLIP IT [O]
+  COST - Use this only while this card is a face-down resource. Reveal this card. Pay 4.
+  EFFECT - Put this card into play face-up. Draw 3 cards. If you do, put 3 cards from your hand on the bottom of your deck.
+face_down_only: true
+rules:
+  - ability:
+      name: Flip It
+      threshold: { obsession: 1 }
+      from: face_down_resource
+      cost:
+        - reveal: self
+        - pay: 4
+      effect:
+        - flip_face_up: self
+        - draw: 3
+        - pick: { as: b, from: { card: { zone: hand, owner: you } }, count: 3, choose: true, prompt: "Obsessive Concentration: put 3 cards from your hand on the bottom of your deck." }
+        - move: { card: b, to: deck_bottom, silent: true }

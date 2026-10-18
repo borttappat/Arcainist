@@ -1,0 +1,11 @@
+id: violence
+name: "Violence"
+trade: warlord
+types: [resource]
+provides: { rage: 2 }
+text: |
+  This card provides - [R][R]. When this card enters play, your faction loses 1 influence.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - lose_influence: { who: you, amount: 1 }

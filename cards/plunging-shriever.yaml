@@ -1,0 +1,30 @@
+id: plunging-shriever
+name: "Plunging Shriever"
+trade: warlord
+types: [character]
+subtypes: [dragon]
+cost: 4
+threshold: { rage: 2 }
+stats: { str: 3, life: 1, spd: 4 }
+text: |
+  When this card enters play, you may pick an item. If you do, destroy that item and your faction loses 2 influence.
+  FLY AWAY
+  COST - Remove an item in your opponent's discard pile from the game.
+  EFFECT - Flip this card face-down under its owner's control.
+  FLIP UP - 3 [R][R].
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - pick: { as: i, from: { item: any }, optional: true }
+      - if:
+          cond: { defined: i }
+          then:
+            - destroy: i
+            - lose_influence: { who: you, amount: 2 }
+  - ability:
+      name: Fly Away
+      cost:
+        - pick: { as: x, from: { item: { zone: discard, owner: opponent } } }
+        - void: x
+      effect: [ flip_face_down: self ]
+  - flip_up: { pay: 3, threshold: { rage: 2 } }

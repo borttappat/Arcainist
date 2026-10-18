@@ -1,0 +1,17 @@
+id: yoink
+name: "Yoink!"
+trade: rogue
+types: [tactic]
+cost: 1
+threshold: { deception: 1 }
+text: |
+  COST - Pick a "gear" card and a character.
+  EFFECT - Take control of the "gear" card and attach it to the character.
+rules:
+  - play:
+      cost:
+        - pick: { as: g, from: { card: { subtype: gear } } }
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - take_control: { card: g }
+        - attach: { card: g, to: c }

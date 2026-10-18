@@ -1,0 +1,16 @@
+id: 1337
+name: "1337!"
+trade: gearsmith
+types: [tactic]
+cost: 3
+threshold: { elitism: 1 }
+text: |
+  Reduce the numeric cost of the next card you deploy this turn by 4. Draw a card.
+rules:
+  - play:
+      effect:
+        - create_effect:
+            duration: next
+            mods:
+              - { cost: -4, by: you, target: { card: { zone: stack } } }
+        - draw: 1

@@ -1,0 +1,23 @@
+id: ecto-distillation
+name: "Ecto-Distillation"
+trade: arcanist
+types: [tactic]
+cost: 4
+threshold: { obsession: 3 }
+text: |
+  COST - Name a card.
+  EFFECT - Search your deck for any number of copies of the card and reveal them. Put 1 into your hand and the rest into your discard pile. Your opponent may search your deck for any number of copies of the card and put them into your discard pile.
+rules:
+  - play:
+      cost:
+        - name: { as: n, kind: card }
+      effect:
+        - search: { deck: you, for: { card: { name: n } }, count: any, reveal: true, to: keep, as: copies }
+        - pick: { as: one, from: copies, choose: true, prompt: "Ecto-Distillation: put one copy into your hand." }
+        - move: { card: one, to: hand }
+        - move: { card: { card: { zone: deck, among: copies } }, to: discard }
+        - as:
+            who: opponent
+            steps:
+              - may:
+                  - search: { deck: opponent, for: { card: { name: n } }, count: any, to: discard }

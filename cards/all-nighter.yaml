@@ -1,0 +1,14 @@
+id: all-nighter
+name: "All-Nighter"
+trade: gearsmith
+types: [tactic]
+cost: 4
+threshold: { elitism: 2 }
+text: |
+  COST - Play this only during your turn.
+  EFFECT - Detach up to 9 resources from your faction.
+rules:
+  - play:
+      timing: { your_turn: true }
+      effect:
+        - detach: { count: 9 }

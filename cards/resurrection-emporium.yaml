@@ -1,0 +1,25 @@
+id: resurrection-emporium
+name: "Resurrection Emporium"
+trade: banker
+types: [location]
+cost: 0
+threshold: { greed: 2 }
+structure: 3
+text: |
+  If a character would be put into your discard pile from anywhere, remove it from the game instead.
+  RESURRECT
+  COST - Use this only during your turn. Pick a character in your discard pile. Pay 3+X, where X is that character's numeric cost.
+  EFFECT - Put the character into play under your control.
+rules:
+  - static:
+      mods:
+        - { redirect: { to: discard, instead: void }, target: { character: { owner: you, zone: any } } }
+  - ability:
+      name: Resurrect
+      timing: { your_turn: true }
+      cost:
+        - pick: { as: c, from: { character: { zone: discard, owner: you } } }
+        - let: { X: { cost: c } }
+        - pay: "3 + X"
+      effect:
+        - put_into_play: { card: c }

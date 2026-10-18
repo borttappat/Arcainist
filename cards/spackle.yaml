@@ -1,0 +1,18 @@
+id: spackle
+name: "Spackle"
+trade: gearsmith
+types: [item]
+cost: 1
+threshold: { elitism: 1 }
+text: |
+  REPAIR
+  COST - Deplete this card. Pick a location.
+  EFFECT - Remove 2 damage from the location.
+rules:
+  - ability:
+      name: Repair
+      cost:
+        - deplete: self
+        - pick: { as: l, from: { location: any } }
+      effect:
+        - heal: { card: l, amount: 2 }

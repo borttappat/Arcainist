@@ -1,0 +1,14 @@
+id: canny-bailiff
+name: "Canny Bailiff"
+trade: banker
+types: [character]
+subtypes: [attendant, lackey]
+cost: 3
+threshold: { greed: 2 }
+stats: { str: 2, life: 1, spd: 3 }
+text: |
+  While an opponent is deploying a tactic, its numeric cost is increased to a minimum of 3.
+rules:
+  - static:
+      mods:
+        - { cost_min: 3, by: opponent, target: { tactic: { zone: stack } } }

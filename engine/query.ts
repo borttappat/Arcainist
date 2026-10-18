@@ -1,0 +1,631 @@
+// Read-only questions about a game state: selectors, values, conditions, and the
+// modifier system (continuous effects). Nothing here mutates state, except that
+// "next use" effects are marked used by the game when it applies them.
+//
+// Every derived property (stats, types, keywords, icons, costs, permissions) is
+// recomputed from printed values plus the modifiers active right now, so effects
+// switch on and off by themselves when their source or condition changes.
+
+import { evaluate } from "./expr.ts";
+import type { CardDef, CardInst, CardLibrary, CardType, Effect, GameState, Icon, Icons, PlayerId, Rule, Stat } from "./types.ts";
+import { CARD_TYPES, ICONS, STAPLE_ICONS, other } from "./types.ts";
+
+/** What "you", "self" and variables mean while evaluating card data. */
+export interface Scope {
+  controller: PlayerId;
+  source: string;
+  vars: Record<string, any>;
+  actor?: PlayerId;
+  via?: string;
+  responding?: string;
+  did?: boolean;
+}
+
+/** An active modifier with the context it came from. */
+export interface ActiveMod {
+  kind: string;
+  value: any;
+  mod: any;
+  source: string;
+  controller: PlayerId;
+  scope: Scope;
+  effect?: Effect;
+}
+
+const MOD_KINDS = [
+  "stat",
+  "set_stats",
+  "add_type",
+  "remove_type",
+  "keyword",
+  "provides",
+  "player_icons",
+  "cost",
+  "cost_min",
+  "threshold_reduce",
+  "cannot",
+  "must_pick",
+  "pick_tax",
+  "play_from",
+  "tactical",
+  "grant_rules",
+  "damage",
+  "influence_loss",
+  "attack_limit",
+  "redirect",
+  "reveal_hand",
+  "use_opponent_abilities",
+  "lose_when_deck_empty",
+];
+
+export class Q {
+  private inMods = 0;
+  /** Modifier cache, only used inside frozen(): read-only work where state can't change. */
+  private cache: ActiveMod[] | null = null;
+  private frozenDepth = 0;
+
+  constructor(
+    public lib: CardLibrary,
+    public s: GameState,
+  ) {}
+
+  // -------------------------------------------------------------------------
+  // Basics
+
+  card(iid: string): CardInst {
+    const c = this.s.cards[iid];
+    if (!c) throw new Error(`No card ${iid}`);
+    return c;
+  }
+
+  def(iid: string): CardDef {
+    return this.lib[this.card(iid).defId];
+  }
+
+  name(iid: string): string {
+    return this.def(iid).name;
+  }
+
+  isFaction(iid: string): boolean {
+    return this.def(iid).types.includes("faction");
+  }
+
+  inPlay(iid: string): boolean {
+    return this.s.cards[iid]?.zone === "play";
+  }
+
+  /** Face-up, non-resource card in play (or a faction): its rules text is active. */
+  active(iid: string): boolean {
+    const c = this.s.cards[iid];
+    if (!c || c.zone !== "play" || c.faceDown) return false;
+    return !c.isResource || this.lib[c.defId].types.includes("resource");
+  }
+
+  allInPlay(): string[] {
+    return Object.values(this.s.cards)
+      .filter((c) => c.zone === "play")
+      .map((c) => c.iid);
+  }
+
+  scopeOf(iid: string): Scope {
+    const c = this.card(iid);
+    return { controller: c.controller, source: iid, vars: (c as any).notes ?? {} };
+  }
+
+  // -------------------------------------------------------------------------
+  // Rules: printed rules plus rules granted by modifiers
+
+  baseRules(iid: string): Rule[] {
+    return this.def(iid).rules ?? [];
+  }
+
+  rules(iid: string): Rule[] {
+    const base = this.baseRules(iid);
+    if (!this.active(iid)) return base;
+    const granted = this.modsFor("grant_rules", iid).flatMap((m) => m.value as Rule[]);
+    return granted.length ? [...base, ...granted] : base;
+  }
+
+  ruleOf(iid: string, key: string): any | undefined {
+    const r = this.baseRules(iid).find((r) => key in r);
+    return r ? r[key] : undefined;
+  }
+
+  abilities(iid: string): { index: number; rule: any }[] {
+    return this.rules(iid)
+      .map((r, index) => ({ index, r }))
+      .filter((x) => "ability" in x.r)
+      .map((x) => ({ index: x.index, rule: x.r.ability }));
+  }
+
+  // -------------------------------------------------------------------------
+  // Modifiers
+
+  /**
+   * Run read-only work (views, legality hints, trigger collection) with modifiers
+   * computed once. Never mutate state inside.
+   */
+  frozen<T>(fn: () => T): T {
+    this.frozenDepth++;
+    try {
+      return fn();
+    } finally {
+      if (--this.frozenDepth === 0) this.cache = null;
+    }
+  }
+
+  /** All active modifiers, optionally of one kind. */
+  mods(kind?: string): ActiveMod[] {
+    if (this.inMods) return [];
+    if (this.frozenDepth) {
+      this.cache ??= this.computeMods();
+      return kind ? this.cache.filter((m) => m.kind === kind) : this.cache;
+    }
+    return kind ? this.computeMods().filter((m) => m.kind === kind) : this.computeMods();
+  }
+
+  private computeMods(): ActiveMod[] {
+    if (this.inMods) return [];
+    this.inMods++;
+    try {
+      const out: ActiveMod[] = [];
+      const push = (m: any, source: string, controller: PlayerId, scope: Scope, effect?: Effect) => {
+        const k = MOD_KINDS.find((x) => x in m);
+        if (!k) return;
+        if (m.while && !this.cond(m.while, scope)) return;
+        out.push({ kind: k, value: m[k], mod: m, source, controller, scope, effect });
+      };
+      for (const c of Object.values(this.s.cards)) {
+        const def = this.lib[c.defId];
+        if (!def.rules) continue;
+        for (const r of def.rules) {
+          if (!r.static) continue;
+          const st = r.static;
+          const zone = st.zone ?? "play";
+          if (c.zone !== zone) continue;
+          if (zone === "play" && !this.active(c.iid)) continue;
+          const scope: Scope = { controller: zone === "play" ? c.controller : c.owner, source: c.iid, vars: (c as any).notes ?? {} };
+          if (st.requires && !this.meetsBase(scope.controller, st.requires)) continue;
+          if (st.while && !this.cond(st.while, scope)) continue;
+          for (const m of st.mods ?? []) push(m, c.iid, scope.controller, scope);
+        }
+      }
+      for (const e of this.s.effects) {
+        if (!e.mods || e.used) continue;
+        const scope: Scope = { controller: e.controller, source: e.source, vars: e.vars };
+        for (const m of e.mods) push(m, e.source, e.controller, scope, e);
+      }
+      return out;
+    } finally {
+      this.inMods--;
+    }
+  }
+
+  /** Modifiers of a kind whose target includes this card. */
+  modsFor(kind: string, iid: string): ActiveMod[] {
+    return this.mods(kind).filter((m) => this.targets(m, iid));
+  }
+
+  targets(m: ActiveMod, iid: string): boolean {
+    const t = m.mod.target ?? "self";
+    if (t === "all") return true;
+    if (t && typeof t === "object" && Array.isArray(t.iids)) return t.iids.includes(iid);
+    return this.matches(t, iid, m.scope, null);
+  }
+
+  /** Does a modifier with a `by` field apply to actions by player p? */
+  by(m: ActiveMod, p: PlayerId): boolean {
+    const b = m.mod.by ?? "any";
+    return b === "any" || (b === "you" ? p === m.controller : b === "opponent" ? p !== m.controller : true);
+  }
+
+  // -------------------------------------------------------------------------
+  // Types, keywords, stats, icons
+
+  types(iid: string): CardType[] {
+    const c = this.card(iid);
+    if (c.zone === "play" && c.isResource) return ["resource"];
+    let t = [...this.def(iid).types];
+    if (c.zone === "play") {
+      for (const m of this.modsFor("add_type", iid)) if (!t.includes(m.value)) t.push(m.value);
+      for (const m of this.modsFor("remove_type", iid)) t = t.filter((x) => x !== m.value);
+    }
+    return t;
+  }
+
+  is(iid: string, t: CardType): boolean {
+    return this.types(iid).includes(t);
+  }
+
+  isCharacter(iid: string): boolean {
+    return this.inPlay(iid) && !this.card(iid).isResource && this.is(iid, "character");
+  }
+
+  keyword(iid: string, kw: string): boolean {
+    if (!this.active(iid)) return false;
+    if ((this.def(iid).keywords ?? []).some((k) => k.toLowerCase() === kw)) return true;
+    return this.modsFor("keyword", iid).some((m) => String(m.value).toLowerCase() === kw);
+  }
+
+  printed(iid: string, stat: Stat): number {
+    const d = this.def(iid);
+    if (stat === "structure") return d.structure ?? 0;
+    return d.stats?.[stat] ?? 0;
+  }
+
+  /** Derived stat: base, then all increases, then all reductions, floored at 0. */
+  stat(iid: string, stat: Stat): number {
+    const c = this.card(iid);
+    let base = this.printed(iid, stat);
+    const set = this.modsFor("set_stats", iid).pop();
+    if (set && set.value[stat] !== undefined) base = this.value(set.value[stat], set.scope);
+    let gain = 0;
+    let lose = 0;
+    const add = (n: number) => (n > 0 ? (gain += n) : (lose -= n));
+    if (c.zone === "play") {
+      for (const g of Object.values(this.s.cards)) {
+        if (g.attachedTo === iid && g.zone === "play" && stat !== "structure") add(this.lib[g.defId].gear?.[stat] ?? 0);
+      }
+      const printed = { str: this.printed(iid, "str"), life: this.printed(iid, "life"), spd: this.printed(iid, "spd"), structure: this.printed(iid, "structure") };
+      for (const m of this.modsFor("stat", iid)) {
+        if (m.value[stat] === undefined) continue;
+        add(this.value(m.value[stat], { ...m.scope, vars: { ...m.scope.vars, printed, it: iid } }));
+      }
+    }
+    return Math.max(0, base + gain - lose);
+  }
+
+  /** Icons this card currently provides to its controller. */
+  provided(iid: string): Icons {
+    const c = this.card(iid);
+    if (c.zone !== "play") return {};
+    if (c.isResource) {
+      if (c.faceDown) return { volition: 1 };
+      const d = this.def(iid);
+      if (d.provides) return d.provides;
+      return d.icon ? { [d.icon]: 1 } : {};
+    }
+    if (!this.active(iid)) return {};
+    const out: Icons = { ...(this.ruleOf(iid, "provides") ?? {}) };
+    for (const m of this.modsFor("provides", iid)) {
+      for (const [k, v] of Object.entries(m.value as Icons)) out[k as Icon] = (out[k as Icon] ?? 0) + (v ?? 0);
+    }
+    return out;
+  }
+
+  icons(p: PlayerId): Record<Icon, number> {
+    const out = Object.fromEntries(ICONS.map((i) => [i, 0])) as Record<Icon, number>;
+    for (const iid of this.allInPlay()) {
+      if (this.card(iid).controller !== p) continue;
+      for (const [k, v] of Object.entries(this.provided(iid))) out[k as Icon] += v ?? 0;
+    }
+    for (const m of this.mods("player_icons")) {
+      if (m.controller !== p) continue;
+      for (const [k, v] of Object.entries(m.value as Icons)) out[k as Icon] += v ?? 0;
+    }
+    return out;
+  }
+
+  /** Icons from resource cards only, without modifiers (used inside modifier conditions). */
+  private meetsBase(p: PlayerId, threshold: Icons): boolean {
+    const have: Record<string, number> = {};
+    for (const iid of this.allInPlay()) {
+      if (this.card(iid).controller !== p) continue;
+      for (const [k, v] of Object.entries(this.provided(iid))) have[k] = (have[k] ?? 0) + (v ?? 0);
+    }
+    return Object.entries(threshold).every(([k, v]) => (have[k] ?? 0) >= (v ?? 0));
+  }
+
+  meets(p: PlayerId, threshold: Icons | undefined, reduceBy = 0): boolean {
+    if (!threshold) return true;
+    const have = this.icons(p);
+    let missing = 0;
+    for (const [k, v] of Object.entries(threshold)) missing += Math.max(0, (v ?? 0) - have[k as Icon]);
+    return missing <= reduceBy;
+  }
+
+  /** Threshold reduction for deploying this card (Rudo Mangod's Fealty). */
+  thresholdReduction(iid: string): number {
+    return this.modsFor("threshold_reduce", iid).reduce((n, m) => n + this.value(m.value, m.scope), 0);
+  }
+
+  resources(p: PlayerId): string[] {
+    return this.s.players[p].play.filter((iid) => this.card(iid).isResource);
+  }
+
+  unattached(p: PlayerId): string[] {
+    return this.resources(p).filter((iid) => this.card(iid).attachedTo === null);
+  }
+
+  characters(p: PlayerId): string[] {
+    return this.s.players[p].play.filter((iid) => this.isCharacter(iid));
+  }
+
+  attachments(iid: string): string[] {
+    return Object.values(this.s.cards)
+      .filter((c) => c.zone === "play" && c.attachedTo === iid)
+      .map((c) => c.iid);
+  }
+
+  numericCost(iid: string): number {
+    return this.def(iid).cost ?? 0;
+  }
+
+  differentStaples(p: PlayerId): number {
+    const kinds = new Set<string>();
+    for (const r of this.resources(p)) {
+      const c = this.card(r);
+      const d = this.def(r);
+      if (!c.faceDown && d.staple) kinds.add(d.id);
+    }
+    return kinds.size;
+  }
+
+  // -------------------------------------------------------------------------
+  // Permissions
+
+  /** Is there a "cannot <action>" modifier covering this card and player? */
+  cannot(action: string, iid: string | null, p: PlayerId): boolean {
+    return this.mods("cannot").some((m) => {
+      const act = typeof m.value === "string" ? m.value : m.value.action;
+      if (act !== action || !this.by(m, p)) return false;
+      return iid === null ? m.mod.target === "all" : this.targets(m, iid);
+    });
+  }
+
+  canAttack(iid: string): boolean {
+    const c = this.card(iid);
+    if (!this.isCharacter(iid) || c.depleted || c.controller !== this.s.active) return false;
+    if (!(c.controlSince < this.s.turn || this.keyword(iid, "aggro"))) return false;
+    if (this.cannot("attack", iid, c.controller)) return false;
+    const limit = this.modsFor("attack_limit", iid).map((m) => this.value(m.value, m.scope));
+    if (limit.length && (this.s.turnLog.attacks[iid] ?? 0) >= Math.min(...limit)) return false;
+    return true;
+  }
+
+  /** Cards a player may deploy from outside their hand, and how. */
+  playGrant(iid: string, p: PlayerId): { ignoreThreshold: boolean } | null {
+    for (const m of this.mods("play_from")) {
+      if (m.controller !== p || !this.targets(m, iid)) continue;
+      return { ignoreThreshold: !!m.value?.ignore_threshold };
+    }
+    return null;
+  }
+
+  // -------------------------------------------------------------------------
+  // Values and conditions
+
+  /** Resolve a card reference: "self", "responded", "host", a variable, or an iid. */
+  ref(x: any, scope: Scope): string | undefined {
+    if (x === "self") return scope.source;
+    if (x === "host") return this.s.cards[scope.source]?.attachedTo ?? undefined;
+    if (x === "responded") {
+      const item = this.s.stack.find((i) => i.id === scope.responding);
+      return item?.iid;
+    }
+    if (typeof x === "string") {
+      const v = scope.vars[x];
+      if (typeof v === "string") return v;
+      if (Array.isArray(v) && typeof v[0] === "string") return v[0];
+      if (this.s.cards[x]) return x;
+    }
+    return undefined;
+  }
+
+  /** Resolve a reference that may be a list of cards. */
+  refs(x: any, scope: Scope): string[] {
+    if (Array.isArray(x) || (x && typeof x === "object")) return this.find(x, scope);
+    if (typeof x === "string" && Array.isArray(scope.vars[x])) return scope.vars[x];
+    const one = this.ref(x, scope);
+    return one ? [one] : [];
+  }
+
+  value(x: any, scope: Scope): number {
+    if (x === undefined || x === null) return 0;
+    if (typeof x === "number") return x;
+    if (typeof x === "string") return evaluate(x, scope.vars);
+    if (typeof x !== "object") return 0;
+    if ("count" in x) return this.find(x.count, scope).length;
+    if ("tokens" in x) {
+      const r = this.ref(x.tokens, scope);
+      return r ? this.card(r).tokens : 0;
+    }
+    if ("stat" in x) {
+      const [ref, st] = x.stat;
+      const r = this.ref(ref, scope);
+      return r && this.inPlay(r) ? this.stat(r, st) : 0;
+    }
+    if ("cost" in x) {
+      const r = this.ref(x.cost, scope);
+      return r ? this.numericCost(r) : 0;
+    }
+    if ("icons" in x) return this.icons(this.who(x.player ?? "you", scope))[x.icons as Icon] ?? 0;
+    if ("different_staples" in x) return this.differentStaples(this.who(x.different_staples, scope));
+    if ("hand_size" in x) return this.s.players[this.who(x.hand_size, scope)].hand.length;
+    if ("half_up" in x) return Math.ceil(this.value(x.half_up, scope) / 2);
+    if ("sum" in x) return (x.sum as any[]).reduce((n, v) => n + this.value(v, scope), 0);
+    if ("neg" in x) return -this.value(x.neg, scope);
+    if ("var" in x) return Number(scope.vars[x.var] ?? 0);
+    if ("len" in x) {
+      const v = scope.vars[x.len];
+      return Array.isArray(v) ? v.length : v ? 1 : 0;
+    }
+    if ("played_this_turn" in x) {
+      const f = x.played_this_turn ?? {};
+      return this.s.turnLog.played.filter(
+        (e) =>
+          (f.by === undefined || f.by === "any" || e.player === this.who(f.by, scope)) &&
+          (!f.type || e.types.includes(f.type)) &&
+          (!f.not_type || !e.types.includes(f.not_type)) &&
+          (!f.not_self || e.iid !== scope.source),
+      ).length;
+    }
+    if ("last_played_cost" in x) {
+      const f = x.last_played_cost ?? {};
+      const list = this.s.turnLog.played.filter((e) => !f.type || e.types.includes(f.type));
+      return list.length ? list[list.length - 1].cost : 0;
+    }
+    if ("damage" in x) {
+      const r = this.ref(x.damage, scope);
+      return r ? this.card(r).damage + this.card(r).markers : 0;
+    }
+    throw new Error(`Unknown value ${JSON.stringify(x)}`);
+  }
+
+  who(x: any, scope: Scope): PlayerId {
+    if (x === "opponent") return other(scope.controller);
+    if (x === "active") return this.s.active;
+    if (x === "A" || x === "B") return x;
+    if (typeof x === "string" && (scope.vars[x] === "A" || scope.vars[x] === "B")) return scope.vars[x];
+    if (x && typeof x === "object" && "opponent_of" in x) return other(this.who(x.opponent_of, scope));
+    return scope.controller;
+  }
+
+  cond(c: any, scope: Scope): boolean {
+    if (c === undefined || c === null || c === true) return true;
+    if (c === false) return false;
+    if (Array.isArray(c)) return c.every((x) => this.cond(x, scope));
+    const k = Object.keys(c)[0];
+    const v = c[k];
+    switch (k) {
+      case "all":
+        return (v as any[]).every((x) => this.cond(x, scope));
+      case "any":
+        return (v as any[]).some((x) => this.cond(x, scope));
+      case "not":
+        return !this.cond(v, scope);
+      case "icons":
+        return this.meets(this.who(c.player ?? "you", scope), v);
+      case "did":
+        return !!scope.did === !!v;
+      case "defined":
+        return scope.vars[v] !== undefined && scope.vars[v] !== null && !(Array.isArray(scope.vars[v]) && !scope.vars[v].length);
+      case "gte":
+        return this.value(v[0], scope) >= this.value(v[1], scope);
+      case "gt":
+        return this.value(v[0], scope) > this.value(v[1], scope);
+      case "lte":
+        return this.value(v[0], scope) <= this.value(v[1], scope);
+      case "lt":
+        return this.value(v[0], scope) < this.value(v[1], scope);
+      case "eq":
+        return this.value(v[0], scope) === this.value(v[1], scope);
+      case "in_play": {
+        const r = this.ref(v, scope);
+        return !!r && this.inPlay(r);
+      }
+      case "destroyed": {
+        const r = this.ref(v, scope);
+        return !!r && !this.inPlay(r);
+      }
+      case "in_zone": {
+        const r = this.ref(v[0], scope);
+        return !!r && this.card(r).zone === v[1];
+      }
+      case "matches": {
+        const r = this.ref(v[0], scope);
+        return !!r && this.matches(v[1], r, scope, null);
+      }
+      case "exists":
+        return this.find(v, scope).length > 0;
+      case "via":
+        return scope.via === v;
+      case "your_turn":
+        return (this.s.active === scope.controller) === !!v;
+      case "attacking": {
+        const r = this.ref(v, scope);
+        return !!r && !!this.s.battle?.attackers.includes(r);
+      }
+      case "blocking": {
+        const r = this.ref(v, scope);
+        return !!r && !!this.s.battle?.blockers.includes(r);
+      }
+      default:
+        throw new Error(`Unknown condition ${k}`);
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // Selectors
+
+  /**
+   * Does a card match a selector from card data? See docs/CARDS.md, "Selectors".
+   *   "self" | "host" | "responded" | variable name
+   *   { character: any } | { item: { controller: you } } | { card: { zone: discard } }
+   *   [ selector, selector ]   (either)
+   * Zone defaults to play unless the selector names one or `defaultZone` is given.
+   */
+  matches(sel: any, iid: string, scope: Scope, defaultZone: string | null = "play"): boolean {
+    if (Array.isArray(sel)) return sel.some((x) => this.matches(x, iid, scope, defaultZone));
+    if (typeof sel === "string" && sel !== "any") {
+      if (Array.isArray(scope.vars[sel])) return scope.vars[sel].includes(iid);
+      return this.ref(sel, scope) === iid;
+    }
+    if (sel === "any" || sel === undefined || sel === null) sel = {};
+    const typeKey = [...CARD_TYPES, "card"].find((k) => k in sel);
+    let f = typeKey ? sel[typeKey] : sel;
+    if (f === "any" || f === null || f === undefined) f = {};
+    const c = this.s.cards[iid];
+    if (!c) return false;
+    const types = this.types(iid);
+
+    const wantType = typeKey && typeKey !== "card" ? typeKey : f.type;
+    if (wantType && !types.includes(wantType)) return false;
+    if (types.includes("faction") && wantType !== "faction") return false;
+    if (f.not_type && types.includes(f.not_type)) return false;
+
+    const zone = f.zone ?? defaultZone;
+    if (zone && zone !== "any" && c.zone !== zone) return false;
+
+    const rel = (v: string, p: PlayerId) => (v === "you" ? p === scope.controller : v === "opponent" ? p !== scope.controller : true);
+    if (f.owner && !rel(f.owner, c.owner)) return false;
+    if (f.controller && !rel(f.controller, c.controller)) return false;
+    const d = this.lib[c.defId];
+    if (f.subtype && !(d.subtypes ?? []).map((x) => x.toLowerCase()).includes(this.str(f.subtype, scope).toLowerCase())) return false;
+    if (f.trade && d.trade !== f.trade) return false;
+    if (f.printed_type && !d.types.includes(f.printed_type)) return false;
+    if (f.not_types && (f.not_types as string[]).some((t) => types.includes(t as CardType))) return false;
+    if (f.among !== undefined) {
+      const list = scope.vars[f.among];
+      if (!(Array.isArray(list) ? list.includes(iid) : list === iid)) return false;
+    }
+    if (f.name && d.name !== this.str(f.name, scope) && d.id !== this.str(f.name, scope)) return false;
+    if (f.name_not && (d.name === this.str(f.name_not, scope) || d.id === this.str(f.name_not, scope))) return false;
+    if (f.cost_lte !== undefined && (d.cost ?? 0) > this.value(f.cost_lte, scope)) return false;
+    if (f.cost_gte !== undefined && (d.cost ?? 0) < this.value(f.cost_gte, scope)) return false;
+    if (f.face_down !== undefined && c.faceDown !== f.face_down) return false;
+    if (f.depleted !== undefined && c.depleted !== f.depleted) return false;
+    if (f.staple && !d.staple) return false;
+    if (f.not_self && iid === scope.source) return false;
+    if (f.not && this.refs(f.not, scope).includes(iid)) return false;
+    if (f.host_of && this.ref(f.host_of, scope) && this.card(this.ref(f.host_of, scope)!).attachedTo !== iid) return false;
+    if (f.host_of && !this.ref(f.host_of, scope)) return false;
+    if (f.attached_to && c.attachedTo !== this.ref(f.attached_to, scope)) return false;
+    if (f.tagged_by && !(c.tags ?? []).includes(this.ref(f.tagged_by, scope) ?? "")) return false;
+    if (f.attacking !== undefined && !!this.s.battle?.attackers.includes(iid) !== f.attacking) return false;
+    if (f.blocking !== undefined && !!this.s.battle?.blockers.includes(iid) !== f.blocking) return false;
+    if (f.provides_at_least) {
+      const prov = this.provided(iid);
+      for (const [k, v] of Object.entries(f.provides_at_least as Icons)) if ((prov[k as Icon] ?? 0) < (v ?? 0)) return false;
+    }
+    if (f.staple_not_among === "starting_resources") {
+      if (!d.staple) return false;
+      if (this.resources(scope.controller).some((r) => this.card(r).defId === d.id)) return false;
+    }
+    return true;
+  }
+
+  private str(x: any, scope: Scope): string {
+    if (typeof x === "string" && scope.vars[x] !== undefined) return String(scope.vars[x]);
+    return String(x);
+  }
+
+  find(sel: any, scope: Scope, defaultZone: string | null = "play"): string[] {
+    return Object.keys(this.s.cards).filter((iid) => this.matches(sel, iid, scope, defaultZone));
+  }
+
+  /** Staple icon types, for "name a resource icon". */
+  stapleIcons(): Icon[] {
+    return STAPLE_ICONS;
+  }
+}

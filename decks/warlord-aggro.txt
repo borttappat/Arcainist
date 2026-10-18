@@ -1,0 +1,17 @@
+# Warlord aggro: big attackers, dragons and direct influence loss.
+Faction: The Tournament Faction
+20 Rage
+5 Elitism
+3 Sadistic Colonel
+3 Deadly Striker
+3 Plunging Shriever
+2 Menacing Mauler
+1 Gideon, the Ultimate Warrior
+1 Adriel, Defender of Marduun
+2 Rudo Mangod, Fightful Adonis
+2 Dragon's Quarters
+2 Dethmurderbludgeon, the Craghammer
+3 Chain Reaction
+2 Blitz of Destruction
+2 Tactician Vacation
+2 Siege Machine

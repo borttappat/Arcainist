@@ -1,0 +1,12 @@
+id: arcane-research
+name: "Arcane Research"
+trade: arcanist
+types: [tactic]
+cost: 2
+threshold: { obsession: 1 }
+text: |
+  Search your deck for up to 4 tactics. Put them into your discard pile.
+rules:
+  - play:
+      effect:
+        - search: { deck: you, for: { tactic: any }, count: 4, to: discard }

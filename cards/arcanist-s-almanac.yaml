@@ -1,0 +1,16 @@
+id: arcanist-s-almanac
+name: "Arcanist's Almanac"
+trade: arcanist
+types: [item]
+cost: 4
+threshold: { obsession: 2 }
+text: |
+  FORESIGHT
+  COST - Deplete this card.
+  EFFECT - Look at up to the top 5 cards of either deck. Put them back in any order.
+rules:
+  - ability:
+      name: Foresight
+      cost: [ deplete: self ]
+      effect:
+        - look: { deck: choose, count: 5 }

@@ -1,0 +1,18 @@
+id: fornicaves
+name: Fornicaves
+flavor_title: totally a thing
+trade: rogue
+types: [location]
+cost: 3
+threshold: { deception: 2 }
+structure: 1
+text: |
+  UNIQUE FORNICAVES
+  All characters lose X life, where X is their printed life minus 2.
+  "I looked it up. There is no such thing."
+rules:
+  - unique: Fornicaves
+  - static:
+      mods:
+        # "lose X life, where X is their printed life minus 2" (X below 0 counts as 0)
+        - { stat: { life: "-max(0, printed.life - 2)" }, target: { character: any } }

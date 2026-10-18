@@ -1,0 +1,19 @@
+id: misappropriation-machine
+name: "Misappropriation Machine"
+trade: rogue
+types: [item]
+cost: 3
+threshold: { deception: 2 }
+text: |
+  STEAL
+  COST - Deplete this card. Pick a character or item in your opponent's discard pile.
+  EFFECT - Put the character or item into play under your control. Your opponent takes control of this card.
+rules:
+  - ability:
+      name: Steal
+      cost:
+        - deplete: self
+        - pick: { as: c, from: [ { character: { zone: discard, owner: opponent } }, { item: { zone: discard, owner: opponent } } ] }
+      effect:
+        - put_into_play: { card: c }
+        - take_control: { card: self, who: opponent }

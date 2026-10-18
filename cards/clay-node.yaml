@@ -1,0 +1,27 @@
+id: clay-node
+name: "Clay Node"
+trade: gearsmith
+types: [character]
+subtypes: [node]
+cost: 2
+threshold: { elitism: 3 }
+stats: { str: 2, life: 1, spd: 3 }
+text: |
+  When this card enters play, you may search your deck for a "node" card and reveal it. If you do, put it into your hand. When this card leaves play, destroy all other "node" cards.
+  DISSOLVE
+  COST - Pay 2.
+  EFFECT - Flip this card face-down under its owner's control.
+  FLIP UP - 1 [E].
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may:
+          - search: { deck: you, for: { card: { subtype: node } }, reveal: true, to: hand }
+  - trigger: { on: leaves_play, card: self }
+    effect:
+      - destroy: { card: { subtype: node, not_self: true } }
+  - ability:
+      name: Dissolve
+      cost: [ pay: 2 ]
+      effect: [ flip_face_down: self ]
+  - flip_up: { pay: 1, threshold: { elitism: 1 } }

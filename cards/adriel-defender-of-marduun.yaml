@@ -1,0 +1,15 @@
+id: adriel-defender-of-marduun
+name: "Adriel, Defender of Marduun"
+trade: warlord
+types: [character]
+subtypes: [adriel, sword of great justice]
+cost: 2
+threshold: { rage: 3 }
+stats: { str: 3, life: 3, spd: 3 }
+text: |
+  UNIQUE ADRIEL. If battle damage is inflicted to this card while it's blocking, reduce the amount to 0.
+rules:
+  - unique: Adriel
+  - static:
+      mods:
+        - { damage: { set: 0, battle: true }, while: { blocking: self } }

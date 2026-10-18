@@ -1,0 +1,303 @@
+// Core data types for the rules engine. Everything in GameState is plain JSON so a
+// game can be serialized, snapshotted for cost rollback, and replayed.
+//
+// The card language (what goes in cards/*.yaml) is documented in docs/CARDS.md.
+
+export type PlayerId = "A" | "B";
+export const other = (p: PlayerId): PlayerId => (p === "A" ? "B" : "A");
+
+export type Icon = "obsession" | "greed" | "elitism" | "deception" | "rage" | "volition";
+export const ICONS: Icon[] = ["obsession", "greed", "elitism", "deception", "rage", "volition"];
+export const STAPLE_ICONS: Icon[] = ["obsession", "greed", "elitism", "deception", "rage"];
+export type Icons = Partial<Record<Icon, number>>;
+
+export type CardType = "faction" | "resource" | "character" | "tactic" | "item" | "location";
+export const CARD_TYPES: CardType[] = ["faction", "resource", "character", "tactic", "item", "location"];
+export type Stat = "str" | "life" | "spd" | "structure";
+
+// ---------------------------------------------------------------------------
+// Card definitions (loaded from cards/*.yaml). Rule bodies are loosely typed:
+// they are interpreted by the engine and checked by server/library.ts.
+
+/** One instruction in a cost or effect list: a single-key object, e.g. `{ draw: 1 }`. */
+export type Step = Record<string, any>;
+export type Rule = Record<string, any>;
+
+export interface CardDef {
+  id: string;
+  name: string;
+  flavor_title?: string;
+  trade: string;
+  types: CardType[];
+  subtypes?: string[];
+  staple?: boolean;
+  /** Icon a face-up staple resource provides. */
+  icon?: Icon;
+  /** Icons a face-up non-staple resource provides. */
+  provides?: Icons;
+  /** Resource that may only be played face-down. */
+  face_down_only?: boolean;
+  cost?: number;
+  threshold?: Icons;
+  stats?: { str: number; life: number; spd: number };
+  /** Stat bonus a gear item gives the character it is attached to. */
+  gear?: { str: number; life: number; spd: number };
+  structure?: number;
+  keywords?: string[];
+  /** "character" for "Attach to Character". */
+  attach_to?: string;
+  /** Copies allowed in a constructed deck; null means any number. */
+  deck_limit?: number | null;
+  /** Tokens the card enters play with (number or value). */
+  enters_with_tokens?: any;
+  /** Player who controls the card when it enters play: "opponent" for Hollow Moose. */
+  enters_under?: "you" | "opponent";
+  text?: string;
+  rules?: Rule[];
+  // Faction-only fields
+  influence?: number;
+  starting_resources?: { any_staples?: number; different_staples?: number };
+  starting_draw?: { before?: Step[]; first: number; second: number };
+  restore_rule?: Step[];
+  develop_rule?: Step[];
+}
+
+export type CardLibrary = Record<string, CardDef>;
+
+// ---------------------------------------------------------------------------
+// Game state
+
+export type Zone = "deck" | "hand" | "stack" | "play" | "discard" | "void";
+
+export interface CardInst {
+  iid: string;
+  defId: string;
+  owner: PlayerId;
+  controller: PlayerId;
+  zone: Zone;
+  faceDown: boolean;
+  isResource: boolean;
+  /** "faction" for a spent resource, or the iid of the card this is attached to. */
+  attachedTo: string | null;
+  depleted: boolean;
+  damage: number;
+  markers: number;
+  tokens: number;
+  /** Turn number since which this card has been under its current controller in play. */
+  controlSince: number;
+  revealed: boolean;
+  /** Face-down in the void: only the owner and `knownTo` may look. */
+  voidFaceDown?: boolean;
+  knownTo?: PlayerId[];
+  /** Source iids that put this card where it is (for "removed by this card"). */
+  tags?: string[];
+  /** Choices remembered by the card while in play (a named card, subtype, icon). */
+  notes?: Record<string, any>;
+}
+
+export interface PlayerState {
+  id: PlayerId;
+  name: string;
+  factionId: string;
+  factionIid: string;
+  influence: number;
+  deck: string[]; // top of deck is index 0
+  hand: string[];
+  play: string[];
+  discard: string[]; // top is the last element
+  void: string[];
+}
+
+export interface StackItem {
+  id: string;
+  kind: "card" | "ability" | "duplicate";
+  controller: PlayerId;
+  /** For "card": the card being deployed. For "ability"/"duplicate": the source card. */
+  iid: string;
+  /** Rule index in the source definition (ability, or the play rule for duplicates). */
+  rule?: number;
+  ctx: string;
+  label: string;
+  /** "Your opponent cannot respond to this card." */
+  noResponse?: boolean;
+  /** "The ability has no effect." */
+  nullified?: boolean;
+  /** Characters picked while paying its costs (for Mistaken Identity and friends). */
+  pickedInCost?: string[];
+}
+
+/** Variable bindings for one cost+effect run. Child contexts share their root's vars. */
+export interface Ctx {
+  id: string;
+  /** "You" in card text: the controller of the card or ability. */
+  controller: PlayerId;
+  /** Player making the choices and paying (differs only for borrowed abilities). */
+  actor: PlayerId;
+  source: string;
+  vars: Record<string, any>;
+  parent?: string;
+  pay: number;
+  costOverride?: number;
+  free?: boolean;
+  ignoreThreshold?: boolean;
+  via?: "flip_up" | "normal" | "effect";
+  /** Stack item this was deployed in response to. */
+  responding?: string;
+  /** Result of the last optional step ("If you do"). */
+  did?: boolean;
+  /** Characters picked while paying costs. */
+  picked?: string[];
+}
+
+export interface Task {
+  t: string;
+  [k: string]: any;
+}
+
+/**
+ * A continuous effect created by a resolved card ("this turn", "for the rest of
+ * the game"). It carries modifiers and/or rules (triggers, replacements) and
+ * acts as their source.
+ */
+export interface Effect {
+  id: string;
+  source: string;
+  controller: PlayerId;
+  vars: Record<string, any>;
+  mods?: any[];
+  rules?: Rule[];
+  /** Removed at the start of turn `expires + 1`... see game.expireEffects. */
+  duration: "turn" | "game" | "until_your_next_turn" | "next";
+  turn: number;
+  /** For "next" durations: removed after being used once. */
+  used?: boolean;
+}
+
+export interface BattleState {
+  attacker: PlayerId;
+  defender: PlayerId;
+  /** "faction" or a location iid. */
+  target: string;
+  attackers: string[];
+  blockers: string[];
+  covert: boolean;
+  done: string[];
+  speed: number | null;
+  /** Locked damage: key is a card iid or "target"; sources recorded for triggers. */
+  locked: Record<string, number>;
+  sources: Record<string, string[]>;
+  step: string;
+}
+
+export interface Window {
+  kind: "battle" | "endturn";
+  current: PlayerId;
+  passes: number;
+  /** Battle step to continue with when the window closes. */
+  next?: string;
+}
+
+export interface Option {
+  id: string;
+  label: string;
+  iid?: string;
+}
+
+export type Decision =
+  | { type: "main"; player: PlayerId }
+  | { type: "priority"; player: PlayerId }
+  | { type: "window"; player: PlayerId; label: string }
+  | { type: "endturn"; player: PlayerId }
+  | {
+      type: "choose";
+      player: PlayerId;
+      prompt: string;
+      options: Option[];
+      min: number;
+      max: number;
+      cancellable?: boolean;
+      /** Cards shown in a list (deck search etc.) rather than highlighted on the board. */
+      list?: boolean;
+    }
+  | { type: "order"; player: PlayerId; prompt: string; options: Option[] }
+  | { type: "name"; player: PlayerId; prompt: string; kind: "card" | "subtype"; options: Option[] }
+  | { type: "number"; player: PlayerId; prompt: string; min: number; max: number; cancellable?: boolean }
+  | { type: "blockers"; player: PlayerId; candidates: string[] }
+  | { type: "assign"; player: PlayerId; prompt: string; total: number; min?: number; targets: string[]; perTarget?: number }
+  | { type: "play_resource"; player: PlayerId; optional: boolean };
+
+export interface LogEntry {
+  n: number;
+  text: string;
+  /** Private entries are only shown to this player. */
+  to?: PlayerId;
+  manual?: boolean;
+}
+
+export interface TurnLog {
+  played: { iid: string; defId: string; player: PlayerId; types: CardType[]; cost: number }[];
+  attacks: Record<string, number>;
+}
+
+export interface GameState {
+  rng: number;
+  turn: number;
+  active: PlayerId;
+  first: PlayerId | null;
+  phase: "setup" | "play" | "ended";
+  winner: PlayerId | "draw" | null;
+  cards: Record<string, CardInst>;
+  players: Record<PlayerId, PlayerState>;
+  stack: StackItem[];
+  priority: PlayerId | null;
+  window: Window | null;
+  endTurn: boolean;
+  battle: BattleState | null;
+  tasks: Task[];
+  ctxs: Record<string, Ctx>;
+  effects: Effect[];
+  events: GameEvent[];
+  turnLog: TurnLog;
+  pending: Decision | null;
+  /** The task waiting for the pending decision's answer. */
+  waiting: Task | null;
+  /** Serialized state taken before paying costs, for rollback. */
+  snapshot: string | null;
+  log: LogEntry[];
+}
+
+export interface GameEvent {
+  e: string;
+  iid?: string;
+  player?: PlayerId;
+  [k: string]: any;
+}
+
+// ---------------------------------------------------------------------------
+// Player input
+
+export type Action =
+  // free actions (main / priority / windows)
+  | { type: "deploy"; iid: string }
+  | { type: "ability"; iid: string; index: number }
+  | { type: "flip_up"; iid: string }
+  | { type: "attack"; target: string; attackers: string[] }
+  | { type: "pass" }
+  | { type: "end_turn" }
+  // answers to sub-decisions
+  | { type: "answer"; ids?: string[]; value?: number; assign?: Record<string, number>; iid?: string; faceDown?: boolean }
+  | { type: "cancel" }
+  // always available
+  | { type: "manual"; op: ManualOp }
+  | { type: "concede" };
+
+export type ManualOp =
+  | { op: "move"; iid: string; zone: Zone; faceDown?: boolean }
+  | { op: "flip"; iid: string }
+  | { op: "deplete"; iid: string }
+  | { op: "attach"; iid: string }
+  | { op: "damage"; iid: string; delta: number }
+  | { op: "tokens"; iid: string; delta: number }
+  | { op: "influence"; delta: number }
+  | { op: "draw" }
+  | { op: "shuffle" };

@@ -1,0 +1,14 @@
+id: 633fy-31f
+name: "633fy 31f"
+trade: gearsmith
+types: [character]
+subtypes: [31f]
+cost: 2
+threshold: { elitism: 2 }
+stats: { str: 4, life: 4, spd: 3 }
+text: |
+  COST - Play this only if you have played at least 2 other non-resource cards this turn.
+rules:
+  - play:
+      cost:
+        - require: { gte: [ { played_this_turn: { by: you, not_type: resource } }, 2 ] }

@@ -1,0 +1,20 @@
+id: crest-of-obsession
+name: Crest of Obsession
+flavor_title: original Open R&D concept by Kragt & Great White Nothing
+trade: universal
+types: [item]
+subtypes: [crest]
+cost: 0
+text: |
+  UNIQUE CREST
+  PROVIDES - [obsession][obsession]
+  If a card that provides at least [obsession] enters play under your control, you may search your deck for a tactic and reveal it. If you do, put it on top of your deck.
+rules:
+  - unique: Crest
+  - static: { mods: [ { provides: { obsession: 2 } } ] }
+  - trigger:
+      on: enters_play
+      card: { controller: you, provides_at_least: { obsession: 1 } }
+    effect:
+      - may:
+          - search: { deck: you, for: { type: tactic }, count: 1, reveal: true, to: deck_top }

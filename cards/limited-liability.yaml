@@ -1,0 +1,16 @@
+id: limited-liability
+name: "Limited Liability"
+trade: banker
+types: [tactic]
+cost: 2
+threshold: { greed: 1 }
+text: |
+  This turn, cards can only be destroyed by costs, and all inflicted damage is reduced to 0.
+rules:
+  - play:
+      effect:
+        - create_effect:
+            duration: turn
+            mods:
+              - { cannot: destroy_except_cost, target: all }
+              - { damage: { set: 0 }, target: all }

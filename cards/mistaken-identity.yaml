@@ -1,0 +1,15 @@
+id: mistaken-identity
+name: "Mistaken Identity"
+trade: rogue
+types: [tactic]
+cost: 2
+threshold: { deception: 2 }
+text: |
+  EXTRA COST - Deploy this only in response to a card or ability that picked a character as a cost. Pick another character that could be picked by that card or ability. When the card or ability resolves, its effect happens as though your opponent had picked the other character instead.
+rules:
+  - play:
+      timing: { response_to: { picked_character_as_cost: true } }
+      cost:
+        - pick: { as: other, from: { character: any } }
+      effect:
+        - script: mistaken_identity

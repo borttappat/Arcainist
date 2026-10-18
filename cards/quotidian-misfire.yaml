@@ -1,0 +1,15 @@
+id: quotidian-misfire
+name: "Quotidian Misfire"
+trade: arcanist
+types: [tactic]
+cost: 2
+threshold: { obsession: 2 }
+text: |
+  This turn, if a card would be put into a player's hand from anywhere, instead put it into that player's discard pile. (This includes cards from your deck and cards you draw.)
+rules:
+  - play:
+      effect:
+        - create_effect:
+            duration: turn
+            mods:
+              - { redirect: { to: hand, instead: discard }, target: all }

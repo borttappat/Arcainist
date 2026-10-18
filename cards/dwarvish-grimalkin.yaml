@@ -1,0 +1,19 @@
+id: dwarvish-grimalkin
+name: "Dwarvish Grimalkin"
+trade: banker
+types: [character]
+subtypes: [mau]
+cost: 1
+threshold: { greed: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+text: |
+  [G][G] - When this card enters play, draw a card. [G]x4 - When this card enters play, draw a card. [G]x6 - When this card enters play, draw a card.
+  FLIP UP - 2 [G].
+rules:
+  - trigger: { on: enters_play, card: self, requires: { greed: 2 } }
+    effect: [ draw: 1 ]
+  - trigger: { on: enters_play, card: self, requires: { greed: 4 } }
+    effect: [ draw: 1 ]
+  - trigger: { on: enters_play, card: self, requires: { greed: 6 } }
+    effect: [ draw: 1 ]
+  - flip_up: { pay: 2, threshold: { greed: 1 } }

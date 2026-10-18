@@ -1,0 +1,10 @@
+id: two-headed-coin
+name: "Two-Headed Coin"
+trade: rogue
+types: [item]
+cost: 0
+threshold: { deception: 2 }
+text: |
+  If you lose a coin flip, you may shuffle this card into your deck. If you do, reflip that coin and draw a card instead.
+# No engine automation: coin flips only happen at setup. Resolve manually if it ever matters.
+rules: []

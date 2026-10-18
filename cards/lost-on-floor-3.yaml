@@ -1,0 +1,16 @@
+id: lost-on-floor-3
+name: "Lost on Floor 3"
+trade: rogue
+types: [tactic]
+cost: 2
+threshold: { deception: 3 }
+text: |
+  EXTRA COST - Play only on your turn, after you have declared the end of your turn. (You can only play this in response to your opponent paying a cost at the end of your turn.) Terminate your end of turn declaration. Detach a resource from your faction.
+  FLIP UP - 2 [D][D][D].
+rules:
+  - play:
+      timing: { after_end_turn: true }
+      effect:
+        - cancel_end_turn: true
+        - detach: { count: 1 }
+  - flip_up: { pay: 2, threshold: { deception: 3 } }

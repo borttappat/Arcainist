@@ -1,0 +1,28 @@
+id: escrow-office
+name: "Escrow Office"
+trade: banker
+types: [location]
+cost: 2
+threshold: { greed: 1 }
+structure: 3
+text: |
+  DEPOSIT
+  COST - Pay 1.
+  EFFECT - Put a token on this card.
+  WITHDRAW
+  COST - Remove all tokens from this card. X is the number of tokens removed.
+  EFFECT - Reduce the next numeric cost you pay this turn by X.
+rules:
+  - ability:
+      name: Deposit
+      cost: [ pay: 1 ]
+      effect: [ tokens: { add: 1 } ]
+  - ability:
+      name: Withdraw
+      cost:
+        - tokens: { remove: all, as: X }
+      effect:
+        - create_effect:
+            duration: next
+            mods:
+              - { cost: "-X", applies: any, by: you, target: all }

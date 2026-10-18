@@ -1,0 +1,26 @@
+id: unexpected-transformation
+name: "Unexpected Transformation"
+trade: rogue
+types: [tactic]
+cost: 1
+threshold: { deception: 4 }
+# VERIFY: part of this card was hard to read on the scan (see text/threshold).
+text: |
+  EXTRA COST - Pick a character you control. X is its cost. Put it on the bottom of its owner's deck. Choose a number for Y. Pay Y-X. Search your deck for a character with cost Y or less and reveal it. You may deploy it for free. If you don't, put it on top of your deck.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { controller: you } } }
+        - let: { X: { cost: c } }
+        - move: { card: c, to: deck_bottom }
+        - choose_number: { as: Y, min: X, prompt: "Unexpected Transformation: choose a number for Y (you pay Y minus X)." }
+        - pay: "Y - X"
+      effect:
+        - search: { deck: you, for: { character: { cost_lte: Y } }, reveal: true, to: keep, as: f }
+        - if:
+            cond: { defined: f }
+            then:
+              - may:
+                  prompt: "deploy it for free (otherwise it goes on top of your deck)"
+                  steps: [ play_card: { card: f, free: true } ]
+                  else: [ move: { card: f, to: deck_top, silent: true } ]

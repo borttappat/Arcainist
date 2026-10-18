@@ -1,0 +1,22 @@
+id: hollow-moose
+name: "Hollow Moose"
+trade: rogue
+types: [item]
+cost: 0
+threshold: { deception: 2 }
+text: |
+  This card enters play under your opponent's control. At the start of your turn, your faction loses 1 influence.
+  INFILTRATE
+  COST - Destroy another item or character you control.
+  EFFECT - Your opponent takes control of this card.
+enters_under: opponent
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - lose_influence: { who: you, amount: 1 }
+  - ability:
+      name: Infiltrate
+      cost:
+        - destroy: { from: [ { item: { controller: you, not_self: true } }, { character: { controller: you } } ] }
+      effect:
+        - take_control: { card: self, who: opponent }

@@ -1,0 +1,24 @@
+id: pluck
+name: "Pluck"
+trade: rogue
+types: [character]
+subtypes: [pluck, grifter]
+cost: 2
+threshold: { deception: 2 }
+stats: { str: 1, life: 2, spd: 3 }
+text: |
+  UNIQUE PLUCK.
+  GRIFT
+  COST - Use this only during your turn. Pay 5. Deplete this card. Pick a non-tactic card in your opponent's discard pile.
+  EFFECT - Put the card into play under your control.
+rules:
+  - unique: Pluck
+  - ability:
+      name: Grift
+      timing: { your_turn: true }
+      cost:
+        - pay: 5
+        - deplete: self
+        - pick: { as: c, from: { card: { zone: discard, owner: opponent, not_type: tactic } } }
+      effect:
+        - put_into_play: { card: c }

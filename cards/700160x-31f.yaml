@@ -1,0 +1,15 @@
+id: 700160x-31f
+name: "700160x 31f"
+trade: gearsmith
+types: [character]
+subtypes: [31f]
+cost: 3
+threshold: { elitism: 2 }
+stats: { str: 1, life: 1, spd: 3 }
+text: |
+  When this card enters play, you may search your deck for a gear card with numeric cost 5 or less and reveal it. If you do, put it into play attached to this card.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may:
+          - search: { deck: you, for: { item: { subtype: gear, cost_lte: 5 } }, reveal: true, to: play, attach_to: self }

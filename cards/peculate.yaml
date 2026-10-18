@@ -1,0 +1,16 @@
+id: peculate
+name: "Peculate"
+trade: rogue
+types: [tactic]
+cost: 0
+threshold: { deception: 3 }
+text: |
+  COST - Pick a character, item, or location in your opponent's discard pile. Pay X, where X is its numeric cost.
+  EFFECT - Put the card into play under your control.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: [ { character: { zone: discard, owner: opponent } }, { item: { zone: discard, owner: opponent } }, { location: { zone: discard, owner: opponent } } ] }
+        - pay: { cost: c }
+      effect:
+        - put_into_play: { card: c }

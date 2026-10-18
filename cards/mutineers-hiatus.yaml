@@ -1,0 +1,31 @@
+id: mutineers-hiatus
+name: Mutineer's Hiatus
+flavor_title: a lovely view and all the seagulls you can eat
+trade: banker
+types: [tactic]
+cost: 1
+threshold: { greed: 1 }
+text: |
+  COST - Destroy a character you own.
+  EFFECT - Draw 2 cards.
+  RECUR - [greed]
+  COST - Use this only if this card is in your discard pile. Pay 2. Remove this card from the game. Pick a character you own.
+  EFFECT - Destroy the character. Draw a card.
+rules:
+  - play:
+      cost:
+        - destroy: { from: { character: { owner: you } } }
+      effect:
+        - draw: 2
+  - ability:
+      name: Recur
+      keyword: recur
+      threshold: { greed: 1 }
+      from: discard
+      cost:
+        - pay: 2
+        - void: self
+        - pick: { as: c, from: { character: { owner: you } } }
+      effect:
+        - destroy: c
+        - draw: 1

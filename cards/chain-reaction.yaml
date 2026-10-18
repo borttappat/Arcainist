@@ -1,0 +1,30 @@
+id: chain-reaction
+name: "Chain Reaction"
+trade: warlord
+types: [tactic]
+cost: 0
+threshold: { rage: 1 }
+text: |
+  COST - Pick a location.
+  EFFECT - Inflict 3 damage to the location. If it is destroyed by that damage, you may pick a character. If you do, inflict 2 damage to that character. If it is destroyed by that damage, inflict 1 damage to your opponent's faction and draw a card.
+  FLIP UP - 1 [R].
+rules:
+  - play:
+      cost:
+        - pick: { as: loc, from: { location: any } }
+      effect:
+        - damage: { card: loc, amount: 3 }
+        - if:
+            cond: { destroyed: loc }
+            then:
+              - pick: { as: c, from: { character: any }, optional: true }
+              - if:
+                  cond: { defined: c }
+                  then:
+                    - damage: { card: c, amount: 2 }
+                    - if:
+                        cond: { destroyed: c }
+                        then:
+                          - damage: { faction: opponent, amount: 1 }
+                          - draw: 1
+  - flip_up: { pay: 1, threshold: { rage: 1 } }

@@ -1,0 +1,19 @@
+id: tactician-vacation
+name: "Tactician Vacation"
+trade: warlord
+types: [tactic]
+cost: 4
+threshold: { rage: 1 }
+text: |
+  Your opponent cannot respond to this card. If you played this card in response to a tactic, terminate the tactic. This turn, tactics cannot be played.
+rules:
+  - play:
+      no_response: true
+      effect:
+        - if:
+            cond: { matches: [ responded, { tactic: { zone: stack } } ] }
+            then: [ terminate: responded ]
+        - create_effect:
+            duration: turn
+            mods:
+              - { cannot: play, target: { tactic: { zone: any } } }

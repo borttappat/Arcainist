@@ -1,0 +1,19 @@
+id: party-clowns
+name: "Party Clowns"
+trade: rogue
+types: [character]
+subtypes: [clowns]
+cost: 4
+threshold: { deception: 1 }
+stats: { str: 2, life: 2, spd: 3 }
+text: |
+  You may include as many copies of this card in your deck as you want. At the start of your turn, you may pay 1. If you do, search your deck for a card named "Party Clowns" and reveal it. Put it into play under your control.
+deck_limit: null
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - may_pay:
+          amount: 1
+          prompt: "search your deck for Party Clowns and put it into play"
+          then:
+            - search: { deck: you, for: { card: { name: "Party Clowns" } }, reveal: true, to: play }

@@ -1,0 +1,19 @@
+id: siege-machine
+name: "Siege Machine"
+trade: warlord
+types: [item]
+cost: 0
+threshold: { rage: 4 }
+text: |
+  BATTERING
+  RAM
+  COST - Pay 2. Destroy a resource you control.
+  EFFECT - Your opponent's faction loses 1 influence.
+rules:
+  - ability:
+      name: Battering Ram
+      cost:
+        - pay: 2
+        - destroy_resource: { who: you }
+      effect:
+        - lose_influence: { who: opponent, amount: 1 }

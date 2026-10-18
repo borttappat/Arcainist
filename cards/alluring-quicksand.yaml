@@ -1,0 +1,30 @@
+id: alluring-quicksand
+name: Alluring Quicksand
+flavor_title: like taking a baby from its candy
+trade: banker
+types: [tactic]
+cost: 4
+threshold: { greed: 2 }
+text: |
+  EXTRA COST - Pick a character.
+  Flip the character face-down under its owner's control.
+  RECUR - [greed][greed][greed][greed]
+  COST - Use this only if this card is in your discard pile. Pay 2. Remove this card from the game. Pick a character.
+  EFFECT - Flip the character face-down under its owner's control.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - flip_face_down: { card: c, controller: owner }
+  - ability:
+      name: Recur
+      keyword: recur
+      threshold: { greed: 4 }
+      from: discard
+      cost:
+        - pay: 2
+        - void: self
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - flip_face_down: { card: c, controller: owner }

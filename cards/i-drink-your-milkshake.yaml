@@ -1,0 +1,26 @@
+id: i-drink-your-milkshake
+name: "I Drink Your Milkshake!"
+trade: rogue
+types: [tactic]
+cost: 3
+threshold: { deception: 4 }
+text: |
+  You may search your opponent's deck for a card. If you do, remove it from the game face-down. For the rest of the game, if your opponent plays a card, you may reveal the removed card if it has the same name. If you do, you may play it for free even if you cannot meet its threshold and it is your opponent's card. (Playing a resource does not trigger this effect.)
+rules:
+  - play:
+      effect:
+        - search: { deck: opponent, count: 1, to: void, face_down: true, as: m }
+        - let: { mname: { name_of: m } }
+        - create_effect:
+            duration: game
+            rules:
+              - trigger: { on: played, player: opponent, card: { card: { name: mname, zone: any } } }
+                effect:
+                  - if:
+                      cond: { in_zone: [ m, void ] }
+                      then:
+                        - may:
+                            prompt: "reveal the removed card and play it for free"
+                            steps:
+                              - reveal: m
+                              - play_card: { card: m, free: true, ignore_threshold: true }

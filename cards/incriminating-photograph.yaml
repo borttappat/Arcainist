@@ -1,0 +1,16 @@
+id: incriminating-photograph
+name: "Incriminating Photograph"
+trade: rogue
+types: [item]
+cost: 3
+threshold: { deception: 1 }
+text: |
+  When this card enters play, name a non-resource card. The named card cannot be played.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - name: { as: named, kind: card, not_type: resource, remember: true }
+  - static:
+      while: { defined: named }
+      mods:
+        - { cannot: play, target: { card: { name: named, zone: any } } }

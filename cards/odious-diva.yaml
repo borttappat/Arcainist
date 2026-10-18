@@ -1,0 +1,31 @@
+id: odious-diva
+name: "Odious Diva"
+trade: arcanist
+types: [character]
+subtypes: [diva]
+cost: 2
+threshold: { obsession: 1 }
+stats: { str: 1, life: 2, spd: 3 }
+text: |
+  Your opponent's hand is revealed at all times.
+  DISAPPROVE
+  COST - Pay 2. Name a card.
+  EFFECT - Look at your opponent's hand. Your opponent must put a card with the chosen name on the bottom of their deck. If they do, they draw a card.
+rules:
+  - static: { mods: [ { reveal_hand: opponent, target: none } ] }
+  - ability:
+      name: Disapprove
+      cost:
+        - pay: 2
+        - name: { as: n, kind: card }
+      effect:
+        - reveal_hand: opponent
+        - if:
+            cond: { exists: { card: { zone: hand, owner: opponent, name: n } } }
+            then:
+              - as:
+                  who: opponent
+                  steps:
+                    - pick: { as: c, from: { card: { zone: hand, owner: you, name: n } }, choose: true }
+                    - move: { card: c, to: deck_bottom }
+                    - draw: 1

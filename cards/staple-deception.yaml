@@ -1,0 +1,7 @@
+id: deception
+name: Deception
+trade: rogue
+types: [resource]
+staple: true
+icon: deception
+text: Staple resource. Provides one Deception icon.

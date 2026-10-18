@@ -1,0 +1,17 @@
+id: wanton-wizard
+name: Wanton Wizard
+flavor_title: sometimes i can't control my groin
+trade: arcanist
+types: [character]
+subtypes: [wizard]
+cost: 3
+threshold: { obsession: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+text: |
+  When this card enters play, you may pick a tactic in your discard pile. If you do, put it into play as a face-down resource under your control.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may:
+          - pick: { as: t, from: { card: { zone: discard, owner: you, type: tactic } } }
+          - put_into_play: { card: t, as: face_down_resource, controller: you }

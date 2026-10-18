@@ -1,0 +1,23 @@
+id: the-billionaire
+name: "The Billionaire"
+trade: rogue
+types: [character]
+subtypes: [pluck, grifter]
+cost: 5
+threshold: { deception: 4 }
+stats: { str: 2, life: 3, spd: 4 }
+text: |
+  UNIQUE PLUCK. You may use abilities on your opponent's cards as though you were your opponent. (The effect still happens to your opponent.)
+  CHANGE COSTUME
+  COST - Pay 3. Shuffle this card into its owner's deck.
+  EFFECT - Search your deck for a "pluck" card with a different name than this card and put it into play.
+rules:
+  - unique: Pluck
+  - static: { mods: [ { use_opponent_abilities: true } ] }
+  - ability:
+      name: Change Costume
+      cost:
+        - pay: 3
+        - move: { card: self, to: deck_shuffle }
+      effect:
+        - search: { deck: you, for: { card: { subtype: pluck, name_not: "The Billionaire" } }, to: play }

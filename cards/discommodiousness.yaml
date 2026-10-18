@@ -1,0 +1,16 @@
+id: discommodiousness
+name: "Discommodiousness"
+trade: gearsmith
+types: [tactic]
+cost: 2
+threshold: { elitism: 2 }
+text: |
+  Your opponent must reveal their hand and shuffle all tactics from it into their deck. Your opponent draws X cards, where X is the number of tactics shuffled into their deck. Draw a card.
+rules:
+  - play:
+      effect:
+        - reveal_hand: opponent
+        - let: { X: { count: { tactic: { zone: hand, owner: opponent } } } }
+        - move: { card: { tactic: { zone: hand, owner: opponent } }, to: deck_shuffle }
+        - draw: { who: opponent, count: X }
+        - draw: 1

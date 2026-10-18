@@ -1,0 +1,18 @@
+id: ritual-of-the-screaming-cheese
+name: "Ritual of the Screaming Cheese"
+trade: arcanist
+types: [tactic]
+cost: 1
+threshold: { obsession: 1 }
+text: |
+  Your opponent must pick one of the following:
+  OPTION 1 - They discard 2 cards.
+  OPTION 2 - They discard a card at random.
+rules:
+  - play:
+      effect:
+        - choose_one:
+            who: opponent
+            options:
+              - { label: "Discard 2 cards", steps: [ discard: { who: opponent, count: 2 } ] }
+              - { label: "Discard a card at random", steps: [ discard: { who: opponent, count: 1, random: true } ] }

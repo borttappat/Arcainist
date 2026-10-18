@@ -1,0 +1,41 @@
+id: super-slingerang-xl200
+name: "Super Slingerang XL200"
+trade: rogue
+types: [item]
+cost: 1
+threshold: { deception: 1 }
+text: |
+  When this card enters play you may discard a card at random. If you do, you may pick a character and destroy it.
+  SLING
+  COST - Pay 3. Pick an item. Destroy this card.
+  EFFECT - Destroy that card.
+  RANG
+  COST - Pay 4 or discard a non-resource Rogue card.
+  EFFECT - Put this card into its owner's hand.
+  FLIP UP - 1 [D].
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may:
+          prompt: "discard a card at random to destroy a character"
+          steps:
+            - discard: { count: 1, random: true }
+            - pick: { as: c, from: { character: any }, optional: true }
+            - destroy: c
+  - ability:
+      name: Sling
+      cost:
+        - pay: 3
+        - pick: { as: i, from: { item: any } }
+        - destroy: self
+      effect: [ destroy: i ]
+  - ability:
+      name: Rang
+      cost:
+        - choose_one:
+            options:
+              - { label: "Pay 4", steps: [ pay: 4 ] }
+              - { label: "Discard a non-resource Rogue card", steps: [ discard: { count: 1, filter: { card: { trade: rogue, not_type: resource } } } ] }
+      effect:
+        - move: { card: self, to: hand }
+  - flip_up: { pay: 1, threshold: { deception: 1 } }

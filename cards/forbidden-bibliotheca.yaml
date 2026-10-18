@@ -1,0 +1,36 @@
+id: forbidden-bibliotheca
+name: "Forbidden Bibliotheca"
+trade: arcanist
+types: [location]
+cost: 3
+threshold: { obsession: 3 }
+structure: 0
+text: |
+  UNIQUE BIBLIOTHECA. This card enters play with 3 tokens on it. This card gains 1 structure for each token on it.
+  RESEARCH
+  COST - Deplete this card. Put a token on this card. Pay 2.
+  EFFECT - Draw 2 cards. Put a card from your hand on the bottom of your deck.
+  CHECK OUT
+  COST - Deplete this card. Remove 2 tokens from this card.
+  EFFECT - Each opponent discards 2 cards.
+enters_with_tokens: 3
+rules:
+  - unique: Bibliotheca
+  - static: { mods: [ { stat: { structure: { tokens: self } } } ] }
+  - ability:
+      name: Research
+      cost:
+        - deplete: self
+        - tokens: { add: 1 }
+        - pay: 2
+      effect:
+        - draw: 2
+        - pick: { as: b, from: { card: { zone: hand, owner: you } }, choose: true, prompt: "Research: put a card from your hand on the bottom of your deck." }
+        - move: { card: b, to: deck_bottom, silent: true }
+  - ability:
+      name: Check Out
+      cost:
+        - deplete: self
+        - tokens: { remove: 2 }
+      effect:
+        - discard: { who: opponent, count: 2 }

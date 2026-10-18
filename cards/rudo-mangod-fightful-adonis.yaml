@@ -1,0 +1,28 @@
+id: rudo-mangod-fightful-adonis
+name: "Rudo Mangod, Fightful Adonis"
+trade: warlord
+types: [character]
+subtypes: [rudo, blade of questionable morality]
+cost: 3
+threshold: { rage: 4 }
+stats: { str: 1, life: 3, spd: 3 }
+# VERIFY: part of this card was hard to read on the scan (see text/threshold).
+text: |
+  UNIQUE RUDOLPHUS. Fealty - While this card is in your hand and you control at least 4 staple resources of different trades, reduce this card's threshold requirement by any 3 resource icons. When this card attacks, you may pay 2. If you do, each character you control gains 2 strength this turn. When this card is destroyed, you may search your deck for a Warlord card and reveal it. If you do, put it on top of your deck.
+rules:
+  - unique: Rudolphus
+  - static:
+      zone: hand
+      while: { gte: [ { different_staples: you }, 4 ] }
+      mods: [ { threshold_reduce: 3 } ]
+  - trigger: { on: attacks, card: self }
+    effect:
+      - may_pay:
+          amount: 2
+          prompt: "each character you control gains 2 strength this turn"
+          then:
+            - create_effect: { duration: turn, mods: [ { stat: { str: 2 }, target: { character: { controller: you } } } ] }
+  - trigger: { on: destroyed, card: self }
+    effect:
+      - may:
+          - search: { deck: you, for: { card: { trade: warlord } }, reveal: true, to: deck_top }

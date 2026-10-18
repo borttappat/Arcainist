@@ -1,0 +1,18 @@
+id: thief-doyen
+name: "Thief Doyen"
+trade: rogue
+types: [character]
+subtypes: [thief]
+cost: 4
+threshold: { deception: 2 }
+stats: { str: 0, life: 0, spd: 3 }
+text: |
+  COST - Discard a character or item. X is that card's numeric cost. This card enters play with X tokens on it. This card gains 1 strength and 1 life for each token on it.
+enters_with_tokens: { cost: d }
+rules:
+  - play:
+      cost:
+        - discard: { count: 1, filter: [ { character: any }, { item: any } ], as: d }
+  - static:
+      mods:
+        - { stat: { str: { tokens: self }, life: { tokens: self } } }

@@ -1,0 +1,16 @@
+id: blitz-of-destruction
+name: "Blitz of Destruction"
+trade: warlord
+types: [tactic]
+cost: 3
+threshold: { rage: 1 }
+text: |
+  EXTRA COST - Pick a player that controls more resources than you. That player destroys a face-down resource they control.
+  FLIP UP - 4 [R].
+rules:
+  - play:
+      cost:
+        - require: { gt: [ { count: { resource: { controller: opponent } } }, { count: { resource: { controller: you } } } ] }
+      effect:
+        - destroy_resource: { who: opponent, face_down: true }
+  - flip_up: { pay: 4, threshold: { rage: 1 } }

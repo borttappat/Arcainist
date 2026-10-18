@@ -1,0 +1,28 @@
+id: fired-hand
+name: Fired Hand
+flavor_title: '"I''m finished!"'
+trade: rogue
+types: [character]
+subtypes: [miner]
+cost: 6
+threshold: { deception: 1 }
+stats: { str: 5, life: 4, spd: 3 }
+text: |
+  If this card is destroyed, flip it face-down under its owner's control instead.
+  PETTY VENGEANCE
+  COST - Use this only while this card is a face-down resource. Reveal this card. Pay 1. Discard a card. Pick a character.
+  EFFECT - This turn, the character loses 1 life.
+rules:
+  - replace: { event: destroy, card: self }
+    instead:
+      - flip_face_down: { card: self, controller: owner }
+  - ability:
+      name: Petty Vengeance
+      from: face_down_resource
+      cost:
+        - reveal: self
+        - pay: 1
+        - discard: { count: 1 }
+        - pick: { as: target, from: { character: any } }
+      effect:
+        - modify: { card: target, stat: life, lose: 1, duration: turn }

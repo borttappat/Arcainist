@@ -1,0 +1,31 @@
+id: 3cc3n7r1c-73chn1c14n
+name: "3cc3n7r1c 73chn1c14n"
+trade: gearsmith
+types: [character]
+subtypes: [31f]
+cost: 2
+threshold: { elitism: 1 }
+stats: { str: 1, life: 3, spd: 3 }
+text: |
+  This card can attack only once each turn.
+  ASSIST
+  COST - Deplete this card. Pick another character you control.
+  EFFECT - Restore the character. This turn, it cannot attack.
+  RESTORE [E][E][E]
+  COST - Pay 3.
+  EFFECT - Restore this card.
+rules:
+  - static: { mods: [ { attack_limit: 1 } ] }
+  - ability:
+      name: Assist
+      cost:
+        - deplete: self
+        - pick: { as: c, from: { character: { controller: you, not_self: true } } }
+      effect:
+        - restore: c
+        - create_effect: { duration: turn, mods: [ { cannot: attack, target: c } ] }
+  - ability:
+      name: Restore
+      threshold: { elitism: 3 }
+      cost: [ pay: 3 ]
+      effect: [ restore: self ]

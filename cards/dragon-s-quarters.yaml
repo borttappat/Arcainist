@@ -1,0 +1,14 @@
+id: dragon-s-quarters
+name: "Dragon's Quarters"
+trade: warlord
+types: [location]
+cost: 2
+threshold: { rage: 2 }
+structure: 4
+text: |
+  At the start of your turn, you may pick a character. If you do, this card inflicts X+1 damage to that character, where X is the number of "dragon" cards you control.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - damage: { card: c, amount: { sum: [ { count: { card: { controller: you, subtype: dragon } } }, 1 ] } }

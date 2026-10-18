@@ -1,0 +1,17 @@
+id: exploding-sock-puppet
+name: "Exploding Sock Puppet!"
+trade: gearsmith
+types: [tactic]
+cost: 2
+threshold: { elitism: 2 }
+text: |
+  Your opponent cannot respond to this card.
+  COST - Play this only in response to a character's ability.
+  EFFECT - The ability has no effect. Destroy the character.
+rules:
+  - play:
+      no_response: true
+      timing: { response_to: { ability: { character: any } } }
+      effect:
+        - nullify: responded
+        - destroy: responded

@@ -1,0 +1,23 @@
+id: dethmurderbludgeon-the-craghammer
+name: "Dethmurderbludgeon, the Craghammer"
+trade: warlord
+types: [item]
+subtypes: [gear]
+cost: 5
+threshold: { rage: 2 }
+gear: { str: 2, life: 2, spd: 0 }
+text: |
+  UNIQUE DETHMURDERBLUDGEON. ATTACH TO CHARACTER. The attached character gains 2 strength and 2 life. If the attached character is blocked, your opponent's faction loses 2 influence. If the attached character inflicts damage to a faction, you may pick a character. If you do, inflict 2 damage to that character. If this card would go to your discard pile from play, put it into your hand instead.
+attach_to: character
+rules:
+  - unique: Dethmurderbludgeon
+  - trigger: { on: blocked, card: { host_of: self } }
+    effect:
+      - lose_influence: { who: opponent, amount: 2 }
+  - trigger: { on: damage, source: { host_of: self }, faction: true }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - damage: { card: c, amount: 2 }
+  - static:
+      mods:
+        - { redirect: { from: play, to: discard, instead: hand } }

@@ -1,0 +1,28 @@
+id: unlikely-heroes
+name: Unlikely Heroes
+trade: staple
+types: [faction]
+influence: 22
+starting_resources: { different_staples: 2 }
+starting_draw:
+  before:
+    - search: { deck: you, for: { staple_not_among: starting_resources }, count: 1, to: hand, reveal: true }
+  first: 7
+  second: 8
+restore_rule:
+  - restore_all_depleted: you
+  - detach_all_resources: you
+develop_rule:
+  - choose_one:
+      - draw: 1
+      - play_resource: 1
+text: |
+  STARTING RESOURCES - Any 2 different staple resources.
+  STARTING DRAW - You may search your deck for a staple resource that is not any of your starting resources, reveal it and put it into your hand. Then draw 7 going first, 8 going second.
+  RESTORE RULE - At the start of your turn, restore all your depleted cards and detach all resources from your faction.
+  DEVELOP RULE - At the start of your turn, draw a card or play a resource.
+  DRAW - COST - Pay 3. EFFECT - Draw a card.
+  RESOURCE - COST - Pay 4. EFFECT - Play a resource.
+rules:
+  - ability: { name: Draw, cost: [ pay: 3 ], effect: [ draw: 1 ] }
+  - ability: { name: Resource, cost: [ pay: 4 ], effect: [ play_resource: 1 ] }

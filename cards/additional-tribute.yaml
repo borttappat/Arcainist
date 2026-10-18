@@ -1,0 +1,25 @@
+id: additional-tribute
+name: "Additional Tribute"
+trade: arcanist
+types: [tactic]
+cost: 2
+threshold: { obsession: 1 }
+text: |
+  EXTRA COST - Deploy this only in response to a non-tactic card being deployed. If you control [O][O][O], you may look at the top card of your deck. If you do, you may put it on the bottom. Any opponent may pay 1. If they do, draw a card and terminate this card. Otherwise, terminate the non-tactic card being deployed.
+rules:
+  - play:
+      timing: { response_to: { deploying: { card: { not_type: tactic } } } }
+      effect:
+        - if:
+            cond: { icons: { obsession: 3 } }
+            then:
+              - look: { deck: you, count: 1, bottom: any }
+        - may_pay:
+            who: opponent
+            amount: 1
+            prompt: "draw a card and terminate Additional Tribute"
+            then:
+              - as: { who: opponent, steps: [ draw: 1 ] }
+              - terminate: self
+            else:
+              - terminate: responded

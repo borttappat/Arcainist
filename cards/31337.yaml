@@ -1,0 +1,17 @@
+id: 31337
+name: "31337!"
+trade: gearsmith
+types: [tactic]
+cost: 3
+threshold: { elitism: 1 }
+# VERIFY: part of this card was hard to read on the scan (see text/threshold).
+text: |
+  This turn, you control an additional [E][E][E][E] . Put this card into play under its owner's control as a face-down resource instead of into their discard pile.
+rules:
+  - play:
+      then: face_down_resource
+      effect:
+        - create_effect:
+            duration: turn
+            mods:
+              - { player_icons: { elitism: 4 }, target: none }

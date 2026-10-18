@@ -1,0 +1,26 @@
+id: quilt-of-old-banners
+name: "Quilt of Old Banners"
+trade: universal
+types: [item]
+subtypes: [banner]
+cost: 0
+text: |
+  UNIQUE QUILT. When this card enters play and at the start of each of your turns, name a non-[V] resource icon. X is that icon. Until the start of your next turn, this card gains "PROVIDES - X".
+  HAND IT DOWN
+  COST - Pay 1. Shuffle this card into its owner's deck.
+  EFFECT - Draw a card.
+rules:
+  - unique: Quilt
+  - trigger: { on: enters_play, card: self }
+    effect: &quilt
+      - name: { as: icon, kind: icon }
+      - clear_effects: self
+      - create_effect: { duration: until_your_next_turn, mods: [ { provides: icon, target: self } ] }
+  - trigger: { on: start_of_turn, player: you }
+    effect: *quilt
+  - ability:
+      name: Hand It Down
+      cost:
+        - pay: 1
+        - move: { card: self, to: deck_shuffle }
+      effect: [ draw: 1 ]

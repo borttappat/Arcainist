@@ -1,0 +1,31 @@
+id: death-investor
+name: "Death Investor"
+trade: banker
+types: [character]
+subtypes: [investor, mau]
+cost: 1
+threshold: { greed: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+text: |
+  When this card enters play, you may put a character in your discard pile on top of its owner's deck. [G][G][G][G][G] - This card gains 3 strength and 3 life.
+  RECUR [G]
+  COST - Use this only if this card is in your discard pile. Pay 1. Remove this card from the game. Pick a character in your discard pile.
+  EFFECT - Put the picked character into play under your control.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - pick: { as: c, from: { character: { zone: discard, owner: you } }, optional: true }
+      - move: { card: c, to: deck_top }
+  - static:
+      requires: { greed: 5 }
+      mods: [ { stat: { str: 3, life: 3 } } ]
+  - ability:
+      name: Recur
+      threshold: { greed: 1 }
+      from: discard
+      cost:
+        - pay: 1
+        - void: self
+        - pick: { as: c, from: { character: { zone: discard, owner: you } } }
+      effect:
+        - put_into_play: { card: c }

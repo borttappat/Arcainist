@@ -1,0 +1,27 @@
+id: gilded-yurt
+name: "Gilded Yurt"
+trade: banker
+types: [location]
+cost: 1
+threshold: { greed: 2 }
+structure: 3
+text: |
+  CHILLAX
+  COST - Deplete this card. Pick a character you control.
+  EFFECT - Remove the character from the game. At the start of your next turn, if this card is in play, put the removed character into play under your control.
+rules:
+  - ability:
+      name: Chillax
+      cost:
+        - deplete: self
+        - pick: { as: c, from: { character: { controller: you } } }
+      effect:
+        - void: c
+        - create_effect:
+            duration: game
+            rules:
+              - trigger: { on: start_of_turn, player: you, once: true }
+                effect:
+                  - if:
+                      cond: { in_play: self }
+                      then: [ put_into_play: { card: c } ]

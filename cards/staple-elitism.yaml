@@ -1,0 +1,7 @@
+id: elitism
+name: Elitism
+trade: gearsmith
+types: [resource]
+staple: true
+icon: elitism
+text: Staple resource. Provides one Elitism icon.

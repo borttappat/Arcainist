@@ -1,0 +1,25 @@
+id: cheats-the-dirty-rotten
+name: "Cheats, the Dirty Rotten"
+trade: rogue
+types: [character]
+subtypes: [pluck, grifter]
+cost: 4
+threshold: { deception: 4 }
+stats: { str: 1, life: 3, spd: 4 }
+text: |
+  UNIQUE PLUCK.
+  EXTRA COST - Pick an opponent. When this card enters play, if you picked an opponent as part of its cost, search that player's deck for 4 non-resource cards with different names, reveal them and put them into the void. If you do, randomly put 2 of those cards into their discard pile. For the rest of the game, you may deploy the voided cards as though they were in your hand even if you cannot meet their threshold.
+rules:
+  - unique: Pluck
+  - play:
+      cost:
+        - remember: { picked_opponent: true }
+  - trigger: { on: enters_play, card: self, while: { defined: picked_opponent } }
+    effect:
+      - search: { deck: opponent, for: { card: { not_type: resource } }, count: 4, different_names: true, reveal: true, to: void, tag: true, as: voided }
+      - pick: { as: back, from: voided, count: 2, random: true, choose: true }
+      - move: { card: back, to: discard }
+      - create_effect:
+          duration: game
+          mods:
+            - { play_from: { ignore_threshold: true }, target: { card: { zone: void, tagged_by: self } } }

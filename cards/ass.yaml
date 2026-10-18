@@ -1,0 +1,16 @@
+id: ass
+name: "Ass"
+trade: rogue
+types: [item]
+cost: 4
+threshold: { deception: 2 }
+text: |
+  At the end of your turn, your opponent picks a character they control and own if they can. If they do, take control of that character. At the end of your turn, your opponent takes control of this card.
+rules:
+  - trigger: { on: end_of_turn, player: you }
+    effect:
+      - pick: { as: c, who: opponent, from: { character: { controller: opponent, owner: opponent } } }
+      - take_control: { card: c, who: you }
+  - trigger: { on: end_of_turn, player: you }
+    effect:
+      - take_control: { card: self, who: opponent }

@@ -1,0 +1,18 @@
+id: pant-swipe
+name: "Pant Swipe"
+trade: rogue
+types: [tactic]
+cost: 7
+threshold: { deception: 3 }
+text: |
+  Remove the top 4 cards of your opponent's deck from the game face-down. (You are still allowed to look at them.) For the rest of the game, you may play the removed cards as though they were in your hand even if you cannot meet their threshold.
+  FLIP UP - 5 [D][D][D].
+rules:
+  - play:
+      effect:
+        - mill: { who: opponent, count: 4, to: void, face_down: true, tag: true }
+        - create_effect:
+            duration: game
+            mods:
+              - { play_from: { ignore_threshold: true }, target: { card: { zone: void, tagged_by: self } } }
+  - flip_up: { pay: 5, threshold: { deception: 3 } }

@@ -1,0 +1,35 @@
+id: free-trade-agreement
+name: "Free Trade Agreement"
+trade: banker
+types: [item]
+cost: 2
+threshold: { greed: 2 }
+text: |
+  At the start of each player's turn, that player chooses one of the following:
+  OPTION 1 - That player may draw a card and their opponent may play a resource.
+  OPTION 2 - That player may play a resource and their opponent may draw a card.
+  OPTION 3 - Both players may draw up to 2 cards.
+  OPTION 4 - Both players may play up to 2 resources.
+rules:
+  - trigger: { on: start_of_turn, player: any }
+    effect:
+      - choose_one:
+          who: player
+          options:
+            - label: "Option 1: you may draw a card, your opponent may play a resource"
+              steps:
+                - as: { who: player, steps: [ may: [ draw: 1 ] ] }
+                - as: { who: { opponent_of: player }, steps: [ play_resource: { optional: true } ] }
+            - label: "Option 2: you may play a resource, your opponent may draw a card"
+              steps:
+                - as: { who: player, steps: [ play_resource: { optional: true } ] }
+                - as: { who: { opponent_of: player }, steps: [ may: [ draw: 1 ] ] }
+            - label: "Option 3: both players may draw up to 2 cards"
+              steps:
+                - each_player:
+                    - choose_number: { as: n, max: 2, prompt: "Free Trade Agreement: draw how many cards (up to 2)?" }
+                    - draw: n
+            - label: "Option 4: both players may play up to 2 resources"
+              steps:
+                - each_player:
+                    - play_resource: { count: 2, optional: true }

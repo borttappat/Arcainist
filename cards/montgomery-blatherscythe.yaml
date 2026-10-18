@@ -1,0 +1,23 @@
+id: montgomery-blatherscythe
+name: "Montgomery Blatherscythe"
+trade: banker
+types: [character]
+subtypes: [mau]
+cost: 1
+threshold: { greed: 3 }
+stats: { str: 0, life: 1, spd: 3 }
+text: |
+  UNIQUE MONTGOMERY.
+  RESURRECT
+  COST - Pay 1. Deplete this card. Pick a character in your discard pile with numeric cost 2 or less.
+  EFFECT - Put the character into play under your control.
+rules:
+  - unique: Montgomery
+  - ability:
+      name: Resurrect
+      cost:
+        - pay: 1
+        - deplete: self
+        - pick: { as: c, from: { character: { zone: discard, owner: you, cost_lte: 2 } } }
+      effect:
+        - put_into_play: { card: c }

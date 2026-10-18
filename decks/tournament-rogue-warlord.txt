@@ -1,0 +1,10 @@
+# Sample deck using only the cards defined so far.
+Faction: The Tournament Faction
+10 Deception
+8 Rage
+6 Obsession
+4 Fired Hand
+2 Fornicaves
+4 Dark Awakening
+4 Wanton Wizard
+2 Crest of Obsession

@@ -1,0 +1,18 @@
+id: jackmove
+name: "Jackmove"
+trade: rogue
+types: [tactic]
+cost: 0
+threshold: { deception: 5 }
+text: |
+  COST - Pick a number for X. Pay twice X.
+  EFFECT - Reveal the top X cards of your opponent's deck. Put all revealed characters and items into play under your control, and the remaining cards into your opponent's discard pile.
+rules:
+  - play:
+      cost:
+        - choose_number: { as: X }
+        - pay: "X + X"
+      effect:
+        - reveal_top: { who: opponent, count: X, as: rev }
+        - put_into_play: { card: [ { character: { zone: deck, among: rev } }, { item: { zone: deck, among: rev } } ] }
+        - move: { card: { card: { zone: deck, among: rev } }, to: discard }

@@ -1,0 +1,14 @@
+id: deadly-striker
+name: "Deadly Striker"
+trade: warlord
+types: [character]
+subtypes: [dragon]
+cost: 4
+threshold: { rage: 2 }
+stats: { str: 4, life: 2, spd: 3 }
+text: |
+  When this card is destroyed, an opponent's faction loses 4 influence.
+rules:
+  - trigger: { on: destroyed, card: self }
+    effect:
+      - lose_influence: { who: opponent, amount: 4 }

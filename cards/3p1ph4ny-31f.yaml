@@ -1,0 +1,26 @@
+id: 3p1ph4ny-31f
+name: "3p1ph4ny 31f"
+trade: gearsmith
+types: [character]
+subtypes: [31f]
+cost: 5
+threshold: { elitism: 3 }
+stats: { str: 2, life: 2, spd: 3 }
+text: |
+  When this card enters play, you may play a non-tactic card for free. If you do, your opponent may do the same. (You still need to meet its threshold and satisfy its extra costs.)
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may:
+          prompt: "play a non-tactic card for free"
+          steps:
+            - pick: { as: c, from: { card: { zone: hand, owner: you, not_types: [tactic, resource] } }, choose: true }
+            - play_card: { card: c, free: true }
+            - as:
+                who: opponent
+                steps:
+                  - may:
+                      prompt: "play a non-tactic card for free"
+                      steps:
+                        - pick: { as: d, from: { card: { zone: hand, owner: you, not_types: [tactic, resource] } }, choose: true }
+                        - play_card: { card: d, free: true }

@@ -1,0 +1,16 @@
+id: cash-out
+name: "Cash Out"
+trade: banker
+types: [tactic]
+cost: 0
+threshold: { greed: 2 }
+text: |
+  COST - Pick a number for X. Pay twice X. (X can be 0.)
+  EFFECT - Draw X+1 cards.
+rules:
+  - play:
+      cost:
+        - choose_number: { as: X }
+        - pay: "X + X"
+      effect:
+        - draw: "X + 1"

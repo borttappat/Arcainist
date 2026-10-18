@@ -1,0 +1,22 @@
+id: anatidaephobia
+name: "Anatidaephobia"
+trade: banker
+types: [tactic]
+cost: 0
+threshold: { greed: 1 }
+text: |
+  EXTRA COST - Deploy this only in response to a character being deployed. If you did not deploy this card using FLIP UP, pay X, where X is the character's numeric cost. Terminate the character.
+  FLIP UP - 1 [G] and your faction loses 5 influence.
+rules:
+  - play:
+      timing: { response_to: { deploying: { character: any } } }
+      cost:
+        - if:
+            cond: { not: { via: flip_up } }
+            then: [ pay: { cost: responded } ]
+      effect:
+        - terminate: responded
+  - flip_up:
+      pay: 1
+      threshold: { greed: 1 }
+      cost: [ lose_influence: { who: you, amount: 5 } ]

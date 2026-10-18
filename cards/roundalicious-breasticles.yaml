@@ -1,0 +1,28 @@
+id: roundalicious-breasticles
+name: "Roundalicious Breasticles"
+trade: rogue
+types: [item]
+cost: 2
+threshold: { deception: 1 }
+text: |
+  At the end of your turn, put a token on this card.
+  JIGGLE JIGGLE
+  COST - Pay 2.
+  EFFECT - Put a token on this card.
+  TANTALIZE
+  COST - Pick a character with numeric cost X or less, where X is the number of tokens on this card. Destroy this card.
+  EFFECT - Take control of the character.
+rules:
+  - trigger: { on: end_of_turn, player: you }
+    effect: [ tokens: { add: 1 } ]
+  - ability:
+      name: Jiggle Jiggle
+      cost: [ pay: 2 ]
+      effect: [ tokens: { add: 1 } ]
+  - ability:
+      name: Tantalize
+      cost:
+        - pick: { as: c, from: { character: { cost_lte: { tokens: self } } } }
+        - destroy: self
+      effect:
+        - take_control: { card: c }

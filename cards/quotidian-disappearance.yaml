@@ -1,0 +1,16 @@
+id: quotidian-disappearance
+name: "Quotidian Disappearance"
+trade: arcanist
+types: [tactic]
+cost: 0
+threshold: { obsession: 1 }
+text: |
+  Your opponent must pick a non-resource card they control. If they do, put that card into its owner's hand.
+rules:
+  - play:
+      effect:
+        - as:
+            who: opponent
+            steps:
+              - pick: { as: c, from: { card: { controller: you, not_type: resource } } }
+              - move: { card: c, to: hand }

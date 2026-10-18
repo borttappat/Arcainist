@@ -1,0 +1,7 @@
+id: obsession
+name: Obsession
+trade: arcanist
+types: [resource]
+staple: true
+icon: obsession
+text: Staple resource. Provides one Obsession icon.
