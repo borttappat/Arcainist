@@ -1,0 +1,9 @@
+id: "devastating-mockery"
+name: "Devastating Mockery"
+trade: gearsmith
+types: [tactic]
+set: "1st Edition"
+rarity: common
+text: |
+  EXTRA COST: Pick a character.
+  If the character is COVERT, it loses COVERT this turn. Draw a card.

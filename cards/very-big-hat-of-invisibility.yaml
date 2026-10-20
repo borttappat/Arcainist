@@ -1,0 +1,13 @@
+id: "very-big-hat-of-invisibility"
+name: "Very Big Hat of Invisibility"
+trade: arcanist
+types: [item]
+subtypes: ["gear"]
+set: "1st Edition"
+rarity: common
+text: |
+  ATTACH TO CHARACTER
+  The attached character gains COVERT.
+  HANDOFF
+  COST: Deplete a character you control that is not in a battle.
+  EFFECT: Attach this card to the character.

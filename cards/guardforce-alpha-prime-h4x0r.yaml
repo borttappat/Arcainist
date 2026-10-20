@@ -1,0 +1,11 @@
+id: "guardforce-alpha-prime-h4x0r"
+name: "Guardforce Alpha Prime H4x0r"
+trade: gearsmith
+types: [character]
+subtypes: ["guardforce", "31f"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  UNIQUE GUARDFORCE ALPHA PRIME H4X0R
+  This card can attack even if it has not been in play under your control since the start of the turn.
+  When this card inflicts damage to a faction, you may play a resource.

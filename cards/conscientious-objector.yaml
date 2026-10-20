@@ -1,0 +1,12 @@
+id: "conscientious-objector"
+name: "Conscientious Objector"
+trade: warlord
+types: [character]
+subtypes: ["pacifist"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  TACTICAL
+  EXTRA COST: Pick a location you control.
+  While the picked location is in play, this card cannot attack or block.
+  FLIP UP: 2 [R][R]

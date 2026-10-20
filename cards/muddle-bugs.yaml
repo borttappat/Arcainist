@@ -1,0 +1,10 @@
+id: "muddle-bugs"
+name: "Muddle Bugs"
+trade: rogue
+types: [item]
+set: "Seed Saga"
+rarity: rare
+text: |
+  BINGE
+  COST: Deplete this card. Pick a character.
+  EFFECT: Put a token on the character. Destroy it if it has at least X tokens on it, where X is its numeric cost.

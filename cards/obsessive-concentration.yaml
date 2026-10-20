@@ -2,11 +2,14 @@ id: obsessive-concentration
 name: "Obsessive Concentration"
 trade: arcanist
 types: [resource]
+set: "Holy Heist"
+rarity: uncommon
 text: |
-  This resource may only be played from your hand face-down. PROVIDES - [O].
-  FLIP IT [O]
-  COST - Use this only while this card is a face-down resource. Reveal this card. Pay 4.
-  EFFECT - Put this card into play face-up. Draw 3 cards. If you do, put 3 cards from your hand on the bottom of your deck.
+  This resource may only be played from your hand face-down.
+  PROVIDES: [O]
+  FLIP IT: [O]
+  COST: Use this only while this card is a face-down resource. Reveal this card. Pay 4.
+  EFFECT: Put this card into play face-up. Draw 3 cards. If you do, put 3 cards from your hand on the bottom of your deck.
 face_down_only: true
 rules:
   - ability:

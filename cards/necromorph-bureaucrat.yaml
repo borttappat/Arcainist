@@ -1,0 +1,11 @@
+id: "necromorph-bureaucrat"
+name: "Necromorph Bureaucrat"
+trade: banker
+types: [character]
+subtypes: ["lackey", "necromorph"]
+set: "1st Edition"
+rarity: common
+text: |
+  SUBJUGATE
+  COST: Deplete this card. Pick 2 or fewer characters.
+  EFFECT: Deplete the characters.

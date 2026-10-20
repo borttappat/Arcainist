@@ -1,0 +1,9 @@
+id: "skilled-bannerman"
+name: "Skilled Bannerman"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Holy Heist"
+rarity: common
+text: |
+  PROVIDES: [R]

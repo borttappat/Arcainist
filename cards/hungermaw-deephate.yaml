@@ -1,0 +1,14 @@
+id: "hungermaw-deephate"
+name: "Hungermaw Deephate"
+trade: arcanist
+types: [character]
+subtypes: ["seraphim", "dragon"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  UNIQUE HUNGERMAW
+  This card enters play with 8 tokens on it.
+  This card gains 1 strength and 1 life for each token on it.
+  EJECT
+  COST: Remove 2 tokens from this card. Pick another non-resource card.
+  EFFECT: Put the card into its owner's hand.

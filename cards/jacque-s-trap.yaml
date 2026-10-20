@@ -1,0 +1,10 @@
+id: "jacque-s-trap"
+name: "Jacque's Trap"
+trade: gearsmith
+types: [item]
+set: "2nd Edition"
+rarity: common
+text: |
+  IT'S A TRAP!
+  COST: Destroy this card. Pick an attacking character.
+  EFFECT: Destroy the character.

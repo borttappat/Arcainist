@@ -1,0 +1,10 @@
+id: "crushing-usury"
+name: "Crushing Usury"
+trade: banker
+types: [tactic]
+set: "Seed Saga"
+rarity: common
+text: |
+  EXTRA COST: Pick a character.
+  Destroy the character. Your faction loses 3 influence.
+  FLIP UP: 2 [G]

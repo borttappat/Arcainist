@@ -1,0 +1,12 @@
+id: "golden-charm"
+name: "Golden Charm"
+trade: banker
+types: [item]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  UNIQUE CHARM
+  If a player would search their deck you may pay 1. If you do, draw a card and then that player searches their deck instead.
+  SERAPHIM FUSION
+  COST: Pay 4. Pick a character you control with UNIQUE EUSTACE. Destroy this card.
+  EFFECT: Search your deck for a card named Siluriformes Flaxenscale and put it into play.

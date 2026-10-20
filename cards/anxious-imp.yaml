@@ -1,0 +1,12 @@
+id: "anxious-imp"
+name: "Anxious Imp"
+trade: arcanist
+types: [character]
+subtypes: ["familiar"]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  OBSESS
+  COST: Pay 2.
+  EFFECT: This turn, this card gains PROVIDES: [O][O][O] .
+  [O][O][O][O][O][O]: This card gains COVERT.

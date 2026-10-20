@@ -1,0 +1,9 @@
+id: "thundering-nilpha"
+name: "Thundering Nilpha"
+trade: warlord
+types: [character]
+subtypes: ["dragon"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  While this card is attacking a location, it gains 1 strength and cannot be blocked.

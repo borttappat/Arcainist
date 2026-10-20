@@ -1,0 +1,9 @@
+id: "intermittently-sneaky-lawyer"
+name: "Intermittently Sneaky Lawyer"
+trade: banker
+types: [character]
+subtypes: ["lawyer", "mau"]
+set: "1st Edition"
+rarity: common
+text: |
+  While you have at least 6 cards in your hand, this card gains 1 strength and COVERT.

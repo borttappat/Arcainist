@@ -1,0 +1,11 @@
+id: "senior-research-assistant"
+name: "Senior Research Assistant"
+trade: gearsmith
+types: [character]
+subtypes: ["31f"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  RESEARCH
+  COST: Deplete this card.
+  EFFECT: Reduce the next numeric cost you pay this turn by 2.

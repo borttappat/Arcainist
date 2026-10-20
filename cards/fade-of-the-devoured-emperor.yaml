@@ -1,0 +1,8 @@
+id: "fade-of-the-devoured-emperor"
+name: "Fade of the Devoured Emperor"
+trade: banker
+types: [character]
+subtypes: ["ghost", "mau"]
+set: "Ungodly Mess"
+rarity: common
+text: ""

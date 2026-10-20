@@ -3,7 +3,7 @@
 // the user id.
 
 import { useEffect, useRef, useState } from "react";
-import type { CardLibrary, GameView } from "../../engine/index.ts";
+import type { CardLibrary, Format, GameView } from "../../engine/index.ts";
 
 export interface User {
   id: string;
@@ -16,6 +16,8 @@ export interface RoomInfo {
   players: string[];
   started: boolean;
   ended: boolean;
+  first?: "random" | "creator" | "joiner";
+  format?: string;
 }
 export interface CurrentRoom {
   id: string;
@@ -53,6 +55,9 @@ export interface Net {
   connected: boolean;
   user: User | null;
   cards: CardLibrary | null;
+  formats: Record<string, Format>;
+  /** Non-blocking messages from the server (deck warnings). */
+  notice: string | null;
   rooms: RoomInfo[];
   room: CurrentRoom | null;
   view: GameView | null;
@@ -65,6 +70,8 @@ export function useNet(identity: { secret: string; name: string } | null): Net {
   const [connected, setConnected] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [cards, setCards] = useState<CardLibrary | null>(null);
+  const [formats, setFormats] = useState<Record<string, Format>>({});
+  const [notice, setNotice] = useState<string | null>(null);
   const [rooms, setRooms] = useState<RoomInfo[]>([]);
   const [room, setRoom] = useState<CurrentRoom | null>(null);
   const [view, setView] = useState<GameView | null>(null);
@@ -92,6 +99,7 @@ export function useNet(identity: { secret: string; name: string } | null): Net {
           case "welcome":
             setUser(msg.user);
             setCards(msg.cards);
+            setFormats(msg.formats ?? {});
             break;
           case "rooms":
             setRooms(msg.rooms);
@@ -106,6 +114,9 @@ export function useNet(identity: { secret: string; name: string } | null): Net {
             break;
           case "error":
             setError(msg.message);
+            break;
+          case "notice":
+            setNotice(msg.message);
             break;
         }
       };
@@ -122,11 +133,16 @@ export function useNet(identity: { secret: string; name: string } | null): Net {
     connected,
     user,
     cards,
+    formats,
+    notice,
     rooms,
     room,
     view,
     error,
-    clearError: () => setError(null),
+    clearError: () => {
+      setError(null);
+      setNotice(null);
+    },
     send: (msg) => ws.current?.readyState === WebSocket.OPEN && ws.current.send(JSON.stringify(msg)),
   };
 }

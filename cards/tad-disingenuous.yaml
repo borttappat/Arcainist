@@ -1,0 +1,11 @@
+id: "tad-disingenuous"
+name: "Tad Disingenuous"
+trade: banker
+types: [character]
+subtypes: ["lawyer", "mau"]
+set: "2nd Edition"
+rarity: common
+text: |
+  UNDERHANDED DEAL
+  COST: Discard a card.
+  EFFECT: This turn, this card gains COVERT.

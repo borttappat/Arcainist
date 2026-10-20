@@ -2,8 +2,10 @@ id: quotidian-disappearance
 name: "Quotidian Disappearance"
 trade: arcanist
 types: [tactic]
+set: "1st Edition Part 2"
+rarity: common
 text: |
-  Your opponent must pick a non-resource card they control. If they do, put that card into its owner's hand.
+  An opponent picks a non-resource card they control if they can. If they do, put it into its owner's hand.
 rules:
   - play:
       effect:

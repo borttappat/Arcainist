@@ -1,0 +1,10 @@
+id: "rosy-palmer-and-her-five-friends"
+name: "Rosy Palmer, and Her Five Friends"
+trade: rogue
+types: [character]
+subtypes: ["dancer"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  UNIQUE ROSY
+  When this card is destroyed, reveal the top 5 cards of an opponent's deck. You may choose a revealed character. If you do, put it into play under your control. That player puts the remaining cards on the bottom of their deck in any order.

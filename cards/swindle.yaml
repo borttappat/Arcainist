@@ -1,0 +1,9 @@
+id: "swindle"
+name: "Swindle"
+trade: banker
+types: [tactic]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  EXTRA COST: Your opponents cannot respond to this card.
+  Each opponent must attach a resource to their faction. Draw a card. Discard a card.

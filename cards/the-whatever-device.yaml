@@ -1,0 +1,10 @@
+id: "the-whatever-device"
+name: "The Whatever Device"
+trade: gearsmith
+types: [item]
+set: "2nd Edition"
+rarity: rare
+text: |
+  THANK GOD WE INVENTED THE...
+  COST: Choose a number for X. Pay X. Destroy this card.
+  EFFECT: Search your deck for an item with numeric cost X or less and reveal it. You may deploy that card for free. If you don't, put it into your hand.

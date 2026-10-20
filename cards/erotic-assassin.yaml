@@ -3,11 +3,14 @@ name: "Erotic Assassin"
 trade: banker
 types: [character]
 subtypes: [mercenary, assassin]
+set: "2nd Edition"
+rarity: uncommon
 text: |
-  This card cannot be restored by your faction's RESTORE RULE. This card can attack only once each turn.
+  This card cannot be restored by your faction's Restore Rule.
+  This card can attack only once each turn.
   RESTORE
-  COST - Pay 2.
-  EFFECT - Restore this card.
+  COST: Pay 2.
+  EFFECT: Restore this card.
 rules:
   - static:
       mods:

@@ -1,0 +1,12 @@
+id: "unexpected-codicil"
+name: "Unexpected Codicil"
+trade: banker
+types: [tactic]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  EXTRA COST: Choose a number for X. Discard X cards. Pay X - 2.
+  Draw X cards.
+  FINE PRINT: [G][G][G][G]
+  EXTRA COST: Reveal this card from your hand. Your faction loses 2 influence. Pay 2.
+  EFFECT: Draw a card.

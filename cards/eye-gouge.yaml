@@ -1,0 +1,9 @@
+id: "eye-gouge"
+name: "Eye Gouge"
+trade: warlord
+types: [tactic]
+set: "2nd Edition"
+rarity: common
+text: |
+  EXTRA COST: Pick a blocking character.
+  Inflict 3 damage to the character.

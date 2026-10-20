@@ -1,0 +1,9 @@
+id: "thabbashite-dartist"
+name: "Thabbashite Dartist"
+trade: rogue
+types: [character]
+subtypes: ["hunter"]
+set: "Holy Heist"
+rarity: common
+text: |
+  When a card that provides at least [V] enters play under your control, you may pick a character. If you do, that character loses 1 life this turn.

@@ -1,0 +1,11 @@
+id: "gosche-s-retained-earnings-vault"
+name: "Gosche's Retained Earnings Vault"
+trade: banker
+types: [location]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  When a character you control with a token on it leaves play, your faction gains 2 influence.
+  INVEST
+  COST: Deplete this card. Pay 2. Pick a character you control.
+  EFFECT: Put a token on that character.

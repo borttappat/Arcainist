@@ -1,0 +1,8 @@
+id: "tremor-engine"
+name: "Tremor Engine"
+trade: rogue
+types: [item]
+set: "2nd Edition"
+rarity: rare
+text: |
+  At the start of your turn, each player puts the top 2 cards of their deck into their discard pile.

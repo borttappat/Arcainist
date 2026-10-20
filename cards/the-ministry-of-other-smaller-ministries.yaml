@@ -1,0 +1,8 @@
+id: "the-ministry-of-other-smaller-ministries"
+name: "The Ministry of Other Smaller Ministries"
+trade: banker
+types: [location]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  Each opponent must pay 2 to attack.

@@ -1,0 +1,13 @@
+id: "nattering-stoopswaggler"
+name: "Nattering Stoopswaggler"
+trade: arcanist
+types: [character]
+subtypes: ["monstrosity"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  COVERT
+  If you deployed this card using FLIP UP, it enters play with a token on it.
+  While there is a token on this card, it loses COVERT and gains 1 strength and 1 life.
+  If there are no tokens on this card and it would be destroyed, flip it face-down under its owner's control instead.
+  FLIP UP: 3 [O][O]

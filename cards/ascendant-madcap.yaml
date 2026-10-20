@@ -1,0 +1,10 @@
+id: "ascendant-madcap"
+name: "Ascendant Madcap"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  When a card that provides at least [R] enters play under your control, put a token on this card.
+  This card gains 1 strength for each token on it.

@@ -1,0 +1,12 @@
+id: "haunting-execution"
+name: "Haunting Execution"
+trade: banker
+types: [tactic]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  EXTRA COST: If you have at least 4 characters in your discard pile, reduce this card's numeric cost by 3. Pick a character.
+  Destroy the character.
+  RECUR: [G]
+  COST: Use this only if this card is in your discard pile. Pay 2. Remove this card from the game. Pick a character in your discard pile.
+  EFFECT: Put the character into your hand.

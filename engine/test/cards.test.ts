@@ -16,13 +16,26 @@ function setup(seed = 1) {
   return { g, p, o };
 }
 
-/** End the current turn and start the next player's, choosing "draw" for the develop rule. */
+/**
+ * End the current turn and start the next player's: the faction's restore and develop
+ * rules first (choosing "draw"), then any start-of-turn card triggers.
+ */
 function nextTurn(g: Game) {
   const p = g.s.active;
   act(g, p, { type: "end_turn" });
   pass(g); // opponent lets the turn end
-  const d = expectPending(g, "choose", other(p));
-  act(g, other(p), { type: "answer", ids: [d.options.findIndex((o: any) => o.label.startsWith("draw")).toString()] });
+  for (let i = 0; i < 6; i++) {
+    const d = g.s.pending as any;
+    if (d?.type !== "choose") return;
+    if (d.prompt.includes("Several triggers")) {
+      const pick = d.options.find((o: any) => o.label.endsWith("Restore rule")) ?? d.options.find((o: any) => o.label.endsWith("Develop rule"));
+      if (!pick) return; // only card triggers left: the test handles them
+      act(g, d.player, { type: "answer", ids: [pick.id] });
+    } else if (d.options.some((o: any) => o.label.startsWith("draw"))) {
+      act(g, d.player, { type: "answer", ids: [d.options.findIndex((o: any) => o.label.startsWith("draw")).toString()] });
+      return;
+    } else return;
+  }
 }
 
 const ability = (g: Game, iid: string, name: string) => g.q.abilities(iid).find((a) => a.rule.name === name)!.index;
@@ -443,7 +456,7 @@ describe("responses and the stack", () => {
     expect(g.s.cards[cb].faceDown).toBe(true);
   });
 
-  it("Exploding Sock Puppet nullifies a character's ability and destroys the character", () => {
+  it("Exploding Sock Puppet terminates a character's ability and destroys the character", () => {
     const { g, p, o } = setup();
     const ea = put(g, p, "erotic-assassin", "play");
     g.s.cards[ea].depleted = true;
@@ -456,7 +469,6 @@ describe("responses and the stack", () => {
     expect(g.canStart(p, { type: "deploy", iid: put(g, p, "cash-out", "hand") }, false)).toMatch(/can't be responded/);
     pass(g);
     expect(zone(g, ea)).toBe("discard");
-    pass(g);
     expect(g.s.stack).toHaveLength(0);
   });
 
@@ -480,7 +492,7 @@ describe("responses and the stack", () => {
     const { g, p, o } = setup();
     resources(g, p, "deception", 3);
     const lost = put(g, p, "lost-on-floor-3", "hand");
-    resources(g, o, "greed", 2);
+    resources(g, o, "greed", 3);
     const cash = put(g, o, "cash-out", "hand");
     act(g, p, { type: "end_turn" });
     act(g, o, { type: "deploy", iid: cash });
@@ -507,6 +519,26 @@ describe("responses and the stack", () => {
     expect(g.s.cards[w1].faceDown).toBe(false);
     expect(g.s.cards[w2].faceDown).toBe(true);
   });
+
+  it("Mistaken Identity only offers characters the original card could have picked", () => {
+    const { g, p, o } = setup();
+    resources(g, p, "greed", 1);
+    // Mutineer's Hiatus picks "a character you own": only p's characters qualify.
+    const mine1 = put(g, p, "wanton-wizard", "play");
+    const mine2 = put(g, p, "fired-hand", "play");
+    const theirs = put(g, o, "deadly-striker", "play");
+    const mh = put(g, p, "mutineers-hiatus", "hand");
+    act(g, p, { type: "deploy", iid: mh });
+    answer(g, [mine1]);
+    resources(g, o, "deception", 2);
+    const mi = put(g, o, "mistaken-identity", "hand");
+    act(g, o, { type: "deploy", iid: mi });
+    const d = expectPending(g, "choose", o);
+    const ids = d.options.map((x: any) => x.id);
+    expect(ids).toContain(mine2);
+    expect(ids).not.toContain(theirs);
+    expect(ids).not.toContain(mine1);
+  });
 });
 
 describe("turn-based and scripted cards", () => {
@@ -523,6 +555,21 @@ describe("turn-based and scripted cards", () => {
     answer(g, ["yes"]);
     answer(g, [next]);
     expect(zone(g, next)).toBe("play");
+  });
+
+  it("start of turn: faction rules and card triggers are ordered together by the turn player", () => {
+    const { g, p } = setup();
+    put(g, p, "party-clowns", "play");
+    resources(g, p, "deception", 1);
+    nextTurn(g); // the opponent's turn
+    act(g, other(p), { type: "end_turn" });
+    pass(g);
+    const d = expectPending(g, "choose", p);
+    expect(d.prompt).toMatch(/Several triggers/);
+    expect(d.options.map((o: any) => o.label)).toEqual(expect.arrayContaining([expect.stringMatching(/Restore rule$/), expect.stringMatching(/Develop rule$/), "Party Clowns"]));
+    // Resolve the card's trigger first: its "pay 1" prompt comes before the develop choice.
+    answer(g, [d.options.find((o: any) => o.label === "Party Clowns").id]);
+    expect((g.s.pending as any).prompt).toMatch(/pay 1/);
   });
 
   it("Free Trade Agreement: the turn player picks an option", () => {
@@ -577,7 +624,7 @@ describe("turn-based and scripted cards", () => {
     const { g, p, o } = setup();
     const fh = put(g, p, "cantankerous-claywork", "play"); // 6/5: survives 4 damage
     const ds = put(g, o, "deadly-striker", "play"); // 4/2
-    resources(g, p, "rage", 2);
+    resources(g, p, "rage", 4);
     const ss = put(g, p, "skin-suit", "hand");
     act(g, p, { type: "deploy", iid: ss });
     answer(g, [fh]);
@@ -674,6 +721,64 @@ describe("turn-based and scripted cards", () => {
     expect(g.q.stat(n, "life")).toBe(4);
   });
 
+  it("Meat of the Mountain: removing a token needs one to remove", () => {
+    const { g, p } = setup();
+    const meat = put(g, p, "meat-of-the-mountain", "play");
+    g.drawCards(p, 1);
+    act(g, p, { type: "manual", op: { op: "tokens", iid: meat, delta: 0 } });
+    // Events from a manual action are dropped; trigger the draw through the engine instead.
+    resources(g, p, "greed", 3);
+    const cash = put(g, p, "cash-out", "hand");
+    act(g, p, { type: "deploy", iid: cash });
+    act(g, p, { type: "answer", value: 0 });
+    pass(g);
+    const d = expectPending(g, "choose", p);
+    expect(d.options.map((x: any) => x.label)).not.toContain("Remove a token from Meat of the Mountain");
+    answer(g, [d.options.find((x: any) => x.label.startsWith("Add")).id]);
+    expect(g.s.cards[meat].tokens).toBe(1);
+  });
+
+  it("Cantankerous Claywork only boosts characters already in play when it attacks", () => {
+    const { g, p } = setup();
+    const clay = put(g, p, "cantankerous-claywork", "play");
+    const before = put(g, p, "wanton-wizard", "play");
+    act(g, p, { type: "attack", target: "faction", attackers: [clay] });
+    const later = put(g, p, "wanton-wizard", "play");
+    expect(g.q.stat(before, "str")).toBe(2);
+    expect(g.q.stat(later, "str")).toBe(1);
+  });
+
+  it("Quotidian Misfire catches every card going to a hand: draws, returns, searches", () => {
+    const { g, p, o } = setup();
+    resources(g, p, "obsession", 2);
+    const qm = put(g, p, "quotidian-misfire", "hand");
+    act(g, p, { type: "deploy", iid: qm });
+    pass(g);
+    const w = put(g, o, "wanton-wizard", "play");
+    g.move(w, "hand"); // returned to its owner's hand
+    expect(zone(g, w)).toBe("discard");
+    const top = g.s.players[o].deck[0];
+    g.drawCards(o, 1);
+    expect(zone(g, top)).toBe("discard");
+  });
+
+  it("One-Legged Hopping Pogo-Bear keeps Covert through HIDE!", () => {
+    const { g, p } = setup();
+    const bear = put(g, p, "one-legged-hopping-pogo-bear", "play");
+    resources(g, p, "elitism", 6);
+    act(g, p, { type: "ability", iid: bear, index: ability(g, bear, "RAAR!") });
+    pass(g);
+    act(g, p, { type: "ability", iid: bear, index: ability(g, bear, "SCHPROING!") });
+    pass(g);
+    act(g, p, { type: "ability", iid: bear, index: ability(g, bear, "HIDE!") });
+    pass(g);
+    expect(g.q.isCharacter(bear)).toBe(false);
+    g.s.cards[bear].depleted = false;
+    act(g, p, { type: "ability", iid: bear, index: ability(g, bear, "RAAR!") });
+    pass(g);
+    expect(g.q.keyword(bear, "covert")).toBe(true);
+  });
+
   it("Lodge Dock Florist gives every character an upkeep", () => {
     const { g, p } = setup();
     put(g, p, "lodge-dock-florist", "play");
@@ -701,7 +806,7 @@ describe("turn-based and scripted cards", () => {
     const { g, p, o } = setup();
     const t = put(g, o, "cash-out", "deck");
     g.s.players[o].deck = [t, ...g.s.players[o].deck.filter((i) => i !== t)];
-    resources(g, p, "obsession", 3);
+    resources(g, p, "obsession", 4);
     const ei = put(g, p, "eccentric-inquisition", "hand");
     act(g, p, { type: "deploy", iid: ei });
     pass(g);
@@ -712,8 +817,9 @@ describe("turn-based and scripted cards", () => {
 
 describe("all cards", () => {
   it("every card with rules can be put into play and leave play without engine errors", () => {
+    // Only cards with automated rules; the rest are played with manual controls.
     for (const def of Object.values(lib)) {
-      if (def.types.includes("faction")) continue;
+      if (def.types.includes("faction") || !def.rules?.length) continue;
       const { g, p } = setup(7);
       const iid = put(g, p, def.id, def.types.includes("resource") ? "play" : "hand", def.types.includes("resource") ? { resource: true } : {});
       if (!def.types.includes("resource") && !def.types.includes("tactic")) {

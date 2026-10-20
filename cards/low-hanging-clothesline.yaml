@@ -1,0 +1,9 @@
+id: "low-hanging-clothesline"
+name: "Low-hanging Clothesline"
+trade: rogue
+types: [tactic]
+set: "Holy Heist"
+rarity: common
+text: |
+  EXTRA COST: Pick a depleted character.
+  If the character has 5 life or more, destroy it.

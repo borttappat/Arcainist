@@ -1,0 +1,8 @@
+id: "clandestine-resort"
+name: "Clandestine Resort"
+trade: banker
+types: [location]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  All your characters gain 1 life.

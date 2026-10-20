@@ -1,0 +1,14 @@
+id: "lingamite-torture-monk"
+name: "Lingamite Torture Monk"
+trade: arcanist
+types: [character]
+subtypes: ["priest"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  TORTURE
+  COST: Pick a character you own. Destroy this card.
+  EFFECT: Put the character into its owner's hand.
+  RECUR: [O][O]
+  COST: Use this only if this card is in your discard pile. Pay 2. Remove this card from the game. Pick a character you own.
+  EFFECT: Put the character into its owner's hand.

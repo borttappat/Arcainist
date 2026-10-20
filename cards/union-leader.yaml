@@ -1,0 +1,8 @@
+id: "union-leader"
+name: "Union Leader"
+trade: banker
+types: [character]
+subtypes: ["mau"]
+set: "2nd Edition"
+rarity: common
+text: ""

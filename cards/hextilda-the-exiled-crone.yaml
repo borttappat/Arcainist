@@ -1,0 +1,12 @@
+id: "hextilda-the-exiled-crone"
+name: "Hextilda, the Exiled Crone"
+trade: arcanist
+types: [character]
+subtypes: ["sorceress"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  UNIQUE HEXTILDA
+  TOIL AND TROUBLE
+  COST: Pay 4. Deplete this card. Pick a card you control with at least 1 token on it.
+  EFFECT: Double the number of tokens on the card.

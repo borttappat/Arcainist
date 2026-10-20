@@ -1,0 +1,9 @@
+id: "enter-the-demon-knights"
+name: "Enter The Demon Knights"
+trade: arcanist
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  EXTRA COST: Deploy this only not during a battle. Pick an opponent. Reveal 3 characters with numeric cost 6 or less from your hand.
+  That opponent chooses one of those characters. Put that character into play under your control. Put any revealed UNIQUE GLOAMSPIKE and "demon knight" cards into play under your control.

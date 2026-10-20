@@ -1,0 +1,10 @@
+id: "inadequate-wand"
+name: "Inadequate Wand"
+trade: arcanist
+types: [item]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  PRESENT THE STAFF
+  COST: Pay 2. Deplete this card. Pick a character you control.
+  EFFECT: Put the character into its owner's hand if you can. If you do, X is its numeric cost. You may search your deck for a tactic with numeric cost X or less and reveal it. If you do, put it into your hand.

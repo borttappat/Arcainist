@@ -1,0 +1,11 @@
+id: "horns-of-thabbash"
+name: "Horns of Thabbash"
+trade: warlord
+types: [item]
+subtypes: ["gear"]
+set: "Holy Heist"
+rarity: common
+text: |
+  ATTACH TO CHARACTER
+  The attached character gains 1 strength, 1 life and cannot block.
+  [V][V][V]: The attached character gains 3 strength.

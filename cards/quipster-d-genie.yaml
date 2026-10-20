@@ -1,0 +1,11 @@
+id: "quipster-d-genie"
+name: "Quipster D'Genie"
+trade: arcanist
+types: [character]
+subtypes: ["muddler"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  WISH
+  COST: Pay 2. Destroy this card.
+  EFFECT: Search your deck for a tactic and reveal it. If you do, put it into your hand.

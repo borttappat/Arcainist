@@ -1,0 +1,11 @@
+id: "vexillarius-dacian-draco"
+name: "Vexillarius Dacian-Draco"
+trade: warlord
+types: [character]
+subtypes: ["vexillarius", "seraphim", "dragon"]
+set: "Ungodly Mess"
+rarity: uber
+text: |
+  UNIQUE VEXILLARIUS
+  All your other characters gain 2 strength and 2 life.
+  When this card is destroyed, all character lose 2 strength and 2 life this turn.

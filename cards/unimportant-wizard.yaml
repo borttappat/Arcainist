@@ -1,0 +1,9 @@
+id: "unimportant-wizard"
+name: "Unimportant Wizard"
+trade: arcanist
+types: [character]
+subtypes: ["wizard"]
+set: "Seed Saga"
+rarity: common
+text: |
+  FLIP UP: 0 [O]

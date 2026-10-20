@@ -1,0 +1,9 @@
+id: "warbeast-of-thabbash"
+name: "Warbeast of Thabbash"
+trade: warlord
+types: [character]
+subtypes: ["warbeast"]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  This card gains 1 strength and 1 life for each [V] you control.

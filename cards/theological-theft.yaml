@@ -1,0 +1,10 @@
+id: "theological-theft"
+name: "Theological Theft"
+trade: rogue
+types: [tactic]
+set: "Holy Heist"
+rarity: rare
+text: |
+  EXTRA COST: Choose a number for X. Pick X players.
+  Each of those players puts the top 10 cards of their deck into their discard pile. Pick X characters in an opponent's discard pile. Put those characters into play under your control.
+  FLIP UP: 7 [D][D][D][D]

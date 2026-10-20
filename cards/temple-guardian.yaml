@@ -1,0 +1,11 @@
+id: "temple-guardian"
+name: "Temple Guardian"
+trade: banker
+types: [character]
+subtypes: ["priest", "mau"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  DEFLECT
+  COST: Pay 3. Deplete this card. Pick an attacking character.
+  EFFECT: Remove the character from the battle.

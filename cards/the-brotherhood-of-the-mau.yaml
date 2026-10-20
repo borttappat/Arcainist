@@ -1,0 +1,12 @@
+id: "the-brotherhood-of-the-mau"
+name: "The Brotherhood of the Mau"
+trade: banker
+types: [character]
+subtypes: ["advisor", "politician", "mau"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  COVERT
+  This card enters play with 7 tokens on it.
+  While this card has a token on it, it cannot attack.
+  At the start of each turn, you may pay X. If you do, remove X tokens from this card and pick another character. That character gains X life this turn.

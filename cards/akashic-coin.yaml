@@ -1,0 +1,10 @@
+id: "akashic-coin"
+name: "Akashic Coin"
+trade: banker
+types: [item]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  UNIQUE AKASHIC OBJECT
+  When a card that provides at least [V] enters play under an opponent's control, that player may pay 2. If they don't, you may have your faction lose 1 influence. If you do, draw a card. Otherwise, flip this card face-down under its owner's control.
+  FLIP UP: 3 [G]

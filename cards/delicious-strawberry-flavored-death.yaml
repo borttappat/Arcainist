@@ -1,0 +1,9 @@
+id: "delicious-strawberry-flavored-death"
+name: "Delicious Strawberry Flavored Death"
+trade: rogue
+types: [tactic]
+set: "Seed 3"
+rarity: fixed
+text: |
+  Deplete all non-Rogue characters. Draw a card.
+  FLIP UP: 1 [D] and your faction loses 5 influence.

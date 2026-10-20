@@ -1,0 +1,9 @@
+id: "multi-attachment-man"
+name: "Multi-Attachment Man"
+trade: gearsmith
+types: [character]
+subtypes: ["mechanic"]
+set: "Ungodly Mess"
+rarity: ultra-rare
+text: |
+  When this card is destroyed, you may search your deck for an item and reveal it. If you do, put it into your hand.

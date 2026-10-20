@@ -1,0 +1,9 @@
+id: "repo-man"
+name: "Repo Man"
+trade: banker
+types: [character]
+subtypes: ["lackey", "mau"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  When this card enters play, you may pick a location. If you do, destroy it.

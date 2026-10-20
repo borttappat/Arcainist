@@ -1,0 +1,9 @@
+id: "tiny-sarume"
+name: "Tiny Sarume"
+trade: warlord
+types: [character]
+subtypes: ["dragon"]
+set: "Seed Saga"
+rarity: common
+text: |
+  FLIP UP: 0 [R]

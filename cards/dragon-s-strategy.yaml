@@ -1,0 +1,8 @@
+id: "dragon-s-strategy"
+name: "Dragon's Strategy"
+trade: warlord
+types: [tactic]
+set: "1st Edition"
+rarity: common
+text: |
+  An opponent's faction loses 2 influence. Draw a card.

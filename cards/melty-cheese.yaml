@@ -1,0 +1,11 @@
+id: "melty-cheese"
+name: "Melty Cheese"
+trade: banker
+types: [item]
+subtypes: ["gear"]
+set: "Seed Saga"
+rarity: common
+text: |
+  ATTACH TO CHARACTER
+  The attached character gains 2 life and cannot attack.
+  FLIP UP: 2 [G] and your faction gains 4 influence.

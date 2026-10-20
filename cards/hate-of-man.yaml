@@ -1,0 +1,12 @@
+id: "hate-of-man"
+name: "Hate of Man"
+trade: arcanist
+types: [character]
+subtypes: ["god"]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  This character loses 1 life and all non-Arcanist characters lose 1 strength for each token on this card.
+  SPREAD THE HATE
+  COST: Pay 2. Deplete this card.
+  EFFECT: Put a token on this card.

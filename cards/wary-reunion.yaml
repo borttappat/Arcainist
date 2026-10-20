@@ -1,0 +1,10 @@
+id: "wary-reunion"
+name: "Wary Reunion"
+trade: rogue
+types: [tactic]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick a character.
+  Remove the character from the game if it has X life or less, where X is the number of different trades among cards you control.
+  FLIP UP: 2 [D]

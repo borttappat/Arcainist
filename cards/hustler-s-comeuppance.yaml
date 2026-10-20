@@ -1,0 +1,9 @@
+id: "hustler-s-comeuppance"
+name: "Hustler's Comeuppance"
+trade: rogue
+types: [tactic]
+set: "Seed Saga"
+rarity: rare
+text: |
+  Destroy all characters that inflicted damage to your faction this turn.
+  FLIP UP: 3 [D][D]

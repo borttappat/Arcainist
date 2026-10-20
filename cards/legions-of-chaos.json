@@ -1,0 +1,5 @@
+{
+  "influence": 21,
+  "starting_resources": { "any_staples": 2 },
+  "starting_draw": { "first": 8, "second": 9 }
+}

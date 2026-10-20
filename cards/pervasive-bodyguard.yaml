@@ -1,0 +1,11 @@
+id: "pervasive-bodyguard"
+name: "Pervasive Bodyguard"
+trade: banker
+types: [character]
+subtypes: ["mercenary", "mau"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  PROTECT
+  COST: Pay 1. Pick a character in a party with this card.
+  EFFECT: This turn, the character gains 1 life.

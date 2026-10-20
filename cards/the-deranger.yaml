@@ -1,0 +1,10 @@
+id: "the-deranger"
+name: "The Deranger"
+trade: arcanist
+types: [item]
+set: "2nd Edition"
+rarity: rare
+text: |
+  LOBOTOMIZE
+  COST: Deplete this card.
+  EFFECT: Look at an opponent's hand and choose 2 or fewer non-resource cards in it. That player discards those cards. That player takes control of this card.

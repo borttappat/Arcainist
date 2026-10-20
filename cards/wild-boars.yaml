@@ -1,0 +1,9 @@
+id: "wild-boars"
+name: "Wild Boars"
+trade: rogue
+types: [character]
+subtypes: ["beast"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  While this card is the only member of an attacking party, only characters with at least X speed can block it, where X is this card's speed.

@@ -1,0 +1,13 @@
+id: "intriguing-mezzanine"
+name: "Intriguing Mezzanine"
+trade: banker
+types: [location]
+set: "Seed 3"
+rarity: fixed
+text: |
+  EXTRA COST: Pick 2 characters.
+  When this card enters play, deplete those characters.
+  PARTY ON!
+  COST: Inflict 1 damage to this location. If you do, pick a character.
+  EFFECT: Deplete the character.
+  Characters depleted by this card cannot be restored by their controller's factions's restore rule.

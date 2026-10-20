@@ -6,13 +6,14 @@ import { createReadStream, existsSync, statSync } from "node:fs";
 import { createServer } from "node:http";
 import { extname, join, normalize } from "node:path";
 import { WebSocketServer, type WebSocket } from "ws";
-import { Game, GameError, parseDeck, viewFor, type Action, type PlayerId } from "../engine/index.ts";
-import { loadLibrary } from "./library.ts";
+import { Game, GameError, parseDeck, validateDeck, viewFor, type Action, type Format, type PlayerId } from "../engine/index.ts";
+import { loadFormats, loadLibrary } from "./library.ts";
 
 const ROOT = join(import.meta.dirname, "..");
 const PORT = Number(process.env.PORT ?? 8080);
 const lib = loadLibrary(join(ROOT, "cards"));
-console.log(`Loaded ${Object.keys(lib).length} cards.`);
+const formats: Record<string, Format> = loadFormats(join(ROOT, "formats"));
+console.log(`Loaded ${Object.keys(lib).length} cards and ${Object.keys(formats).length} formats.`);
 
 // ---------------------------------------------------------------------------
 // Identity: no accounts. The client keeps a random secret; its hash is the user id.
@@ -47,6 +48,11 @@ interface Room {
   seats: Partial<Record<PlayerId, Seat>>;
   game: Game | null;
   touched: number;
+  /** Who goes first, as set by the room's creator. */
+  first: "random" | "creator" | "joiner";
+  creator: string;
+  /** Format id (formats/*.json). */
+  format: string;
 }
 
 const rooms = new Map<string, Room>();
@@ -62,6 +68,8 @@ function roomList() {
     name: r.name,
     players: (["A", "B"] as PlayerId[]).filter((p) => r.seats[p]).map((p) => display(r.seats[p]!.user)),
     started: !!r.game,
+    first: r.first,
+    format: formats[r.format]?.name ?? r.format,
     ended: r.game?.s.phase === "ended",
   }));
 }
@@ -90,20 +98,30 @@ function pushRoom(room: Room): void {
   }
 }
 
-function deckFrom(text: unknown): { faction: string; cards: string[] } {
+/** Parse and check a decklist against the room's format. Warnings go back to the player. */
+function deckFrom(text: unknown, format: Format, ws: WebSocket): { faction: string; cards: string[] } {
   if (typeof text !== "string" || text.length > 20000) throw new GameError("Paste a decklist.");
   const d = parseDeck(text, lib);
-  if (d.errors.length) throw new GameError(d.errors.join("\n"));
+  const check = validateDeck(d, lib, format);
+  if (check.errors.length) throw new GameError(check.errors.join("\n"));
+  if (check.warnings.length) send(ws, { t: "notice", message: check.warnings.join("\n") });
   return { faction: d.faction!, cards: d.cards };
 }
 
 function startIfReady(room: Room): void {
   const { A, B } = room.seats;
   if (room.game || !A || !B) return;
-  room.game = Game.create(lib, randomInt(0, 2 ** 32), {
-    A: { name: display(A.user), faction: A.faction, cards: A.cards },
-    B: { name: display(B.user), faction: B.faction, cards: B.cards },
-  });
+  const creatorSeat: PlayerId = A.user.id === room.creator ? "A" : "B";
+  const first = room.first === "random" ? undefined : room.first === "creator" ? creatorSeat : creatorSeat === "A" ? "B" : "A";
+  room.game = Game.create(
+    lib,
+    randomInt(0, 2 ** 32),
+    {
+      A: { name: display(A.user), faction: A.faction, cards: A.cards },
+      B: { name: display(B.user), faction: B.faction, cards: B.cards },
+    },
+    { first, format: room.format },
+  );
 }
 
 function leave(room: Room, user: User): void {
@@ -125,7 +143,7 @@ function handle(ws: WebSocket, msg: any): void {
   const c = clients.get(ws)!;
   if (msg.t === "hello") {
     c.user = identify(msg.secret, msg.name);
-    send(ws, { t: "welcome", user: { id: c.user.id, name: c.user.name, tag: c.user.tag }, cards: lib });
+    send(ws, { t: "welcome", user: { id: c.user.id, name: c.user.name, tag: c.user.tag }, cards: lib, formats });
     send(ws, { t: "rooms", rooms: roomList() });
     // Reconnect to a room this identity is seated in.
     for (const room of rooms.values()) {
@@ -142,10 +160,12 @@ function handle(ws: WebSocket, msg: any): void {
 
   switch (msg.t) {
     case "create": {
-      const deck = deckFrom(msg.deck);
+      const format = formats[msg.format] ?? formats.casual;
+      const deck = deckFrom(msg.deck, format, ws);
       const name = typeof msg.name === "string" && msg.name.trim() ? msg.name.trim().slice(0, 40) : `${display(user)}'s game`;
       const id = randomBytes(4).toString("hex");
-      const room: Room = { id, name, seats: { A: { user, ...deck } }, game: null, touched: Date.now() };
+      const first = msg.first === "me" ? "creator" : msg.first === "opponent" ? "joiner" : "random";
+      const room: Room = { id, name, seats: { A: { user, ...deck } }, game: null, touched: Date.now(), first, creator: user.id, format: format.id };
       rooms.set(id, room);
       c.room = id;
       pushRoom(room);
@@ -157,7 +177,7 @@ function handle(ws: WebSocket, msg: any): void {
       if (!room) throw new GameError("That room no longer exists.");
       if (!seatOf(room, user)) {
         if (room.seats.A && room.seats.B) throw new GameError("That room is full.");
-        const deck = deckFrom(msg.deck);
+        const deck = deckFrom(msg.deck, formats[room.format] ?? formats.casual, ws);
         room.seats[room.seats.A ? "B" : "A"] = { user, ...deck };
         startIfReady(room);
       }
@@ -232,7 +252,8 @@ const http = createServer((req, res) => {
   createReadStream(file).pipe(res);
 });
 
-const wss = new WebSocketServer({ server: http, path: "/ws", maxPayload: 64 * 1024 });
+// Compression matters: every client receives the whole card library (about 0.5 MB) on connect.
+const wss = new WebSocketServer({ server: http, path: "/ws", maxPayload: 64 * 1024, perMessageDeflate: true });
 wss.on("connection", (ws) => {
   clients.set(ws, { user: null, room: null });
   ws.on("message", (data) => {

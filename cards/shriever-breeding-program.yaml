@@ -1,0 +1,14 @@
+id: "shriever-breeding-program"
+name: "Shriever Breeding Program"
+trade: warlord
+types: [tactic]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  Choose one of the following as this card's rules text:
+  OPTION 1
+  EXTRA COST: Deploy this only during your turn.
+  EFFECT: You may search your deck for a "dragon" card and reveal it. If you do, put it into your hand.
+  OPTION 2
+  EXTRA COST: Deploy this only during your turn. Pick a character.
+  EFFECT: Deplete the character. Draw a card.

@@ -1,0 +1,11 @@
+id: "313373-m3ch4n1c"
+name: "313373 M3ch4n1c"
+trade: gearsmith
+types: [character]
+subtypes: ["31f"]
+set: "Seed Saga"
+rarity: common
+text: |
+  REPAIR
+  COST: Choose a number for X that is less than or equal to the number of [E] you control. Pay X. Destroy this card. Pick an item in your discard pile with numeric cost X or less.
+  EFFECT: Put the item into play under your control.

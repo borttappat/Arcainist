@@ -1,0 +1,11 @@
+id: "crest-of-greed"
+name: "Crest of Greed"
+trade: universal
+types: [item]
+subtypes: ["crest"]
+set: "Seed 2"
+rarity: rare
+text: |
+  UNIQUE CREST
+  PROVIDES: [G][G]
+  When a card that provides at least [G] enters play under your control, you may pick a faction. If you do, it gains 2 influence.

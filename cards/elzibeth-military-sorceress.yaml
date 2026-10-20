@@ -1,0 +1,12 @@
+id: "elzibeth-military-sorceress"
+name: "Elzibeth, Military Sorceress"
+trade: warlord
+types: [character]
+subtypes: ["sorceress"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  UNIQUE ELZIBETH
+  REANIMATE
+  COST: Pay 2. Deplete this card. Pick a character in your discard pile.
+  EFFECT: Put the character on the top of its owner's deck.

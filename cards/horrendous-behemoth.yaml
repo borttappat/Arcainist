@@ -1,0 +1,9 @@
+id: "horrendous-behemoth"
+name: "Horrendous Behemoth"
+trade: arcanist
+types: [character]
+subtypes: ["monstrosity"]
+set: "Seed Saga"
+rarity: common
+text: |
+  While this card is in a battle, characters in the opposing party lose 1 strength and 1 speed.

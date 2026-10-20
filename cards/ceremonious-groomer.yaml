@@ -1,0 +1,9 @@
+id: "ceremonious-groomer"
+name: "Ceremonious Groomer"
+trade: banker
+types: [character]
+subtypes: ["mau"]
+set: "Seed Saga"
+rarity: common
+text: |
+  If this card would be destroyed, flip it face-down under its owner's control instead.

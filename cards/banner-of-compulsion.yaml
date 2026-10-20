@@ -1,0 +1,13 @@
+id: "banner-of-compulsion"
+name: "Banner of Compulsion"
+trade: universal
+types: [item]
+subtypes: ["banner"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  PROVIDES: [O]
+  When a card that provides at least [O] enters play under your control, you may pay 1. If you do, look at the top 3 cards of your deck. You may put any number of those cards on the bottom of your deck in any order. Put the remaining cards on the top of your deck in any order.
+  BURN IT
+  COST: Pay 2. Destroy this card.
+  EFFECT: Draw 2 cards.

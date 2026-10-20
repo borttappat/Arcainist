@@ -1,0 +1,8 @@
+id: "dock-sentinel"
+name: "Dock Sentinel"
+trade: rogue
+types: [character]
+subtypes: ["guard"]
+set: "2nd Edition"
+rarity: common
+text: ""

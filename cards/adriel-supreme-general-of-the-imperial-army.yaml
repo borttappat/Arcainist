@@ -1,0 +1,11 @@
+id: "adriel-supreme-general-of-the-imperial-army"
+name: "Adriel, Supreme General of the Imperial Army"
+trade: warlord
+types: [character]
+subtypes: ["adriel", "general"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  UNIQUE ADRIEL
+  When this character blocks or is blocked, you may pick a character or faction. If you do, inflict 1 damage to that character or faction.
+  If this card would be destroyed, its owner may put it on top of their deck instead.

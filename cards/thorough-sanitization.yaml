@@ -1,0 +1,10 @@
+id: "thorough-sanitization"
+name: "Thorough Sanitization"
+trade: gearsmith
+types: [tactic]
+set: "Seed Saga"
+rarity: common
+text: |
+  EXTRA COST: Pick an item.
+  Flip the item face-down under its owner's control.
+  FLIP UP: 1 [E] and draw a card.

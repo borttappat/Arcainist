@@ -1,0 +1,9 @@
+id: "irresistible-bribe"
+name: "Irresistible Bribe"
+trade: banker
+types: [tactic]
+set: "2nd Edition"
+rarity: common
+text: |
+  EXTRA COST: Pick a character. X is its strength.
+  Destroy the character. That character’s controller's faction gains X influence.

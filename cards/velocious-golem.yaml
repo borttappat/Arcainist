@@ -1,0 +1,9 @@
+id: "velocious-golem"
+name: "Velocious Golem"
+trade: gearsmith
+types: [character]
+subtypes: ["golem"]
+set: "Seed Saga"
+rarity: common
+text: |
+  [E][E][E]: This card can attack even if it has not been in play under your control since the start of the turn.

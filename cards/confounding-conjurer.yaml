@@ -1,0 +1,10 @@
+id: "confounding-conjurer"
+name: "Confounding Conjurer"
+trade: arcanist
+types: [character]
+subtypes: ["wizard"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  EXTRA COST: You may pick a character.
+  When this card enters play, if you picked a character as part of its cost, put that character into its owner's hand.

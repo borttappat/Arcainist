@@ -1,0 +1,14 @@
+id: "oddment-collector"
+name: "Oddment Collector"
+trade: gearsmith
+types: [character]
+subtypes: ["golem"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  This card enters play with 5 tokens on it.
+  This card gains 1 strength and 1 life for each token on it.
+  When this card becomes depleted, remove a token from it.
+  GATHER
+  COST: Pay 1. Remove an item or 2 cards in your discard pile from the game.
+  EFFECT: Put a token on this card.

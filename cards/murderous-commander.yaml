@@ -1,0 +1,11 @@
+id: "murderous-commander"
+name: "Murderous Commander"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  CUNNING PLAN
+  COST: Pay 2. Discard a card. Deplete this card.
+  EFFECT: Inflict 2 damage to an opponent's faction.

@@ -1,0 +1,10 @@
+id: "auditory-adulation"
+name: "Auditory Adulation"
+trade: warlord
+types: [tactic]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  EXTRA COST: Deploy this only not during a battle. Pick a character.
+  This turn, the character gains strength equal to its numeric cost. You may play a resource.
+  FLIP UP: 3 [R]

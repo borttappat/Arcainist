@@ -1,0 +1,14 @@
+id: "chum-the-ugliest-sarume"
+name: "Chum, the Ugliest Sarume"
+trade: rogue
+types: [character]
+subtypes: ["dragon"]
+set: "Holy Heist"
+rarity: rare
+text: |
+  TACTICAL, UNIQUE CHUM
+  EXTRA COST: Pick a card in a discard pile. X is its numeric cost.
+  When this card enters play, if you picked a card as part of its cost, remove that card from the game. Search an opponent's deck for a card with numeric cost X or less and put it into their discard pile.
+  SERAPHIM FUSION
+  COST: Pay 4. Pick a UNIQUE PLUCK you control. Destroy this card.
+  EFFECT: Search your deck for a card named "Omahkapi'si Pi'kssii" and put it into play.

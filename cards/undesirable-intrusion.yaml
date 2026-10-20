@@ -1,0 +1,10 @@
+id: "undesirable-intrusion"
+name: "Undesirable Intrusion"
+trade: gearsmith
+types: [tactic]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  EXTRA COST: Your opponents cannot respond to this card. Deploy this only in response to a character's ability.
+  Terminate the ability. Destroy the character. Its controller puts a micromajig token into play under their control.
+  FLIP UP: 2 [E]

@@ -1,0 +1,13 @@
+id: "reluctant-hiree"
+name: "Reluctant Hiree"
+trade: banker
+types: [character]
+subtypes: ["employee"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  This card enters play with 3 tokens on it.
+  This card loses 1 strength for each token on it.
+  INVEST
+  COST: Pay X, where X is the number of tokens on this card.
+  EFFECT: Remove a token from this card.

@@ -1,0 +1,9 @@
+id: "thabbashite-deacon"
+name: "Thabbashite Deacon"
+trade: banker
+types: [character]
+subtypes: ["priest"]
+set: "Holy Heist"
+rarity: common
+text: |
+  When a card that provides at least [V] enters play under your control, you may pick a faction. If you do, it gains 1 influence.

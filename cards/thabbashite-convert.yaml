@@ -1,0 +1,10 @@
+id: "thabbashite-convert"
+name: "Thabbashite Convert"
+trade: gearsmith
+types: [character]
+subtypes: ["31f", "fighter"]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  [E][E][V][V]: This card gains 1 strength and 1 life. When this card attacks, you may pick a face-up resource you control. If you do, flip it face-down under its owner's control.
+  FLIP UP: 4 [V][V][V][V]

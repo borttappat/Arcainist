@@ -1,0 +1,10 @@
+id: "micromajig-avalanche"
+name: "Micromajig Avalanche"
+trade: gearsmith
+types: [tactic]
+set: "2nd Edition"
+rarity: rare
+text: |
+  EXTRA COST: Choose a number for X. Pay X+X.
+  Put X Micromajig tokens into play.
+  (Treat Micromajig tokens as Gearsmith character cards with 1 strength, 1 life, 3 speed, and the majig subtype. If a Micromajig token leaves play, it disappears.)

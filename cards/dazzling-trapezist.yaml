@@ -1,0 +1,11 @@
+id: "dazzling-trapezist"
+name: "Dazzling Trapezist"
+trade: rogue
+types: [character]
+subtypes: ["performer"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  INSPIRE
+  COST: Put a card from your hand on the top of your deck. Pick a character.
+  EFFECT: This turn, the character gains 1 speed.

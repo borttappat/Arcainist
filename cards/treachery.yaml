@@ -1,0 +1,9 @@
+id: "treachery"
+name: "Treachery"
+trade: rogue
+types: [resource]
+set: "Seed Saga"
+rarity: rare
+text: |
+  When this card enters play, your faction loses 1 influence.
+  PROVIDES: [D][D]

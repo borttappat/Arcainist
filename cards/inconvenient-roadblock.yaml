@@ -1,0 +1,10 @@
+id: "inconvenient-roadblock"
+name: "Inconvenient Roadblock"
+trade: banker
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  EXTRA COST: Deploy this only during a battle.
+  Reduce all battle damage inflicted during this battle to 0. Draw a card.
+  FLIP UP: 1 [G]

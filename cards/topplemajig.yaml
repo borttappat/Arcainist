@@ -1,0 +1,9 @@
+id: "topplemajig"
+name: "Topplemajig"
+trade: gearsmith
+types: [character]
+subtypes: ["majig"]
+set: "2nd Edition"
+rarity: common
+text: |
+  While this card is in a battle, all characters in the opposing party lose 1 speed.

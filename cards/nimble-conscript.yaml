@@ -1,0 +1,8 @@
+id: "nimble-conscript"
+name: "Nimble Conscript"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Seed Saga"
+rarity: common
+text: ""

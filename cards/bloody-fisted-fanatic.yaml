@@ -1,0 +1,8 @@
+id: "bloody-fisted-fanatic"
+name: "Bloody Fisted Fanatic"
+trade: warlord
+types: [character]
+subtypes: ["fighter"]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: ""

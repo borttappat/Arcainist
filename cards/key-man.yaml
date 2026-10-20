@@ -1,0 +1,9 @@
+id: "key-man"
+name: "Key Man"
+trade: banker
+types: [character]
+subtypes: ["executive", "mau"]
+set: "2nd Edition"
+rarity: common
+text: |
+  When this card leaves play, draw a card.

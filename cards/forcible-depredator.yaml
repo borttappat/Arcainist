@@ -1,0 +1,11 @@
+id: "forcible-depredator"
+name: "Forcible Depredator"
+trade: rogue
+types: [character]
+subtypes: ["thief"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  PLUNDER
+  COST: Pay 2. Discard a card. Deplete this card.
+  EFFECT: Put the top 3 cards of an opponent's deck into their discard pile.

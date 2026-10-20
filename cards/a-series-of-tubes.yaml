@@ -1,0 +1,15 @@
+id: "a-series-of-tubes"
+name: "A Series of Tubes"
+trade: gearsmith
+types: [character]
+subtypes: ["node"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  UNIQUE SERIES OF TUBES
+  REDIRECT
+  COST: Pick a node character.
+  EFFECT: This turn, the next 1 damage that would be inflicted to the character is inflicted to this card instead.
+  All other node characters gain 1 strength and 1 life.
+  When this card enters play, you may search your deck for a node card and reveal it. If you do, put it into your hand.
+  When this card is destroyed, destroy all other node cards.

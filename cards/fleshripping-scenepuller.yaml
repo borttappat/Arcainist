@@ -1,0 +1,9 @@
+id: "fleshripping-scenepuller"
+name: "Fleshripping Scenepuller"
+trade: warlord
+types: [character]
+subtypes: ["fighter"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  When this card is blocked, this turn it gains 4 strength for each member in the opposing party.

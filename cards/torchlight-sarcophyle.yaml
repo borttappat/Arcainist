@@ -1,0 +1,9 @@
+id: "torchlight-sarcophyle"
+name: "Torchlight Sarcophyle"
+trade: rogue
+types: [character]
+subtypes: ["sarcophyle"]
+set: "Holy Heist"
+rarity: common
+text: |
+  While a player controls a character with COVERT, this character gains COVERT.

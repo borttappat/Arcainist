@@ -1,0 +1,9 @@
+id: "overinsured-figurehead"
+name: "Overinsured Figurehead"
+trade: banker
+types: [character]
+subtypes: ["executive"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  When this card leaves play, draw 2 cards.

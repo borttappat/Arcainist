@@ -1,0 +1,13 @@
+id: "god-s-blessing-of-boost"
+name: "God's Blessing of Boost"
+trade: warlord
+types: [tactic]
+subtypes: ["mutation"]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  UNIQUE BLESSING
+  ATTACH TO CHARACTER
+  When this card enters play, inflict 1 damage to all characters.
+  The attached character gains the following rules text: "At the start of each turn, inflict 1 damage to all your characters.
+  All your characters gain 1 strength."

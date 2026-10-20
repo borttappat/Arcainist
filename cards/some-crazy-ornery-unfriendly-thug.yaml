@@ -1,0 +1,8 @@
+id: "some-crazy-ornery-unfriendly-thug"
+name: "Some Crazy Ornery Unfriendly Thug"
+trade: warlord
+types: [character]
+subtypes: ["fighter", "tough guy"]
+set: "Holy Heist"
+rarity: uncommon
+text: ""

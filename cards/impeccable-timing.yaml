@@ -1,0 +1,9 @@
+id: "impeccable-timing"
+name: "Impeccable Timing"
+trade: rogue
+types: [tactic]
+set: "2nd Edition"
+rarity: common
+text: |
+  EXTRA COST: Pick a depleted character.
+  If the character has 4 life or less, destroy it.

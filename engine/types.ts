@@ -54,9 +54,32 @@ export interface CardDef {
   enters_under?: "you" | "opponent";
   text?: string;
   rules?: Rule[];
+  /** Latest set the card was printed in, and its rarity there. */
+  set?: string;
+  rarity?: string;
+  /** Data is missing (17 factions): shown in the card pool but not playable. */
+  incomplete?: boolean;
   // Faction-only fields
   influence?: number;
-  starting_resources?: { any_staples?: number; different_staples?: number };
+  starting_resources?: {
+    any_staples?: number;
+    different_staples?: number;
+    specific?: Icons;
+    face_down?: Icons;
+    any_resources?: number;
+    any_cards_face_down?: number;
+    choose_staples?: number;
+  };
+  /** Rules this faction imposes on the opponent's faction (The Knitting Coalition, Union of Miners). */
+  opponent_rules?: { starting_draw?: "this"; develop_rule?: "none"; equalize_starting_resources?: boolean };
+  /** false for cards printed "cannot be used in tournament play". */
+  tournament_legal?: boolean;
+  /** Faction rule: minimum deck size (The Society of Magical Propriety). */
+  min_deck?: number;
+  /** Why an incomplete card can't be played. */
+  incomplete_reason?: string;
+  /** This card is the back side of another (Counter-Imperial Army). */
+  back_of?: string;
   starting_draw?: { before?: Step[]; first: number; second: number };
   restore_rule?: Step[];
   develop_rule?: Step[];
@@ -147,6 +170,8 @@ export interface Ctx {
   did?: boolean;
   /** Characters picked while paying costs. */
   picked?: string[];
+  /** What each of those was picked from, and by whom (Mistaken Identity). */
+  pickedFrom?: { iid: string; from: any; zone?: string; chooser: PlayerId }[];
 }
 
 export interface Task {
@@ -171,6 +196,8 @@ export interface Effect {
   turn: number;
   /** For "next" durations: removed after being used once. */
   used?: boolean;
+  /** Lets the creating card clear some of its effects (`clear_effects: { tag }`). */
+  tag?: string;
 }
 
 export interface BattleState {
@@ -242,6 +269,8 @@ export interface TurnLog {
 }
 
 export interface GameState {
+  /** Format id the room plays under (see engine/formats.ts). */
+  format: string;
   rng: number;
   turn: number;
   active: PlayerId;

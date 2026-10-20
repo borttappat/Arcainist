@@ -1,0 +1,11 @@
+id: "runic-battery"
+name: "Runic Battery"
+trade: gearsmith
+types: [item]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  When this card enters play, you may pay 3. If you do, put a token on it.
+  DISCHARGE
+  COST: If there is a token on this card X is 5, otherwise X is 2. Destroy this card.
+  EFFECT: Detach up to X resources from your faction. Draw a card.

@@ -1,0 +1,9 @@
+id: "muddle"
+name: "Muddle"
+trade: arcanist
+types: [tactic]
+set: "Seed Saga"
+rarity: rare
+text: |
+  EXTRA COST: Deploy this only in response to a tactic being deployed. Pay X, where X is its numeric cost.
+  Duplicate the tactic. Terminate the tactic.

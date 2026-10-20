@@ -1,0 +1,10 @@
+id: "fleet-majig"
+name: "Fleet Majig"
+trade: gearsmith
+types: [character]
+subtypes: ["majig"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  This card cannot be blocked.
+  [E][E][E][E][E][E]: This card gains 2 strength and 2 life.

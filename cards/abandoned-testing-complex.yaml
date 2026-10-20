@@ -1,0 +1,8 @@
+id: "abandoned-testing-complex"
+name: "Abandoned Testing Complex"
+trade: gearsmith
+types: [location]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  At the start of your turn, you may pay 3. If you do you may play a resource.

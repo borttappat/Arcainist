@@ -1,0 +1,9 @@
+id: "necromantic-healer"
+name: "Necromantic Healer"
+trade: warlord
+types: [character]
+subtypes: ["sorceress"]
+set: "Seed Saga"
+rarity: common
+text: |
+  When battle damage is inflicted to a character in a party with this card, reduce the amount by 1. (This includes this character.)

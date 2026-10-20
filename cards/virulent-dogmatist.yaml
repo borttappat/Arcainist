@@ -1,0 +1,11 @@
+id: "virulent-dogmatist"
+name: "Virulent Dogmatist"
+trade: arcanist
+types: [character]
+subtypes: ["wizard"]
+set: "Seed Saga"
+rarity: common
+text: |
+  BERATE
+  COST: Pay 2. Deplete this card. Pick a character.
+  EFFECT: This turn, the character loses 2 strength or 1 speed.

@@ -1,0 +1,5 @@
+{
+  "cost": 2,
+  "threshold": { "obsession": 2 },
+  "structure": 5
+}

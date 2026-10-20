@@ -3,10 +3,11 @@ name: Fornicaves
 flavor_title: totally a thing
 trade: rogue
 types: [location]
+set: "Seed 3"
+rarity: fixed
 text: |
   UNIQUE FORNICAVES
   All characters lose X life, where X is their printed life minus 2.
-  "I looked it up. There is no such thing."
 rules:
   - unique: Fornicaves
   - static:

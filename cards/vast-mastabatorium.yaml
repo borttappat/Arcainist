@@ -1,0 +1,13 @@
+id: "vast-mastabatorium"
+name: "Vast Mastabatorium"
+trade: rogue
+types: [location]
+set: "Seed Saga"
+rarity: rare
+text: |
+  YOU KNOW YOU WANT TO...
+  COST: Use this only 5 times each turn. Pay 1. Inflict 1 damage to your faction.
+  EFFECT: Draw a card. At the end of the turn, put a token on this card and an opponent takes control of it.
+  SWEET RELEASE
+  COST: Pay 2. Remove a token from this card.
+  EFFECT: You may play a resource.

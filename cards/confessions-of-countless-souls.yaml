@@ -1,0 +1,9 @@
+id: "confessions-of-countless-souls"
+name: "Confessions of Countless Souls"
+trade: arcanist
+types: [tactic]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  EXTRA COST: Choose a number for X. Put X characters you control into the void. Pick X+1 characters.
+  Put those characters into their owners's hand. Look at the top X+1 cards of your deck. You may put any number of those cards on the bottom of your deck in any order. Put the remaining cards on the top of your deck in any order.

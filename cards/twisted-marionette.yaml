@@ -1,0 +1,9 @@
+id: "twisted-marionette"
+name: "Twisted Marionette"
+trade: arcanist
+types: [character]
+subtypes: ["doll"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  When this card inflicts battle damage to a faction, you may pay 1. If you do, that faction's controller puts a character they control into its owner's hand.

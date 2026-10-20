@@ -1,0 +1,12 @@
+id: "gor-blach-the-endowed"
+name: "Gor-blach the Endowed"
+trade: warlord
+types: [character]
+subtypes: ["fighter", "tough guy"]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  UNIQUE GOR-BLACH
+  GET IN THERE: [V][V][V]
+  COST: Deplete this card. Pick a blocked character you control. X is its strength. Pay X.
+  EFFECT: Destroy the character. Inflict X damage to an opponent's faction. Inflict X damage to this card.

@@ -1,0 +1,5 @@
+{
+  "cost": 7,
+  "threshold": { "deception": 2 },
+  "stats": { "str": 5, "life": 4, "spd": 4 }
+}

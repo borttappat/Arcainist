@@ -1,0 +1,10 @@
+id: "confrontational-conflagration"
+name: "Confrontational Conflagration"
+trade: warlord
+types: [tactic]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  EXTRA COST: Deploy this only during your turn not during a battle. Pick a character you control. Pick a character an opponent controls. You may pick a location.
+  If the picked character you control is a "dragon", X is 2 times its strength, otherwise X is its strength. Inflict X damage to each picked card.
+  FLIP UP: 1 [R][R][R]

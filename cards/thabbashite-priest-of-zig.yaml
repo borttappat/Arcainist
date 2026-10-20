@@ -1,0 +1,10 @@
+id: "thabbashite-priest-of-zig"
+name: "Thabbashite Priest of Zig"
+trade: arcanist
+types: [character]
+subtypes: ["priest"]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  [O][O][V][V]: This card gains COVERT. When this card is destroyed, you may pick a non-resource card. If you do, put that card into its owner's hand.
+  FLIP UP: 3 [V][V][V][V]

@@ -1,0 +1,9 @@
+id: "lead-the-assault"
+name: "Lead the Assault"
+trade: gearsmith
+types: [tactic]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  Pick an attacking character you control. It gains 2 strength and 2 life this turn. If you control an attacking party of at least 2 members, that character gains an additional 2 strength and 2 life this turn.
+  FLIP UP: 4 [E]

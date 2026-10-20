@@ -1,0 +1,11 @@
+id: "slick-orator"
+name: "Slick Orator"
+trade: banker
+types: [character]
+subtypes: ["politician", "mau"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  RECUR: [G][G]
+  COST: Use this only if this card is in your discard pile. Remove this card from the game.
+  EFFECT: Draw a card.

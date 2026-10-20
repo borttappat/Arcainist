@@ -1,0 +1,9 @@
+id: "mushroom-merchant"
+name: "Mushroom Merchant"
+trade: banker
+types: [character]
+subtypes: ["mau", "merchant"]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  When this card enters play, you may pick a character. If you do, this turn, that character gains 2 life.

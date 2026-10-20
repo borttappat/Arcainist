@@ -1,0 +1,14 @@
+id: "runivoltaic-accumulator"
+name: "Runivoltaic Accumulator"
+trade: gearsmith
+types: [item]
+set: "Seed Saga"
+rarity: common
+text: |
+  When an opponent attacks, you may put a token on this card.
+  ENERGIZE
+  COST: Pay 2.
+  EFFECT: Put a token on this card.
+  DISCHARGE
+  COST: Pick a character with numeric cost X or less, where X is the number of tokens on this card. Destroy this card.
+  EFFECT: Destroy the character.

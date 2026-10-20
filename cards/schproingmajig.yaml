@@ -1,0 +1,14 @@
+id: "schproingmajig"
+name: "Schproingmajig"
+trade: gearsmith
+types: [character]
+subtypes: ["majig"]
+set: "1st Edition Part 2"
+rarity: uncommon
+text: |
+  PUMP-UP
+  COST: Deplete another character you control.
+  EFFECT: This turn, this card gains 2 strength and 2 life.
+  SCHPROING!
+  COST: Destroy a character you control.
+  EFFECT: This turn, this card cannot be blocked.

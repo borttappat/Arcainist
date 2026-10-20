@@ -1,0 +1,14 @@
+id: "ghosts-of-loot"
+name: "Ghosts of Loot"
+trade: banker
+types: [character]
+subtypes: ["ghost"]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  UNIQUE GHOSTS
+  When this card blocks, your faction loses 2 influence and this card gains 4 life this turn.
+  When this card attacks, your faction gains 1 influence and this card gains 2 strength this turn.
+  [V][V]: When this card enters play, draw a card.
+  [V][V][V][V][V]: When this card is destroyed, draw 4 cards.
+  FLIP UP: 3 [G]

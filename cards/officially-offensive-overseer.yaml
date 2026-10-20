@@ -1,0 +1,10 @@
+id: "officially-offensive-overseer"
+name: "Officially Offensive Overseer"
+trade: arcanist
+types: [character]
+subtypes: ["ritualist"]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  EXTRA COST: If you control at least [O][O][O], you may pick a character or a location.
+  When this card enters play, if you picked a character or location as part of its cost and the character has strength 3 or less or the location has structure 3 or less, put that card into its owners's hand.

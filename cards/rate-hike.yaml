@@ -1,0 +1,8 @@
+id: "rate-hike"
+name: "Rate Hike"
+trade: banker
+types: [tactic]
+set: "1st Edition"
+rarity: common
+text: |
+  Your faction gains 2 influence. Draw a card.

@@ -1,0 +1,16 @@
+id: "essence-of-elitism"
+name: "Essence of Elitism"
+trade: gearsmith
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  Choose one of the following as this card's rules text:
+  OPTION 1
+  Put a Micromajig token into play.
+  OPTION 2
+  EXTRA COST: Pick a character with COVERT.
+  This turn, the character loses COVERT.
+  OPTION 3
+  EXTRA COST: Pick an item in your discard pile.
+  EFFECT: Put the item into your hand.

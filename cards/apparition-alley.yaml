@@ -1,0 +1,10 @@
+id: "apparition-alley"
+name: "Apparition Alley"
+trade: rogue
+types: [location]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  WOOSH
+  COST: Deplete this card. Pick a character.
+  EFFECT: This turn, this character gains 1 speed.

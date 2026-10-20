@@ -1,0 +1,9 @@
+id: "barrier-of-benevolence"
+name: "Barrier of Benevolence"
+trade: warlord
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  EXTRA COST: Choose a number for X. Pay X+X. Pick 2 or fewer characters.
+  This turn, the characters gain X strength and X life.

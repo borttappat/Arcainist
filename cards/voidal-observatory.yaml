@@ -1,0 +1,14 @@
+id: "voidal-observatory"
+name: "Voidal Observatory"
+trade: arcanist
+types: [location]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  At the start of your turn, you may put a token on this card.
+  ENERGIZE
+  COST: Pay 2.
+  EFFECT: Put a token on this card.
+  STUDY
+  COST: Remove 3 tokens from this card.
+  EFFECT: Draw a card.

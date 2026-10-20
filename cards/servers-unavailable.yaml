@@ -1,0 +1,10 @@
+id: "servers-unavailable"
+name: "Servers Unavailable"
+trade: gearsmith
+types: [tactic]
+set: "Ungodly Mess"
+rarity: uber
+text: |
+  EXTRA COST: Deploy this only in response to a card being deployed.
+  Terminate the card.
+  FLIP UP:  5 [E][E][E] and put a micromajig token into play under your control.

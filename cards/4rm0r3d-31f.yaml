@@ -1,0 +1,12 @@
+id: "4rm0r3d-31f"
+name: "4rm0r3d 31f"
+trade: gearsmith
+types: [character]
+subtypes: ["31f"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  This card loses 1 life for each token on it.
+  FALL APART
+  COST: Pay 1. Put a token on this card.
+  EFFECT: Put a Micromajig token into play under your control.

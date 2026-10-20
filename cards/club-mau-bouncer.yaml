@@ -1,0 +1,9 @@
+id: "club-mau-bouncer"
+name: "Club Mau Bouncer"
+trade: banker
+types: [character]
+subtypes: ["mercenary", "mau"]
+set: "1st Edition Part 2"
+rarity: common
+text: |
+  When a character inflicts damage to this card, inflict 1 damage to that character.

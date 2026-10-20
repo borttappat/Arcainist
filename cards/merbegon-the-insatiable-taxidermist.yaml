@@ -1,0 +1,11 @@
+id: "merbegon-the-insatiable-taxidermist"
+name: "Merbegon, the Insatiable Taxidermist"
+trade: gearsmith
+types: [character]
+subtypes: ["merbegon", "demon knight"]
+set: "Seed 3"
+rarity: fixed
+text: |
+  UNIQUE MERBEGON
+  This card can attack even if it has not been in play under your control since the start of the turn.
+  When a character enters play under your control, you may destroy that character. If you do, X is that character's strength and Y is that character's life. You may pick a character. If you do, it gains X strength and Y life this turn.

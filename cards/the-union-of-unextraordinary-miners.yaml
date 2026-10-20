@@ -1,0 +1,34 @@
+id: "the-union-of-unextraordinary-miners"
+name: "The Union of Unextraordinary Miners"
+trade: none
+types: [faction]
+tournament_legal: false
+set: "Seed 3"
+text: |
+  This card cannot be used in tournament play. (But please, play with it for fun!)
+  STARTING RESOURCES - MONEY FOR NOTHING: Before the game begins, choose a number for X that is greater than 0 and less than 11. You start with X staple resources and 1 Deception. Your opponent starts with their usual resources plus enough staple resources so that both players have the same number of starting resources.
+  STARTING DRAW: 5 going first, 6 going second
+  RESTORE RULE: At the start of your turn, restore all your depleted cards and detach all resources from your faction.
+  DEVELOP RULE: At the start of your turn, draw a card or play a resource.
+  "OVERTIME": At the start of your turn, draw a card or play a resource.
+  DRAW
+  COST: Pay 4.
+  EFFECT: Draw a card.
+  RESOURCE
+  COST: Pay 5.
+  EFFECT: Play a resource.
+opponent_rules: { equalize_starting_resources: true }
+restore_rule:
+  - restore_all_depleted: you
+  - detach_all_resources: you
+develop_rule:
+  - choose_one:
+      - draw: 1
+      - play_resource: 1
+  # "OVERTIME": a second develop
+  - choose_one:
+      - draw: 1
+      - play_resource: 1
+rules:
+  - ability: { name: Draw, cost: [ pay: 4 ], effect: [ draw: 1 ] }
+  - ability: { name: Resource, cost: [ pay: 5 ], effect: [ play_resource: 1 ] }

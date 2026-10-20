@@ -1,0 +1,13 @@
+id: "the-currency-bazaar"
+name: "The Currency Bazaar"
+trade: banker
+types: [location]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  TRADE
+  COST: Pay 1. Discard a resource.
+  EFFECT: Search your deck for a staple resource and reveal it. Put it into your hand.
+  RECUR: [G]
+  COST: Use this only if this card is in your discard pile. Pay 3. Remove this card from the game.
+  EFFECT: Search your deck for a card named The Currency Bazaar and reveal it. Put it into your hand.

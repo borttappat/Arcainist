@@ -1,0 +1,13 @@
+id: "elitist-upgrade"
+name: "Elitist Upgrade"
+trade: gearsmith
+types: [resource]
+face_down_only: true
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  This resource may only be played from your hand face-down.
+  PROVIDES: [E]
+  FLIP IT: [E]
+  COST: Use this only while this card is a face-down resource and not during a battle. Reveal this card. Pay 4.
+  EFFECT: Put this card into play face-up. This turn, all 'majig' characters you control gain 1 strength and 1 life.

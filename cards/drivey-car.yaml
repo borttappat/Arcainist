@@ -1,0 +1,9 @@
+id: "drivey-car"
+name: "Drivey Car"
+trade: gearsmith
+types: [character]
+subtypes: ["vehicle"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  When this card leaves play, put X Micromajig tokens into play, where X is the number of characters an opponent controls minus the number of characters you control.

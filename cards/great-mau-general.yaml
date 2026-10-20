@@ -1,0 +1,9 @@
+id: "great-mau-general"
+name: "Great Mau General"
+trade: banker
+types: [character]
+subtypes: ["mau", "soldier"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  When this card inflicts damage, if your faction has 10 influence or less, your faction gains 2 influence.

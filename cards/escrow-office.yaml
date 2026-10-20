@@ -2,13 +2,15 @@ id: escrow-office
 name: "Escrow Office"
 trade: banker
 types: [location]
+set: "2nd Edition"
+rarity: rare
 text: |
   DEPOSIT
-  COST - Pay 1.
-  EFFECT - Put a token on this card.
+  COST: Pay 1.
+  EFFECT: Put a token on this card.
   WITHDRAW
-  COST - Remove all tokens from this card. X is the number of tokens removed.
-  EFFECT - Reduce the next numeric cost you pay this turn by X.
+  COST: Remove all tokens from this card. X is the number of tokens removed this way.
+  EFFECT: Reduce the next numeric cost you pay this turn by X.
 rules:
   - ability:
       name: Deposit

@@ -1,0 +1,9 @@
+id: "foul-diviner"
+name: "Foul Diviner"
+trade: arcanist
+types: [character]
+subtypes: ["wizard"]
+set: "Seed"
+rarity: common
+text: |
+  EXTRA COST: Remove a tactic in your discard pile from the game.

@@ -1,0 +1,9 @@
+id: "prophetic-assistant"
+name: "Prophetic Assistant"
+trade: banker
+types: [character]
+subtypes: ["mau"]
+set: "Seed Saga"
+rarity: common
+text: |
+  At the end of your turn, you may reveal the top card of your deck. If you do and it is a staple resource, put it into your hand.

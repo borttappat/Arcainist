@@ -1,0 +1,9 @@
+id: "12-man-brunch-of-doom"
+name: "12 Man Brunch of Doom"
+trade: arcanist
+types: [tactic]
+set: "2nd Edition"
+rarity: common
+text: |
+  EXTRA COST: Choose a number for X. Deplete X characters you control. Pick a character.
+  If the the picked character has X+X strength or less, destroy it.

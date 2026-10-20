@@ -1,4 +1,4 @@
 {
   "cost": 1,
-  "threshold": { "obsession": 2 }
+  "threshold": { "obsession": 1 }
 }

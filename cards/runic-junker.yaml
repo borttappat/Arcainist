@@ -1,0 +1,8 @@
+id: "runic-junker"
+name: "Runic Junker"
+trade: gearsmith
+types: [item]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  At start of your turn you may pay 4. If you do and you control atleast 2 face-down resources, pick an opponent. That player must pick a face-down resource you control. If the face-down resource is a character or an item you may deploy it for free. (You still need to meet its threshold and satisfy its extra costs.)

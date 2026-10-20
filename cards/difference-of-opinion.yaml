@@ -1,0 +1,9 @@
+id: "difference-of-opinion"
+name: "Difference of Opinion"
+trade: warlord
+types: [tactic]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  You may pick a character. If you do, inflict 1 damage to the character. If you control an attacking party of at least 2 members, you may pick a character. If you do, inflict 2 damage to the character.
+  FLIP UP: 4 [R] and you may pick an item. If you do, destroy it.

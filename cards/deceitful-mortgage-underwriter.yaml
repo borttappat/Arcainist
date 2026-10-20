@@ -1,0 +1,14 @@
+id: "deceitful-mortgage-underwriter"
+name: "Deceitful Mortgage Underwriter"
+trade: banker
+types: [character]
+subtypes: ["lackey", "mau"]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  This card enters play with 3 tokens on it.
+  This card loses 1 strength and 1 life for each token on it.
+  EXTRA INTEREST
+  COST: Pay 1. Remove a token from this card. Pick a location.
+  EFFECT: Put a damage marker on the card.
+  FLIP UP: 4 [G][G][G]

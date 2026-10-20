@@ -1,0 +1,10 @@
+id: "cowslaw"
+name: "Cowslaw"
+trade: arcanist
+types: [tactic]
+set: "Seed 3"
+rarity: fixed
+text: |
+  EXTRA COST: Choose a number for X that is greater than 0. Remove X tactics in your discard pile from the game.
+  You may search your deck for a tactic with numeric cost X or less and reveal it. If you do, put it into your hand.
+  FLIP UP: 1 [O] and draw a card.

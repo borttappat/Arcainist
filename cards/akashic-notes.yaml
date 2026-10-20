@@ -1,0 +1,10 @@
+id: "akashic-notes"
+name: "Akashic Notes"
+trade: universal
+types: [item]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  UNIQUE AKASHIC OBJECT
+  When a card that provides at least [V] enters play under an opponent's control, you may pay 1. If you do, play a face-down resource attached to your faction. Otherwise, flip this card face-down under its owner's control.
+  FLIP UP: 3 [V][V]

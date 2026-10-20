@@ -2,10 +2,15 @@ id: ritual-of-the-screaming-cheese
 name: "Ritual of the Screaming Cheese"
 trade: arcanist
 types: [tactic]
+set: "1st Edition"
+rarity: common
 text: |
-  Your opponent must pick one of the following:
-  OPTION 1 - They discard 2 cards.
-  OPTION 2 - They discard a card at random.
+  EXTRA COST: Pick an opponent.
+  That player chooses one of the following as this card's effect:
+  OPTION 1
+  That player discards 2 cards.
+  OPTION 2
+  That player discards a card at random.
 rules:
   - play:
       effect:

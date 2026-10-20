@@ -1,0 +1,16 @@
+id: "eldridge-gosche"
+name: "Eldridge Gosche"
+trade: arcanist
+types: [character]
+subtypes: ["ritualist"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  UNIQUE ELDRIDGE
+  At the start of your turn, you may pick 2 or fewer non-resource cards you control. If you do, put up to 2 tokens divided however you want on those cards.
+  EJECT
+  COST: Remove 3 tokens from this card. Pick a non-resource card.
+  EFFECT: Put the card into its owner's hand.
+  DISRUPT
+  COST: Remove 3 tokens from this card.
+  EFFECT: Look at an opponent's hand and choose a card in it. That player discards that card.

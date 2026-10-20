@@ -1,0 +1,14 @@
+id: "warmachine-smelder"
+name: "Warmachine Smelder"
+trade: gearsmith
+types: [character]
+subtypes: ["31f", "craftsman"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  IN THE FIRE
+  COST: Deplete this card. Pick an item you control.
+  EFFECT: Destroy the item. Search your deck for an item and reveal it. Put it into your hand.
+  LIFE'S WORK: [E][E][E][E][E][E]
+  COST: Pick and item you control. Destroy this card.
+  EFFECT: Destroy the item. Search your deck for an item with numeric cost 7 or less and reveal it. You may deploy that card for free. If you don't, put it into your hand.

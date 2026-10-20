@@ -1,0 +1,10 @@
+id: "disposable-meatsack"
+name: "Disposable Meatsack"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  At the end of your turn, if this card is depleted, destroy it.
+  [R][R][R][R][R][R]: This character gains 1 strength and 1 speed.

@@ -1,0 +1,8 @@
+id: "personal-god-shrine"
+name: "Personal God Shrine"
+trade: banker
+types: [location]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  When a card that provides at least [V] enters play under your control, you may pay 3. If you do, you may pick a character or location in your discard pile and put it on top of your deck.

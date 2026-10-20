@@ -1,0 +1,10 @@
+id: "wasted-wickedness"
+name: "Wasted Wickedness"
+trade: arcanist
+types: [tactic]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick a player. X is the number of different staple resources that player controls. Pay X
+  +X.
+  That player puts X non-resource cards they control into their owners' hands.

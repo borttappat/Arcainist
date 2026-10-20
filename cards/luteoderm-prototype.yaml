@@ -1,0 +1,11 @@
+id: "luteoderm-prototype"
+name: "Luteoderm Prototype"
+trade: gearsmith
+types: [item]
+subtypes: ["gear"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  ATTACH TO CHARACTER
+  The attached character gains 1 strength and 1 life.
+  When the attached character leaves play, you may search your deck for a card. If you do, put it into your hand.

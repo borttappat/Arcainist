@@ -1,0 +1,11 @@
+id: "claywork-compendium"
+name: "Claywork Compendium"
+trade: gearsmith
+types: [item]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  RESEARCH
+  COST: Deplete this card.
+  EFFECT: Reduce the next numeric cost you pay this turn by 2.
+  FLIP UP: 5 [E][E]

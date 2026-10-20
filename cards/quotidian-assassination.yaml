@@ -1,0 +1,9 @@
+id: "quotidian-assassination"
+name: "Quotidian Assassination"
+trade: arcanist
+types: [tactic]
+set: "Ungodly Mess"
+rarity: ultra-rare
+text: |
+  EXTRA COST: Pick a character.
+  Put the character into its owner's hand.

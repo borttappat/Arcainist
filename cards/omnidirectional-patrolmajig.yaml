@@ -1,0 +1,9 @@
+id: "omnidirectional-patrolmajig"
+name: "Omnidirectional Patrolmajig"
+trade: gearsmith
+types: [character]
+subtypes: ["majig"]
+set: "2nd Edition"
+rarity: common
+text: |
+  When you are attacked, you may restore this card.

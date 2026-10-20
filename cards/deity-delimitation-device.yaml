@@ -1,0 +1,13 @@
+id: "deity-delimitation-device"
+name: "Deity Delimitation Device"
+trade: gearsmith
+types: [item]
+set: "Holy Heist"
+rarity: rare
+text: |
+  ENTRAPMENT
+  COST: Deplete this card. Pick a character you control. X is its numeric cost.
+  EFFECT: Put that character into the void. Put X-1 tokens on this card.
+  RELEASE
+  COST: Deplete this card. Choose a number for X.
+  EFFECT: Remove X tokens from this card. If you do, pick a character you own in the void with numeric cost X. Put that character into play under your control.

@@ -4,7 +4,7 @@
 //   3x Fired Hand
 //   Fired Hand            (one copy)
 // Blank lines and lines starting with # or // are ignored. Names match
-// case-insensitively, ignoring punctuation.
+// case-insensitively, ignoring punctuation and accents.
 
 import type { CardLibrary } from "./types.ts";
 
@@ -14,7 +14,13 @@ export interface ParsedDeck {
   errors: string[];
 }
 
-const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+// Case, punctuation and accents don't matter: "Dethmurderbludgeon" finds "Dethmürderblüdgeon".
+const norm = (s: string) =>
+  s
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, "");
 
 export function parseDeck(text: string, lib: CardLibrary): ParsedDeck {
   const byName = new Map<string, string>();
@@ -33,6 +39,14 @@ export function parseDeck(text: string, lib: CardLibrary): ParsedDeck {
     const id = byName.get(norm(name));
     if (!id) {
       out.errors.push(`Unknown card: "${name.trim()}"`);
+      continue;
+    }
+    if (lib[id].back_of) {
+      out.errors.push(`${lib[id].name} is the back side of ${lib[lib[id].back_of!]?.name ?? lib[id].back_of}; put that card in the decklist instead.`);
+      continue;
+    }
+    if (lib[id].incomplete) {
+      out.errors.push(`${lib[id].name} can't be played: ${lib[id].incomplete_reason ?? "its card data is missing"}.`);
       continue;
     }
     if (lib[id].types.includes("faction")) {

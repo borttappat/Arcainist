@@ -1,0 +1,11 @@
+id: "micromajig-factory"
+name: "Micromajig Factory"
+trade: gearsmith
+types: [location]
+set: "1st Edition"
+rarity: uncommon
+text: |
+  WIND UP
+  COST: Pay 4.
+  EFFECT: Put a Micromajig token into play.
+  (Treat Micromajig tokens as Gearsmith character cards with 1 strength, 1 life, 3 speed, and the majig subtype. When a Micromajig token leaves play, it disappears.)

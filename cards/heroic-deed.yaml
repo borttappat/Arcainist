@@ -1,0 +1,10 @@
+id: "heroic-deed"
+name: "Heroic Deed"
+trade: warlord
+types: [tactic]
+set: "Seed"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick 2 or fewer characters.
+  This turn, the characters cannot block.
+  FLIP UP: 9 [R]

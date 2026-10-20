@@ -3,8 +3,11 @@ name: "Party Clowns"
 trade: rogue
 types: [character]
 subtypes: [clowns]
+set: "Seed Saga"
+rarity: rare
 text: |
-  You may include as many copies of this card in your deck as you want. At the start of your turn, you may pay 1. If you do, search your deck for a card named "Party Clowns" and reveal it. Put it into play under your control.
+  You may include as many copies of this card in your deck as you want.
+  At the start of your turn, you may pay 1. If you do, search your deck for a card named Party Clowns and reveal it. Put it into play under your control.
 deck_limit: null
 rules:
   - trigger: { on: start_of_turn, player: you }

@@ -1,0 +1,9 @@
+id: "runic-flee"
+name: "Runic Flee"
+trade: gearsmith
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  Your faction loses 1 influence. Detach a resource from your faction. If you deployed this card using FLIP UP, you may pick a non-resource card. If you do, put a token on that card.
+  FLIP UP: 1 [E] and you may play a resource.

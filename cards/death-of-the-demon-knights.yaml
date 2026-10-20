@@ -1,0 +1,9 @@
+id: "death-of-the-demon-knights"
+name: "Death of the Demon Knights"
+trade: arcanist
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick a character an opponent controls. You may pay 2. If you do, that character's controller picks another character they control.
+  Put the characters on the bottom of their owner's deck. Draw a card.

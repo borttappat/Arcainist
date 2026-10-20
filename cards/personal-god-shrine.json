@@ -1,0 +1,5 @@
+{
+  "cost": 1,
+  "threshold": { "greed": 1 },
+  "structure": 3
+}

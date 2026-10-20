@@ -1,0 +1,12 @@
+id: "rouse"
+name: "Rouse"
+trade: arcanist
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick a tactic in your discard pile.
+  Put the tactic on the top of your deck.
+  RECUR: [O][O][O]
+  COST: Use this only if this card is in your discard pile. Pay 1. Remove this card from the game. Pick a tactic in your discard pile.
+  EFFECT: Put the tactic on the top of your deck.

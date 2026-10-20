@@ -3,8 +3,10 @@ name: "3p1ph4ny 31f"
 trade: gearsmith
 types: [character]
 subtypes: [31f]
+set: "2nd Edition"
+rarity: rare
 text: |
-  When this card enters play, you may play a non-tactic card for free. If you do, your opponent may do the same. (You still need to meet its threshold and satisfy its extra costs.)
+  When this card enters play, you may deploy a non-tactic card for free. If you do, each opponent may do the same. (You still need to meet its threshold and satisfy its extra costs.)
 rules:
   - trigger: { on: enters_play, card: self }
     effect:

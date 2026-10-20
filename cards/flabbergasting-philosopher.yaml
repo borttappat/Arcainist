@@ -1,0 +1,11 @@
+id: "flabbergasting-philosopher"
+name: "Flabbergasting Philosopher"
+trade: banker
+types: [character]
+subtypes: ["mau"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  TACTICAL
+  When this card enters play, your faction gains 4 influence.
+  FLIP UP: 4 [G][G]

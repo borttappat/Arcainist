@@ -1,0 +1,12 @@
+id: "carnival-whipmaster"
+name: "Carnival Whipmaster"
+trade: rogue
+types: [character]
+subtypes: ["performer"]
+set: "Ungodly Mess"
+rarity: uber
+text: |
+  TACTICAL
+  GRAND THEFT
+  COST: Destroy this card.
+  EFFECT: Take control of one character and one item an opponent controls. (You must take control of one of each type.)

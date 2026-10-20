@@ -1,0 +1,10 @@
+id: "zenobia-s-spyglass"
+name: "Zenobia's Spyglass"
+trade: arcanist
+types: [item]
+set: "1st Edition"
+rarity: uncommon
+text: |
+  FORESIGHT
+  COST: Choose a number for X. Pay X.
+  EFFECT: Look at up to the top X+X cards of your deck. Put them back in any order.

@@ -1,0 +1,9 @@
+id: "customized-31f"
+name: "Customized 31f"
+trade: gearsmith
+types: [character]
+subtypes: ["31f"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  While there is a location or item in play, this card gains 2 strength and 2 life.

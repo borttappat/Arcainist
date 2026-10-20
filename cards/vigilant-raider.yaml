@@ -1,0 +1,11 @@
+id: "vigilant-raider"
+name: "Vigilant Raider"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Seed Saga"
+rarity: common
+text: |
+  ASSAIL
+  COST: Pay 2.
+  EFFECT: This turn, this card gains 1 strength.

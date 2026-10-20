@@ -1,0 +1,11 @@
+id: "crest-of-rage"
+name: "Crest of Rage"
+trade: universal
+types: [item]
+subtypes: ["crest"]
+set: "Seed 2"
+rarity: rare
+text: |
+  UNIQUE CREST
+  PROVIDES: [R][R]
+  When a card that provides at least [R] enters play under your control, you may search your deck for a character and reveal it. If you do, put it on top of your deck.

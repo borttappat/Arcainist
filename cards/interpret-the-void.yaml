@@ -1,0 +1,9 @@
+id: "interpret-the-void"
+name: "Interpret the Void"
+trade: arcanist
+types: [tactic]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  Search your deck for up to 3 cards and put them into the void. If you deployed this card using FLIP UP, you may pick a tactic in the void. If you do, put that tactic into its owner's hand.
+  FLIP UP: 5 [O][O]

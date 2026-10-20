@@ -1,0 +1,10 @@
+id: "guardbeast-of-thabbash"
+name: "Guardbeast of Thabbash"
+trade: arcanist
+types: [character]
+subtypes: ["warbeast"]
+set: "Holy Heist"
+rarity: common
+text: |
+  [O][O][O][O]: COVERT
+  [V][V][V][V]: This character can block COVERT parties and non-COVERT parties.

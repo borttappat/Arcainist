@@ -1,0 +1,9 @@
+id: "remember"
+name: "Remember"
+trade: arcanist
+types: [tactic]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick a tactic in your discard pile.
+  Put the tactic into your hand.

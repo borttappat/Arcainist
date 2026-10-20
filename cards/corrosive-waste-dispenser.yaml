@@ -1,0 +1,12 @@
+id: "corrosive-waste-dispenser"
+name: "Corrosive Waste Dispenser"
+trade: warlord
+types: [item]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  This card enters play with 4 tokens on it.
+  When this card has no tokens on it, flip it face-down under its owner's control.
+  CONVERT
+  COST: Remove a token from this card. Destroy a non-"micromajig" character you control.
+  EFFECT: Each opponent destroys a character they control.

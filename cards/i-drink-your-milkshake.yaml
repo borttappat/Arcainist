@@ -2,8 +2,10 @@ id: i-drink-your-milkshake
 name: "I Drink Your Milkshake!"
 trade: rogue
 types: [tactic]
+set: "Seed Saga"
+rarity: rare
 text: |
-  You may search your opponent's deck for a card. If you do, remove it from the game face-down. For the rest of the game, if your opponent plays a card, you may reveal the removed card if it has the same name. If you do, you may play it for free even if you cannot meet its threshold and it is your opponent's card. (Playing a resource does not trigger this effect.)
+  You may search an opponent's deck for a card. If you do, put it in the void face-down. For the rest of the game, when that opponent deploys a card, you may reveal the voided card if it has the same name. If you do, you may deploy it for free even if you cannot meet its threshold. If you deploy it, terminate the opponent's card. (Playing a resource does not trigger this effect.)
 rules:
   - play:
       effect:
@@ -22,3 +24,4 @@ rules:
                             steps:
                               - reveal: m
                               - play_card: { card: m, free: true, ignore_threshold: true }
+                              - terminate: it

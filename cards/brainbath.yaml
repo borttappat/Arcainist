@@ -1,0 +1,11 @@
+id: "brainbath"
+name: "Brainbath"
+trade: arcanist
+types: [tactic]
+set: "Ungodly Mess"
+rarity: ultra-rare
+text: |
+  Draw 2 cards. Put a card from your hand on the bottom of your deck.
+  RECUR: [O][O]
+  COST: Use this only if this card is in your discard pile. Pay 4. Remove this card from the game.
+  EFFECT: An opponent discards a card. Draw a card.

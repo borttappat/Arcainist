@@ -1,0 +1,11 @@
+id: "midget-mine"
+name: "Midget Mine"
+trade: warlord
+types: [item]
+set: "Seed Saga"
+rarity: common
+text: |
+  AMBUSH
+  COST: Pick an attacking character.
+  EFFECT: Inflict 2 damage to the character. Flip this card face-down under its owner's control.
+  FLIP UP: 5 [R]

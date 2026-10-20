@@ -1,0 +1,9 @@
+id: "paralegal-prodigy"
+name: "Paralegal Prodigy"
+trade: banker
+types: [character]
+subtypes: ["lawyer", "mau"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  All your other lawyer characters gain 1 strength and 1 life.

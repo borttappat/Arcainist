@@ -1,0 +1,10 @@
+id: "acrolosian-outpost-30016968a"
+name: "Acrolosian Outpost #30016968A"
+trade: gearsmith
+types: [location]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  SNUB
+  COST: Pay 2. Deplete this card.
+  EFFECT: Search your deck for a card named Elitism and reveal it. Put it into your hand.

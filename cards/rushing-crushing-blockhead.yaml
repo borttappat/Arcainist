@@ -1,0 +1,11 @@
+id: "rushing-crushing-blockhead"
+name: "Rushing Crushing Blockhead"
+trade: warlord
+types: [character]
+subtypes: ["berserker"]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  When this card inflicts damage to a faction, destroy this card and inflict 2 damage to your faction.
+  This character cannot block.
+  [R][R][R][R][R][R]: This card loses all other rules text and loses 1 speed.

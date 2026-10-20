@@ -1,0 +1,10 @@
+id: "thabbashite-weapons-expert"
+name: "Thabbashite Weapons Expert"
+trade: warlord
+types: [character]
+subtypes: ["fighter"]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  At the start of your turn, X is this card's strength and you may destroy this character. If you do, inflict X damage to each opponent's faction or pick an item with numeric cost X or less and destroy it.
+  [V][V][V][V][V]: This card gains 2 strength.

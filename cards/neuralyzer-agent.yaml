@@ -1,0 +1,10 @@
+id: "neuralyzer-agent"
+name: "Neuralyzer Agent"
+trade: arcanist
+types: [character]
+subtypes: ["muddler"]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  When this card attacks, pick an opponent. That player discards a card.
+  [O][O][O][O][O][O]: When this card inflicts battle damage to an opponent's faction, that faction's owner discards a card.

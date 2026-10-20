@@ -1,0 +1,17 @@
+id: "draconic-luteoderm-suit"
+name: "Draconic Luteoderm Suit"
+trade: gearsmith
+types: [item]
+subtypes: ["gear"]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  UNIQUE DRACONIC LUTEDODERM SUIT
+  The attached character gains 2 strength and 2 life.
+  When any other "gear" card is deployed, you may draw a card.
+  SERAPHIM FUSION
+  COST: Use this only if this card is attached to a UNIQUE JO. Pay 3. Destroy this card.
+  EFFECT: Search your deck for a card named "Testudine Autoframe" and put it into play.
+  EQUIP
+  COST: Pick a character. If it is a UNIQUE JO then X is 0, otherwise X is 2. Pay X.
+  EFFECT: Attach this card to the character.

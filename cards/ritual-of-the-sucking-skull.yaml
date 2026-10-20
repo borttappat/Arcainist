@@ -1,0 +1,10 @@
+id: "ritual-of-the-sucking-skull"
+name: "Ritual of the Sucking Skull"
+trade: arcanist
+types: [tactic]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  EXTRA COST: Deploy this card only in response to a card being deployed using FLIP UP. X is the cards's numeric cost.
+  Terminate the card. If you did not deploy this card using FLIP UP, the terminated card's controller may detach up to X resources from their faction.
+  FLIP UP: 4 [O]

@@ -1,0 +1,5 @@
+{
+  "name": "Casual",
+  "description": "Anything goes: no deck size, copy, ban or tournament limits.",
+  "enforce": false
+}

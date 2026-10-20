@@ -1,0 +1,10 @@
+id: "i-see-you"
+name: "I See You!"
+trade: gearsmith
+types: [tactic]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick a character with COVERT.
+  This turn, the character loses COVERT. If you control [V][V][V], this turn, the character loses 1 speed. Put this card into play under its owner's control as a face-down resource instead of into their discard pile.
+  FLIP UP: 3 [E][E] and destroy another resource you control.

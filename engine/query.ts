@@ -530,6 +530,8 @@ export class Q {
         return this.find(v, scope).length > 0;
       case "via":
         return scope.via === v;
+      case "in_battle":
+        return !!this.s.battle === !!v;
       case "your_turn":
         return (this.s.active === scope.controller) === !!v;
       case "attacking": {
@@ -593,6 +595,12 @@ export class Q {
     if (f.name_not && (d.name === this.str(f.name_not, scope) || d.id === this.str(f.name_not, scope))) return false;
     if (f.cost_lte !== undefined && (d.cost ?? 0) > this.value(f.cost_lte, scope)) return false;
     if (f.cost_gte !== undefined && (d.cost ?? 0) < this.value(f.cost_gte, scope)) return false;
+    if (f.str_lte !== undefined && (c.zone !== "play" || this.stat(iid, "str") > this.value(f.str_lte, scope))) return false;
+    if (f.trade_not_among !== undefined) {
+      // "doesn't share a trade with any characters you control"
+      const trades = new Set(this.find(f.trade_not_among, scope).filter((x) => x !== iid).map((x) => this.lib[this.s.cards[x].defId].trade));
+      if (trades.has(d.trade)) return false;
+    }
     if (f.face_down !== undefined && c.faceDown !== f.face_down) return false;
     if (f.depleted !== undefined && c.depleted !== f.depleted) return false;
     if (f.staple && !d.staple) return false;

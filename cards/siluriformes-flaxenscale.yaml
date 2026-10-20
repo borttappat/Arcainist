@@ -1,0 +1,16 @@
+id: "siluriformes-flaxenscale"
+name: "Siluriformes Flaxenscale"
+trade: banker
+types: [character]
+subtypes: ["siluriformes", "seraphim", "dragon"]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  UNIQUE SILURIFORMES
+  All UNIQUE EUSTACE gain 3 strength and 3 life.
+  NUMISMATIC EMISSION
+  COST: Pay 5.
+  EFFECT: Draw 2 cards. Gain 2 influence.
+  AURIFEROUS AUGMENTAION
+  COST: Discard 2 cards.
+  EFFECT: This turn, this character gains 2 strength and 2 life.

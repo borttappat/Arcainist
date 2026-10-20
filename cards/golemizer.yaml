@@ -1,0 +1,13 @@
+id: "golemizer"
+name: "Golemizer"
+trade: gearsmith
+types: [item]
+subtypes: ["gear"]
+set: "Seed Saga"
+rarity: common
+text: |
+  ATTACH TO CHARACTER
+  The attached character loses 1 speed for each token on it.
+  At the end of your turn, you may put a token on the attached character. If it has 0 speed, destroy it.
+  If this card would be destroyed, you may flip it face-down under its owner's control instead.
+  FLIP UP: 4 [E][E][E]

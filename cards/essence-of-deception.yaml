@@ -1,0 +1,16 @@
+id: "essence-of-deception"
+name: "Essence of Deception"
+trade: rogue
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  Choose one of the following as this card's rules text:
+  OPTION 1
+  Search an opponent's deck for a card. Put it into their discard pile.
+  OPTION 2
+  EXTRA COST: Pick a character.
+  This turn, the character gains 1 speed.
+  OPTION 3
+  EXTRA COST: Pick a character.
+  EFFECT: If damage has been inflicted to the character this turn, destroy it.

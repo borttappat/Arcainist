@@ -1,0 +1,12 @@
+id: "slingerang"
+name: "Slingerang"
+trade: gearsmith
+types: [item]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  This card enters play with 3 tokens on it.
+  When an opponent deploys a character, you may remove a token from this card.
+  CHEAP SHOT
+  COST: Use this only if no tokens are on this card and only if an opponent deployed a character this turn. Destroy this card. Pick a character.
+  EFFECT: Destroy the character.

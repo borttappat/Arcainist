@@ -1,0 +1,12 @@
+id: "short-term-investment"
+name: "Short Term Investment"
+trade: banker
+types: [item]
+set: "1st Edition Part 2"
+rarity: rare
+text: |
+  This card comes into play with 2 tokens on it.
+  At the start of your turn, remove a token from this card.
+  RETURN
+  COST: Use this only if there are no tokens on this card. Destroy it.
+  EFFECT: Draw 3 cards.

@@ -1,0 +1,11 @@
+id: "preponderant-craftsman"
+name: "Preponderant Craftsman"
+trade: gearsmith
+types: [character]
+subtypes: ["craftsman"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  CREATE
+  COST: Pay 5. Deplete this card.
+  EFFECT: You may deploy a character for free. (You still need to meet its threshold and satisfy its extra costs.)

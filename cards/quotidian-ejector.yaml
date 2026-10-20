@@ -1,0 +1,12 @@
+id: "quotidian-ejector"
+name: "Quotidian Ejector"
+trade: arcanist
+types: [character]
+subtypes: ["ritualist"]
+set: "2nd Edition"
+rarity: common
+text: |
+  This card enters play with 2 tokens on it.
+  EJECT
+  COST: Remove 2 tokens from this card. Pick a non-resource card.
+  EFFECT: Put the card into its owner's hand.

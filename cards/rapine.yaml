@@ -1,0 +1,9 @@
+id: "rapine"
+name: "Rapine"
+trade: rogue
+types: [tactic]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  EXTRA COST: Destroy a character or item you control. Pick a character.
+  Take control of the picked character.

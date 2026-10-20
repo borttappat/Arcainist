@@ -2,12 +2,16 @@ id: mistaken-identity
 name: "Mistaken Identity"
 trade: rogue
 types: [tactic]
+set: "Seed Saga"
+rarity: rare
 text: |
-  EXTRA COST - Deploy this only in response to a card or ability that picked a character as a cost. Pick another character that could be picked by that card or ability. When the card or ability resolves, its effect happens as though your opponent had picked the other character instead.
+  EXTRA COST: Deploy this only in response to a card or ability that picked a character as an extra cost. Pick another character that could be picked by that card or ability.
+  When the card or ability resolves, its effect happens as though your opponent had picked the other character instead.
 rules:
   - play:
       timing: { response_to: { picked_character_as_cost: true } }
       cost:
-        - pick: { as: other, from: { character: any } }
+        # Only characters the original card or ability could have picked.
+        - pick: { as: other, like: responded, prompt: "Mistaken Identity: pick another character that could be picked by that card or ability." }
       effect:
         - script: mistaken_identity

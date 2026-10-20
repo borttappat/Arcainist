@@ -1,0 +1,10 @@
+id: "monstrous-lassitude"
+name: "Monstrous Lassitude"
+trade: arcanist
+types: [character]
+subtypes: ["monstrosity"]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  When this card comes into play, on your next turn, skip your faction's RESTORE RULE.
+  [V][V][V][V]: This card loses all other rules text.

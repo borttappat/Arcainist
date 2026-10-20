@@ -1,0 +1,10 @@
+id: "mutilated"
+name: "Mutilated"
+trade: arcanist
+types: [tactic]
+set: "Seed Saga"
+rarity: common
+text: |
+  EXTRA COST: Pick a character you control. That character loses 2 life this turn. Pick another character.
+  The character gains 1 strength and COVERT this turn. Draw a card.
+  FLIP UP: 2 [O]

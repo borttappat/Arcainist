@@ -1,0 +1,9 @@
+id: "marduun-ruins"
+name: "Marduun Ruins"
+trade: universal
+types: [location]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  UNIQUE MARDUUN RUINS
+  Characters you control with a [V] icon in their rules text gain 2 strength and 2 life.

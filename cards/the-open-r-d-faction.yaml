@@ -1,0 +1,31 @@
+id: "the-open-r-d-faction"
+name: "The Open R&D Faction"
+trade: none
+types: [faction]
+tournament_legal: false
+set: "Seed 3"
+text: |
+  STARTING RESOURCES: Any 2 staple resources
+  STARTING DRAW: 8 going first, 9 going second
+  RESTORE RULE: At the start of your turn, restore all your depleted cards and detach all resources from your faction.
+  DEVELOP RULE: At the start of your turn, draw a card or play a resource.
+  DRAW
+  COST: Pay 3.
+  EFFECT: Draw a card.
+  RESOURCE
+  COST: Pay 4.
+  EFFECT: Play a resource.
+  RESEARCH & DEVELOPMENT
+  Before the game begins, both players create the rules text for an ability. This card has that ability and both players can use it. (go nuts)
+  (Not automated: agree on the ability and resolve it with manual controls.)
+  This card cannot be used in tournament play. (But please, play with it for fun!)
+restore_rule:
+  - restore_all_depleted: you
+  - detach_all_resources: you
+develop_rule:
+  - choose_one:
+      - draw: 1
+      - play_resource: 1
+rules:
+  - ability: { name: Draw, cost: [ pay: 3 ], effect: [ draw: 1 ] }
+  - ability: { name: Resource, cost: [ pay: 4 ], effect: [ play_resource: 1 ] }

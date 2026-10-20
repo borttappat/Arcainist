@@ -1,0 +1,9 @@
+id: "a-boy-and-his-toy"
+name: "A Boy and His Toy"
+trade: gearsmith
+types: [character]
+subtypes: ["inventor"]
+set: "Holy Heist"
+rarity: common
+text: |
+  When this card enters play, put a Micromajig token into play under your control.

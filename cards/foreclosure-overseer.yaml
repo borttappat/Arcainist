@@ -1,0 +1,10 @@
+id: "foreclosure-overseer"
+name: "Foreclosure Overseer"
+trade: banker
+types: [character]
+subtypes: ["employee", "mau"]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  While this card is depleted, your opponents must pay 1 to deploy cards.
+  FLIP UP: 4 [G][G] and you may add or remove a damage marker from a location.

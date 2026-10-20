@@ -1,0 +1,12 @@
+id: "vander-malagut"
+name: "Vander Malagut"
+trade: rogue
+types: [character]
+subtypes: ["sarcophyle"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  UNIQUE EVONDAN
+  All your other sarcophyle characters gain 1 speed.
+  If a character would be destroyed during a turn when this card damaged it, take control of that character instead. Reduce the amount of damage already inflicted to it this turn to 0. It gains the sarcophyle subtype.
+  When this card is destroyed, destroy all other sarcophyle characters.

@@ -1,0 +1,8 @@
+id: "dandy-day-trader"
+name: "Dandy Day-Trader"
+trade: banker
+types: [character]
+subtypes: ["mau"]
+set: "2nd Edition"
+rarity: common
+text: ""

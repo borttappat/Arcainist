@@ -1,0 +1,12 @@
+id: "ashes-of-zenobia"
+name: "Ashes of Zenobia"
+trade: arcanist
+types: [item]
+set: "2nd Edition"
+rarity: rare
+text: |
+  UNIQUE ASHES OF ZENOBIA
+  At the start of your turn, draw a card.
+  NULLIFY
+  COST: Pay 5.
+  EFFECT: Each player puts a character they control into its owner's hand.

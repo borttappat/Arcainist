@@ -1,0 +1,9 @@
+id: "kinky-asp"
+name: "Kinky Asp"
+trade: arcanist
+types: [character]
+subtypes: ["lurker"]
+set: "2nd Edition"
+rarity: common
+text: |
+  COVERT

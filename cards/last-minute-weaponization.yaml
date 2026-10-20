@@ -1,0 +1,10 @@
+id: "last-minute-weaponization"
+name: "Last Minute Weaponization"
+trade: gearsmith
+types: [tactic]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  EXTRA COST: Destroy an item you control. X was its numeric cost. Pick a character.
+  Inflict X+1 damage to the character. You may search your deck for an item with numeric cost X or less, reveal it, and put it into your hand.
+  FLIP UP: 2 [E][E][E][E]

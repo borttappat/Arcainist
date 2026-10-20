@@ -1,0 +1,10 @@
+id: "samuel-gristwalter"
+name: "Samuel Gristwalter"
+trade: banker
+types: [character]
+subtypes: ["lawyer", "mau"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  UNIQUE SAMUEL
+  Reduce all damage inflicted to your faction to 0.

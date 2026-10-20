@@ -2,9 +2,12 @@ id: pant-swipe
 name: "Pant Swipe"
 trade: rogue
 types: [tactic]
+set: "Seed Saga"
+rarity: rare
 text: |
-  Remove the top 4 cards of your opponent's deck from the game face-down. (You are still allowed to look at them.) For the rest of the game, you may play the removed cards as though they were in your hand even if you cannot meet their threshold.
-  FLIP UP - 5 [D][D][D].
+  Put the top 4 cards of an opponent's deck into the void face-down. (You are still allowed to look at them.)
+  For the rest of the game, you may deploy the voided cards as though they were in your hand even if you cannot meet their threshold.
+  FLIP UP: 5 [D][D][D]
 rules:
   - play:
       effect:

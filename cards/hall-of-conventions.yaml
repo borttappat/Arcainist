@@ -1,0 +1,11 @@
+id: "hall-of-conventions"
+name: "Hall of Conventions"
+trade: gearsmith
+types: [location]
+set: "Seed Saga"
+rarity: rare
+text: |
+  UNIQUE HALL OF CONVENTIONS
+  [E][E][E]: At the start of your turn, reduce the next numeric cost you pay this turn by 1.
+  [E][E][E][E][E]: At the start of your turn, you may pick a character. If you do, it gains 2 strength and 2 life this turn.
+  [E][E][E][E][E][E][E]: At the start of your turn, you may play a resource.

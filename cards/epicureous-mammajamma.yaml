@@ -1,0 +1,17 @@
+id: "epicureous-mammajamma"
+name: "Epicureous Mammajamma"
+trade: rogue
+types: [character]
+subtypes: ["hedonist"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  SLAP IT UP
+  COST: Pay 1.
+  EFFECT: This turn, this card loses 1 strength and gains 1 life.
+  FLIP IT
+  COST: Pay 1.
+  EFFECT: This turn, this card loses 1 life and gains 1 strength.
+  RUB IT DOWN
+  COST: Pay 1.
+  EFFECT: This turn, this card loses 1 strength or 1 life and gains 1 speed.

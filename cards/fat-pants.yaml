@@ -1,0 +1,13 @@
+id: "fat-pants"
+name: "Fat Pants"
+trade: banker
+types: [item]
+subtypes: ["gear"]
+set: "1st Edition Part 2"
+rarity: uncommon
+text: |
+  ATTACH TO CHARACTER
+  The attached character gains 1 strength and 2 life.
+  HANDOFF
+  COST: Pay 1. Deplete a character you control that is not in a battle.
+  EFFECT: Attach this card to the character.

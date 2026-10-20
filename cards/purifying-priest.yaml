@@ -1,0 +1,11 @@
+id: "purifying-priest"
+name: "Purifying Priest"
+trade: banker
+types: [character]
+subtypes: ["priest", "mau"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  BANISH
+  COST: Pick a location.
+  EFFECT: The next 1 damage that would be inflicted to your faction this turn is inflicted to the location instead.

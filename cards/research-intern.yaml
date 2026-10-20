@@ -1,0 +1,14 @@
+id: "research-intern"
+name: "Research Intern"
+trade: gearsmith
+types: [character]
+subtypes: ["31f"]
+set: "Seed Saga"
+rarity: common
+text: |
+  RESEARCH
+  COST: Deplete this card.
+  EFFECT: Reduce the next numeric cost you pay this turn by 1.
+  RESEARCH HARDER: [E][E][E][E][E]
+  COST: Deplete this card.
+  EFFECT: Reduce the next numeric cost you pay this turn by 2.

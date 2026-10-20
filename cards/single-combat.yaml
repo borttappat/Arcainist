@@ -1,0 +1,10 @@
+id: "single-combat"
+name: "Single Combat"
+trade: warlord
+types: [tactic]
+set: "Ungodly Mess"
+rarity: super-rare
+text: |
+  EXTRA COST: Pick a character or location.
+  If the card has a [V] icon in its rules text, inflict 6 damage to the card. Otherwise, inflict 2 damage to the card.
+  FLIP UP: 1 [R][R]

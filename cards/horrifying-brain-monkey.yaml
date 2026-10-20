@@ -1,0 +1,11 @@
+id: "horrifying-brain-monkey"
+name: "Horrifying Brain-Monkey"
+trade: arcanist
+types: [character]
+subtypes: ["monstrosity", "brain"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  SLOBBER
+  COST: Pay 4. Destroy this card. Pick a character.
+  EFFECT: Destroy the character if it has X strength or less, where X is the number of [O] you control.

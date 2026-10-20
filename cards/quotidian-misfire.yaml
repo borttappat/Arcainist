@@ -2,8 +2,10 @@ id: quotidian-misfire
 name: "Quotidian Misfire"
 trade: arcanist
 types: [tactic]
+set: "2nd Edition"
+rarity: uncommon
 text: |
-  This turn, if a card would be put into a player's hand from anywhere, instead put it into that player's discard pile. (This includes cards from your deck and cards you draw.)
+  This turn, if a card would be put into a player's hand, put it into their discard pile instead.
 rules:
   - play:
       effect:

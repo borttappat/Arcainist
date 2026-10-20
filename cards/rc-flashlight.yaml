@@ -1,0 +1,10 @@
+id: "rc-flashlight"
+name: "RC Flashlight"
+trade: gearsmith
+types: [character]
+subtypes: ["machine"]
+set: "Holy Heist"
+rarity: common
+text: |
+  This card cannot be blocked.
+  This card can block COVERT parties.

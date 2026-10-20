@@ -1,0 +1,9 @@
+id: "early-retirement"
+name: "Early Retirement"
+trade: rogue
+types: [tactic]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick a character you control. X is its strength. Destroy it.
+  Draw X cards.

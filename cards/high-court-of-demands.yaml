@@ -1,0 +1,9 @@
+id: "high-court-of-demands"
+name: "High Court of Demands"
+trade: banker
+types: [location]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  When this card enters play, draw a card.
+  Your opponents cannot attack your faction.

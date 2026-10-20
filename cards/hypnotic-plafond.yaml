@@ -1,0 +1,8 @@
+id: "hypnotic-plafond"
+name: "Hypnotic Plafond"
+trade: gearsmith
+types: [location]
+set: "1st Edition"
+rarity: uncommon
+text: |
+  Reduce all battle damage inflicted to your faction by characters in COVERT parties to 0.

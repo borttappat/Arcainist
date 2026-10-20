@@ -1,0 +1,11 @@
+id: "sly-bilker"
+name: "Sly Bilker"
+trade: rogue
+types: [character]
+subtypes: ["gambler"]
+set: "Seed Saga"
+rarity: common
+text: |
+  SIZE UP
+  COST: Pay 1.
+  EFFECT: Look at the top card of either deck.

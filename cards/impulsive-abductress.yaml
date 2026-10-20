@@ -1,0 +1,11 @@
+id: "impulsive-abductress"
+name: "Impulsive Abductress"
+trade: rogue
+types: [character]
+subtypes: ["pirate"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  KIDNAP
+  COST: Destroy this card. Pick an attacking or blocking character.
+  EFFECT: Destroy the character.

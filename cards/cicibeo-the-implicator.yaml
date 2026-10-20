@@ -1,0 +1,13 @@
+id: "cicibeo-the-implicator"
+name: "Cicibeo, The Implicator"
+trade: rogue
+types: [character]
+subtypes: ["grifter", "cicibeo", "sarcophyle"]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  UNIQUE CICIBEO
+  IMPLY
+  COST: Deplete this card. Pick a character.
+  EFFECT: That character's controller depletes that character or reveals the top card of their deck. If they reveal the top card of their deck and it's a character, take control of the picked character this turn.
+  [D][D][D][D]: When another "cicibeo" character enters play, if it was deployed from your hand, you may pick a depleted character. If you do, destroy that character.

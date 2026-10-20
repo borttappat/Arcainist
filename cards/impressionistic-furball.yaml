@@ -1,0 +1,13 @@
+id: "impressionistic-furball"
+name: "Impressionistic Furball"
+trade: banker
+types: [item]
+subtypes: ["gear"]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  ATTACH TO CHARACTER
+  Attached character gains 2 life.
+  COUGH UP: [G][G][G]
+  COST: Destroy this card.
+  EFFECT: Draw a card.

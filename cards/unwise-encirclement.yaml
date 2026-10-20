@@ -1,0 +1,10 @@
+id: "unwise-encirclement"
+name: "Unwise Encirclement"
+trade: warlord
+types: [character]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick a character.
+  Put a token on the character. If you deployed this card using FLIP UP, put 4 more tokens on the character. Inflict damage to it equal to the number of tokens on it.
+  FLIP UP: 5 [R]

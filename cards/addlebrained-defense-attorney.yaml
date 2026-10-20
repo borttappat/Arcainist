@@ -1,0 +1,8 @@
+id: "addlebrained-defense-attorney"
+name: "Addlebrained Defense Attorney"
+trade: banker
+types: [character]
+subtypes: ["lawyer", "necromorph"]
+set: "Holy Heist"
+rarity: common
+text: ""

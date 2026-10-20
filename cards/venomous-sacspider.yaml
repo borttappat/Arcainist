@@ -1,0 +1,9 @@
+id: "venomous-sacspider"
+name: "Venomous Sacspider"
+trade: arcanist
+types: [character]
+subtypes: ["lurker"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  When this card is destroyed by battle damage, an opponent discards their hand.

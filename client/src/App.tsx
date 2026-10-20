@@ -32,9 +32,9 @@ export function App() {
           </button>
         )}
       </header>
-      {net.error && (
-        <div className="toast" onClick={net.clearError}>
-          <pre>{net.error}</pre>
+      {(net.error || net.notice) && (
+        <div className={`toast ${net.error ? "" : "notice"}`} onClick={net.clearError}>
+          <pre>{net.error ?? net.notice}</pre>
           <span className="muted">click to dismiss</span>
         </div>
       )}

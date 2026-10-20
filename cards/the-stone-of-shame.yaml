@@ -1,0 +1,8 @@
+id: "the-stone-of-shame"
+name: "The Stone of Shame"
+trade: arcanist
+types: [item]
+set: "Seed 3"
+rarity: fixed
+text: |
+  If a character would be put into a player's hand, destroy it instead.

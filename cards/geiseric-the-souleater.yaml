@@ -1,0 +1,13 @@
+id: "geiseric-the-souleater"
+name: "Geiseric, the Souleater"
+trade: arcanist
+types: [character]
+subtypes: ["geiseric", "demon knight"]
+set: "Seed 3"
+rarity: fixed
+text: |
+  UNIQUE GEISERIC
+  If a character would be put into an opponent's hand from play, you may pay 1. If you do, remove it from the game and put a token on this card instead.
+  SOUL CONSUMPTION
+  COST: Pay 2. Remove a token from this card.
+  EFFECT: Look at the top 2 cards of your deck. Put 1 into your hand and 1 on the bottom of your deck.

@@ -1,0 +1,9 @@
+id: "ritual-of-the-knob-pull"
+name: "Ritual of the Knob & Pull"
+trade: arcanist
+types: [tactic]
+set: "2nd Edition"
+rarity: common
+text: |
+  EXTRA COST: Pick a character. X is its strength.
+  If that character's controller controls at least X face-down resources, destroy the character.

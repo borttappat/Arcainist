@@ -1,0 +1,18 @@
+id: "runic-map"
+name: "Runic Map"
+trade: gearsmith
+types: [item]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  This card enters play with 2 tokens on it.
+  When there are no tokens on this card destroy it.
+  PLAN
+  COST: Pay 1. Remove a token from this card.
+  EFFECT: Search your deck for a card named "Elitism" and reveal it. Put it into your hand.
+  FOLLOW PLAN
+  COST: Pay 2. Remove a token from this card.
+  EFFECT: You may play a resource.
+  NEW PLAN
+  COST: Destroy a face-down resource you control.
+  EFFECT: Add a token to this card.

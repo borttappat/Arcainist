@@ -1,0 +1,13 @@
+id: "runic-cannon"
+name: "Runic Cannon"
+trade: gearsmith
+types: [item]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  LOAD
+  COST: Pay 3.
+  EFFECT: Put a token on this card.
+  FIRE
+  COST: Deplete this card. Pick a character.
+  EFFECT: Inflict X damage to the character, where X is the number of tokens on this card. Remove all tokens from this card.

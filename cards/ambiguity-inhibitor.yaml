@@ -1,0 +1,8 @@
+id: "ambiguity-inhibitor"
+name: "Ambiguity Inhibitor"
+trade: arcanist
+types: [item]
+set: "2nd Edition"
+rarity: rare
+text: |
+  At the start of your turn, put a card from your hand on the bottom of your deck if you can. If you do, draw a card.

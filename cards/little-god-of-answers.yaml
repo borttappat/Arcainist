@@ -1,0 +1,9 @@
+id: "little-god-of-answers"
+name: "Little God of Answers"
+trade: arcanist
+types: [character]
+subtypes: ["god"]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  At the end of your turn, if this card is depleted, you may pay 1. If you do, search your deck for a tactic, reveal it, and put it into your hand.

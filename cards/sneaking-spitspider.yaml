@@ -1,0 +1,9 @@
+id: "sneaking-spitspider"
+name: "Sneaking Spitspider"
+trade: arcanist
+types: [character]
+subtypes: ["lurker"]
+set: "2nd Edition"
+rarity: common
+text: |
+  COVERT

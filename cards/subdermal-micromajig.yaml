@@ -1,0 +1,10 @@
+id: "subdermal-micromajig"
+name: "Subdermal Micromajig"
+trade: gearsmith
+types: [tactic]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick an opponent. Destroy a Micromajig token you control.
+  Destroy an attacking character that player controls. That player puts a Micromajig token into play under their control.
+  FLIP UP: 2 [E][E] and draw a card.

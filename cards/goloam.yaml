@@ -1,0 +1,10 @@
+id: "goloam"
+name: "Goloam"
+trade: gearsmith
+types: [character]
+subtypes: ["golem"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  UNIQUE GOLOAM
+  This card gains 1 strength and 1 life for each item in play.

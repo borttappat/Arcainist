@@ -1,0 +1,9 @@
+id: "defense-attorney"
+name: "Defense Attorney"
+trade: banker
+types: [character]
+subtypes: ["lawyer"]
+set: "1st Edition"
+rarity: common
+text: |
+  When you are attacked, this card must block if it can.

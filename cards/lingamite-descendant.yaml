@@ -1,0 +1,9 @@
+id: "lingamite-descendant"
+name: "Lingamite Descendant"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  When battle damage is inflicted to this card while it's attacking, reduce the amount to 0.

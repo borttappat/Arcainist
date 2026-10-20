@@ -1,0 +1,14 @@
+id: "flaming-cube"
+name: "Flaming Cube"
+trade: warlord
+types: [item]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  This card enters play with 3 tokens on it.
+  At the start of your turn put a token on this card.
+  When there are at least 6 tokens on this card, destroy it. If you do, each opponents' faction loses 6 influence.
+  When there are no tokens on this card destroy it.
+  CONTROL THE FLAME!
+  COST: Any player may use this ability. Destroy a character or item you control.
+  EFFECT: Add or remove a token from this card.

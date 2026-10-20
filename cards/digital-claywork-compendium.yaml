@@ -1,0 +1,14 @@
+id: "digital-claywork-compendium"
+name: "Digital Claywork Compendium"
+trade: gearsmith
+types: [item]
+set: "Holy Heist"
+rarity: rare
+text: |
+  This card cannot be picked.
+  RESEARCH
+  COST: Pay 2. Deplete this card.
+  EFFECT: Reduce the next numeric cost you pay this turn by 4.
+  SMASH KEYS
+  COST: Destroy this card.
+  EFFECT: Reduce the next numeric cost you pay this turn by 2.

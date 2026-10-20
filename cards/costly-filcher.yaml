@@ -1,0 +1,8 @@
+id: "costly-filcher"
+name: "Costly Filcher"
+trade: rogue
+types: [character]
+subtypes: ["thief"]
+set: "1st Edition"
+rarity: common
+text: ""

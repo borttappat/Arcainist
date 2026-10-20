@@ -2,9 +2,11 @@ id: peculate
 name: "Peculate"
 trade: rogue
 types: [tactic]
+set: "Seed Saga"
+rarity: rare
 text: |
-  COST - Pick a character, item, or location in your opponent's discard pile. Pay X, where X is its numeric cost.
-  EFFECT - Put the card into play under your control.
+  EXTRA COST: Pick a character, item, or location in an opponent's discard pile. Pay X, where X is its numeric cost.
+  Put the card into play under your control.
 rules:
   - play:
       cost:

@@ -1,0 +1,12 @@
+id: "living-god-of-thabbash"
+name: "Living God of Thabbash"
+trade: arcanist
+types: [character]
+subtypes: ["god"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  When a character you control leaves play, an opponent discards a card.
+  HIGHER CALLING
+  COST: Pay 2. Pick a character you control.
+  EFFECT: Put the character into its owner's hand.

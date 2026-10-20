@@ -1,0 +1,15 @@
+id: "guileful-astucion"
+name: "Guileful Astucion"
+trade: rogue
+types: [tactic]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  EXTRA COST: Pick a character.
+  Choose one of the following as this card's effect:
+  OPTION 1
+  This turn, the character loses 1 numeric cost. Draw a card.
+  OPTION 2
+  This turn, the character gains 1 numeric cost. Draw a card.
+  OPTION 3
+  This turn, the character gains 1 speed. Draw a card.

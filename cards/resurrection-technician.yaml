@@ -1,0 +1,9 @@
+id: "resurrection-technician"
+name: "Resurrection Technician"
+trade: banker
+types: [character]
+subtypes: ["lackey"]
+set: "2nd Edition"
+rarity: common
+text: |
+  When this card enters play, you may pick a character in your discard pile. If you do, put it into your hand.

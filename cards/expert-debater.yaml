@@ -1,0 +1,13 @@
+id: "expert-debater"
+name: "Expert Debater"
+trade: banker
+types: [character]
+subtypes: ["politician"]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  This card loses 1 life for each token on it.
+  If battle damage would be inflicted to this card while it's blocking, add that many tokens to this card instead.
+  RECUR: [G][G]
+  COST: Use this only if this card is in your discard pile. Pay 1. Remove this card from the game. Pick a character.
+  EFFECT: Remove a token from the card.

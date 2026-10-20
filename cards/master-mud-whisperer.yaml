@@ -1,0 +1,9 @@
+id: "master-mud-whisperer"
+name: "Master Mud Whisperer"
+trade: gearsmith
+types: [character]
+subtypes: ["mud whisperer"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  At the start of each opponent's turn, you may restore all characters you control.

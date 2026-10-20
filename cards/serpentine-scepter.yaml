@@ -1,0 +1,15 @@
+id: "serpentine-scepter"
+name: "Serpentine Scepter"
+trade: arcanist
+types: [item]
+subtypes: ["gear"]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  ATTACH TO CHARACTER
+  SOUL DRAIN
+  COST: Pay 1.
+  EFFECT: Deplete the attached character.
+  SOUL CHARGE
+  COST: Use this ability only once each turn. Pay 1.
+  EFFECT: Restore the attached character. It cannot attack this turn.

@@ -1,0 +1,32 @@
+id: "counter-imperial-army"
+name: "Counter-Imperial Army"
+trade: none
+types: [faction]
+tournament_legal: false
+set: "Seed 3"
+text: |
+  (The other side of Imperial Army; Imperial Army starts face-up.)
+  RESTORE RULE: At the start of your turn, detach all resources from your faction. (But don't restore your depleted cards.)
+  DEVELOP RULE: At the start of your turn, draw a card or play a resource.
+  DRAW
+  COST: Pay 3.
+  EFFECT: Draw a card.
+  RESOURCE
+  COST: Pay 4.
+  EFFECT: Play a resource.
+  CONSTANT IN-FIGHTING
+  At the end of your turn, flip a coin. If you win, turn this card over. (Only the face-up side is active.)
+back_of: imperial-army
+restore_rule:
+  - detach_all_resources: you
+develop_rule:
+  - choose_one:
+      - draw: 1
+      - play_resource: 1
+rules:
+  - ability: { name: Draw, cost: [ pay: 3 ], effect: [ draw: 1 ] }
+  - ability: { name: Resource, cost: [ pay: 4 ], effect: [ play_resource: 1 ] }
+  - trigger: { on: end_of_turn, player: you }
+    effect:
+      - coin_flip: { as: won }
+      - if: { cond: { did: true }, then: [ transform: imperial-army ] }

@@ -1,0 +1,9 @@
+id: "courageous-paladin"
+name: "Courageous Paladin"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  All battle damage that could be assigned to this card must be assigned to it.

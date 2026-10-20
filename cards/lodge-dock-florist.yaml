@@ -2,8 +2,11 @@ id: lodge-dock-florist
 name: "Lodge Dock Florist"
 trade: banker
 types: [location]
+set: "Seed Saga"
+rarity: rare
 text: |
-  UNIQUE LODGE DOCK FLORIST. All characters gain the rules text "At the start of your turn, you may pay 1. If you don't, destroy this card."
+  UNIQUE LODGE DOCK FLORIST
+  All characters gain the rules text "At the start of your turn, you may pay 1. If you don't, destroy this card."
 rules:
   - unique: Lodge Dock Florist
   - static:

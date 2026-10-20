@@ -1,0 +1,12 @@
+id: "ensorcelled-familiar"
+name: "Ensorcelled Familiar"
+trade: arcanist
+types: [character]
+subtypes: ["familiar"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  When this card enters play, you may search your deck for a tactic and reveal it. If you do, put it into your hand.
+  RECUR: [O][O][O]
+  COST: Use this only if this card is in your discard pile. Pay 2. Remove this card from the game. Pick a tactic in your discard pile.
+  EFFECT: Put the tactic into your hand.

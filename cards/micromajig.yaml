@@ -1,0 +1,7 @@
+id: "micromajig"
+name: "Micromajig"
+trade: gearsmith
+types: [character]
+subtypes: ["majig"]
+set: "Ungodly Mess"
+text: ""

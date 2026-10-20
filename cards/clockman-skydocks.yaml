@@ -1,0 +1,14 @@
+id: "clockman-skydocks"
+name: "Clockman Skydocks"
+trade: universal
+types: [location]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  UNIQUE SKYDOCKS
+  BUSINESS DAY
+  COST: Pay 1. Deplete this card. Name a resource icon.
+  EFFECT: This turn, reduce the threshold requirement of the next card you deploy by 1 of the named resource icon.
+  OVERTIME: [V][V][V][V][V]
+  COST: Pay 2. Deplete this card. Name a resource icon.
+  EFFECT: This turn, reduce the threshold requirement of the next card you deploy by up to 6 of the named resource icon.

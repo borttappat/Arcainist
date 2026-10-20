@@ -3,11 +3,13 @@ name: "Montgomery Blatherscythe"
 trade: banker
 types: [character]
 subtypes: [mau]
+set: "Seed Saga"
+rarity: rare
 text: |
-  UNIQUE MONTGOMERY.
+  UNIQUE MONTGOMERY
   RESURRECT
-  COST - Pay 1. Deplete this card. Pick a character in your discard pile with numeric cost 2 or less.
-  EFFECT - Put the character into play under your control.
+  COST: Pay 1. Deplete this card. Pick a character in your discard pile with numeric cost 2 or less.
+  EFFECT: Put the character into play under your control.
 rules:
   - unique: Montgomery
   - ability:

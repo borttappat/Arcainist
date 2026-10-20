@@ -1,0 +1,9 @@
+id: "notion-sickness"
+name: "Notion Sickness"
+trade: gearsmith
+types: [tactic]
+set: "Seed 3"
+rarity: fixed
+text: |
+  EXTRA COST: Pick a card you control with an ability in its rules text.
+  You may use one of the card's abilities. If you do, the effect happens twice instead of once. Destroy the card.

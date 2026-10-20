@@ -1,0 +1,11 @@
+id: "fountain-diver"
+name: "Fountain Diver"
+trade: banker
+types: [character]
+subtypes: ["mau"]
+set: "Seed Saga"
+rarity: common
+text: |
+  RECUR: [G]
+  COST: Use this only if this card is in your discard pile. Pay 1. Remove this card from the game. Pick a character.
+  EFFECT: This turn, the character gains 3 life.

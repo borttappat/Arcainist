@@ -1,0 +1,16 @@
+id: "prime-titan"
+name: "Prime Titan"
+trade: gearsmith
+types: [character]
+subtypes: ["warmachine"]
+set: "Holy Heist"
+rarity: rare
+text: |
+  UNIQUE PT
+  This card gains 1 strength and 1 life for each token on it.
+  MICROMAJIG LOAD
+  COST: Pay 1. Destroy a Micromajig token you control.
+  EFFECT: Put a token on this card.
+  MICROMAJIG UNLOAD: [E][E][E][E][E]
+  COST: Deplete this card. Remove X tokens from this card. Pay X. Pick a location, character or faction.
+  EFFECT: Inflict X damage to that card.

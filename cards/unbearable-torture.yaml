@@ -1,0 +1,12 @@
+id: "unbearable-torture"
+name: "Unbearable Torture"
+trade: arcanist
+types: [tactic]
+set: "Seed Saga"
+rarity: common
+text: |
+  EXTRA COST: Pick a character.
+  If the character's life is greater than it's strength, put it into the void. Draw a card.
+  RECUR: [O]
+  COST: Use this only if this card is in your discard pile. Pay 2. Remove this card from the game. Pick a character in the void.
+  EFFECT: Put the character on top of its owner's deck.

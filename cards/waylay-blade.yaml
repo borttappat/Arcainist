@@ -1,0 +1,14 @@
+id: "waylay-blade"
+name: "Waylay Blade"
+trade: rogue
+types: [item]
+subtypes: ["gear"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  TACTICAL, UNIQUE WAYLAY BLADE
+  At the start of your turn, flip a coin. If you win, draw a card.
+  The attached character gains 1 strength and 1 life.
+  EQUIP
+  COST: Pick a character. If it is a UNIQUE IOHANE then X is 0, otherwise X is 3. Pay X.
+  EFFECT: Attach this card to the character.

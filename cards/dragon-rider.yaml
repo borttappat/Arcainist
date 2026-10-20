@@ -1,0 +1,9 @@
+id: "dragon-rider"
+name: "Dragon Rider"
+trade: warlord
+types: [character]
+subtypes: ["rider"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  This card gains 1 strength and 1 life for each dragon card you control.

@@ -1,0 +1,17 @@
+id: "surreptitious-larceny"
+name: "Surreptitious Larceny"
+trade: rogue
+types: [tactic]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  Choose one of the following as this card's rules text:
+  OPTION 1
+  EXTRA COST: Pick a player. This turn, that player may not play cards using FLIP UP.
+  EFFECT: Look at the top card of any deck.
+  OPTION 2
+  EXTRA COST: Pick a character.
+  EFFECT: This turn, that character gains COVERT. Draw a card.
+  OPTION 3
+  EXTRA COST: Pick a "gear" card. Pick a character.
+  EFFECT: Attach the "gear" card to the character. This turn, the "gear" card loses all abilities.

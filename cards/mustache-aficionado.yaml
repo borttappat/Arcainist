@@ -1,0 +1,11 @@
+id: "mustache-aficionado"
+name: "Mustache Aficionado"
+trade: rogue
+types: [character]
+subtypes: ["gambler"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  MUSTACHE SHOWDOWN
+  COST: Deplete this card.
+  EFFECT: You and an opponent look at the top 3 cards of your decks and divide them into 2 face-down piles containing at least 1 card each. Each of you choose one of their opponent's piles. Reveal the chosen piles. If one pile has a higher total numeric cost than the other, the owner of that pile may put one of the cards from it into their hand. Shuffle the remaining cards into their owners's deck.

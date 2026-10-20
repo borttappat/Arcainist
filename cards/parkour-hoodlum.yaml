@@ -1,0 +1,10 @@
+id: "parkour-hoodlum"
+name: "Parkour Hoodlum"
+trade: rogue
+types: [character]
+subtypes: ["daredevil"]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  While this card is in your hand and there is a location in play, this card gains tactical.
+  This card ignores all rules text on locations. (this card cannot be picked by locations and any effects from locations do not affect this card.)

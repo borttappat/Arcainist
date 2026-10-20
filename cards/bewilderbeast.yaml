@@ -1,0 +1,9 @@
+id: "bewilderbeast"
+name: "Bewilderbeast"
+trade: arcanist
+types: [character]
+subtypes: ["beast", "monstrosity"]
+set: "Holy Heist"
+rarity: common
+text: |
+  When an opponent discards any number of cards, this card gains X strength and X life this turn, where X is the number of cards discarded.

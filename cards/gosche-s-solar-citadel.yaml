@@ -1,0 +1,11 @@
+id: "gosche-s-solar-citadel"
+name: "Gosche's Solar Citadel"
+trade: gearsmith
+types: [location]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  When a non-token character you control with a token on it leaves play, you may put a micromajig token into play under your control.
+  PROCESS
+  COST: Deplete this card. Pay 2. Pick a character you control.
+  EFFECT: Put a token on that character.

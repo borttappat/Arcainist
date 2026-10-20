@@ -1,0 +1,11 @@
+id: "harbinger-of-anguish"
+name: "Harbinger of Anguish"
+trade: rogue
+types: [character]
+subtypes: ["teller"]
+set: "Seed Saga"
+rarity: common
+text: |
+  DEMOTIVATE
+  COST: Pay 1. Deplete this card. Pick a character.
+  EFFECT: This turn, the character loses 1 life.

@@ -1,0 +1,14 @@
+id: "axeclaw-grandchest"
+name: "Axeclaw Grandchest"
+trade: rogue
+types: [character]
+subtypes: ["grandchest", "seraphim", "dragon"]
+set: "Seed 3"
+rarity: fixed
+text: |
+  UNIQUE GRANDCHEST
+  The top card of your deck is revealed at all times.
+  While the top card of your deck is revealed, this card gains X strength, where X is the numeric cost of that card.
+  SHAKE UP
+  COST: Pay 2.
+  EFFECT: Shuffle your deck.

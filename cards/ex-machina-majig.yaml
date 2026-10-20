@@ -1,0 +1,11 @@
+id: "ex-machina-majig"
+name: "Ex Machina Majig"
+trade: gearsmith
+types: [character]
+subtypes: ["majig"]
+set: "Ungodly Mess"
+rarity: uber
+text: |
+  UNIQUE EX MACHINA
+  When this card enters play, all your characters gain 1 strength and 1 life this turn.
+  When this card leaves play, you may put up to five Micromajigs into play.

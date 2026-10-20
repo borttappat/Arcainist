@@ -1,0 +1,13 @@
+id: "god-s-blessing-of-moola"
+name: "God's Blessing of Moola"
+trade: banker
+types: [tactic]
+subtypes: ["mutation"]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  UNIQUE BLESSING
+  ATTACH TO CHARACTER
+  The attached character gains the following rules text: "When a character you control restores, it loses 1 strength this turn and you draw a card.
+  Characters you control cannot be restored by your faction's RESTORE RULE.
+  At the start of your turn, you may inflict 1 damage to your faction and restore a character you control. Repeat this once for every character you control."

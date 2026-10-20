@@ -1,0 +1,11 @@
+id: "adjunct-artisan"
+name: "Adjunct Artisan"
+trade: gearsmith
+types: [character]
+subtypes: ["craftsman"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  FABRICATE
+  COST: Deplete this card.
+  EFFECT: Reduce the next item's or item's ability's numeric cost you pay this turn by 2.

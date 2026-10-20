@@ -1,0 +1,12 @@
+id: "gewgawed-gimcrack"
+name: "Gewgawed Gimcrack"
+trade: gearsmith
+types: [item]
+set: "Seed Saga"
+rarity: rare
+text: |
+  At the start of your turn, you may put a token on this card.
+  [E][E][E]: At the start of your turn, you may put a token on this card.
+  DO...SOMETHING!
+  COST: X is the number of tokens on this card. Destroy this card.
+  EFFECT: Destroy all characters with numeric cost X.

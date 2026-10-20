@@ -1,0 +1,8 @@
+id: "warrior-prodigy"
+name: "Warrior Prodigy"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "2nd Edition"
+rarity: common
+text: ""

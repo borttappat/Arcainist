@@ -1,0 +1,12 @@
+id: "napiform-protuberance"
+name: "Napiform Protuberance"
+trade: arcanist
+types: [item]
+subtypes: ["gear"]
+set: "1st Edition"
+rarity: common
+text: |
+  ATTACH TO CHARACTER
+  This card enters play with 1 token on it.
+  At the start of your turn, you may put a token on this card.
+  The attached character loses 1 strength, 1 life, and 1 speed for each token on this card.

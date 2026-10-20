@@ -1,0 +1,11 @@
+id: "unbearably-heavy-shoes-of-teleportation"
+name: "Unbearably Heavy Shoes of Teleportation"
+trade: gearsmith
+types: [item]
+subtypes: ["gear"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  ATTACH TO CHARACTER
+  The attached character loses 2 strength and cannot be blocked.
+  FLIP UP: 5 [E][E][E]

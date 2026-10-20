@@ -1,0 +1,11 @@
+id: "special-forces"
+name: "Special Forces"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Holy Heist"
+rarity: rare
+text: |
+  UNDERCOVERT OPERATIONS
+  COST: Pay 3.
+  EFFECT: This turn, this character gains COVERT and loses 1 life.

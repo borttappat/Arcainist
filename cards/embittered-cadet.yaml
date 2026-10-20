@@ -1,0 +1,9 @@
+id: "embittered-cadet"
+name: "Embittered Cadet"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Seed Saga"
+rarity: common
+text: |
+  PROVIDES: [R]

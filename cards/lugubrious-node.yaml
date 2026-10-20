@@ -1,0 +1,12 @@
+id: "lugubrious-node"
+name: "Lugubrious Node"
+trade: gearsmith
+types: [item]
+subtypes: ["node"]
+set: "1st Edition"
+rarity: rare
+text: |
+  This card cannot be destroyed by the effects of node cards.
+  RECONSTRUCT
+  COST: Pay 1. Deplete this card. Pick a node card in your discard pile.
+  EFFECT: Shuffle the card into its owner's deck.

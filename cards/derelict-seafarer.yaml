@@ -1,0 +1,13 @@
+id: "derelict-seafarer"
+name: "Derelict Seafarer"
+trade: banker
+types: [character]
+subtypes: ["pirate", "mercenary", "mau"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  When this card enters play, your faction loses 3 influence. Put a random card from your discard pile into your hand.
+  RETIRE: [G][G][G]
+  COST: Use this only while this card is not in a battle. Pay 2.
+  EFFECT: Flip this card face-down under its owner's control.
+  FLIP UP: 3 [G]

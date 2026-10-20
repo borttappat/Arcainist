@@ -1,0 +1,17 @@
+id: "essence-of-rage"
+name: "Essence of Rage"
+trade: warlord
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  Choose one of the following as this card's rules text:
+  OPTION 1
+  EXTRA COST: Pick a character or faction.
+  Inflict 1 damage to the character or faction.
+  OPTION 2
+  EXTRA COST: Pick a character.
+  EFFECT: This turn, the character gains 2 strength.
+  OPTION 3
+  EXTRA COST: Pick a character.
+  EFFECT: Deplete the character.

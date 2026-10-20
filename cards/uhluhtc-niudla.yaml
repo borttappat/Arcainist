@@ -1,0 +1,15 @@
+id: "uhluhtc-niudla"
+name: "Uhluhtc Niudla"
+trade: arcanist
+types: [character]
+subtypes: ["uhluhtc", "seraphim", "dragon"]
+set: "Holy Heist"
+rarity: rare
+text: |
+  UNIQUE UHLUHTC
+  PREVAIL UPON
+  COST: Put a resource you control into its owner's hand. Pick a player. Pay 1.
+  EFFECT: That player puts a face-down resource they control into its owner's hand.
+  AVAIL ANEW
+  COST: Reveal a resource from your hand and shuffle it into your deck. Pay 1.
+  EFFECT: If the revealed card was named "Obsession", this card gains COVERT this turn. Draw a card.

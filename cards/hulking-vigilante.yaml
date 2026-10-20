@@ -1,0 +1,9 @@
+id: "hulking-vigilante"
+name: "Hulking Vigilante"
+trade: rogue
+types: [character]
+subtypes: ["outcast", "vigilante"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  When you control any other characters you own, destroy this card.

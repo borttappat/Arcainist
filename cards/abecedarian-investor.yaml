@@ -1,0 +1,10 @@
+id: "abecedarian-investor"
+name: "Abecedarian Investor"
+trade: banker
+types: [character]
+subtypes: ["investor"]
+set: "Holy Heist"
+rarity: common
+text: |
+  EXTRA COST: You may pick a card.
+  When this card enters play, if you picked a card as part of its cost, remove a token from the card.

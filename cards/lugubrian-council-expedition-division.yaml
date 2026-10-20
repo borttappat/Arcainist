@@ -1,0 +1,41 @@
+id: "lugubrian-council-expedition-division"
+name: "Lugubrian Council Expedition Division"
+trade: none
+types: [faction]
+set: "Holy Heist"
+text: |
+  STARTING RESOURCES: 1 Obsession, 1 staple resource
+  STARTING DRAW: 8 going first, 9 going second
+  RESTORE RULE: At the start of your turn, restore all your depleted cards and detach all resources from your faction.
+  DEVELOP RULE: At the start of your turn put a token on this card, then draw a card or play a resource.
+  DRAW
+  COST: Pay 3.
+  EFFECT: Draw a card.
+  RESOURCE
+  COST: Pay 4.
+  EFFECT: Play a resource.
+  EVIL PLAN
+  COST: Remove 4 tokens from this card. Pay 3.
+  EFFECT: Search your deck for a tactic, reveal it and put it into your hand.
+  ENERGIZE WITH HUMOUR
+  COST: Remove 2 tokens from this card. Pick a character.
+  EFFECT: Put a token on that character.
+restore_rule:
+  - restore_all_depleted: you
+  - detach_all_resources: you
+develop_rule:
+  - tokens: { card: self, add: 1 }
+  - choose_one:
+      - draw: 1
+      - play_resource: 1
+rules:
+  - ability: { name: Draw, cost: [ pay: 3 ], effect: [ draw: 1 ] }
+  - ability: { name: Resource, cost: [ pay: 4 ], effect: [ play_resource: 1 ] }
+  - ability:
+      name: Evil Plan
+      cost: [ tokens: { remove: 4 }, pay: 3 ]
+      effect: [ search: { deck: you, for: { tactic: any }, reveal: true, to: hand } ]
+  - ability:
+      name: Energize With Humour
+      cost: [ tokens: { remove: 2 }, pick: { as: c, from: { character: any } } ]
+      effect: [ tokens: { card: c, add: 1 } ]

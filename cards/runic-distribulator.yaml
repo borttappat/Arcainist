@@ -1,0 +1,16 @@
+id: "runic-distribulator"
+name: "Runic Distribulator"
+trade: gearsmith
+types: [item]
+set: "Holy Heist"
+rarity: rare
+text: |
+  LOAD
+  COST: Pay 2.
+  EFFECT: Put a token on this card.
+  GATHER
+  COST: Choose a number for X. Pay X+1. Remove X tokens from a card you control.
+  EFFECT: Put X tokens on this card.
+  SPREAD OUT!
+  COST: Pay 3. X is the number of tokens on this card. Destroy this card.
+  EFFECT: Put X tokens divided however you want on any number of non-resource cards you control.

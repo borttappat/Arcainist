@@ -1,0 +1,10 @@
+id: "crushjaw-oceanhide"
+name: "Crushjaw Oceanhide"
+trade: gearsmith
+types: [character]
+subtypes: ["seraphim", "dragon"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  AGGRO, UNIQUE OCEANHIDE
+  [E][E][E][E][E]: When this card inflicts damage to a faction, this turn, characters you control and deploy gain AGGRO.

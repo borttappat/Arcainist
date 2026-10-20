@@ -1,0 +1,10 @@
+id: "recollection-bazaar"
+name: "Recollection Bazaar"
+trade: arcanist
+types: [location]
+set: "2nd Edition"
+rarity: rare
+text: |
+  RECALL
+  COST: Pick a resource you control. (You can pick face-down resources.)
+  EFFECT: Put the resource into it's owner's hand.

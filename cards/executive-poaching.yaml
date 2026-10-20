@@ -1,0 +1,8 @@
+id: "executive-poaching"
+name: "Executive Poaching"
+trade: banker
+types: [tactic]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  Destroy the character an opponent controls with the highest numeric cost. If there is a tie, you decide which character is destroyed.

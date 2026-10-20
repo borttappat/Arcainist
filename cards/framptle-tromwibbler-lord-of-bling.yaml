@@ -1,0 +1,12 @@
+id: "framptle-tromwibbler-lord-of-bling"
+name: "Framptle Tromwibbler, Lord of Bling"
+trade: banker
+types: [character]
+subtypes: ["mau"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  UNIQUE FRAMPTLE
+  Characters cannot attack or be restored.
+  At the start of your turn, put a token on this card.
+  When this card has at least 2 tokens on it, destroy it.

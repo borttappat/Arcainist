@@ -1,0 +1,12 @@
+id: "rocket-lawnchair"
+name: "Rocket Lawnchair"
+trade: gearsmith
+types: [item]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  TACTICAL
+  NO EJECT!
+  COST: Pick a character you own. Pick a character an opponent controls. Destroy this card.
+  EFFECT: Destroy the characters. If either character was a member of an opponent's attacking party, destroy all characters in that party.
+  FLIP UP: 4 [E][E]

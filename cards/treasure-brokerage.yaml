@@ -1,0 +1,8 @@
+id: "treasure-brokerage"
+name: "Treasure Brokerage"
+trade: banker
+types: [location]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  When a character enters play under your control, you may pay 1. If you do, search your deck for a staple resource and reveal it. Put it into your hand.

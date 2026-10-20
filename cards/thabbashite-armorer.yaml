@@ -1,0 +1,14 @@
+id: "thabbashite-armorer"
+name: "Thabbashite Armorer"
+trade: gearsmith
+types: [character]
+subtypes: ["craftsman"]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  FOR THABBASH: [V][V][V]
+  COST: Pay 2.
+  EFFECT: This turn, this card gains 1 strength and 1 life.
+  TAMESHIGIRI: [V][V][V][V][V][V]
+  COST: Pay 2. Your faction loses 2 influence.
+  EFFECT: This turn, this card gains 2 strength and 2 life.

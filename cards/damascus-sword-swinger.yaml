@@ -1,0 +1,9 @@
+id: "damascus-sword-swinger"
+name: "Damascus Sword Swinger"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Holy Heist"
+rarity: common
+text: |
+  While a "gear" card is attached to this card, it gains 2 strength.

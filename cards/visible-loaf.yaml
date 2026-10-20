@@ -1,0 +1,11 @@
+id: "visible-loaf"
+name: "Visible Loaf"
+trade: gearsmith
+types: [item]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  This card enters play with 3 tokens on it.
+  DEFLECT
+  COST: Pay 3. Remove a token from this card and deplete it. Pick a character.
+  EFFECT: This turn, the next time damage would be inflicted to the character, reduce it to 0.

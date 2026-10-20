@@ -2,14 +2,18 @@ id: forbidden-bibliotheca
 name: "Forbidden Bibliotheca"
 trade: arcanist
 types: [location]
+set: "Holy Heist"
+rarity: rare
 text: |
-  UNIQUE BIBLIOTHECA. This card enters play with 3 tokens on it. This card gains 1 structure for each token on it.
+  UNIQUE BIBLIOTHECA
+  This card enters play with 3 tokens on it.
+  This card gains 1 structure for each token on it.
   RESEARCH
-  COST - Deplete this card. Put a token on this card. Pay 2.
-  EFFECT - Draw 2 cards. Put a card from your hand on the bottom of your deck.
+  COST: Deplete this card. Put a token on this card. Pay 2.
+  EFFECT: Draw 2 cards. Put a card from your hand on the bottom of your deck.
   CHECK OUT
-  COST - Deplete this card. Remove 2 tokens from this card.
-  EFFECT - Each opponent discards 2 cards.
+  COST: Deplete this card. Remove 2 tokens from this card.
+  EFFECT: Each opponent discards 2 cards.
 enters_with_tokens: 3
 rules:
   - unique: Bibliotheca

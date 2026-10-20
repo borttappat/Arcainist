@@ -1,0 +1,38 @@
+id: "the-primitive-tribes-of-thabbash"
+name: "The Primitive Tribes of Thabbash"
+trade: none
+types: [faction]
+set: "Holy Heist"
+text: |
+  STARTING RESOURCES: 1 face-down Obsession, 1 staple resource
+  STARTING DRAW: 8 going first, 9 going second
+  RESTORE RULE: At the start of your turn, restore all your depleted cards and detach all resources from your faction.
+  DEVELOP RULE: At the start of your turn, draw a card or play a resource.
+  DRAW
+  COST: Pay 3.
+  EFFECT: Draw a card.
+  RESOURCE
+  COST: Pay 4.
+  EFFECT: Play a resource.
+  If you deployed a tactic and it would go to a discard pile, you may pay 3. If you do, put that tactic into play under its owner's control as a face-down resource instead of into their discard pile. Attach it to their faction.
+  You must pay 2 to deploy tactics using FLIP UP.
+restore_rule:
+  - restore_all_depleted: you
+  - detach_all_resources: you
+develop_rule:
+  - choose_one:
+      - draw: 1
+      - play_resource: 1
+rules:
+  - ability: { name: Draw, cost: [ pay: 3 ], effect: [ draw: 1 ] }
+  - ability: { name: Resource, cost: [ pay: 4 ], effect: [ play_resource: 1 ] }
+  - replace: { event: tactic_to_discard, by: you }
+    instead:
+      - may_pay:
+          amount: 3
+          prompt: "put the tactic into play as a face-down resource instead"
+          then:
+            - put_into_play: { card: it, as: face_down_resource, controller: owner, attached: true }
+  - static:
+      mods:
+        - { cost: 2, applies: flip_up, by: you, target: { tactic: { zone: stack } } }

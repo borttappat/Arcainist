@@ -1,0 +1,5 @@
+{
+  "cost": 8,
+  "threshold": { "volition": 6 },
+  "stats": { "str": 6, "life": 6, "spd": 1 }
+}

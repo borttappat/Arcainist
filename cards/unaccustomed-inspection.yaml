@@ -1,0 +1,10 @@
+id: "unaccustomed-inspection"
+name: "Unaccustomed Inspection"
+trade: banker
+types: [tactic]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick a non-resource card.
+  If the card has a [V] icon in its rules text, destroy the card. Otherwise your faction loses influence equal to the card's numeric cost and flip the card face-down under its owner's control.
+  FLIP UP: 2 [G][G]

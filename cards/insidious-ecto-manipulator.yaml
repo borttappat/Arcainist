@@ -1,0 +1,10 @@
+id: "insidious-ecto-manipulator"
+name: "Insidious Ecto-Manipulator"
+trade: arcanist
+types: [character]
+subtypes: ["ecto-manipulator"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  COVERT
+  At the start of your turn, you may pick a non-resource card you control. If you do, put a token on it.

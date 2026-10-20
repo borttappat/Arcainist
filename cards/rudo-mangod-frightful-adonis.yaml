@@ -3,11 +3,13 @@ name: "Rudo Mangod"
 trade: warlord
 types: [character]
 subtypes: [fighter]
+set: "2nd Edition"
+rarity: rare
 text: |
-  UNIQUE RUDOLPHUS.
+  UNIQUE RUDOLPHUS
   PUNCH
-  COST - Pay 2. Deplete this card. Pick a character. X is that character's strength. Y is this card's strength.
-  EFFECT - Inflict X damage to this card. Inflict Y damage to the character.
+  COST: Pay 2. Deplete this card. Pick a character. X is its strength. Y is this card's strength.
+  EFFECT: Inflict X damage to this card. Inflict Y damage to the character.
 rules:
   - unique: Rudolphus
   - ability:

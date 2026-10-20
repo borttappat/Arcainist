@@ -1,0 +1,11 @@
+id: "changing-boothmajig"
+name: "Changing Boothmajig"
+trade: gearsmith
+types: [character]
+subtypes: ["majig"]
+set: "Holy Heist"
+rarity: rare
+text: |
+  WARDROBE CHANGE
+  COST: Deplete this card. Pick a character. Pick a "gear" card you control.
+  EFFECT: Attach the "gear" card to the character.

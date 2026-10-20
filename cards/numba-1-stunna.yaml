@@ -1,0 +1,11 @@
+id: "numba-1-stunna"
+name: "Numba 1 Stunna!"
+trade: rogue
+types: [character]
+subtypes: ["grifter"]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  TACTICAL
+  When this card inflicts damage to a character, that character does not restore during its controller's next RESTORE RULE.
+  FLIP UP: 3 [D][D]

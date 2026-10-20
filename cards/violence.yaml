@@ -2,8 +2,11 @@ id: violence
 name: "Violence"
 trade: warlord
 types: [resource]
+set: "Seed Saga"
+rarity: rare
 text: |
-  This card provides - [R][R]. When this card enters play, your faction loses 1 influence.
+  When this card enters play, your faction loses 1 influence.
+  PROVIDES: [R][R]
 rules:
   - trigger: { on: enters_play, card: self }
     effect:

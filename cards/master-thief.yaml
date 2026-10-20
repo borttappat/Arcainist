@@ -1,0 +1,9 @@
+id: "master-thief"
+name: "Master Thief"
+trade: rogue
+types: [character]
+subtypes: ["thief"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  When this card is destroyed, you may pick a non-tactic card in an opponent's discard pile. If you do, put it into play under your control.

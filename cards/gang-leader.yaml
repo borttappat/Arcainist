@@ -1,0 +1,9 @@
+id: "gang-leader"
+name: "Gang Leader"
+trade: rogue
+types: [character]
+subtypes: ["thief"]
+set: "1st Edition Part 2"
+rarity: common
+text: |
+  When this card enters play, all your characters gain 1 speed this turn.

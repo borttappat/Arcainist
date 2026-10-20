@@ -1,0 +1,11 @@
+id: "ferret-oil-coating"
+name: "Ferret Oil Coating"
+trade: rogue
+types: [item]
+subtypes: ["gear"]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  ATTACH TO CHARACTER
+  Anything that can pick the attached character must pick it.
+  FLIP UP: 1 [D][D]

@@ -1,0 +1,9 @@
+id: "crazed-executioner"
+name: "Crazed Executioner"
+trade: warlord
+types: [character]
+subtypes: ["tyrant"]
+set: "Holy Heist"
+rarity: common
+text: |
+  When this card enters play you may pick a character. If you do, inflict 1 damage to that character.

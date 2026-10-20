@@ -1,0 +1,9 @@
+id: "ominous-oozling"
+name: "Ominous Oozling"
+trade: arcanist
+types: [character]
+subtypes: ["lurker"]
+set: "2nd Edition"
+rarity: common
+text: |
+  COVERT

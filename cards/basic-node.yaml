@@ -3,8 +3,11 @@ name: "Basic Node"
 trade: gearsmith
 types: [character]
 subtypes: [node]
+set: "2nd Edition"
+rarity: common
 text: |
-  When this card enters play, you may search your deck for a "node" card and reveal it. If you do, put it into your hand. If this card is destroyed, destroy all other "node" cards.
+  When this card enters play, you may search your deck for a node card and reveal it. If you do, put it into your hand.
+  When this card is destroyed, destroy all other node cards.
 rules:
   - trigger: { on: enters_play, card: self }
     effect:

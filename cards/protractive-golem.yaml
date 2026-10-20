@@ -1,0 +1,9 @@
+id: "protractive-golem"
+name: "Protractive Golem"
+trade: gearsmith
+types: [character]
+subtypes: ["golem"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  [E][E][E][E][E][E]: This card gains 3 strength, 3 life, and loses 1 speed.

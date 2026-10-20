@@ -25,7 +25,7 @@ npm run build      # builds the client into dist/
 npm start          # serves dist/ and the game socket on $PORT (default 8080)
 ```
 
-Other commands: `npm test` (engine tests), `npm run typecheck`.
+Other commands: `npm test` (engine tests), `npm run typecheck`, `npm run patterns` (rule-pattern report over every card, written to `docs/PATTERNS.md`).
 
 ## How it works
 
@@ -36,10 +36,12 @@ Other commands: `npm test` (engine tests), `npm run typecheck`.
 | `engine/query.ts` | Selectors, values, conditions, and the modifier system (derived stats, icons, costs, permissions). |
 | `engine/scripts.ts` | TypeScript for the few cards that don't fit the card language. |
 | `engine/view.ts` | What each player is allowed to see, plus legal-action hints for the UI. |
+| `tools/patterns.ts` | Rule-pattern analysis: which rules occur on which cards, and which the engine supports. |
 | `engine/test/` | Scenario tests per mechanic, plus a fuzz test that plays random games with every card. |
 | `server/` | WebSocket server: identity, rooms, sends each player their view. |
 | `client/` | React UI. |
-| `cards/` | Two files per card: `<id>.json` (numbers) and `<id>.yaml` (text and rules). 121 cards, 120 automated. |
+| `cards/` | Two files per card: `<id>.json` (numbers) and `<id>.yaml` (text and rules). All 1,230 cards from the card database; 115 have automated rules, the rest are played with manual controls. |
+| `formats/` | Deck-building formats (Casual, Constructed, Limited) as JSON; checked by `engine/formats.ts`. |
 | `decks/` | Sample decklists; every file here shows up as a sample in the lobby. |
 
 **Identity.** The browser generates a random key and stores it locally. The server

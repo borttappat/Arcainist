@@ -2,8 +2,10 @@ id: dragon-s-quarters
 name: "Dragon's Quarters"
 trade: warlord
 types: [location]
+set: "2nd Edition"
+rarity: rare
 text: |
-  At the start of your turn, you may pick a character. If you do, this card inflicts X+1 damage to that character, where X is the number of "dragon" cards you control.
+  At the start of your turn, you may pick a character. If you do, this card inflicts X+1 damage to it, where X is the number of dragon cards you control.
 rules:
   - trigger: { on: start_of_turn, player: you }
     effect:

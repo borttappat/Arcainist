@@ -1,0 +1,12 @@
+id: "high-priest-of-thabbash"
+name: "High-Priest of Thabbash"
+trade: arcanist
+types: [character]
+subtypes: ["gloamspike", "priest"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  UNIQUE GLOAMSPIKE
+  NEGATE
+  COST: Pay 2. Deplete this card. Discard a card. Pick a card being deployed of the same type as the discarded card.
+  EFFECT: Terminate the card being deployed.

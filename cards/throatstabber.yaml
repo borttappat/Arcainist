@@ -1,0 +1,9 @@
+id: "throatstabber"
+name: "Throatstabber"
+trade: rogue
+types: [character]
+subtypes: ["pirate"]
+set: "1st Edition Part 2"
+rarity: uncommon
+text: |
+  When this card enters play, flip a coin. If you lose, deplete this card.

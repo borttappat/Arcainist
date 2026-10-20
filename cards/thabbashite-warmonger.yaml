@@ -1,0 +1,9 @@
+id: "thabbashite-warmonger"
+name: "Thabbashite Warmonger"
+trade: warlord
+types: [character]
+subtypes: ["tyrant"]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  [V]: When a character inflicts battle damage to a faction, X is the number of threshold icons of the character. Inflict X damage to that character's controller's faction.

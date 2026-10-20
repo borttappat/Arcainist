@@ -1,0 +1,9 @@
+id: "contriving-engineer"
+name: "Contriving Engineer"
+trade: gearsmith
+types: [character]
+subtypes: ["inventor"]
+set: "Ungodly Mess"
+rarity: ultra-rare
+text: |
+  When this card enters play, you may search your deck for a card named Elitism and reveal it. If you do, put it into play. Attach it to your faction.

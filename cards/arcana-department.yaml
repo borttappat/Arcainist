@@ -1,0 +1,8 @@
+id: "arcana-department"
+name: "Arcana Department"
+trade: arcanist
+types: [location]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  When an attacking or blocking party is formed, it must have an even number of members.

@@ -1,0 +1,14 @@
+id: "epiphanal-mechanic"
+name: "Epiphanal Mechanic"
+trade: gearsmith
+types: [character]
+subtypes: ["inventor"]
+set: "1st Edition"
+rarity: common
+text: |
+  DEVELOPMENT
+  COST: Deplete this card.
+  EFFECT: Search your deck for an item and reveal it. Put it into your hand.
+  DEPLOYMENT
+  COST: Deplete this card.
+  EFFECT: You may deploy an item for free. (You still need to meet its threshold and satisfy its extra costs.)

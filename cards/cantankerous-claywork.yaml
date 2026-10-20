@@ -3,8 +3,11 @@ name: "Cantankerous Claywork"
 trade: gearsmith
 types: [character]
 subtypes: [golem]
+set: "Seed Saga"
+rarity: rare
 text: |
-  AGGRO. When this card attacks, all your other characters gain 1 strength and 1 life this turn.
+  This card can attack even if it has not been in play under your control since the start of the turn.
+  When this card attacks, all your other characters gain 1 strength and 1 life this turn.
 keywords: [aggro]
 rules:
   - trigger: { on: attacks, card: self }

@@ -2,10 +2,12 @@ id: gilded-yurt
 name: "Gilded Yurt"
 trade: banker
 types: [location]
+set: "Seed 2"
+rarity: common
 text: |
   CHILLAX
-  COST - Deplete this card. Pick a character you control.
-  EFFECT - Remove the character from the game. At the start of your next turn, if this card is in play, put the removed character into play under your control.
+  COST: Deplete this card. Pick a character you control.
+  EFFECT: Put the character into the void. At the start of your next turn, if this card is in play, put the voided character into play under your control.
 rules:
   - ability:
       name: Chillax

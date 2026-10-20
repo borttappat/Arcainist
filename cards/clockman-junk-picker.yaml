@@ -1,0 +1,12 @@
+id: "clockman-junk-picker"
+name: "Clockman Junk Picker"
+trade: gearsmith
+types: [character]
+subtypes: ["mechanic"]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  When this card enters play, you may search your deck for an item and reveal it. If you do, put it into play as a face-down resource.
+  TRASH: [E][E][E][E][E][E]
+  COST: Pay 1. Pick an item. Destroy this card.
+  EFFECT: Destroy that card.

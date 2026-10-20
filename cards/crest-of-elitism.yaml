@@ -1,0 +1,11 @@
+id: "crest-of-elitism"
+name: "Crest of Elitism"
+trade: universal
+types: [item]
+subtypes: ["crest"]
+set: "Seed 2"
+rarity: rare
+text: |
+  UNIQUE CREST
+  PROVIDES: [E][E]
+  When a card that provides at least [E] enters play under your control, you may put a Micromajig token into play under your control.

@@ -1,0 +1,8 @@
+id: "geldale-city-fortress"
+name: "Geldale, City-Fortress"
+trade: warlord
+types: [location]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  You opponents may only play tactics during their own turn.

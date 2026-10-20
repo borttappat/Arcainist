@@ -1,0 +1,13 @@
+id: "barracks-of-precipitancy"
+name: "Barracks of Precipitancy"
+trade: warlord
+types: [location]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  GO TIME!
+  COST: Deplete this card.
+  EFFECT: Shuffle your deck and then reveal the top card. If the revealed card is a character, put that card into play, otherwise put it on the bottom of your deck. The character can attack even if it has not been in play under your control since the start of the turn. If that character would leave play or is in play at the end of the turn, remove it from the game instead.
+  AT ANY COST!
+  COST: Pay 2. Inflict 3 damage to this card.
+  EFFECT: Restore this card.

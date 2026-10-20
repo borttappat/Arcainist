@@ -1,0 +1,28 @@
+id: "the-evil-alliance"
+name: "The Evil Alliance"
+trade: none
+types: [faction]
+tournament_legal: false
+set: "Seed 3"
+text: |
+  INFLUENCE = 15 + (10 * X). X is the number of opponents you have at the start of the game.
+  STARTING RESOURCES: Any 1+X staple resources
+  STARTING DRAW: 7 going first, 8 going second
+  RESTORE RULE: At the start of your turn, restore all your depleted cards and detach all resources from your faction.
+  DEVELOP RULE: At the start of your turn, draw a card or play a resource. Repeat this X-1 times.
+  DRAW
+  COST: Pay 3.
+  EFFECT: Draw a card.
+  RESOURCE
+  COST: Pay 3.
+  EFFECT: Play a resource.
+  ENTICEMENT
+  COST: Use this only during your turn, and only once per turn.
+  EFFECT: Draw X-1 cards. Play a resource. Put the top card of the Hero deck into the Temptation Pile.
+  DARING GAMBIT
+  If a Hero inflicts at least 7 damage to another Hero this turn, the damaging Hero claims the entire Temptation Pile.
+  OMNIPOTENCE
+  You automatically meet all thresholds, even if you don't control the proper resource icons.
+  (See the Showdown rules card.)
+incomplete: true
+incomplete_reason: "Showdown (multiplayer Hero and Villain) variant, not playable in a two-player game"

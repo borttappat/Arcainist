@@ -1,0 +1,9 @@
+id: "thabbashite-urchin"
+name: "Thabbashite Urchin"
+trade: rogue
+types: [character]
+subtypes: ["outlaw"]
+set: "Holy Heist"
+rarity: common
+text: |
+  [V][V][V]: While an opponent controls an item, this card cannot be blocked.

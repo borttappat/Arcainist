@@ -1,0 +1,9 @@
+id: "ancient-and-disreputable-law-office"
+name: "Ancient and Disreputable Law Office"
+trade: banker
+types: [location]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  UNIQUE A & D LAW
+  Characters with numeric cost 2 or less cannot attack.

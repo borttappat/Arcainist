@@ -1,0 +1,8 @@
+id: "gold-summit"
+name: "Gold Summit"
+trade: banker
+types: [location]
+set: "2nd Edition"
+rarity: rare
+text: |
+  When you draw any number of cards, your faction gains X influence, where X is the number of cards drawn.

@@ -1,0 +1,11 @@
+id: "rudo-mangod-dragonweight-champion"
+name: "Rudo Mangod, Dragonweight Champion"
+trade: warlord
+types: [character]
+subtypes: ["rudo", "fighter"]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  UNIQUE RUDOLPHUS
+  When this card enters play, deplete all other characters you control. They cannot be restored by your faction's RESTORE RULE.
+  This character gains 1 strength for each depleted warlord character you control.

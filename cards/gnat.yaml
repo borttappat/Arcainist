@@ -1,0 +1,9 @@
+id: "gnat"
+name: "Gnat"
+trade: arcanist
+types: [character]
+subtypes: ["lurker"]
+set: "2nd Edition"
+rarity: common
+text: |
+  When this card leaves play, an opponent discards a card.

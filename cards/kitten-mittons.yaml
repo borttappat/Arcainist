@@ -1,0 +1,10 @@
+id: "kitten-mittons"
+name: "Kitten Mittons"
+trade: banker
+types: [item]
+subtypes: ["gear"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  ATTACH TO CHARACTER
+  When damage is inflicted to the attached card, your faction gains influence equal to that damage.

@@ -2,8 +2,12 @@ id: armored-keep
 name: "Armored Keep"
 trade: banker
 types: [location]
+set: "2nd Edition"
+rarity: rare
 text: |
-  UNIQUE ARMORED KEEP. You may play this card whenever you could play a tactic. You do not lose the game while your faction has 0 influence.
+  UNIQUE ARMORED KEEP
+  TACTICAL
+  You do not lose the game because your faction has 0 influence.
 keywords: [tactical]
 rules:
   - unique: Armored Keep

@@ -1,0 +1,9 @@
+id: "callow-liegeman"
+name: "Callow Liegeman"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "2nd Edition"
+rarity: common
+text: |
+  When this card attacks in a party with more than 1 member, it gains 1 strength and 1 life this turn.

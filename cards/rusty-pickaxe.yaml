@@ -1,0 +1,12 @@
+id: "rusty-pickaxe"
+name: "Rusty Pickaxe"
+trade: rogue
+types: [item]
+subtypes: ["gear"]
+set: "Seed Saga"
+rarity: common
+text: |
+  ATTACH TO CHARACTER
+  The attached character gains 1 strength and 1 life.
+  If this card would be destroyed, flip it face-down under its owner's control instead.
+  FLIP UP: 1 [D]

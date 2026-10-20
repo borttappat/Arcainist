@@ -1,0 +1,13 @@
+id: "micromajigmakermachinemajig"
+name: "Micromajigmakermachinemajig"
+trade: gearsmith
+types: [item]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  RELEASE THE MAJIGS!
+  COST: Deplete this card. Pick an opponent. That player may put a Micromajig token into play under their control. This turn, all damage inflicted to that token is reduced to 0.
+  EFFECT: Put a Micromajig token into play under your control.
+  PREPARE
+  COST: Pay 2.
+  EFFECT: Restore this card.

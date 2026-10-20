@@ -1,0 +1,9 @@
+id: "meh-another-living-god"
+name: "Meh, another Living God"
+trade: arcanist
+types: [character]
+subtypes: ["god"]
+set: "Holy Heist"
+rarity: common
+text: |
+  FLIP UP: 7 [O]

@@ -1,0 +1,11 @@
+id: "cunning-disguise"
+name: "Cunning Disguise"
+trade: rogue
+types: [item]
+subtypes: ["gear"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  ATTACH TO CHARACTER
+  The attached character loses 1 strength, 1 life, and gains COVERT.
+  FLIP UP: 0 [D][D]

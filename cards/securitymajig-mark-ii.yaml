@@ -1,0 +1,12 @@
+id: "securitymajig-mark-ii"
+name: "Securitymajig Mark II"
+trade: gearsmith
+types: [character]
+subtypes: ["majig"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  If you deployed this card using FLIP UP, it enters play with 3 tokens on it.
+  This card gains 1 strength for each token on it.
+  This card can block COVERT parties.
+  FLIP UP: 5 [E]

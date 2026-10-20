@@ -1,0 +1,8 @@
+id: "elite-team-registration"
+name: "Elite Team Registration"
+trade: gearsmith
+types: [tactic]
+set: "2nd Edition"
+rarity: rare
+text: |
+  Search your deck for up to 2 Gearsmith characters with different names and reveal them. Put them into your hand.

@@ -2,24 +2,27 @@ id: one-legged-hopping-pogo-bear
 name: "One-Legged Hopping Pogo-Bear"
 trade: gearsmith
 types: [item]
+set: "2nd Edition"
+rarity: rare
 text: |
   RAAR!
-  COST - Pay 2.
-  EFFECT - This card gains the "character" type and has 3 strength, 3 life, and 3 speed.
+  COST: Pay 2.
+  EFFECT: This turn, this card gains the character type and has 3 strength, 3 life, and 3 speed.
   SCHPROING!
-  COST - Use this only during your turn. Pay 2.
-  EFFECT - If this card is a character, it gains COVERT.
+  COST: Use this only during your turn. Pay 2.
+  EFFECT: If this card is a character, it gains COVERT.
   HIDE!
-  COST - Pay 1.
-  EFFECT - If this card is a character, it loses the "character" type. Deplete this card.
+  COST: Pay 1.
+  EFFECT: If this card is a character, it loses the character type. Deplete this card.
 rules:
   - ability:
       name: RAAR!
       cost: [ pay: 2 ]
       effect:
-        - clear_effects: self
+        - clear_effects: { tag: form }
         - create_effect:
             duration: game
+            tag: form
             mods:
               - { add_type: character, target: self }
               - { set_stats: { str: 3, life: 3, spd: 3 }, target: self }
@@ -39,5 +42,6 @@ rules:
         - if:
             cond: { matches: [ self, { character: any } ] }
             then:
-              - clear_effects: self
+              # Loses the character type; Covert from SCHPROING! stays on the card.
+              - clear_effects: { tag: form }
               - deplete: self

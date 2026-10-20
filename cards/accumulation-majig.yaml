@@ -1,0 +1,13 @@
+id: "accumulation-majig"
+name: "Accumulation Majig"
+trade: gearsmith
+types: [character]
+subtypes: ["majig"]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  At the start of your turn, you may pay 1 for each token on this card. If you don't, destroy this card.
+  At the end of your turn put a token on this card.
+  FEED
+  COST: Pay 3.
+  EFFECT: Remove a token from this card.

@@ -1,0 +1,12 @@
+id: "desperate-defender"
+name: "Desperate Defender"
+trade: banker
+types: [character]
+subtypes: ["lawyer"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  COVERT
+  SHOW EVIDENCE
+  COST: Use this ability only once each turn. Pick a character.
+  EFFECT: Deplete that character.

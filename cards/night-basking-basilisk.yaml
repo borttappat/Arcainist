@@ -1,0 +1,10 @@
+id: "night-basking-basilisk"
+name: "Night-basking Basilisk"
+trade: arcanist
+types: [character]
+subtypes: ["beast"]
+set: "Holy Heist"
+rarity: common
+text: |
+  COVERT
+  EXTRA COST: If you control [O][O][O][O][O][O], reduce the numeric cost of this card by 4.

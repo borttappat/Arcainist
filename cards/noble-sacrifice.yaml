@@ -1,0 +1,10 @@
+id: "noble-sacrifice"
+name: "Noble Sacrifice"
+trade: warlord
+types: [tactic]
+set: "Seed"
+rarity: rare
+text: |
+  EXTRA COST: Pick a character you own. Pick a character an opponent owns.
+  Destroy the characters. Draw a card.
+  FLIP UP: 0 [R][R]

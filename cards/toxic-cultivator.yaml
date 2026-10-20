@@ -1,0 +1,9 @@
+id: "toxic-cultivator"
+name: "Toxic Cultivator"
+trade: arcanist
+types: [character]
+subtypes: ["cultivator"]
+set: "2nd Edition"
+rarity: common
+text: |
+  While you control an even number of characters, reduce the numeric cost of tactics you deploy by 1, to a minimum of 1.

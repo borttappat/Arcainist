@@ -1,0 +1,10 @@
+id: "frisky-fortunehunter"
+name: "Frisky Fortunehunter"
+trade: banker
+types: [character]
+subtypes: ["pirate", "mau"]
+set: "Seed Saga"
+rarity: common
+text: |
+  When this card enters play, your faction loses 2 influence.
+  When this card leaves play, your faction gains 4 influence.

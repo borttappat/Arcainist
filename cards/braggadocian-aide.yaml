@@ -1,0 +1,10 @@
+id: "braggadocian-aide"
+name: "Braggadocian Aide"
+trade: gearsmith
+types: [character]
+subtypes: ["craftsman"]
+set: "Seed Saga"
+rarity: common
+text: |
+  PROVIDES: [E]
+  At the start of each opponent's turn, you may pick a resource attached to your faction. If you do, detach it from your faction.

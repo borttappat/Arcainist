@@ -1,0 +1,12 @@
+id: "big-mclargehuge"
+name: "Big McLargehuge"
+trade: warlord
+types: [character]
+subtypes: ["dragon"]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  UNIQUE MCLARGEHUGE
+  EXTRA COST: Destroy 2 resources you control.
+  When this card leaves play, you may play a resource or pick an opponent and that player destroys a face-down resource they control.
+  FLIP UP: 4 [R]

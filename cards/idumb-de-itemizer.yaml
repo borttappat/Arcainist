@@ -1,0 +1,14 @@
+id: "idumb-de-itemizer"
+name: "iDumb De-Itemizer"
+trade: banker
+types: [item]
+subtypes: ["upgrade"]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  ATTACH TO ITEM
+  The attached card has no rules text.
+  RESET
+  COST: Only an opponent may use this ability. Pay 3.
+  EFFECT: This turn, this card loses all rules text.
+  FLIP UP: 2 [G]

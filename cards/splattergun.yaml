@@ -1,0 +1,10 @@
+id: "splattergun"
+name: "Splattergun"
+trade: warlord
+types: [item]
+set: "2nd Edition"
+rarity: rare
+text: |
+  UNLOAD
+  COST: Deplete this card. Pick a character or faction.
+  EFFECT: Inflict 3 damage to the character or faction. That faction's or character's controller takes control of this card.

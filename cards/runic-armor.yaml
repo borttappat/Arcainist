@@ -1,0 +1,11 @@
+id: "runic-armor"
+name: "Runic Armor"
+trade: gearsmith
+types: [item]
+subtypes: ["gear"]
+set: "Seed Saga"
+rarity: common
+text: |
+  ATTACH TO CHARACTER
+  The attached character gains 1 strength and 2 life.
+  [E][E][E][E][E]: The attached character gains an additional 2 strength and 1 life.

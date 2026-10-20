@@ -1,0 +1,23 @@
+id: "slightly-less-evil-alliance"
+name: "Slightly Less Evil Alliance"
+trade: none
+types: [faction]
+tournament_legal: false
+set: "Seed 3"
+text: |
+  (Of Justice)
+  All Heroes can use abilities on this card.
+  GIVE IN TO TEMPTATION
+  COST: Use this only during your turn and only once per turn. Pay 2. Pick a character another Hero controls.
+  EFFECT: The Villain takes control of the character. Claim one card in the Temptation Pile.
+  SPRING FORTH MY BURLY PROTECTOR!
+  COST: Pay 6.
+  EFFECT: Reveal the top card of the Hero deck and claim it.
+  TEAMWORK
+  COST: Pay 2. Pick a card you control. Choose another player.
+  EFFECT: The player takes control of the card.
+  YOUR TRUE COLORS ARE REVEALED
+  At the start of the Villain's turn, put a token on this card. If there are 7 tokens on this card, all Heroes turn their Allegiance cards face-up.
+  (See the Showdown rules card.)
+incomplete: true
+incomplete_reason: "Showdown (multiplayer Hero and Villain) variant, not playable in a two-player game"

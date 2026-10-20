@@ -1,0 +1,10 @@
+id: "mafia-lawyer"
+name: "Mafia Lawyer"
+trade: banker
+types: [character]
+subtypes: ["mercenary", "lawyer", "mau"]
+set: "2nd Edition"
+rarity: common
+text: |
+  When this card enters play, your faction loses 2 influence.
+  When this card is destroyed during a battle, your faction gains X influence, where X is the total strength of the opposing party.

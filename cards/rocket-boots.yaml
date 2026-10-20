@@ -1,0 +1,13 @@
+id: "rocket-boots"
+name: "Rocket Boots"
+trade: rogue
+types: [item]
+subtypes: ["gear"]
+set: "1st Edition"
+rarity: common
+text: |
+  ATTACH TO CHARACTER
+  The attached character gains 1 strength and 1 speed.
+  HANDOFF
+  COST: Pay 3. Deplete a character you control that is not in a battle.
+  EFFECT: Attach this card to the character.

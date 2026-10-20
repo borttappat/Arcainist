@@ -1,0 +1,11 @@
+id: "marduun-baitings-and-loan"
+name: "Marduun Baitings and Loan"
+trade: banker
+types: [location]
+set: "Seed Saga"
+rarity: rare
+text: |
+  UNIQUE MARDUUN BAITINGS AND LOAN
+  [G][G][G]: At the start of your turn, your faction gains 2 influence.
+  [G][G][G][G][G]: At the start of your turn, draw a card. Discard a card.
+  [G][G][G][G][G][G][G]: At the start of your turn, draw a card.

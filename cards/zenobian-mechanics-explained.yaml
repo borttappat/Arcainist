@@ -1,0 +1,10 @@
+id: "zenobian-mechanics-explained"
+name: "Zenobian Mechanics Explained"
+trade: arcanist
+types: [tactic]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  EXTRA COST: Choose a character an opponent controls.
+  Put the character into its owner's hand. If you control an attacking party of at least 2 members, that player discards a card.
+  FLIP UP: 4 [O]

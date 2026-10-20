@@ -1,0 +1,10 @@
+id: "catastrophic-caper"
+name: "Catastrophic Caper"
+trade: rogue
+types: [tactic]
+set: "Holy Heist"
+rarity: common
+text: |
+  EXTRA COST: Deploy this only in response to a card or ability that picked a character as an extra cost.
+  Put the character into its owner's hand. If you do and the character is a UNIQUE PLUCK, draw a card.
+  FLIP UP: 1 [D]

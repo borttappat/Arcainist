@@ -1,0 +1,11 @@
+id: "aristocratic-artificer"
+name: "Aristocratic Artificer"
+trade: gearsmith
+types: [character]
+subtypes: ["craftsman"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  SNUB
+  COST: Pay 1. Deplete this card.
+  EFFECT: Search your deck for a card named Elitism and reveal it. Put it into your hand.

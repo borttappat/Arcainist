@@ -1,0 +1,11 @@
+id: "vilghame-manewaft"
+name: "Vilghame Manewaft"
+trade: banker
+types: [character]
+subtypes: ["vilghame", "sword of great justice"]
+set: "Seed 3"
+rarity: fixed
+text: |
+  UNIQUE VILGHAME
+  Your opponents must pay 1 to deploy a tactic.
+  The first resource each opponent plays each turn enters play attached to that player's faction.

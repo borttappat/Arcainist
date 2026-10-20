@@ -1,0 +1,11 @@
+id: "crest-of-deception"
+name: "Crest of Deception"
+trade: universal
+types: [item]
+subtypes: ["crest"]
+set: "Seed 2"
+rarity: rare
+text: |
+  UNIQUE CREST
+  PROVIDES: [D][D]
+  When a card that provides at least [D] enters play under your control, you may pick a character. If you do, that character loses 1 life this turn.

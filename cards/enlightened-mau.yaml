@@ -1,0 +1,12 @@
+id: "enlightened-mau"
+name: "Enlightened Mau"
+trade: banker
+types: [character]
+subtypes: ["mau", "pacifist"]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  All damage assigned to this card by characters with items attached to them is reduced to 0.
+  TRANSCEND
+  COST: Pay 5.
+  EFFECT: This turn, this card gains COVERT.

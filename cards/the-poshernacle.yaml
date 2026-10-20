@@ -1,0 +1,11 @@
+id: "the-poshernacle"
+name: "The Poshernacle"
+trade: banker
+types: [location]
+set: "Seed Saga"
+rarity: rare
+text: |
+  UNIQUE POSHERNACLE
+  At the start of your turn, you may use an ability.
+  At the start of your turn, you may draw a card.
+  At the start of your turn, your faction gains 1 influence.

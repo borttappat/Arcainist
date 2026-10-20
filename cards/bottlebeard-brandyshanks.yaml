@@ -1,0 +1,13 @@
+id: "bottlebeard-brandyshanks"
+name: "Bottlebeard Brandyshanks"
+trade: rogue
+types: [character]
+subtypes: ["pluck", "drunk"]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  UNIQUE PLUCK
+  The top card of each opponent's deck is revealed at all times. If any of those cards are a character, this card gains 3 speed.
+  CHUG!
+  COST: Pay 2. Pick an opponent.
+  EFFECT: Put the top card of that player's deck on the bottom of their deck.

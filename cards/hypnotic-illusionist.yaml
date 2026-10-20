@@ -1,0 +1,11 @@
+id: "hypnotic-illusionist"
+name: "Hypnotic Illusionist"
+trade: rogue
+types: [character]
+subtypes: ["performer"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  HYPNOTIZE
+  COST: Pay 5. Destroy this card. Pick a character.
+  EFFECT: Take control of the character if it has numeric cost X or less, where X is the number of [D] you control.

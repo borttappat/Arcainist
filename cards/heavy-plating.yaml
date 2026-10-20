@@ -1,0 +1,14 @@
+id: "heavy-plating"
+name: "Heavy Plating"
+trade: gearsmith
+types: [item]
+subtypes: ["gear"]
+set: "2nd Edition"
+rarity: common
+text: |
+  ATTACH TO CHARACTER
+  When this card enters play, you may detach up to 2 resources from your faction.
+  The attached character gains 4 strength, 4 life, and loses 1 speed.
+  HANDOFF
+  COST: Pay 5. Deplete a character you control that is not in a battle.
+  EFFECT: Attach this card to the character.

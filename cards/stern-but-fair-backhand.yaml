@@ -1,0 +1,8 @@
+id: "stern-but-fair-backhand"
+name: "Stern But Fair Backhand"
+trade: warlord
+types: [tactic]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  If you deployed this card in response to a tactic, terminate the tactic. Put this card into play under its owner's control as a face-down resource instead of into their discard pile.

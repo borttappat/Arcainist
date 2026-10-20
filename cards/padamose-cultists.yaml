@@ -1,0 +1,9 @@
+id: "padamose-cultists"
+name: "Padamose Cultists"
+trade: banker
+types: [character]
+subtypes: ["cultist"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  When this card enters play, if you have deployed a non-character card this turn, draw 2 cards.

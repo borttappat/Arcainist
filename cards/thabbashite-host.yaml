@@ -1,0 +1,10 @@
+id: "thabbashite-host"
+name: "Thabbashite Host"
+trade: warlord
+types: [character]
+subtypes: ["fighter"]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  [R][R][V][V]: This card gains 4 strength. When this card leaves play, you may pick a character. If you do, that character gains 4 strength this turn.
+  FLIP UP: 7 [V][V][V][V]

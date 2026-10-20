@@ -1,0 +1,11 @@
+id: "drill-garrison"
+name: "Drill Garrison"
+trade: warlord
+types: [location]
+set: "Seed Saga"
+rarity: rare
+text: |
+  UNIQUE DRILL GARRISON
+  [R][R][R]: At the start of your turn, you may inflict 1 damage to an opponent's faction.
+  [R][R][R][R][R]: At the start of your turn, you may pick a character. If you do, deplete it.
+  [R][R][R][R][R][R][R]: At the start of your turn, you may pick a character. If you do, inflict 2 damage to it.

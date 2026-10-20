@@ -1,0 +1,11 @@
+id: "underhanded-gamer"
+name: "Underhanded Gamer"
+trade: rogue
+types: [character]
+subtypes: ["gambler"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  OUTSMART
+  COST: Use this only if an opponent controls more characters than you. Pay 3.
+  EFFECT: This turn, this card cannot be blocked by those players.

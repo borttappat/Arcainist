@@ -1,0 +1,13 @@
+id: "key-to-the-city"
+name: "Key to the City"
+trade: banker
+types: [item]
+subtypes: ["gear"]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  ATTACH TO CHARACTER
+  When the attached character leaves play, you may search your deck for a resource, reveal it, and put it into your hand.
+  UNLOCK POTENTIAL: [G]
+  COST: Discard this card from your hand. Pay 2.
+  EFFECT: Search your deck for a resource with a name you don't control, reveal it, and put it into your hand.

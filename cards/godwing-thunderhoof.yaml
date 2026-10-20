@@ -1,0 +1,10 @@
+id: "godwing-thunderhoof"
+name: "Godwing Thunderhoof"
+trade: warlord
+types: [character]
+subtypes: ["godwing", "seraphim", "dragon"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  UNIQUE GODWING
+  When this card attacks, you may pick a character. If you do, inflict X damage to it, where X is the number of [R] you control.

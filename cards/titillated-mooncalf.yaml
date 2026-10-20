@@ -1,0 +1,9 @@
+id: "titillated-mooncalf"
+name: "Titillated Mooncalf"
+trade: arcanist
+types: [character]
+subtypes: ["monstrosity"]
+set: "Seed Saga"
+rarity: common
+text: |
+  When a card that provides at least [O] enters play under your control, you may pick a character. If you do, it gains COVERT this turn.

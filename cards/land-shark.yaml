@@ -1,0 +1,10 @@
+id: "land-shark"
+name: "Land Shark"
+trade: arcanist
+types: [character]
+subtypes: ["lurker"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  COVERT
+  This card gains 1 strength and 1 life for each face-down resource each opponent controls.

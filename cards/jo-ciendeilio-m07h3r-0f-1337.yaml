@@ -1,0 +1,13 @@
+id: "jo-ciendeilio-m07h3r-0f-1337"
+name: "Jo Ciendeilio, M07h3r 0f 1337"
+trade: gearsmith
+types: [character]
+subtypes: ["jo", "blade of questionable morality"]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  UNIQUE JO
+  Each character you control gains:
+  "RESEARCH
+  COST: Use this only if this card has been in play since the start of the turn. Deplete this card.
+  EFFECT: Reduce the next numeric cost you pay this turn by 1."

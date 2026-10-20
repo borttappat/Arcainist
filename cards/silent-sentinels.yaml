@@ -1,0 +1,10 @@
+id: "silent-sentinels"
+name: "Silent Sentinels"
+trade: gearsmith
+types: [character]
+subtypes: ["warmachine"]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  All characters must attack if they can.
+  [E][E][E]: This card gains AGGRO.

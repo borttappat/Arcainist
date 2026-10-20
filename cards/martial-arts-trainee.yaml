@@ -1,0 +1,9 @@
+id: "martial-arts-trainee"
+name: "Martial Arts Trainee"
+trade: rogue
+types: [character]
+subtypes: ["martial artist"]
+set: "2nd Edition"
+rarity: common
+text: |
+  Your opponents cannot pick this card.

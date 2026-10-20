@@ -1,0 +1,12 @@
+id: "fanatical-shriever"
+name: "Fanatical Shriever"
+trade: warlord
+types: [character]
+subtypes: ["dragon"]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  TACTICAL
+  EXTRA COST: Deploy this only not during a battle. You may pick an item.
+  When this card enters play, if you picked an item as part of its cost, destroy that item.
+  [R][R][R][R][R][R]: When this card enters play you may pick a location. If you do, inflict 2 damage to that card.

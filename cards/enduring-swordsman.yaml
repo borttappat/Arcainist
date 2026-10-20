@@ -1,0 +1,9 @@
+id: "enduring-swordsman"
+name: "Enduring Swordsman"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Seed Saga"
+rarity: common
+text: |
+  When this card leaves play, you may pick a character. If you do, inflict 1 damage to it.

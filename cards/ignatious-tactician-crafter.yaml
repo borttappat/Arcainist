@@ -1,0 +1,14 @@
+id: "ignatious-tactician-crafter"
+name: "Ignatious, Tactician Crafter"
+trade: arcanist
+types: [character]
+subtypes: ["ignatious", "blade of questionable morality"]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  UNIQUE IGNATIOUS
+  FEALTY: While this card is in your hand and you control at least 4 staple resources of different trades, reduce this card's threshold requirement by any 3 resource icons.
+  All UNIQUE UHLUHTC gain 3 strength and 3 life.
+  CIPHER
+  COST: Pay 2. Deplete this card. Pick a tactic in your discard pile.
+  EFFECT: You may deploy the card. If that card would go to its owner's discard pile, remove it from the game instead.

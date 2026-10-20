@@ -1,0 +1,11 @@
+id: "knobby-stave"
+name: "Knobby Stave"
+trade: arcanist
+types: [item]
+set: "1st Edition"
+rarity: common
+text: |
+  This card enters play with 2 tokens on it.
+  DISRUPT
+  COST: Remove 2 tokens from this card.
+  EFFECT: An opponent discards a card.

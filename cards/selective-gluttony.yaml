@@ -1,0 +1,8 @@
+id: "selective-gluttony"
+name: "Selective Gluttony"
+trade: banker
+types: [tactic]
+set: "1st Edition"
+rarity: rare
+text: |
+  Draw 10 cards. Discard 9 cards.

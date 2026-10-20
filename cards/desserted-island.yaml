@@ -1,0 +1,11 @@
+id: "desserted-island"
+name: "Desserted Island"
+trade: banker
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  Draw 3 cards.
+  RECUR: [G][G]
+  COST: Use this only if this card is in your discard pile. Pay 1. Remove this card from the game.
+  EFFECT: Draw a card.

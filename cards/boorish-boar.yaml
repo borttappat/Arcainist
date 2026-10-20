@@ -1,0 +1,11 @@
+id: "boorish-boar"
+name: "Boorish Boar"
+trade: warlord
+types: [character]
+subtypes: ["beast"]
+set: "Holy Heist"
+rarity: rare
+text: |
+  [R][R]: This card gains 1 strength and loses 1 life.
+  [R][R][R]: Destroy this card.
+  When this card is destroyed, you may pick up to 2 characters and/or factions. If you do, inflict 2 damage divided however you want to those cards.

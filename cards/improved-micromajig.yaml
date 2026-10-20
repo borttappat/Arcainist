@@ -1,0 +1,15 @@
+id: "improved-micromajig"
+name: "Improved Micromajig"
+trade: gearsmith
+types: [character]
+subtypes: ["majig"]
+set: "Holy Heist"
+rarity: rare
+text: |
+  This card gains 1 strength and 1 life for each token on it.
+  ASSEMBLE
+  COST: Pay 2. Destroy a Micromajig token you control.
+  EFFECT: Put a token on this card.
+  DETACH
+  COST: Pay 2. Remove a token from this card.
+  EFFECT: Put a Micromajig token into play under your control.

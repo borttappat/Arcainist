@@ -1,0 +1,15 @@
+id: "caracal-morphnus"
+name: "Caracal Morphnus"
+trade: banker
+types: [character]
+subtypes: ["seraphim", "dragon"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  UNIQUE CARACAL
+  When this card enters play, put 5 tokens on it.
+  This card gains 1 strength and 1 life for each token on it.
+  When you draw any number of cards, put X tokens on this card, where X is the number of cards drawn.
+  $$$ MORPH
+  COST: Remove 3 tokens from this card.
+  EFFECT: Draw a card.

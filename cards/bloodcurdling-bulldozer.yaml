@@ -1,0 +1,9 @@
+id: "bloodcurdling-bulldozer"
+name: "Bloodcurdling Bulldozer"
+trade: warlord
+types: [character]
+subtypes: ["berserker"]
+set: "2nd Edition"
+rarity: common
+text: |
+  When this card attacks, you may pick a character. If you do, deplete it.

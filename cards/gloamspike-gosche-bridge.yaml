@@ -1,0 +1,10 @@
+id: "gloamspike-gosche-bridge"
+name: "Gloamspike-Gosche Bridge"
+trade: arcanist
+types: [location]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  This card cannot be picked.
+  All characters in your hand gain TACTICAL.
+  [O][O][O][O][O][O][O][O]: All items and locations in your hand gain TACTICAL.

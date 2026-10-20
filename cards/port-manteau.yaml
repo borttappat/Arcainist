@@ -2,8 +2,11 @@ id: port-manteau
 name: "Port Manteau"
 trade: banker
 types: [location]
+set: "Seed 3"
+rarity: fixed
 text: |
-  When this card enters play, name a card subtype. Players must pay 2 to play cards with the named subtype.
+  When this card enters play, name a card subtype.
+  Players must pay 2 to deploy cards with the named subtype.
 rules:
   - trigger: { on: enters_play, card: self }
     effect:

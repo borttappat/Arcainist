@@ -1,0 +1,10 @@
+id: "impressive-hero"
+name: "Impressive Hero"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Seed Saga"
+rarity: common
+text: |
+  EXTRA COST: You may pick a character.
+  When this card enters play, if you picked a character as part of its cost, deplete that character.

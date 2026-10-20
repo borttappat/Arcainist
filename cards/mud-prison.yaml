@@ -1,0 +1,9 @@
+id: "mud-prison"
+name: "Mud Prison"
+trade: gearsmith
+types: [location]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  At the start of your turn, you may pay 1. If you do, pick a character an opponent controls and put a token on it.
+  Treat characters your opponents control with a token on them as though they have no rules text.

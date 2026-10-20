@@ -1,0 +1,9 @@
+id: "surprising-dudes"
+name: "Surprising Dudes"
+trade: gearsmith
+types: [tactic]
+set: "Holy Heist"
+rarity: common
+text: |
+  EXTRA COST: Deploy this only during your turn.
+  Put 2 Micromajig tokens into play under your control. Put this card into play under its owner's control as a face-down resource instead of into their discard pile.

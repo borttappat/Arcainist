@@ -1,0 +1,9 @@
+id: "recapitulating-apparition"
+name: "Recapitulating Apparition"
+trade: banker
+types: [character]
+subtypes: ["ghost"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  When this card is put into your discard pile from play, you may pay 1. If you do, put it into play under your control. Deplete it.

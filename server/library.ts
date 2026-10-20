@@ -18,10 +18,10 @@ export const KNOWN_OPS = new Set([
   "markers", "lose_influence", "gain_influence", "modify", "create_effect", "clear_effects", "flip_face_down",
   "flip_face_up", "put_into_play", "move", "shuffle", "take_control", "attach", "tokens", "distribute_tokens",
   "search", "mill", "look", "play_card", "play_resource", "restore_all_depleted", "detach_all_resources", "detach",
-  "destroy_resource", "terminate", "nullify", "cancel_end_turn", "duplicate",
+  "destroy_resource", "terminate", "nullify", "cancel_end_turn", "duplicate", "coin_flip", "transform",
 ]);
 
-const RULE_KEYS = new Set(["play", "ability", "trigger", "replace", "static", "unique", "provides", "flip_up", "script"]);
+const RULE_KEYS = new Set(["play", "ability", "trigger", "replace", "static", "unique", "provides", "flip_up", "script", "coin_reflip"]);
 
 export const MOD_KINDS = new Set([
   "stat", "set_stats", "add_type", "remove_type", "keyword", "provides", "player_icons", "cost", "cost_min",
@@ -38,7 +38,7 @@ export const EVENTS = new Set([
  * Card numbers live in cards/<id>.json, everything else in cards/<id>.yaml.
  * These are the only keys allowed in the JSON file, and they're rejected in YAML.
  */
-export const NUMBER_KEYS = ["cost", "threshold", "stats", "structure", "gear", "provides", "influence", "starting_resources", "starting_draw"] as const;
+export const NUMBER_KEYS = ["cost", "threshold", "stats", "structure", "gear", "provides", "influence", "starting_resources", "starting_draw", "min_deck"] as const;
 
 const ICON_NAMES = ["obsession", "greed", "elitism", "deception", "rage", "volition"];
 
@@ -57,12 +57,24 @@ export function validateNumbers(n: any): string[] {
     }
   };
   for (const k of Object.keys(n)) if (!(NUMBER_KEYS as readonly string[]).includes(k)) errs.push(`unknown key "${k}" (allowed: ${NUMBER_KEYS.join(", ")})`);
-  for (const k of ["cost", "structure", "influence"]) if (n[k] !== undefined && !whole(n[k])) errs.push(`${k} must be a whole number >= 0`);
+  for (const k of ["cost", "structure", "influence", "min_deck"]) if (n[k] !== undefined && !whole(n[k])) errs.push(`${k} must be a whole number >= 0`);
   map("threshold", ICON_NAMES);
   map("provides", ICON_NAMES);
   map("stats", ["str", "life", "spd"]);
   map("gear", ["str", "life", "spd"]);
-  map("starting_resources", ["any_staples", "different_staples"]);
+  const sr = n.starting_resources;
+  if (sr !== undefined) {
+    const counts = ["any_staples", "different_staples", "any_resources", "any_cards_face_down", "choose_staples"];
+    for (const [k, v] of Object.entries(sr)) {
+      if (k === "specific" || k === "face_down") {
+        for (const [ic, c] of Object.entries(v as object)) {
+          if (!ICON_NAMES.includes(ic)) errs.push(`starting_resources.${k}.${ic} is not an icon`);
+          if (!whole(c)) errs.push(`starting_resources.${k}.${ic} must be a whole number >= 0`);
+        }
+      } else if (!counts.includes(k)) errs.push(`starting_resources.${k} is not one of ${[...counts, "specific", "face_down"].join(", ")}`);
+      else if (!whole(v)) errs.push(`starting_resources.${k} must be a whole number >= 0`);
+    }
+  }
   map("starting_draw", ["first", "second"]);
   return errs;
 }
@@ -70,7 +82,8 @@ export function validateNumbers(n: any): string[] {
 export function loadLibrary(dir: string): CardLibrary {
   const lib: CardLibrary = {};
   const errors: string[] = [];
-  for (const file of readdirSync(dir).filter((f) => f.endsWith(".yaml") || f.endsWith(".yml")).sort()) {
+  const files = readdirSync(dir);
+  for (const file of files.filter((f) => f.endsWith(".yaml") || f.endsWith(".yml")).sort()) {
     let def: CardDef;
     try {
       def = parse(readFileSync(join(dir, file), "utf8")) as CardDef;
@@ -109,11 +122,23 @@ export function loadLibrary(dir: string): CardLibrary {
     for (const e of validate(def)) errors.push(`${file}: ${e}`);
     lib[def.id] = def;
   }
-  for (const file of readdirSync(dir).filter((f) => f.endsWith(".json"))) {
-    if (!readdirSync(dir).includes(file.replace(/\.json$/, ".yaml"))) errors.push(`${file}: no matching .yaml file`);
+  const yamls = new Set(files);
+  for (const file of files.filter((f) => f.endsWith(".json"))) {
+    if (!yamls.has(file.replace(/\.json$/, ".yaml"))) errors.push(`${file}: no matching .yaml file`);
   }
   if (errors.length) throw new Error("Card data errors:\n  " + errors.join("\n  "));
   return lib;
+}
+
+/** Formats from formats/*.json, keyed by file name. */
+export function loadFormats(dir: string): Record<string, import("../engine/formats.ts").Format> {
+  const out: Record<string, any> = {};
+  for (const f of readdirSync(dir).filter((x) => x.endsWith(".json")).sort()) {
+    const id = f.replace(/\.json$/, "");
+    out[id] = { id, ...JSON.parse(readFileSync(join(dir, f), "utf8")) };
+  }
+  if (!out.casual) throw new Error("formats/casual.json is required");
+  return out;
 }
 
 /** Card definition = YAML (text and rules) + JSON (numbers). */

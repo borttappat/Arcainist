@@ -1,0 +1,9 @@
+id: "desolate"
+name: "Desolate"
+trade: arcanist
+types: [tactic]
+set: "Seed Saga"
+rarity: rare
+text: |
+  EXTRA COST: Pick a number for X, where X is less than or equal to the number of [O] you control.
+  Destroy all characters with X strength.

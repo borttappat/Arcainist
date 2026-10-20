@@ -1,0 +1,9 @@
+id: "elementary-elemental"
+name: "Elementary Elemental"
+trade: arcanist
+types: [character]
+subtypes: ["lurker"]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  When this card is destroyed, put it into its owner's hand, then discard a card.

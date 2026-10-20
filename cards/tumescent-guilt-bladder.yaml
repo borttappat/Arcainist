@@ -1,0 +1,9 @@
+id: "tumescent-guilt-bladder"
+name: "Tumescent Guilt Bladder"
+trade: arcanist
+types: [item]
+set: "Seed Saga"
+rarity: rare
+text: |
+  At the end of your turn, put a token on this card. Your faction loses X influence, where X is the number of tokens on this card. You may play a resource.
+  At the start of each turn, if there are at least 3 tokens on this card, an opponent takes control of it. Remove all tokens from this card.

@@ -1,0 +1,10 @@
+id: "m3chm4n1c-31f"
+name: "M3CHm4n1c 31f"
+trade: gearsmith
+types: [character]
+subtypes: ["mechanic", "31f"]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  When this card enters play, you may pay 2. If you do, you may put a token on up to 2 different non-resource cards.
+  While there is a token on this card, it gains 2 strength and 2 life.

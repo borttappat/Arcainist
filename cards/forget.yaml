@@ -1,0 +1,9 @@
+id: "forget"
+name: "Forget"
+trade: arcanist
+types: [tactic]
+set: "2nd Edition"
+rarity: common
+text: |
+  EXTRA COST: Pick a non-resource card.
+  Put the card into its owner's hand. Look at an opponent's hand and choose a card in it. That player discards that card.

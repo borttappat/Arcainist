@@ -3,11 +3,13 @@ name: "Pluck"
 trade: rogue
 types: [character]
 subtypes: [pluck, grifter]
+set: "Ungodly Mess"
+rarity: ultra-rare
 text: |
-  UNIQUE PLUCK.
+  UNIQUE PLUCK
   GRIFT
-  COST - Use this only during your turn. Pay 5. Deplete this card. Pick a non-tactic card in your opponent's discard pile.
-  EFFECT - Put the card into play under your control.
+  COST: Use this only during your turn. Pay 5. Deplete this card. Pick a non-tactic card in an opponent's discard pile.
+  EFFECT: Put the card into play under your control.
 rules:
   - unique: Pluck
   - ability:

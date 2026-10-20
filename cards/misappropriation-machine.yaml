@@ -2,10 +2,12 @@ id: misappropriation-machine
 name: "Misappropriation Machine"
 trade: rogue
 types: [item]
+set: "2nd Edition"
+rarity: rare
 text: |
   STEAL
-  COST - Deplete this card. Pick a character or item in your opponent's discard pile.
-  EFFECT - Put the character or item into play under your control. Your opponent takes control of this card.
+  COST: Deplete this card. Pick a character or item in an opponent's discard pile.
+  EFFECT: Put the character or item into play under your control. That card's owner takes control of this card.
 rules:
   - ability:
       name: Steal

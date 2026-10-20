@@ -1,0 +1,11 @@
+id: "node-in-a-box"
+name: "Node in a Box"
+trade: gearsmith
+types: [character]
+subtypes: ["node"]
+set: "Holy Heist"
+rarity: common
+text: |
+  When this card enters play, you may search your deck for a "node" card and reveal it. If you do, put it into your hand.
+  If this card would be destroyed, you may pay 1 to flip it face-down under its owner's control instead.
+  When this card is destroyed, destroy all other "node" cards.

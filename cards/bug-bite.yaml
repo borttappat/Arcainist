@@ -1,0 +1,12 @@
+id: "bug-bite"
+name: "Bug Bite"
+trade: rogue
+types: [tactic]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  EXTRA COST: Pick a character.
+  Put a token on the character. Destroy it if it has at least X tokens on it, where X is its numeric cost.
+  RECUR: [D][D]
+  COST: Use this only if this card is in your discard pile. Pay 4. Remove this card from the game. Pick a character.
+  EFFECT: Put 2 tokens on the character. Destroy it if it has at least X tokens on it, where X is its numeric cost.

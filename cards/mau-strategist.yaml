@@ -1,0 +1,10 @@
+id: "mau-strategist"
+name: "Mau Strategist"
+trade: banker
+types: [character]
+subtypes: ["mau", "bureaucrat"]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  When this card enters play, you may search your deck for a staple resource, reveal it, and put it into your hand.
+  When this card is destroyed, you may draw a card.

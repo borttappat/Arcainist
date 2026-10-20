@@ -1,0 +1,12 @@
+id: "quotidian-concealer"
+name: "Quotidian Concealer"
+trade: arcanist
+types: [character]
+subtypes: ["ritualist"]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  This card enters play with a token on it.
+  OBSCURE
+  COST: Remove a token from this card. Pick a character.
+  EFFECT: This turn, the character gains COVERT.

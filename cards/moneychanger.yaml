@@ -1,0 +1,12 @@
+id: "moneychanger"
+name: "Moneychanger"
+trade: banker
+types: [character]
+subtypes: ["investor"]
+set: "2nd Edition"
+rarity: common
+text: |
+  This card loses 1 strength and 1 life for each token on it.
+  EXCHANGE
+  COST: Deplete this card. Put a token on this card.
+  EFFECT: Draw a card.

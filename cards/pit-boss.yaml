@@ -1,0 +1,9 @@
+id: "pit-boss"
+name: "Pit Boss"
+trade: rogue
+types: [character]
+subtypes: ["crimelord"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  This card gains 1 speed for each [D] you control.

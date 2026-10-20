@@ -1,0 +1,9 @@
+id: "unrelenting-ridicule"
+name: "Unrelenting Ridicule"
+trade: gearsmith
+types: [tactic]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick a character with COVERT.
+  Destroy the character.

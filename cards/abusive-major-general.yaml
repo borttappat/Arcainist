@@ -1,0 +1,11 @@
+id: "abusive-major-general"
+name: "Abusive Major General"
+trade: warlord
+types: [character]
+subtypes: ["soldier", "tyrant"]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  BLEED
+  COST: Pick a character in battle. Destroy a resource you control.
+  EFFECT: Inflict 2 damage to the character.

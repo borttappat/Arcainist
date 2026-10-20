@@ -1,0 +1,9 @@
+id: "readied-rifleman"
+name: "Readied Rifleman"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  When this card is restored, you may pick a faction. If you do, inflict 1 damage to it.

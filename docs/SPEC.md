@@ -425,30 +425,42 @@ are only available while the engine is not waiting on the opponent.
 1. **Battle response windows** stay open until no player wishes to respond; then
    the speed group's damage resolves. (6.5, 7.2)
 2. **Flip Up:** play the card from its face-down resource state; it goes to the
-   discard pile after use.
+   discard pile after use. "FLIP UP: 2 [R]" means pay 2 and have 1 Rage icon. A
+   face-down resource can be flipped up even while attached to the faction (spent).
+   Timing is the card's normal timing: a tactic whenever a tactic could be played,
+   a character, item or location only as a free action on your turn (unless
+   TACTICAL); those enter play normally.
 3. **Recur:** an ability used from a card in the discard pile; the card is then
    voided.
 4. **Provides:** adds to the controller's threshold for as long as the card is in play.
-
-### Assumptions (need confirmation)
-
-1. **Flip Up timing:** usable whenever the card could normally be played (a tactic:
-   any time a tactic could be; a character: only in your own main phase).
-2. **Flip Up cost:** "2 [rage]" means pay 2 (attach 2 resources) and have 1 Rage
-   threshold. The flipped card leaves the resource row, and can be flipped even if
-   it is currently attached to the faction.
-3. **Flip Up for non-tactics:** a character, item or location with Flip Up enters
-   play normally (does not go to the discard).
-4. **Turn end:** responding to "end turn" never cancels the end of the turn.
-5. **Start-of-turn order:** reset damage, restore rule, develop rule, then
-   "at the start of your turn" triggers.
-6. **First player:** coin flip, winner chooses.
-7. **Battle damage:** attackers must assign all their strength; damage can only go
-   to characters still in the blocking party.
-8. **Blockers** are not depleted by blocking, only at the end of the battle (as for
+5. **End of turn:** responses to "end turn" resolve, then the turn always ends. Only
+   cards that say so (Lost on Floor 3) cancel it.
+6. **Start of turn:** after damage resets, the faction's restore and develop rules
+   and every "at the start of your turn" trigger become available together, and the
+   turn player orders them. (When only the faction's own rules are there, they run
+   in printed order without a prompt.)
+7. **Triggers and the stack:** triggers just happen and can't be responded to, even
+   mid-resolution. If a trigger lets a player use an ability or deploy a card, that
+   goes on the stack and can be responded to. Costs are paid without a response
+   window; the opponent responds once the card or ability is on the stack. The stack
+   builds up and resolves like a zipper and can build up again while resolving.
+8. **First player:** set by the room creator: random, or a chosen player.
+9. **Blockers** are not depleted by blocking, only at the end of the battle (as for
    all surviving participants).
-9. **Characters, items and locations** can only be deployed with an empty stack
-   (not as a response) unless they have Tactical.
-10. (resolved) Alluring Quicksand RECUR threshold is 4 Greed.
-11. **Universal** is a trade with no staple of its own, with no extra rules.
-12. **Infinite loops** are left to the players (manual draw / concede).
+10. **Battle damage:** attackers must divide all their strength among living
+    blockers; nothing carries over to the attacked faction or location while any
+    blocker remains.
+11. **Characters, items and locations** are deployed only as a free action on your
+    own turn with an empty stack, never as a response, unless they have TACTICAL.
+12. **Card readings** confirmed: see `docs/CARDS.md` section 10.
+
+### Assumptions (still unconfirmed)
+
+1. **Universal** is a trade with no staple of its own, with no extra rules.
+2. **Infinite loops** are left to the players (manual draw / concede).
+3. **Formats:** `formats/*.json` define deck rules (minimum size, copy limit,
+   bans, tournament legality, allowed sets) and `engine/formats.ts` checks decks
+   against them. Rooms choose a format; Casual (the default) enforces nothing and
+   only warns when a deck lacks its faction's starting staples. Constructed uses the
+   database's "Current" ban list. The "Block" and "Chronicles" formats from the
+   database are not defined yet (their legal sets are unknown).

@@ -1,0 +1,10 @@
+id: "micromajig-shipping-container"
+name: "Micromajig Shipping Container"
+trade: gearsmith
+types: [character]
+subtypes: ["machine"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  When this card is destroyed, put 5 Micromajig tokens into play under your control.
+  (Treat Micromajig tokens as Gearsmith character cards with 1 strength, 1 life, 3 speed, and the majig subtype. When a Micromajig token leaves play, it disappears.)

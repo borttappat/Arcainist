@@ -3,8 +3,12 @@ name: "Gideon, the Ultimate Warrior"
 trade: warlord
 types: [character]
 subtypes: [gideon, sword of great justice]
+set: "Seed Saga"
+rarity: rare
 text: |
-  UNIQUE GIDEON. If battle damage is inflicted to this card while it's attacking, reduce the amount to 0. If your opponent's faction loses influence, increase the amount by 1.
+  UNIQUE GIDEON
+  When battle damage is inflicted to this card while it's attacking, reduce the amount to 0.
+  When an opponent's faction loses influence, increase the amount by 1.
 rules:
   - unique: Gideon
   - static:

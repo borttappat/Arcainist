@@ -1,0 +1,9 @@
+id: "prehensile-pirate"
+name: "Prehensile Pirate"
+trade: banker
+types: [character]
+subtypes: ["pirate", "mau"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  EXTRA COST: Remove 4 cards in your discard pile from the game.

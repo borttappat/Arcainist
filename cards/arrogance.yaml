@@ -1,0 +1,9 @@
+id: "arrogance"
+name: "Arrogance"
+trade: gearsmith
+types: [resource]
+set: "Seed Saga"
+rarity: rare
+text: |
+  When this card enters play, your faction loses 1 influence.
+  PROVIDES: [E][E]

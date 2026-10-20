@@ -1,0 +1,9 @@
+id: "pugnacious-publicist"
+name: "Pugnacious Publicist"
+trade: banker
+types: [character]
+subtypes: ["publicist"]
+set: "1st Edition Part 2"
+rarity: common
+text: |
+  When this card enters play, all your characters gain 1 life this turn.

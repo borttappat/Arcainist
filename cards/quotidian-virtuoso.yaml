@@ -1,0 +1,11 @@
+id: "quotidian-virtuoso"
+name: "Quotidian Virtuoso"
+trade: arcanist
+types: [character]
+subtypes: ["ritualist"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  DISRUPT
+  COST: Pay 2. Discard a card. Deplete this card.
+  EFFECT: Look at an opponent's hand and choose a card in it. That player discards that card.

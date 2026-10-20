@@ -2,12 +2,14 @@ id: meat-of-the-mountain
 name: "Meat of the Mountain"
 trade: arcanist
 types: [item]
+set: "Seed 2"
+rarity: rare
 text: |
-  If a player draws any number of cards, that player may add or remove a token from this card. If they do, generate the effect which corresponds to the new number of tokens on this card:
-  0 TOKENS - That player's opponent discards a card.
-  1 TOKEN - That player may look at the top 2 cards of their deck. If they do, they put 1 into their hand and 1 on the bottom of their deck.
-  2 TOKENS - That player may pick a character or location. If they do, put it into its owner's hand.
-  AT LEAST 3 TOKENS - That player may play a resource.
+  When a player draws any number of cards, that player may add or remove a token from this card. If they do, generate the effect which corresponds to the new number of tokens on this card:
+  0 TOKENS: That player's choses an opponent to discard a card.
+  1 TOKEN: That player may look at the top 2 cards of their deck. If they do, they put 1 into their hand and 1 on the bottom of their deck.
+  2 TOKENS: That player may pick a character or location. If they do, put it into its owners's hand.
+  AT LEAST 3 TOKENS: That player may play a resource.
 rules:
   - trigger: { on: draw, player: any }
     effect:
@@ -19,6 +21,7 @@ rules:
                   - label: "Add a token to Meat of the Mountain"
                     steps: [ tokens: { card: self, add: 1 }, let: { mm: 1 } ]
                   - label: "Remove a token from Meat of the Mountain"
+                    when: { gt: [ { tokens: self }, 0 ] }
                     steps: [ tokens: { card: self, remove: 1 }, let: { mm: 1 } ]
                   - label: "Do nothing"
                     steps: [ let: { mm: 0 } ]

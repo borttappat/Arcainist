@@ -1,0 +1,9 @@
+id: "offering-of-false-friendship"
+name: "Offering of False Friendship"
+trade: arcanist
+types: [tactic]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick a character.
+  Any opponent may pay 2. If they do, terminate this card. Otherwise, put that character and characters with the same name as that character on the bottom of their owner's deck.

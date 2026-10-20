@@ -1,0 +1,9 @@
+id: "robustical-badass"
+name: "Robustical Badass"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Seed Saga"
+rarity: common
+text: |
+  [R][R][R]: At the start of your turn, you may inflict 1 damage to an opponent's faction.

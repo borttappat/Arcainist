@@ -1,0 +1,9 @@
+id: "surplus-soldier"
+name: "Surplus Soldier"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Seed Saga"
+rarity: common
+text: |
+  If this card would be destroyed, flip it face-down under its owner's control instead.

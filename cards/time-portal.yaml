@@ -1,0 +1,8 @@
+id: "time-portal"
+name: "Time Portal"
+trade: gearsmith
+types: [location]
+set: "Seed Saga"
+rarity: rare
+text: |
+  At the start of your turn, you may put a Micromajig token into play.

@@ -1,0 +1,9 @@
+id: "pillaging-pirate"
+name: "Pillaging Pirate"
+trade: rogue
+types: [character]
+subtypes: ["pirate"]
+set: "2nd Edition"
+rarity: common
+text: |
+  When this card enters play, put the top 2 cards of an opponent's deck into their discard pile.

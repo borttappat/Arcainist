@@ -1,0 +1,11 @@
+id: "ravenous-wolf"
+name: "Ravenous Wolf"
+trade: rogue
+types: [character]
+subtypes: ["beast"]
+set: "1st Edition"
+rarity: common
+text: |
+  COVERT
+  TACTICAL
+  When this card enters play, if you deployed it during an opponent's turn, destroy a card named Deception you control or destroy this card.

@@ -1,0 +1,10 @@
+id: "fool-s-gold"
+name: "Fool's Gold"
+trade: rogue
+types: [item]
+set: "2nd Edition"
+rarity: rare
+text: |
+  TRADE
+  COST: Pick an item an opponent controls. Pay X, where X is its numeric cost. Destroy this card.
+  EFFECT: Take control of the item.

@@ -1,0 +1,10 @@
+id: "lugubrian-octopod"
+name: "Lugubrian Octopod"
+trade: arcanist
+types: [character]
+subtypes: ["lurker"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  COVERT
+  When this card inflicts damage to a faction, that faction's controller discards 2 cards.

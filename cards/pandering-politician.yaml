@@ -1,0 +1,11 @@
+id: "pandering-politician"
+name: "Pandering Politician"
+trade: banker
+types: [character]
+subtypes: ["mau", "politician"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  PANDER
+  COST: Deplete this card. Pick a character or item.
+  EFFECT: Remove a token from the picked card.

@@ -1,0 +1,9 @@
+id: "reckless-challenger"
+name: "Reckless Challenger"
+trade: warlord
+types: [character]
+subtypes: ["fighter"]
+set: "2nd Edition"
+rarity: common
+text: |
+  At the end of your turn, if this card started the turn under your control and did not attack this turn, destroy it.

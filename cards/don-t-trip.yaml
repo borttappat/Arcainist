@@ -1,0 +1,10 @@
+id: "don-t-trip"
+name: "Don't Trip"
+trade: rogue
+types: [tactic]
+set: "Holy Heist"
+rarity: common
+text: |
+  EXTRA COST: Pick an attacking character.
+  If the picked character would inflict battle damage, inflict that damage to itself instead.
+  FLIP UP: 3 [D]

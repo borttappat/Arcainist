@@ -1,0 +1,8 @@
+id: "terra-cotta-flagellator"
+name: "Terra Cotta Flagellator"
+trade: gearsmith
+types: [character]
+subtypes: ["plant", "golem"]
+set: "Seed Saga"
+rarity: common
+text: ""

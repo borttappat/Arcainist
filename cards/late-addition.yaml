@@ -2,8 +2,10 @@ id: late-addition
 name: "Late Addition"
 trade: rogue
 types: [tactic]
+set: "2nd Edition"
+rarity: uncommon
 text: |
-  You may play a character card from your hand. Draw a card. (You still pay all the character's costs.)
+  You may deploy a character card from your hand. Draw a card. (You still pay all the character's costs.)
 rules:
   - play:
       effect:

@@ -1,0 +1,12 @@
+id: "spiky-atlasphere"
+name: "Spiky Atlasphere"
+trade: gearsmith
+types: [item]
+subtypes: ["gear"]
+set: "1st Edition"
+rarity: common
+text: |
+  ATTACH TO CHARACTER
+  The attached character gains 1 strength.
+  When an attacking party is formed including the attached character, it must have only 1 member.
+  When the attached character is blocked, destroy all members of the blocking party. If you do, reduce the attached character's battle damage during this battle to 0.

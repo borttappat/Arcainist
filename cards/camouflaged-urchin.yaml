@@ -1,0 +1,10 @@
+id: "camouflaged-urchin"
+name: "Camouflaged Urchin"
+trade: rogue
+types: [character]
+subtypes: ["martial artist"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  While this card is depleted, your opponents cannot pick this card.
+  FLIP UP:1 [D]

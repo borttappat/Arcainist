@@ -1,0 +1,12 @@
+id: "discordant-cadencer"
+name: "Discordant Cadencer"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  AGITATE
+  COST: Pay 1. Lose 2 influence.
+  EFFECT: This turn, this card gains " PROVIDES: [R][R][R] ".
+  [R][R][R][R][R][R]: This card gains 2 strength.

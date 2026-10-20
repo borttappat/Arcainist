@@ -1,0 +1,9 @@
+id: "arcanology-recruitment-officer"
+name: "Arcanology Recruitment Officer"
+trade: arcanist
+types: [character]
+subtypes: ["muddler"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  At the start of your turn, pick a character an opponent controls. It gains COVERT until the start of your next turn.

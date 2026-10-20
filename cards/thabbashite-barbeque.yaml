@@ -1,0 +1,9 @@
+id: "thabbashite-barbeque"
+name: "Thabbashite Barbeque"
+trade: arcanist
+types: [tactic]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick a non-resource card.
+  Any opponent may pay 2. If they do, put this card into its owner's hand and terminate it. Otherwise, put the picked card into its owner's hand. Look at an opponent's hand and choose a non-resource card in it. That player discards the card.

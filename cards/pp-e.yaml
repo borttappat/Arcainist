@@ -1,0 +1,10 @@
+id: "pp-e"
+name: "PP&E"
+trade: banker
+types: [location]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  PAY OFF
+  COST: Use this only in response to a character being deployed. Deplete this card. Pay 1. Destroy this card.
+  EFFECT: Terminate the character.

@@ -1,0 +1,9 @@
+id: "blow-up"
+name: "Blow Up"
+trade: warlord
+types: [tactic]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick an item.
+  Destroy the item. That item's controller's faction loses 3 influence.

@@ -1,0 +1,13 @@
+id: "homewrecker"
+name: "Homewrecker"
+trade: banker
+types: [character]
+subtypes: ["mau", "assassin"]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  EXTRA COST: Inflict 2 damage to a location you own or pay 3.
+  Locations you control gain 1 structure.
+  PROSTRATE
+  COST: Deplete a location you control. Pick a character.
+  EFFECT: Deplete that card.

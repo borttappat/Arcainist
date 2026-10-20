@@ -1,0 +1,11 @@
+id: "rune-of-concealment"
+name: "Rune of Concealment"
+trade: gearsmith
+types: [item]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  PROTECT
+  COST: Pay 2. Deplete this card. Pick a character.
+  EFFECT: The next time the character would be destroyed by battle damage this turn, if this card is in play you may destroy it instead. If you do, reduce the amount of damage already inflicted to the character this turn to 0.
+  FLIP UP: 0 [E][E]

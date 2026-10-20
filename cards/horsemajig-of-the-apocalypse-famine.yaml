@@ -1,0 +1,9 @@
+id: "horsemajig-of-the-apocalypse-famine"
+name: "Horsemajig of the Apocalypse - Famine"
+trade: gearsmith
+types: [character]
+subtypes: ["horsemajig"]
+set: "2nd Edition"
+rarity: common
+text: |
+  All other horsemajig characters gain 1 speed.

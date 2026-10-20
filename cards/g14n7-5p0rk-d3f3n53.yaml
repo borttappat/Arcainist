@@ -1,0 +1,12 @@
+id: "g14n7-5p0rk-d3f3n53"
+name: "G14n7 5p0rk D3f3n53"
+trade: gearsmith
+types: [item]
+set: "Seed Saga"
+rarity: common
+text: |
+  TACTICAL
+  IMPALE
+  COST: Destroy this card. Pick an attacking character.
+  EFFECT: Destroy the character.
+  FLIP UP: 1 [E][E]

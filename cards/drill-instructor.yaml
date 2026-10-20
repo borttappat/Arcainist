@@ -1,0 +1,11 @@
+id: "drill-instructor"
+name: "Drill Instructor"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  TACTICAL
+  EXTRA COST: Deploy this only not during a battle.
+  When this card enters play, pick another character. At the start of the next turn that character gains 3 strength for that turn.

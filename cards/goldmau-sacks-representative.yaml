@@ -1,0 +1,14 @@
+id: "goldmau-sacks-representative"
+name: "Goldmau Sacks Representative"
+trade: banker
+types: [character]
+subtypes: ["mau", "employee"]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  RAISE CAPITAL
+  COST: Pay 1. Discard a card.
+  EFFECT: This turn, this card gains PROVIDES: [G][G][G] .
+  INVEST: [G][G][G][G][G][G]
+  COST: Pay 2.
+  EFFECT: Search your deck for a resource and reveal it. Put it into your hand.

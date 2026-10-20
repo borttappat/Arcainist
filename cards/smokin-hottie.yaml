@@ -1,0 +1,10 @@
+id: "smokin-hottie"
+name: "Smokin' Hottie"
+trade: banker
+types: [character]
+subtypes: ["ghost"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  When this card enters play, your faction loses 2 influence.
+  [V]V][V][V]: This card gains COVERT.

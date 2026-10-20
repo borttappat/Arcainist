@@ -1,5 +1,5 @@
 {
   "cost": 3,
-  "threshold": { "deception": 2 },
+  "threshold": { "deception": 3 },
   "structure": 4
 }

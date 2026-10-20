@@ -1,0 +1,9 @@
+id: "pinch"
+name: "Pinch"
+trade: warlord
+types: [tactic]
+set: "2nd Edition"
+rarity: common
+text: |
+  EXTRA COST: Pick a character.
+  Inflict 1 damage to the character.

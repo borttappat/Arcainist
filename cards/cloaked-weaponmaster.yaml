@@ -1,0 +1,9 @@
+id: "cloaked-weaponmaster"
+name: "Cloaked Weaponmaster"
+trade: rogue
+types: [character]
+subtypes: ["outlaw"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  You may deploy gear cards whenever you could deploy a tactic.

@@ -1,0 +1,10 @@
+id: "evanesce"
+name: "Evanesce"
+trade: arcanist
+types: [tactic]
+set: "Seed Saga"
+rarity: common
+text: |
+  EXTRA COST: Pick a character.
+  Put the character into its owner's hand.
+  FLIP UP: 1 [O][O]

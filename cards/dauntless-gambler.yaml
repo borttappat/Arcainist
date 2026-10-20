@@ -1,0 +1,10 @@
+id: "dauntless-gambler"
+name: "Dauntless Gambler"
+trade: rogue
+types: [character]
+subtypes: ["gambler"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  When this card enters play, you may choose a card type. If you do, reveal the top card of your deck. If that card is the chosen type, put a token on this card. Put the top card of your deck on the bottom.
+  While there is a token on this card, it gains 1 strength and 1 life.

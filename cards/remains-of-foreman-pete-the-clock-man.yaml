@@ -1,0 +1,17 @@
+id: "remains-of-foreman-pete-the-clock-man"
+name: "Remains of Foreman Pete, the Clock Man"
+trade: universal
+types: [item]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  UNIQUE FOREMAN PETE
+  CLOCK IN: [V][V][V]
+  COST: Discard a staple resource. Pay 2.
+  EFFECT: Draw a card.
+  WORK IT: [V][V]
+  COST: Pick a face-down resource you control. Pay 2.
+  EFFECT: Put that card into your hand. You may play a resource.
+  CLOCK OUT: [V]
+  COST: Flip this card face-down under its owner's control.
+  EFFECT: Detach a resource from your faction.

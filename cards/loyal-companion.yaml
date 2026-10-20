@@ -1,0 +1,15 @@
+id: "loyal-companion"
+name: "Loyal Companion"
+trade: rogue
+types: [character]
+subtypes: ["outcast", "mau"]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  TACTICAL
+  HELPING PAW: [D]
+  COST: Discard this card from your hand. Pick a character that is blocking or being blocked. Pay 4.
+  EFFECT: This turn, that character gains 3 strength and 3 life.
+  NINE LIVES: [D]
+  COST: Use this only if this card is in your discard pile. Pay 5.
+  EFFECT: Put this card into play under your control.

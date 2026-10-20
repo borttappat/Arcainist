@@ -1,0 +1,10 @@
+id: "silencer"
+name: "Silencer"
+trade: warlord
+types: [character]
+subtypes: ["mercenary"]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  Characters with a token on them cannot block this card.
+  If a character enters play under your opponent's control, you may pay 1. If you do, put a token on it.

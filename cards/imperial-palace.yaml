@@ -1,0 +1,8 @@
+id: "imperial-palace"
+name: "Imperial Palace"
+trade: banker
+types: [location]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  At the end of your turn you may pay 1. If you do, pick a character you control and put it into the void. At the start of your next turn put the voided character into play under your control.

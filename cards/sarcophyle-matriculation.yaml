@@ -1,0 +1,9 @@
+id: "sarcophyle-matriculation"
+name: "Sarcophyle Matriculation"
+trade: rogue
+types: [tactic]
+set: "1st Edition"
+rarity: uncommon
+text: |
+  EXTRA COST: Deploy this only while you are being attacked. Pick a character an opponent controls.
+  If the character would be destroyed during this battle, take control of it instead. Reduce the amount of damage already inflicted to it to 0. It gains the sarcophyle subtype.

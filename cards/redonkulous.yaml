@@ -1,0 +1,10 @@
+id: "redonkulous"
+name: "Redonkulous"
+trade: arcanist
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick a character.
+  If you deployed this card using FLIP UP, that character's controller discards 2 cards. If that character's controller has 3 or fewer cards in their hand, remove the character from the game.
+  FLIP UP: 5 [O][O]

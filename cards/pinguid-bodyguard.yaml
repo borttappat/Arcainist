@@ -1,0 +1,13 @@
+id: "pinguid-bodyguard"
+name: "Pinguid Bodyguard"
+trade: banker
+types: [character]
+subtypes: ["mercenary", "mau"]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  When this card attacks, restore it at the end of the battle.
+  This card can only attack once each turn.
+  PROTECT
+  COST: Deplete this card. Pick a character.
+  EFFECT: This turn, the character gains 2 life.

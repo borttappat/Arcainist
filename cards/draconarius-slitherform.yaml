@@ -1,0 +1,11 @@
+id: "draconarius-slitherform"
+name: "Draconarius Slitherform"
+trade: warlord
+types: [character]
+subtypes: ["seraphim", "dragon"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  UNIQUE DRACONARIUS
+  When this card is blocked, X is this card's strength. Inflict X damage divided however you want to the blocking party.
+  When this card is destroyed, X is this card's strength. Inflict X damage divided however you want to your opponents' characters.

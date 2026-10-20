@@ -1,0 +1,15 @@
+{
+  "name": "Constructed",
+  "description": "Tournament constructed: at least 75 cards plus a faction, up to 4 copies of a card (staples unlimited), current ban list, no cards marked not for tournament play.",
+  "enforce": true,
+  "min_deck": 75,
+  "max_copies": 4,
+  "tournament": true,
+  "banned": [
+    "Research Investment",
+    "Recollection Bazaar",
+    "The Primitive Tribes of Thabbash",
+    "Contiguous Defalcating Machine",
+    "Remains of Foreman Pete, the Clock Man"
+  ]
+}

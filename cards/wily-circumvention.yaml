@@ -1,0 +1,10 @@
+id: "wily-circumvention"
+name: "Wily Circumvention"
+trade: gearsmith
+types: [tactic]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  EXTRA COST: Pick a depleted character.
+  That character does not restore during its controller's next RESTORE RULE.
+  FLIP UP: 1 [E]

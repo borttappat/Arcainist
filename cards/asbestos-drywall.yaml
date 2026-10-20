@@ -1,0 +1,10 @@
+id: "asbestos-drywall"
+name: "Asbestos Drywall"
+trade: banker
+types: [tactic]
+set: "Holy Heist"
+rarity: common
+text: |
+  EXTRA COST: Pick a location.
+  Remove 2 damage markers from the card or add 2 damage markers to the card.
+  FLIP UP: 3 [G][G]

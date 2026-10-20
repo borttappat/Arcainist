@@ -1,0 +1,10 @@
+id: "epiphany-ball"
+name: "Epiphany Ball"
+trade: gearsmith
+types: [item]
+set: "2nd Edition"
+rarity: rare
+text: |
+  SUDDEN INSIGHT
+  COST: Deplete this card.
+  EFFECT: Search your deck for a card. Put it into your hand. An opponent takes control of this card.

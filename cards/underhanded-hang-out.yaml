@@ -1,0 +1,10 @@
+id: "underhanded-hang-out"
+name: "Underhanded Hang-Out"
+trade: banker
+types: [location]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  DIRTY DEALS
+  COST: Pay 2. Pick a location you own and inflict 1 damage to it.
+  EFFECT: Draw a card.

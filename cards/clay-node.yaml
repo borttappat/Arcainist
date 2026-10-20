@@ -3,12 +3,15 @@ name: "Clay Node"
 trade: gearsmith
 types: [character]
 subtypes: [node]
+set: "Seed Saga"
+rarity: uncommon
 text: |
-  When this card enters play, you may search your deck for a "node" card and reveal it. If you do, put it into your hand. When this card leaves play, destroy all other "node" cards.
+  When this card enters play, you may search your deck for a node card and reveal it. If you do, put it into your hand.
+  When this card leaves play, destroy all other node cards.
   DISSOLVE
-  COST - Pay 2.
-  EFFECT - Flip this card face-down under its owner's control.
-  FLIP UP - 1 [E].
+  COST: Pay 2.
+  EFFECT: Flip this card face-down under its owner's control.
+  FLIP UP: 1 [E][E][E]
 rules:
   - trigger: { on: enters_play, card: self }
     effect:

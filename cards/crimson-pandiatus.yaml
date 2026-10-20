@@ -1,0 +1,10 @@
+id: "crimson-pandiatus"
+name: "Crimson Pandiatus"
+trade: warlord
+types: [character]
+subtypes: ["beast"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  This character cannot attack.
+  [R][R][R][R][R][R]: This card gains 4 life and loses all other rules text.

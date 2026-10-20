@@ -1,0 +1,10 @@
+id: "inside-information"
+name: "Inside Information"
+trade: banker
+types: [item]
+set: "1st Edition Part 2"
+rarity: rare
+text: |
+  PROFIT
+  COST: Deplete this card.
+  EFFECT: Draw 4 cards. An opponent takes control of this card.

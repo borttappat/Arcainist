@@ -1,0 +1,11 @@
+id: "rudo-mangod-holder-of-light"
+name: "Rudo Mangod, Holder of Light"
+trade: warlord
+types: [character]
+subtypes: ["rudo", "blade of questionable morality"]
+set: "Holy Heist"
+rarity: rare
+text: |
+  UNIQUE RUDOLPHUS
+  While this card is restored, all characters you control gain 1 strength and 1 life.
+  At the start of each turn, if this card has a 'gear' card attached to it, restore this card.

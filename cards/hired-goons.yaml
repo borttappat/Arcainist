@@ -1,0 +1,10 @@
+id: "hired-goons"
+name: "Hired Goons"
+trade: banker
+types: [character]
+subtypes: ["mercenary", "mau"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  COVERT
+  At the start of your turn, you may pay 2. If you don't, an opponent takes control of this card.

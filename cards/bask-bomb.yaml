@@ -1,0 +1,9 @@
+id: "bask-bomb"
+name: "Bask Bomb"
+trade: warlord
+types: [tactic]
+set: "1st Edition"
+rarity: uncommon
+text: |
+  EXTRA COST: Deploy this only while you are attacking and an opponent is blocking. Destroy an attacking character you control. X is twice its strength. Y is its strength.
+  Inflict X damage divided however you want to the blocking party. Inflict Y damage divided however that opponent wants to the attacking party.

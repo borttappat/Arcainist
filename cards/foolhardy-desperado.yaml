@@ -1,0 +1,10 @@
+id: "foolhardy-desperado"
+name: "Foolhardy Desperado"
+trade: banker
+types: [character]
+subtypes: ["pirate", "mau"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  COVERT
+  When this card inflicts battle damage, your faction loses 2 influence.

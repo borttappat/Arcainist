@@ -1,0 +1,10 @@
+id: "gruesome-sand-beaver"
+name: "Gruesome Sand Beaver"
+trade: arcanist
+types: [character]
+subtypes: ["beast"]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  COVERT
+  EXTRA COST: Pick a face-down resource you control and put it into its owner's hand.

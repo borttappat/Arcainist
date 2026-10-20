@@ -1,0 +1,11 @@
+id: "gosche-s-spynarium"
+name: "Gosche's Spynarium"
+trade: rogue
+types: [location]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  When a character you control with a token on it leaves play, you may pick a character. If you do, that character gains COVERT this turn.
+  EXPERIMENT
+  COST: Deplete this card. Pay 2. Pick a character you control.
+  EFFECT: Put a token on that character.

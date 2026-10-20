@@ -1,0 +1,9 @@
+id: "entrancing-harlot"
+name: "Entrancing Harlot"
+trade: rogue
+types: [character]
+subtypes: ["dancer"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  When this card attacks, all other members of its party gain 1 speed this turn.

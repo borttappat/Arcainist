@@ -1,0 +1,9 @@
+id: "religious-rejection"
+name: "Religious Rejection"
+trade: banker
+types: [tactic]
+set: "Holy Heist"
+rarity: common
+text: |
+  EXTRA COST: Pick a character without an item attached to it.
+  Destroy the character. If you control [V][V][V], draw a card.

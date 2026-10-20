@@ -1,0 +1,10 @@
+id: "the-abominable-hamster"
+name: "The Abominable Hamster"
+trade: arcanist
+types: [character]
+subtypes: ["monstrosity", "hamster"]
+set: "Seed Saga"
+rarity: common
+text: |
+  COVERT
+  [O][O][O][O][O]: This card gains 2 strength.

@@ -1,0 +1,13 @@
+id: "raging-ferocity"
+name: "Raging Ferocity"
+trade: warlord
+types: [resource]
+face_down_only: true
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  This resource may only be played from your hand face-down.
+  PROVIDES: [R]
+  FLIP IT: [R]
+  COST: Use this only while this card is a face-down resource. Reveal this card. Pick a player. X is number of resources that player controls. Y is the number of resources you control. Pay 4.
+  EFFECT: Put this card into play face-up. Inflict X - Y damage to the picked player's faction.

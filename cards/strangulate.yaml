@@ -1,0 +1,10 @@
+id: "strangulate"
+name: "Strangulate"
+trade: rogue
+types: [tactic]
+set: "Seed Saga"
+rarity: common
+text: |
+  EXTRA COST: Pick a character.
+  If the character has 4 life or less, destroy it.
+  FLIP UP: 2 [D]

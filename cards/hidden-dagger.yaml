@@ -1,0 +1,15 @@
+id: "hidden-dagger"
+name: "Hidden Dagger"
+trade: rogue
+types: [item]
+subtypes: ["gear"]
+set: "Seed Saga"
+rarity: common
+text: |
+  ATTACH TO CHARACTER
+  TACTICAL
+  The attached character gains 1 strength.
+  HANDOFF
+  COST: Deplete a character you control that is not in a battle.
+  EFFECT: Attach this card to the character.
+  FLIP UP: 1 [D]

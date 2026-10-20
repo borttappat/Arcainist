@@ -1,0 +1,12 @@
+id: "jumping-screamspider"
+name: "Jumping Screamspider"
+trade: rogue
+types: [character]
+subtypes: ["beast"]
+set: "1st Edition"
+rarity: common
+text: |
+  COVERT
+  SCREAM
+  COST: This card loses COVERT this turn.
+  EFFECT: This turn, while this card is in a battle, all characters in the opposing party lose 2 speed.

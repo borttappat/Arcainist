@@ -1,0 +1,12 @@
+id: "arrakis-eternity"
+name: "Arrakis Eternity"
+trade: arcanist
+types: [character]
+subtypes: ["monstrosity"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  COVERT
+  RECUR: [O]
+  COST: Use this only if this card is in your discard pile. Pay 2. Pick a player. Remove this card from the game.
+  EFFECT: That player discards 3 cards.

@@ -1,0 +1,9 @@
+id: "flimflam-man"
+name: "Flimflam Man"
+trade: rogue
+types: [character]
+subtypes: ["grifter"]
+set: "Seed Saga"
+rarity: common
+text: |
+  When this card enters play, you may choose a card type. If you do, reveal the top card of your deck. If it is the chosen type, put it into your hand. Otherwise, put it on the bottom of your deck.

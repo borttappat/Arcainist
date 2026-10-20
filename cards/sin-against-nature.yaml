@@ -1,0 +1,9 @@
+id: "sin-against-nature"
+name: "Sin Against Nature"
+trade: arcanist
+types: [character]
+subtypes: ["monstrosity"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  When this card enters play, pick a resource you control. Put it into its owner's hand. (You may pick face-down resources.)

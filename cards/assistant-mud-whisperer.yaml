@@ -1,0 +1,9 @@
+id: "assistant-mud-whisperer"
+name: "Assistant Mud Whisperer"
+trade: gearsmith
+types: [character]
+subtypes: ["mud whisperer", "31f"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  At the start of each opponent's turn, you may pick a character. If you do, restore it.

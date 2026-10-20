@@ -1,0 +1,10 @@
+id: "theocratic-senate-of-marduun"
+name: "Theocratic Senate of Marduun"
+trade: banker
+types: [location]
+set: "Seed Saga"
+rarity: rare
+text: |
+  UNIQUE THEOCRATIC SENATE OF MARDUUN
+  Your opponents cannot attack your faction.
+  When a character inflicts damage to this card, inflict the same amount of damage to the character.

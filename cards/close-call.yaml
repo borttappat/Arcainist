@@ -1,0 +1,9 @@
+id: "close-call"
+name: "Close Call"
+trade: arcanist
+types: [tactic]
+set: "Holy Heist"
+rarity: common
+text: |
+  EXTRA COST: Pick a character you control.
+  Put the card into its owner's hand. Put this card into play under its owner's control as a face-down resource instead of into their discard pile.

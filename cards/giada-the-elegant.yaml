@@ -1,0 +1,11 @@
+id: "giada-the-elegant"
+name: "Giada, the Elegant"
+trade: warlord
+types: [character]
+subtypes: ["giada", "sword of great justice"]
+set: "Seed 3"
+rarity: fixed
+text: |
+  UNIQUE GIADA
+  This card loses 1 strength and 1 life for each token on it.
+  If this card would be destroyed by an opposing card or effect, you may put a token on it instead. If you do, deplete it and remove it from battle. Reduce the amount of damage already inflicted to this character to 0.

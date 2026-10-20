@@ -1,0 +1,15 @@
+id: "essence-of-greed"
+name: "Essence of Greed"
+trade: banker
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  Choose one of the following as this card's rules text:
+  OPTION 1
+  Draw a card.
+  OPTION 2
+  EXTRA COST: Pick a character.
+  This turn, the character gains 2 life.
+  OPTION 3
+  Your faction gains 4 influence.

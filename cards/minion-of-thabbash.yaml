@@ -1,0 +1,10 @@
+id: "minion-of-thabbash"
+name: "Minion of Thabbash"
+trade: arcanist
+types: [character]
+subtypes: ["wizard"]
+set: "Seed Saga"
+rarity: common
+text: |
+  COVERT
+  PROVIDES: [O]

@@ -1,0 +1,9 @@
+id: "portly-tradesmau"
+name: "Portly Tradesmau"
+trade: banker
+types: [character]
+subtypes: ["merchant", "mau"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  When this card blocks, draw X cards, where X is the number of characters in the attacking party.

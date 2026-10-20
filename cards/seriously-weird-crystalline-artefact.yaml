@@ -1,0 +1,13 @@
+id: "seriously-weird-crystalline-artefact"
+name: "Seriously Weird Crystalline Artefact"
+trade: arcanist
+types: [item]
+set: "Holy Heist"
+rarity: rare
+text: |
+  RECYCLE JUNK
+  COST: Pay 3. Pick a non-resource card in your discard pile and remove it from the game. X is the numeric cost of the card.
+  EFFECT: Search your deck for a card with the same type as the picked card and numeric cost X or less. Put it into your discard pile. Draw a card.
+  SERAPHIM FUSION
+  COST: Pay 4. Pick a UNIQUE IGNATIOUS you control. Destroy this card.
+  EFFECT: Search your deck for a card named "Uhluhtc Niudla" and put it into play.

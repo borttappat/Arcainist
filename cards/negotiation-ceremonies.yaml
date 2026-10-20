@@ -1,0 +1,9 @@
+id: "negotiation-ceremonies"
+name: "Negotiation Ceremonies"
+trade: banker
+types: [tactic]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  EXTRA COST: Pick an opponent. You may pay 1. If you do, that opponent may pay 1. Repeat this cost until you or that player does not pay.
+  Each player draws cards equal to the amount they paid.

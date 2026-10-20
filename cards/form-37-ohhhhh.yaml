@@ -1,0 +1,10 @@
+id: "form-37-ohhhhh"
+name: "Form 37-Ohhhhh"
+trade: banker
+types: [item]
+set: "Holy Heist"
+rarity: rare
+text: |
+  ATTACH TO CHARACTER
+  While you control only 1 character, the attached card gains COVERT.
+  When the attached character inflicts damage to a faction, draw 2 cards.

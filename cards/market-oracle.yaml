@@ -1,0 +1,11 @@
+id: "market-oracle"
+name: "Market Oracle"
+trade: banker
+types: [character]
+subtypes: ["investor", "mau"]
+set: "2nd Edition"
+rarity: common
+text: |
+  INVEST
+  COST: Deplete this card. Pick a non-resource card you control.
+  EFFECT: Remove a token from the card.

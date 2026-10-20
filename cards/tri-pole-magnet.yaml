@@ -1,0 +1,12 @@
+id: "tri-pole-magnet"
+name: "Tri-Pole Magnet"
+trade: gearsmith
+types: [item]
+subtypes: ["gear"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  ATTACH TO CHARACTER
+  GRAPPLE
+  COST: Pick a gear card in your discard pile. Destroy this card.
+  EFFECT: Put the gear card into play under your control attached to the character.

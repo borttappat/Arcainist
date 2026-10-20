@@ -1,0 +1,9 @@
+id: "dragon-catheter"
+name: "Dragon Catheter"
+trade: warlord
+types: [item]
+set: "2nd Edition"
+rarity: rare
+text: |
+  At the start of your turn, put a token on the character with the highest strength. If there is a tie, you decide which character gets the token.
+  All characters gain 1 strength for each token on them.

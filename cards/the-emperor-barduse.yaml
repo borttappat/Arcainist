@@ -1,0 +1,11 @@
+id: "the-emperor-barduse"
+name: "The Emperor Barduse"
+trade: warlord
+types: [character]
+subtypes: ["emperor barduse", "dragon"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  UNIQUE EMPEROR BARDUSE
+  When this card enters play, you may pick any number of characters. If you do, inflict X damage divided however you want to the characters, where X is twice the number of dragon characters you control.
+  All your other "dragon" characters gain 1 strength and 1 life.

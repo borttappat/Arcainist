@@ -1,0 +1,9 @@
+id: "swinish-elder"
+name: "Swinish Elder"
+trade: banker
+types: [character]
+subtypes: ["priest", "mau"]
+set: "Seed 2"
+rarity: common
+text: |
+  When an opponent plays a resource, you may pay 1. If you do, attach that resource to that opponent's faction.

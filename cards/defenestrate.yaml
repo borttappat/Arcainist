@@ -1,0 +1,8 @@
+id: "defenestrate"
+name: "Defenestrate"
+trade: rogue
+types: [tactic]
+set: "1st Edition"
+rarity: common
+text: |
+  Put the top 2 cards of an opponent's deck into their discard pile. Draw a card.

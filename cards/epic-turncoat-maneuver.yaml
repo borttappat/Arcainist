@@ -1,0 +1,9 @@
+id: "epic-turncoat-maneuver"
+name: "Epic Turncoat Maneuver"
+trade: rogue
+types: [tactic]
+set: "2nd Edition"
+rarity: rare
+text: |
+  EXTRA COST: Destroy 2 characters you control. Pick 4 or fewer characters.
+  Take control of the picked characters.

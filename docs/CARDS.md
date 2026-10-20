@@ -49,7 +49,8 @@ playable: players use the manual controls, as on Jinteki.
 | `structure` | Locations. |
 | `gear` | `str`, `life`, `spd` bonus a gear item gives the character it's attached to. |
 | `provides` | Icons a face-up non-staple resource provides (Violence: `{ "rage": 2 }`). |
-| `influence`, `starting_resources`, `starting_draw` | Factions: `{ "any_staples": 2 }` or `{ "different_staples": 2 }`; `{ "first": 8, "second": 9 }`. |
+| `influence`, `starting_draw` | Factions: `{ "first": 8, "second": 9 }`. |
+| `starting_resources` | Factions, any combination of: `specific: { "rage": 2 }` (these staples), `face_down: { "obsession": 1 }`, `any_staples: N`, `different_staples: N`, `any_resources: N` (non-staple too), `any_cards_face_down: N`, `choose_staples: 10` (choose X from 1 to 10, then X staples). |
 
 Every value is a whole number of 0 or more. A card with no numbers (a staple)
 still has a JSON file, containing `{}`. Numbers written inside `rules` ("Pay 3",
@@ -82,7 +83,18 @@ Other optional YAML fields:
 | `deck_limit: null` | Any number of copies (Party Clowns). |
 
 Factions also have `restore_rule` / `develop_rule` in YAML: lists of steps run at
-the start of each of the owner's turns. A faction's extra starting-draw steps
+the start of each of the owner's turns (an empty list means none). Other faction
+fields:
+
+| Field | Meaning |
+|---|---|
+| `opponent_rules: { starting_draw: this, develop_rule: none }` | The Knitting Coalition: the opponent uses this faction's starting draw and has no develop rule. |
+| `opponent_rules: { equalize_starting_resources: true }` | Money for Nothing: the opponent gets staples until both have as many starting resources. |
+| `back_of: imperial-army` | The back side of a double-sided faction; not allowed in decklists. |
+| `incomplete: true`, `incomplete_reason` | Not playable (the Showdown multiplayer factions). |
+
+Abilities with `both_players: true` can be used by either player ("Both players may use
+this ability"); the player using it is "you". A faction's extra starting-draw steps
 (Unlikely Heroes' search) go in YAML as `starting_draw: { before: [ ... ] }`; the
 draw counts are in the JSON. See `cards/tournament-faction.*`.
 
@@ -178,6 +190,7 @@ Static rules are only active while the card is face-up in play, or in `zone`.
 | Event | Meaning |
 |---|---|
 | `destroy` | A matching card would be destroyed. In `instead`, `it` is that card. |
+| `tactic_to_discard` | A tactic you deployed would go to the discard pile (`by: you`); `it` is the tactic. If the `instead` steps don't move it, it goes to the discard pile as normal (Thabbash). |
 | `faction_damage` | Damage to a faction (`by: you`, `to: opponent`, `label`). The controller chooses how much is replaced. `amount` and `player` are set (Trickster's Globe). |
 
 Zone changes ("would be put into X, put it into Y instead") are the `redirect`
@@ -207,7 +220,7 @@ of the same card resolution, from cost through effect.
 | `if` | `if: { cond: <condition>, then: [..], else: [..] }` | |
 | `may` | `may: [ ..steps.. ]`, or `may: { steps, else, who, prompt }` | "You may". Sets "did" for "If you do". |
 | `may_pay` | `may_pay: { amount: 2, who: opponent, then: [..], else: [..] }` | "You may pay N. If you do…" |
-| `choose_one` | `choose_one: { who: opponent, options: [ { label, steps } ] }` | OPTION 1 / OPTION 2. |
+| `choose_one` | `choose_one: { who: opponent, options: [ { label, steps, when } ] }` | OPTION 1 / OPTION 2. An option with `when: <condition>` is only offered while it holds. |
 | `as` | `as: { who: opponent, steps: [..] }` | Run steps as another player. |
 | `each_player` | `each_player: [ ..steps.. ]` | Active player first. |
 | `repeat` | `repeat: { times: X, steps: [..] }` | |
@@ -224,6 +237,9 @@ of the same card resolution, from cost through effect.
 | `choose_number` | `choose_number: { as: X, min: 0, max: 5 }` |
 | `name` | `name: { as: n, kind: card \| subtype \| icon, not_type: resource, remember: true }` |
 
+`different_trades: true` on `pick` requires the picked cards not to share a trade.
+`like: responded` (instead of `from`) offers the characters the card or ability being
+responded to could have picked as a cost, other than the one it picked (Mistaken Identity).
 `pick` follows the picking rules: "cannot pick", "must pick" and pick taxes all
 apply. Use `choose: true` for "choose" wording, which isn't picking. Picks made
 while paying costs are recorded for Mistaken Identity.
@@ -252,6 +268,8 @@ while paying costs are recorded for Mistaken Identity.
 | `nullify` | `nullify: responded` ("the ability has no effect") |
 | `duplicate` | `duplicate: last_tactic` |
 | `cancel_end_turn` | `cancel_end_turn: true` |
+| `coin_flip` | `coin_flip: { as: won }`, then `if: { cond: { did: true } ... }`. Two-Headed Coin (`coin_reflip`) is offered automatically. |
+| `transform` | `transform: counter-imperial-army` (turn a double-sided faction over) |
 
 ### Decks and hands
 
@@ -288,7 +306,14 @@ while paying costs are recorded for Mistaken Identity.
 ```
 
 A modifier `target` that names a variable (`target: c`) is fixed to those cards
-when the effect is created. A selector target stays live. `next` effects end
+when the effect is created. A selector target changing cards' characteristics
+(`stat`, `set_stats`, `add_type`, `remove_type`, `keyword`) is also fixed to the
+cards matching now: "this turn, all your characters gain 1 strength" doesn't reach
+characters that arrive later. Add `live: true` to a modifier to keep it live. Other
+selector targets (costs, prohibitions, play permissions) always stay live.
+
+`create_effect` takes a `tag`, and `clear_effects: { tag: form }` removes only the
+card's effects with that tag (`clear_effects: self` removes all of them). `next` effects end
 after their first use (1337!, Escrow Office) or at the start of the next turn.
 A delayed trigger with `once: true` removes its effect after firing.
 
@@ -319,6 +344,8 @@ Type keys: `character`, `item`, `location`, `tactic`, `resource`, `faction`, or
 | `subtype` | `gear`, or a variable holding a named subtype |
 | `trade`, `name`, `name_not` | `name` can be a variable holding a named card |
 | `cost_lte`, `cost_gte` | Numeric cost, any value |
+| `str_lte` | Current strength (cards in play) |
+| `trade_not_among: <selector>` | Doesn't share a trade with any card matching the selector |
 | `face_down`, `depleted`, `staple` | true / false |
 | `not_self`, `not: c`, `among: list` | |
 | `host_of: self` | The character this card is attached to |
@@ -360,7 +387,7 @@ card's printed stats.
 | `{ in_play: c }`, `{ destroyed: c }`, `{ in_zone: [c, void] }` | Where a card is |
 | `{ matches: [c, <selector>] }`, `{ exists: <selector> }` | |
 | `{ via: flip_up }` | "If you deployed this using FLIP UP" |
-| `{ your_turn: true }`, `{ attacking: self }`, `{ blocking: self }` | |
+| `{ your_turn: true }`, `{ attacking: self }`, `{ blocking: self }`, `{ in_battle: true }` | |
 | `{ all: [..] }`, `{ any: [..] }`, `{ not: .. }` | |
 
 ## 6. Modifiers
@@ -378,7 +405,7 @@ Modifiers are continuous effects. They appear in `static` rules and
 | `keyword` | `{ keyword: covert }` | |
 | `provides` | `{ provides: { obsession: 2 } }` | Icons for threshold (Crest). |
 | `player_icons` | `{ player_icons: { elitism: 4 }, target: none }` | Icons not tied to a card (31337!). |
-| `cost` | `{ cost: -4, by: you, target: { card: { zone: stack } } }` | Cost increase or reduction. `applies: any` also covers ability costs. |
+| `cost` | `{ cost: -4, by: you, target: { card: { zone: stack } } }` | Cost increase or reduction. `applies: any` also covers ability costs; `applies: flip_up` only deploys using FLIP UP. |
 | `cost_min` | `{ cost_min: 3, by: opponent, target: { tactic: { zone: stack } } }` | Canny Bailiff. |
 | `threshold_reduce` | `{ threshold_reduce: 3 }` | Ignore that many missing icons. |
 | `cannot` | `{ cannot: play \| pick \| attack \| block \| restore_by_rule \| lose_game \| destroy_except_cost }` | Prohibitions. "Cannot" beats "can". |
@@ -456,35 +483,36 @@ move it into the language instead.
     mods: [ { play_from: { ignore_threshold: true }, target: { card: { zone: void, tagged_by: self } } } ]
 ```
 
+**Finding what to automate next:** `npm run patterns` writes `docs/PATTERNS.md`, which
+lists every rule pattern in the printed texts, how many cards use it, and whether the
+engine supports it.
+
 **Testing a new card:** add a scenario to `engine/test/cards.test.ts` (see the
 existing ones), then run `npm test`. The fuzz test plays random games with every
 card and catches engine crashes.
 
 ## 10. Interpretations and cards to verify
 
-**Hard to read on the scans:** please check these against the real cards.
+**Card data source:** numbers and printed texts are checked against the
+spoilstoolbox.com card database (`content/cards/` in its source archive), which
+holds the most recent wordings. All cards match it.
 
-| Card | What to check |
-|---|---|
-| 31337! | Number of Elitism icons it grants this turn (implemented as 4). |
-| Rudo Mangod, Fightful Adonis | Stats (implemented as 1/3/3) and threshold (4 Rage). |
-| Unexpected Transformation | Threshold (implemented as 4 Deception). |
-
-**Interpretations:** these are places where the printed text left room, and the
-reading implemented.
+**Interpretations:** places where the printed text left room, and the reading
+implemented. Mistaken Identity only offers characters the original card could have
+picked. Trickster's Globe, Ecto-Conduit, Hidden Sandwich, Auction House and the rows
+marked "Confirmed" are user rulings; the rest are still open.
 
 | Card | Implemented as |
 |---|---|
 | Trickster's Globe | The controller chooses how many points of the damage become milled cards instead (0 to all). |
 | Ecto-Conduit (Harness) | The voided tactic may be deployed immediately, not later. |
 | Eldridge Gosche | Up to 3 tokens divided among any of your non-resource cards. |
-| Cantankerous Claywork | "All your other characters" includes characters entering later that turn. |
+| Cantankerous Claywork | Confirmed: only characters already in play when it attacks. |
 | Auction House | If nobody bids, the character is shuffled back with the other revealed cards. |
-| Mistaken Identity | Doesn't check that the new character was a legal pick for the original card. |
 | Free Trade Agreement (option 3) | Each player chooses how many cards (0 to 2) to draw. |
-| Meat of the Mountain | "Remove a token" at 0 tokens still counts as acting and triggers the 0-token effect. |
-| One-Legged Hopping Pogo-Bear | HIDE! also removes Covert gained from SCHPROING!. |
+| Meat of the Mountain | Confirmed: an effect needs a real token change; "remove" isn't offered at 0 tokens. |
+| One-Legged Hopping Pogo-Bear | Confirmed: HIDE! removes the character type but the card keeps Covert. |
 | Hidden Sandwich | Protects the host from any destruction, including costs. |
-| Quotidian Misfire | Also catches cards returned to hand by effects. |
+| Quotidian Misfire | Confirmed: every card going to a hand, drawn, searched or returned. |
 | Two-Headed Coin | Not automated: coins are only flipped at setup. |
 | Lost on Floor 3 | Playable whenever you have priority after declaring the end of your turn. |

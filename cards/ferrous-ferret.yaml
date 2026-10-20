@@ -3,8 +3,12 @@ name: "Ferrous Ferret"
 trade: rogue
 types: [character]
 subtypes: [beast]
+set: "2nd Edition"
+rarity: uncommon
 text: |
-  Anything that can pick this card must pick it. (This effect is only active while this card is in play.) If this card is picked, put a token on it. This card gains 1 strength and 1 life for each token on it.
+  Anything that can pick this card must pick it. (This effect is only active while this card is in play.)
+  When this card is picked, put a token on it.
+  This card gains 1 strength and 1 life for each token on it.
 rules:
   - static:
       mods:

@@ -1,0 +1,15 @@
+id: "the-garbageman"
+name: "The Garbageman"
+trade: banker
+types: [character]
+subtypes: ["lackey", "mau"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  This card can attack only once each turn.
+  SIFT
+  COST: Deplete this card.
+  EFFECT: Draw a card. Discard a card.
+  RUMMAGE
+  COST: Pay 2. Remove 3 cards in your discard pile from the game.
+  EFFECT: Restore this card.

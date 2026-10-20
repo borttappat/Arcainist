@@ -1,0 +1,12 @@
+id: "duskfall-buckgriff"
+name: "Duskfall Buckgriff"
+trade: rogue
+types: [character]
+subtypes: ["seraphim", "dragon"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  TACTICAL, UNIQUE BUCKGRIFF
+  SNEAK
+  COST: Pay 1.
+  EFFECT: This card gains COVERT this turn.

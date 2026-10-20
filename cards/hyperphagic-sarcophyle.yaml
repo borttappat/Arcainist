@@ -1,0 +1,10 @@
+id: "hyperphagic-sarcophyle"
+name: "Hyperphagic Sarcophyle"
+trade: rogue
+types: [character]
+subtypes: ["sarcophyle"]
+set: "2nd Edition"
+rarity: common
+text: |
+  When this card inflicts damage to a faction, you may put a token on it.
+  This card gains 1 strength and 1 life for each token on it.

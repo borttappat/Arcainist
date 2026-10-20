@@ -1,0 +1,9 @@
+id: "thabbashite-bowlegger"
+name: "Thabbashite Bowlegger"
+trade: warlord
+types: [character]
+subtypes: ["rider"]
+set: "Holy Heist"
+rarity: common
+text: |
+  When a card that provides at least [V] enters play under your control, you may pick a character. If you do, that character gains 2 strength this turn.

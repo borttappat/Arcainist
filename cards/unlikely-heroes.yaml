@@ -12,6 +12,7 @@ develop_rule:
   - choose_one:
       - draw: 1
       - play_resource: 1
+set: "Holy Heist"
 text: |
   STARTING RESOURCES - Any 2 different staple resources.
   STARTING DRAW - You may search your deck for a staple resource that is not any of your starting resources, reveal it and put it into your hand. Then draw 7 going first, 8 going second.

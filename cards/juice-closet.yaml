@@ -1,0 +1,8 @@
+id: "juice-closet"
+name: "Juice Closet"
+trade: warlord
+types: [item]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  At the start of your turn you may pick a character. If you do, that character gains 1 strength this turn.

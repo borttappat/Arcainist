@@ -1,0 +1,9 @@
+id: "ambuscade"
+name: "Ambuscade"
+trade: rogue
+types: [tactic]
+set: "2nd Edition"
+rarity: common
+text: |
+  EXTRA COST: Deploy this only while you are being attacked. Destroy a character you control. X is twice its strength.
+  Inflict X damage divided however you want to the attacking party.

@@ -1,0 +1,14 @@
+id: "seance-sensor"
+name: "Seance Sensor"
+trade: arcanist
+types: [item]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  This card enters play with 2 tokens on it.
+  SEIZE
+  COST: Remove a token from this card. Deplete this card. Pick a player.
+  EFFECT: That player discards a card.
+  ABSORB HUMOUR
+  COST: Pay 2. Deplete this card.
+  EFFECT: Put a token on this card.

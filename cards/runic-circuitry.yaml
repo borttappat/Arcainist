@@ -1,0 +1,14 @@
+id: "runic-circuitry"
+name: "Runic Circuitry"
+trade: gearsmith
+types: [item]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  This card enters play with 2 tokens on it.
+  CONSTRUCT
+  COST: Pay 3. Deplete this card.
+  EFFECT: Remove a token from this card.
+  POWER-UP
+  COST: Use this only if there are no tokens on this card. Deplete this card.
+  EFFECT: Reduce the next numeric cost you pay this turn by 3

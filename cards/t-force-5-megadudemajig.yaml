@@ -1,0 +1,9 @@
+id: "t-force-5-megadudemajig"
+name: "T Force 5 Megadudemajig"
+trade: gearsmith
+types: [character]
+subtypes: ["t force 5", "majig"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  When this card enters play, you may detach up to 2 resources from your faction.

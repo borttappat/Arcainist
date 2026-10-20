@@ -1,0 +1,11 @@
+id: "swollen-ostrich"
+name: "Swollen Ostrich"
+trade: rogue
+types: [character]
+subtypes: ["beast"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  TACTICAL
+  When this card enters play, you may pick a character. If you do, it gains 1 strength and 1 life this turn.
+  FLIP UP: 1 [D][D]

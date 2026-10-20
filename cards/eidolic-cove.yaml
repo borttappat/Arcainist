@@ -1,0 +1,10 @@
+id: "eidolic-cove"
+name: "Eidolic Cove"
+trade: banker
+types: [location]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  When this card enters play, you may pick an item or location. If you do, flip that card face-down under its owner's control.
+  When this card is destroyed, you faction loses 4 influence.
+  FLIP UP: 2 [G]

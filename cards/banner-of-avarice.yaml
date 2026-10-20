@@ -1,0 +1,13 @@
+id: "banner-of-avarice"
+name: "Banner of Avarice"
+trade: universal
+types: [item]
+subtypes: ["banner"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  PROVIDES: [G]
+  When a card that provides at least [G] enters play under your control, you may pay 1. If you do, pick a card in a discard pile and remove it from the game. If you do, you may pick a character. That character gains 1 life this turn.
+  BURN IT
+  COST: Pay 2. Destroy this card.
+  EFFECT: Draw 2 cards.

@@ -3,7 +3,9 @@ name: "Martial Artist"
 trade: rogue
 types: [character]
 subtypes: [martial artist]
+set: "2nd Edition"
+rarity: uncommon
 text: |
-  Your opponent cannot pick this card.
+  Your opponents cannot pick this card.
 rules:
   - static: { mods: [ { cannot: pick, by: opponent } ] }

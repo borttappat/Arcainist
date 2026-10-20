@@ -1,0 +1,9 @@
+id: "bloating-bask"
+name: "Bloating Bask"
+trade: warlord
+types: [character]
+subtypes: ["dragon"]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  [R][R][R][R][R][R]: This card gains 1 strength, 1 life and 1 speed.

@@ -1,0 +1,12 @@
+id: "the-emperor-born"
+name: "The Emperor Born"
+trade: warlord
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  EXTRA COST: Deploy this only not during a battle. Pick a character in your discard pile.
+  You may deploy the character.
+  REUSE: [R]
+  COST: Use this only while this card is a face-down resource. Reveal this card. Pay 4. Pick a character in your discard pile. Discard a card.
+  EFFECT: You may deploy the character.

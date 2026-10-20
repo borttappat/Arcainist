@@ -1,0 +1,11 @@
+id: "infectious-pustulio"
+name: "Infectious Pustulio"
+trade: warlord
+types: [tactic]
+subtypes: ["mutation"]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  ATTACH TO CHARACTER (put this card into play attached to that character instead of into its owner's discard pile)
+  EXTRA COST: Deploy this only not during a battle.
+  When the attached character is blocked, inflict 1 damage to each member of the blocking party.

@@ -1,0 +1,9 @@
+id: "regroup-reassess"
+name: "Regroup & Reassess"
+trade: banker
+types: [tactic]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  Draw 2 cards. If you control an attacking party of at least 2 members, draw 2 more cards, then discard a card.
+  FLIP UP: 5 [G]

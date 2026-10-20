@@ -1,0 +1,13 @@
+id: "omahkapi-si-pi-kssii"
+name: "Omahkapi'si Pi'kssii"
+trade: rogue
+types: [character]
+subtypes: ["omahkapi'si", "seraphim", "dragon"]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  TACTICAL, UNIQUE OMAHKAPI'SI
+  While there are at least 10 cards in an opponent's discard pile, that player cannot pick this card.
+  FLEX
+  COST: Pay 2. Pick a card in an opponent's discard pile.
+  EFFECT: Remove that card from the game. If you do, this card gains 2 strength this turn.

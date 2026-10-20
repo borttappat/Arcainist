@@ -1,0 +1,11 @@
+id: "ignatius-gloamspike"
+name: "Ignatius Gloamspike"
+trade: arcanist
+types: [character]
+subtypes: ["ignatius", "blade of questionable morality"]
+set: "Holy Heist"
+rarity: rare
+text: |
+  UNIQUE IGNATIOUS
+  When this card attacks, look at the top 2 cards of your deck. You may put any number of those cards on the bottom of your deck in any order. Put the remaining cards on the top of your deck in any order.
+  When this card inflicts damage to a faction, look at the top 2 cards of the faction's controller's deck. Put any number of those cards on the bottom of their deck in any order. Put the remaining cards on the top of their deck in any order. Draw a card.

@@ -1,0 +1,13 @@
+id: "iohane-the-convex"
+name: "Iohane, the Convex"
+trade: rogue
+types: [character]
+subtypes: ["iohane", "sword of great justice"]
+set: "Seed 3"
+rarity: fixed
+text: |
+  TACTICAL, UNIQUE IOHANE
+  At the start of your turn, flip a coin. If you win, draw a card.
+  SNEAK
+  COST: Pay 1.
+  EFFECT: This card gains COVERT this turn.

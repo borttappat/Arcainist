@@ -1,0 +1,14 @@
+id: "defiler-of-innocence"
+name: "Defiler of Innocence"
+trade: arcanist
+types: [character]
+subtypes: ["wizard"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  CORRUPT
+  COST: Pay 2. Pick a character.
+  EFFECT: This turn, the character gains COVERT.
+  DEFILE
+  COST: Deplete this card.
+  EFFECT: Look at an opponent's hand and choose a character in it. That player discards that character.

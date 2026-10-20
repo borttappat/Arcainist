@@ -1,0 +1,12 @@
+id: "hassan-i-of-thabbash"
+name: "Hassan-i of Thabbash"
+trade: banker
+types: [character]
+subtypes: ["assassin"]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  When this card is destroyed, each opponent must destroy a character they control.
+  HARASH: [V][V][V]
+  COST: Use this only if this card is in your discard pile and only during your turn. Pay 1. Destroy a face-down resource you control.
+  EFFECT: Put this card into play under your control.

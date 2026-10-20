@@ -1,0 +1,13 @@
+id: "zigalburgonglgr-the-stolen-god"
+name: "Zigalburgonglgr, the Stolen God"
+trade: universal
+types: [character]
+subtypes: ["god"]
+set: "Ungodly Mess"
+rarity: super-rare
+text: |
+  When this card enters play, you may put a token on up to X non-resource cards, where X is the number of [V] you control.
+  When this card is destroyed, destroy all non-resource cards with tokens on them.
+  TURN TO MUSH
+  COST: Pay 2. Pick a card with a token on it.
+  EFFECT: Flip the card face-down under its owner's control.

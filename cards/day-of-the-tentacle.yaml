@@ -1,0 +1,8 @@
+id: "day-of-the-tentacle"
+name: "Day of the Tentacle"
+trade: arcanist
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  Look at an opponent's hand and choose a non-resource card in it. Put it into play under that opponent's control as a face-down resource.

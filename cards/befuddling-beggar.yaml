@@ -1,0 +1,11 @@
+id: "befuddling-beggar"
+name: "Befuddling Beggar"
+trade: rogue
+types: [character]
+subtypes: ["outcast"]
+set: "2nd Edition"
+rarity: common
+text: |
+  PANHANDLE
+  COST: Deplete this card. Pick a character.
+  EFFECT: This turn, the character either gains or loses 1 speed.

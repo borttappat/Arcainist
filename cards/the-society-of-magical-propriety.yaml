@@ -1,0 +1,38 @@
+id: "the-society-of-magical-propriety"
+name: "The Society of Magical Propriety"
+trade: none
+types: [faction]
+tournament_legal: false
+set: "Seed 3"
+text: |
+  This card cannot be used in tournament play. (But please, play with it for fun!)
+  STARTING RESOURCES: Any 1 resource, Any 1 card (if it's not a resource, put it into play face-down.)
+  STARTING DRAW: 10 going first, 9 going second
+  MINIMUM DECK SIZE: 300 cards
+  RESTORE RULE: At the start of your turn, restore all your depleted cards and detach all resources from your faction.
+  DEVELOP RULE: At the start of your turn, draw a card or play a resource. You may put a token on this card.
+  DRAW
+  COST: Pay 3.
+  EFFECT: Draw a card.
+  RESOURCE
+  COST: Pay 3.
+  EFFECT: Play a resource.
+  ENCYCLOPEDIC KNOWLEDGE: [O][O]
+  COST: Remove 3 tokens from this card.
+  EFFECT: Search your deck for a tactic. Put it into your hand.
+restore_rule:
+  - restore_all_depleted: you
+  - detach_all_resources: you
+develop_rule:
+  - choose_one:
+      - draw: 1
+      - play_resource: 1
+  - may: [ tokens: { card: self, add: 1 } ]
+rules:
+  - ability: { name: Draw, cost: [ pay: 3 ], effect: [ draw: 1 ] }
+  - ability: { name: Resource, cost: [ pay: 3 ], effect: [ play_resource: 1 ] }
+  - ability:
+      name: Encyclopedic Knowledge
+      threshold: { obsession: 2 }
+      cost: [ tokens: { remove: 3 } ]
+      effect: [ search: { deck: you, for: { tactic: any }, to: hand } ]

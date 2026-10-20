@@ -1,0 +1,10 @@
+id: "mesmerizing-enchantress"
+name: "Mesmerizing Enchantress"
+trade: arcanist
+types: [character]
+subtypes: ["sorceress"]
+set: "Seed Saga"
+rarity: common
+text: |
+  EXTRA COST: You may pick 4 or fewer characters.
+  When this card enters play, if you picked characters as part of its cost, they cannot attack until the start of your next turn.

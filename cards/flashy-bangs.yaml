@@ -1,0 +1,11 @@
+id: "flashy-bangs"
+name: "Flashy Bangs"
+trade: rogue
+types: [item]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  BURST
+  COST: Pick a blocking character. Destroy this card.
+  EFFECT: Remove the character from the battle. Deplete it.
+  FLIP UP: 1 [D][D]

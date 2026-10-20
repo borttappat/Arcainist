@@ -1,0 +1,8 @@
+id: "creaky-old-swordsman"
+name: "Creaky Old Swordsman"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "2nd Edition"
+rarity: common
+text: ""

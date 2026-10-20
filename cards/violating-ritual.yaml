@@ -1,0 +1,9 @@
+id: "violating-ritual"
+name: "Violating Ritual"
+trade: arcanist
+types: [tactic]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick an opponent.
+  That opponent discards 2 cards. Draw a card.

@@ -1,0 +1,16 @@
+id: "abram-ka-darbo-alkazin"
+name: "Abram Ka-darbo Alkazin"
+trade: rogue
+types: [character]
+subtypes: ["pluck", "performer", "blade of questionable morality"]
+set: "Ungodly Mess"
+rarity: super-rare
+text: |
+  UNIQUE PLUCK
+  FEALTY: While this card is in your hand and you control at least 4 staple resources of different trades, reduce this card's threshold requirement by any 3 resource icons.
+  MAKE VANISH
+  COST: Deplete this card. Pick a character. Pay 5.
+  EFFECT: Put that character into the void.
+  MAKE REAPPEAR
+  COST: Deplete this card. Pay 1.
+  EFFECT: Put a character voided by this card into play under your control.

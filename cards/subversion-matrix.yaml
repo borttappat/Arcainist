@@ -1,0 +1,13 @@
+id: "subversion-matrix"
+name: "Subversion Matrix"
+trade: gearsmith
+types: [item]
+subtypes: ["gear"]
+set: "2nd Edition"
+rarity: common
+text: |
+  ATTACH TO CHARACTER
+  Treat the attached character as though it has no rules text. (This includes abilities.)
+  MOVE
+  COST: Pay 2. Pick a character.
+  EFFECT: Attach this card to the character.

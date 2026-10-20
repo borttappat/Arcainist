@@ -1,0 +1,11 @@
+id: "hub-node"
+name: "Hub Node"
+trade: gearsmith
+types: [character]
+subtypes: ["node"]
+set: "2nd Edition"
+rarity: common
+text: |
+  When this card enters play, you may search your deck for a node card and reveal it. If you do, put it into your hand.
+  When this card is destroyed, destroy all other node cards.
+  This card gains 1 strength and 1 life for each other node card in play.

@@ -1,0 +1,10 @@
+id: "industrious-usage"
+name: "Industrious Usage"
+trade: gearsmith
+types: [tactic]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  EXTRA COST: Pick an item.
+  Destroy the item. Put a Micromajig token into play under your control.
+  FLIP UP: 2 [E][E]

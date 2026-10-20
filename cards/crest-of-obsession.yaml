@@ -4,10 +4,12 @@ flavor_title: original Open R&D concept by Kragt & Great White Nothing
 trade: universal
 types: [item]
 subtypes: [crest]
+set: "Seed 2"
+rarity: rare
 text: |
   UNIQUE CREST
-  PROVIDES - [obsession][obsession]
-  If a card that provides at least [obsession] enters play under your control, you may search your deck for a tactic and reveal it. If you do, put it on top of your deck.
+  PROVIDES: [O][O]
+  When a card that provides at least [O] enters play under your control, you may search your deck for a tactic and reveal it. If you do, put it on top of your deck.
 rules:
   - unique: Crest
   - static: { mods: [ { provides: { obsession: 2 } } ] }

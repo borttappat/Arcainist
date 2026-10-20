@@ -1,0 +1,9 @@
+id: "timid-mau"
+name: "Timid Mau"
+trade: banker
+types: [character]
+subtypes: ["mau"]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  When this card is blocked by an opposing party of 2 or more characters, it loses 1 speed this turn.

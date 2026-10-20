@@ -1,0 +1,10 @@
+id: "inconspicuous-golem"
+name: "Inconspicuous Golem"
+trade: gearsmith
+types: [character]
+subtypes: ["golem"]
+set: "Seed Saga"
+rarity: common
+text: |
+  When this card enters play, you may pay 1. If you do, put a token on it.
+  While there is a token on this card, it can block COVERT parties.

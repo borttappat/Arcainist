@@ -1,0 +1,9 @@
+id: "righteous-exemplar"
+name: "Righteous Exemplar"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  [R][R][R][R][R]: This card gains 1 strength and 1 life.

@@ -1,0 +1,9 @@
+id: "vicious-bruiser"
+name: "Vicious Bruiser"
+trade: warlord
+types: [character]
+subtypes: ["fighter"]
+set: "Holy Heist"
+rarity: common
+text: |
+  [R][R][R][R][R][R]: This card gains 2 strength and 4 life.

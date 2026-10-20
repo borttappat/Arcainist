@@ -1,0 +1,9 @@
+id: "torrential-bleeder"
+name: "Torrential Bleeder"
+trade: warlord
+types: [character]
+subtypes: ["dragon"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  At the start of your turn, inflict 1 damage to all characters.

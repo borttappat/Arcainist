@@ -1,0 +1,10 @@
+id: "auspicious-tax"
+name: "Auspicious Tax"
+trade: banker
+types: [item]
+subtypes: ["gear"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  ATTACH TO CHARACTER
+  The attached character's controller must pay 3 to attack with it.

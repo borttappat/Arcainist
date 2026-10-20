@@ -1,0 +1,11 @@
+id: "sockem-bot"
+name: "Sockem Bot"
+trade: gearsmith
+types: [character]
+subtypes: ["warmachine"]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  PAY OFF
+  COST: Any player may use this ability. Pay 1.
+  EFFECT: This turn, if damage is inflicted to a character or faction by this card, reduce the amount by 1.

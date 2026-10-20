@@ -1,0 +1,14 @@
+id: "heavy-sword"
+name: "Heavy Sword"
+trade: warlord
+types: [item]
+subtypes: ["gear"]
+set: "Seed Saga"
+rarity: common
+text: |
+  ATTACH TO CHARACTER
+  The attached character gains 2 strength.
+  [R][R][R][R]: The attached character gains an additional 2 strength.
+  HANDOFF
+  COST: Pay 4. Deplete a character you control that is not in a battle.
+  EFFECT: Attach this card to the character.

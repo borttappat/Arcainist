@@ -1,0 +1,13 @@
+id: "murderous-kleptomaniac"
+name: "Murderous Kleptomaniac"
+trade: rogue
+types: [character]
+subtypes: ["vigilante"]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  COVERT
+  When this card is put into a discard pile from play, you may pick a character, item, or location. If you do, remove that card from the game.
+  KLEPT: [D][D][D][D][D][D][D][D][D][D]
+  COST: Pay 4. Pick a character or item.
+  EFFECT: Take control of that card.

@@ -1,0 +1,11 @@
+id: "hidden-sniper"
+name: "Hidden Sniper"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  SHARPSHOOT
+  COST: Pay 1. Deplete this card. Pick a character.
+  EFFECT: Inflict 1 damage to the character.

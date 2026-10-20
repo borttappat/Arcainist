@@ -1,0 +1,10 @@
+id: "vexing-nullifier"
+name: "Vexing Nullifier"
+trade: arcanist
+types: [character]
+subtypes: ["ritualist"]
+set: "Holy Heist"
+rarity: common
+text: |
+  If this character would inflict battle damage to a character, put that character into its owner's hand instead.
+  If a character would inflict battle damage to this character, put this character into its owner's hand instead.

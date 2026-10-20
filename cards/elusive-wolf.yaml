@@ -1,0 +1,14 @@
+id: "elusive-wolf"
+name: "Elusive Wolf"
+trade: rogue
+types: [character]
+subtypes: ["beast"]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  HOWL
+  COST: Destroy a card named "Deception" you own.
+  EFFECT: Put a token on this card.
+  PROWL
+  COST: Remove a token from this card.
+  EFFECT: This turn, this card gains COVERT.

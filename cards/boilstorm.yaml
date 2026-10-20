@@ -1,0 +1,9 @@
+id: "boilstorm"
+name: "Boilstorm"
+trade: warlord
+types: [tactic]
+set: "Seed Saga"
+rarity: rare
+text: |
+  EXTRA COST: Pick 3 or fewer characters.
+  Inflict X damage divided however you want to the characters, where X is the number of [R] you control.

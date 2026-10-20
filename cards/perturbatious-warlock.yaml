@@ -1,0 +1,9 @@
+id: "perturbatious-warlock"
+name: "Perturbatious Warlock"
+trade: arcanist
+types: [character]
+subtypes: ["wizard"]
+set: "Seed Saga"
+rarity: common
+text: |
+  When this card enters play, an opponent puts a card from their hand on the top of their deck.

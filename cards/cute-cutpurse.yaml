@@ -1,0 +1,10 @@
+id: "cute-cutpurse"
+name: "Cute Cutpurse"
+trade: rogue
+types: [character]
+subtypes: ["thief"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  While an opponent controls an item, this card cannot be blocked by that player.
+  When this card inflicts damage to a faction, pick an item that faction's controller controls if you can. If you do, destroy it.

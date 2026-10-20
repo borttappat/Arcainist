@@ -1,0 +1,10 @@
+id: "nefarious-horror"
+name: "Nefarious Horror"
+trade: arcanist
+types: [character]
+subtypes: ["monstrosity"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  COVERT
+  While an opponent controls more characters than you, this card gains 2 strength, 2 life, and loses COVERT.

@@ -1,0 +1,10 @@
+id: "red-raven"
+name: "Red Raven"
+trade: rogue
+types: [character]
+subtypes: ["beast"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  When a coin is flipped, you may put a token on this card.
+  This card gains 1 strength and 1 life for each token on it.

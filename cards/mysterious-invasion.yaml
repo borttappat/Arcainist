@@ -1,0 +1,10 @@
+id: "mysterious-invasion"
+name: "Mysterious Invasion"
+trade: gearsmith
+types: [item]
+set: "Seed Saga"
+rarity: rare
+text: |
+  OVERWHELM
+  COST: Deplete this card. Destroy 2 characters you control. Pick a character.
+  EFFECT: Destroy the character.

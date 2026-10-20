@@ -1,0 +1,12 @@
+id: "ecto-agriolimax"
+name: "Ecto-Agriolimax"
+trade: arcanist
+types: [character]
+subtypes: ["insect"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  This card enters play with 2 tokens on it.
+  SLITHER
+  COST: Remove a token from this card. Pick an item or location.
+  EFFECT: Put the card into its owner's hand.

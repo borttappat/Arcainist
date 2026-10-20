@@ -2,10 +2,12 @@ id: arcanist-s-almanac
 name: "Arcanist's Almanac"
 trade: arcanist
 types: [item]
+set: "2nd Edition"
+rarity: uncommon
 text: |
   FORESIGHT
-  COST - Deplete this card.
-  EFFECT - Look at up to the top 5 cards of either deck. Put them back in any order.
+  COST: Deplete this card.
+  EFFECT: Look at up to the top 5 cards of any one deck. Put them back in any order.
 rules:
   - ability:
       name: Foresight

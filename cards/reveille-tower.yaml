@@ -1,0 +1,8 @@
+id: "reveille-tower"
+name: "Reveille Tower"
+trade: warlord
+types: [location]
+set: "2nd Edition"
+rarity: rare
+text: |
+  All your characters gain 1 strength.

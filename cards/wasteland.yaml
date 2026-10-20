@@ -1,0 +1,11 @@
+id: "wasteland"
+name: "Wasteland"
+trade: universal
+types: [location]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  UNIQUE WASTELAND
+  When this card is inflicted damage by a character, destroy the character.
+  At the start of your turn, put a token on this card.
+  When there are at least 3 tokens on this card, void all non-resource cards.

@@ -1,0 +1,9 @@
+id: "auspicious-arrival"
+name: "Auspicious Arrival"
+trade: banker
+types: [tactic]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  Look at the top 8 cards of your deck. You may choose a character among them with 1 strength or less and reveal it. If you do, put it into your hand. Shuffle your deck.
+  FLIP UP: 3 [G]

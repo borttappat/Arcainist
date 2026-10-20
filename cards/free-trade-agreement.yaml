@@ -2,12 +2,14 @@ id: free-trade-agreement
 name: "Free Trade Agreement"
 trade: banker
 types: [item]
+set: "2nd Edition"
+rarity: rare
 text: |
   At the start of each player's turn, that player chooses one of the following:
-  OPTION 1 - That player may draw a card and their opponent may play a resource.
-  OPTION 2 - That player may play a resource and their opponent may draw a card.
-  OPTION 3 - Both players may draw up to 2 cards.
-  OPTION 4 - Both players may play up to 2 resources.
+  OPTION 1: That player may draw a card and their opponents may play a resource.
+  OPTION 2: That player may play a resource and their opponents may draw a card.
+  OPTION 3: Each player may draw up to 2 cards.
+  OPTION 4: Each player may play up to 2 resources.
 rules:
   - trigger: { on: start_of_turn, player: any }
     effect:

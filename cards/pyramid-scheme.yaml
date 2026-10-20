@@ -1,0 +1,9 @@
+id: "pyramid-scheme"
+name: "Pyramid Scheme"
+trade: banker
+types: [tactic]
+set: "1st Edition"
+rarity: uncommon
+text: |
+  EXTRA COST: Flip a coin. If you win, X is 3. Otherwise, X is 2.
+  Draw X cards.

@@ -1,0 +1,9 @@
+id: "horsemajig-of-the-apocalypse-death"
+name: "Horsemajig of the Apocalypse - Death"
+trade: gearsmith
+types: [character]
+subtypes: ["horsemajig"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  All other horsemajig characters gain 1 strength, 1 life, and 1 speed.

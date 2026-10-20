@@ -1,0 +1,9 @@
+id: "puerile-ecto-manipulator"
+name: "Puerile Ecto-Manipulator"
+trade: arcanist
+types: [character]
+subtypes: ["ecto-manipulator"]
+set: "Holy Heist"
+rarity: common
+text: |
+  When this card enters play you may pick a non-resource card. If you do, put a token on the card.

@@ -3,14 +3,17 @@ name: "Eldridge Gosche, Godstealer"
 trade: arcanist
 types: [character]
 subtypes: [ritualist, eldridge]
+set: "Holy Heist"
+rarity: rare
 text: |
-  UNIQUE ELDRIDGE. When this card enters play or is destroyed, you may pick 3 or fewer non-resource cards you control. If you do, put up to 3 tokens divided however you want on those cards.
+  UNIQUE ELDRIDGE
+  When this card enters play or is destroyed, you may pick 3 or fewer non-resource cards you control. If you do, put up to 3 tokens divided however you want on those cards.
   READY THE RITE
-  COST - Remove 2 tokens from this card. Pick a tactic you own in the void or in your discard pile.
-  EFFECT - Put the tactic into your hand.
+  COST: Remove 2 tokens from this card. Pick a tactic you own in the void or in your discard pile.
+  EFFECT: Put the tactic into your hand.
   TRIBUTE
-  COST - Pay 1. Destroy this card. Pick a player.
-  EFFECT - That player discards 2 cards. Draw a card.
+  COST: Pay 1. Destroy this card. Pick a player.
+  EFFECT: That player discards 2 cards. Draw a card.
 rules:
   - unique: Eldridge
   - trigger: { on: enters_play, card: self }

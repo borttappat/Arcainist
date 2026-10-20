@@ -1,0 +1,10 @@
+id: "assimilation-center"
+name: "Assimilation Center"
+trade: warlord
+types: [location]
+set: "2nd Edition"
+rarity: rare
+text: |
+  RECRUIT
+  COST: Pay 1. Deplete this card.
+  EFFECT: Search your deck for a character and reveal it. Put it on the top of your deck.

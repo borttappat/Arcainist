@@ -1,0 +1,9 @@
+id: "recycling-scheme-facility"
+name: "Recycling Scheme Facility"
+trade: banker
+types: [location]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  When this card enters play, you may draw a card.
+  When a character is put into a discard pile, any player may pay 4 to put that card on top of its owner's deck.

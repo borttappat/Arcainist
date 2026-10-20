@@ -2,9 +2,11 @@ id: unexpected-transformation
 name: "Unexpected Transformation"
 trade: rogue
 types: [tactic]
-# VERIFY: part of this card was hard to read on the scan (see text/threshold).
+set: "Holy Heist"
+rarity: rare
 text: |
-  EXTRA COST - Pick a character you control. X is its cost. Put it on the bottom of its owner's deck. Choose a number for Y. Pay Y-X. Search your deck for a character with cost Y or less and reveal it. You may deploy it for free. If you don't, put it on top of your deck.
+  EXTRA COST: Pick a character you control. X is its cost. Put it on the bottom of its owner's deck. Choose a number for Y. Pay Y-X.
+  Search your deck for a character with cost Y or less and reveal it. You may deploy it for free. If you don't, put it on top of your deck.
 rules:
   - play:
       cost:

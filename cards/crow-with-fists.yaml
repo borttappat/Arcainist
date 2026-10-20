@@ -1,0 +1,9 @@
+id: "crow-with-fists"
+name: "Crow With Fists"
+trade: rogue
+types: [character]
+subtypes: ["beast"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  You may include as many copies of this card in your deck as you want.

@@ -2,11 +2,13 @@ id: resurrection-emporium
 name: "Resurrection Emporium"
 trade: banker
 types: [location]
+set: "1st Edition"
+rarity: rare
 text: |
-  If a character would be put into your discard pile from anywhere, remove it from the game instead.
+  If a character would be put into your discard pile, remove it from the game instead.
   RESURRECT
-  COST - Use this only during your turn. Pick a character in your discard pile. Pay 3+X, where X is that character's numeric cost.
-  EFFECT - Put the character into play under your control.
+  COST: Use this only during your turn. Pick a character in your discard pile. Pay 3+X, where X is its numeric cost.
+  EFFECT: Put the character into play under your control.
 rules:
   - static:
       mods:

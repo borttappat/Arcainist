@@ -1,0 +1,9 @@
+id: "heist-planner"
+name: "Heist Planner"
+trade: rogue
+types: [character]
+subtypes: ["thief"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  When this card enters play, you may search an opponent's deck for up to 3 cards with different names and reveal them. If you do, put them into that player's discard pile.

@@ -4,11 +4,13 @@ flavor_title: '"I''m finished!"'
 trade: rogue
 types: [character]
 subtypes: [miner]
+set: "Seed Saga"
+rarity: uncommon
 text: |
-  If this card is destroyed, flip it face-down under its owner's control instead.
+  If this card would be destroyed, flip it face-down under its owner's control instead.
   PETTY VENGEANCE
-  COST - Use this only while this card is a face-down resource. Reveal this card. Pay 1. Discard a card. Pick a character.
-  EFFECT - This turn, the character loses 1 life.
+  COST: Use this only while this card is a face-down resource. Reveal this card. Pay 1. Discard a card. Pick a character.
+  EFFECT: This turn, the character loses 1 life.
 rules:
   - replace: { event: destroy, card: self }
     instead:

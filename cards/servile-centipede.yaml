@@ -1,0 +1,9 @@
+id: "servile-centipede"
+name: "Servile Centipede"
+trade: arcanist
+types: [character]
+subtypes: ["lurker"]
+set: "2nd Edition"
+rarity: common
+text: |
+  When this card enters play, you may search your deck for a tactic and reveal it. If you do, put it into your hand.

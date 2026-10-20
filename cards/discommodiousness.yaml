@@ -2,8 +2,10 @@ id: discommodiousness
 name: "Discommodiousness"
 trade: gearsmith
 types: [tactic]
+set: "2nd Edition"
+rarity: rare
 text: |
-  Your opponent must reveal their hand and shuffle all tactics from it into their deck. Your opponent draws X cards, where X is the number of tactics shuffled into their deck. Draw a card.
+  An opponent reveals their hand. Shuffle all tactics revealed this way into their deck. That player draws X cards, where X is the number of tactics shuffled into their deck. Draw a card.
 rules:
   - play:
       effect:

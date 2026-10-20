@@ -1,0 +1,12 @@
+id: "god-s-blessing-of-foresight"
+name: "God's Blessing of Foresight"
+trade: arcanist
+types: [tactic]
+subtypes: ["mutation"]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  UNIQUE BLESSING
+  ATTACH TO CHARACTER
+  The attached character gains the following rules text: "At the start of your turn, you may pick a character you control and put a token on it.
+  All your characters lose 1 speed. Each character you control with a token on it gains 1 strength and COVERT."

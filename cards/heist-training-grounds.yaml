@@ -1,0 +1,11 @@
+id: "heist-training-grounds"
+name: "Heist Training Grounds"
+trade: rogue
+types: [location]
+set: "Seed Saga"
+rarity: rare
+text: |
+  UNIQUE HEIST TRAINING GROUNDS
+  [D][D][D]: At the start of your turn, you may pick a character. If you do, it gains COVERT this turn.
+  [D][D][D][D][D]: At the start of your turn, you may search an opponent's deck for a card. If you do, put it into their discard pile.
+  [D][D][D][D][D][D][D]: At the start of your turn, an opponent discards a card at random.

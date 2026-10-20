@@ -1,0 +1,12 @@
+id: "yenessa-shipping-llp"
+name: "Yenessa Shipping, LLP"
+trade: banker
+types: [character]
+subtypes: ["vehicle"]
+set: "Ungodly Mess"
+rarity: super-rare
+text: |
+  UNIQUE LLP
+  This card gains 2 strength and 2 life for each item your opponents control.
+  All items gain the rules text "At the start of your turn, you may pay 1. If you don't, destroy this card."
+  FLIP UP: 1 [G][G][G]

@@ -1,0 +1,12 @@
+id: "redecorator-majig"
+name: "Redecorator Majig"
+trade: gearsmith
+types: [character]
+subtypes: ["majig"]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  EXTRA COST: You may pick a location and deplete it.
+  While this card is in play, the location cannot be restored by its controller's RESTORE RULE.
+  While the location is depleted, this card gains 3 strength and 1 life.
+  FLIP UP: 4 [E][E][E]

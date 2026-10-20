@@ -1,0 +1,8 @@
+id: "legacy-warmachine"
+name: "Legacy Warmachine"
+trade: gearsmith
+types: [character]
+subtypes: ["warmachine"]
+set: "1st Edition"
+rarity: common
+text: ""

@@ -1,0 +1,10 @@
+id: "3p1c-d00dm4k3r"
+name: "3p1c D00dm4k3r"
+trade: gearsmith
+types: [item]
+subtypes: ["gear"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  ATTACH TO CHARACTER
+  The attached character gains 1 strength and 1 life for each [E] you control.

@@ -1,0 +1,9 @@
+id: "shocking-reappearance"
+name: "Shocking Reappearance"
+trade: banker
+types: [tactic]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  EXTRA COST: Deploy this only while you are being attacked. Pick a character in your discard pile.
+  Put the character into play under your control as a member of the blocking party.

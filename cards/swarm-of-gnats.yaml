@@ -1,0 +1,9 @@
+id: "swarm-of-gnats"
+name: "Swarm of Gnats"
+trade: arcanist
+types: [character]
+subtypes: ["lurker"]
+set: "2nd Edition"
+rarity: common
+text: |
+  When this card enters or leaves play, an opponent discards a card.

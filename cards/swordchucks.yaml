@@ -1,0 +1,14 @@
+id: "swordchucks"
+name: "Swordchucks"
+trade: warlord
+types: [item]
+subtypes: ["gear"]
+set: "1st Edition Part 2"
+rarity: uncommon
+text: |
+  ATTACH TO CHARACTER
+  The attached character gains 4 strength.
+  When damage is inflicted to the attached character, increase the amount by 2.
+  HANDOFF
+  COST: Pay 3. Deplete a character you control that is not in a battle.
+  EFFECT: Attach this card to the character.

@@ -1,0 +1,8 @@
+id: "narrow-passage"
+name: "Narrow Passage"
+trade: rogue
+types: [location]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  Players can attack only once each turn.

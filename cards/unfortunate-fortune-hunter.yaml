@@ -1,0 +1,8 @@
+id: "unfortunate-fortune-hunter"
+name: "Unfortunate Fortune Hunter"
+trade: banker
+types: [character]
+subtypes: ["mau", "mercenary", "hunter"]
+set: "Ungodly Mess"
+rarity: common
+text: ""

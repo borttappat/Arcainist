@@ -1,0 +1,9 @@
+id: "affectionate-dollkeeper"
+name: "Affectionate Dollkeeper"
+trade: rogue
+types: [character]
+subtypes: ["hedonist"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  [D][D][D]: When this card inflicts damage to a character, destroy that character.

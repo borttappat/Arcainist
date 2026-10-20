@@ -1,0 +1,9 @@
+id: "needless-beating"
+name: "Needless Beating"
+trade: warlord
+types: [tactic]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick an opponent. Pick a character that player controls.
+  Inflict 2 damage to the character. If that player's faction has 15 influence or less, inflict 1 additional damage to the character. If that player's faction has 10 influence or less, inflict 1 damage to each character they control. If that player's faction has 5 influence or less, draw a card.

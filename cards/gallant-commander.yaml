@@ -1,0 +1,11 @@
+id: "gallant-commander"
+name: "Gallant Commander"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  CHARGE!
+  COST: Pay 2. Destroy this card.
+  EFFECT: Inflict 3 damage to an opponent's faction.

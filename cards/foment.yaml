@@ -1,0 +1,10 @@
+id: "foment"
+name: "Foment"
+trade: arcanist
+types: [tactic]
+set: "Seed 2"
+rarity: common
+text: |
+  EXTRA COST: Pick a resource you control. (You can pick face-down resources.)
+  Put the resource into its owner's hand. Draw a card.
+  FLIP UP: 1 [O][O] and play a resource.

@@ -1,0 +1,11 @@
+id: "carnival-ringmaster"
+name: "Carnival Ringmaster"
+trade: rogue
+types: [character]
+subtypes: ["performer"]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  TACTICAL
+  When this card enters play you may add it to your attacking or blocking party. All characters in that party gain 1 speed.
+  When this card enters play you may pick a character. If you do, put a token on that card.

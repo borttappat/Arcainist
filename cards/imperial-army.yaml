@@ -1,0 +1,31 @@
+id: "imperial-army"
+name: "Imperial Army"
+trade: none
+types: [faction]
+tournament_legal: false
+set: "Seed 3"
+text: |
+  STARTING RESOURCES: 2 Rage
+  STARTING DRAW: 3 going first, 3 going second
+  RESTORE RULE: At the start of your turn, restore all your depleted cards. (But don't detach your resources.)
+  DEVELOP RULE: At the start of your turn, reduce the numeric cost of the next character you play this turn by 2.
+  DRAW
+  COST: Pay 1.
+  EFFECT: Draw a card.
+  RESOURCE
+  COST: Pay 2.
+  EFFECT: Play a resource.
+  INTERNAL CONFLICT
+  At the end of your turn, flip a coin. If you win, turn this card over. (Only the face-up side is active.)
+  (The other side is Counter-Imperial Army.)
+restore_rule:
+  - restore_all_depleted: you
+develop_rule:
+  - create_effect: { duration: next, mods: [ { cost: -2, by: you, target: { character: { zone: stack } } } ] }
+rules:
+  - ability: { name: Draw, cost: [ pay: 1 ], effect: [ draw: 1 ] }
+  - ability: { name: Resource, cost: [ pay: 2 ], effect: [ play_resource: 1 ] }
+  - trigger: { on: end_of_turn, player: you }
+    effect:
+      - coin_flip: { as: won }
+      - if: { cond: { did: true }, then: [ transform: counter-imperial-army ] }

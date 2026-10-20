@@ -1,0 +1,10 @@
+id: "mass-subjugation"
+name: "Mass Subjugation"
+trade: banker
+types: [tactic]
+set: "Holy Heist"
+rarity: rare
+text: |
+  EXTRA COST: Deploy this only during your turn and not during a battle.
+  Destroy each character with numeric cost 1, 2, and 3.
+  FLIP UP: 3 [G][G][G]

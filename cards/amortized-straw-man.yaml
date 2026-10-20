@@ -1,0 +1,13 @@
+id: "amortized-straw-man"
+name: "Amortized Straw Man"
+trade: banker
+types: [character]
+subtypes: ["straw man"]
+set: "1st Edition"
+rarity: uncommon
+text: |
+  This card enters play with 3 tokens on it.
+  This card loses 1 strength and 1 life for each token on it.
+  INSTALLMENT PLAN
+  COST: Pay 3.
+  EFFECT: Remove a token from this card.

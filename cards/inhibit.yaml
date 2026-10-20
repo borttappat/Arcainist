@@ -1,0 +1,9 @@
+id: "inhibit"
+name: "Inhibit"
+trade: arcanist
+types: [tactic]
+set: "Seed Saga"
+rarity: rare
+text: |
+  EXTRA COST: Pick a non-resource card.
+  Until the start of your next turn, treat the card as though it has no rules text. Draw a card.

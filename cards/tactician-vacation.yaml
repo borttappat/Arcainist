@@ -2,8 +2,11 @@ id: tactician-vacation
 name: "Tactician Vacation"
 trade: warlord
 types: [tactic]
+set: "2nd Edition"
+rarity: uncommon
 text: |
-  Your opponent cannot respond to this card. If you played this card in response to a tactic, terminate the tactic. This turn, tactics cannot be played.
+  EXTRA COST: Your opponents cannot respond to this card.
+  If you deployed this card in response to a tactic, terminate the tactic. This turn, tactics cannot be deployed.
 rules:
   - play:
       no_response: true

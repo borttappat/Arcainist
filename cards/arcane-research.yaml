@@ -2,6 +2,8 @@ id: arcane-research
 name: "Arcane Research"
 trade: arcanist
 types: [tactic]
+set: "Seed"
+rarity: rare
 text: |
   Search your deck for up to 4 tactics. Put them into your discard pile.
 rules:

@@ -1,0 +1,10 @@
+id: "smear-campaign"
+name: "Smear Campaign"
+trade: banker
+types: [item]
+subtypes: ["gear"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  ATTACH TO CHARACTER
+  When the attached character inflicts damage, inflict the same amount of damage to the character's controller's faction.

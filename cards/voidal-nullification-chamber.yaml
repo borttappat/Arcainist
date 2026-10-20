@@ -1,0 +1,14 @@
+id: "voidal-nullification-chamber"
+name: "Voidal Nullification Chamber"
+trade: arcanist
+types: [location]
+set: "2nd Edition"
+rarity: rare
+text: |
+  At the start of your turn, you may put a token on this card.
+  ENERGIZE
+  COST: Pay 2.
+  EFFECT: Put a token on this card.
+  DISSOLVE
+  COST: Use this only if there are an even number of characters in play. Remove 4 tokens from this card. Pick a character.
+  EFFECT: Destroy the character.

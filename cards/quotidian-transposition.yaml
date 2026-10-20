@@ -2,6 +2,8 @@ id: quotidian-transposition
 name: "Quotidian Transposition"
 trade: arcanist
 types: [tactic]
+set: "Shade of the Devoured Emperor"
+rarity: common
 text: |
   Each player picks a character they own and puts it into their hand.
 rules:

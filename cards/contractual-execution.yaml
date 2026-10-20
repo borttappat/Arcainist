@@ -1,0 +1,9 @@
+id: "contractual-execution"
+name: "Contractual Execution"
+trade: banker
+types: [tactic]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  EXTRA COST: Pick a character. That character's controller picks a resource they control. Put the resource into its owners's hand.
+  Flip the character face down under its owners's control.

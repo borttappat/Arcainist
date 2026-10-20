@@ -1,0 +1,11 @@
+id: "overzealous-excavation"
+name: "Overzealous Excavation"
+trade: banker
+types: [tactic]
+set: "Seed Saga"
+rarity: rare
+text: |
+  Put the top 8 cards of your deck into your discard pile. Draw a card.
+  RECUR: [G]
+  COST: Use this only if this card is in your discard pile. Pay 4. Remove this card from the game. Pick a card in your discard pile.
+  EFFECT: Put the card into play under your control as a face-down resource.

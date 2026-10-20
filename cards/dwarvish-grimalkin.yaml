@@ -3,14 +3,18 @@ name: "Dwarvish Grimalkin"
 trade: banker
 types: [character]
 subtypes: [mau]
+set: "Seed Saga"
+rarity: common
 text: |
-  [G][G] - When this card enters play, draw a card. [G]x4 - When this card enters play, draw a card. [G]x6 - When this card enters play, draw a card.
-  FLIP UP - 2 [G].
+  [G][G]: When this card enters play, draw a card.
+  [G][G][G][G][G]: When this card enters play, draw a card.
+  [G][G][G][G][G][G][G][G][G]: When this card enters play, draw a card.
+  FLIP UP: 2 [G]
 rules:
   - trigger: { on: enters_play, card: self, requires: { greed: 2 } }
     effect: [ draw: 1 ]
-  - trigger: { on: enters_play, card: self, requires: { greed: 4 } }
+  - trigger: { on: enters_play, card: self, requires: { greed: 5 } }
     effect: [ draw: 1 ]
-  - trigger: { on: enters_play, card: self, requires: { greed: 6 } }
+  - trigger: { on: enters_play, card: self, requires: { greed: 9 } }
     effect: [ draw: 1 ]
   - flip_up: { pay: 2, threshold: { greed: 1 } }

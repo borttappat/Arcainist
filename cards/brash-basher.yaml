@@ -1,0 +1,8 @@
+id: "brash-basher"
+name: "Brash Basher"
+trade: warlord
+types: [character]
+subtypes: ["fighter"]
+set: "1st Edition Part 2"
+rarity: common
+text: ""

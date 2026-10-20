@@ -1,0 +1,12 @@
+id: "encumber"
+name: "Encumber"
+trade: arcanist
+types: [tactic]
+set: "Seed Saga"
+rarity: common
+text: |
+  EXTRA COST:Pick a character or location.
+  Put the character or location into its owner's hand.
+  RECUR: [O]
+  COST: Use this only if this card is in your discard pile. Pay 2. Remove this card from the game.
+  EFFECT: Look at an opponent's hand and choose a non-resource card in it. That opponent discards that card.

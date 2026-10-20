@@ -1,0 +1,8 @@
+id: "roulette-wheel-of-doom"
+name: "Roulette Wheel of DOOM!"
+trade: rogue
+types: [tactic]
+set: "Seed Saga"
+rarity: common
+text: |
+  Reveal the top card of your deck. You may pick a character with X life or less, where X is the numeric cost of the revealed card. If you do, destroy that character. Otherwise, draw 2 cards.

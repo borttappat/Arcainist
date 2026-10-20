@@ -1,0 +1,9 @@
+id: "forbidden-knowledge"
+name: "Forbidden Knowledge"
+trade: arcanist
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  You may look at an opponent's hand, the top card of their deck, and their face-down resources. Draw a card.
+  FLIP UP: 0 [O][O]

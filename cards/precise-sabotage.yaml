@@ -1,0 +1,9 @@
+id: "precise-sabotage"
+name: "Precise Sabotage"
+trade: gearsmith
+types: [tactic]
+set: "2nd Edition"
+rarity: common
+text: |
+  EXTRA COST: Pick an item.
+  Destroy the item.

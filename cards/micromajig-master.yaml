@@ -1,0 +1,13 @@
+id: "micromajig-master"
+name: "Micromajig Master"
+trade: gearsmith
+types: [character]
+subtypes: ["manager"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  When this card enters play, you may put 2 Micromajig tokens into play.
+  TINY SACRIFICES
+  COST: Destroy 3 Micromajig tokens you control.
+  EFFECT: Search your deck for a card. Put it into your hand.
+  (Treat Micromajig tokens as Gearsmith character cards with 1 strength, 1 life, 3 speed, and the majig subtype. When a Micromajig token leaves play, it disappears.)

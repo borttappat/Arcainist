@@ -1,0 +1,8 @@
+id: "casino-kingpin"
+name: "Casino Kingpin"
+trade: rogue
+types: [character]
+subtypes: ["crimelord"]
+set: "Seed Saga"
+rarity: common
+text: ""

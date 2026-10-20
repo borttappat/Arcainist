@@ -1,0 +1,11 @@
+id: "arcane-monkey-ritual"
+name: "Arcane Monkey Ritual"
+trade: arcanist
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  Search your deck for up to 2 tactics. Put them into your discard pile.
+  RECUR: [O][O][O][O]
+  COST: Use this only if this card is in your discard pile. Pay 4. Remove this card from the game. Pick a player.
+  EFFECT: That player discards 2 cards.

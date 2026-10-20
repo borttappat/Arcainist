@@ -1,0 +1,12 @@
+id: "athalamund-mangod-the-iron-fist"
+name: "Athalamund Mangod, The Iron Fist"
+trade: warlord
+types: [character]
+subtypes: ["athalamund", "sword of great justice"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  UNIQUE ATHALAMUND
+  PUNCH
+  COST: Pay 1. Deplete this card. Pick a character. X is its strength. Y is twice this card's strength.
+  EFFECT: Inflict X damage to this card. Inflict Y damage to the character.

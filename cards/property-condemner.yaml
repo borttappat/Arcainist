@@ -1,0 +1,10 @@
+id: "property-condemner"
+name: "Property Condemner"
+trade: banker
+types: [character]
+subtypes: ["priest", "mau"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  When this card enters play, you may pick a location. If you do, destroy that location.
+  FLIP UP: 2 [G][G]

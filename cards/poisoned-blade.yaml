@@ -1,0 +1,13 @@
+id: "poisoned-blade"
+name: "Poisoned Blade"
+trade: rogue
+types: [item]
+subtypes: ["gear"]
+set: "2nd Edition"
+rarity: common
+text: |
+  ATTACH TO CHARACTER
+  When the attached character inflicts damage to a character, destroy the damaged character.
+  HANDOFF
+  COST: Deplete a character you control that is not in a battle.
+  EFFECT: Attach this card to the character.

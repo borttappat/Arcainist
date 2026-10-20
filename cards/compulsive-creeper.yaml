@@ -1,0 +1,9 @@
+id: "compulsive-creeper"
+name: "Compulsive Creeper"
+trade: arcanist
+types: [character]
+subtypes: ["lurker"]
+set: "1st Edition"
+rarity: common
+text: |
+  While you have an even number of cards in your hand, this card gains 1 strength, 1 life, and 1 speed.

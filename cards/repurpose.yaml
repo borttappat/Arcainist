@@ -1,0 +1,10 @@
+id: "repurpose"
+name: "Repurpose"
+trade: gearsmith
+types: [tactic]
+set: "Seed Saga"
+rarity: common
+text: |
+  EXTRA COST: Pick an item.
+  Destroy the item. Draw a card.
+  FLIP UP: 2 [E][E]

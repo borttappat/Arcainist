@@ -1,0 +1,11 @@
+id: "chancellor-of-reinstatement"
+name: "Chancellor of Reinstatement"
+trade: banker
+types: [character]
+subtypes: ["mau"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  REINSTATE
+  COST: Pay 4. Destroy this card. Pick a character in your discard pile.
+  EFFECT: Put the character into play under your control if it has numeric cost X or less, where X is the number of [G] you control.

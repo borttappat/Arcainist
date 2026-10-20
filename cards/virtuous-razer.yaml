@@ -1,0 +1,9 @@
+id: "virtuous-razer"
+name: "Virtuous Razer"
+trade: warlord
+types: [character]
+subtypes: ["soldier", "vandal"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  When this card inflicts battle damage, you may pick a location. If you do, inflict the same amount of damage to that location.

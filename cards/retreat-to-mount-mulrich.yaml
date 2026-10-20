@@ -1,0 +1,10 @@
+id: "retreat-to-mount-mulrich"
+name: "Retreat to Mount Mulrich"
+trade: rogue
+types: [tactic]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  EXTRA COST: Pick a character.
+  If the character would leave play this turn, put it into its owner's hand instead.
+  FLIP UP: 1 [D]

@@ -1,0 +1,8 @@
+id: "hangdog-alley"
+name: "Hangdog Alley"
+trade: rogue
+types: [location]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  When an attacking party is formed, it must have only 1 member.

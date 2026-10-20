@@ -1,0 +1,11 @@
+id: "black-scourge-of-the-brine"
+name: "Black Scourge of the Brine"
+trade: banker
+types: [character]
+subtypes: ["pirate", "mercenary", "mau"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  ENCROACH: [G][G][G][G][G]
+  COST: Pay 1.
+  EFFECT: This turn, this card gains COVERT.

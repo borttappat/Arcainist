@@ -1,0 +1,13 @@
+id: "luteoderm-goliath"
+name: "Luteoderm Goliath"
+trade: gearsmith
+types: [item]
+subtypes: ["gear"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  ATTACH TO CHARACTER
+  The attached character gains 11 strength and 11 life.
+  HANDOFF
+  COST: Pay 6. Deplete a character you control that is not in a battle.
+  EFFECT: Attach this card to the character.

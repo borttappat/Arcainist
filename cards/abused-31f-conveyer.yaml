@@ -1,0 +1,9 @@
+id: "abused-31f-conveyer"
+name: "Abused 31f Conveyer"
+trade: gearsmith
+types: [character]
+subtypes: ["mechanic", "31f"]
+set: "Holy Heist"
+rarity: common
+text: |
+  When this card enters play, you may pick a character. This turn, the picked character gains 3 strength and 3 life.

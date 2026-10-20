@@ -1,0 +1,14 @@
+id: "overindulge"
+name: "Overindulge"
+trade: rogue
+types: [tactic]
+set: "Ungodly Mess"
+rarity: ultra-rare
+text: |
+  Choose one of the following as this card's rules text:
+  OPTION 1
+  EXTRA COST: Pick a character.
+  This turn, the character loses 2 life.
+  OPTION 2
+  EXTRA COST: Pick a character.
+  EFFECT: This turn, the character loses 1 life. Draw a card.

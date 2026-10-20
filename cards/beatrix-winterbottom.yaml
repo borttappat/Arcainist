@@ -1,0 +1,11 @@
+id: "beatrix-winterbottom"
+name: "Beatrix Winterbottom"
+trade: banker
+types: [character]
+subtypes: ["mau"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  UNIQUE BEATRIX
+  When you draw any number of cards, increase the amount by 1.
+  While you have at least 10 cards in your hand, you cannot draw cards.

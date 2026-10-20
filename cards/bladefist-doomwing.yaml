@@ -1,0 +1,12 @@
+id: "bladefist-doomwing"
+name: "Bladefist Doomwing"
+trade: warlord
+types: [character]
+subtypes: ["dragon"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  UNIQUE BLADEFIST
+  FIREBREATHING
+  COST: Choose a number for X. Pay X+X. Deplete this card. Pick a character.
+  EFFECT: Inflict X damage to the character.

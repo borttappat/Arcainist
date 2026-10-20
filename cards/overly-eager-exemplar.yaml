@@ -1,0 +1,11 @@
+id: "overly-eager-exemplar"
+name: "Overly Eager Exemplar"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  FOR MY BROTHERS!
+  COST: Pay 1. Destroy this card.
+  EFFECT: Search your deck for a "soldier" card and reveal it. If you do, put it into your hand.

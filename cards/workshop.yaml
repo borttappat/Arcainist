@@ -1,0 +1,10 @@
+id: "workshop"
+name: "Workshop"
+trade: gearsmith
+types: [location]
+set: "Seed Saga"
+rarity: rare
+text: |
+  CONSTRUCT
+  COST: Pay 3. Remove a card in your discard pile from the game.
+  EFFECT: You may search your deck for a card of the same type as the removed card and reveal it. If you do, put it on the top of your deck.

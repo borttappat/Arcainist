@@ -1,0 +1,10 @@
+id: "avuncular-merlion"
+name: "Avuncular Merlion"
+trade: banker
+types: [character]
+subtypes: ["merlion"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  This card enters play with 2 tokens on it.
+  When a character you control is put into your discard pile from play, you may pay 1 and remove a token from this card. If you do, put that character into play under your control. Deplete it.

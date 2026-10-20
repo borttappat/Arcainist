@@ -1,0 +1,10 @@
+id: "dragon-archer"
+name: "Dragon Archer"
+trade: warlord
+types: [character]
+subtypes: ["dragon"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  EXTRA COST: You may pick a character.
+  When this card enters play, if you picked a character as part of its cost, X is that character's strength and Y is this card's strength. Inflict X damage to this card. Inflict Y damage to that character.

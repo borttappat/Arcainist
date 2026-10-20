@@ -1,0 +1,8 @@
+id: "verrucose-brains"
+name: "Verrucose Brains"
+trade: arcanist
+types: [item]
+set: "Seed Saga"
+rarity: rare
+text: |
+  At the end of each turn, put the character with the lowest numeric cost into its owner's hand. If there is a tie, you decide which character is affected.

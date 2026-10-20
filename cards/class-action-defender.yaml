@@ -1,0 +1,10 @@
+id: "class-action-defender"
+name: "Class Action Defender"
+trade: banker
+types: [character]
+subtypes: ["lawyer", "mau"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  When any amount of damage greater than 4 is inflicted to this card, reduce it to 0.
+  When you are attacked, you may pay 2. If you do, restore this card.

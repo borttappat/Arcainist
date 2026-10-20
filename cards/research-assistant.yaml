@@ -1,0 +1,11 @@
+id: "research-assistant"
+name: "Research Assistant"
+trade: gearsmith
+types: [character]
+subtypes: ["31f"]
+set: "1st Edition"
+rarity: common
+text: |
+  RESEARCH
+  COST: Deplete this card.
+  EFFECT: Reduce the next numeric cost you pay this turn by 1.

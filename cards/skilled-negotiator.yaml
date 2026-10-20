@@ -1,0 +1,11 @@
+id: "skilled-negotiator"
+name: "Skilled Negotiator"
+trade: banker
+types: [character]
+subtypes: ["lawyer"]
+set: "1st Edition"
+rarity: common
+text: |
+  HAGGLE
+  COST: Deplete this card. Pick a character.
+  EFFECT: This turn, the character loses 2 strength.

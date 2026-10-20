@@ -1,0 +1,13 @@
+id: "severed-limb"
+name: "Severed Limb"
+trade: warlord
+types: [item]
+subtypes: ["gear"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  ATTACH TO CHARACTER
+  The attached character gains 1 strength.
+  BULK UP
+  COST: Pay 1. Destroy a card named "Rage" you own.
+  EFFECT: This turn, the attached character gains 1 strength.

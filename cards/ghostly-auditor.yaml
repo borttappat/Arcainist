@@ -3,8 +3,11 @@ name: "Ghostly Auditor"
 trade: banker
 types: [character]
 subtypes: [lackey, ghost]
+set: "2nd Edition"
+rarity: rare
 text: |
-  While you control only 1 character, this card gains COVERT. If this card inflicts damage to a faction, draw 2 cards.
+  While you control only 1 character, this card gains COVERT.
+  When this card inflicts damage to a faction, draw 2 cards.
 rules:
   - static:
       while: { eq: [ { count: { character: { controller: you } } }, 1 ] }

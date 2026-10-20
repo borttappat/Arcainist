@@ -1,0 +1,9 @@
+id: "cowering-golem"
+name: "Cowering Golem"
+trade: gearsmith
+types: [character]
+subtypes: ["golem"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  While this card is in a battle, it loses 1 strength and 1 life for each member of the opposing party.

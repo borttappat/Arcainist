@@ -1,0 +1,14 @@
+id: "vorpal-sword"
+name: "Vorpal Sword"
+trade: warlord
+types: [item]
+subtypes: ["gear"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  ATTACH TO CHARACTER
+  The attached character gains 2 strength and 1 life.
+  If this card would be destroyed, flip it face-down under its owner's control instead.
+  SNICKER SNACK
+  COST: Use this only while this card is a face-down resource. Reveal this card. Pay 3. Discard a card. Pick a character.
+  EFFECT: Inflict 2 damage to the character. Inflict 1 damage to your faction.

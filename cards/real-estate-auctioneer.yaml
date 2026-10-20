@@ -1,0 +1,11 @@
+id: "real-estate-auctioneer"
+name: "Real Estate Auctioneer"
+trade: banker
+types: [character]
+subtypes: ["auctioneer"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  LIQUIDATE
+  COST: Pay 2. Discard a card. Deplete this card.
+  EFFECT: Draw 2 cards.

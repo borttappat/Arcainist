@@ -1,0 +1,9 @@
+id: "miraculous-regeneration"
+name: "Miraculous Regeneration"
+trade: banker
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick 2 characters in your discard pile.
+  Put 1 of the characters into play under your control as a face-down resource. Put the other character into your hand.

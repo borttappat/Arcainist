@@ -1,0 +1,15 @@
+id: "eustace-padamose-gristwalter"
+name: "Eustace Padamose-Gristwalter"
+trade: banker
+types: [character]
+subtypes: ["eustace", "blade of questionable morality"]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  UNIQUE EUSTACE
+  FUTURE IMPLICATIONS
+  COST: Pay 2. Your faction loses 1 influence.
+  EFFECT: Draw a card.
+  PAST TREPIDATIONS
+  COST: Discard a card.
+  EFFECT: This turn, this card gains 1 life. If the discarded card was a resource, this card also gains 1 strength this turn.

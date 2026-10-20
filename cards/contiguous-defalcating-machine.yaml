@@ -1,0 +1,15 @@
+id: "contiguous-defalcating-machine"
+name: "Contiguous Defalcating Machine"
+trade: arcanist
+types: [item]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  UNIQUE CONTIGUOUS DEFALCATING MACHINE
+  When a character enters play, its controller must choose one of the following:
+  OPTION 1
+  Put a resource they control into its owners's hand.
+  OPTION 2
+  Destroy that character.
+  OPTION 3
+  Their faction loses 3 influence.

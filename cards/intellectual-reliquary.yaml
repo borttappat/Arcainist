@@ -1,0 +1,10 @@
+id: "intellectual-reliquary"
+name: "Intellectual Reliquary"
+trade: arcanist
+types: [item]
+set: "Seed Saga"
+rarity: rare
+text: |
+  IMBIBE
+  COST: Pay 1. Deplete this card.
+  EFFECT: Look at the top 3 cards of your deck. You may choose a tactic among them and reveal it. If you do, put it into your hand. Put the remaining cards on the bottom of your deck in any order.

@@ -1,0 +1,9 @@
+id: "palm-glom"
+name: "Palm Glom"
+trade: rogue
+types: [tactic]
+set: "Seed Saga"
+rarity: rare
+text: |
+  EXTRA COST: Pick a character or item.
+  Take control of the character or item. Draw a card.

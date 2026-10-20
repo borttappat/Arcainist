@@ -1,0 +1,10 @@
+id: "hilarious-refrigerator-alarm"
+name: "Hilarious Refrigerator Alarm"
+trade: gearsmith
+types: [tactic]
+set: "Seed 3"
+rarity: fixed
+text: |
+  All other unresolved cards are terminated.
+  If an opponent deployed at least 2 cards with the same name this turn, put up to 2 Micromajig tokens into play under your control. Otherwise, each opponent may put 3 Micromajig tokens into play under their control.
+  FLIP UP: 2 [E][E] and you may play a resource.

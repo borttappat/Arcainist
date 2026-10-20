@@ -1,0 +1,13 @@
+id: "deceptive-domain"
+name: "Deceptive Domain"
+trade: rogue
+types: [resource]
+face_down_only: true
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  This resource may only be played from your hand face-down.
+  PROVIDES: [D]
+  FLIP IT: [D]
+  COST: Use this only while this card is a face-down resource. Reveal this card. Pick a location. X is its numeric cost. Pay X+4.
+  EFFECT: Put this card into play face-up. Take control of the location.

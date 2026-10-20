@@ -1,0 +1,15 @@
+id: "mercenary-s-creed"
+name: "Mercenary's Creed"
+trade: rogue
+types: [item]
+subtypes: ["gear"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  ATTACH TO CHARACTER
+  BRIBE
+  COST: Any player may use this ability. Pay 3.
+  EFFECT: Take control of the attached character.
+  BLACKMAIL
+  COST: Use this only if you own this card. Pay 2.
+  EFFECT: Take control of the attached character.

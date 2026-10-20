@@ -1,0 +1,12 @@
+id: "dweedle-tee"
+name: "Dweedle Tee"
+trade: rogue
+types: [character]
+subtypes: ["clown"]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  This card gains 1 strength and 1 life for each token on it.
+  BULGE: [V][V][V]
+  COST: Pay 3 or shuffle your deck. Deplete this card.
+  EFFECT: Reveal the top card of your deck. Put that card into your discard pile. Put tokens on this card equal to the threshold of the revealed card.

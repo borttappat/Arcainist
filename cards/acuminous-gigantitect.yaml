@@ -1,0 +1,11 @@
+id: "acuminous-gigantitect"
+name: "Acuminous Gigantitect"
+trade: gearsmith
+types: [character]
+subtypes: ["inventor"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  GRAND DESIGN
+  COST: Pay 2. Discard a card. Deplete this card.
+  EFFECT: Reduce the next numeric cost you pay this turn by 6.

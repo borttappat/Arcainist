@@ -1,0 +1,9 @@
+id: "face-in-the-crowd"
+name: "Face in the Crowd"
+trade: rogue
+types: [character]
+subtypes: ["outcast"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  While an opponent controls at least 4 characters, this card cannot be blocked.

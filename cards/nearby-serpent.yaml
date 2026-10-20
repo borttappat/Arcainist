@@ -1,0 +1,10 @@
+id: "nearby-serpent"
+name: "Nearby Serpent"
+trade: arcanist
+types: [character]
+subtypes: ["lurker"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  COVERT
+  When this card enters play, look at up to the top 5 cards of any one deck. Put them back in any order.

@@ -1,0 +1,12 @@
+id: "furtive-investor"
+name: "Furtive Investor"
+trade: banker
+types: [character]
+subtypes: ["investor", "mau"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  COVERT
+  This card enters play with 2 tokens on it.
+  This card loses 1 strength and 1 life for each token on it.
+  At the start of your turn, you may pick a non-resource card you control. If you do, remove a token from that card.

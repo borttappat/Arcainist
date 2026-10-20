@@ -1,0 +1,8 @@
+id: "executive-order-6370u7"
+name: "Executive Order #6370u7"
+trade: banker
+types: [item]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  At the start of an opponent's turn you may pay 2 and pick a character. If you do, deplete that character and this turn, it cannot be restored by its controller's faction's RESTORE RULE.

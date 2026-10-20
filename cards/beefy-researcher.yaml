@@ -1,0 +1,12 @@
+id: "beefy-researcher"
+name: "Beefy Researcher"
+trade: gearsmith
+types: [character]
+subtypes: ["31f"]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  RESEARCH
+  COST: Deplete this card.
+  EFFECT: Reduce the next numeric cost you pay this turn by 1.
+  [E][E][E][E][E][E]: This card gains 2 strength, 2 life and 2 speed.

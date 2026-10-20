@@ -1,0 +1,10 @@
+id: "dimensional-rift"
+name: "Dimensional Rift"
+trade: arcanist
+types: [location]
+set: "1st Edition Part 2"
+rarity: rare
+text: |
+  TELEPORT
+  COST: Pay 4. Deplete this card. Pick a character.
+  EFFECT: Put the character into its owner's hand.

@@ -1,0 +1,11 @@
+id: "opportune-slotpuller"
+name: "Opportune Slotpuller"
+trade: rogue
+types: [character]
+subtypes: ["gambler"]
+set: "Seed Saga"
+rarity: common
+text: |
+  GAMBLE
+  COST: Pay 1. Choose a card type.
+  EFFECT: Reveal the top card of your deck. If it is the chosen type, this card gains 2 strength and loses 1 life this turn. Put the top card of your deck on the bottom.

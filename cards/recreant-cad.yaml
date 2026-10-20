@@ -1,0 +1,11 @@
+id: "recreant-cad"
+name: "Recreant Cad"
+trade: rogue
+types: [character]
+subtypes: ["thief"]
+set: "1st Edition Part 2"
+rarity: common
+text: |
+  SNEAK
+  COST: Use this only if an opponent has at least 10 cards in their discard pile. Pay 1. Remove 2 cards in that player's discard pile from the game.
+  EFFECT: This turn, this card gains COVERT.

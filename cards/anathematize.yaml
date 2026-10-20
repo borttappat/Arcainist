@@ -1,0 +1,9 @@
+id: "anathematize"
+name: "Anathematize"
+trade: arcanist
+types: [tactic]
+set: "Seed Saga"
+rarity: common
+text: |
+  EXTRA COST: Pick a character.
+  This turn, the character loses 5 strength. Draw a card.

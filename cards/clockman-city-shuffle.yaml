@@ -1,0 +1,8 @@
+id: "clockman-city-shuffle"
+name: "Clockman City Shuffle"
+trade: rogue
+types: [tactic]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  This turn, characters you control gain 1 strength and 1 life and characters your opponents control lose 1 strength and 1 life.

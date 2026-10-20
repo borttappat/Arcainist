@@ -1,0 +1,10 @@
+id: "witty-worm"
+name: "Witty Worm"
+trade: arcanist
+types: [character]
+subtypes: ["monstrosity"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  While this card is in your hand you may reveal this card as you are playing a resource. If you do, you may deploy this card for 1.
+  When this card enters play, you may put a resource you control into its owner's hand. If you do, you may play a resource.

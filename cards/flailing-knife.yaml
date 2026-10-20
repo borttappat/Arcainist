@@ -1,0 +1,11 @@
+id: "flailing-knife"
+name: "Flailing Knife"
+trade: rogue
+types: [item]
+subtypes: ["gear"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  ATTACH TO CHARACTER
+  The attached character gains 2 strength.
+  When this card is put into your discard pile from play, you may choose a card type. If you do, reveal the top card of your deck. If it is the chosen type, put this card into play attached to a character. Put the top card of your deck on the bottom.

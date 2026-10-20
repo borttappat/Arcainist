@@ -1,0 +1,9 @@
+id: "arcana-experiment"
+name: "Arcana Experiment"
+trade: arcanist
+types: [tactic]
+set: "2nd Edition"
+rarity: rare
+text: |
+  EXTRA COST: Deploy this only if you have at least 5 cards in your deck. Deplete up to 5 characters you control. X is the number of characters you deplete this way.
+  Search your deck for 5 cards and reveal them. An opponent chooses X of those cards. Put the chosen cards into your hand and the rest into your discard pile.

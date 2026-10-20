@@ -192,7 +192,8 @@ function buildLegal(g: Game, p: PlayerId): Legal | null {
     .map((c) => c.iid);
   const deploy = [...ps.hand, ...elsewhere].filter((iid) => ok({ type: "deploy", iid }));
   const abilities: Legal["abilities"] = [];
-  const sources = [ps.factionIid, ...ps.play, ...ps.discard];
+  // The opponent's faction too: some faction abilities can be used by both players.
+  const sources = [ps.factionIid, s.players[other(p)].factionIid, ...ps.play, ...ps.discard];
   // The Billionaire: abilities on the opponent's cards.
   if (q.mods("use_opponent_abilities").some((m) => m.controller === p)) sources.push(...s.players[other(p)].play);
   for (const iid of sources) {

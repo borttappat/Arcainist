@@ -1,0 +1,9 @@
+id: "mendacious-brigand"
+name: "Mendacious Brigand"
+trade: rogue
+types: [character]
+subtypes: ["thief"]
+set: "1st Edition Part 2"
+rarity: common
+text: |
+  When this card is blocked, you may pick a blocking character and a character that character's controller controls that is not in a battle. If you do, remove the blocking character from the battle and add the other character to the blocking party.

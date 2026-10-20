@@ -1,0 +1,9 @@
+id: "battle-ready-back-breaker"
+name: "Battle-Ready Back-Breaker"
+trade: warlord
+types: [character]
+subtypes: ["berserker"]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  When this card enters play you may pick a character. If you do, deplete that character.

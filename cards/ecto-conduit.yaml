@@ -2,11 +2,13 @@ id: ecto-conduit
 name: "Ecto-Conduit"
 trade: arcanist
 types: [item]
+set: "Ungodly Mess"
+rarity: uber
 text: |
   At the start of your turn, you may draw three cards, then put two cards from your hand on top of your deck in any order.
   HARNESS
-  COST - Destroy this card.
-  EFFECT - Void the top card of your deck. If it is a tactic, you may deploy it as though it was in your hand even if you cannot meet its threshold.
+  COST: Destroy this card.
+  EFFECT: Void the top card of your deck. If it is a tactic, you may deploy it as though it was in your hand even if you cannot meet its threshold.
 rules:
   - trigger: { on: start_of_turn, player: you }
     effect:

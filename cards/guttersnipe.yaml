@@ -1,0 +1,10 @@
+id: "guttersnipe"
+name: "Guttersnipe"
+trade: rogue
+types: [character]
+subtypes: ["outcast"]
+set: "Seed Saga"
+rarity: common
+text: |
+  TACTICAL
+  FLIP UP: 0 [D][D]

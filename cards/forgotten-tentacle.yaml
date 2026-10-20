@@ -1,0 +1,9 @@
+id: "forgotten-tentacle"
+name: "Forgotten Tentacle"
+trade: arcanist
+types: [tactic]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick an opponent. Look at that player's face-down resources and pick one.
+  You may destroy that card. If you do, that player may draw a card and may play a resource.

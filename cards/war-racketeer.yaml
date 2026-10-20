@@ -1,0 +1,12 @@
+id: "war-racketeer"
+name: "War Racketeer"
+trade: banker
+types: [character]
+subtypes: ["mau", "tough guy"]
+set: "Ungodly Mess"
+rarity: uber
+text: |
+  When this card enters play, draw a card for each character in play.
+  UNDER THE TABLE
+  COST: Discard 1 card.
+  EFFECT: This turn, this character loses 1 life and gains 1 strength and COVERT.

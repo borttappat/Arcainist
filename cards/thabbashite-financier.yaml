@@ -1,0 +1,11 @@
+id: "thabbashite-financier"
+name: "Thabbashite Financier"
+trade: banker
+types: [character]
+subtypes: ["merchant"]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  BLOOD GOLD: [V][V]
+  COST: Pay 2. Lose 1 influence.
+  EFFECT: You may play a card as a face-down resource.

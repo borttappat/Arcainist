@@ -1,0 +1,10 @@
+id: "rummaging-millipede"
+name: "Rummaging Millipede"
+trade: arcanist
+types: [character]
+subtypes: ["lurker"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  COVERT
+  When this card enters play, you may pick a tactic in your discard pile. If you do, put it into your hand.

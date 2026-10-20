@@ -1,0 +1,11 @@
+id: "espionage-loafers"
+name: "Espionage Loafers"
+trade: banker
+types: [item]
+subtypes: ["gear"]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  ATTACH TO CHARACTER
+  The attached character gains COVERT. If the attached card inflicts damage to a faction, inflict that much damage to your faction.
+  [G][G][G][G][G]: The attached character gains COVERT and this card loses all other rules text.

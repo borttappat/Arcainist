@@ -1,0 +1,14 @@
+id: "direstock-cuffs"
+name: "Direstock Cuffs"
+trade: gearsmith
+types: [item]
+subtypes: ["gear"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  ATTACH TO CHARACTER
+  The attached character loses COVERT. If the attached character has a [V] icon in its rules text, treat the attached character as though it had no rules text.
+  MOVE
+  COST: Pick a character that is not in battle. Pay 2.
+  EFFECT: Attach this card to the character.
+  FLIP UP: 1 [E]

@@ -1,0 +1,10 @@
+id: "wrinkly-rabbit"
+name: "Wrinkly Rabbit"
+trade: arcanist
+types: [character]
+subtypes: ["monstrosity", "rabbit"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  COVERT
+  This card gains 1 strength and 1 life for each [O] you control.

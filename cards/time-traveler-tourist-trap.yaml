@@ -1,0 +1,13 @@
+id: "time-traveler-tourist-trap"
+name: "Time Traveler Tourist Trap"
+trade: gearsmith
+types: [location]
+set: "Seed Saga"
+rarity: rare
+text: |
+  ENSNARE
+  COST: Pay 1 or destroy a Micromajig token you control.
+  EFFECT: Put a token on this card.
+  MICROMAJIG APOCALYPSE: [E][E][E][E][E][E]
+  COST: Use this only if there are at least 20 tokens on this card. Destroy this card.
+  EFFECT: Put X Micromajig tokens into play under your control, where X is the number of cards in an opponent's deck.

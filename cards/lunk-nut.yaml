@@ -1,0 +1,9 @@
+id: "lunk-nut"
+name: "Lunk Nut"
+trade: gearsmith
+types: [character]
+subtypes: ["machine"]
+set: "Holy Heist"
+rarity: common
+text: |
+  At the start of each opponent's turn, restore this card.

@@ -1,0 +1,11 @@
+id: "emergency-obfuscation"
+name: "Emergency Obfuscation"
+trade: rogue
+types: [item]
+set: "1st Edition"
+rarity: rare
+text: |
+  TACTICAL
+  While this card is in play, each player moves 1 seat to the left. Each player is in control of that opponent's side. If the game ends, the owner of the winning deck wins the game.
+  At the start of your turn, put a token on this card.
+  At the end of your turn, if there are at least 2 tokens on this card, destroy it.

@@ -1,0 +1,9 @@
+id: "rapacious-soldier"
+name: "Rapacious Soldier"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Holy Heist"
+rarity: common
+text: |
+  This character cannot block.

@@ -1,0 +1,9 @@
+id: "aroused-stiffbone"
+name: "Aroused Stiffbone"
+trade: warlord
+types: [character]
+subtypes: ["dragon"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  EXTRA COST: Pay X, where X is 7 minus the number of [R] you control.

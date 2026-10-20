@@ -1,0 +1,10 @@
+id: "obscure"
+name: "Obscure"
+trade: arcanist
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick a character.
+  This turn, the character gains COVERT.
+  FLIP UP: 2 [O]

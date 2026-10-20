@@ -1,0 +1,11 @@
+id: "slinking-bandido"
+name: "Slinking Bandido"
+trade: rogue
+types: [character]
+subtypes: ["outlaw"]
+set: "Seed Saga"
+rarity: common
+text: |
+  COVERT
+  When this card inflicts damage to a faction, put a token on this card.
+  This card gains 1 strength for each token on it.

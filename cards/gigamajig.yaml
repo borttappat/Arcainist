@@ -1,0 +1,8 @@
+id: "gigamajig"
+name: "Gigamajig"
+trade: gearsmith
+types: [character]
+subtypes: ["majig"]
+set: "2nd Edition"
+rarity: rare
+text: ""

@@ -1,0 +1,9 @@
+id: "raging-bask"
+name: "Raging Bask"
+trade: warlord
+types: [character]
+subtypes: ["dragon"]
+set: "2nd Edition"
+rarity: common
+text: |
+  While this card is attacking, you may assign its battle damage to the target of the attack instead of the blocking party.

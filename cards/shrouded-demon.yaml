@@ -1,0 +1,10 @@
+id: "shrouded-demon"
+name: "Shrouded Demon"
+trade: arcanist
+types: [character]
+subtypes: ["demon"]
+set: "Seed Saga"
+rarity: common
+text: |
+  COVERT
+  [O][O][O]: This card gains 2 life.

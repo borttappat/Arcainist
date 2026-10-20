@@ -1,0 +1,9 @@
+id: "keep-pushing"
+name: "Keep Pushing"
+trade: warlord
+types: [tactic]
+set: "Holy Heist"
+rarity: rare
+text: |
+  EXTRA COST: Deploy this only not during a battle. Destroy a resource you control. Pick a character with 3 strength or less.
+  Restore that character. Draw a card.

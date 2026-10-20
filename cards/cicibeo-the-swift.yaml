@@ -1,0 +1,12 @@
+id: "cicibeo-the-swift"
+name: "Cicibeo the Swift"
+trade: rogue
+types: [character]
+subtypes: ["grifter", "cicibeo"]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  UNIQUE CICIBEO
+  TACTICAL
+  EXTRA COST: Discard a non-resource Rogue card.
+  [D][D][D][D][D][D]: When another "cicibeo" card enters play, if it was deployed from your hand, you may pick a character and take control of it.

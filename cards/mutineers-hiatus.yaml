@@ -3,12 +3,14 @@ name: Mutineer's Hiatus
 flavor_title: a lovely view and all the seagulls you can eat
 trade: banker
 types: [tactic]
+set: "Seed Saga"
+rarity: rare
 text: |
-  COST - Destroy a character you own.
-  EFFECT - Draw 2 cards.
-  RECUR - [greed]
-  COST - Use this only if this card is in your discard pile. Pay 2. Remove this card from the game. Pick a character you own.
-  EFFECT - Destroy the character. Draw a card.
+  EXTRA COST: Destroy a character you own.
+  Draw 2 cards.
+  RECUR: [G]
+  COST: Use this only if this card is in your discard pile. Pay 2. Remove this card from the game. Pick a character you own.
+  EFFECT: Destroy the character. Draw a card.
 rules:
   - play:
       cost:

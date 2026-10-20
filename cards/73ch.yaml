@@ -1,0 +1,8 @@
+id: "73ch"
+name: "73ch!"
+trade: gearsmith
+types: [tactic]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  Search your deck for a Gearsmith card and reveal it. If you do, put it into play under your control as a face-down resource.

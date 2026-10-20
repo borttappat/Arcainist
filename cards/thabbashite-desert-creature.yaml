@@ -1,0 +1,10 @@
+id: "thabbashite-desert-creature"
+name: "Thabbashite Desert Creature"
+trade: arcanist
+types: [character]
+subtypes: ["monstrosity"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  COVERT
+  While this card is in your hand, you may reveal this card when a card that provides [V] enters play under your control. If you do, you may pay 2 to deploy this card.

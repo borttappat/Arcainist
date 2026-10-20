@@ -1,0 +1,8 @@
+id: "humiliating-torture-apparatus"
+name: "Humiliating Torture Apparatus"
+trade: warlord
+types: [item]
+set: "2nd Edition"
+rarity: rare
+text: |
+  When a card is depleted, that card's controller's faction loses 1 influence. (Resources don't deplete when used; they attach to your faction.)

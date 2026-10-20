@@ -1,0 +1,10 @@
+id: "purloining-performance"
+name: "Purloining Performance"
+trade: rogue
+types: [tactic]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick an opponent.
+  Look at the top 4 cards of that player's deck and put them back in any order. If you control an attacking party of at least 2 members, you may put up to 3 cards from the top of that player's deck into their discard pile.
+  FLIP UP: 4 [D]

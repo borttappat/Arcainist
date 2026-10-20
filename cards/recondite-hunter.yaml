@@ -1,0 +1,10 @@
+id: "recondite-hunter"
+name: "Recondite Hunter"
+trade: rogue
+types: [character]
+subtypes: ["hunter"]
+set: "1st Edition"
+rarity: common
+text: |
+  COVERT
+  When this card attacks, it loses COVERT this turn.

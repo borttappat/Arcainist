@@ -1,0 +1,11 @@
+id: "cannon-squadron"
+name: "Cannon Squadron"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "1st Edition"
+rarity: common
+text: |
+  FIRE!
+  COST: Deplete this card. Pick 2 or fewer characters.
+  EFFECT: Inflict up to 2 damage divided however you want to the characters.

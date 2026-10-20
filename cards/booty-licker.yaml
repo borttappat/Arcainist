@@ -3,11 +3,13 @@ name: "Booty Licker"
 trade: rogue
 types: [character]
 subtypes: [thief]
+set: "Seed Saga"
+rarity: rare
 text: |
   CLAIM
-  COST - Deplete this card. Pick an item. X is its numeric cost. Pay X.
-  EFFECT - Take control of the item.
-  FLIP UP - 2 [D][D][D].
+  COST: Deplete this card. Pick an item. X is its numeric cost. Pay X.
+  EFFECT: Take control of the item.
+  FLIP UP: 2 [D][D][D]
 rules:
   - ability:
       name: Claim

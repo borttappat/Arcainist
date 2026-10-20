@@ -1,0 +1,13 @@
+id: "gideon-s-legacy"
+name: "Gideon's Legacy"
+trade: banker
+types: [item]
+set: "Seed Saga"
+rarity: common
+text: |
+  SEEK
+  COST: Pay 2. Deplete this card.
+  EFFECT: Draw a card.
+  HIDE
+  COST: Pick a player. Pick a card in that player's discard pile. X is its numeric cost. Destroy this card.
+  EFFECT: Shuffle the card into its owner's deck. Each other player's faction gains X influence.

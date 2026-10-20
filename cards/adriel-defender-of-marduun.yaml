@@ -3,8 +3,11 @@ name: "Adriel, Defender of Marduun"
 trade: warlord
 types: [character]
 subtypes: [adriel, sword of great justice]
+set: "Seed Saga"
+rarity: rare
 text: |
-  UNIQUE ADRIEL. If battle damage is inflicted to this card while it's blocking, reduce the amount to 0.
+  UNIQUE ADRIEL
+  When battle damage is inflicted to this card while it's blocking, reduce the amount to 0.
 rules:
   - unique: Adriel
   - static:

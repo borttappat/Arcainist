@@ -1,0 +1,10 @@
+id: "makeshift-contrivance"
+name: "Makeshift Contrivance"
+trade: gearsmith
+types: [item]
+set: "1st Edition"
+rarity: rare
+text: |
+  DEPLOY
+  COST: Pay 1. Deplete this card.
+  EFFECT: Play a resource.

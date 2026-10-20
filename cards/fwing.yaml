@@ -1,0 +1,9 @@
+id: "fwing"
+name: "Fwing!"
+trade: rogue
+types: [tactic]
+set: "2nd Edition"
+rarity: common
+text: |
+  EXTRA COST: Pick a character.
+  This turn, the character gains 1 speed. Flip a coin. If you win, the character also gains 1 strength this turn.

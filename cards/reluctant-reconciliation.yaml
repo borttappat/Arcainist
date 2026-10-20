@@ -1,0 +1,9 @@
+id: "reluctant-reconciliation"
+name: "Reluctant Reconciliation"
+trade: gearsmith
+types: [tactic]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  EXTRA COST: Pick a character.
+  Restore that character. This turn, it cannot attack.

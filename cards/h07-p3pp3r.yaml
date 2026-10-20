@@ -1,0 +1,13 @@
+id: "h07-p3pp3r"
+name: "H07 P3pp3r"
+trade: gearsmith
+types: [item]
+subtypes: ["gear"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  ATTACH TO CHARACTER
+  The attached character gains 2 strength and 2 life.
+  SPIT OUT
+  COST: Destroy this card. Pick 2 or fewer characters.
+  EFFECT: Restore the characters.

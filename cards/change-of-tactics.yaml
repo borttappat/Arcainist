@@ -1,0 +1,10 @@
+id: "change-of-tactics"
+name: "Change of Tactics"
+trade: warlord
+types: [tactic]
+set: "Holy Heist"
+rarity: rare
+text: |
+  EXTRA COST: Deploy this only while you are attacking, while there is a blocking party and before any damage is assigned during this battle. X is the number of characters in the attacking party. Deplete X non-attacking characters you control.
+  Remove all attacking characters from the battle. Add the depleted characters to the attacking party. Draw a card.
+  FLIP UP: 4 [R][R] and you may play a resource.

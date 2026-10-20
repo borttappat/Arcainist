@@ -41,7 +41,8 @@ body {
   color: var(--text);
   font: 14px/1.4 Inter, system-ui, sans-serif;
 }
-button, input, textarea { font: inherit; color: inherit; }
+button, input, textarea, select { font: inherit; color: inherit; }
+select { background: var(--bg-2); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; }
 button {
   background: var(--panel-2);
   border: 1px solid var(--line);
@@ -89,6 +90,9 @@ h1, h2, h3 { margin: 0 0 8px; font-family: Cinzel, serif; font-weight: 700; }
 @media (max-width: 760px) { .lobby { grid-template-columns: 1fr; } }
 .lobby textarea { margin-top: 8px; }
 .errors { color: var(--bad); margin: 8px 0; padding-left: 18px; }
+.warnings { color: var(--accent); margin: 8px 0; padding-left: 18px; }
+.toast.notice { background: var(--panel-2); color: var(--text); border: 1px solid var(--accent); }
+.lobby .row { flex-wrap: wrap; }
 .rooms { list-style: none; padding: 0; margin: 12px 0; display: grid; gap: 8px; }
 .rooms li { display: flex; justify-content: space-between; align-items: center; gap: 8px; background: var(--panel-2); border-radius: 8px; padding: 8px 12px; }
 .pool { columns: 2; padding-left: 18px; }

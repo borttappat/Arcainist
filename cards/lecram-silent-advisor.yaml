@@ -1,0 +1,11 @@
+id: "lecram-silent-advisor"
+name: "Lecram, Silent Advisor"
+trade: rogue
+types: [character]
+subtypes: ["advisor"]
+set: "Seed Saga"
+rarity: common
+text: |
+  COVERT, UNIQUE LECRAM
+  At the start of your turn, you may look at the top card of your deck.
+  At the end of your turn, flip a coin. If you win, look at the top card of an opponent's deck.

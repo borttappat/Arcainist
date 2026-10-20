@@ -1,0 +1,37 @@
+id: "defenders-of-marduun"
+name: "Defenders of Marduun"
+trade: none
+types: [faction]
+set: "Seed Saga"
+text: |
+  STARTING RESOURCES: Any 2 different staple resources.
+  STARTING DRAW: 8 going first, 9 going second.
+  RESTORE RULE: At the start of your turn, restore all your depleted cards and detach all resources from your faction.
+  DEVELOP RULE: At the start of your turn, draw a card or play a resource.
+  DRAW
+  COST: Pay 3.
+  EFFECT: Draw a card.
+  RESOURCE
+  COST: Pay 4.
+  EFFECT: Play a resource.
+  RALLY
+  COST: Use this only not during a battle. Pay 5. Pick 3 characters you control that don't share a trade.
+  EFFECT: This turn, the characters gain 2 strength and 2 life.
+restore_rule:
+  - restore_all_depleted: you
+  - detach_all_resources: you
+develop_rule:
+  - choose_one:
+      - draw: 1
+      - play_resource: 1
+rules:
+  - ability: { name: Draw, cost: [ pay: 3 ], effect: [ draw: 1 ] }
+  - ability: { name: Resource, cost: [ pay: 4 ], effect: [ play_resource: 1 ] }
+  - ability:
+      name: Rally
+      cost:
+        - require: { not: { in_battle: true } }
+        - pay: 5
+        - pick: { as: cs, from: { character: { controller: you } }, count: 3, exactly: true, different_trades: true }
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: 2, life: 2 }, target: cs } ] }

@@ -1,0 +1,7 @@
+{
+  "name": "Limited",
+  "description": "Draft and sealed: at least 40 cards plus a faction, any number of copies.",
+  "enforce": true,
+  "min_deck": 40,
+  "tournament": true
+}

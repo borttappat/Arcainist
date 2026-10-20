@@ -25,7 +25,7 @@ export function Pips({ icons, size = "sm" }: { icons?: Icons; size?: "sm" | "md"
 }
 
 export function typeLine(d: CardDef): string {
-  const trade = d.trade && d.trade !== "staple" ? d.trade[0].toUpperCase() + d.trade.slice(1) + " " : "";
+  const trade = d.trade && d.trade !== "staple" && d.trade !== "none" ? d.trade[0].toUpperCase() + d.trade.slice(1) + " " : "";
   const types = d.types.map((t) => t[0].toUpperCase() + t.slice(1)).join(" ");
   const sub = d.subtypes?.length ? ` - ${d.subtypes.join(", ")}` : "";
   return `${d.staple ? "Staple " : trade}${types}${sub}`;

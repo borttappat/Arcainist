@@ -1,0 +1,9 @@
+id: "frantic-jerryrigging"
+name: "Frantic Jerryrigging"
+trade: gearsmith
+types: [tactic]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  EXTRA COST: Destroy an item you control. X is its numeric cost.
+  Search your deck for an item with numeric cost X+2 or less, reveal it, and put it into your hand or destroy an item your opponent controls with numeric cost X+2 or less.

@@ -1,0 +1,9 @@
+id: "manful-skirmish"
+name: "Manful Skirmish"
+trade: warlord
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick 3 characters.
+  Deplete one of the characters. Inflict 1 damage to another one of the characters. The remaining character gains 2 strength this turn. Draw a card.

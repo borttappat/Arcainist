@@ -1,0 +1,9 @@
+id: "ingenious-tinker"
+name: "Ingenious Tinker"
+trade: gearsmith
+types: [character]
+subtypes: ["31f"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  When this card enters play, reduce the next numeric cost you pay this turn by 3.

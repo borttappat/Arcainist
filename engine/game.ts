@@ -40,8 +40,9 @@ export class Game {
   // -------------------------------------------------------------------------
   // Construction
 
-  static create(lib: CardLibrary, seed: number, decks: Record<PlayerId, DeckInput>): Game {
+  static create(lib: CardLibrary, seed: number, decks: Record<PlayerId, DeckInput>, opts: { first?: PlayerId; format?: string } = {}): Game {
     const s: GameState = {
+      format: opts.format ?? "casual",
       rng: seed >>> 0,
       turn: 0,
       active: "A",
@@ -79,7 +80,7 @@ export class Game {
       rng.shuffle(s, s.players[p].deck);
     }
     g.log(`Game started: ${decks.A.name} (${lib[decks.A.faction].name}) vs ${decks.B.name} (${lib[decks.B.faction].name}).`);
-    g.push({ t: "coin" }, { t: "startResources", p: "first" }, { t: "startResources", p: "second" }, { t: "startDraw", p: "first" }, { t: "startDraw", p: "second" }, { t: "beginGame" });
+    g.push({ t: "coin", first: opts.first }, { t: "startResources", p: "first" }, { t: "startResources", p: "second" }, { t: "equalizeResources" }, { t: "startDraw", p: "first" }, { t: "startDraw", p: "second" }, { t: "beginGame" });
     g.run();
     return g;
   }
@@ -149,6 +150,12 @@ export class Game {
     let guard = 0;
     while (this.s.phase !== "ended" && !this.s.pending) {
       if (++guard > 20000) throw new Error("Engine loop did not settle");
+      // Events raised directly by a player action (declaring an attack) still need
+      // their state checks and triggers before anyone gets a decision.
+      if (this.s.events.length && !this.s.tasks.length) {
+        this.checks();
+        continue;
+      }
       const task = this.s.tasks.pop();
       if (task) {
         this.exec(task);
@@ -354,7 +361,7 @@ export class Game {
       const mine = c.controller === p || (q.mods("use_opponent_abilities").some((m) => m.controller === p) && c.zone === "play");
       const where =
         from === "faction"
-          ? c.zone === "play" && c.controller === p
+          ? c.zone === "play" && (c.controller === p || !!ab.rule.both_players)
           : from === "play"
             ? q.active(a.iid) && mine
             : from === "face_down_resource"
@@ -434,72 +441,125 @@ export class Game {
 
   // --- setup ---------------------------------------------------------------
 
+  /** Who goes first: chosen when the room was created, or random. */
   protected t_coin(task: Task): void {
-    if (!task.answer) {
-      const winner: PlayerId = rng.int(this.s, 2) === 0 ? "A" : "B";
-      task.winner = winner;
-      this.log(`${this.pname(winner)} wins the coin flip.`);
-      this.ask(task, {
-        type: "choose",
-        player: winner,
-        prompt: "You won the coin flip. Go first or second?",
-        options: [
-          { id: "first", label: "Go first" },
-          { id: "second", label: "Go second" },
-        ],
-        min: 1,
-        max: 1,
-      });
-      return;
-    }
-    const w = task.winner as PlayerId;
-    this.s.first = task.answer.ids[0] === "first" ? w : other(w);
-    this.s.active = this.s.first!;
-    this.log(`${this.pname(this.s.first!)} goes first.`);
+    const chosen = task.first as PlayerId | undefined;
+    this.s.first = chosen ?? (rng.int(this.s, 2) === 0 ? "A" : "B");
+    this.s.active = this.s.first;
+    this.log(`${this.pname(this.s.first)} goes first${chosen ? "" : " (random)"}.`);
   }
 
   private seat(which: string): PlayerId {
     return which === "first" ? this.s.first! : other(this.s.first!);
   }
 
+  /**
+   * Starting resources, from the faction's JSON:
+   *   specific: { obsession: 1 }    these staples, face-up (no choice)
+   *   face_down: { obsession: 1 }   these staples, face-down
+   *   any_staples / different_staples: N   staples the player chooses
+   *   any_resources: N              any resource cards the player chooses
+   *   any_cards_face_down: N        any cards, put into play face-down
+   *   choose_staples: N             choose X from 1 to N, then X staples (Money for Nothing)
+   */
   protected t_startResources(task: Task): void {
     const p = this.seat(task.p);
-    const fdef = this.lib[this.s.players[p].factionId];
-    const sr = fdef.starting_resources ?? {};
-    const total = sr.any_staples ?? sr.different_staples ?? 0;
-    task.chosen ??= [];
+    const ps = this.s.players[p];
+    const sr: Record<string, any> = this.lib[ps.factionId].starting_resources ?? {};
+    const findStaple = (icon: string) => ps.deck.find((i) => this.q.def(i).staple && this.q.def(i).icon === icon);
+    if (!task.plan) {
+      task.plan = [] as { kind: string }[];
+      for (const [icon, n] of Object.entries(sr.specific ?? {})) for (let i = 0; i < (n as number); i++) task.plan.push({ kind: "specific", icon });
+      for (const [icon, n] of Object.entries(sr.face_down ?? {})) for (let i = 0; i < (n as number); i++) task.plan.push({ kind: "face_down", icon });
+      if (sr.choose_staples) task.plan.push({ kind: "choose_x", max: sr.choose_staples });
+      for (let i = 0; i < (sr.any_staples ?? 0); i++) task.plan.push({ kind: "staple" });
+      for (let i = 0; i < (sr.different_staples ?? 0); i++) task.plan.push({ kind: "different_staple" });
+      for (let i = 0; i < (sr.any_resources ?? 0); i++) task.plan.push({ kind: "resource" });
+      for (let i = 0; i < (sr.any_cards_face_down ?? 0); i++) task.plan.push({ kind: "card_face_down" });
+      task.chosen = [] as string[];
+    }
     if (task.answer) {
-      const defId = task.answer.ids[0];
-      const iid = this.s.players[p].deck.find((i) => this.s.cards[i].defId === defId)!;
-      this.putResource(p, iid, false, true);
-      task.chosen.push(defId);
+      const step = task.plan.shift();
+      if (step.kind === "choose_x") {
+        for (let i = 0; i < task.answer.value; i++) task.plan.unshift({ kind: "staple" });
+      } else {
+        const id = task.answer.ids[0];
+        const iid = step.kind === "card_face_down" ? id : ps.deck.find((i) => this.s.cards[i].defId === id)!;
+        this.putResource(p, iid, step.kind === "card_face_down", true);
+        task.chosen.push(this.s.cards[iid].defId);
+      }
       delete task.answer;
     }
-    const available = new Map<string, number>();
-    for (const iid of this.s.players[p].deck) {
-      const d = this.q.def(iid);
-      if (!d.staple) continue;
-      if (sr.different_staples && task.chosen.includes(d.id)) continue;
-      available.set(d.id, (available.get(d.id) ?? 0) + 1);
+    while (task.plan.length) {
+      const step = task.plan[0];
+      if (step.kind === "specific" || step.kind === "face_down") {
+        task.plan.shift();
+        const iid = findStaple(step.icon);
+        if (iid) this.putResource(p, iid, step.kind === "face_down", true);
+        else this.log(`${this.pname(p)} has no ${step.icon} staple to start with.`);
+        continue;
+      }
+      if (step.kind === "choose_x") {
+        return void this.ask(task, { type: "number", player: p, prompt: `${this.lib[ps.factionId].name}: choose a number for X (you start with X staple resources).`, min: 1, max: step.max });
+      }
+      if (step.kind === "card_face_down") {
+        if (!ps.deck.length) {
+          task.plan.shift();
+          continue;
+        }
+        return void this.ask(task, { type: "choose", player: p, prompt: "Choose a card from your deck to start with as a face-down resource.", options: ps.deck.map((iid) => ({ id: iid, iid, label: this.q.name(iid) })), min: 1, max: 1, list: true });
+      }
+      const available = new Map<string, number>();
+      for (const iid of ps.deck) {
+        const d = this.q.def(iid);
+        if (step.kind === "resource" ? !d.types.includes("resource") : !d.staple) continue;
+        if (step.kind === "different_staple" && (task.chosen.includes(d.id) || this.q.resources(p).some((r) => this.s.cards[r].defId === d.id))) continue;
+        available.set(d.id, (available.get(d.id) ?? 0) + 1);
+      }
+      if (!available.size) {
+        task.plan.shift();
+        this.log(`${this.pname(p)} has no more ${step.kind === "resource" ? "resources" : "staple resources"} to start with.`);
+        continue;
+      }
+      return void this.ask(task, {
+        type: "choose",
+        player: p,
+        prompt: `Choose a starting ${step.kind === "resource" ? "resource" : "staple resource"}${step.kind === "different_staple" ? " (different from your others)" : ""}.`,
+        options: [...available].map(([id, n]) => ({ id, label: `${this.lib[id].name} (${n} in deck)` })),
+        min: 1,
+        max: 1,
+      });
     }
-    if (task.chosen.length >= total || !available.size) {
-      if (task.chosen.length < total) this.log(`${this.pname(p)} has no more staple resources to start with.`);
-      rng.shuffle(this.s, this.s.players[p].deck);
-      return;
+    rng.shuffle(this.s, ps.deck);
+  }
+
+  /** Money for Nothing: the opponent gets staples until both have the same number of resources. */
+  protected t_equalizeResources(task: Task): void {
+    for (const p of ["A", "B"] as PlayerId[]) {
+      if (!this.lib[this.s.players[p].factionId].opponent_rules?.equalize_starting_resources) continue;
+      const o = other(p);
+      const need = this.q.resources(p).length - this.q.resources(o).length;
+      if (need <= 0) continue;
+      if (task.answer) {
+        const id = task.answer.ids[0];
+        const iid = this.s.players[o].deck.find((i) => this.s.cards[i].defId === id)!;
+        this.putResource(o, iid, false, true);
+        delete task.answer;
+        return void this.s.tasks.push(task);
+      }
+      const opts = [...new Set(this.s.players[o].deck.filter((i) => this.q.def(i).staple).map((i) => this.s.cards[i].defId))];
+      if (!opts.length) continue;
+      return void this.ask(task, { type: "choose", player: o, prompt: `Money for Nothing: choose a staple resource to start with (${need} more to match).`, options: opts.map((id) => ({ id, label: this.lib[id].name })), min: 1, max: 1 });
     }
-    this.ask(task, {
-      type: "choose",
-      player: p,
-      prompt: `Choose starting resource ${task.chosen.length + 1} of ${total}${sr.different_staples ? " (all different)" : ""}.`,
-      options: [...available].map(([id, n]) => ({ id, label: `${this.lib[id].name} (${n} in deck)` })),
-      min: 1,
-      max: 1,
-    });
+    for (const p of ["A", "B"] as PlayerId[]) rng.shuffle(this.s, this.s.players[p].deck);
   }
 
   protected t_startDraw(task: Task): void {
     const p = this.seat(task.p);
-    const fdef = this.lib[this.s.players[p].factionId];
+    let fdef = this.lib[this.s.players[p].factionId];
+    // The Knitting Coalition: "Your opponent ignores their faction's STARTING DRAW and uses this card's."
+    const opp = this.lib[this.s.players[other(p)].factionId];
+    if (opp.opponent_rules?.starting_draw === "this") fdef = { ...opp, starting_draw: { first: opp.starting_draw!.first, second: opp.starting_draw!.second } };
     const sd = fdef.starting_draw ?? { first: 8, second: 9 };
     const ctx = this.newCtx(p, this.s.players[p].factionIid);
     this.push(...this.steps(sd.before ?? [], ctx, "effect"), { t: "draw", p, n: task.p === "first" ? sd.first : sd.second }, { t: "mulligan", p });
@@ -546,10 +606,25 @@ export class Game {
       if (e.duration === "until_your_next_turn" && e.controller === p) return false;
       return true;
     });
+    // The faction's restore and develop rules and every "at the start of your turn"
+    // trigger become available together; the turn player orders them. When only the
+    // faction's own rules are there, they run in printed order without asking.
     const fdef = this.lib[s.players[p].factionId];
-    const ctx = this.newCtx(p, s.players[p].factionIid);
-    ctx.vars.by_rule = true;
-    this.push(...this.steps(fdef.restore_rule ?? [], ctx, "effect"), ...this.steps(fdef.develop_rule ?? [], ctx, "effect"), { t: "emit", ev: { e: "start_of_turn", player: p } });
+    const fiid = s.players[p].factionIid;
+    // The Knitting Coalition: "Your opponent ignores their faction's DEVELOP RULE."
+    const noDevelop = this.lib[s.players[other(p)].factionId].opponent_rules?.develop_rule === "none";
+    const rules: Task[] = [];
+    const rule = (steps: Step[] | undefined, label: string) => {
+      if (!steps?.length) return;
+      const ctx = this.newCtx(p, fiid);
+      ctx.vars.by_rule = true;
+      rules.push({ t: "trigger", iid: fiid, effect: steps, ctx: ctx.id, label, quiet: true });
+    };
+    rule(fdef.restore_rule, "Restore rule");
+    if (!noDevelop) rule(fdef.develop_rule, "Develop rule");
+    const cards = this.triggersFor({ e: "start_of_turn", player: p });
+    if (!cards.length) this.push(...rules);
+    else this.s.tasks.push({ t: "orderTriggers", list: [...rules, ...cards] });
   }
 
   protected t_finishTurn(): void {
@@ -615,8 +690,9 @@ export class Game {
     const ab = this.q.abilities(task.iid).find((x) => x.index === task.index)!;
     this.takeSnapshot(p);
     const src = this.q.card(task.iid);
-    // Borrowed abilities (The Billionaire) keep the card's controller as "you".
-    const ctx = this.newCtx(src.zone === "play" ? src.controller : p, task.iid);
+    // Borrowed abilities (The Billionaire) keep the card's controller as "you";
+    // abilities "both players may use" belong to whoever uses them.
+    const ctx = this.newCtx(src.zone === "play" && !ab.rule.both_players ? src.controller : p, task.iid);
     ctx.actor = p;
     ctx.responding = task.responding;
     const label = src.faceDown ? `${ab.rule.name} (face-down card)` : `${this.q.name(task.iid)}: ${ab.rule.name}`;
@@ -637,6 +713,7 @@ export class Game {
       if (!this.q.by(m, payer)) continue;
       const applies = m.mod.applies ?? "deploy";
       if (applies === "deploy" && (!deploying || !this.q.targets(m, deploying))) continue;
+      if (applies === "flip_up" && (ctx.via !== "flip_up" || !deploying || !this.q.targets(m, deploying))) continue;
       if (applies === "any" && m.mod.target && deploying && !this.q.targets(m, deploying)) continue;
       const v = this.q.value(m.value, m.scope);
       if (v > 0) up += v;
@@ -762,6 +839,18 @@ export class Game {
   protected t_finishTactic(task: Task): void {
     const c = this.s.cards[task.iid];
     if (c.zone !== "stack") return;
+    if (!task.then && !task.asked) {
+      // "If you deployed a tactic and it would go to a discard pile, ..." (The Primitive Tribes of Thabbash)
+      for (const src of this.q.allInPlay()) {
+        if (!this.q.active(src) || this.s.cards[src].controller !== c.controller) continue;
+        const rule = this.q.rules(src).find((r) => r.replace?.event === "tactic_to_discard");
+        if (!rule) continue;
+        const ctx = this.newCtx(c.controller, src);
+        ctx.vars.it = task.iid;
+        this.push(...this.steps(rule.instead, ctx, "effect"), { t: "dropCtx", ctx: ctx.id }, { ...task, asked: true });
+        return;
+      }
+    }
     if (task.then === "face_down_resource") {
       this.putResource(c.owner, task.iid, true, false);
       this.log(`${this.q.name(task.iid)} goes into play as a face-down resource.`);
@@ -793,7 +882,7 @@ export class Game {
       type: "choose",
       player: chooser,
       prompt: "Several triggers happened at once. Choose which resolves next.",
-      options: list.map((t, i) => ({ id: String(i), label: this.q.name(t.iid), iid: t.iid })),
+      options: list.map((t, i) => ({ id: String(i), label: t.label ? `${this.q.name(t.iid)}: ${t.label}` : this.q.name(t.iid), iid: t.iid })),
       min: 1,
       max: 1,
     });
@@ -802,7 +891,7 @@ export class Game {
   protected t_trigger(task: Task): void {
     const ctx = this.s.ctxs[task.ctx];
     if (!ctx) return;
-    this.log(`${task.effectSource ? "Effect of " : ""}${this.q.name(task.iid)} triggers.`);
+    if (!task.quiet) this.log(`${task.effectSource ? "Effect of " : ""}${this.q.name(task.iid)} triggers.`);
     this.push(...this.steps(task.effect ?? [], ctx, "effect"), { t: "dropCtx", ctx: ctx.id });
   }
 
@@ -839,8 +928,15 @@ export class Game {
     if (!s.events.length) return;
     const events = s.events;
     s.events = [];
+    const fired = events.flatMap((ev) => this.triggersFor(ev));
+    if (fired.length) s.tasks.push({ t: "orderTriggers", list: fired });
+  }
+
+  /** Trigger tasks for one event (not yet queued). */
+  private triggersFor(ev: GameEvent): Task[] {
+    const s = this.s;
     const fired: Task[] = [];
-    for (const ev of events) {
+    {
       for (const src of this.q.frozen(() => this.triggerSources(ev))) {
         const r = src.rule;
         if (r.on !== ev.e) continue;
@@ -866,7 +962,7 @@ export class Game {
         fired.push({ t: "trigger", iid: src.iid, effect: src.effect, ctx: ctx.id, effectSource: !!src.fromEffect });
       }
     }
-    if (fired.length) s.tasks.push({ t: "orderTriggers", list: fired });
+    return fired;
   }
 
   emit(ev: GameEvent): void {
@@ -1045,8 +1141,10 @@ export class Game {
   }
 
   protected op_choose_one(arg: any, ctx: Ctx, task: Task): StepResult {
-    const opts: { label?: string; steps: Step[] }[] = (Array.isArray(arg) ? arg : arg.options).map((o: any) => (o.steps ? o : { steps: [o] }));
+    const opts: { label?: string; steps: Step[]; when?: any }[] = (Array.isArray(arg) ? arg : arg.options).map((o: any) => (o.steps ? o : { steps: [o] }));
     const p = Array.isArray(arg) || !arg.who ? ctx.actor : this.who(ctx, arg.who);
+    // Options with `when` are only offered while their condition holds.
+    const offered = opts.map((o, i) => ({ o, i })).filter(({ o }) => !o.when || this.q.cond(o.when, this.scope(ctx)));
     if (task.answer) {
       const chosen = opts[Number(task.answer.ids[0])];
       this.log(`${this.pname(p)} chooses: ${chosen.label ?? this.describeSteps(chosen.steps)}.`);
@@ -1057,7 +1155,7 @@ export class Game {
       type: "choose",
       player: p,
       prompt: `${this.q.name(ctx.source)}: choose one.`,
-      options: opts.map((o, i) => ({ id: String(i), label: o.label ?? this.describeSteps(o.steps) })),
+      options: offered.map(({ o, i }) => ({ id: String(i), label: o.label ?? this.describeSteps(o.steps) })),
       min: 1,
       max: 1,
     });
@@ -1090,7 +1188,7 @@ export class Game {
     const vars = this.root(ctx).vars;
     const isPick = !arg.choose;
     const multi = (arg.count ?? 1) !== 1 || !!arg.up_to;
-    let cands = this.q.find(arg.from, scope, arg.zone ?? "play");
+    let cands = arg.like === "responded" ? this.repickCandidates(ctx) : this.q.find(arg.from, scope, arg.zone ?? "play");
     if (isPick) {
       cands = cands.filter((i) => !this.q.cannot("pick", i, chooser));
       const must = cands.filter((i) => this.q.modsFor("must_pick", i).length);
@@ -1104,6 +1202,10 @@ export class Game {
     const optional = !!arg.optional || !!arg.up_to;
     if (task.answer || (arg.random && cands.length)) {
       const ids: string[] = task.answer ? task.answer.ids : this.randomPick(cands, count);
+      if (arg.different_trades && new Set(ids.map((i) => this.q.def(i).trade)).size !== ids.length) {
+        this.log("Those cards must not share a trade.", chooser);
+        return task.phase === "cost" ? "fail" : "ok";
+      }
       vars[arg.as] = multi ? ids : ids[0];
       this.setDid(ctx, ids.length > 0);
       if (isPick) {
@@ -1113,7 +1215,10 @@ export class Game {
             if (task.phase === "cost") this.root(ctx).pay += tax;
             else this.payNow(chooser, tax);
           }
-          if (task.phase === "cost" && this.q.is(i, "character")) (this.root(ctx).picked ??= []).push(i);
+          if (task.phase === "cost" && this.q.is(i, "character")) {
+            (this.root(ctx).picked ??= []).push(i);
+            (this.root(ctx).pickedFrom ??= []).push({ iid: i, from: arg.from, zone: arg.zone, chooser });
+          }
           this.emit({ e: "picked", iid: i, player: chooser });
         }
       }
@@ -1135,6 +1240,23 @@ export class Game {
       cancellable: task.phase === "cost" && !!this.s.snapshot,
       list: cands.some((i) => this.s.cards[i].zone !== "play"),
     });
+  }
+
+  /**
+   * Mistaken Identity: "another character that could be picked by that card or
+   * ability": the same selector, from the original card's point of view, by the
+   * original picker, excluding the character it picked.
+   */
+  private repickCandidates(ctx: Ctx): string[] {
+    const item = this.s.stack.find((x) => x.id === this.root(ctx).responding);
+    const ictx = item && this.s.ctxs[item.ctx];
+    const rec = ictx && this.root(ictx).pickedFrom?.[0];
+    if (!ictx || !rec) return [];
+    const scope = this.scope(ictx);
+    let cands = this.q.find(rec.from, scope, rec.zone ?? "play").filter((i) => i !== rec.iid && this.q.is(i, "character") && !this.q.cannot("pick", i, rec.chooser));
+    const must = cands.filter((i) => this.q.modsFor("must_pick", i).length);
+    if (must.length) cands = must;
+    return cands.filter((i) => this.pickTax(i, rec.chooser) <= this.q.unattached(rec.chooser).length);
   }
 
   private pickTax(iid: string, picker: PlayerId): number {
@@ -1371,8 +1493,14 @@ export class Game {
       if (typeof t === "string" && t !== "all" && t !== "none") return { iids: this.q.refs(t, scope) };
       return t;
     };
+    // "This turn, all your characters gain 1 strength" means the characters in play now.
+    // Changes to cards' characteristics freeze their selector targets; rules about
+    // future actions (costs, prohibitions, play permissions) stay live. `live: true` opts out.
+    const SNAPSHOT = ["stat", "set_stats", "add_type", "remove_type", "keyword"];
     const mods = (arg.mods ?? []).map((m: any) => {
-      const out = { ...m, target: fix(m.target) };
+      let target = fix(m.target);
+      if (!m.live && SNAPSHOT.some((k) => k in m) && target && typeof target === "object" && !Array.isArray(target.iids)) target = { iids: this.q.find(target, scope) };
+      const out = { ...m, target };
       if (typeof out.provides === "string") out.provides = { [scope.vars[out.provides]]: 1 };
       if (out.stat) {
         out.stat = { ...out.stat };
@@ -1380,7 +1508,7 @@ export class Game {
       }
       return out;
     });
-    const e: Effect = { id: rng.id(this.s), source: ctx.source, controller: ctx.controller, vars: { ...scope.vars }, mods, rules: arg.rules, duration: arg.duration ?? "turn", turn: this.s.turn };
+    const e: Effect = { id: rng.id(this.s), source: ctx.source, controller: ctx.controller, vars: { ...scope.vars }, mods, rules: arg.rules, duration: arg.duration ?? "turn", turn: this.s.turn, ...(arg.tag ? { tag: arg.tag } : {}) };
     this.s.effects.push(e);
     return "ok";
   }
@@ -1416,6 +1544,7 @@ export class Game {
       const ctl = arg.controller === "owner" ? c.owner : this.who(ctx, arg.controller ?? "you");
       if (arg.as === "face_down_resource") {
         this.putResource(ctl, iid, true, false);
+        if (arg.attached) this.s.cards[iid].attachedTo = "faction";
         this.log(`${this.pname(ctl)} puts ${this.visibleName(iid)} into play as a face-down resource.`);
       } else if (arg.as === "resource" || (!arg.as && this.q.def(iid).types.includes("resource"))) {
         this.putResource(ctl, iid, false, false);
@@ -1605,8 +1734,10 @@ export class Game {
   }
 
   /** Remove continuous effects created by this card. */
-  protected op_clear_effects(_arg: any, ctx: Ctx): StepResult {
-    this.s.effects = this.s.effects.filter((e) => e.source !== ctx.source);
+  /** Remove continuous effects this card created: `clear_effects: self`, or `{ tag: name }` for some of them. */
+  protected op_clear_effects(arg: any, ctx: Ctx): StepResult {
+    const tag = arg && typeof arg === "object" ? arg.tag : undefined;
+    this.s.effects = this.s.effects.filter((e) => e.source !== ctx.source || (tag !== undefined && e.tag !== tag));
     return "ok";
   }
 
@@ -1767,20 +1898,67 @@ export class Game {
     });
   }
 
-  /** Terminate a card or ability being played: "responded" or "self". */
+  /** Terminate a card or ability being played: "responded", "self", or a card on the stack. */
   protected op_terminate(arg: any, ctx: Ctx): StepResult {
     if (arg === "self") {
       (this.root(ctx) as any).terminated = true;
       this.log(`${this.q.name(ctx.source)} is terminated.`);
       return "ok";
     }
+    // "responded", a stack item id, or a card reference (the card being deployed).
     const id = arg === "responded" ? this.root(ctx).responding : arg;
-    const i = this.s.stack.findIndex((x) => x.id === id);
+    const card = arg === "responded" ? undefined : this.ref(ctx, arg);
+    const i = this.s.stack.findIndex((x) => x.id === id || (card !== undefined && x.kind === "card" && x.iid === card));
     if (i < 0) return "ok";
     const [item] = this.s.stack.splice(i, 1);
     if (item.kind === "card") this.move(item.iid, "discard");
     this.dropCtx(item.ctx);
     this.log(`${item.label} is terminated.`);
+    return "ok";
+  }
+
+  /**
+   * Flip a coin: { as: won }. Sets the variable and "did" to whether you won.
+   * Two-Headed Coin: if you'd lose, you may shuffle it into your deck, reflip and draw a card.
+   */
+  protected op_coin_flip(arg: any, ctx: Ctx, task: Task): StepResult {
+    const p = ctx.controller;
+    const vars = this.root(ctx).vars;
+    const settle = (won: boolean) => {
+      vars[arg?.as ?? "won"] = won;
+      this.setDid(ctx, won);
+      this.log(`${this.pname(p)} flips a coin and ${won ? "wins" : "loses"}.`);
+      return "ok" as StepResult;
+    };
+    if (task.answer) {
+      if (task.answer.ids[0] === "yes") {
+        const coin = task.coin as string;
+        this.log(`${this.pname(p)} shuffles ${this.q.name(coin)} into their deck to reflip.`);
+        this.move(coin, "deck");
+        rng.shuffle(this.s, this.s.players[this.s.cards[coin].owner].deck);
+        const won = rng.int(this.s, 2) === 0;
+        this.drawCards(p, 1);
+        return settle(won);
+      }
+      return settle(false);
+    }
+    const won = rng.int(this.s, 2) === 0;
+    if (won) return settle(true);
+    const coin = this.s.players[p].play.find((i) => this.q.active(i) && this.q.rules(i).some((r) => "coin_reflip" in r));
+    if (!coin) return settle(false);
+    task.coin = coin;
+    this.log(`${this.pname(p)} would lose a coin flip.`);
+    return this.ask(task, { type: "choose", player: p, prompt: `You would lose the coin flip. Shuffle ${this.q.name(coin)} into your deck to reflip and draw a card?`, options: [{ id: "yes", label: "Yes, reflip" }, { id: "no", label: "No" }], min: 1, max: 1 });
+  }
+
+  /** Turn a double-sided faction over: { transform: <card id of the other side> } */
+  protected op_transform(arg: any, ctx: Ctx): StepResult {
+    const c = this.s.cards[ctx.source];
+    if (!this.q.isFaction(ctx.source) || !this.lib[arg]) return "ok";
+    const before = this.q.name(ctx.source);
+    c.defId = arg;
+    this.s.players[c.owner].factionId = arg;
+    this.log(`${before} turns over: ${this.lib[arg].name}.`);
     return "ok";
   }
 

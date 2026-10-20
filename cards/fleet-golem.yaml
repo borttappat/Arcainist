@@ -1,0 +1,10 @@
+id: "fleet-golem"
+name: "Fleet Golem"
+trade: gearsmith
+types: [character]
+subtypes: ["golem"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  When this card enters play, you may pay 5. If you do, put a token on it.
+  While there is a token on this card, it cannot be blocked.

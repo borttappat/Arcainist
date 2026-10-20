@@ -1,0 +1,9 @@
+id: "prostitution-lobbyist"
+name: "Prostitution Lobbyist"
+trade: banker
+types: [character]
+subtypes: ["politician", "mau"]
+set: "Seed Saga"
+rarity: common
+text: |
+  FLIP UP: 0 [G]

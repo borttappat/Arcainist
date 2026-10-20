@@ -1,0 +1,11 @@
+id: "mephitic-nullifier"
+name: "Mephitic Nullifier"
+trade: arcanist
+types: [character]
+subtypes: ["ritualist"]
+set: "1st Edition"
+rarity: common
+text: |
+  FLASH-BANG
+  COST: Destroy this card. Pick a character you control.
+  EFFECT: Put the character into its owner's hand.

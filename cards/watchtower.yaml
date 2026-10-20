@@ -1,0 +1,9 @@
+id: "watchtower"
+name: "Watchtower"
+trade: warlord
+types: [location]
+set: "Seed Saga"
+rarity: rare
+text: |
+  UNIQUE WATCHTOWER
+  When a character enters play under an opponent's control, inflict 1 damage to it.

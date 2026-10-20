@@ -1,0 +1,11 @@
+id: "thieving-casino"
+name: "Thieving Casino"
+trade: rogue
+types: [location]
+set: "Holy Heist"
+rarity: rare
+text: |
+  At the start of your turn, flip a coin. If you win, pick a player and put the top 4 cards of their deck into their discard pile.
+  CASH OUT
+  COST: Deplete this card. Pick a character in an opponent's discard pile. X is its numeric cost. Pay X+4.
+  EFFECT: Put it into play under your control.

@@ -1,0 +1,9 @@
+id: "efficacious-gunslinger"
+name: "Efficacious Gunslinger"
+trade: rogue
+types: [character]
+subtypes: ["vigilante"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  When this card inflicts battle damage to a character, destroy that character.

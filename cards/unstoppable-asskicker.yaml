@@ -1,0 +1,8 @@
+id: "unstoppable-asskicker"
+name: "Unstoppable Asskicker"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Seed"
+rarity: uncommon
+text: ""

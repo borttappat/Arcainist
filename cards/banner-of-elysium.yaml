@@ -1,0 +1,13 @@
+id: "banner-of-elysium"
+name: "Banner of Elysium"
+trade: universal
+types: [item]
+subtypes: ["banner"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  PROVIDES: [E]
+  When a card that provides at least [E] enters play under your control, you may pay 1. If you do, detach 2 resources from your faction.
+  BURN IT
+  COST: Pay 2. Destroy this card.
+  EFFECT: Draw 2 cards.

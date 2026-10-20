@@ -1,0 +1,15 @@
+id: "motivational-dancer"
+name: "Motivational Dancer"
+trade: banker
+types: [character]
+subtypes: ["dancer", "mau"]
+set: "Holy Heist"
+rarity: rare
+text: |
+  At the end of your turn, you may pay 1. If you do, pick a character and deplete it. That character cannot be restored by its controller's faction's next Restore Rule.
+  PRIVATE DANCE
+  COST: Pay 1. Deplete this card. Pick a character.
+  EFFECT: Deplete the card.
+  PAY UP
+  COST: Pay 1. Inflict 1 damage to your faction. Deplete this card. Pick a depleted character.
+  EFFECT: Inflict 1 damage to the character.

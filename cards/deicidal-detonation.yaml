@@ -1,0 +1,11 @@
+id: "deicidal-detonation"
+name: "Deicidal Detonation"
+trade: arcanist
+types: [tactic]
+set: "Ungodly Mess"
+rarity: uber
+text: |
+  Put a token on any number of non-resource cards.
+  RECUR: [O]
+  COST: Use this only if this card is in your discard pile. Pay 4. Remove this card from the game.
+  EFFECT: Destroy each card with a token on it.

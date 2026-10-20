@@ -1,0 +1,8 @@
+id: "a-blazing-zero"
+name: "A Blazing Zero"
+trade: warlord
+types: [tactic]
+set: "Seed Saga"
+rarity: rare
+text: |
+  If you deployed this card in response to a tactic, terminate that tactic. Put that tactic into play under its owner's control as a face-down resource instead of into their discard pile.

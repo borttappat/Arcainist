@@ -1,0 +1,8 @@
+id: "ritual-of-the-ominous-urn"
+name: "Ritual of the Ominous Urn"
+trade: arcanist
+types: [tactic]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  An opponent discards a card. You may search your deck for a card of the same type as the discarded card and reveal it. If you do, put it into your hand.

@@ -1,0 +1,8 @@
+id: "agile-highwayman"
+name: "Agile Highwayman"
+trade: rogue
+types: [character]
+subtypes: ["outlaw"]
+set: "Seed Saga"
+rarity: common
+text: ""

@@ -1,0 +1,10 @@
+id: "spiky-pumpkin"
+name: "Spiky Pumpkin"
+trade: warlord
+types: [item]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  This card enters play with 3 tokens on it.
+  At the start of your turn, remove a token from this card. If there are no tokens on it, destroy it.
+  At the end of your turn, you may pick a character. If you do, inflict X damage to that character, where X is the number of tokens on this card.

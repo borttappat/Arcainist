@@ -1,0 +1,10 @@
+id: "lugubrious-finger-trap"
+name: "Lugubrious Finger Trap"
+trade: arcanist
+types: [item]
+subtypes: ["gear"]
+set: "2nd Edition"
+rarity: common
+text: |
+  ATTACH TO CHARACTER
+  The attached character cannot attack or block.

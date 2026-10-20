@@ -1,0 +1,14 @@
+id: "prudent-thug"
+name: "Prudent Thug"
+trade: banker
+types: [character]
+subtypes: ["mercenary", "investor"]
+set: "2nd Edition"
+rarity: common
+text: |
+  When this card enters play, your faction loses 3 influence.
+  This card loses 1 strength and 1 life for each token on it.
+  This card can attack only once each turn.
+  RESTORE
+  COST: Pay 1. Put a token on this card.
+  EFFECT: Restore this card.

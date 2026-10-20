@@ -1,0 +1,12 @@
+id: "ipsighast-the-lustful"
+name: "Ipsighast, the Lustful"
+trade: rogue
+types: [character]
+subtypes: ["ipsighast", "demon knight"]
+set: "Seed 3"
+rarity: fixed
+text: |
+  UNIQUE IPSIGHAST
+  EXHUMATION
+  COST: Pay 3. Pick a character in an opponent's discard pile.
+  EFFECT: Remove that character from the game. This turn, this card gains COVERT. You may put the top 3 cards of that opponent's deck into their discard pile.

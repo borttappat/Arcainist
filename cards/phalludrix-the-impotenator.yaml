@@ -1,0 +1,14 @@
+id: "phalludrix-the-impotenator"
+name: "Phalludrix, the Impotenator"
+trade: warlord
+types: [item]
+set: "Seed Saga"
+rarity: rare
+text: |
+  UNIQUE PHALLUDRIX
+  When an effect controlled by an opponent causes you to discard any number of cards, you may put them back into your hand.
+  EQUIP
+  COST: Pick a character. If it is an adriel card then X is 0, otherwise X is 3. Pay X.
+  EFFECT: Attach this card to the character.
+  The attached character gains 2 strength.
+  At the start of each opponent's turn, you may restore the attached character.

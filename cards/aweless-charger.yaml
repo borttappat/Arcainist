@@ -1,0 +1,11 @@
+id: "aweless-charger"
+name: "Aweless Charger"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  BORE
+  COST: Pay 3. Deplete this card. Pick a blocking character.
+  EFFECT: Remove the character from the battle. Deplete it.

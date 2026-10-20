@@ -1,0 +1,10 @@
+id: "gosche-s-voidal-frequency-emission"
+name: "Gosche's Voidal Frequency Emission"
+trade: warlord
+types: [tactic]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  EXTRA COST: Pick a character in your discard pile.
+  Draw a card. Put the character on top of its owner's deck or into play under its owner's control as a face-down resource.
+  FLIP UP: 2 [R]

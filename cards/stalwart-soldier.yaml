@@ -1,0 +1,8 @@
+id: "stalwart-soldier"
+name: "Stalwart Soldier"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "2nd Edition"
+rarity: uncommon
+text: ""

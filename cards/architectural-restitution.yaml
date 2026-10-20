@@ -1,0 +1,10 @@
+id: "architectural-restitution"
+name: "Architectural Restitution"
+trade: banker
+types: [tactic]
+set: "Seed Saga"
+rarity: rare
+text: |
+  EXTRA COST: Deploy this only while an opponent is attacking you. Pick a location in your discard pile.
+  Put the location into play under your control. Change the target of that opponent's attack to the location.
+  FLIP UP: 2 [G][G]

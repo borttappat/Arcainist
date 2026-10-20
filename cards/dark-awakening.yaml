@@ -3,10 +3,12 @@ name: Dark Awakening
 flavor_title: welcome back to the land of the living
 trade: warlord
 types: [tactic]
+set: "Seed 2"
+rarity: rare
 text: |
-  COST - Pick a non-resource card in your discard pile.
-  EFFECT - You may play the card. Draw a card.
-  FLIP UP - 2 [rage]
+  EXTRA COST: Pick a non-resource card in your discard pile.
+  You may deploy the card. Draw a card.
+  FLIP UP: 2 [R]
 rules:
   - play:
       cost:

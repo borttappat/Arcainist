@@ -1,0 +1,9 @@
+id: "t-force-5-megamanlymajig"
+name: "T Force 5 MegaManlyMajig"
+trade: gearsmith
+types: [character]
+subtypes: ["t force 5", "majig"]
+set: "Holy Heist"
+rarity: common
+text: |
+  When this card enters play, you may detach up to 3 resources from your faction.

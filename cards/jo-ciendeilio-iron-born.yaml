@@ -1,0 +1,11 @@
+id: "jo-ciendeilio-iron-born"
+name: "Jo Ciendeilio, Iron Born"
+trade: gearsmith
+types: [character]
+subtypes: ["jo", "blade of questionable morality"]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  UNIQUE JO
+  FEALTY: While this card is in your hand and you control at least 4 staple resources of different trades, reduce this card's threshold requirement by any 3 resource icons.
+  When this card enters or leaves play, you may search your deck for a gearsmith item and reveal it. If you do, put it into your hand.

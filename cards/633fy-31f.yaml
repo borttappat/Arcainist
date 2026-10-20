@@ -3,8 +3,10 @@ name: "633fy 31f"
 trade: gearsmith
 types: [character]
 subtypes: [31f]
+set: "2nd Edition"
+rarity: common
 text: |
-  COST - Play this only if you have played at least 2 other non-resource cards this turn.
+  EXTRA COST: Deploy this only if you have deployed at least 2 other non-resource cards this turn.
 rules:
   - play:
       cost:

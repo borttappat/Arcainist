@@ -1,0 +1,9 @@
+id: "flesh-deliquesce"
+name: "Flesh Deliquesce"
+trade: arcanist
+types: [tactic]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  EXTRA COST: Pick an opponent. X is the number of detached resources that player controls. Pick a character.
+  If the character has X strength or less, destroy it.

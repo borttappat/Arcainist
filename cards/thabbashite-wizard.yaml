@@ -1,0 +1,9 @@
+id: "thabbashite-wizard"
+name: "Thabbashite Wizard"
+trade: arcanist
+types: [character]
+subtypes: ["wizard"]
+set: "Seed Saga"
+rarity: common
+text: |
+  When this card enters play, each player may draw up to 2 cards.

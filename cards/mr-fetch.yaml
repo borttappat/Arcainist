@@ -1,0 +1,13 @@
+id: "mr-fetch"
+name: "Mr. Fetch"
+trade: banker
+types: [character]
+subtypes: ["pluck", "grifter"]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  UNIQUE PLUCK
+  When this card enters play, you may remove a card in your discard pile from the game. If you do, draw a card.
+  GOOD DEAL
+  COST: Deplete this card. Pick 2 cards of the same type in your discard pile. Remove them from the game.
+  EFFECT: Search your deck for a card with the same type as the picked cards and reveal it. If you do, put it into your hand.

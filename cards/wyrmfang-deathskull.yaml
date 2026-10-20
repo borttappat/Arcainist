@@ -1,0 +1,10 @@
+id: "wyrmfang-deathskull"
+name: "Wyrmfang Deathskull"
+trade: warlord
+types: [character]
+subtypes: ["dragon"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  UNIQUE WYRMFANG
+  When you attack, the controller of the faction or location you are attacking picks any number of characters they control. Those characters must block during this battle if they can, and only those characters can block.

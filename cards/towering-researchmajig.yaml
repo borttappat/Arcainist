@@ -1,0 +1,12 @@
+id: "towering-researchmajig"
+name: "Towering Researchmajig"
+trade: gearsmith
+types: [character]
+subtypes: ["majig"]
+set: "1st Edition"
+rarity: uncommon
+text: |
+  At the start of your turn, you may put a token on this card.
+  RESEARCH
+  COST: Remove a token from this card.
+  EFFECT: Reduce the next numeric cost you pay this turn by 1.

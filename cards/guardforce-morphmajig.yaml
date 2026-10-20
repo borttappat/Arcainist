@@ -1,0 +1,12 @@
+id: "guardforce-morphmajig"
+name: "Guardforce Morphmajig"
+trade: gearsmith
+types: [character]
+subtypes: ["guardforce", "majig"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  This card can attack even if it has not been in play under your control since the start of the turn.
+  When you deploy a card, put a token on this card. (Playing a resource doesn't count.)
+  When an opponent deploys a card, remove a token from this card. (Playing a resource doesn't count.)
+  This card gains 1 strength and 1 life for each token on it.

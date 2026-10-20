@@ -1,0 +1,12 @@
+id: "obscene-communion"
+name: "Obscene Communion"
+trade: arcanist
+types: [item]
+set: "Seed Saga"
+rarity: rare
+text: |
+  At the start of each player's turn, that player chooses one of the following:
+  OPTION 1: Each player draws a card. Each player puts a card from their hand on the bottom of their deck.
+  OPTION 2: Each player puts a resource they control into its owner's hand. Each player may play a resource.
+  OPTION 3: Each player discards a card.
+  OPTION 4: Each player puts a card from their hand on the top of their deck.

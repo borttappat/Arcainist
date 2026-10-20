@@ -1,0 +1,10 @@
+id: "it-s-a-trap"
+name: "It's a Trap!"
+trade: gearsmith
+types: [tactic]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick an item you control. Pick a character.
+  Put the cards into their owner's hand.
+  FLIP UP: 2 [E]

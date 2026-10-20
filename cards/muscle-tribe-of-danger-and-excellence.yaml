@@ -1,0 +1,9 @@
+id: "muscle-tribe-of-danger-and-excellence"
+name: "Muscle Tribe of Danger and Excellence"
+trade: rogue
+types: [character]
+subtypes: ["miner"]
+set: "Seed Saga"
+rarity: common
+text: |
+  When a card that provides at least [D] enters play under your control, this card gains 1 strength and COVERT this turn.

@@ -1,0 +1,9 @@
+id: "resurrecting-necromorph"
+name: "Resurrecting Necromorph"
+trade: banker
+types: [character]
+subtypes: ["mau", "necromorph"]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  When another character is put into your discard pile from play, if this card is in your discard pile, you may pay 1. If you do, put this card into play under your control. Deplete it.

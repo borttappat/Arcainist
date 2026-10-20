@@ -1,0 +1,10 @@
+id: "jocular-stupefaction"
+name: "Jocular Stupefaction"
+trade: gearsmith
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick a character with COVERT.
+  Destroy the character.
+  FLIP UP: 3 [E]

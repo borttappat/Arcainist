@@ -1,0 +1,9 @@
+id: "mud-whisperer-wannabe"
+name: "Mud Whisperer Wannabe"
+trade: gearsmith
+types: [character]
+subtypes: ["mud whisperer", "31f"]
+set: "Seed Saga"
+rarity: common
+text: |
+  When this card blocks, you may pick a character. If you do, restore that character.

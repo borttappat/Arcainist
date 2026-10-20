@@ -1,0 +1,11 @@
+id: "malevolent-trooper"
+name: "Malevolent Trooper"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  PUSH
+  COST: Pay 1. Deplete a character you control.
+  EFFECT: This turn, this card gains 2 strength.

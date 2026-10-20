@@ -1,0 +1,12 @@
+id: "headshot"
+name: "Headshot"
+trade: warlord
+types: [tactic]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  EXTRA COST: Pick a character.
+  Inflict 1 damage to that character. If it is destroyed by that damage, you may pick another character and
+   inflict 1 damage to it. If it is destroyed by that damage, you may pick another character and inflict 1
+  damage to it. If it is destroyed by that damage, you may pick another character and inflict 1 damage to it.
+  FLIP UP: 4 [R]

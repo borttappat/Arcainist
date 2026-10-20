@@ -1,0 +1,8 @@
+id: "lordly-stables"
+name: "Lordly Stables"
+trade: warlord
+types: [location]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  When an attacking character you control inflicts battle damage to a character, increase the amount by 1.

@@ -1,0 +1,12 @@
+id: "backdoor-brigand"
+name: "Backdoor Brigand"
+trade: rogue
+types: [character]
+subtypes: ["outcast"]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  EXIT STAGE RIGHT
+  COST: Use this only if this card has not assigned damage this turn. Pay 1.
+  EFFECT: Flip this card face-down under its owner's control.
+  FLIP UP: 3 [D][D]

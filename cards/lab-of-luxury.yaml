@@ -1,0 +1,10 @@
+id: "lab-of-luxury"
+name: "Lab of Luxury"
+trade: gearsmith
+types: [location]
+set: "Seed Saga"
+rarity: rare
+text: |
+  INNOVATE
+  COST: Pay 1. Discard a card.
+  EFFECT: If the discarded card is a resource, search your deck for a location. If it is a location, search your deck for a character. If it is a character, search your deck for a tactic. If it is a tactic, search your deck for an item. If it is an item, search your deck for a resource. Reveal the card you searched for and put it into your hand.

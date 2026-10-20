@@ -1,0 +1,11 @@
+id: "mighty-ballista"
+name: "Mighty Ballista"
+trade: warlord
+types: [location]
+set: "Seed Saga"
+rarity: rare
+text: |
+  This card enters play depleted.
+  FIRE!
+  COST: Choose a number for X. Pay X. Deplete this card. Pick a character or location.
+  EFFECT: Inflict X damage to the character or location. Inflict X damage to this card.

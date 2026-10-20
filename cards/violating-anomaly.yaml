@@ -1,0 +1,10 @@
+id: "violating-anomaly"
+name: "Violating Anomaly"
+trade: arcanist
+types: [character]
+subtypes: ["muddler", "lurker"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  When this card enters play, look at an opponent's hand and choose a card in it. That player discards that card.
+  When this card leaves play, you may pick a non-resource card. If you do, put it into its owner's hand. Draw a card.

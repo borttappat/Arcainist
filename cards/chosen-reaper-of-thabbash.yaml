@@ -1,0 +1,12 @@
+id: "chosen-reaper-of-thabbash"
+name: "Chosen Reaper of Thabbash"
+trade: rogue
+types: [character]
+subtypes: ["outcast"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  CONSUME FORCE
+  COST: Pay 1. Deplete another character you control.
+  EFFECT: This turn, this card gains 1 speed.
+  FLIP UP: 4 [D]

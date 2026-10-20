@@ -1,0 +1,9 @@
+id: "unchained-sarcophyle"
+name: "Unchained Sarcophyle"
+trade: rogue
+types: [character]
+subtypes: ["sarcophyle"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  FLIP UP: 8 [D]

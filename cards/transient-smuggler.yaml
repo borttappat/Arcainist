@@ -1,0 +1,11 @@
+id: "transient-smuggler"
+name: "Transient Smuggler"
+trade: rogue
+types: [character]
+subtypes: ["smuggler"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  SMUGGLE
+  COST: Deplete this card. Pick a character with 2 strength or less.
+  EFFECT: This turn, the character gains COVERT.

@@ -1,0 +1,10 @@
+id: "bursting-bask"
+name: "Bursting Bask"
+trade: warlord
+types: [character]
+subtypes: ["dragon"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  [R][R][R][R][R][R]: When this card enters play, you may pick a character. If you do, inflict 5 damage to it.
+  FLIP UP: 4 [R][R][R]

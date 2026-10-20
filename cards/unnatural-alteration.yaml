@@ -1,0 +1,9 @@
+id: "unnatural-alteration"
+name: "Unnatural Alteration"
+trade: arcanist
+types: [tactic]
+set: "2nd Edition"
+rarity: rare
+text: |
+  EXTRA COST: Deploy this only during your turn and not during a battle. Pick a character you control.
+  Destroy the character if you can. If you do, X is its numeric cost. Search your deck for a character with numeric cost X+3 or less and reveal it. You may deploy it for free. If you don't, put it into your hand.

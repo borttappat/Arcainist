@@ -3,9 +3,12 @@ name: "Cheats, the Dirty Rotten"
 trade: rogue
 types: [character]
 subtypes: [pluck, grifter]
+set: "Holy Heist"
+rarity: rare
 text: |
-  UNIQUE PLUCK.
-  EXTRA COST - Pick an opponent. When this card enters play, if you picked an opponent as part of its cost, search that player's deck for 4 non-resource cards with different names, reveal them and put them into the void. If you do, randomly put 2 of those cards into their discard pile. For the rest of the game, you may deploy the voided cards as though they were in your hand even if you cannot meet their threshold.
+  UNIQUE PLUCK
+  EXTRA COST: Pick an opponent.
+  When this card enters play, if you picked an opponent as part of its cost, search that player's deck for 4 non-resource cards with different names, reveal them and put them into the void. If you do, randomly put 2 of those cards into their discard pile. For the rest of the game, you may deploy the voided cards as though they were in your hand even if you cannot meet their threshold.
 rules:
   - unique: Pluck
   - play:

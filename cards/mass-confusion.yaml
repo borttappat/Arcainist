@@ -1,0 +1,9 @@
+id: "mass-confusion"
+name: "Mass Confusion"
+trade: warlord
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  EXTRA COST: Choose a number for X. Pay X. Pick a player. Pick X characters that player controls.
+  Inflict Y damage divided however you want to the characters, where Y is the number of characters that player controls minus the number of characters you control.

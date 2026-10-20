@@ -1,0 +1,16 @@
+id: "essence-of-obsession"
+name: "Essence of Obsession"
+trade: arcanist
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  Choose one of the following as this card's rules text:
+  OPTION 1
+  An opponent discards a card.
+  OPTION 2
+  EXTRA COST: Pick a character.
+  This turn, the character gains COVERT.
+  OPTION 3
+  EXTRA COST: Pick a character.
+  EFFECT: This turn, the character loses 2 strength.

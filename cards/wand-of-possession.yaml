@@ -1,0 +1,10 @@
+id: "wand-of-possession"
+name: "Wand of Possession"
+trade: arcanist
+types: [item]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  POSSESS
+  COST: Pay 2. Deplete this card.
+  EFFECT: Put a Micromajig token with COVERT into play.

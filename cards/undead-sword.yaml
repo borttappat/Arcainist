@@ -1,0 +1,14 @@
+id: "undead-sword"
+name: "Undead Sword"
+trade: banker
+types: [character]
+subtypes: ["necromorph"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  UNIQUE GIADA
+  This card enters play with 2 tokens on it.
+  This card loses 1 strength and 1 life for each token on it.
+  HIDE AMONG THE CORPSES
+  COST: Remove a token from this card.
+  EFFECT: This turn, this card gains COVERT.

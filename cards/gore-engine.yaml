@@ -1,0 +1,13 @@
+id: "gore-engine"
+name: "Gore Engine"
+trade: warlord
+types: [character]
+subtypes: ["warmachine"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  When a character is destroyed during a turn when this card damaged it, put X tokens on this card, where X is the strength of that character.
+  This card gains 1 strength for each token on it.
+  IMPALE
+  COST: Pay 2 or remove 2 tokens from this card. Pick a character.
+  EFFECT: This turn, the character must block this card if it can.

@@ -1,0 +1,11 @@
+id: "shieldmane-grandchest"
+name: "Shieldmane Grandchest"
+trade: warlord
+types: [character]
+subtypes: ["grandchest", "seraphim", "dragon"]
+set: "Seed 3"
+rarity: fixed
+text: |
+  UNIQUE GRANDCHEST
+  When battle damage is inflicted to a character you control, reduce the amount by 2.
+  When battle damage is inflicted to a character an opponent controls, increase the amount by 2.

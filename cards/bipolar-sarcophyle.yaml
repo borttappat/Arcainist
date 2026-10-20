@@ -1,0 +1,10 @@
+id: "bipolar-sarcophyle"
+name: "Bipolar Sarcophyle"
+trade: rogue
+types: [character]
+subtypes: ["sarcophyle"]
+set: "2nd Edition"
+rarity: common
+text: |
+  When this card enters play, flip a coin. If you win, put a token on this card.
+  This card gains 1 strength and 1 life for each token on it.

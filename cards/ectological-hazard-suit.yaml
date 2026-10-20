@@ -1,0 +1,14 @@
+id: "ectological-hazard-suit"
+name: "Ectological Hazard Suit"
+trade: arcanist
+types: [item]
+subtypes: ["gear"]
+set: "2nd Edition"
+rarity: common
+text: |
+  ATTACH TO CHARACTER
+  When this card enters play, put a token on the attached character.
+  The attached character gains 1 strength and 1 life for each token on it.
+  HANDOFF
+  COST: Pay 1. Deplete a character you control that is not in a battle.
+  EFFECT: Attach this card to the character.

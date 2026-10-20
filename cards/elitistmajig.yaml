@@ -1,0 +1,12 @@
+id: "elitistmajig"
+name: "Elitistmajig"
+trade: gearsmith
+types: [character]
+subtypes: ["majig"]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  CRUNCH
+  COST: Destroy a Micromajig token you control.
+  EFFECT: This turn, this card gains PROVIDES: [E][E][E] .
+  [E][E][E][E][E][E]: This card gains 2 strength and 2 life.

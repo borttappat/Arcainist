@@ -1,0 +1,9 @@
+id: "snake-eyes"
+name: "Snake Eyes"
+trade: rogue
+types: [tactic]
+set: "2nd Edition"
+rarity: common
+text: |
+  EXTRA COST: Pick a character.
+  If the character has received damage this turn, destroy it. Draw a card.

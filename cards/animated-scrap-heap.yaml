@@ -1,0 +1,14 @@
+id: "animated-scrap-heap"
+name: "Animated Scrap Heap"
+trade: gearsmith
+types: [character]
+subtypes: ["golem", "majig"]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  EXTRA COST: Choose a number for X. Pay X.
+  This card enters play with X tokens on it.
+  This card gains 1 strength and 1 life for each token on it.
+  EXPAND
+  COST: Pay 3.
+  EFFECT: Put a token on this card.

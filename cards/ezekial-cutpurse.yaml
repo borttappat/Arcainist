@@ -1,0 +1,14 @@
+id: "ezekial-cutpurse"
+name: "Ezekial Cutpurse"
+trade: rogue
+types: [character]
+subtypes: ["thief"]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  UNIQUE EZEKIAL CUTPURSE
+  Characters you control with numeric cost 2 or less gain 1 strength.
+  Characters you control with numeric cost 4 or more gain 1 speed.
+  YOINK!
+  COST: Destroy this card. Pick a "gear" card. Pick a character.
+  EFFECT: Take control of the "gear" card. Attach it to the character.

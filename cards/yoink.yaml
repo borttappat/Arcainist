@@ -2,9 +2,11 @@ id: yoink
 name: "Yoink!"
 trade: rogue
 types: [tactic]
+set: "2nd Edition"
+rarity: uncommon
 text: |
-  COST - Pick a "gear" card and a character.
-  EFFECT - Take control of the "gear" card and attach it to the character.
+  EXTRA COST: Pick a gear card. Pick a character.
+  Take control of the gear card. Attach it to the character.
 rules:
   - play:
       cost:

@@ -1,0 +1,14 @@
+id: "seance-ritualist"
+name: "Seance Ritualist"
+trade: arcanist
+types: [character]
+subtypes: ["ritualist"]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  VIOLATE
+  COST: Deplete this card. Pick an opponent. X is the number of tokens on this card. Pay X.
+  EFFECT: That player discards X cards. Put a token on this card.
+  BLUR: [O][O][O]
+  COST: Remove a token from this card.
+  EFFECT: This turn, this card gains COVERT.

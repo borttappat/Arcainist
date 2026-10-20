@@ -1,0 +1,13 @@
+id: "gang-weapon-dealer"
+name: "Gang Weapon Dealer"
+trade: rogue
+types: [character]
+subtypes: ["gang member"]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  This card enters play with 2 tokens on it.
+  This card gains 1 strength for each token on it.
+  DELIVERY
+  COST: Remove a token from this card. Deplete this card. Reveal a face-down "gear" card you control.
+  EFFECT: You may deploy it even if you cannot meet its threshold. If its numeric cost is 4 or less, you may deploy it for free.

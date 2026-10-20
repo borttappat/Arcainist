@@ -1,0 +1,13 @@
+id: "banana-peel"
+name: "Banana Peel"
+trade: rogue
+types: [item]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  TACTICAL
+  EXTRA COST: If you deployed this card during an opponent's turn you may pay 1. If you don't, terminate it.
+  SLIP
+  COST: Pick an attacking character. Destroy this card.
+  EFFECT: Flip that card face-down under its owner's control. Draw a card.
+  FLIP UP: 3 [D][D][D]

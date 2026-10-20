@@ -1,0 +1,9 @@
+id: "martial-arts-wannabe"
+name: "Martial Arts Wannabe"
+trade: rogue
+types: [character]
+subtypes: ["martial artist"]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  While you control more characters than any opponent, this card cannot be picked.

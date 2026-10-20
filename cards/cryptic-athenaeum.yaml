@@ -1,0 +1,11 @@
+id: "cryptic-athenaeum"
+name: "Cryptic Athenaeum"
+trade: arcanist
+types: [location]
+set: "Seed Saga"
+rarity: rare
+text: |
+  UNIQUE CRYPTIC ATHENAEUM
+  [O][O][O]: At the start of your turn, you may draw a card. If you do, an opponent may draw a card.
+  [O][O][O][O][O]: At the start of your turn, an opponent discards a card.
+  [O][O][O][O][O][O][O]: At the start of your turn, you may pick a character. If you do, put it into its owner's hand.

@@ -1,0 +1,14 @@
+id: "p3pp3r-0f-1n54n17y"
+name: "P3pp3r 0f 1n54n17y"
+trade: gearsmith
+types: [item]
+subtypes: ["gear"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  ATTACH TO CHARACTER
+  The attached character gains 3 strength and 3 life.
+  At the start of each opponent's turn, restore the attached character.
+  SPIT OUT
+  COST: Destroy this card. Pick a character.
+  EFFECT: This turn, the character gains 3 strength and 3 life. Restore it.

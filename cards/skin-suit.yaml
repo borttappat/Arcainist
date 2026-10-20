@@ -2,9 +2,11 @@ id: skin-suit
 name: "Skin Suit"
 trade: warlord
 types: [tactic]
+set: "2nd Edition"
+rarity: rare
 text: |
-  COST - Pick a character you control. X is that character's strength. Pick a character your opponent controls. Y is that character's strength.
-  EFFECT - Inflict X damage to your opponent's character. Inflict Y damage to your character. If only 1 of the characters is destroyed by this damage, remove it from the game instead. For the rest of the game, the surviving character has all rules text of the removed character in addition to its own rules text.
+  EXTRA COST: Pick a character you control. X is its strength. Pick a character an opponent controls. Y is its strength.
+  Inflict X damage to that opponent's character and Y damage to your character simultaneously. If only 1 of the characters would be destroyed by this damage, remove it from the game instead. The surviving character gains all rules text of the removed character.
 rules:
   - play:
       cost:

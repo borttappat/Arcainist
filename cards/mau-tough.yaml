@@ -1,0 +1,9 @@
+id: "mau-tough"
+name: "Mau Tough"
+trade: banker
+types: [character]
+subtypes: ["mercenary", "mau"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  When this card enters play, your faction loses 4 influence.

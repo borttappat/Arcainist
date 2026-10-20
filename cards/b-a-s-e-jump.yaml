@@ -1,0 +1,10 @@
+id: "b-a-s-e-jump"
+name: "B.A.S.E. Jump"
+trade: warlord
+types: [tactic]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick a location. Pick a character.
+  Inflict X damage to the character, where X is the location's structure. Draw a card.
+  FLIP UP: 3 [R]

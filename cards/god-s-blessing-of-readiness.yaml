@@ -1,0 +1,12 @@
+id: "god-s-blessing-of-readiness"
+name: "God's Blessing of Readiness"
+trade: gearsmith
+types: [tactic]
+subtypes: ["mutation"]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  UNIQUE BLESSING
+  ATTACH TO CHARACTER
+  The attached character gains the following rules text: "All your characters lose 1 strength and gain 1 life.
+  At the start of each opponent's turn, you may restore all characters you control."

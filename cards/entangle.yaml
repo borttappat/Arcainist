@@ -1,0 +1,9 @@
+id: "entangle"
+name: "Entangle"
+trade: arcanist
+types: [tactic]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick 2 or fewer characters.
+  This turn, the characters lose 1 speed. Draw a card.

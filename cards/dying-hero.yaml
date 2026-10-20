@@ -1,0 +1,10 @@
+id: "dying-hero"
+name: "Dying Hero"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  At the end of your turn, if this card is depleted, inflict 1 damage to it.
+  [R][R][R][R][R][R][R][R][R]: This card gains 4 life.

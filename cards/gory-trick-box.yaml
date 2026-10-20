@@ -1,0 +1,10 @@
+id: "gory-trick-box"
+name: "Gory Trick Box"
+trade: rogue
+types: [item]
+subtypes: ["gear"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  ATTACH TO CHARACTER
+  The attached character gains 2 strength and loses 2 speed.

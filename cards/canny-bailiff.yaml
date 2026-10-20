@@ -3,6 +3,8 @@ name: "Canny Bailiff"
 trade: banker
 types: [character]
 subtypes: [attendant, lackey]
+set: "Holy Heist"
+rarity: uncommon
 text: |
   While an opponent is deploying a tactic, its numeric cost is increased to a minimum of 3.
 rules:

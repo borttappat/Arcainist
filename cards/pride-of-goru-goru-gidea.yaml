@@ -1,0 +1,14 @@
+id: "pride-of-goru-goru-gidea"
+name: "Pride of Goru-Goru Gidea"
+trade: banker
+types: [character]
+subtypes: ["ghost", "vehicle"]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  RESIST
+  COST: Pay 1. Your faction loses 1 influence.
+  EFFECT: Reduce the next damage inflicted to this card this turn by 1.
+  DISAPPEAR
+  COST: Pay 2.
+  EFFECT: This turn, this card gains covert.

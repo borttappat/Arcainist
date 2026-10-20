@@ -1,0 +1,9 @@
+id: "card-counter"
+name: "Card Counter"
+trade: rogue
+types: [character]
+subtypes: ["thief"]
+set: "2nd Edition"
+rarity: common
+text: |
+  When this card enters play, flip a coin. If you win, X is 3. Otherwise, X is 2. Put the top X cards of an opponent's deck into their discard pile.

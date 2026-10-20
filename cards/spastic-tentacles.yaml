@@ -1,0 +1,9 @@
+id: "spastic-tentacles"
+name: "Spastic Tentacles"
+trade: arcanist
+types: [character]
+subtypes: ["lurker"]
+set: "1st Edition"
+rarity: common
+text: |
+  When this card enters play, each player puts a resource they control into its owner's hand.

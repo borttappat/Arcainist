@@ -1,0 +1,13 @@
+id: "goutflame-talonclaw"
+name: "Goutflame Talonclaw"
+trade: warlord
+types: [character]
+subtypes: ["dragon"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  UNIQUE GOUTFLAME TALONCLAW
+  When this card enters play, you may pick a location, item and/or character. If you do, destroy the picked cards.
+  Opponents cannot take control of this card and it cannot be blocked by characters with 1 strength or less.
+  If this card would be destroyed or removed from the game, flip it face-down under its owner's control instead.
+  FLIP UP: 9 [R][R][R][R][R]

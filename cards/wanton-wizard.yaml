@@ -4,6 +4,8 @@ flavor_title: sometimes i can't control my groin
 trade: arcanist
 types: [character]
 subtypes: [wizard]
+set: "Seed Saga"
+rarity: uncommon
 text: |
   When this card enters play, you may pick a tactic in your discard pile. If you do, put it into play as a face-down resource under your control.
 rules:

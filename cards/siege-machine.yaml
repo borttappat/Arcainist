@@ -2,11 +2,12 @@ id: siege-machine
 name: "Siege Machine"
 trade: warlord
 types: [item]
+set: "2nd Edition"
+rarity: rare
 text: |
-  BATTERING
-  RAM
-  COST - Pay 2. Destroy a resource you control.
-  EFFECT - Your opponent's faction loses 1 influence.
+  BATTERING RAM
+  COST: Pay 2. Destroy a resource you control.
+  EFFECT: An opponent's faction loses 1 influence.
 rules:
   - ability:
       name: Battering Ram

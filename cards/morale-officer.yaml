@@ -1,0 +1,11 @@
+id: "morale-officer"
+name: "Morale Officer"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  CONVINCE
+  COST: Deplete this card.
+  EFFECT: This turn, all your soldier characters gain 1 strength.

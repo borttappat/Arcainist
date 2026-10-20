@@ -1,0 +1,10 @@
+id: "improvised-blowtorch"
+name: "Improvised Blowtorch"
+trade: warlord
+types: [tactic]
+set: "Seed Saga"
+rarity: common
+text: |
+  EXTRA COST: Pick a character.
+  Inflict 2 damage to the character.
+  FLIP UP: 1 [R]

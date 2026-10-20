@@ -2,9 +2,12 @@ id: blitz-of-destruction
 name: "Blitz of Destruction"
 trade: warlord
 types: [tactic]
+set: "Holy Heist"
+rarity: common
 text: |
-  EXTRA COST - Pick a player that controls more resources than you. That player destroys a face-down resource they control.
-  FLIP UP - 4 [R].
+  EXTRA COST: Pick a player that controls more resources than you.
+  That player destroys a face-down resource they control.
+  FLIP UP: 4 [R]
 rules:
   - play:
       cost:

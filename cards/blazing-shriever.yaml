@@ -1,0 +1,11 @@
+id: "blazing-shriever"
+name: "Blazing Shriever"
+trade: warlord
+types: [character]
+subtypes: ["dragon"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  INFLAME
+  COST: Pay 2. Destroy this card. Pick a character or location.
+  EFFECT: Inflict X damage to the character or location, where X is the number of [R] you control.

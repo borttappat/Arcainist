@@ -1,0 +1,11 @@
+id: "extremely-tiny-bonnet-of-invisibility"
+name: "Extremely Tiny Bonnet of Invisibility"
+trade: arcanist
+types: [item]
+subtypes: ["gear"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  ATTACH TO CHARACTER YOU CONTROL
+  EXTRA COST: Pick an opponent. That player may detach up to 2 resources from their faction.
+  The attached character gains COVERT.

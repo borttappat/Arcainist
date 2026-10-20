@@ -1,0 +1,12 @@
+id: "purloinering-pirate"
+name: "Purloinering Pirate"
+trade: banker
+types: [character]
+subtypes: ["pirate"]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  This card gains 1 strength and 1 life for each token on it.
+  PUSH OVERBOARD AND LOOT
+  COST: Pay 1. Destroy a character you own.
+  EFFECT: Put a token on this card.

@@ -1,0 +1,8 @@
+id: "research-investment"
+name: "Research Investment"
+trade: gearsmith
+types: [tactic]
+set: "2nd Edition"
+rarity: rare
+text: |
+  Each player may search their deck for up to 3 staple resources and put them into play.

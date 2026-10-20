@@ -1,0 +1,9 @@
+id: "thabbashite-organist"
+name: "Thabbashite Organist"
+trade: gearsmith
+types: [character]
+subtypes: ["monstrosity"]
+set: "Holy Heist"
+rarity: common
+text: |
+  When a card that provides at least [V] enters play under your control, reduce the numeric cost of the next card you play this turn by 1.

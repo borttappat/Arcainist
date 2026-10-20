@@ -2,11 +2,14 @@ id: hollow-moose
 name: "Hollow Moose"
 trade: rogue
 types: [item]
+set: "2nd Edition"
+rarity: rare
 text: |
-  This card enters play under your opponent's control. At the start of your turn, your faction loses 1 influence.
+  This card enters play under an opponent's control.
+  At the start of your turn, your faction loses 1 influence.
   INFILTRATE
-  COST - Destroy another item or character you control.
-  EFFECT - Your opponent takes control of this card.
+  COST: Destroy another item or character you control. Pick an opponent.
+  EFFECT: That player takes control of this card.
 enters_under: opponent
 rules:
   - trigger: { on: start_of_turn, player: you }

@@ -1,0 +1,13 @@
+id: "thabbashite-temple"
+name: "Thabbashite Temple"
+trade: arcanist
+types: [location]
+set: "Holy Heist"
+rarity: rare
+text: |
+  CALL UPON THE GODS
+  COST: Deplete this card. X is the number of [V] you control. Pay 10-X.
+  EFFECT: Search your deck for a character with numeric cost X or less and put it into play depleted.
+  VOLATE
+  COST: Pay 2. Pick a face-up resource you control.
+  EFFECT: Flip that resource face-down under its owner's control.

@@ -2,9 +2,12 @@ id: anatidaephobia
 name: "Anatidaephobia"
 trade: banker
 types: [tactic]
+set: "Seed 3"
+rarity: fixed
 text: |
-  EXTRA COST - Deploy this only in response to a character being deployed. If you did not deploy this card using FLIP UP, pay X, where X is the character's numeric cost. Terminate the character.
-  FLIP UP - 1 [G] and your faction loses 5 influence.
+  EXTRA COST: Deploy this only in response to a character being deployed. If you did not deploy this card using FLIP UP, pay X, where X is the character's numeric cost.
+  Terminate the character.
+  FLIP UP: 1 [G] and your faction loses 5 influence.
 rules:
   - play:
       timing: { response_to: { deploying: { character: any } } }

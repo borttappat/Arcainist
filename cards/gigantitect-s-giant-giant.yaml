@@ -1,0 +1,10 @@
+id: "gigantitect-s-giant-giant"
+name: "Gigantitect's Giant Giant"
+trade: gearsmith
+types: [character]
+subtypes: ["warmachine"]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  This card cannot be picked by non-item cards or non-item abilities.
+  Opponents cannot take control of this card.

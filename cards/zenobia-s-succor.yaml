@@ -1,0 +1,13 @@
+id: "zenobia-s-succor"
+name: "Zenobia's Succor"
+trade: universal
+types: [tactic]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick a character.
+  [O]: This turn, the character gains COVERT.
+  [G]: This turn, the character gains 2 life.
+  [E]: This turn, the character gains AGGRO.
+  [D]: This turn, the character gains 1 speed.
+  [R]: This turn, the character gains 2 strength.

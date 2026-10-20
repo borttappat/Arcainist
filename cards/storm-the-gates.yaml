@@ -1,0 +1,10 @@
+id: "storm-the-gates"
+name: "Storm the Gates"
+trade: warlord
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  EXTRA COST: Destroy a character you own. Pick a character your opponent owns.
+  Inflict 5 damage to the character. If the character was destroyed by that damage, draw a card.
+  FLIP UP: 1 [R]

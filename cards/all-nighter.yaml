@@ -2,9 +2,11 @@ id: all-nighter
 name: "All-Nighter"
 trade: gearsmith
 types: [tactic]
+set: "2nd Edition"
+rarity: uncommon
 text: |
-  COST - Play this only during your turn.
-  EFFECT - Detach up to 9 resources from your faction.
+  EXTRA COST: Deploy this only during your turn.
+  Detach up to 9 resources from your faction.
 rules:
   - play:
       timing: { your_turn: true }

@@ -1,0 +1,10 @@
+id: "ecneret-the-expendable-one"
+name: "Ecneret, The Expendable One"
+trade: warlord
+types: [character]
+subtypes: ["fighter", "soldier"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  UNIQUE ECNERET
+  When this card is destroyed by an opposing card, characters you control gain 2 strength and 2 life until the end of your next turn.

@@ -1,0 +1,9 @@
+id: "postmortem-debenture"
+name: "Postmortem Debenture"
+trade: banker
+types: [tactic]
+set: "2nd Edition"
+rarity: common
+text: |
+  EXTRA COST: Pick a character in your discard pile.
+  Put the character into your hand.

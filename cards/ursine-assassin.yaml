@@ -1,0 +1,14 @@
+id: "ursine-assassin"
+name: "Ursine Assassin"
+trade: warlord
+types: [character]
+subtypes: ["warbeast"]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  TO BEAR ARMS
+  COST: Pay 1. Pick a character. Destroy a restored character you control.
+  EFFECT: Inflict 2 damage to the character.
+  JUST UNBEARABLE: [R][R][R][R][R][R]
+  COST: Pay 2. Pick a character. Destroy a restored character you control.
+  EFFECT: Inflict 5 damage to the character.

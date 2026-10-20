@@ -2,9 +2,10 @@ id: 31337
 name: "31337!"
 trade: gearsmith
 types: [tactic]
-# VERIFY: part of this card was hard to read on the scan (see text/threshold).
+set: "Seed 2"
+rarity: common
 text: |
-  This turn, you control an additional [E][E][E][E] . Put this card into play under its owner's control as a face-down resource instead of into their discard pile.
+  This turn, you control an additional [E][E][E][E]. Put this card into play under its owner's control as a face-down resource instead of into their discard pile.
 rules:
   - play:
       then: face_down_resource

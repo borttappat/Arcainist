@@ -1,0 +1,9 @@
+id: "lieutenant-general"
+name: "Lieutenant General"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "1st Edition Part 2"
+rarity: uncommon
+text: |
+  When an attacking party is formed including this character, all other soldier characters in that party gain 1 life this turn.

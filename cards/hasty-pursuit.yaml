@@ -1,0 +1,10 @@
+id: "hasty-pursuit"
+name: "Hasty Pursuit"
+trade: gearsmith
+types: [tactic]
+set: "Holy Heist"
+rarity: rare
+text: |
+  EXTRA COST: Deploy this only on your turn.
+  This turn, characters you control and deploy can attack even if they have not been in play under your control since the start of the turn. Draw a card. If you picked any characters as part of this card's FLIP UP cost, deplete those characters.
+  FLIP UP: 4 [E][E][E] and you may pick up to 2 characters.

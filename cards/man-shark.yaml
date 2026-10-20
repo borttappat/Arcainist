@@ -1,0 +1,12 @@
+id: "man-shark"
+name: "Man Shark"
+trade: arcanist
+types: [character]
+subtypes: ["lurker"]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  This card gains 1 strength and 1 life for each face-down resource each opponent controls.
+  FOLLOW SUIT
+  COST: Pay 3. Pick an opponent.
+  EFFECT: That player puts a card from their hand face-down as a resource under their control.

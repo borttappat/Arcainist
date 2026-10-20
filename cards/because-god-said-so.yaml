@@ -1,0 +1,9 @@
+id: "because-god-said-so"
+name: "Because God Said So!"
+trade: banker
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick a blocking character.
+  This turn, the character gains 5 strength and 5 life.

@@ -1,0 +1,12 @@
+id: "ocular-dispersal"
+name: "Ocular Dispersal"
+trade: rogue
+types: [tactic]
+subtypes: ["mutation"]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  ATTACH TO CHARACTER
+  (put this card into play attached to that character instead of into its owner's discard pile)
+  If the attached character would assign battle damage, it assigns damage equal to its numeric cost instead of its strength.
+  If this card would be destroyed, flip it face-down under its owner's control instead.

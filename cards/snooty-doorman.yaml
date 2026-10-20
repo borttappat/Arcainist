@@ -3,10 +3,12 @@ name: "Snooty Doorman"
 trade: banker
 types: [character]
 subtypes: [lackey]
+set: "2nd Edition"
+rarity: uncommon
 text: |
   DENIED!
-  COST - Use this only in response to a character being played. Destroy this card.
-  EFFECT - Terminate the character.
+  COST: Use this only in response to a character being deployed. Destroy this card.
+  EFFECT: Terminate the character.
 rules:
   - ability:
       name: Denied!

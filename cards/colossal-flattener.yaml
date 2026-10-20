@@ -1,0 +1,9 @@
+id: "colossal-flattener"
+name: "Colossal Flattener"
+trade: warlord
+types: [character]
+subtypes: ["beast"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  While this card is attacking, you may assign its battle damage to the target of the attack instead of the blocking party.

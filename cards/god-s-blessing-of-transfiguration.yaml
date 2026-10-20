@@ -1,0 +1,12 @@
+id: "god-s-blessing-of-transfiguration"
+name: "God's Blessing of Transfiguration"
+trade: rogue
+types: [tactic]
+subtypes: ["mutation"]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  UNIQUE BLESSING
+  ATTACH TO CHARACTER
+  The attached character gains the following rules text: "All your characters gain 1 strength and lose 1 life.
+  When a character you control inflicts battle damage to a faction, that faction's controller puts their top card of their deck into their discard pile."

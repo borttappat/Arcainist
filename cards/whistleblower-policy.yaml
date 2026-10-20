@@ -2,9 +2,12 @@ id: whistleblower-policy
 name: "Whistleblower Policy"
 trade: banker
 types: [tactic]
+set: "Ungodly Mess"
+rarity: common
 text: |
-  EXTRA COST - You may pick a location. If you picked a location as part of this card's cost, add 3 damage markers to the location. If you deployed this card using FLIP UP, draw a card for each different staple resource you control.
-  FLIP UP - 3 [G].
+  EXTRA COST: You may pick a location.
+  If you picked a location as a part of this card's cost, add 3 damage markers to the location. If you deployed this card using FLIP UP, draw a card for each different staple resource you control.
+  FLIP UP: 3 [G]
 rules:
   - play:
       cost:

@@ -1,0 +1,9 @@
+id: "voidal-perversion"
+name: "Voidal Perversion"
+trade: arcanist
+types: [tactic]
+set: "2nd Edition"
+rarity: common
+text: |
+  EXTRA COST: Pick 2 or fewer non-resource cards.
+  Put up to 2 tokens divided however you want on the cards. Draw a card.

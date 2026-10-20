@@ -1,0 +1,12 @@
+id: "flagitious-denunciator"
+name: "Flagitious Denunciator"
+trade: arcanist
+types: [character]
+subtypes: ["wizard"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  COVERT
+  DENOUNCE
+  COST: Pay 2. Pick a character. Destroy this card.
+  EFFECT: Put the character into its owner's hand. Look at an opponent's hand and choose a character in it. That player discards that character.

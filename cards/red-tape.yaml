@@ -1,0 +1,9 @@
+id: "red-tape"
+name: "Red Tape"
+trade: banker
+types: [tactic]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick a character.
+  This turn, the character loses 3 strength. Draw a card.

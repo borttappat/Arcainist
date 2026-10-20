@@ -1,0 +1,9 @@
+id: "voidal-webbing"
+name: "Voidal Webbing"
+trade: arcanist
+types: [tactic]
+set: "1st Edition"
+rarity: common
+text: |
+  EXTRA COST: Pick a character.
+  This turn, the character loses 1 speed.

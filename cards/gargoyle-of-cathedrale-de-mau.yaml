@@ -1,0 +1,13 @@
+id: "gargoyle-of-cathedrale-de-mau"
+name: "Gargoyle of Cathédrale de Mau"
+trade: banker
+types: [character]
+subtypes: ["dragon", "mau", "gargoyle"]
+set: "Holy Heist"
+rarity: rare
+text: |
+  EXTRA COST: Your faction loses 3 influence. Draw 3 cards.
+  While this card is in your hand and a location you control is being attacked, this card gains tactical.
+  NO.
+  COST: Discard 2 cards.
+  EFFECT: Your faction gains 2 influence. Put this card into its owner's hand.

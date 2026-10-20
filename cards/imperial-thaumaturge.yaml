@@ -1,0 +1,11 @@
+id: "imperial-thaumaturge"
+name: "Imperial Thaumaturge"
+trade: arcanist
+types: [character]
+subtypes: ["wizard"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  TICKLE
+  COST: Pay 1. Deplete this card.
+  EFFECT: An opponent discards a card.

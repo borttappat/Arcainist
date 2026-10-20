@@ -1,0 +1,13 @@
+id: "will-of-a-living-god"
+name: "Will of a Living God"
+trade: arcanist
+types: [tactic]
+subtypes: ["mutation"]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  ATTACH TO CHARACTER
+  (put this card into play attached to that character instead of into its owner's discard pile)
+  This card enters play with 3 tokens on it.
+  The attached character gains 1 strength and 1 life for each token on this card.
+  At the start of your turn, remove a token from this card. If you cannot, destroy the attached character.

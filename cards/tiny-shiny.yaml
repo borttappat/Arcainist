@@ -1,0 +1,9 @@
+id: "tiny-shiny"
+name: "Tiny Shiny"
+trade: banker
+types: [tactic]
+set: "Seed Saga"
+rarity: common
+text: |
+  EXTRA COST: Pick a character.
+  Reduce the next damage inflicted to the character this turn by 2. Put this card into play under its owner's control as a face-down resource instead of into their discard pile.

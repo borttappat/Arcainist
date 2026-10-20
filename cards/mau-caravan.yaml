@@ -1,0 +1,8 @@
+id: "mau-caravan"
+name: "Mau Caravan"
+trade: banker
+types: [location]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  At the start of your turn, you may destroy this card. If you do, search your deck for a location, reveal it, and put it into your hand.

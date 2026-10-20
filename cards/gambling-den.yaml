@@ -1,0 +1,8 @@
+id: "gambling-den"
+name: "Gambling Den"
+trade: rogue
+types: [location]
+set: "Seed Saga"
+rarity: rare
+text: |
+  At the start of your turn, reveal the top card of your deck. If it has numeric cost 3 or less, each player may draw a card. Otherwise, each player may play a resource.

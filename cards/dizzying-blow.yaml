@@ -1,0 +1,9 @@
+id: "dizzying-blow"
+name: "Dizzying Blow"
+trade: warlord
+types: [tactic]
+set: "Holy Heist"
+rarity: common
+text: |
+  EXTRA COST: Pick a character that is attacking your faction.
+  Inflict 1 damage to the character and remove it from the battle. Draw a card.

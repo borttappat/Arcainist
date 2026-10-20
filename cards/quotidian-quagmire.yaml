@@ -1,0 +1,9 @@
+id: "quotidian-quagmire"
+name: "Quotidian Quagmire"
+trade: arcanist
+types: [tactic]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  EXTRA COST: Pick a character. That character's controller may detach up to 2 resources from their faction.
+  This turn, the character loses 1 speed. Draw a card.

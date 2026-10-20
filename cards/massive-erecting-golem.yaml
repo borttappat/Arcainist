@@ -1,0 +1,8 @@
+id: "massive-erecting-golem"
+name: "Massive Erecting Golem"
+trade: gearsmith
+types: [character]
+subtypes: ["golem"]
+set: "Seed Saga"
+rarity: uncommon
+text: ""

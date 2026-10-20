@@ -1,0 +1,19 @@
+id: "cheats-mcguillicutty"
+name: "Cheats McGuillicutty"
+trade: rogue
+types: [character]
+subtypes: ["pluck", "grifter"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  UNIQUE PLUCK
+  The top card of your deck is revealed at all times.
+  BOTTOM DEAL
+  COST: Pay 1.
+  EFFECT: Put the top card of your deck on the bottom.
+  CHEAT
+  COST: Deplete this card.
+  EFFECT: Reveal the top card of your deck. You may deploy it. (You can't play resources with this ability.)
+  CHANGE COSTUME
+  COST: Pay 3. Shuffle this card into its owner's deck.
+  EFFECT: Search your deck for a pluck card with a different name than this card and reveal it. Put it into play under your control.

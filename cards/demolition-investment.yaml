@@ -1,0 +1,10 @@
+id: "demolition-investment"
+name: "Demolition Investment"
+trade: banker
+types: [tactic]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick a player. Your faction loses 3 influence.
+  That player reveals a face-down resource they control. Your faction gains influence equal to that card's numeric cost. Destroy that card.
+  FLIP UP: 4 [G]

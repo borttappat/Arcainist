@@ -1,0 +1,9 @@
+id: "trophy-collector"
+name: "Trophy Collector"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  EXTRA COST: Deploy this only if an opponent's faction has 10 influence or less.

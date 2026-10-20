@@ -1,0 +1,9 @@
+id: "unscrupulous-attendant"
+name: "Unscrupulous Attendant"
+trade: banker
+types: [character]
+subtypes: ["attendant"]
+set: "Seed Saga"
+rarity: common
+text: |
+  When a character you control blocks, it gains 1 life this turn.

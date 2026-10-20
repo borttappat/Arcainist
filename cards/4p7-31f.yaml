@@ -1,0 +1,10 @@
+id: "4p7-31f"
+name: "4p7 31f"
+trade: gearsmith
+types: [character]
+subtypes: ["31f"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  When you deploy a gear card attached to this card, you may detach a resource from your faction.
+  While a gear card is attached to this card, it gains 1 strength and 1 life.

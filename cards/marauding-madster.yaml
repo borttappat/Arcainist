@@ -1,0 +1,11 @@
+id: "marauding-madster"
+name: "Marauding Madster"
+trade: warlord
+types: [character]
+subtypes: ["berserker"]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  EXTRA COST: Pick a character you control.
+  When this card enters play, destroy the picked character.
+  If this character would be put into your discard pile from anywhere, shuffle it into your deck instead.

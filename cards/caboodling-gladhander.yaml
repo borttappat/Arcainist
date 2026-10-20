@@ -1,0 +1,10 @@
+id: "caboodling-gladhander"
+name: "Caboodling Gladhander"
+trade: banker
+types: [character]
+subtypes: ["mau"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  EXTRA COST: You may pick a character.
+  When this card enters play, if you picked a character as part of its cost, destroy that character. That character's controller's faction gains X influence, where X is the strength of that character.

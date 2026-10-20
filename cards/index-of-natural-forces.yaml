@@ -1,0 +1,10 @@
+id: "index-of-natural-forces"
+name: "Index of Natural Forces"
+trade: banker
+types: [item]
+set: "1st Edition"
+rarity: rare
+text: |
+  CAPITALIZE
+  COST: Pay 1. Deplete this card.
+  EFFECT: Draw a card.

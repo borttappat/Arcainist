@@ -1,0 +1,12 @@
+id: "concentriculation"
+name: "Concentriculation"
+trade: arcanist
+types: [tactic]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  EXTRA COST: Pick a non-resource card.
+  Put the card on the top of its owner's deck.
+  RECUR: [O][O][O]
+  COST: Use this only if this card is in your discard pile. Pay 3. Pick a character. Remove this card from the game.
+  EFFECT: Put the character into its owner's hand.

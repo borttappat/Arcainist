@@ -1,0 +1,9 @@
+id: "dragon-juice"
+name: "Dragon Juice"
+trade: warlord
+types: [tactic]
+set: "2nd Edition"
+rarity: common
+text: |
+  EXTRA COST: Pick a character.
+  This turn, the character gains 5 strength.

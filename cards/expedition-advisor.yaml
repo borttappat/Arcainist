@@ -1,0 +1,12 @@
+id: "expedition-advisor"
+name: "Expedition Advisor"
+trade: banker
+types: [character]
+subtypes: ["advisor"]
+set: "Holy Heist"
+rarity: common
+text: |
+  When this card enters play, you may draw 2 cards then discard 2 cards.
+  RECUR: [G][G][G]
+  COST: Use this only if this card is in your discard pile. Pay 1. Remove this card from the game.
+  EFFECT: Draw 2 cards then discard 2 cards.

@@ -1,0 +1,10 @@
+id: "direstock-stronghold"
+name: "Direstock Stronghold"
+trade: warlord
+types: [location]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  UNIQUE STRONGHOLD
+  At the end of your turn, you may search your deck for a warlord character and reveal it. If you do, put it on top of your deck.
+  When you deploy a character, X is that character's numeric cost and you may pick a faction. If you do, inflict X damage to that faction and put X damage markers on this card.

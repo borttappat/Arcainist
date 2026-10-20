@@ -1,0 +1,15 @@
+id: "emissary-of-loot"
+name: "Emissary of Loot"
+trade: banker
+types: [character]
+subtypes: ["mau"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  When a card that provides at least [G] enters play under your control, you may put a token on this card.
+  DELIVER
+  COST: Pay 1. Remove a token from this card. Pick a character.
+  EFFECT: This turn, the character gains 2 life.
+  SHORTCUT
+  COST: Pay 1. Remove a token from this card.
+  EFFECT: This turn, this card gains COVERT.

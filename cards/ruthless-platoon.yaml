@@ -1,0 +1,11 @@
+id: "ruthless-platoon"
+name: "Ruthless Platoon"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  CANNIBALIZE
+  COST: Destroy a character you control.
+  EFFECT: This turn, this card gains 2 strength.

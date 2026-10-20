@@ -2,10 +2,12 @@ id: spackle
 name: "Spackle"
 trade: gearsmith
 types: [item]
+set: "1st Edition Part 2"
+rarity: uncommon
 text: |
   REPAIR
-  COST - Deplete this card. Pick a location.
-  EFFECT - Remove 2 damage from the location.
+  COST: Deplete this card. Pick a location.
+  EFFECT: Remove 2 damage markers from the location.
 rules:
   - ability:
       name: Repair

@@ -1,0 +1,11 @@
+id: "officious-obstructionist"
+name: "Officious Obstructionist"
+trade: banker
+types: [character]
+subtypes: ["bureaucrat"]
+set: "1st Edition Part 2"
+rarity: common
+text: |
+  STUBBORNNESS
+  COST: Pay 1.
+  EFFECT: This turn, this card gains 1 life.

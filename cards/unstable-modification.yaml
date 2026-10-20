@@ -1,0 +1,16 @@
+id: "unstable-modification"
+name: "Unstable Modification"
+trade: gearsmith
+types: [tactic]
+subtypes: ["mutation"]
+set: "Holy Heist"
+rarity: common
+text: |
+  ATTACH TO CHARACTER (put this card into play attached to that character instead of into its owner's discard pile)
+  At the start of your turn, choose one of the following as this card's rules text until the start of your next turn:
+  OPTION 1
+  The attached character gains 1 strength.
+  OPTION 2
+  The attached character gains 1 life.
+  OPTION 3
+  The attached character can block COVERT parties.

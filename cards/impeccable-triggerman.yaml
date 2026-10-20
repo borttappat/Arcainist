@@ -1,0 +1,15 @@
+id: "impeccable-triggerman"
+name: "Impeccable Triggerman"
+trade: rogue
+types: [character]
+subtypes: ["assassin"]
+set: "Holy Heist"
+rarity: rare
+text: |
+  This card enters play depleted.
+  ASSASSINATE
+  COST: Deplete this card. Pick a depleted character.
+  EFFECT: If the character has 4 life or less, destroy it.
+  RELOAD
+  COST: Pay 3.
+  EFFECT: Restore this card. This turn, it cannot attack.

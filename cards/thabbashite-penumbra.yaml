@@ -1,0 +1,10 @@
+id: "thabbashite-penumbra"
+name: "Thabbashite Penumbra"
+trade: arcanist
+types: [character]
+subtypes: ["sorceress"]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  COST: Pick an opponent. X is the number of different staple resources that player controls. Pay 6-X. 
+  EFFECT: This turn, this card gains 1 life and COVERT

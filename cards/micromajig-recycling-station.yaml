@@ -1,0 +1,8 @@
+id: "micromajig-recycling-station"
+name: "Micromajig Recycling Station"
+trade: gearsmith
+types: [location]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  At the start of your turn, you may choose a number for X and destroy X Micromajig tokens you control. If you do, reduce the next numeric cost you pay this turn by X+1.

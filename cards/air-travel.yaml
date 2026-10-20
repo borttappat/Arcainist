@@ -1,0 +1,9 @@
+id: "air-travel"
+name: "Air Travel"
+trade: arcanist
+types: [tactic]
+set: "2nd Edition"
+rarity: common
+text: |
+  EXTRA COST: Pick a character.
+  This turn, the character gains COVERT. Draw a card.

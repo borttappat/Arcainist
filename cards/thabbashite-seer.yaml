@@ -1,0 +1,10 @@
+id: "thabbashite-seer"
+name: "Thabbashite Seer"
+trade: rogue
+types: [character]
+subtypes: ["teller"]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  [D][D][V][V]: When this card enters play, leaves play, attacks, or blocks, you may look at the top card of any deck.
+  FLIP UP: 1 [V][V][V][V]

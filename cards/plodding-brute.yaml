@@ -1,0 +1,8 @@
+id: "plodding-brute"
+name: "Plodding Brute"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "2nd Edition"
+rarity: common
+text: ""

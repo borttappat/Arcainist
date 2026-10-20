@@ -1,0 +1,10 @@
+id: "billowing-bouffant"
+name: "Billowing Bouffant"
+trade: gearsmith
+types: [character]
+subtypes: ["monstrosity"]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  When this card enters play, you may destroy an item.
+  FLIP UP: 6 [E]

@@ -1,0 +1,12 @@
+id: "a-death-fit-for-a-king"
+name: "A Death Fit for a King"
+trade: arcanist
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick a character with the UNIQUE keyword in its rules text or pick a character in an opponent's discard pile.
+  Put the character into the void.
+  RECUR: [O][O]
+  COST: Use this only if this card is in your discard pile. Pay 3. Remove this card from the game.
+  EFFECT: Search your deck for a character with the UNIQUE keyword in its rules text and reveal it. Put it into your hand.

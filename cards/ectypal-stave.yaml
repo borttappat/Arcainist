@@ -2,17 +2,19 @@ id: ectypal-stave
 name: "Ectypal Stave"
 trade: arcanist
 types: [item]
+set: "2nd Edition"
+rarity: rare
 text: |
   COUNTERFEIT
-  COST - Use this only if a tactic has been played this turn. Pay 2*X, where X is the numeric cost of the last tactic played this turn. Deplete this card.
-  EFFECT - Duplicate the tactic. (A duplicate retains all rules text including extra costs, which must be paid or the duplicate is invalid and has no effect.)
+  COST: Use this only if a tactic has been deployed this turn. Pay 2+X, where X is the numeric cost of the last tactic deployed this turn. Deplete this card.
+  EFFECT: Duplicate the tactic.
 rules:
   - ability:
       name: Counterfeit
       cost:
         - require: { gte: [ { played_this_turn: { type: tactic } }, 1 ] }
         - let: { X: { last_played_cost: { type: tactic } } }
-        - pay: "2 * X"
+        - pay: "2 + X"
         - deplete: self
       effect:
         - duplicate: last_tactic

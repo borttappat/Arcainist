@@ -1,9 +1,16 @@
 import { describe, expect, it } from "vitest";
+import { Game } from "../game.ts";
 import { viewFor } from "../view.ts";
 import { other } from "../types.ts";
 import { act, answer, expectPending, lib, newGame, pass, passAll, put, quickStart, resources, toMain } from "./helpers.ts";
 
 describe("setup", () => {
+  it("lets the room creator choose who goes first", () => {
+    const deck = Array(20).fill("greed");
+    const g = Game.create(lib, 5, { A: { name: "A", faction: "tournament-faction", cards: deck }, B: { name: "B", faction: "tournament-faction", cards: [...deck] } }, { first: "B" });
+    expect(g.s.first).toBe("B");
+  });
+
   it("places starting resources, draws per faction and starts turn 1", () => {
     const g = newGame(7);
     quickStart(g);
@@ -21,8 +28,7 @@ describe("setup", () => {
 
   it("Unlikely Heroes needs different staples and searches for a third", () => {
     const g = newGame(3, { factionA: "unlikely-heroes", factionB: "unlikely-heroes" });
-    // coin
-    answer(g, ["first"]);
+    // The first player is random: no prompt.
     const p = g.s.first!;
     answer(g, [g.s.pending!.type === "choose" ? (g.s.pending as any).options[0].id : ""]);
     const second = expectPending(g, "choose", p);
@@ -41,7 +47,6 @@ describe("setup", () => {
 
   it("mulligan puts cards on the bottom and redraws the same number", () => {
     const g = newGame(11);
-    answer(g, ["first"]);
     for (let i = 0; i < 4; i++) answer(g, [(g.s.pending as any).options[0].id]);
     const p = g.s.first!;
     const before = [...g.s.players[p].hand];

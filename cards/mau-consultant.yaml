@@ -1,0 +1,9 @@
+id: "mau-consultant"
+name: "Mau “Consultant”"
+trade: banker
+types: [character]
+subtypes: ["mercenary", "mau"]
+set: "1st Edition"
+rarity: common
+text: |
+  When this card enters play, draw a card. Your faction loses 2 influence.

@@ -1,0 +1,9 @@
+id: "zenobia-s-intervention"
+name: "Zenobia's Intervention"
+trade: gearsmith
+types: [tactic]
+set: "Ungodly Mess"
+rarity: common
+text: |
+  EXTRA COST: Pick a character.
+  This turn, the character gains 1 strength and 1 life for each different staple resource you control.

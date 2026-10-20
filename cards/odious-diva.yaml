@@ -3,11 +3,13 @@ name: "Odious Diva"
 trade: arcanist
 types: [character]
 subtypes: [diva]
+set: "2nd Edition"
+rarity: rare
 text: |
-  Your opponent's hand is revealed at all times.
+  Each opponent's hand is revealed at all times.
   DISAPPROVE
-  COST - Pay 2. Name a card.
-  EFFECT - Look at your opponent's hand. Your opponent must put a card with the chosen name on the bottom of their deck. If they do, they draw a card.
+  COST: Pay 2. Name a card.
+  EFFECT: Look at an opponent's hand. That player puts a card with the chosen name on the bottom of their deck if they can. If they do, that player draws a card.
 rules:
   - static: { mods: [ { reveal_hand: opponent, target: none } ] }
   - ability:

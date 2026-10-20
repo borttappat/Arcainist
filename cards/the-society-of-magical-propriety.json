@@ -1,0 +1,6 @@
+{
+  "influence": 30,
+  "starting_resources": { "any_resources": 1, "any_cards_face_down": 1 },
+  "starting_draw": { "first": 10, "second": 9 },
+  "min_deck": 300
+}

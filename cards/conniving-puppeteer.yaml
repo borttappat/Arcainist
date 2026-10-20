@@ -1,0 +1,11 @@
+id: "conniving-puppeteer"
+name: "Conniving Puppeteer"
+trade: rogue
+types: [character]
+subtypes: ["performer"]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  BETRAY
+  COST: Pick a non-tactic card in an opponent's discard pile. Destroy this card. 
+  EFFECT: Put the card into play under your control.

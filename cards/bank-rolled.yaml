@@ -1,0 +1,10 @@
+id: "bank-rolled"
+name: "Bank Rolled"
+trade: banker
+types: [tactic]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  EXTRA COST: Choose a number for X. Your faction loses X influence.
+  Destroy a character with numeric cost X.
+  FLIP UP: 4 [G][G] and your faction gains 4 influence.

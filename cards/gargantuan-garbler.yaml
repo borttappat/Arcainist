@@ -1,0 +1,10 @@
+id: "gargantuan-garbler"
+name: "Gargantuan Garbler"
+trade: arcanist
+types: [character]
+subtypes: ["lurker"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  COVERT
+  When this card attacks, you may pick a character. If you do, put it into its owner's hand.

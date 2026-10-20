@@ -1,0 +1,11 @@
+id: "skimping-ecto-manipulator"
+name: "Skimping Ecto-Manipulator"
+trade: arcanist
+types: [character]
+subtypes: ["ecto-manipulator"]
+set: "2nd Edition"
+rarity: common
+text: |
+  ENERGIZE
+  COST: Deplete this card. Pick a non-resource card you control.
+  EFFECT: Put a token on the card.

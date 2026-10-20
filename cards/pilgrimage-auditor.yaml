@@ -1,0 +1,11 @@
+id: "pilgrimage-auditor"
+name: "Pilgrimage Auditor"
+trade: banker
+types: [character]
+subtypes: ["mau"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  IMPEDE
+  COST: Deplete this card. Pick a character.
+  EFFECT: Deplete the character.

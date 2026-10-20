@@ -1,0 +1,9 @@
+id: "bask-bile"
+name: "Bask Bile"
+trade: warlord
+types: [tactic]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick a character or faction.
+  Inflict 5 damage to the character or faction.

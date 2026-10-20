@@ -2,7 +2,10 @@ id: two-headed-coin
 name: "Two-Headed Coin"
 trade: rogue
 types: [item]
+set: "2nd Edition"
+rarity: rare
 text: |
-  If you lose a coin flip, you may shuffle this card into your deck. If you do, reflip that coin and draw a card instead.
-# No engine automation: coin flips only happen at setup. Resolve manually if it ever matters.
-rules: []
+  If you would lose a coin flip, you may shuffle this card into its owner's deck. If you do, reflip that coin and use that result instead and draw a card.
+rules:
+  # Handled by the coin_flip instruction: offered whenever you would lose a coin flip.
+  - coin_reflip: true

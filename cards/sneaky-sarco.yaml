@@ -1,0 +1,13 @@
+id: "sneaky-sarco"
+name: "Sneaky Sarco"
+trade: rogue
+types: [character]
+subtypes: ["hedonist", "sarcophyle"]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  When this card enters play, flip a coin. If you win, put a token on this card.
+  While there is a token on this card, it gains COVERT.
+  FEED
+  COST: Pay 1. Remove a token from this card.
+  EFFECT: This turn, this card gains 1 strength and 1 life.

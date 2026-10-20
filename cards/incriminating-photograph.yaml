@@ -2,8 +2,11 @@ id: incriminating-photograph
 name: "Incriminating Photograph"
 trade: rogue
 types: [item]
+set: "2nd Edition"
+rarity: rare
 text: |
-  When this card enters play, name a non-resource card. The named card cannot be played.
+  When this card enters play, name a non-resource card.
+  The named card cannot be deployed.
 rules:
   - trigger: { on: enters_play, card: self }
     effect:

@@ -1,0 +1,10 @@
+id: "scintillating-chamber-pot"
+name: "Scintillating Chamber Pot"
+trade: banker
+types: [item]
+set: "Seed"
+rarity: common
+text: |
+  TANTALIZE
+  COST: Pay 1. Deplete this card. Pick a character.
+  EFFECT: This turn, reduce all damage the character inflicts to your faction to 0. The character cannot be restored until the start of your next turn.

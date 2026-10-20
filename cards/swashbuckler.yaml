@@ -1,0 +1,9 @@
+id: "swashbuckler"
+name: "Swashbuckler"
+trade: rogue
+types: [character]
+subtypes: ["pirate"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  When this card enters play, you may remove 4 cards in an opponent's discard pile from the game. If you don't, destroy this card.

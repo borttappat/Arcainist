@@ -1,0 +1,8 @@
+id: "lockbox-of-the-aeons"
+name: "Lockbox of the Aeons"
+trade: arcanist
+types: [item]
+set: "Ungodly Mess"
+rarity: super-rare
+text: |
+  Your opponents cannot use FLIP UP and cards cannot be put into your opponents' hands from the void, discard pile or play

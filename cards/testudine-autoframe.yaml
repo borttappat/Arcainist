@@ -1,0 +1,12 @@
+id: "testudine-autoframe"
+name: "Testudine Autoframe"
+trade: gearsmith
+types: [character]
+subtypes: ["testudine", "seraphim", "dragon"]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  UNIQUE TESTUDINE
+  When this card enters play, you may put a UNIQUE JO you control into the void. If you do, this turn, each other character you control gains 1 strength and 1 life.
+  All characters you control can attack even if they have not been in play under your control since the start of the turn.
+  When this card leaves play, put a UNIQUE JO that was voided by this card into play under your control.

@@ -1,0 +1,13 @@
+id: "randolph-von-macovawitz-spitoon-iii-ltd"
+name: "Randolph von Macovawitz Spitoon III, Ltd."
+trade: banker
+types: [character]
+subtypes: ["mau"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  UNIQUE RANDOLPH
+  When this card enters play, draw a card.
+  PAYDAY LOAN
+  COST: Pay 1. Discard a resource or destroy a resource you control.
+  EFFECT: Draw a card.

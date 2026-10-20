@@ -14,5 +14,5 @@
     "noEmit": true,
     "types": ["node"]
   },
-  "include": ["engine", "server", "client/src", "vite.config.ts"]
+  "include": ["engine", "server", "client/src", "tools", "vite.config.ts"]
 }

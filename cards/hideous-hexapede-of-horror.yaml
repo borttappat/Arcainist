@@ -1,0 +1,11 @@
+id: "hideous-hexapede-of-horror"
+name: "Hideous Hexapede of Horror"
+trade: arcanist
+types: [character]
+subtypes: ["insect", "monstrosity"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  HIDEOUSLY HORRENDOUS HEX OF HELLISHLY HORRIFYING HATRED
+  COST: Pay 6. Destroy this card. Pick 6 characters.
+  EFFECT: Inflict 6 damage to each of the characters. Inflict 6 damage to all factions. All players remove 6 cards in their hand from the game. All players remove 6 cards in their discard pile from the game. All players remove the top 6 cards of their deck from the game.

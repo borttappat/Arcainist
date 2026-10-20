@@ -1,0 +1,13 @@
+id: "gus-vanbaymaven"
+name: "Gus VanBaymaven"
+trade: banker
+types: [character]
+subtypes: ["mau"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  UNIQUE GUS
+  ALL YOUR BAYS ARE BELONG TO GUS
+  COST: Pay 2. Deplete this card. Pick a location.
+  EFFECT: Take control of the location.
+  FLIP UP: 2 [G][G][G]

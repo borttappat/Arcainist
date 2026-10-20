@@ -1,0 +1,12 @@
+id: "jo-ciendeilio"
+name: "Jo Ciendeilio"
+trade: gearsmith
+types: [character]
+subtypes: ["inventor"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  UNIQUE JO
+  RESEARCH
+  COST: Deplete this card.
+  EFFECT: Reduce the next numeric cost you pay this turn by 3.

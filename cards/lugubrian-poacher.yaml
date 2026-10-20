@@ -1,0 +1,9 @@
+id: "lugubrian-poacher"
+name: "Lugubrian Poacher"
+trade: arcanist
+types: [character]
+subtypes: ["lurker"]
+set: "Shade of the Devoured Emperor"
+rarity: common
+text: |
+  When this card restores, it gains COVERT this turn.

@@ -3,12 +3,14 @@ name: Alluring Quicksand
 flavor_title: like taking a baby from its candy
 trade: banker
 types: [tactic]
+set: "Seed Saga"
+rarity: common
 text: |
-  EXTRA COST - Pick a character.
+  EXTRA COST: Pick a character.
   Flip the character face-down under its owner's control.
-  RECUR - [greed][greed][greed][greed]
-  COST - Use this only if this card is in your discard pile. Pay 2. Remove this card from the game. Pick a character.
-  EFFECT - Flip the character face-down under its owner's control.
+  RECUR: [G][G][G][G]
+  COST: Use this only if this card is in your discard pile. Pay 2. Remove this card from the game. Pick a character.
+  EFFECT: Flip the character face-down under its owner's control.
 rules:
   - play:
       cost:

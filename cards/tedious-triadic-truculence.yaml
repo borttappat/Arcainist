@@ -1,0 +1,9 @@
+id: "tedious-triadic-truculence"
+name: "Tedious TriAdic Truculence"
+trade: arcanist
+types: [tactic]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  EXTRA COST: Pick 3 characters. Any opponent may pay 3. If they do, look at the top 3 cards of your deck and put them back in any order then terminate this card.
+  Destroy each picked character with 3 strength or less.

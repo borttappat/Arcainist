@@ -1,0 +1,13 @@
+id: "b14nd-p3pp3r"
+name: "B14nd P3pp3r"
+trade: gearsmith
+types: [item]
+subtypes: ["gear"]
+set: "Seed Saga"
+rarity: common
+text: |
+  ATTACH TO CHARACTER
+  The attached character gains 1 strength and 1 life.
+  SPIT OUT
+  COST: Destroy this card. Pick a character.
+  EFFECT: This turn, the character gains 1 strength and 1 life.

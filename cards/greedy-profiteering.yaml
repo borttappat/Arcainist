@@ -1,0 +1,13 @@
+id: "greedy-profiteering"
+name: "Greedy Profiteering"
+trade: banker
+types: [resource]
+face_down_only: true
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  This resource may only be played from your hand face-down.
+  PROVIDES: [G]
+  FLIP IT: [G]
+  COST: Use this only while this card is a face-down resource. Reveal this card. Your faction loses 3 influcence. Pay 4.
+  EFFECT: Put this card into play face-up. Put 2 random cards from your discard pile into your hand.

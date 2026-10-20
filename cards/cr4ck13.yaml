@@ -1,0 +1,9 @@
+id: "cr4ck13"
+name: "Cr4ck13"
+trade: gearsmith
+types: [character]
+subtypes: ["31f"]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  When damage is inflicted to this card, put that many Micromajig tokens into play under your control.

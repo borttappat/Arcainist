@@ -1,0 +1,9 @@
+id: "pettifogger"
+name: "Pettifogger"
+trade: banker
+types: [character]
+subtypes: ["lawyer"]
+set: "2nd Edition"
+rarity: common
+text: |
+  When this card blocks, destroy it and all members of the attacking party.

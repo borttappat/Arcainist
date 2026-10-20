@@ -1,0 +1,10 @@
+id: "arcane-ambush"
+name: "Arcane Ambush"
+trade: universal
+types: [tactic]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  EXTRA COST: Play this only during your turn. Pick a faction.
+  Destroy all items and locations. If you control cards with 'UNIQUE JO', 'UNIQUE EUSTACE', 'UNIQUE PLUCK', 'UNIQUE RUDOLPHUS', and 'UNIQUE IGNATIOUS', inflict 15 damage to the faction and each character that faction's controller controls.
+  FLIP UP: 6 [O][G][E][D][R]

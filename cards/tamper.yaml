@@ -1,0 +1,10 @@
+id: "tamper"
+name: "Tamper"
+trade: gearsmith
+types: [tactic]
+set: "Seed Saga"
+rarity: common
+text: |
+  EXTRA COST: Pick a character with an ability in its rules text.
+  Destroy the character.
+  FLIP UP: 1 [E][E]

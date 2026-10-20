@@ -1,0 +1,11 @@
+id: "carnival-king"
+name: "Carnival King"
+trade: rogue
+types: [character]
+subtypes: ["outcast"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  CONGA LINE
+  COST: Pay 3. Deplete this card. Pick a character not in a battle.
+  EFFECT: This turn, all characters able to block the character must do so. When an attacking party is formed including the character, it must have only 1 member.

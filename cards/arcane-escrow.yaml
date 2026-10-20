@@ -1,0 +1,14 @@
+id: "arcane-escrow"
+name: "Arcane Escrow"
+trade: banker
+types: [item]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  If you would discard a card, you may put it in the void face-down instead.
+  You may look at cards voided by this card.
+  If you would draw a card as part of your Develop Rule, you may put a card voided by this card into its owner's hand instead.
+  WITHDRAW
+  COST: Pay 1.
+  EFFECT: Draw a card. Discard 2 cards.
+  FLIP UP: 1 [G][G]

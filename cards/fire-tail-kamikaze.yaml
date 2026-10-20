@@ -1,0 +1,10 @@
+id: "fire-tail-kamikaze"
+name: "Fire Tail Kamikaze"
+trade: warlord
+types: [character]
+subtypes: ["dragon"]
+set: "Holy Heist"
+rarity: uncommon
+text: |
+  When this card enters play, you may pick a character. If you do, inflict 3 damage to it.
+  When this card is destroyed, you may pick a faction or location. If you do, inflict 3 damage to that card.

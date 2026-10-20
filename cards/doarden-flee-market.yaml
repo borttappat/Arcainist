@@ -1,0 +1,13 @@
+id: "doarden-flee-market"
+name: "Doarden Flee Market"
+trade: banker
+types: [location]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  HOCK
+  COST: Pay 1. Deplete this card. Destroy a character you own.
+  EFFECT: Draw a card.
+  WEEDLE: [G][G][G][G][G][G]
+  COST: Pay 2. Deplete this card. Destroy a character you own.
+  EFFECT: Draw 3 cards.

@@ -1,0 +1,12 @@
+id: "eustace-sensible-glutton"
+name: "Eustace, Sensible Glutton"
+trade: banker
+types: [character]
+subtypes: ["eustace", "blade of questionable morality"]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  UNIQUE EUSTACE
+  FEALTY: While this card is in your hand and you control at least 4 staple resources of different trades, reduce this card's threshold requirement by any 3 resource icons.
+  When this card attacks, you may have your faction lose 3 influence. If you do, this card gains 3 strength and COVERT this turn.
+  When this card inflicts battle damage to a faction, your faction gains 3 influence.

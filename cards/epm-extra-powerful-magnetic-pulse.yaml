@@ -1,0 +1,8 @@
+id: "epm-extra-powerful-magnetic-pulse"
+name: "EPM (Extra Powerful Magnetic) Pulse"
+trade: gearsmith
+types: [tactic]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  Destroy all items and locations.

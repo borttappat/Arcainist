@@ -1,0 +1,10 @@
+id: "emphatic-ecto-manipulator"
+name: "Emphatic Ecto-Manipulator"
+trade: arcanist
+types: [character]
+subtypes: ["ecto-manipulator"]
+set: "2nd Edition"
+rarity: common
+text: |
+  EXTRA COST: You may pick a character you control.
+  When this card enters play, if you picked a character as part of its cost, put 2 tokens on that character.

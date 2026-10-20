@@ -1,0 +1,10 @@
+id: "thabbashite-glutton"
+name: "Thabbashite Glutton"
+trade: banker
+types: [character]
+subtypes: ["fighter"]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  [G][G][V][V]: When this card is destroyed, draw a card. When this card attacks, you may pick a card in a discard pile. If you do, remove it from the game.
+  FLIP UP: 2 [V][V][V][V]

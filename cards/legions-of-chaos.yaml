@@ -1,0 +1,34 @@
+id: "legions-of-chaos"
+name: "Legions of Chaos"
+trade: none
+types: [faction]
+set: "Seed Saga"
+text: |
+  STARTING RESOURCES: Any 2 staple resources.
+  STARTING DRAW: 8 going first, 9 going second.
+  RESTORE RULE: At the start of your turn, restore all your depleted cards and detach all resources from your faction.
+  DEVELOP RULE: At the start of your turn, draw a card or play a resource.
+  DRAW
+  COST: Pay 3.
+  EFFECT: Draw a card.
+  RESOURCE
+  COST: Pay 4.
+  EFFECT: Play a resource.
+  When a character enters play under your control, you may pay 3. If you do, search your deck for a character that does not share a trade with any characters you control, reveal it and put it into your hand.
+restore_rule:
+  - restore_all_depleted: you
+  - detach_all_resources: you
+develop_rule:
+  - choose_one:
+      - draw: 1
+      - play_resource: 1
+rules:
+  - ability: { name: Draw, cost: [ pay: 3 ], effect: [ draw: 1 ] }
+  - ability: { name: Resource, cost: [ pay: 4 ], effect: [ play_resource: 1 ] }
+  - trigger: { on: enters_play, card: { character: { controller: you } } }
+    effect:
+      - may_pay:
+          amount: 3
+          prompt: "search for a character that doesn't share a trade with your characters"
+          then:
+            - search: { deck: you, for: { character: { trade_not_among: { character: { controller: you } } } }, reveal: true, to: hand }

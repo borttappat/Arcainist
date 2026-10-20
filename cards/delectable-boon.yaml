@@ -1,0 +1,9 @@
+id: "delectable-boon"
+name: "Delectable Boon"
+trade: banker
+types: [tactic]
+set: "Seed Saga"
+rarity: rare
+text: |
+  EXTRA COST: Choose a number for X. Pay X. Pick 2 characters, locations, and/or factions.
+  The next X damage that would be inflicted to the first picked card this turn is inflicted to the second picked card instead.

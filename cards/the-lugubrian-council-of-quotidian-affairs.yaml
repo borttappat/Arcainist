@@ -1,0 +1,18 @@
+id: "the-lugubrian-council-of-quotidian-affairs"
+name: "The Lugubrian Council of Quotidian Affairs"
+trade: arcanist
+types: [character]
+subtypes: ["advisor"]
+set: "Shade of the Devoured Emperor"
+rarity: rare
+text: |
+  UNIQUE COUNCIL
+  CONVENE
+  COST: Pay 2. Discard 2 cards.
+  EFFECT: Put 2 tokens on this card.
+  CAST VOTE
+  COST: Pay 2. Remove 2 tokens from this card.
+  EFFECT: Search your deck for a tactic and reveal it. Put it into your hand.
+  PASS
+  COST: Pay 2. Discard a tactic from your hand. X is that tactic's numeric cost. Pick an opponent's character with strength X or less.
+  EFFECT: Put the character into its owner's hand. That character's controller may detach up to X resources from their faction.

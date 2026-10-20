@@ -1,0 +1,12 @@
+id: "elzibeth-counter-imperial-countess"
+name: "Elzibeth, Counter Imperial Countess"
+trade: warlord
+types: [character]
+subtypes: ["sorceress"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  UNIQUE ELZIBETH
+  KEEP EM COMING
+  COST: Pay 3. Deplete this card. Pick a character.
+  EFFECT: If that character would be destroyed this turn, put it on the top of its owner's deck instead.

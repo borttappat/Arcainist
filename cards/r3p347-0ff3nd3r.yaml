@@ -1,0 +1,14 @@
+id: "r3p347-0ff3nd3r"
+name: "R3p347 0ff3nd3r"
+trade: gearsmith
+types: [character]
+subtypes: ["guardforce", "31f"]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: |
+  This card can attack even if it has not been in play under your control since the start of the turn.
+  When this card enters play, you may pay 2. If you do, put a token on it.
+  While there is a token on this card, it gains 1 strength and 1 life.
+  P3PP3R 61457
+  COST: Remove a token from this card. Use this only once per turn.
+  EFFECT: This turn, this character gains 1 strength and 1 life. Restore it.

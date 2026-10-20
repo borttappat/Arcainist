@@ -1,0 +1,10 @@
+id: "unexpected-boobysnake"
+name: "Unexpected Boobysnake"
+trade: rogue
+types: [character]
+subtypes: ["beast"]
+set: "2nd Edition"
+rarity: common
+text: |
+  TACTICAL
+  When this card enters play, if you deployed it during an opponent's turn, discard a card or destroy this card.

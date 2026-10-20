@@ -1,0 +1,10 @@
+id: "predatory-lamp"
+name: "Predatory Lamp"
+trade: arcanist
+types: [character]
+subtypes: ["lurker"]
+set: "Holy Heist"
+rarity: common
+text: |
+  COVERT
+  When this card enters play, you may pick a character with COVERT. If you do, that character loses COVERT while this card is in play.

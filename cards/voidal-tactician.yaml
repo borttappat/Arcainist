@@ -1,0 +1,11 @@
+id: "voidal-tactician"
+name: "Voidal Tactician"
+trade: arcanist
+types: [character]
+subtypes: ["advisor"]
+set: "Ungodly Mess"
+rarity: rare
+text: |
+  When this card inflicts damage to a faction, you may pay 1. If you do, search that faction's deck for a tactic, reveal it and put it into the void.
+  While this card is depleted, you may deploy tactics in the void as though they were in your hand without
+  meeting their threshold.

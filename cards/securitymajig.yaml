@@ -1,0 +1,10 @@
+id: "securitymajig"
+name: "Securitymajig"
+trade: gearsmith
+types: [character]
+subtypes: ["majig"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  This card can block COVERT parties.
+  When this card blocks a COVERT party, it gains 3 strength this turn.

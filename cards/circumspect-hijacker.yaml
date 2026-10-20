@@ -1,0 +1,12 @@
+id: "circumspect-hijacker"
+name: "Circumspect Hijacker"
+trade: banker
+types: [character]
+subtypes: ["pirate", "mau"]
+set: "Ungodly Mess"
+rarity: ultra-rare
+text: |
+  [G][G][G]: When this card enters play, draw a card.
+  RETREAT
+  COST: Pay 2. Destroy this card.
+  EFFECT: Draw a card.

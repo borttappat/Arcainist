@@ -1,0 +1,11 @@
+id: "padamose-emperor-of-marduun"
+name: "Padamose, Emperor of Marduun"
+trade: warlord
+types: [character]
+subtypes: ["padamose", "emperor", "mau"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  UNIQUE PADAMOSE
+  All your "sword of great justice" characters gain 1 strength and 1 life.
+  All your opponent's "mau" characters and Arcanist characters lose 1 strength and 1 life.

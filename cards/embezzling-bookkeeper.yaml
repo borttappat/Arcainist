@@ -1,0 +1,9 @@
+id: "embezzling-bookkeeper"
+name: "Embezzling Bookkeeper"
+trade: banker
+types: [character]
+subtypes: ["employee", "mau"]
+set: "2nd Edition"
+rarity: rare
+text: |
+  When this card enters play, an opponent draws a card.

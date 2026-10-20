@@ -1,0 +1,13 @@
+id: "soulsearcher"
+name: "Soulsearcher"
+trade: universal
+types: [character]
+subtypes: ["changeling"]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  [O]: This card gains COVERT.
+  [G]: This card gains 2 life.
+  [E]: This card gains AGGRO.
+  [D]: This card gains 1 speed.
+  [R]: This card gains 2 strength.

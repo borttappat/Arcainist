@@ -1,0 +1,10 @@
+id: "kaiser-wave"
+name: "Kaiser Wave"
+trade: gearsmith
+types: [tactic]
+subtypes: ["kaiser"]
+set: "2nd Edition"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick a character.
+  This turn, the character gains 1 strength and 1 life. It gains an additional 1 strength and 1 life for each kaiser card in play. It gains an additional 1 strength and 1 life if it is a kaiser character.

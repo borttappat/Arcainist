@@ -1,0 +1,10 @@
+id: "department-of-rejections"
+name: "Department of Rejections"
+trade: banker
+types: [location]
+set: "Seed Saga"
+rarity: rare
+text: |
+  Your opponents must pay 2 to search their deck.
+  Your opponents must pay 2 to use a character's ability. (This includes abilities used when the character is not in play.)
+  FLIP UP: 1 [G]

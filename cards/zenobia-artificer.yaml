@@ -1,0 +1,15 @@
+id: "zenobia-artificer"
+name: "Zenobia, Artificer"
+trade: gearsmith
+types: [character]
+subtypes: ["sorceress"]
+set: "Ungodly Mess"
+rarity: super-rare
+text: |
+  UNIQUE ZENOBIA
+  DISENCHANT
+  COST: Deplete this card. Discard an item. X is its numeric cost.
+  EFFECT: Put X tokens on this card.
+  CLAIRVOYANCE
+  COST: Deplete this card. Chose a number greater than 0 for X. Remove X tokens from this card.
+  EFFECT: Search your deck for a card with numeric cost X or less, reveal it, and put it into your hand.

@@ -1,0 +1,10 @@
+id: "rewarding-salvage"
+name: "Rewarding Salvage"
+trade: gearsmith
+types: [tactic]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick 2 or fewer items in your discard pile.
+  Put the items into your hand.
+  FLIP UP: 2 [E][E] and play a resource.

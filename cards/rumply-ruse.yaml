@@ -1,0 +1,10 @@
+id: "rumply-ruse"
+name: "Rumply Ruse"
+trade: rogue
+types: [tactic]
+set: "Seed Saga"
+rarity: common
+text: |
+  EXTRA COST: Deploy this only during a battle.
+  This turn, all characters in your party gain 1 speed.
+  FLIP UP: 4 [D][D]

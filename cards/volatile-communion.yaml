@@ -1,0 +1,10 @@
+id: "volatile-communion"
+name: "Volatile Communion"
+trade: arcanist
+types: [tactic]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  EXTRA COST: Choose a number for X. Deplete X characters you control.
+  Look at the top X+2 cards of your deck. You may put one of them into your hand. Put the remaining cards on the bottom of your deck in any order.
+  FLIP UP: 1 [O]

@@ -2,9 +2,11 @@ id: cash-out
 name: "Cash Out"
 trade: banker
 types: [tactic]
+set: "2nd Edition"
+rarity: rare
 text: |
-  COST - Pick a number for X. Pay twice X. (X can be 0.)
-  EFFECT - Draw X+1 cards.
+  EXTRA COST: Choose a number for X. Pay X+X.
+  Draw X+1 cards.
 rules:
   - play:
       cost:

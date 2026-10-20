@@ -1,0 +1,9 @@
+id: "guardforce-alpha-prime-31f"
+name: "Guardforce Alpha Prime 31f"
+trade: gearsmith
+types: [character]
+subtypes: ["guardforce", "31f"]
+set: "2nd Edition"
+rarity: common
+text: |
+  This card can attack even if it has not been in play under your control since the start of the turn.

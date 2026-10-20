@@ -1,0 +1,9 @@
+id: "cunning-ruse"
+name: "Cunning Ruse"
+trade: rogue
+types: [tactic]
+set: "Ungodly Mess"
+rarity: uncommon
+text: |
+  EXTRA COST: Pick an item.
+  Flip the item face-down under its opponent's control.

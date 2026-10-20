@@ -1,0 +1,11 @@
+id: "karmic-cake"
+name: "Karmic Cake"
+trade: banker
+types: [tactic]
+set: "Seed Saga"
+rarity: common
+text: |
+  Search your deck for a resource and reveal it. Put it into your hand.
+  RECUR: [G]
+  COST: Use this only if this card is in your discard pile. Pay 2. Remove this card from the game.
+  EFFECT: Search your deck for a staple resource and reveal it. Put it into your hand.

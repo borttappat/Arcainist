@@ -1,0 +1,9 @@
+id: "thabbashite-haruspex"
+name: "Thabbashite Haruspex"
+trade: arcanist
+types: [character]
+subtypes: ["priest"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  When this card enters or leaves play, you may draw a card. If you do, put a card from your hand on the bottom of your deck.

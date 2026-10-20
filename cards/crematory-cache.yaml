@@ -1,0 +1,8 @@
+id: "crematory-cache"
+name: "Crematory Cache"
+trade: banker
+types: [item]
+set: "Holy Heist"
+rarity: common
+text: |
+  When a character is destroyed, you may gain 1 influence.

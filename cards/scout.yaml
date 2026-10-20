@@ -1,0 +1,8 @@
+id: "scout"
+name: "Scout"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "2nd Edition"
+rarity: common
+text: ""

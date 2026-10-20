@@ -1,0 +1,27 @@
+id: "the-knitting-coalition"
+name: "The Knitting Coalition"
+trade: none
+types: [faction]
+tournament_legal: false
+set: "Seed 3"
+text: |
+  This card cannot be used in tournament play. (But please, play with it for fun!)
+  STARTING RESOURCES: 2 Greed
+  STARTING DRAW: 3 going first, 4 going second
+  HIDDEN INFLUENCE: Your opponent ignores their faction's STARTING DRAW rule and uses this card's rule instead.
+  DEVELOP RULE - PULLING STRINGS: Your opponent ignores their faction's DEVELOP RULE.
+  RESTORE RULE: At the start of your turn, restore all your depleted cards and detach all resources from your faction.
+  INFLATIONARY FORCES - DRAW
+  COST: Both players may use this ability. Pay 2.
+  EFFECT: Draw a card.
+  INFLATIONARY FORCES - RESOURCE
+  COST: Both players may use this ability. Pay 2.
+  EFFECT: Play a resource.
+opponent_rules: { starting_draw: this, develop_rule: none }
+restore_rule:
+  - restore_all_depleted: you
+  - detach_all_resources: you
+develop_rule: []
+rules:
+  - ability: { name: "Inflationary Forces - Draw", both_players: true, cost: [ pay: 2 ], effect: [ draw: 1 ] }
+  - ability: { name: "Inflationary Forces - Resource", both_players: true, cost: [ pay: 2 ], effect: [ play_resource: 1 ] }

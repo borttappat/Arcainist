@@ -1,0 +1,11 @@
+id: "mountainous-golem"
+name: "Mountainous Golem"
+trade: gearsmith
+types: [character]
+subtypes: ["mountain", "golem"]
+set: "Seed Saga"
+rarity: rare
+text: |
+  Your opponents cannot take control of this card.
+  When this card is put into your discard pile from anywhere, remove it from the game.
+  FLIP UP: 13 [E][E]

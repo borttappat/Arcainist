@@ -1,0 +1,8 @@
+id: "ping-konk"
+name: "Ping Konk"
+trade: arcanist
+types: [character]
+subtypes: ["monstrosity"]
+set: "Shade of the Devoured Emperor"
+rarity: uncommon
+text: ""

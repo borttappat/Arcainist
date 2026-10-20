@@ -1,0 +1,9 @@
+id: "proficient-battler"
+name: "Proficient Battler"
+trade: warlord
+types: [character]
+subtypes: ["soldier"]
+set: "Seed Saga"
+rarity: uncommon
+text: |
+  FLIP UP: 2 [R]
