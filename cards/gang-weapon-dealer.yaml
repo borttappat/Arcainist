@@ -11,3 +11,22 @@ text: |
   DELIVERY
   COST: Remove a token from this card. Deplete this card. Reveal a face-down "gear" card you control.
   EFFECT: You may deploy it even if you cannot meet its threshold. If its numeric cost is 4 or less, you may deploy it for free.
+enters_with_tokens: 2
+rules:
+  - static:
+      mods: [ { stat: { str: { tokens: self } } } ]
+  - ability:
+      name: Delivery
+      cost:
+        - tokens: { card: self, remove: 1 }
+        - deplete: self
+        - pick: { as: g, from: { resource: { controller: you, face_down: true, printed_type: item, subtype: gear } }, choose: true, prompt: "Reveal a face-down gear card you control." }
+        - reveal: g
+      effect:
+        - may:
+            prompt: "deploy the revealed gear card (free if its numeric cost is 4 or less)"
+            steps:
+              - if:
+                  cond: { lte: [ { cost: g }, 4 ] }
+                  then: [ play_card: { card: g, free: true, ignore_threshold: true } ]
+                  else: [ play_card: { card: g, ignore_threshold: true } ]

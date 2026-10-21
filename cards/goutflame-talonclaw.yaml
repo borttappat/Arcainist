@@ -11,3 +11,26 @@ text: |
   Opponents cannot take control of this card and it cannot be blocked by characters with 1 strength or less.
   If this card would be destroyed or removed from the game, flip it face-down under its owner's control instead.
   FLIP UP: 9 [R][R][R][R][R]
+rules:
+  - unique: Goutflame Talonclaw
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - pick: { as: l, from: { location: any }, optional: true }
+      - pick: { as: i, from: { item: any }, optional: true }
+      - pick: { as: c, from: { character: { not_self: true } }, optional: true }
+      - if:
+          cond: { defined: l }
+          then: [ destroy: l ]
+      - if:
+          cond: { defined: i }
+          then: [ destroy: i ]
+      - if:
+          cond: { defined: c }
+          then: [ destroy: c ]
+  - static:
+      mods:
+        - { cannot: take_control, by: opponent }
+        - { cannot_be_blocked: { by: { character: { str_lte: 1 } } } }
+  - replace: { event: destroy, card: self }
+    instead: [ flip_face_down: { card: self, controller: owner } ]
+  - flip_up: { pay: 9, threshold: { rage: 5 } }

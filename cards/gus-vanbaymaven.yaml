@@ -11,3 +11,13 @@ text: |
   COST: Pay 2. Deplete this card. Pick a location.
   EFFECT: Take control of the location.
   FLIP UP: 2 [G][G][G]
+rules:
+  - unique: Gus
+  - ability:
+      name: All Your Bays Are Belong to Gus
+      cost:
+        - pay: 2
+        - deplete: self
+        - pick: { as: l, from: { location: any } }
+      effect: [ take_control: { card: l, who: you } ]
+  - flip_up: { pay: 2, threshold: { greed: 3 } }

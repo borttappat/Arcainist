@@ -12,3 +12,31 @@ text: |
   CONTROL THE FLAME!
   COST: Any player may use this ability. Destroy a character or item you control.
   EFFECT: Add or remove a token from this card.
+enters_with_tokens: 3
+rules:
+  # Its tokens only change through these two rules, so the 0 and 6 checks follow them.
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - tokens: { card: self, add: 1 }
+      - if:
+          cond: { gte: [ { tokens: self }, 6 ] }
+          then:
+            - destroy: self
+            - lose_influence: { who: opponent, amount: 6 }
+  - ability:
+      name: Control the Flame!
+      both_players: true
+      cost:
+        - destroy: { from: [ { character: { controller: you } }, { item: { controller: you } } ], choose: true }
+      effect:
+        - choose_one:
+            - { label: "Add a token", steps: [ tokens: { card: self, add: 1 } ] }
+            - { label: "Remove a token", steps: [ tokens: { card: self, remove: 1 } ] }
+        - if:
+            cond: { gte: [ { tokens: self }, 6 ] }
+            then:
+              - destroy: self
+              - lose_influence: { who: { opponent_of: { controller_of: self } }, amount: 6 }
+        - if:
+            cond: { eq: [ { tokens: self }, 0 ] }
+            then: [ destroy: self ]

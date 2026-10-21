@@ -7,3 +7,12 @@ rarity: common
 text: |
   EXTRA COST: Pick a non-resource card.
   Put the card into its owner's hand. Look at an opponent's hand and choose a card in it. That player discards that card.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { card: { not_type: resource } } }
+      effect:
+        - move: { card: c, to: hand }
+        - reveal_hand: opponent
+        - pick: { as: h, from: { card: { zone: hand, owner: opponent } }, choose: true }
+        - discard: { who: opponent, cards: h }

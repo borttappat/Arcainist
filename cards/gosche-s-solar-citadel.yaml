@@ -9,3 +9,16 @@ text: |
   PROCESS
   COST: Deplete this card. Pay 2. Pick a character you control.
   EFFECT: Put a token on that character.
+rules:
+  - trigger: { on: leaves_play, player: you, card: { character: { token: false } }, had_tokens: true }
+    effect:
+      - may:
+          prompt: "put a Micromajig token into play"
+          steps: [ create_token: { card: micromajig-token } ]
+  - ability:
+      name: Process
+      cost:
+        - deplete: self
+        - pay: 2
+        - pick: { as: c, from: { character: { controller: you } } }
+      effect: [ tokens: { card: c, add: 1 } ]

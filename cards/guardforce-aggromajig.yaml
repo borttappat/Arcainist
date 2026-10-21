@@ -8,3 +8,9 @@ rarity: rare
 text: |
   This card can attack even if it has not been in play under your control since the start of the turn.
   While this card is depleted it gains 2 strength.
+rules:
+  - static:
+      mods: [ { keyword: aggro } ]
+  - static:
+      while: { matches: [ self, { character: { depleted: true } } ] }
+      mods: [ { stat: { str: 2 } } ]

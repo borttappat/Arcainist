@@ -7,3 +7,15 @@ rarity: common
 text: |
   EXTRA COST: Pick an opponent. X is the number of detached resources that player controls. Pick a character.
   If the character has X strength or less, destroy it.
+rules:
+  - play:
+      cost:
+        - pick: { as: f, from: { faction: any }, choose: true, prompt: "Pick a player (their faction)." }
+        - as:
+            who: { controller_of: f }
+            steps: [ let: { X: { count: { resource: { controller: you, spent: false } } } } ]
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - if:
+            cond: { lte: [ { stat: [ c, str ] }, X ] }
+            then: [ destroy: c ]

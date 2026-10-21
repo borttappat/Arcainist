@@ -11,3 +11,15 @@ text: |
   ATTACH TO CHARACTER
   The attached character gains the following rules text: "All your characters lose 1 strength and gain 1 life.
   At the start of each opponent's turn, you may restore all characters you control."
+rules:
+  - unique: Blessing
+  - static:
+      mods:
+        - grant_rules:
+            - static: { mods: [ { stat: { str: -1, life: 1 }, target: { character: { controller: you } } } ] }
+            - trigger: { on: start_of_turn, player: opponent }
+              effect:
+                - may:
+                    prompt: "restore all characters you control"
+                    steps: [ restore: { character: { controller: you } } ]
+          target: host

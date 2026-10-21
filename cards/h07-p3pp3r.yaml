@@ -12,3 +12,10 @@ text: |
   SPIT OUT
   COST: Destroy this card. Pick 2 or fewer characters.
   EFFECT: Restore the characters.
+rules:
+  - ability:
+      name: Spit Out
+      cost:
+        - destroy: self
+        - pick: { as: c, from: { character: any }, count: 2, up_to: true }
+      effect: [ restore: c ]

@@ -14,3 +14,28 @@ text: |
   INTO THE RABBIT HOLE?
   COST: Pay 3.
   EFFECT: Flip this card face-down under its owner's control.
+rules:
+  - ability:
+      name: RAAR!
+      once_per_turn: true
+      cost:
+        - require: { not: { matches: [ self, { character: any } ] } }
+        - pay: 1
+      effect:
+        - create_effect:
+            duration: turn
+            tag: raar
+            mods:
+              - { add_type: character }
+              - { stat: { str: 2, life: 2, spd: 3 } }
+  - ability:
+      name: HIDE!
+      cost: [ pay: 1 ]
+      effect:
+        - clear_effects: { tag: raar }
+        - deplete: self
+  - ability:
+      name: Into the Rabbit Hole?
+      cost: [ pay: 3 ]
+      effect:
+        - flip_face_down: { card: self, controller: owner }

@@ -7,3 +7,6 @@ set: "2nd Edition"
 rarity: common
 text: |
   When this card leaves play, an opponent discards a card.
+rules:
+  - trigger: { on: leaves_play, card: self }
+    effect: [ discard: { who: opponent, count: 1 } ]

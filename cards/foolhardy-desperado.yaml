@@ -9,3 +9,6 @@ rarity: uncommon
 text: |
   COVERT
   When this card inflicts battle damage, your faction loses 2 influence.
+rules:
+  - trigger: { on: damage, source: self, battle: true }
+    effect: [ lose_influence: { who: you, amount: 2 } ]

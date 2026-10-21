@@ -11,3 +11,11 @@ text: |
   COST: Destroy this card. Pick an attacking character.
   EFFECT: Destroy the character.
   FLIP UP: 1 [E][E]
+rules:
+  - ability:
+      name: Impale
+      cost:
+        - destroy: self
+        - pick: { as: c, from: { character: { attacking: true } } }
+      effect: [ destroy: c ]
+  - flip_up: { pay: 1, threshold: { elitism: 2 } }

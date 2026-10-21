@@ -9,3 +9,11 @@ text: |
   PLEAD
   COST: Deplete this card. Pick a character.
   EFFECT: If damage is inflicted to the character this turn, reduce the amount by 1.
+rules:
+  - ability:
+      name: Plead
+      cost:
+        - deplete: self
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { damage: { delta: -1 }, target: c } ] }

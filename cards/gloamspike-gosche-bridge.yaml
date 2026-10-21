@@ -8,3 +8,11 @@ text: |
   This card cannot be picked.
   All characters in your hand gain TACTICAL.
   [O][O][O][O][O][O][O][O]: All items and locations in your hand gain TACTICAL.
+rules:
+  - static:
+      mods:
+        - { cannot: pick }
+        - { tactical: true, target: { character: { zone: hand, owner: you } } }
+  - static:
+      requires: { obsession: 8 }
+      mods: [ { tactical: true, target: [ { item: { zone: hand, owner: you } }, { location: { zone: hand, owner: you } } ] } ]

@@ -6,3 +6,10 @@ set: "1st Edition"
 rarity: uncommon
 text: |
   At the start of your turn, you may pick a character. If you do, deplete it.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ deplete: c ]

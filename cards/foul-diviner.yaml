@@ -7,3 +7,8 @@ set: "Seed"
 rarity: common
 text: |
   EXTRA COST: Remove a tactic in your discard pile from the game.
+rules:
+  - play:
+      cost:
+        - pick: { as: t, from: { tactic: { zone: discard, owner: you } }, choose: true, prompt: "Remove a tactic in your discard pile from the game." }
+        - void: t

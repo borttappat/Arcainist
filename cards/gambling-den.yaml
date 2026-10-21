@@ -6,3 +6,17 @@ set: "Seed Saga"
 rarity: rare
 text: |
   At the start of your turn, reveal the top card of your deck. If it has numeric cost 3 or less, each player may draw a card. Otherwise, each player may play a resource.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - let: { t: { card: top_of_you } }
+      - if:
+          cond: { defined: t }
+          then:
+            - reveal_top: { who: you, count: 1 }
+            - if:
+                cond: { lte: [ { cost: t }, 3 ] }
+                then:
+                  - each_player: [ may: { prompt: "draw a card", steps: [ draw: 1 ] } ]
+                else:
+                  - each_player: [ play_resource: { optional: true } ]

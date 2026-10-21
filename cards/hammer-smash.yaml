@@ -7,3 +7,13 @@ rarity: common
 text: |
   EXTRA COST: Flip a coin. If you win, X is 2. Otherwise, X is 1. Pick X or fewer items.
   Destroy the items.
+rules:
+  - play:
+      cost:
+        - coin_flip: { as: won }
+        - if:
+            cond: { did: true }
+            then: [ let: { X: 2 } ]
+            else: [ let: { X: 1 } ]
+        - pick: { as: i, from: { item: any }, count: X, up_to: true }
+      effect: [ destroy: i ]

@@ -7,3 +7,11 @@ rarity: common
 text: |
   EXTRA COST: Deploy this only not during a battle. Pick a character or location.
   Inflict 2 damage to the card. Draw a card.
+rules:
+  - play:
+      timing: { not_in_battle: true }
+      cost:
+        - pick: { as: c, from: [ { character: any }, { location: any } ] }
+      effect:
+        - damage: { card: c, amount: 2 }
+        - draw: 1

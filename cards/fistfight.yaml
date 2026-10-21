@@ -8,3 +8,14 @@ text: |
   EXTRA COST: Deploy this only not during a battle. Pick a character you control. X is that character's strength. Destroy the character. Pick another character.
   Inflict X+1 damage to the character.
   FLIP UP: 3 [R]
+rules:
+  - play:
+      timing: { not_in_battle: true }
+      cost:
+        - pick: { as: m, from: { character: { controller: you } } }
+        - let: { X: { stat: [ m, str ] } }
+        - destroy: m
+        - pick: { as: c, from: { character: { not: m } } }
+      effect:
+        - damage: { card: c, amount: "X + 1" }
+  - flip_up: { pay: 3, threshold: { rage: 1 } }

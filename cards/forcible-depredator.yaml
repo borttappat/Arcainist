@@ -9,3 +9,8 @@ text: |
   PLUNDER
   COST: Pay 2. Discard a card. Deplete this card.
   EFFECT: Put the top 3 cards of an opponent's deck into their discard pile.
+rules:
+  - ability:
+      name: Plunder
+      cost: [ pay: 2, discard: 1, deplete: self ]
+      effect: [ mill: { who: opponent, count: 3 } ]

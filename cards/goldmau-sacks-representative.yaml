@@ -12,3 +12,15 @@ text: |
   INVEST: [G][G][G][G][G][G]
   COST: Pay 2.
   EFFECT: Search your deck for a resource and reveal it. Put it into your hand.
+rules:
+  - ability:
+      name: Raise Capital
+      cost: [ pay: 1, discard: 1 ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { provides: { greed: 3 } } ] }
+  - ability:
+      name: Invest
+      threshold: { greed: 6 }
+      cost: [ pay: 2 ]
+      effect:
+        - search: { deck: you, for: { resource: any }, reveal: true, to: hand }

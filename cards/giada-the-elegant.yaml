@@ -9,3 +9,13 @@ text: |
   UNIQUE GIADA
   This card loses 1 strength and 1 life for each token on it.
   If this card would be destroyed by an opposing card or effect, you may put a token on it instead. If you do, deplete it and remove it from battle. Reduce the amount of damage already inflicted to this character to 0.
+rules:
+  - unique: Giada
+  - static:
+      mods: [ { stat: { str: { neg: { tokens: self } }, life: { neg: { tokens: self } } } } ]
+  - replace: { event: destroy, card: self, by: opponent, optional: true, prompt: "Put a token on it instead (it is depleted, removed from battle and its damage is removed)" }
+    instead:
+      - tokens: { card: self, add: 1 }
+      - deplete: self
+      - remove_from_battle: self
+      - heal: { card: self, all: true }

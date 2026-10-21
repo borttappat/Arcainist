@@ -6,3 +6,6 @@ set: "2nd Edition"
 rarity: rare
 text: |
   When you draw any number of cards, your faction gains X influence, where X is the number of cards drawn.
+rules:
+  - trigger: { on: draw, player: you }
+    effect: [ gain_influence: { who: you, amount: amount } ]

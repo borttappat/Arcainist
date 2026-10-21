@@ -6,3 +6,7 @@ set: "Ungodly Mess"
 rarity: rare
 text: |
   You opponents may only play tactics during their own turn.
+rules:
+  - static:
+      while: { your_turn: true }
+      mods: [ { cannot: play, by: opponent, target: { tactic: { zone: any } } } ]

@@ -8,3 +8,13 @@ text: |
   EXTRA COST: Pick a character in your discard pile.
   Draw a card. Put the character on top of its owner's deck or into play under its owner's control as a face-down resource.
   FLIP UP: 2 [R]
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { zone: discard, owner: you } } }
+      effect:
+        - draw: 1
+        - choose_one:
+            - { label: "Put it on top of its owner's deck", steps: [ move: { card: c, to: deck_top } ] }
+            - { label: "Put it into play as a face-down resource", steps: [ put_into_play: { card: c, controller: owner, as: face_down_resource } ] }
+  - flip_up: { pay: 2, threshold: { rage: 1 } }

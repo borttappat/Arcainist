@@ -9,3 +9,9 @@ text: |
   UNIQUE GUARDFORCE ALPHA PRIME H4X0R
   This card can attack even if it has not been in play under your control since the start of the turn.
   When this card inflicts damage to a faction, you may play a resource.
+rules:
+  - unique: Guardforce Alpha Prime H4x0r
+  - static:
+      mods: [ { keyword: aggro } ]
+  - trigger: { on: damage, source: self, faction: true }
+    effect: [ play_resource: { optional: true } ]

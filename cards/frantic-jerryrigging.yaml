@@ -7,3 +7,15 @@ rarity: uncommon
 text: |
   EXTRA COST: Destroy an item you control. X is its numeric cost.
   Search your deck for an item with numeric cost X+2 or less, reveal it, and put it into your hand or destroy an item your opponent controls with numeric cost X+2 or less.
+rules:
+  - play:
+      cost:
+        - pick: { as: i, from: { item: { controller: you } }, choose: true, prompt: "Destroy an item you control (X is its numeric cost)." }
+        - let: { X: { cost: i } }
+        - destroy: i
+      effect:
+        - choose_one:
+            - label: "Search your deck for an item with numeric cost X+2 or less"
+              steps: [ search: { deck: you, for: { item: { cost_lte: "X + 2" } }, reveal: true, to: hand } ]
+            - label: "Destroy an item your opponent controls with numeric cost X+2 or less"
+              steps: [ destroy: { from: { item: { controller: opponent, cost_lte: "X + 2" } }, choose: true } ]

@@ -7,3 +7,13 @@ rarity: common
 text: |
   EXTRA COST: Pick a character.
   This turn, the character gains 1 speed. Flip a coin. If you win, the character also gains 1 strength this turn.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - modify: { card: c, stat: spd, gain: 1 }
+        - coin_flip: { as: won }
+        - if:
+            cond: { did: true }
+            then: [ modify: { card: c, stat: str, gain: 1 } ]

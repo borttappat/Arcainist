@@ -9,3 +9,18 @@ text: |
   IMPLANT
   COST: Deplete this card. Pay 2. Pick a character you control.
   EFFECT: Put a token on that character.
+rules:
+  - trigger: { on: leaves_play, player: you, card: { character: any }, had_tokens: true }
+    effect:
+      - let: { s: { printed: [ it, str ] } }
+      - pick: { as: c, from: { character: { str_lte: "s - 1" } }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ restore: c ]
+  - ability:
+      name: Implant
+      cost:
+        - deplete: self
+        - pay: 2
+        - pick: { as: c, from: { character: { controller: you } } }
+      effect: [ tokens: { card: c, add: 1 } ]

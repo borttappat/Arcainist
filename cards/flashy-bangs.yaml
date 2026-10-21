@@ -9,3 +9,13 @@ text: |
   COST: Pick a blocking character. Destroy this card.
   EFFECT: Remove the character from the battle. Deplete it.
   FLIP UP: 1 [D][D]
+rules:
+  - ability:
+      name: Burst
+      cost:
+        - pick: { as: c, from: { character: { blocking: true } } }
+        - destroy: self
+      effect:
+        - remove_from_battle: c
+        - deplete: c
+  - flip_up: { pay: 1, threshold: { deception: 2 } }

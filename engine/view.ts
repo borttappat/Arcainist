@@ -203,6 +203,8 @@ function buildLegal(g: Game, p: PlayerId): Legal | null {
   const sources = [ps.factionIid, s.players[other(p)].factionIid, ...ps.play, ...ps.discard];
   // The Billionaire: abilities on the opponent's cards.
   if (q.mods("use_opponent_abilities").some((m) => m.controller === p)) sources.push(...s.players[other(p)].play);
+  // Abilities "any player may use" on the opponent's cards (Flaming Cube).
+  else sources.push(...s.players[other(p)].play.filter((iid) => q.abilities(iid).some((ab) => ab.rule.both_players)));
   for (const iid of sources) {
     for (const ab of q.abilities(iid)) {
       if (ok({ type: "ability", iid, index: ab.index })) abilities.push({ iid, index: ab.index, name: ab.rule.name });

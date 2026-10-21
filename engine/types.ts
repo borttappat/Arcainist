@@ -294,6 +294,8 @@ export interface TurnLog {
   abilities?: Record<string, boolean>;
   /** Characters that assigned battle damage this turn. */
   assigned?: Record<string, boolean>;
+  /** Cards that inflicted damage to each card this turn (by damaged card). */
+  hits?: Record<string, string[]>;
   /** Cards that inflicted damage to each player's faction this turn. */
   factionHits?: Partial<Record<PlayerId, string[]>>;
 }

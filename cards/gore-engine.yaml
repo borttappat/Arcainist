@@ -11,3 +11,19 @@ text: |
   IMPALE
   COST: Pay 2 or remove 2 tokens from this card. Pick a character.
   EFFECT: This turn, the character must block this card if it can.
+rules:
+  - trigger: { on: destroyed, card: { character: { damaged_by: self } }, player: any }
+    effect:
+      # Out of play its current strength is gone; its printed strength is used.
+      - tokens: { card: self, add: { printed: [ it, str ] } }
+  - static:
+      mods: [ { stat: { str: { tokens: self } } } ]
+  - ability:
+      name: Impale
+      cost:
+        - choose_one:
+            - { label: "Pay 2", steps: [ pay: 2 ] }
+            - { label: "Remove 2 tokens", when: { gte: [ { tokens: self }, 2 ] }, steps: [ tokens: { card: self, remove: 2 } ] }
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { must_block: true, target: c, while: { attacking: self } } ] }

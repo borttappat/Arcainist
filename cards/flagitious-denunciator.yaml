@@ -11,3 +11,15 @@ text: |
   DENOUNCE
   COST: Pay 2. Pick a character. Destroy this card.
   EFFECT: Put the character into its owner's hand. Look at an opponent's hand and choose a character in it. That player discards that character.
+rules:
+  - ability:
+      name: Denounce
+      cost:
+        - pay: 2
+        - pick: { as: c, from: { character: any } }
+        - destroy: self
+      effect:
+        - move: { card: c, to: hand }
+        - reveal_hand: opponent
+        - pick: { as: h, from: { character: { zone: hand, owner: opponent } }, choose: true }
+        - discard: { who: opponent, cards: h }

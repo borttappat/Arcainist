@@ -8,3 +8,13 @@ rarity: uncommon
 text: |
   When this card enters play, you may pay 5. If you do, put a token on it.
   While there is a token on this card, it cannot be blocked.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may_pay:
+          amount: 5
+          prompt: "put a token on Fleet Golem (it can't be blocked while it has one)"
+          then: [ tokens: { card: self, add: 1 } ]
+  - static:
+      while: { gt: [ { tokens: self }, 0 ] }
+      mods: [ { cannot_be_blocked: true } ]

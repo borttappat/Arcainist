@@ -9,3 +9,14 @@ text: |
   RECUR: [G]
   COST: Use this only if this card is in your discard pile. Pay 1. Remove this card from the game. Pick a character.
   EFFECT: This turn, the character gains 3 life.
+rules:
+  - ability:
+      name: Recur
+      keyword: recur
+      threshold: { greed: 1 }
+      from: discard
+      cost:
+        - pay: 1
+        - void: self
+        - pick: { as: c, from: { character: any } }
+      effect: [ modify: { card: c, stat: life, gain: 3 } ]

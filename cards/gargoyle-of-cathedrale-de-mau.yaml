@@ -11,3 +11,18 @@ text: |
   NO.
   COST: Discard 2 cards.
   EFFECT: Your faction gains 2 influence. Put this card into its owner's hand.
+rules:
+  - play:
+      cost:
+        - lose_influence: { who: you, amount: 3 }
+        - draw: 3
+  - static:
+      zone: hand
+      while: { all: [ { in_battle: true }, { your_turn: false }, { not: { attack_target: faction } } ] }
+      mods: [ { tactical: true } ]
+  - ability:
+      name: NO.
+      cost: [ discard: 2 ]
+      effect:
+        - gain_influence: { who: you, amount: 2 }
+        - move: { card: self, to: hand }

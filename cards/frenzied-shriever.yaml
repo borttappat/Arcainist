@@ -7,3 +7,6 @@ set: "Seed Saga"
 rarity: common
 text: |
   When this card inflicts battle damage to a character, increase the amount by 2.
+rules:
+  - static:
+      mods: [ { damage: { delta: 2, battle: true, from: self }, target: { character: any } } ]

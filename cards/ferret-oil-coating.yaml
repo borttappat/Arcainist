@@ -10,3 +10,7 @@ text: |
   ATTACH TO CHARACTER
   Anything that can pick the attached character must pick it.
   FLIP UP: 1 [D][D]
+rules:
+  - static:
+      mods: [ { must_pick: true, target: host } ]
+  - flip_up: { pay: 1, threshold: { deception: 2 } }

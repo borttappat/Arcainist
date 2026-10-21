@@ -10,3 +10,19 @@ text: |
   SERAPHIM FUSION
   COST: Pay 4. Pick a character you control with UNIQUE EUSTACE. Destroy this card.
   EFFECT: Search your deck for a card named Siluriformes Flaxenscale and put it into play.
+rules:
+  - unique: Charm
+  - trigger: { on: search, player: any }
+    effect:
+      - may_pay:
+          amount: 1
+          prompt: "draw a card"
+          then: [ draw: 1 ]
+  - ability:
+      name: Seraphim Fusion
+      cost:
+        - pay: 4
+        - pick: { as: e, from: { character: { controller: you, unique: Eustace } } }
+        - destroy: self
+      effect:
+        - search: { deck: you, for: { card: { name: Siluriformes Flaxenscale } }, reveal: true, to: play }

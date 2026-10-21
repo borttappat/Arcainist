@@ -10,3 +10,17 @@ text: |
   DO...SOMETHING!
   COST: X is the number of tokens on this card. Destroy this card.
   EFFECT: Destroy all characters with numeric cost X.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - may: { prompt: "put a token on Gewgawed Gimcrack", steps: [ tokens: { card: self, add: 1 } ] }
+  - trigger: { on: start_of_turn, player: you, requires: { elitism: 3 } }
+    effect:
+      - may: { prompt: "put another token on Gewgawed Gimcrack", steps: [ tokens: { card: self, add: 1 } ] }
+  - ability:
+      name: Do...Something!
+      cost:
+        - let: { X: { tokens: self } }
+        - destroy: self
+      effect:
+        - destroy: { character: { cost_gte: X, cost_lte: X } }

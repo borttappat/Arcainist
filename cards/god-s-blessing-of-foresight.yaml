@@ -11,3 +11,20 @@ text: |
   ATTACH TO CHARACTER
   The attached character gains the following rules text: "At the start of your turn, you may pick a character you control and put a token on it.
   All your characters lose 1 speed. Each character you control with a token on it gains 1 strength and COVERT."
+rules:
+  - unique: Blessing
+  - static:
+      mods:
+        - grant_rules:
+            - trigger: { on: start_of_turn, player: you }
+              effect:
+                - pick: { as: c, from: { character: { controller: you } }, optional: true }
+                - if:
+                    cond: { defined: c }
+                    then: [ tokens: { card: c, add: 1 } ]
+            - static:
+                mods:
+                  - { stat: { spd: -1 }, target: { character: { controller: you } } }
+                  - { stat: { str: 1 }, target: { character: { controller: you, has_tokens: true } } }
+                  - { keyword: covert, target: { character: { controller: you, has_tokens: true } } }
+          target: host

@@ -7,3 +7,8 @@ rarity: uncommon
 text: |
   EXTRA COST: Deploy this only in response to a character being deployed. Pay X, where X is its numeric cost.
   The character enters play under your control.
+rules:
+  - play:
+      timing: { response_to: { deploying: { character: any } } }
+      cost: [ pay: { cost: responded } ]
+      effect: [ steal_deploy: responded ]

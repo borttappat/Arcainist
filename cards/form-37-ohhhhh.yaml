@@ -9,3 +9,9 @@ text: |
   ATTACH TO CHARACTER
   While you control only 1 character, the attached card gains COVERT.
   When the attached character inflicts damage to a faction, draw 2 cards.
+rules:
+  - static:
+      while: { eq: [ { count: { character: { controller: you } } }, 1 ] }
+      mods: [ { keyword: covert, target: host } ]
+  - trigger: { on: damage, source: host, faction: true }
+    effect: [ draw: 2 ]

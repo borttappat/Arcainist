@@ -7,3 +7,7 @@ set: "1st Edition Part 2"
 rarity: common
 text: |
   When this card enters play, all your characters gain 1 speed this turn.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - create_effect: { duration: turn, mods: [ { stat: { spd: 1 }, target: { character: { controller: you } } } ] }

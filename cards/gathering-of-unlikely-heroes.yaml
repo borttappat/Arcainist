@@ -7,3 +7,11 @@ rarity: rare
 text: |
   EXTRA COST: Deploy this only during your turn and not during a battle. Pick an opponent.
   That player names 2 non-Universal trades. Search your deck for a character that is one of the named trades and reveal it. If you do, put it into your hand. Draw a card.
+rules:
+  - play:
+      timing: { your_turn: true, not_in_battle: true }
+      effect:
+        - name: { as: t1, kind: trade, who: opponent, prompt: "Gathering of Unlikely Heroes: name a trade (1 of 2)." }
+        - name: { as: t2, kind: trade, who: opponent, prompt: "Gathering of Unlikely Heroes: name another trade (2 of 2)." }
+        - search: { deck: you, for: [ { character: { trade: t1 } }, { character: { trade: t2 } } ], reveal: true, to: hand }
+        - draw: 1

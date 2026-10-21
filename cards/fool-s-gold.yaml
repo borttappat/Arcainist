@@ -8,3 +8,11 @@ text: |
   TRADE
   COST: Pick an item an opponent controls. Pay X, where X is its numeric cost. Destroy this card.
   EFFECT: Take control of the item.
+rules:
+  - ability:
+      name: Trade
+      cost:
+        - pick: { as: i, from: { item: { controller: opponent } } }
+        - pay: { cost: i }
+        - destroy: self
+      effect: [ take_control: { card: i, who: you } ]

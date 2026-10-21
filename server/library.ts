@@ -19,7 +19,7 @@ export const KNOWN_OPS = new Set([
   "flip_face_up", "put_into_play", "move", "shuffle", "take_control", "attach", "tokens", "distribute_tokens",
   "search", "mill", "look", "play_card", "play_resource", "restore_all_depleted", "detach_all_resources", "detach",
   "destroy_resource", "terminate", "nullify", "cancel_end_turn", "duplicate", "coin_flip", "transform",
-  "create_token", "remove_from_battle", "add_to_battle", "divide_damage", "retarget_attack",
+  "create_token", "remove_from_battle", "add_to_battle", "divide_damage", "retarget_attack", "peek", "steal_deploy",
 ]);
 
 const RULE_KEYS = new Set(["play", "ability", "trigger", "replace", "static", "unique", "provides", "flip_up", "script", "coin_reflip"]);
@@ -30,13 +30,13 @@ export const MOD_KINDS = new Set([
   "influence_loss", "attack_limit", "redirect", "reveal_hand", "use_opponent_abilities", "lose_when_deck_empty", "no_rules",
   "cannot_be_blocked", "lose_keyword", "must_attack", "must_block", "party", "reveal_top", "no_deplete_on_attack",
   "covert_blockable", "redirect_damage", "attack_cost", "draw_bonus", "destroy_self",
-  "party_covert", "assign_to_target", "must_be_assigned", "search_tax", "battle_damage_to_self", "stays_in_play", "damage_as_tokens",
+  "party_covert", "assign_to_target", "must_be_assigned", "search_tax", "battle_damage_to_self", "stays_in_play", "damage_as_tokens", "blocks_any", "numeric_cost",
 ]);
 
 export const EVENTS = new Set([
   "played", "ability_used", "enters_play", "leaves_play", "destroyed", "attacks", "blocks", "blocked", "damage",
   "influence_lost", "start_of_turn", "end_of_turn", "draw", "picked", "discarded",
-  "restored", "depleted", "moved", "battle_end", "coin_flipped", "party_formed",
+  "restored", "depleted", "moved", "battle_end", "coin_flipped", "party_formed", "search",
 ]);
 
 /**

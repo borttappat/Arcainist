@@ -7,3 +7,18 @@ rarity: uncommon
 text: |
   EXTRA COST: Pick an opponent. Look at that player's face-down resources and pick one.
   You may destroy that card. If you do, that player may draw a card and may play a resource.
+rules:
+  - play:
+      cost:
+        - peek: { who: opponent, face_down: true }
+        - pick: { as: r, from: { resource: { controller: opponent, face_down: true } } }
+      effect:
+        - may:
+            prompt: "destroy that card (its controller may then draw a card and play a resource)"
+            steps:
+              - destroy: r
+              - as:
+                  who: opponent
+                  steps:
+                    - may: { prompt: "draw a card", steps: [ draw: 1 ] }
+                    - play_resource: { optional: true }

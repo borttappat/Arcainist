@@ -11,3 +11,13 @@ text: |
   This card enters play with 2 tokens on it.
   This card loses 1 strength and 1 life for each token on it.
   At the start of your turn, you may pick a non-resource card you control. If you do, remove a token from that card.
+enters_with_tokens: 2
+rules:
+  - static:
+      mods: [ { stat: { str: { neg: { tokens: self } }, life: { neg: { tokens: self } } } } ]
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - pick: { as: c, from: { card: { controller: you, not_type: resource } }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ tokens: { card: c, remove: 1 } ]

@@ -9,3 +9,5 @@ rarity: common
 text: |
   TACTICAL
   FLIP UP: 0 [D][D]
+rules:
+  - flip_up: { pay: 0, threshold: { deception: 2 } }

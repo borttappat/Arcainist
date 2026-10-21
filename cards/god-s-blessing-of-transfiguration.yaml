@@ -11,3 +11,12 @@ text: |
   ATTACH TO CHARACTER
   The attached character gains the following rules text: "All your characters gain 1 strength and lose 1 life.
   When a character you control inflicts battle damage to a faction, that faction's controller puts their top card of their deck into their discard pile."
+rules:
+  - unique: Blessing
+  - static:
+      mods:
+        - grant_rules:
+            - static: { mods: [ { stat: { str: 1, life: -1 }, target: { character: { controller: you } } } ] }
+            - trigger: { on: damage, faction: true, battle: true, source: { character: { controller: you } } }
+              effect: [ mill: { who: player, count: 1 } ]
+          target: host

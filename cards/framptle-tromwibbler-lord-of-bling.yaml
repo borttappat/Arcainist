@@ -10,3 +10,16 @@ text: |
   Characters cannot attack or be restored.
   At the start of your turn, put a token on this card.
   When this card has at least 2 tokens on it, destroy it.
+rules:
+  - unique: Framptle
+  - static:
+      mods:
+        - { cannot: attack, target: { character: any } }
+        - { cannot: restore, target: { character: any } }
+  # Its tokens only change through this rule, so the 2-token check follows it.
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - tokens: { card: self, add: 1 }
+      - if:
+          cond: { gte: [ { tokens: self }, 2 ] }
+          then: [ destroy: self ]

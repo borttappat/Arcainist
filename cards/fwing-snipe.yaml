@@ -9,3 +9,15 @@ rarity: common
 text: |
   TACTICAL
   When this card enters play, you may pick a character. If you do, the character gains 1 speed this turn. Flip a coin. If you win, the character also gains 1 strength this turn.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then:
+            - modify: { card: c, stat: spd, gain: 1 }
+            - coin_flip: { as: won }
+            - if:
+                cond: { did: true }
+                then: [ modify: { card: c, stat: str, gain: 1 } ]

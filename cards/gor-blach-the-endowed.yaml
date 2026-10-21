@@ -10,3 +10,18 @@ text: |
   GET IN THERE: [V][V][V]
   COST: Deplete this card. Pick a blocked character you control. X is its strength. Pay X.
   EFFECT: Destroy the character. Inflict X damage to an opponent's faction. Inflict X damage to this card.
+rules:
+  - unique: Gor-Blach
+  - ability:
+      name: Get In There
+      threshold: { volition: 3 }
+      cost:
+        - require: { exists: { character: { blocking: true } } }
+        - deplete: self
+        - pick: { as: c, from: { character: { controller: you, attacking: true } } }
+        - let: { X: { stat: [ c, str ] } }
+        - pay: X
+      effect:
+        - destroy: c
+        - damage: { faction: opponent, amount: X }
+        - damage: { card: self, amount: X }

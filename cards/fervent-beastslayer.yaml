@@ -7,3 +7,7 @@ set: "Seed Saga"
 rarity: common
 text: |
   [R][R][R][R][R]: This card gains 3 life.
+rules:
+  - static:
+      requires: { rage: 5 }
+      mods: [ { stat: { life: 3 } } ]

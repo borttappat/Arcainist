@@ -10,3 +10,30 @@ text: |
   ATTACH TO CHARACTER
   The attached character gains 2 strength.
   When this card is put into your discard pile from play, you may choose a card type. If you do, reveal the top card of your deck. If it is the chosen type, put this card into play attached to a character. Put the top card of your deck on the bottom.
+rules:
+  - trigger: { on: moved, card: self, from: play, to: discard, zone: discard }
+    effect:
+      - may:
+          prompt: "choose a card type and reveal the top card of your deck"
+          steps:
+            - choose_one:
+                - { label: "Character", steps: [ let: { ty: 1 } ] }
+                - { label: "Tactic", steps: [ let: { ty: 2 } ] }
+                - { label: "Item", steps: [ let: { ty: 3 } ] }
+                - { label: "Location", steps: [ let: { ty: 4 } ] }
+                - { label: "Resource", steps: [ let: { ty: 5 } ] }
+            - reveal_top: { who: you, count: 1, as: rev }
+            - if:
+                cond:
+                  any:
+                    - { all: [ { eq: [ ty, 1 ] }, { matches: [ rev, { character: { zone: deck } } ] } ] }
+                    - { all: [ { eq: [ ty, 2 ] }, { matches: [ rev, { tactic: { zone: deck } } ] } ] }
+                    - { all: [ { eq: [ ty, 3 ] }, { matches: [ rev, { item: { zone: deck } } ] } ] }
+                    - { all: [ { eq: [ ty, 4 ] }, { matches: [ rev, { location: { zone: deck } } ] } ] }
+                    - { all: [ { eq: [ ty, 5 ] }, { matches: [ rev, { resource: { zone: deck } } ] } ] }
+                then:
+                  - pick: { as: c, from: { character: any }, choose: true, prompt: "Attach Flailing Knife to a character." }
+                  - if:
+                      cond: { defined: c }
+                      then: [ put_into_play: { card: self, controller: you, attach_to: c } ]
+            - move: { card: rev, to: deck_bottom }

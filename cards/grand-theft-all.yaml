@@ -6,3 +6,8 @@ set: "2nd Edition"
 rarity: rare
 text: |
   Put up to 4 non-tactic cards in an opponent's discard pile into play under your control.
+rules:
+  - play:
+      effect:
+        - pick: { as: c, from: { card: { zone: discard, owner: opponent, not_type: tactic } }, count: 4, up_to: true, choose: true, prompt: "Put up to 4 non-tactic cards from your opponent's discard pile into play under your control." }
+        - put_into_play: { card: c, controller: you }

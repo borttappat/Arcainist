@@ -8,3 +8,11 @@ text: |
   EXTRA COST: Pick a resource you control. (You can pick face-down resources.)
   Put the resource into its owner's hand. Draw a card.
   FLIP UP: 1 [O][O] and play a resource.
+rules:
+  - play:
+      cost:
+        - pick: { as: r, from: { resource: { controller: you } } }
+      effect:
+        - move: { card: r, to: hand }
+        - draw: 1
+  - flip_up: { pay: 1, threshold: { obsession: 2 }, cost: [ play_resource: 1 ] }

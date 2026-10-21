@@ -8,3 +8,9 @@ rarity: common
 text: |
   This card cannot be blocked.
   [E][E][E][E][E][E]: This card gains 2 strength and 2 life.
+rules:
+  - static:
+      mods: [ { cannot_be_blocked: true } ]
+  - static:
+      requires: { elitism: 6 }
+      mods: [ { stat: { str: 2, life: 2 } } ]

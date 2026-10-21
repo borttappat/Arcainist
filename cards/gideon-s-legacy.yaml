@@ -11,3 +11,17 @@ text: |
   HIDE
   COST: Pick a player. Pick a card in that player's discard pile. X is its numeric cost. Destroy this card.
   EFFECT: Shuffle the card into its owner's deck. Each other player's faction gains X influence.
+rules:
+  - ability:
+      name: Seek
+      cost: [ pay: 2, deplete: self ]
+      effect: [ draw: 1 ]
+  - ability:
+      name: Hide
+      cost:
+        - pick: { as: c, from: { card: { zone: discard } }, prompt: "Pick a card in a player's discard pile." }
+        - let: { X: { cost: c } }
+        - destroy: self
+      effect:
+        - move: { card: c, to: deck_shuffle }
+        - gain_influence: { who: { opponent_of: { controller_of: c } }, amount: X }

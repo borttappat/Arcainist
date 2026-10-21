@@ -9,3 +9,10 @@ text: |
   REND
   COST: Use this ability only once each turn. Destroy a face-down resource you control.
   EFFECT: This turn, this card gains 3 strength, 3 life and 1 speed.
+rules:
+  - ability:
+      name: Rend
+      once_per_turn: true
+      cost: [ destroy_resource: { who: you, face_down: true } ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: 3, life: 3, spd: 1 } } ] }

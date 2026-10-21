@@ -8,3 +8,8 @@ rarity: rare
 text: |
   This card cannot be picked by non-item cards or non-item abilities.
   Opponents cannot take control of this card.
+rules:
+  - static:
+      mods:
+        - { cannot: { action: pick, unless: { item: any } } }
+        - { cannot: take_control, by: opponent }

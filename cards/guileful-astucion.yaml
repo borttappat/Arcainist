@@ -13,3 +13,13 @@ text: |
   This turn, the character gains 1 numeric cost. Draw a card.
   OPTION 3
   This turn, the character gains 1 speed. Draw a card.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - choose_one:
+            - { label: "It loses 1 numeric cost this turn", steps: [ create_effect: { duration: turn, mods: [ { numeric_cost: -1, target: c } ] } ] }
+            - { label: "It gains 1 numeric cost this turn", steps: [ create_effect: { duration: turn, mods: [ { numeric_cost: 1, target: c } ] } ] }
+            - { label: "It gains 1 speed this turn", steps: [ modify: { card: c, stat: spd, gain: 1 } ] }
+        - draw: 1

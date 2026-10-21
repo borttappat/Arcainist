@@ -12,3 +12,21 @@ text: |
   At the end of your turn, you may put a token on the attached character. If it has 0 speed, destroy it.
   If this card would be destroyed, you may flip it face-down under its owner's control instead.
   FLIP UP: 4 [E][E][E]
+rules:
+  - static:
+      mods: [ { stat: { spd: { neg: { tokens: host } } }, target: host } ]
+  - trigger: { on: end_of_turn, player: you }
+    effect:
+      - if:
+          cond: { exists: { character: { host_of: self } } }
+          then:
+            - may:
+                prompt: "put a token on the attached character"
+                steps:
+                  - tokens: { card: host, add: 1 }
+                  - if:
+                      cond: { eq: [ { stat: [ host, spd ] }, 0 ] }
+                      then: [ destroy: host ]
+  - replace: { event: destroy, card: self, optional: true, prompt: "Flip it face-down under its owner's control instead" }
+    instead: [ flip_face_down: { card: self, controller: owner } ]
+  - flip_up: { pay: 4, threshold: { elitism: 3 } }

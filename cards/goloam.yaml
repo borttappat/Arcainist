@@ -8,3 +8,7 @@ rarity: rare
 text: |
   UNIQUE GOLOAM
   This card gains 1 strength and 1 life for each item in play.
+rules:
+  - unique: Goloam
+  - static:
+      mods: [ { stat: { str: { count: { item: any } }, life: { count: { item: any } } } } ]

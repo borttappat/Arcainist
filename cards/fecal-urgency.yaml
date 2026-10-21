@@ -7,3 +7,10 @@ rarity: fixed
 text: |
   EXTRA COST: Choose a number for X that is less than or equal to the number of [G] you control.
   Draw X cards. Your faction loses X+X influence.
+rules:
+  - play:
+      cost:
+        - choose_number: { as: X, min: 0, max: { icons: greed } }
+      effect:
+        - draw: X
+        - lose_influence: { who: you, amount: "X + X" }

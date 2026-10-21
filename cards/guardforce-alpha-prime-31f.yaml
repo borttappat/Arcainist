@@ -7,3 +7,6 @@ set: "2nd Edition"
 rarity: common
 text: |
   This card can attack even if it has not been in play under your control since the start of the turn.
+rules:
+  - static:
+      mods: [ { keyword: aggro } ]

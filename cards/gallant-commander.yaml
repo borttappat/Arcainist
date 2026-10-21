@@ -9,3 +9,8 @@ text: |
   CHARGE!
   COST: Pay 2. Destroy this card.
   EFFECT: Inflict 3 damage to an opponent's faction.
+rules:
+  - ability:
+      name: Charge!
+      cost: [ pay: 2, destroy: self ]
+      effect: [ damage: { faction: opponent, amount: 3 } ]

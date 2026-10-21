@@ -8,3 +8,11 @@ rarity: common
 text: |
   EXTRA COST: You may pick 2 or fewer characters.
   When this card enters play, if you picked characters as part of its cost, inflict up to 2 damage divided however you want to those characters.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any }, count: 2, up_to: true }
+      effect:
+        - if:
+            cond: { defined: c }
+            then: [ divide_damage: { amount: 2, from: c, up_to: true } ]

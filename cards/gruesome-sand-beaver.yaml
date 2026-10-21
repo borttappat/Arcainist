@@ -9,3 +9,8 @@ rarity: uncommon
 text: |
   COVERT
   EXTRA COST: Pick a face-down resource you control and put it into its owner's hand.
+rules:
+  - play:
+      cost:
+        - pick: { as: r, from: { resource: { controller: you, face_down: true } }, choose: true, prompt: "Put a face-down resource you control into its owner's hand." }
+        - move: { card: r, to: hand }

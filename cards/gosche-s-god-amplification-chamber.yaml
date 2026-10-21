@@ -9,3 +9,16 @@ text: |
   TRANSITION
   COST: Deplete this card. Pay 2. Pick a character you control.
   EFFECT: Put a token on that character.
+rules:
+  - trigger: { on: leaves_play, player: you, card: { character: any }, had_tokens: true }
+    effect:
+      - may:
+          prompt: "look at the top card of your deck (you may put it on the bottom)"
+          steps: [ look: { deck: you, count: 1, bottom: any } ]
+  - ability:
+      name: Transition
+      cost:
+        - deplete: self
+        - pay: 2
+        - pick: { as: c, from: { character: { controller: you } } }
+      effect: [ tokens: { card: c, add: 1 } ]

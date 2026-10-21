@@ -76,6 +76,8 @@ const MOD_KINDS = [
   "battle_damage_to_self",
   "stays_in_play",
   "damage_as_tokens",
+  "blocks_any",
+  "numeric_cost",
 ];
 
 export class Q {
@@ -237,6 +239,20 @@ export class Q {
         const scope: Scope = { controller: e.controller, source: e.source, vars: e.vars };
         for (const m of e.mods) push(m, e.source, e.controller, scope, e);
       }
+      // Static rules granted to cards ("the attached character gains the following rules text").
+      for (const g of out.filter((m) => m.kind === "grant_rules")) {
+        const statics = (g.value as Rule[]).filter((r) => r.static);
+        if (!statics.length) continue;
+        for (const c of Object.values(this.s.cards)) {
+          if (c.zone !== "play" || !this.active(c.iid) || silenced.has(c.iid) || !this.targets(g, c.iid)) continue;
+          const scope: Scope = { controller: c.controller, source: c.iid, vars: (c as any).notes ?? {} };
+          for (const r of statics) {
+            if (r.static.requires && !this.meetsBase(scope.controller, r.static.requires)) continue;
+            if (r.static.while && !this.cond(r.static.while, scope)) continue;
+            for (const m of r.static.mods ?? []) push(m, c.iid, scope.controller, scope);
+          }
+        }
+      }
       return out;
     } finally {
       this.inMods--;
@@ -391,8 +407,11 @@ export class Q {
       .map((c) => c.iid);
   }
 
+  /** Numeric cost, with "this turn, the character gains/loses 1 numeric cost" for cards in play. */
   numericCost(iid: string): number {
-    return this.def(iid).cost ?? 0;
+    const base = this.def(iid).cost ?? 0;
+    if (this.card(iid).zone !== "play") return base;
+    return Math.max(0, base + this.modsFor("numeric_cost", iid).reduce((n, m) => n + this.value(m.value, m.scope), 0));
   }
 
   differentStaples(p: PlayerId): number {
@@ -409,10 +428,12 @@ export class Q {
   // Permissions
 
   /** Is there a "cannot <action>" modifier covering this card and player? */
-  cannot(action: string, iid: string | null, p: PlayerId): boolean {
+  /** `source`: the card doing it, for prohibitions with `unless` ("cannot be picked by non-item cards"). */
+  cannot(action: string, iid: string | null, p: PlayerId, source?: string): boolean {
     return this.mods("cannot").some((m) => {
       const act = typeof m.value === "string" ? m.value : m.value.action;
       if (act !== action || !this.by(m, p)) return false;
+      if (m.value?.unless && source && this.matches(m.value.unless, source, m.scope, null)) return false;
       return iid === null ? m.mod.target === "all" : this.targets(m, iid);
     });
   }
@@ -516,6 +537,7 @@ export class Q {
       const list = this.s.turnLog.played.filter((e) => !f.type || e.types.includes(f.type));
       return list.length ? list[list.length - 1].cost : 0;
     }
+    if ("influence" in x) return this.s.players[this.who(x.influence, scope)].influence;
     if ("threshold" in x) {
       // Total icons in a card's threshold.
       const r = this.ref(x.threshold, scope);
@@ -664,15 +686,17 @@ export class Q {
     if (f.subtype && !(d.subtypes ?? []).map((x) => x.toLowerCase()).includes(this.str(f.subtype, scope).toLowerCase())) return false;
     if (f.not_subtype && (d.subtypes ?? []).map((x) => x.toLowerCase()).includes(this.str(f.not_subtype, scope).toLowerCase())) return false;
     if (f.token !== undefined && !!d.token !== !!f.token) return false;
-    if (f.trade && d.trade !== f.trade) return false;
+    if (f.trade && d.trade !== this.str(f.trade, scope)) return false;
     if (f.not_trade && d.trade === f.not_trade) return false;
     // "inflicted damage to your faction this turn": damaged_faction: you
     if (f.damaged_faction !== undefined && !(this.s.turnLog.factionHits?.[this.who(f.damaged_faction, scope)] ?? []).includes(iid)) return false;
     if (f.keyword !== undefined && !this.keyword(iid, String(f.keyword).toLowerCase())) return false;
     // "the character an opponent controls with the highest numeric cost" (among its controller's characters)
-    if (f.costliest && (c.zone !== "play" || (d.cost ?? 0) < Math.max(...this.characters(c.controller).map((i) => this.def(i).cost ?? 0)))) return false;
+    if (f.costliest && (c.zone !== "play" || this.numericCost(iid) < Math.max(...this.characters(c.controller).map((i) => this.numericCost(i))))) return false;
     // "characters with items attached to them"
     if (f.equipped !== undefined && this.attachments(iid).some((a) => this.is(a, "item")) !== !!f.equipped) return false;
+    // "a character this card damaged this turn": damaged_by: self
+    if (f.damaged_by !== undefined && !(this.s.turnLog.hits?.[iid] ?? []).includes(this.ref(f.damaged_by, scope) ?? "")) return false;
     if (f.has_tokens !== undefined && (c.tokens > 0) !== !!f.has_tokens) return false;
     if (f.printed_type && !d.types.includes(f.printed_type)) return false;
     if (f.not_types && (f.not_types as string[]).some((t) => types.includes(t as CardType))) return false;
@@ -682,8 +706,8 @@ export class Q {
     }
     if (f.name && d.name !== this.str(f.name, scope) && d.id !== this.str(f.name, scope)) return false;
     if (f.name_not && (d.name === this.str(f.name_not, scope) || d.id === this.str(f.name_not, scope))) return false;
-    if (f.cost_lte !== undefined && (d.cost ?? 0) > this.value(f.cost_lte, scope)) return false;
-    if (f.cost_gte !== undefined && (d.cost ?? 0) < this.value(f.cost_gte, scope)) return false;
+    if (f.cost_lte !== undefined && this.numericCost(iid) > this.value(f.cost_lte, scope)) return false;
+    if (f.cost_gte !== undefined && this.numericCost(iid) < this.value(f.cost_gte, scope)) return false;
     // Strength and life: current values in play, printed values elsewhere.
     const statNow = (st: Stat) => (c.zone === "play" ? this.stat(iid, st) : this.printed(iid, st));
     if (f.str_lte !== undefined && statNow("str") > this.value(f.str_lte, scope)) return false;

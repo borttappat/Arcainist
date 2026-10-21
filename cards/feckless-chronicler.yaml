@@ -9,3 +9,14 @@ text: |
   This character cannot be blocked by characters with a [V] icon in its rules text.
   This character gains 1 strength and 1 life for each token on it.
   [D][D][D]: When this card depletes, flip a coin. If you win, put a token on this card.
+rules:
+  - static:
+      mods:
+        - { cannot_be_blocked: { by: { character: { text_has: "[V]" } } } }
+        - { stat: { str: { tokens: self }, life: { tokens: self } } }
+  - trigger: { on: depleted, card: self, requires: { deception: 3 } }
+    effect:
+      - coin_flip: { as: won }
+      - if:
+          cond: { did: true }
+          then: [ tokens: { card: self, add: 1 } ]

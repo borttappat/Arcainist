@@ -12,3 +12,25 @@ text: |
   The attached character gains the following rules text: "When a character you control restores, it loses 1 strength this turn and you draw a card.
   Characters you control cannot be restored by your faction's RESTORE RULE.
   At the start of your turn, you may inflict 1 damage to your faction and restore a character you control. Repeat this once for every character you control."
+rules:
+  - unique: Blessing
+  - static:
+      mods:
+        - grant_rules:
+            - trigger: { on: restored, card: { character: { controller: you } } }
+              effect:
+                - modify: { card: it, stat: str, lose: 1 }
+                - draw: 1
+            - static: { mods: [ { cannot: restore_by_rule, target: { character: { controller: you } } } ] }
+            - trigger: { on: start_of_turn, player: you }
+              effect:
+                - repeat:
+                    times: { count: { character: { controller: you } } }
+                    steps:
+                      - may:
+                          prompt: "inflict 1 damage to your faction and restore a character you control"
+                          steps:
+                            - damage: { faction: you, amount: 1 }
+                            - pick: { as: c, from: { character: { controller: you } }, choose: true }
+                            - restore: c
+          target: host

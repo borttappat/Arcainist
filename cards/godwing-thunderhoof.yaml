@@ -8,3 +8,11 @@ rarity: rare
 text: |
   UNIQUE GODWING
   When this card attacks, you may pick a character. If you do, inflict X damage to it, where X is the number of [R] you control.
+rules:
+  - unique: Godwing
+  - trigger: { on: attacks, card: self }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ damage: { card: c, amount: { icons: rage } } ]

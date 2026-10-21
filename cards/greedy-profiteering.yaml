@@ -11,3 +11,16 @@ text: |
   FLIP IT: [G]
   COST: Use this only while this card is a face-down resource. Reveal this card. Your faction loses 3 influcence. Pay 4.
   EFFECT: Put this card into play face-up. Put 2 random cards from your discard pile into your hand.
+rules:
+  - ability:
+      name: Flip It
+      from: face_down_resource
+      threshold: { greed: 1 }
+      cost:
+        - reveal: self
+        - lose_influence: { who: you, amount: 3 }
+        - pay: 4
+      effect:
+        - flip_face_up: self
+        - pick: { as: c, from: { card: { zone: discard, owner: you } }, count: 2, random: true, choose: true }
+        - move: { card: c, to: hand }

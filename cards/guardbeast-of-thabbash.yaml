@@ -8,3 +8,10 @@ rarity: common
 text: |
   [O][O][O][O]: COVERT
   [V][V][V][V]: This character can block COVERT parties and non-COVERT parties.
+rules:
+  - static:
+      requires: { obsession: 4 }
+      mods: [ { keyword: covert } ]
+  - static:
+      requires: { volition: 4 }
+      mods: [ { blocks_any: true } ]

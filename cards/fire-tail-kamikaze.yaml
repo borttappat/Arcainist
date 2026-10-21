@@ -8,3 +8,16 @@ rarity: uncommon
 text: |
   When this card enters play, you may pick a character. If you do, inflict 3 damage to it.
   When this card is destroyed, you may pick a faction or location. If you do, inflict 3 damage to that card.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ damage: { card: c, amount: 3 } ]
+  - trigger: { on: destroyed, card: self }
+    effect:
+      - pick: { as: c, from: [ { faction: any }, { location: any } ], optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ damage: { card: c, amount: 3 } ]

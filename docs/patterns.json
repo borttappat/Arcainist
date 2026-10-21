@@ -1,10 +1,10 @@
 {
  "summary": {
   "total": 1231,
-  "automated": 441,
-  "ready": 603,
-  "needsNew": 108,
-  "unclear": 79
+  "automated": 542,
+  "ready": 526,
+  "needsNew": 92,
+  "unclear": 71
  },
  "patterns": [
   {
@@ -11763,7 +11763,7 @@
     "to_hand"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Fat Pants": {
    "patterns": [
@@ -11777,7 +11777,7 @@
     "attach_effect"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Fecal Urgency": {
    "patterns": [
@@ -11787,7 +11787,7 @@
     "lose_infl"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Feckless Chronicler": {
    "patterns": [
@@ -11799,7 +11799,7 @@
     "coin"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Ferret Oil Coating": {
    "patterns": [
@@ -11808,7 +11808,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Ferrous Ferret": {
    "patterns": [
@@ -11827,7 +11827,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Fiendish Fez": {
    "patterns": [
@@ -11841,7 +11841,7 @@
     "attach_effect"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Final Countdown": {
    "patterns": [
@@ -11853,7 +11853,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Fire Tail Kamikaze": {
    "patterns": [
@@ -11864,7 +11864,7 @@
     "t_destroyed"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Fire Tail Kocktail": {
    "patterns": [
@@ -11875,7 +11875,7 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Fired Hand": {
    "patterns": [
@@ -11901,7 +11901,7 @@
     "cost_mod"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Fiscal Intercessor": {
    "patterns": [
@@ -11912,7 +11912,7 @@
    "unrecognised": [
     "EFFECT: If damage is inflicted to the character this turn, reduce the amount by 1."
    ],
-   "automated": false
+   "automated": true
   },
   "Fistfight": {
    "patterns": [
@@ -11925,7 +11925,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Flabbergasting Philosopher": {
    "patterns": [
@@ -11935,7 +11935,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Flagitious Denunciator": {
    "patterns": [
@@ -11949,7 +11949,7 @@
     "discard"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Flailing Knife": {
    "patterns": [
@@ -11964,7 +11964,7 @@
     "top_to_bottom"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Flaming Barduse": {
    "patterns": [
@@ -11974,7 +11974,7 @@
     "t_dmg"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Flaming Cube": {
    "patterns": [
@@ -11988,7 +11988,7 @@
     "ability"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Flashy Bangs": {
    "patterns": [
@@ -12000,7 +12000,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Fleet Golem": {
    "patterns": [
@@ -12011,7 +12011,7 @@
     "unblockable"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Fleet Majig": {
    "patterns": [
@@ -12020,7 +12020,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Flesh Deliquesce": {
    "patterns": [
@@ -12031,7 +12031,7 @@
     "destroy"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Fleshripping Scenepuller": {
    "patterns": [
@@ -12040,7 +12040,7 @@
     "stat_per"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Flimflam Man": {
    "patterns": [
@@ -12051,7 +12051,7 @@
     "to_deck"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Foment": {
    "patterns": [
@@ -12063,7 +12063,7 @@
     "play_resource"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Fool's Gold": {
    "patterns": [
@@ -12074,7 +12074,7 @@
     "control"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Foolhardy Desperado": {
    "patterns": [
@@ -12084,7 +12084,7 @@
     "lose_infl"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Forbidden Bibliotheca": {
    "patterns": [
@@ -12111,7 +12111,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Forced Recruitment": {
    "patterns": [
@@ -12122,7 +12122,7 @@
    "unrecognised": [
     "The character enters play under your control."
    ],
-   "automated": false
+   "automated": true
   },
   "Forcible Depredator": {
    "patterns": [
@@ -12133,7 +12133,7 @@
     "mill"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Foreclosure Overseer": {
    "patterns": [
@@ -12143,7 +12143,7 @@
     "markers"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Forget": {
    "patterns": [
@@ -12154,7 +12154,7 @@
     "discard"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Forgotten Tentacle": {
    "patterns": [
@@ -12168,7 +12168,7 @@
     "play_resource"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Form 37-Ohhhhh": {
    "patterns": [
@@ -12182,7 +12182,7 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Fornicaves": {
    "patterns": [
@@ -12198,7 +12198,7 @@
     "void"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Fountain Diver": {
    "patterns": [
@@ -12213,7 +12213,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Framptle Tromwibbler, Lord of Bling": {
    "patterns": [
@@ -12224,7 +12224,7 @@
     "destroy"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Frantic Jerryrigging": {
    "patterns": [
@@ -12236,7 +12236,7 @@
     "cost_mod"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Free Trade Agreement": {
    "patterns": [
@@ -12253,7 +12253,7 @@
     "t_dmg"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Frickin' Sweet Pogo-Bunny": {
    "patterns": [
@@ -12269,7 +12269,7 @@
     "flip_down_effect"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Frisky Fortunehunter": {
    "patterns": [
@@ -12280,7 +12280,7 @@
     "gain_infl"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Furtive Investor": {
    "patterns": [
@@ -12293,7 +12293,7 @@
     "if_you_do"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Fwing Snipe": {
    "patterns": [
@@ -12305,7 +12305,7 @@
     "coin"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Fwing!": {
    "patterns": [
@@ -12316,7 +12316,7 @@
     "coin"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "G14n7 5p0rk D3f3n53": {
    "patterns": [
@@ -12327,7 +12327,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Gallant Commander": {
    "patterns": [
@@ -12337,7 +12337,7 @@
     "inflict"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Gambling Den": {
    "patterns": [
@@ -12349,7 +12349,7 @@
     "play_resource"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Gang Leader": {
    "patterns": [
@@ -12358,7 +12358,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Gang Weapon Dealer": {
    "patterns": [
@@ -12375,7 +12375,7 @@
    "unrecognised": [
     "Reveal a face-down \"gear\" card you control."
    ],
-   "automated": false
+   "automated": true
   },
   "Gargantuan Garbler": {
    "patterns": [
@@ -12385,7 +12385,7 @@
     "to_hand"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Gargoyle of Cathédrale de Mau": {
    "patterns": [
@@ -12399,14 +12399,14 @@
     "to_hand"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Gassy Gastornis": {
    "patterns": [
     "tactical"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Gathering of Unlikely Heroes": {
    "patterns": [
@@ -12423,7 +12423,7 @@
    "unrecognised": [
     "That player names 2 non-Universal trades."
    ],
-   "automated": false
+   "automated": true
   },
   "Geiseric, the Souleater": {
    "patterns": [
@@ -12448,7 +12448,7 @@
    "unrecognised": [
     "You opponents may only play tactics during their own turn."
    ],
-   "automated": false
+   "automated": true
   },
   "Gewgawed Gimcrack": {
    "patterns": [
@@ -12460,7 +12460,7 @@
     "destroy"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Ghostly Auditor": {
    "patterns": [
@@ -12493,7 +12493,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Giada, the Elegant": {
    "patterns": [
@@ -12508,7 +12508,7 @@
     "heal"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Gideon's Legacy": {
    "patterns": [
@@ -12524,7 +12524,7 @@
     "gain_infl"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Gideon, the Ultimate Warrior": {
    "patterns": [
@@ -12547,7 +12547,7 @@
     "control"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Gilda, Mother of Gideon": {
    "patterns": [
@@ -12565,7 +12565,7 @@
    "unrecognised": [
     "You may reveal a tactic among them."
    ],
-   "automated": false
+   "automated": true
   },
   "Gilded Yurt": {
    "patterns": [
@@ -12586,7 +12586,7 @@
     "gated"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Gnarling Lupine": {
    "patterns": [
@@ -12598,7 +12598,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Gnat": {
    "patterns": [
@@ -12607,7 +12607,7 @@
     "discard"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "God's Autograph": {
    "patterns": [
@@ -12628,7 +12628,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "God's Blessing of Foresight": {
    "patterns": [
@@ -12640,7 +12640,7 @@
     "covert"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "God's Blessing of Moola": {
    "patterns": [
@@ -12659,7 +12659,7 @@
    "unrecognised": [
     "Repeat this once for every character you control.\""
    ],
-   "automated": false
+   "automated": true
   },
   "God's Blessing of Readiness": {
    "patterns": [
@@ -12669,7 +12669,7 @@
     "restore"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "God's Blessing of Transfiguration": {
    "patterns": [
@@ -12681,7 +12681,7 @@
     "t_discards"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Godwing Thunderhoof": {
    "patterns": [
@@ -12692,7 +12692,7 @@
     "inflict"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Gold Summit": {
    "patterns": [
@@ -12700,7 +12700,7 @@
     "gain_infl"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Golden Charm": {
    "patterns": [
@@ -12716,7 +12716,7 @@
     "into_play"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Goldmau Sacks Representative": {
    "patterns": [
@@ -12728,7 +12728,7 @@
     "to_hand"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Golemizer": {
    "patterns": [
@@ -12744,7 +12744,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Goloam": {
    "patterns": [
@@ -12753,7 +12753,7 @@
     "stat_per"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Gor-blach the Endowed": {
    "patterns": [
@@ -12768,7 +12768,7 @@
     "inflict"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Gore Engine": {
    "patterns": [
@@ -12781,7 +12781,7 @@
     "must_attack"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Gory Trick Box": {
    "patterns": [
@@ -12790,7 +12790,7 @@
     "gear_bonus"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Gosche's God Amplification Chamber": {
    "patterns": [
@@ -12804,7 +12804,7 @@
     "pick"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Gosche's Restoration Fortress": {
    "patterns": [
@@ -12817,7 +12817,7 @@
     "pick"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Gosche's Retained Earnings Vault": {
    "patterns": [
@@ -12830,7 +12830,7 @@
     "pick"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Gosche's Solar Citadel": {
    "patterns": [
@@ -12844,7 +12844,7 @@
     "pick"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Gosche's Spynarium": {
    "patterns": [
@@ -12859,7 +12859,7 @@
     "pick"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Gosche's Voidal Frequency Emission": {
    "patterns": [
@@ -12872,7 +12872,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Goutflame Talonclaw": {
    "patterns": [
@@ -12888,14 +12888,14 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Grand Theft All": {
    "patterns": [
     "into_play"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Grandiose Resurrector": {
    "patterns": [
@@ -12907,7 +12907,7 @@
     "to_hand"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Great Mau General": {
    "patterns": [
@@ -12915,7 +12915,7 @@
     "gain_infl"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Greedy Profiteering": {
    "patterns": [
@@ -12932,7 +12932,7 @@
    "unrecognised": [
     "Your faction loses 3 influcence."
    ],
-   "automated": false
+   "automated": true
   },
   "Gruesome Sand Beaver": {
    "patterns": [
@@ -12943,7 +12943,7 @@
     "face_down"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Gruesome Trophies": {
    "patterns": [
@@ -12952,7 +12952,7 @@
     "deplete"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Guardbeast of Thabbash": {
    "patterns": [
@@ -12960,7 +12960,7 @@
     "gated"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Guardforce Aggromajig": {
    "patterns": [
@@ -12969,14 +12969,14 @@
     "while"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Guardforce Alpha Prime 31f": {
    "patterns": [
     "aggro"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Guardforce Alpha Prime H4x0r": {
    "patterns": [
@@ -12988,7 +12988,7 @@
     "play_resource"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Guardforce Morphmajig": {
    "patterns": [
@@ -12999,7 +12999,7 @@
     "stat_per"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Guileful Astucion": {
    "patterns": [
@@ -13015,7 +13015,7 @@
     "This turn, the character loses 1 numeric cost.",
     "This turn, the character gains 1 numeric cost."
    ],
-   "automated": false
+   "automated": true
   },
   "Gus VanBaymaven": {
    "patterns": [
@@ -13028,7 +13028,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Guttersnipe": {
    "patterns": [
@@ -13036,7 +13036,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "H07 P3pp3r": {
    "patterns": [
@@ -13049,7 +13049,7 @@
     "restore"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Hall of Conventions": {
    "patterns": [
@@ -13063,7 +13063,7 @@
     "play_resource"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Hall of Great Justice": {
    "patterns": [
@@ -13094,7 +13094,7 @@
     "destroy"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Hangdog Alley": {
    "patterns": [

@@ -9,3 +9,10 @@ rarity: rare
 text: |
   COVERT
   When this card attacks, you may pick a character. If you do, put it into its owner's hand.
+rules:
+  - trigger: { on: attacks, card: self }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ move: { card: c, to: hand } ]

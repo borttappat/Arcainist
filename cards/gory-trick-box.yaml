@@ -9,3 +9,6 @@ rarity: common
 text: |
   ATTACH TO CHARACTER
   The attached character gains 2 strength and loses 2 speed.
+rules:
+  - static:
+      mods: [ { stat: { spd: -2 }, target: host } ]

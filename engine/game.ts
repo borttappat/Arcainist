@@ -367,7 +367,7 @@ export class Game {
         from === "faction"
           ? c.zone === "play" && (c.controller === p || !!ab.rule.both_players)
           : from === "play"
-            ? q.active(a.iid) && mine
+            ? q.active(a.iid) && (mine || !!ab.rule.both_players)
             : from === "face_down_resource"
               ? c.zone === "play" && c.faceDown && c.isResource && c.controller === p
               : from === "discard"
@@ -846,7 +846,8 @@ export class Game {
     }
     const def = this.q.def(item.iid);
     const play = this.q.ruleOf(item.iid, "play") ?? {};
-    const permanent = def.types.some((t) => t === "character" || t === "item" || t === "location");
+    // A tactic that attaches to a character (the God's Blessings) stays in play attached.
+    const permanent = def.types.some((t) => t === "character" || t === "item" || t === "location") || !!def.attach_to;
     if (permanent) {
       const host = ctx.vars.__host;
       if (def.attach_to && (!host || !this.q.isCharacter(host))) {
@@ -979,6 +980,8 @@ export class Game {
         if (r.from !== undefined && ev.from !== r.from) continue;
         if (r.to !== undefined && ev.to !== r.to) continue;
         if (r.side !== undefined && ev.side !== r.side) continue;
+        // "a character with a token on it leaves play": had_tokens: true
+        if (r.had_tokens !== undefined && (ev.tokens ?? 0) > 0 !== !!r.had_tokens) continue;
         // "destroyed by an opposing card": by: opponent | you
         if (r.by !== undefined && (!ev.by || ev.by !== this.q.who(r.by, scope))) continue;
         if (r.requires && !this.q.meets(src.controller, r.requires)) continue;
@@ -1221,7 +1224,7 @@ export class Game {
     const multi = (arg.count ?? 1) !== 1 || !!arg.up_to;
     let cands = arg.like === "responded" ? this.repickCandidates(ctx) : this.q.find(arg.from, scope, arg.zone ?? "play");
     if (isPick) {
-      cands = cands.filter((i) => !this.q.cannot("pick", i, chooser));
+      cands = cands.filter((i) => !this.q.cannot("pick", i, chooser, ctx.source));
       const must = cands.filter((i) => this.q.modsFor("must_pick", i).length);
       if (must.length) cands = must;
       cands = cands.filter((i) => this.pickTax(i, chooser) <= this.q.unattached(chooser).length);
@@ -1342,6 +1345,9 @@ export class Game {
       const set = new Set<string>();
       for (const d of Object.values(this.lib)) for (const st of d.subtypes ?? []) set.add(st.toLowerCase());
       options = [...set].sort().map((x) => ({ id: x, label: x }));
+    } else if (kind === "trade") {
+      options = ["arcanist", "banker", "gearsmith", "rogue", "warlord"].filter((t) => !(arg.not ?? []).includes(t)).map((t) => ({ id: t, label: t }));
+      return this.ask(task, { type: "choose", player: p, prompt: arg.prompt ?? `${this.q.name(ctx.source)}: name a trade.`, options, min: 1, max: 1 });
     } else {
       options = STAPLE_ICONS.map((i) => ({ id: i, label: i }));
       return this.ask(task, { type: "choose", player: p, prompt: `${this.q.name(ctx.source)}: name a resource icon.`, options, min: 1, max: 1 });
@@ -1469,7 +1475,35 @@ export class Game {
   }
 
   protected op_restore(arg: any, ctx: Ctx): StepResult {
-    for (const iid of this.refs(ctx, arg)) if (this.q.inPlay(iid)) this.setDepleted(iid, false);
+    for (const iid of this.refs(ctx, arg)) if (this.q.inPlay(iid) && !this.q.cannot("restore", iid, ctx.controller)) this.setDepleted(iid, false);
+    return "ok";
+  }
+
+  /**
+   * Look at hidden cards, privately: { who: opponent, hand, top, face_down }.
+   * Only the looking player sees the result in their log.
+   */
+  protected op_peek(arg: any, ctx: Ctx): StepResult {
+    const p = this.who(ctx, arg.who ?? "opponent");
+    const ps = this.s.players[p];
+    const me = ctx.actor;
+    const names = (ids: string[]) => ids.map((i) => this.q.name(i)).join(", ") || "(none)";
+    this.log(`${this.pname(me)} looks at ${this.pname(p)}'s hidden cards.`);
+    if (arg.hand) this.log(`${this.pname(p)}'s hand: ${names(ps.hand)}.`, me);
+    if (arg.top) this.log(`Top of ${this.pname(p)}'s deck: ${names(ps.deck.slice(0, typeof arg.top === "number" ? arg.top : 1))}.`, me);
+    if (arg.face_down) this.log(`${this.pname(p)}'s face-down resources: ${names(this.q.resources(p).filter((i) => this.s.cards[i].faceDown))}.`, me);
+    return "ok";
+  }
+
+  /** "The character enters play under your control": take over a card being deployed. */
+  protected op_steal_deploy(arg: any, ctx: Ctx): StepResult {
+    const id = arg === "responded" ? this.root(ctx).responding : arg;
+    const item = this.s.stack.find((x) => x.id === id && x.kind === "card");
+    if (!item) return "ok";
+    item.controller = ctx.controller;
+    const ictx = this.s.ctxs[item.ctx];
+    if (ictx) ictx.controller = ictx.actor = ctx.controller;
+    this.log(`${item.label} will enter play under ${this.pname(ctx.controller)}'s control.`);
     return "ok";
   }
 
@@ -1647,6 +1681,10 @@ export class Game {
   protected op_take_control(arg: any, ctx: Ctx): StepResult {
     const p = this.who(ctx, arg.who ?? "you");
     for (const iid of this.refs(ctx, arg.card)) {
+      if (this.s.cards[iid].controller !== p && this.q.cannot("take_control", iid, p)) {
+        this.log(`Control of ${this.q.name(iid)} can't be taken.`);
+        continue;
+      }
       const prev = this.s.cards[iid].controller;
       this.takeControl(iid, p);
       if (arg.duration === "turn" && prev !== p) {
@@ -1755,6 +1793,11 @@ export class Game {
       return "ok";
     }
     if (count <= 0) return "ok";
+    // "If a player would search their deck" (Golden Charm): announce it once.
+    if (!task.announced) {
+      task.announced = true;
+      this.emit({ e: "search", player: searcher, deck: p });
+    }
     // "Your opponents must pay 2 to search their deck" (Department of Rejections).
     if (p === searcher && !task.taxed) {
       const tax = this.q.mods("search_tax").reduce((n, m) => (this.q.by(m, searcher) ? n + this.q.value(m.value, m.scope) : n), 0);
@@ -2249,7 +2292,7 @@ export class Game {
 
     switch (b.step) {
       case "blockers": {
-        const cands = q.characters(b.defender).filter((i) => !this.s.cards[i].depleted && !q.cannot("block", i, b.defender) && (b.covert ? q.keyword(i, "covert") || q.mods("covert_blockable").length > 0 : !q.keyword(i, "covert")) && this.canBlockParty(i, b.attackers));
+        const cands = q.characters(b.defender).filter((i) => !this.s.cards[i].depleted && !q.cannot("block", i, b.defender) && (q.modsFor("blocks_any", i).length > 0 || (b.covert ? q.keyword(i, "covert") || q.mods("covert_blockable").length > 0 : !q.keyword(i, "covert"))) && this.canBlockParty(i, b.attackers));
         if (task.answer || !cands.length) {
           b.blockers = task.answer?.ids ?? [];
           if (b.blockers.length) {
@@ -2408,6 +2451,9 @@ export class Game {
         }
         for (const [name, ids] of groups) {
           if (ids.length < 2) continue;
+          // While duplicates can't be destroyed (Limited Liability), they stay; the rule
+          // applies again once the protection ends.
+          if (ids.some((i) => this.destroyProtected(i))) continue;
           const queued = s.tasks.some((t) => t.t === "unique" && t.p === p && t.name === name) || (s.waiting?.t === "unique" && s.waiting.name === name);
           if (!queued) s.tasks.push({ t: "unique", p, name });
         }
@@ -2470,6 +2516,7 @@ export class Game {
     }
     if (wasInPlay && zone !== "play") {
       const ctl = c.controller;
+      const hadTokens = c.tokens;
       this.leavePlayCleanup(iid);
       c.faceDown = false;
       c.isResource = false;
@@ -2479,7 +2526,7 @@ export class Game {
       c.tokens = 0;
       c.notes = undefined;
       c.controller = c.owner;
-      this.emit({ e: "leaves_play", iid, to: zone, player: ctl });
+      this.emit({ e: "leaves_play", iid, to: zone, player: ctl, tokens: hadTokens });
     }
     if (zone !== "play") c.revealed = false;
     c.zone = zone;
@@ -2585,7 +2632,9 @@ export class Game {
     if (!q.inPlay(iid) || q.isFaction(iid)) return false;
     // Waiting on an optional replacement ("its owner may ... instead").
     if (this.s.cards[iid].replacing) return true;
-    if (cause !== "cost" && cause !== "rule" && q.mods("cannot").some((m) => m.value === "destroy_except_cost" && q.targets(m, iid))) return false;
+    // "Can only be destroyed by costs" (Limited Liability) also stops the game's rules,
+    // such as the unique rule, from destroying the card.
+    if (cause !== "cost" && this.destroyProtected(iid)) return false;
     // Replacements: from cards in play, then from continuous effects.
     const candidates: { rules: any[]; scope: Scope }[] = [];
     for (const src of q.allInPlay()) if (q.active(src)) candidates.push({ rules: q.rules(src), scope: q.scopeOf(src) });
@@ -2594,6 +2643,8 @@ export class Game {
       for (const r of rules) {
         if (!r.replace || r.replace.event !== "destroy") continue;
         if (r.replace.card !== undefined && !q.matches(r.replace.card, iid, scope, null)) continue;
+        // "destroyed by an opposing card or effect": by: opponent
+        if (r.replace.by !== undefined && (!by || by !== q.who(r.replace.by, scope))) continue;
         if (r.replace.optional) {
           if (skipOptional) continue;
           this.s.cards[iid].replacing = true;
@@ -2646,6 +2697,11 @@ export class Game {
     this.log(`${this.q.name(task.iid)} would be destroyed; ${this.q.name(task.source)} replaces it.`);
     for (const step of task.instead) this.t_step({ t: "step", step, ctx: ctx.id, phase: "effect" });
     this.dropCtx(ctx.id);
+  }
+
+  /** Can this card only be destroyed by costs right now (Limited Liability)? */
+  private destroyProtected(iid: string): boolean {
+    return this.q.mods("cannot").some((m) => m.value === "destroy_except_cost" && this.q.targets(m, iid));
   }
 
   /** Damage modifiers: "reduce the amount to 0", Limited Liability. */
@@ -2708,6 +2764,8 @@ export class Game {
     if (n <= 0) return;
     const c = this.s.cards[iid];
     if (sources.length && this.s.cards[sources[0]]) c.hitBy = this.s.cards[sources[0]].controller;
+    const hits = ((this.s.turnLog.hits ??= {})[iid] ??= []);
+    for (const x of sources) if (!hits.includes(x)) hits.push(x);
     if (q.isCharacter(iid)) c.damage += n;
     else if (q.inPlay(iid) && q.is(iid, "location")) c.markers += n;
     else return;

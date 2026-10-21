@@ -75,7 +75,7 @@ Other optional YAML fields:
 
 | Field | Meaning |
 |---|---|
-| `attach_to: character` | "Attach to Character": picking the host is part of the cost. A selector also works: `attach_to: { character: { controller: you } }`. |
+| `attach_to: character` | "Attach to Character": picking the host is part of the cost. A selector also works: `attach_to: { character: { controller: you } }`. A tactic with `attach_to` (the God's Blessings) stays in play attached instead of going to the discard pile. |
 | `keywords: [covert, aggro, tactical]` | Built-in keywords (section 6 can grant them too). |
 | `staple: true`, `icon: rage` | Staple resources. |
 | `face_down_only: true` | Resource that may only be played face-down. |
@@ -95,7 +95,8 @@ fields:
 | `incomplete: true`, `incomplete_reason` | Not playable (the Showdown multiplayer factions). |
 
 Abilities with `both_players: true` can be used by either player ("Both players may use
-this ability"); the player using it is "you". A faction's extra starting-draw steps
+this ability", "Any player may use this ability"), on factions and on any card in play;
+the player using it is "you". A faction's extra starting-draw steps
 (Unlikely Heroes' search) go in YAML as `starting_draw: { before: [ ... ] }`; the
 draw counts are in the JSON. See `cards/tournament-faction.*`.
 
@@ -154,6 +155,7 @@ Trigger filters, all optional:
 | Filter | Meaning |
 |---|---|
 | `card: <selector>` | The card the event is about. `self` for "this card". |
+| `had_tokens: true` | For `leaves_play`: the card had a token on it when it left. |
 | `by: opponent \| you` | For `destroyed`: whose card or rule destroyed it ("destroyed by an opposing card"; destruction by damage counts the damaging card's controller). |
 | `player: you \| opponent \| any` | Whose event it is ("at the start of your turn"). |
 | `source: <selector>` | For `damage` events: what inflicted it. |
@@ -180,7 +182,8 @@ Inside a trigger, these variables are set: `it` (the event's card), `player`,
     mods: [ { keyword: covert } ]
 ```
 
-Static rules are only active while the card is face-up in play, or in `zone`.
+Static rules are only active while the card is face-up in play, or in `zone` (`hand`,
+or `stack` for a card reducing its own cost while it is being deployed).
 
 ### `replace`: "instead"
 
@@ -244,7 +247,7 @@ picking their faction (`pick: { as: f, from: { faction: any }, choose: true }`),
 | `pay` | `pay: 3`, `pay: "X + X"`, `pay: { cost: c }` |
 | `pick` | `pick: { as: c, from: <selector>, count: 2, up_to: true, optional: true, who: opponent, choose: true, random: true, exactly: true, prompt: "…" }` |
 | `choose_number` | `choose_number: { as: X, min: 0, max: 5 }` |
-| `name` | `name: { as: n, kind: card \| subtype \| icon, not_type: resource, remember: true }` |
+| `name` | `name: { as: n, kind: card \| subtype \| icon \| trade, not_type: resource, remember: true }` |
 
 `different_trades: true` on `pick` requires the picked cards not to share a trade.
 `like: responded` (instead of `from`) offers the characters the card or ability being
@@ -280,6 +283,8 @@ while paying costs are recorded for Mistaken Identity.
 | `coin_flip` | `coin_flip: { as: won }`, then `if: { cond: { did: true } ... }`. Two-Headed Coin (`coin_reflip`) is offered automatically. |
 | `transform` | `transform: counter-imperial-army` (turn a double-sided faction over) |
 | `retarget_attack` | `retarget_attack: l` (the current attack now targets that location of the defender) |
+| `peek` | `peek: { who: opponent, hand: true, top: 2, face_down: true }`: "look at" hidden cards; only the looking player sees them in the log |
+| `steal_deploy` | `steal_deploy: responded`: the card being deployed enters play under your control (Forced Recruitment) |
 
 ### Decks and hands
 
@@ -361,6 +366,7 @@ Type keys: `character`, `item`, `location`, `tactic`, `resource`, `faction`, or
 | `equipped` | Has an item attached |
 | `text_has` | `text_has: "[V]"`: the printed text contains it |
 | `damaged_faction` | `damaged_faction: you`: inflicted damage to that player's faction this turn |
+| `damaged_by` | `damaged_by: self`: this card inflicted damage to it this turn |
 | `spent` | A resource attached to its faction |
 | `has_tokens` | true / false |
 | `type`, `not_type`, `not_types: [..]`, `printed_type` | `printed_type` ignores face-down status |
@@ -394,6 +400,7 @@ Type keys: `character`, `item`, `location`, `tactic`, `resource`, `faction`, or
 | `{ hand_size: opponent }` | |
 | `{ printed: [ c, str ] }` | A card's printed stat |
 | `{ threshold: c }` | Total icons in a card's threshold |
+| `{ influence: you }` | A player's influence |
 | `{ len: list }` | Size of a list variable |
 | `{ half_up: <value> }`, `{ sum: [..] }`, `{ neg: <value> }` | |
 | `{ played_this_turn: { by: you, type: tactic, not_type: resource } }` | Cards played this turn |
@@ -438,12 +445,12 @@ Modifiers are continuous effects. They appear in `static` rules and
 | `cost` | `{ cost: -4, by: you, target: { card: { zone: stack } } }` | Cost increase or reduction. `applies: any` also covers ability costs (the target is the ability's card); `applies: ability` only abilities; `applies: flip_up` only deploys using FLIP UP. `floor: 1`: "to a minimum of 1". |
 | `cost_min` | `{ cost_min: 3, by: opponent, target: { tactic: { zone: stack } } }` | Canny Bailiff. |
 | `threshold_reduce` | `{ threshold_reduce: 3 }` | Ignore that many missing icons. |
-| `cannot` | `{ cannot: play \| pick \| attack \| block \| restore_by_rule \| lose_game \| destroy_except_cost }` | Prohibitions. "Cannot" beats "can". |
+| `cannot` | `{ cannot: play \| pick \| attack \| block \| restore \| restore_by_rule \| draw \| take_control \| lose_game \| destroy_except_cost }` | Prohibitions. "Cannot" beats "can". `{ cannot: { action: pick, unless: { item: any } } }` exempts sources matching `unless` ("cannot be picked by non-item cards"). |
 | `must_pick` | `{ must_pick: true }` | Ferrous Ferret. |
 | `pick_tax` | `{ pick_tax: 1, by: opponent, target: { character: { controller: you } } }` | Lucky Charm. |
 | `play_from` | `{ play_from: { ignore_threshold: true }, target: { card: { zone: void, tagged_by: self } } }` | Play cards from other zones. |
 | `tactical` | `{ tactical: true }` | May be played whenever a tactic could. |
-| `grant_rules` | `{ grant_rules: [ <rules> ], target: { character: any } }` | Lodge Dock Florist. |
+| `grant_rules` | `{ grant_rules: [ <rules> ], target: { character: any } }` | Lodge Dock Florist. Granted triggers, abilities and static rules all work; "you" is the target's controller. |
 | `damage` | `{ damage: { set: 0, battle: true }, while: { blocking: self } }` | Change damage taken. `over: 4` only changes amounts greater than 4; `from: <selector>` only damage from matching sources. |
 | `influence_loss` | `{ influence_loss: { player: opponent, delta: 1 }, target: all }` | Gideon. |
 | `attack_limit` | `{ attack_limit: 1 }` | "Can attack only once each turn." |
@@ -463,6 +470,8 @@ Modifiers are continuous effects. They appear in `static` rules and
 | `battle_damage_to_self` | `{ battle_damage_to_self: true, target: c }` | Its battle damage is inflicted to itself (Don't Trip). |
 | `stays_in_play` | `{ stays_in_play: true }` | An attached card that doesn't leave play with its host. |
 | `damage_as_tokens` | `{ damage_as_tokens: { battle: true }, while: { blocking: self } }` | Damage becomes that many tokens instead (Expert Debater). |
+| `blocks_any` | `{ blocks_any: true }` | Can block COVERT and non-COVERT parties. |
+| `numeric_cost` | `{ numeric_cost: 1, target: c }` | Changes a card's numeric cost in play (cost filters and values use it). |
 
 Derived values are recomputed from scratch, so modifiers switch on and off by
 themselves when their source leaves play or their condition changes. Increases
@@ -470,7 +479,7 @@ apply before reductions, and numbers never go below 0.
 
 ## 7. Events
 
-`party_formed` (once per attacking or blocking party; filter with `side: attacking | blocking`), `played`, `ability_used`, `enters_play`, `leaves_play`, `destroyed`, `attacks`,
+`party_formed` (once per attacking or blocking party; filter with `side: attacking | blocking`), `search` (a player is about to search a deck), `played`, `ability_used`, `enters_play`, `leaves_play`, `destroyed`, `attacks`,
 `blocks`, `blocked` (each attacker, when blockers are declared), `damage`,
 `influence_lost`, `start_of_turn`, `end_of_turn`, `draw`, `picked`, `discarded`.
 
@@ -571,3 +580,10 @@ marked "Confirmed" are user rulings; the rest are still open.
 | Downsizing | X counts the characters in play before the destruction, including any that a replacement saves. |
 | Essence of Deception (option 3) | "Damage has been inflicted this turn": the character has damage on it. |
 | Direstock Stronghold | "When you deploy a character" triggers when it is deployed (put on the stack). |
+| Goutflame Talonclaw | Only "would be destroyed" flips it face-down; "removed from the game" is not replaced. |
+| Golden Charm | The draw happens when the search starts, before the searching player chooses. |
+| Gideon's Legacy (Hide) | Any card in a discard pile; the players other than that card's owner gain X influence. |
+| Gore Engine | Tokens equal to the destroyed character's printed strength. |
+| Flaming Cube, Framptle | Their token counts are checked right after the rules that change them. |
+| Fornicaves | Confirmed: two in play both apply, so every character with printed life 4 or more is destroyed. |
+| Limited Liability | Confirmed: it also stops the unique rule, so duplicates (several Gideons) stay in play that turn. When it ends, the unique rule applies again and their controller keeps one. |

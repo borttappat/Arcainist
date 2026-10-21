@@ -7,3 +7,6 @@ set: "Ungodly Mess"
 rarity: common
 text: |
   When this card inflicts damage, if your faction has 10 influence or less, your faction gains 2 influence.
+rules:
+  - trigger: { on: damage, source: self, while: { lte: [ { influence: you }, 10 ] } }
+    effect: [ gain_influence: { who: you, amount: 2 } ]

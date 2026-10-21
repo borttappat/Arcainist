@@ -11,3 +11,28 @@ text: |
   SEDUCTIVE SUMMONS
   COST: Pay 1. Pick a tactic that was voided by this card.
   EFFECT: You may deploy that card.
+rules:
+  - unique: Gilda
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - may:
+          prompt: "look at the top 2 cards of your deck"
+          steps:
+            - peek: { who: you, top: 2 }
+            - pick: { as: v, from: { tactic: { zone: deck, owner: you, top: 2 } }, choose: true, optional: true, prompt: "You may reveal a tactic among your top 2 cards and put it into the void." }
+            - if:
+                cond: { defined: v }
+                then:
+                  - reveal: v
+                  - void: { card: v, tag: true }
+                else:
+                  - look: { deck: you, count: 2 }
+  - ability:
+      name: Seductive Summons
+      cost:
+        - pay: 1
+        - pick: { as: c, from: { tactic: { zone: void, tagged_by: self } }, choose: true }
+      effect:
+        - may:
+            prompt: "deploy that card"
+            steps: [ play_card: { card: c } ]

@@ -45,6 +45,17 @@ Where things stand and what's left. Update this as work lands.
   `stays_in_play` and `damage_as_tokens` modifiers. 607 tests pass. **Skipped:**
   Emergency Obfuscation (players swap sides). Next card in order: Fat Pants.
 
+- **2026-10-22 (fifth session):** 101 more cards, Fantastic Uber Kool Creator
+  Majig to Hammer Smash. New building blocks: `peek` (private looks),
+  `steal_deploy`, the `search` event, `had_tokens` on `leaves_play`, tactics with
+  `attach_to` staying in play (God's Blessings), granted static rules, `both_players`
+  abilities on any card, `cannot` with `unless` and `take_control`/`restore`
+  prohibitions, `name` of a trade, `by` on `destroy` replacements, the
+  `damaged_by` filter, the `influence` value, and the `blocks_any` and
+  `numeric_cost` modifiers. 723 tests pass. **Skipped:** Geiseric the Souleater
+  (an optional paid replacement of a card going to the opponent's hand) and God's
+  Autograph (every card gains "Unique <its name>"). Next card in order: Hangdog Alley.
+
 ## State at the end of the first session (2026-10-21)
 
 - **Cards:** 1,230 cards from the spoilstoolbox.com database, plus a Micromajig token card.
@@ -82,7 +93,7 @@ Where things stand and what's left. Update this as work lands.
 ## 2. Automate every card (the main job)
 
 - [ ] Write `rules` for every card without them, in alphabetical batches of about 25
-  (about 440 of 1,230 done; 756 cards with text remain):
+  (about 540 of 1,230 done; 655 cards with text remain):
   - list the batch's cards with their text and numbers;
   - write the rules;
   - append them to the YAML files;
@@ -91,7 +102,7 @@ Where things stand and what's left. Update this as work lands.
   a pattern repeats, promote it into the language instead.
 - [ ] Skipped cards, each needing a new building block (see the progress log):
   Arcane Escrow, Cathedrale de Mau, Clockman Skydocks, Counter-Attack, Emergency
-  Obfuscation.
+  Obfuscation, Geiseric the Souleater, God's Autograph.
 - [ ] Gear bonuses: the database has no gear stats. Read "The attached character
   gains N strength..." from each gear card's text into `gear` in its JSON.
 - [ ] When done, add a **coverage test** that fails if any playable card (not a

@@ -9,3 +9,18 @@ text: |
   EXTRA COST: Reduce this card's numeric cost by the number of [E] you control.
   At the start of your turn, you may play a resource.
   At the start of your turn, you may destroy a card you control that provides [E]. If you do, search your deck for a card and put it into your hand.
+rules:
+  - unique: Creator Majig
+  - static:
+      zone: stack
+      mods: [ { cost: { neg: { icons: elitism } }, target: self } ]
+  - trigger: { on: start_of_turn, player: you }
+    effect: [ play_resource: { optional: true } ]
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - pick: { as: d, from: { card: { controller: you, provides_at_least: { elitism: 1 } } }, choose: true, optional: true, prompt: "Destroy a card you control that provides [E] to search your deck for a card (or skip)." }
+      - if:
+          cond: { defined: d }
+          then:
+            - destroy: d
+            - search: { deck: you, for: { card: any }, to: hand }

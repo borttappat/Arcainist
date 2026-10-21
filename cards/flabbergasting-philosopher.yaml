@@ -10,3 +10,7 @@ text: |
   TACTICAL
   When this card enters play, your faction gains 4 influence.
   FLIP UP: 4 [G][G]
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect: [ gain_influence: { who: you, amount: 4 } ]
+  - flip_up: { pay: 4, threshold: { greed: 2 } }
