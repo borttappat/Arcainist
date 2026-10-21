@@ -7,3 +7,8 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   When this card leaves play, put X Micromajig tokens into play, where X is the number of characters an opponent controls minus the number of characters you control.
+rules:
+  - trigger: { on: leaves_play, card: self }
+    effect:
+      - let: { a: { count: { character: { controller: opponent } } }, b: { count: { character: { controller: you } } } }
+      - create_token: { card: micromajig-token, count: "a - b" }

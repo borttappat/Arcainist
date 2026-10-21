@@ -13,3 +13,21 @@ text: |
   SHORTCUT
   COST: Pay 1. Remove a token from this card.
   EFFECT: This turn, this card gains COVERT.
+rules:
+  - trigger: { on: enters_play, card: { controller: you, provides_at_least: { greed: 1 } } }
+    effect:
+      - may:
+          prompt: "put a token on Emissary of Loot"
+          steps: [ tokens: { card: self, add: 1 } ]
+  - ability:
+      name: Deliver
+      cost:
+        - pay: 1
+        - tokens: { card: self, remove: 1 }
+        - pick: { as: c, from: { character: any } }
+      effect: [ modify: { card: c, stat: life, gain: 2 } ]
+  - ability:
+      name: Shortcut
+      cost: [ pay: 1, tokens: { card: self, remove: 1 } ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { keyword: covert } ] }

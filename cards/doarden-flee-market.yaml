@@ -11,3 +11,19 @@ text: |
   WEEDLE: [G][G][G][G][G][G]
   COST: Pay 2. Deplete this card. Destroy a character you own.
   EFFECT: Draw 3 cards.
+rules:
+  - ability:
+      name: Hock
+      cost:
+        - pay: 1
+        - deplete: self
+        - destroy: { from: { character: { owner: you } }, choose: true }
+      effect: [ draw: 1 ]
+  - ability:
+      name: Weedle
+      threshold: { greed: 6 }
+      cost:
+        - pay: 2
+        - deplete: self
+        - destroy: { from: { character: { owner: you } }, choose: true }
+      effect: [ draw: 3 ]

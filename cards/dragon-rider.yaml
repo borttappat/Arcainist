@@ -7,3 +7,6 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   This card gains 1 strength and 1 life for each dragon card you control.
+rules:
+  - static:
+      mods: [ { stat: { str: { count: { card: { subtype: dragon, controller: you } } }, life: { count: { card: { subtype: dragon, controller: you } } } } } ]

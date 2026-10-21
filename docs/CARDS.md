@@ -154,6 +154,7 @@ Trigger filters, all optional:
 | Filter | Meaning |
 |---|---|
 | `card: <selector>` | The card the event is about. `self` for "this card". |
+| `by: opponent \| you` | For `destroyed`: whose card or rule destroyed it ("destroyed by an opposing card"; destruction by damage counts the damaging card's controller). |
 | `player: you \| opponent \| any` | Whose event it is ("at the start of your turn"). |
 | `source: <selector>` | For `damage` events: what inflicted it. |
 | `faction: true` | For `damage` events: damage to a faction. |
@@ -353,6 +354,13 @@ Type keys: `character`, `item`, `location`, `tactic`, `resource`, `faction`, or
 | `unique` | `true`: a UNIQUE keyword in its text; a name (`unique: Jo`): that UNIQUE line |
 | `not_subtype`, `not_trade` | |
 | `token` | `token: false`: not a token (non-"micromajig") |
+| `str_gte` | Strength at least (current in play, printed elsewhere) |
+| `strongest` | The character with the highest strength in play |
+| `costliest` | The character with the highest numeric cost its controller controls |
+| `keyword` | `keyword: covert`: has the keyword now |
+| `equipped` | Has an item attached |
+| `text_has` | `text_has: "[V]"`: the printed text contains it |
+| `damaged_faction` | `damaged_faction: you`: inflicted damage to that player's faction this turn |
 | `spent` | A resource attached to its faction |
 | `has_tokens` | true / false |
 | `type`, `not_type`, `not_types: [..]`, `printed_type` | `printed_type` ignores face-down status |
@@ -385,6 +393,7 @@ Type keys: `character`, `item`, `location`, `tactic`, `resource`, `faction`, or
 | `{ different_staples: you }` | Different staple resources you control |
 | `{ hand_size: opponent }` | |
 | `{ printed: [ c, str ] }` | A card's printed stat |
+| `{ threshold: c }` | Total icons in a card's threshold |
 | `{ len: list }` | Size of a list variable |
 | `{ half_up: <value> }`, `{ sum: [..] }`, `{ neg: <value> }` | |
 | `{ played_this_turn: { by: you, type: tactic, not_type: resource } }` | Cards played this turn |
@@ -408,6 +417,7 @@ card's printed stats.
 | `{ assigned_damage: self }` | The card assigned battle damage this turn |
 | `{ battle_damage: false }` | No damage has been assigned yet in the current battle |
 | `{ even: { hand_size: you } }` | The value is even |
+| `{ attack_target: faction }` | The current attack targets the defender's faction (or a named location) |
 | `{ all: [..] }`, `{ any: [..] }`, `{ not: .. }` | |
 
 ## 6. Modifiers
@@ -425,7 +435,7 @@ Modifiers are continuous effects. They appear in `static` rules and
 | `keyword` | `{ keyword: covert }` | |
 | `provides` | `{ provides: { obsession: 2 } }` | Icons for threshold (Crest). |
 | `player_icons` | `{ player_icons: { elitism: 4 }, target: none }` | Icons not tied to a card (31337!). |
-| `cost` | `{ cost: -4, by: you, target: { card: { zone: stack } } }` | Cost increase or reduction. `applies: any` also covers ability costs (the target is the ability's card); `applies: ability` only abilities; `applies: flip_up` only deploys using FLIP UP. |
+| `cost` | `{ cost: -4, by: you, target: { card: { zone: stack } } }` | Cost increase or reduction. `applies: any` also covers ability costs (the target is the ability's card); `applies: ability` only abilities; `applies: flip_up` only deploys using FLIP UP. `floor: 1`: "to a minimum of 1". |
 | `cost_min` | `{ cost_min: 3, by: opponent, target: { tactic: { zone: stack } } }` | Canny Bailiff. |
 | `threshold_reduce` | `{ threshold_reduce: 3 }` | Ignore that many missing icons. |
 | `cannot` | `{ cannot: play \| pick \| attack \| block \| restore_by_rule \| lose_game \| destroy_except_cost }` | Prohibitions. "Cannot" beats "can". |
@@ -434,7 +444,7 @@ Modifiers are continuous effects. They appear in `static` rules and
 | `play_from` | `{ play_from: { ignore_threshold: true }, target: { card: { zone: void, tagged_by: self } } }` | Play cards from other zones. |
 | `tactical` | `{ tactical: true }` | May be played whenever a tactic could. |
 | `grant_rules` | `{ grant_rules: [ <rules> ], target: { character: any } }` | Lodge Dock Florist. |
-| `damage` | `{ damage: { set: 0, battle: true }, while: { blocking: self } }` | Change damage taken. `over: 4` only changes amounts greater than 4. |
+| `damage` | `{ damage: { set: 0, battle: true }, while: { blocking: self } }` | Change damage taken. `over: 4` only changes amounts greater than 4; `from: <selector>` only damage from matching sources. |
 | `influence_loss` | `{ influence_loss: { player: opponent, delta: 1 }, target: all }` | Gideon. |
 | `attack_limit` | `{ attack_limit: 1 }` | "Can attack only once each turn." |
 | `redirect` | `{ redirect: { from: play, to: discard, instead: hand } }` | "Would go to X; instead Y". |
@@ -450,6 +460,9 @@ Modifiers are continuous effects. They appear in `static` rules and
 | `assign_to_target` | `{ assign_to_target: true }` | While attacking, its battle damage may go to the attack's target instead of the blockers. |
 | `must_be_assigned` | `{ must_be_assigned: true }` | Battle damage that could be assigned to it must be. |
 | `search_tax` | `{ search_tax: 2, by: opponent, target: none }` | Searching your own deck costs that much. |
+| `battle_damage_to_self` | `{ battle_damage_to_self: true, target: c }` | Its battle damage is inflicted to itself (Don't Trip). |
+| `stays_in_play` | `{ stays_in_play: true }` | An attached card that doesn't leave play with its host. |
+| `damage_as_tokens` | `{ damage_as_tokens: { battle: true }, while: { blocking: self } }` | Damage becomes that many tokens instead (Expert Debater). |
 
 Derived values are recomputed from scratch, so modifiers switch on and off by
 themselves when their source leaves play or their condition changes. Increases
@@ -554,3 +567,7 @@ marked "Confirmed" are user rulings; the rest are still open.
 | Community Chest | The mulligan clause (reveal it to draw at the start of your turn) is resolved by hand. |
 | Corrosive Waste Dispenser | Flips face-down when Convert removes its last token (the only way it loses tokens). |
 | Department of Rejections | The search tax is paid when the search resolves; if it can't be paid, there is no search. |
+| Draconarius Slitherform | "When destroyed, X is this card's strength": its printed strength. |
+| Downsizing | X counts the characters in play before the destruction, including any that a replacement saves. |
+| Essence of Deception (option 3) | "Damage has been inflicted this turn": the character has damage on it. |
+| Direstock Stronghold | "When you deploy a character" triggers when it is deployed (put on the stack). |

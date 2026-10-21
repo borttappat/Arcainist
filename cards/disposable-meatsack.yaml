@@ -8,3 +8,9 @@ rarity: common
 text: |
   At the end of your turn, if this card is depleted, destroy it.
   [R][R][R][R][R][R]: This character gains 1 strength and 1 speed.
+rules:
+  - trigger: { on: end_of_turn, player: you, while: { matches: [ self, { character: { depleted: true } } ] } }
+    effect: [ destroy: self ]
+  - static:
+      requires: { rage: 6 }
+      mods: [ { stat: { str: 1, spd: 1 } } ]

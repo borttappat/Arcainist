@@ -6,3 +6,8 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   Destroy the character an opponent controls with the highest numeric cost. If there is a tie, you decide which character is destroyed.
+rules:
+  - play:
+      effect:
+        - pick: { as: c, from: { character: { controller: opponent, costliest: true } }, choose: true }
+        - destroy: c

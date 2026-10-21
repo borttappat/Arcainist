@@ -13,3 +13,17 @@ text: |
   PAST TREPIDATIONS
   COST: Discard a card.
   EFFECT: This turn, this card gains 1 life. If the discarded card was a resource, this card also gains 1 strength this turn.
+rules:
+  - unique: Eustace
+  - ability:
+      name: Future Implications
+      cost: [ pay: 2, lose_influence: { who: you, amount: 1 } ]
+      effect: [ draw: 1 ]
+  - ability:
+      name: Past Trepidations
+      cost: [ discard: { count: 1, as: d } ]
+      effect:
+        - modify: { card: self, stat: life, gain: 1 }
+        - if:
+            cond: { matches: [ d, { resource: { zone: discard } } ] }
+            then: [ modify: { card: self, stat: str, gain: 1 } ]

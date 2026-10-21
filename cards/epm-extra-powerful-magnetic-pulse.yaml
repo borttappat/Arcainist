@@ -6,3 +6,7 @@ set: "Shade of the Devoured Emperor"
 rarity: rare
 text: |
   Destroy all items and locations.
+rules:
+  - play:
+      effect:
+        - destroy: [ { item: any }, { location: any } ]

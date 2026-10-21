@@ -10,3 +10,11 @@ text: |
   TRANSCEND
   COST: Pay 5.
   EFFECT: This turn, this card gains COVERT.
+rules:
+  - static:
+      mods: [ { damage: { set: 0, from: { character: { equipped: true } } } } ]
+  - ability:
+      name: Transcend
+      cost: [ pay: 5 ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { keyword: covert } ] }

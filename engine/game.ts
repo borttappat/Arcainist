@@ -721,6 +721,8 @@ export class Game {
     let up = 0;
     let down = 0;
     let min = 0;
+    // "Reduce the cost by 2, to a minimum of 1": reductions with a floor stop there.
+    let floor = 0;
     const used: Effect[] = [];
     for (const m of this.q.mods("cost")) {
       if (!this.q.by(m, payer)) continue;
@@ -734,13 +736,15 @@ export class Game {
       const v = this.q.value(m.value, m.scope);
       if (v > 0) up += v;
       else down -= v;
+      if (v < 0 && m.mod.floor !== undefined) floor = Math.max(floor, this.q.value(m.mod.floor, m.scope));
       if (m.effect?.duration === "next") used.push(m.effect);
     }
     for (const m of this.q.mods("cost_min")) {
       if (!this.q.by(m, payer) || !deploying || !this.q.targets(m, deploying)) continue;
       min = Math.max(min, this.q.value(m.value, m.scope));
     }
-    total = Math.max(total + up, min) - down;
+    const before = Math.max(total + up, min);
+    total = Math.max(before - down, Math.min(floor, before));
     if (apply) for (const e of used) e.used = true;
     return Math.max(0, total);
   }
@@ -975,6 +979,8 @@ export class Game {
         if (r.from !== undefined && ev.from !== r.from) continue;
         if (r.to !== undefined && ev.to !== r.to) continue;
         if (r.side !== undefined && ev.side !== r.side) continue;
+        // "destroyed by an opposing card": by: opponent | you
+        if (r.by !== undefined && (!ev.by || ev.by !== this.q.who(r.by, scope))) continue;
         if (r.requires && !this.q.meets(src.controller, r.requires)) continue;
         if (r.while && !this.q.cond(r.while, scope)) continue;
         const ctx = this.newCtx(src.controller, src.iid);
@@ -1351,12 +1357,12 @@ export class Game {
       // "Destroy a character you own": pick, then destroy.
       const r = this.op_pick({ ...arg, as: "__destroy" }, ctx, task);
       if (r !== "ok" || this.root(ctx).vars.__destroy === undefined) return r;
-      this.destroy(this.root(ctx).vars.__destroy, cause);
+      this.destroy(this.root(ctx).vars.__destroy, cause, false, ctx.controller);
       return "ok";
     }
     const targets = this.refs(ctx, arg);
     if (!targets.some((i) => this.q.inPlay(i))) return task.phase === "cost" ? "fail" : "ok";
-    for (const iid of targets) this.destroy(iid, cause);
+    for (const iid of targets) this.destroy(iid, cause, false, ctx.controller);
     return "ok";
   }
 
@@ -1986,7 +1992,7 @@ export class Game {
     const p = this.who(ctx, arg.who);
     const cands = this.q.resources(p).filter((i) => arg.face_down === undefined || this.s.cards[i].faceDown === arg.face_down);
     if (task.answer) {
-      for (const iid of task.answer.ids) this.destroy(iid, task.phase === "cost" ? "cost" : "effect");
+      for (const iid of task.answer.ids) this.destroy(iid, task.phase === "cost" ? "cost" : "effect", false, ctx.controller);
       return "ok";
     }
     if (!cands.length) return task.phase === "cost" ? "fail" : "ok";
@@ -2317,7 +2323,18 @@ export class Game {
   protected t_assignDamage(task: Task): void {
     const b = this.s.battle;
     if (!b) return;
-    const group = (task.group as string[]).filter((i) => this.inBattle(i));
+    let group = (task.group as string[]).filter((i) => this.inBattle(i));
+    // "If the character would inflict battle damage, inflict that damage to itself instead" (Don't Trip).
+    // (Only once: this task runs again with the answer to the assignment prompt.)
+    for (const i of task.answer ? [] : group.filter((x) => this.q.modsFor("battle_damage_to_self", x).length)) {
+      const n = this.q.stat(i, "str");
+      if (n <= 0) continue;
+      b.locked[i] = (b.locked[i] ?? 0) + n;
+      b.sources[i] = [...new Set([...(b.sources[i] ?? []), i])];
+      (this.s.turnLog.assigned ??= {})[i] = true;
+      this.log(`${this.q.name(i)} assigns ${n} damage to itself.`);
+    }
+    group = group.filter((x) => !this.q.modsFor("battle_damage_to_self", x).length);
     const total = group.reduce((n, i) => n + this.q.stat(i, "str"), 0);
     if (total <= 0) return;
     for (const i of group) if (this.q.stat(i, "str") > 0) (this.s.turnLog.assigned ??= {})[i] = true;
@@ -2368,7 +2385,7 @@ export class Game {
           const c = s.cards[iid];
           if (c.isResource || q.isFaction(iid)) continue;
           // Attached cards whose host is gone or no longer a character are destroyed.
-          if (c.attachedTo && c.attachedTo !== "faction" && !q.isCharacter(c.attachedTo)) out.push({ iid, cause: "rule" });
+          if (c.attachedTo && c.attachedTo !== "faction" && !q.isCharacter(c.attachedTo) && !q.modsFor("stays_in_play", iid).length) out.push({ iid, cause: "rule" });
           else if (q.is(iid, "character") && c.damage >= q.stat(iid, "life")) out.push({ iid, cause: "damage" });
           else if (q.is(iid, "location") && c.markers >= q.stat(iid, "structure")) out.push({ iid, cause: "damage" });
           // "[R][R][R]: Destroy this card." (Boorish Boar)
@@ -2377,7 +2394,8 @@ export class Game {
         return out;
       });
       let changed = false;
-      for (const { iid, cause } of doomed) if (q.inPlay(iid) && this.destroy(iid, cause)) changed = true;
+      // Destroyed by damage: the player whose card inflicted the last damage destroyed it.
+      for (const { iid, cause } of doomed) if (q.inPlay(iid) && this.destroy(iid, cause, false, cause === "damage" ? s.cards[iid].hitBy : undefined)) changed = true;
       if (!changed) break;
     }
     const verdict = q.frozen(() => {
@@ -2481,7 +2499,12 @@ export class Game {
     }
     if (from !== zone && zone !== "stack" && from !== "stack") this.emit({ e: "moved", iid, from, to: zone, player: c.owner });
     // "If something causes a card to leave play, any cards attached to it leave play in the same way."
-    for (const a of attached) if (this.s.cards[a].zone === "play") this.move(a, zone);
+    for (const a of attached) {
+      if (this.s.cards[a].zone !== "play") continue;
+      // "This card does not leave play if the attached card leaves play" (Everlasting Blade of Light).
+      if (this.q.modsFor("stays_in_play", a).length) this.s.cards[a].attachedTo = null;
+      else this.move(a, zone);
+    }
   }
 
   private relist(iid: string, ctl: PlayerId): void {
@@ -2510,6 +2533,7 @@ export class Game {
   private leavePlayCleanup(iid: string): void {
     const c = this.s.cards[iid];
     c.damage = 0;
+    c.hitBy = undefined;
     c.depleted = false;
     for (const e of this.s.effects) {
       for (const m of e.mods ?? []) if (m.target?.iids) m.target.iids = m.target.iids.filter((i: string) => i !== iid);
@@ -2555,7 +2579,8 @@ export class Game {
    * `cause` distinguishes costs (Limited Liability) from effects, damage and rules.
    * Returns true if something happened to the card.
    */
-  destroy(iid: string, cause: "cost" | "effect" | "damage" | "rule" = "effect", skipOptional = false): boolean {
+  /** `by`: the player whose card or rule destroys it ("destroyed by an opposing card"). */
+  destroy(iid: string, cause: "cost" | "effect" | "damage" | "rule" = "effect", skipOptional = false, by?: PlayerId): boolean {
     const q = this.q;
     if (!q.inPlay(iid) || q.isFaction(iid)) return false;
     // Waiting on an optional replacement ("its owner may ... instead").
@@ -2572,7 +2597,7 @@ export class Game {
         if (r.replace.optional) {
           if (skipOptional) continue;
           this.s.cards[iid].replacing = true;
-          this.push({ t: "optionalReplace", iid, cause, instead: r.instead, prompt: r.replace.prompt, controller: scope.controller, source: scope.source, vars: scope.vars });
+          this.push({ t: "optionalReplace", iid, cause, by, instead: r.instead, prompt: r.replace.prompt, controller: scope.controller, source: scope.source, vars: scope.vars });
           return true;
         }
         const ctx = this.newCtx(scope.controller, scope.source);
@@ -2585,7 +2610,7 @@ export class Game {
     }
     const ctl = this.s.cards[iid].controller;
     if (cause === "damage") this.log(`${q.name(iid)} is destroyed.`);
-    this.emit({ e: "destroyed", iid, player: ctl, cause });
+    this.emit({ e: "destroyed", iid, player: ctl, cause, ...(by ? { by } : {}) });
     this.move(iid, "discard");
     return true;
   }
@@ -2613,7 +2638,7 @@ export class Game {
     }
     c.replacing = undefined;
     if (task.answer.ids[0] !== "yes") {
-      this.destroy(task.iid, task.cause, true);
+      this.destroy(task.iid, task.cause, true, task.by);
       return;
     }
     const ctx = this.newCtx(task.controller, task.source);
@@ -2624,13 +2649,15 @@ export class Game {
   }
 
   /** Damage modifiers: "reduce the amount to 0", Limited Liability. */
-  private modifyDamage(target: string, n: number, battle: boolean): number {
+  private modifyDamage(target: string, n: number, battle: boolean, sources: string[] = []): number {
     let set: number | null = null;
     let delta = 0;
     for (const m of this.q.mods("damage")) {
       const v = m.value;
       if (v.battle !== undefined && !!v.battle !== battle) continue;
       if (!this.q.targets(m, target)) continue;
+      // Only damage from matching sources: { damage: { set: 0, from: <selector> } }
+      if (v.from !== undefined && !sources.some((x) => this.q.matches(v.from, x, m.scope, null))) continue;
       // "When any amount of damage greater than 4 is inflicted, reduce it to 0": { set: 0, over: 4 }
       if (v.over !== undefined && n <= v.over) continue;
       if (v.set !== undefined) set = set === null ? v.set : Math.min(set, v.set);
@@ -2670,9 +2697,17 @@ export class Game {
     if (q.isFaction(iid)) return this.damageFaction(this.s.cards[iid].owner, n, sources, battle, undefined, seen);
     n = this.redirectDamage(iid, n, battle, sources, seen);
     if (n <= 0) return;
-    n = this.modifyDamage(iid, n, battle);
+    // "If battle damage would be inflicted to this card, add that many tokens instead" (Expert Debater).
+    const asTokens = q.modsFor("damage_as_tokens", iid).find((m) => m.value?.battle === undefined || !!m.value.battle === battle);
+    if (asTokens) {
+      this.s.cards[iid].tokens += n;
+      this.log(`${q.name(iid)} gets ${n} token${n === 1 ? "" : "s"} instead of damage.`);
+      return;
+    }
+    n = this.modifyDamage(iid, n, battle, sources);
     if (n <= 0) return;
     const c = this.s.cards[iid];
+    if (sources.length && this.s.cards[sources[0]]) c.hitBy = this.s.cards[sources[0]].controller;
     if (q.isCharacter(iid)) c.damage += n;
     else if (q.inPlay(iid) && q.is(iid, "location")) c.markers += n;
     else return;
@@ -2683,7 +2718,7 @@ export class Game {
   damageFaction(p: PlayerId, n: number, sources: string[], battle: boolean, by?: PlayerId, seen: string[] = []): void {
     n = this.redirectDamage(this.s.players[p].factionIid, n, battle, sources, seen);
     if (n <= 0) return;
-    n = this.modifyDamage(this.s.players[p].factionIid, n, battle);
+    n = this.modifyDamage(this.s.players[p].factionIid, n, battle, sources);
     if (n <= 0) return;
     // Optional replacements on faction damage (Trickster's Globe): ask first.
     const repl = this.factionDamageReplacement(p, by);
@@ -2738,6 +2773,9 @@ export class Game {
     const lost = this.influenceLoss(p, n);
     ps.influence = Math.max(0, ps.influence - lost);
     this.log(`${this.pname(p)}'s faction takes ${n} damage${lost !== n ? ` and loses ${lost} influence` : ""} (influence ${ps.influence}).`);
+    // "A character that inflicted damage to your faction this turn" (Drive-By Boobing).
+    const hits = ((this.s.turnLog.factionHits ??= {})[p] ??= []);
+    for (const x of sources) if (!hits.includes(x)) hits.push(x);
     this.emit({ e: "damage", iid: ps.factionIid, player: p, amount: n, battle, faction: true, sources, source: sources[0] });
     this.emit({ e: "influence_lost", player: p, amount: lost });
   }

@@ -9,3 +9,22 @@ text: |
   [R][R][R]: At the start of your turn, you may inflict 1 damage to an opponent's faction.
   [R][R][R][R][R]: At the start of your turn, you may pick a character. If you do, deplete it.
   [R][R][R][R][R][R][R]: At the start of your turn, you may pick a character. If you do, inflict 2 damage to it.
+rules:
+  - unique: Drill Garrison
+  - trigger: { on: start_of_turn, player: you, requires: { rage: 3 } }
+    effect:
+      - may:
+          prompt: "inflict 1 damage to your opponent's faction"
+          steps: [ damage: { faction: opponent, amount: 1 } ]
+  - trigger: { on: start_of_turn, player: you, requires: { rage: 5 } }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ deplete: c ]
+  - trigger: { on: start_of_turn, player: you, requires: { rage: 7 } }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ damage: { card: c, amount: 2 } ]

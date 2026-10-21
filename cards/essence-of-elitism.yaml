@@ -14,3 +14,20 @@ text: |
   OPTION 3
   EXTRA COST: Pick an item in your discard pile.
   EFFECT: Put the item into your hand.
+rules:
+  - play:
+      cost:
+        - choose_one:
+            - { label: "Put a Micromajig token into play", steps: [ let: { o: 1 } ] }
+            - { label: "A character with COVERT loses COVERT this turn", steps: [ let: { o: 2 }, pick: { as: c, from: { character: { keyword: covert } } } ] }
+            - { label: "Put an item from your discard pile into your hand", steps: [ let: { o: 3 }, pick: { as: c, from: { item: { zone: discard, owner: you } } } ] }
+      effect:
+        - if:
+            cond: { eq: [ o, 1 ] }
+            then: [ create_token: { card: micromajig-token } ]
+        - if:
+            cond: { eq: [ o, 2 ] }
+            then: [ create_effect: { duration: turn, mods: [ { lose_keyword: covert, target: c } ] } ]
+        - if:
+            cond: { eq: [ o, 3 ] }
+            then: [ move: { card: c, to: hand } ]

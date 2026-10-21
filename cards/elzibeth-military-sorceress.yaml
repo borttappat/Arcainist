@@ -10,3 +10,12 @@ text: |
   REANIMATE
   COST: Pay 2. Deplete this card. Pick a character in your discard pile.
   EFFECT: Put the character on the top of its owner's deck.
+rules:
+  - unique: Elzibeth
+  - ability:
+      name: Reanimate
+      cost:
+        - pay: 2
+        - deplete: self
+        - pick: { as: c, from: { character: { zone: discard, owner: you } } }
+      effect: [ move: { card: c, to: deck_top } ]

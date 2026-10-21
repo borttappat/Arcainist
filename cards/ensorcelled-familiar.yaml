@@ -10,3 +10,18 @@ text: |
   RECUR: [O][O][O]
   COST: Use this only if this card is in your discard pile. Pay 2. Remove this card from the game. Pick a tactic in your discard pile.
   EFFECT: Put the tactic into your hand.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may:
+          - search: { deck: you, for: { tactic: any }, reveal: true, to: hand }
+  - ability:
+      name: Recur
+      keyword: recur
+      threshold: { obsession: 3 }
+      from: discard
+      cost:
+        - pay: 2
+        - void: self
+        - pick: { as: c, from: { tactic: { zone: discard, owner: you } } }
+      effect: [ move: { card: c, to: hand } ]

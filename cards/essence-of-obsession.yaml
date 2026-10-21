@@ -14,3 +14,20 @@ text: |
   OPTION 3
   EXTRA COST: Pick a character.
   EFFECT: This turn, the character loses 2 strength.
+rules:
+  - play:
+      cost:
+        - choose_one:
+            - { label: "An opponent discards a card", steps: [ let: { o: 1 } ] }
+            - { label: "A character gains COVERT this turn", steps: [ let: { o: 2 }, pick: { as: c, from: { character: any } } ] }
+            - { label: "A character loses 2 strength this turn", steps: [ let: { o: 3 }, pick: { as: c, from: { character: any } } ] }
+      effect:
+        - if:
+            cond: { eq: [ o, 1 ] }
+            then: [ discard: { who: opponent, count: 1 } ]
+        - if:
+            cond: { eq: [ o, 2 ] }
+            then: [ create_effect: { duration: turn, mods: [ { keyword: covert, target: c } ] } ]
+        - if:
+            cond: { eq: [ o, 3 ] }
+            then: [ modify: { card: c, stat: str, lose: 2 } ]

@@ -10,3 +10,13 @@ text: |
   COST: Destroy a Micromajig token you control.
   EFFECT: This turn, this card gains PROVIDES: [E][E][E] .
   [E][E][E][E][E][E]: This card gains 2 strength and 2 life.
+rules:
+  - ability:
+      name: Crunch
+      cost:
+        - destroy: { from: { character: { controller: you, name: Micromajig Token } }, choose: true }
+      effect:
+        - create_effect: { duration: turn, mods: [ { provides: { elitism: 3 } } ] }
+  - static:
+      requires: { elitism: 6 }
+      mods: [ { stat: { str: 2, life: 2 } } ]

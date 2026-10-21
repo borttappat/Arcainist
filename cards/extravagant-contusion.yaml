@@ -7,3 +7,10 @@ rarity: common
 text: |
   EXTRA COST: Choose a number for X. Pay X. Pick a character with numeric cost X or less.
   Destroy the character.
+rules:
+  - play:
+      cost:
+        - choose_number: { as: X, min: 0 }
+        - pay: X
+        - pick: { as: c, from: { character: { cost_lte: X } } }
+      effect: [ destroy: c ]

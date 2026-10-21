@@ -7,3 +7,12 @@ set: "Seed Saga"
 rarity: common
 text: |
   When this card enters or leaves play, you may search your deck for a staple resource, reveal it, and put it into your hand.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may:
+          - search: { deck: you, for: { card: { staple: true } }, reveal: true, to: hand }
+  - trigger: { on: leaves_play, card: self }
+    effect:
+      - may:
+          - search: { deck: you, for: { card: { staple: true } }, reveal: true, to: hand }

@@ -7,3 +7,7 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   While an opponent controls at least 4 characters, this card cannot be blocked.
+rules:
+  - static:
+      while: { gte: [ { count: { character: { controller: opponent } } }, 4 ] }
+      mods: [ { cannot_be_blocked: true } ]

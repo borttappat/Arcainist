@@ -7,3 +7,5 @@ set: "Ungodly Mess"
 rarity: common
 text: |
   FLIP UP: 1 [R]
+rules:
+  - flip_up: { pay: 1, threshold: { rage: 1 } }

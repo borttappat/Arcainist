@@ -7,3 +7,10 @@ rarity: uncommon
 text: |
   EXTRA COST: Pick a character you control. X is its strength. Destroy it.
   Draw X cards.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { controller: you } } }
+        - let: { X: { stat: [ c, str ] } }
+        - destroy: c
+      effect: [ draw: X ]

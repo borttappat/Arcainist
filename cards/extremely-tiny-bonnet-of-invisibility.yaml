@@ -10,3 +10,13 @@ text: |
   ATTACH TO CHARACTER YOU CONTROL
   EXTRA COST: Pick an opponent. That player may detach up to 2 resources from their faction.
   The attached character gains COVERT.
+rules:
+  - play:
+      cost:
+        - as:
+            who: opponent
+            steps:
+              - choose_number: { as: Y, min: 0, max: 2, prompt: "Extremely Tiny Bonnet: detach up to 2 resources from your faction." }
+              - detach: { count: Y }
+  - static:
+      mods: [ { keyword: covert, target: host } ]

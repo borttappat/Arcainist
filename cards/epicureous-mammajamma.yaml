@@ -15,3 +15,21 @@ text: |
   RUB IT DOWN
   COST: Pay 1.
   EFFECT: This turn, this card loses 1 strength or 1 life and gains 1 speed.
+rules:
+  - ability:
+      name: Slap It Up
+      cost: [ pay: 1 ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: -1, life: 1 } } ] }
+  - ability:
+      name: Flip It
+      cost: [ pay: 1 ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: 1, life: -1 } } ] }
+  - ability:
+      name: Rub It Down
+      cost: [ pay: 1 ]
+      effect:
+        - choose_one:
+            - { label: "Lose 1 strength", steps: [ create_effect: { duration: turn, mods: [ { stat: { str: -1, spd: 1 } } ] } ] }
+            - { label: "Lose 1 life", steps: [ create_effect: { duration: turn, mods: [ { stat: { life: -1, spd: 1 } } ] } ] }

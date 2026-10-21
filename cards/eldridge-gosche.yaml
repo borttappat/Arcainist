@@ -14,3 +14,24 @@ text: |
   DISRUPT
   COST: Remove 3 tokens from this card.
   EFFECT: Look at an opponent's hand and choose a card in it. That player discards that card.
+rules:
+  - unique: Eldridge
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - pick: { as: c, from: { card: { controller: you, not_type: resource } }, count: 2, up_to: true }
+      - if:
+          cond: { defined: c }
+          then: [ distribute_tokens: { total: 2, from: c } ]
+  - ability:
+      name: Eject
+      cost:
+        - tokens: { card: self, remove: 3 }
+        - pick: { as: c, from: { card: { not_type: resource } } }
+      effect: [ move: { card: c, to: hand } ]
+  - ability:
+      name: Disrupt
+      cost: [ tokens: { card: self, remove: 3 } ]
+      effect:
+        - reveal_hand: opponent
+        - pick: { as: c, from: { card: { zone: hand, owner: opponent } }, choose: true }
+        - discard: { who: opponent, cards: c }

@@ -8,3 +8,10 @@ text: |
   When this card enters play, draw a card.
   Reduce the numeric cost of characters you play by 2, to a minimum of 1.
   All your characters lose 1 strength and 1 life.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect: [ draw: 1 ]
+  - static:
+      mods:
+        - { cost: -2, floor: 1, by: you, target: { character: { zone: stack } } }
+        - { stat: { str: -1, life: -1 }, target: { character: { controller: you } } }

@@ -7,3 +7,6 @@ set: "Ungodly Mess"
 rarity: common
 text: |
   When this card inflicts battle damage to a character, destroy that character.
+rules:
+  - trigger: { on: damage, source: self, battle: true, card: { character: any } }
+    effect: [ destroy: it ]

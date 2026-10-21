@@ -7,3 +7,12 @@ rarity: rare
 text: |
   At the start of your turn, put a token on the character with the highest strength. If there is a tie, you decide which character gets the token.
   All characters gain 1 strength for each token on them.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - pick: { as: c, from: { character: { strongest: true } }, choose: true, prompt: "Put a token on the character with the highest strength." }
+      - if:
+          cond: { defined: c }
+          then: [ tokens: { card: c, add: 1 } ]
+  - static:
+      mods: [ { stat: { str: { tokens: it } }, target: { character: any } } ]

@@ -11,3 +11,10 @@ text: |
   SNEAK
   COST: Pay 1.
   EFFECT: This card gains COVERT this turn.
+rules:
+  - unique: Buckgriff
+  - ability:
+      name: Sneak
+      cost: [ pay: 1 ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { keyword: covert } ] }

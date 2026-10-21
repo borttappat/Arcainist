@@ -8,3 +8,13 @@ text: |
   When this card enters play, you may pick an item or location. If you do, flip that card face-down under its owner's control.
   When this card is destroyed, you faction loses 4 influence.
   FLIP UP: 2 [G]
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - pick: { as: c, from: [ { item: any }, { location: { not_self: true } } ], optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ flip_face_down: { card: c, controller: owner } ]
+  - trigger: { on: destroyed, card: self }
+    effect: [ lose_influence: { who: you, amount: 4 } ]
+  - flip_up: { pay: 2, threshold: { greed: 1 } }

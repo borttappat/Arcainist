@@ -7,3 +7,11 @@ rarity: rare
 text: |
   EXTRA COST: Destroy 2 characters you control. Pick 4 or fewer characters.
   Take control of the picked characters.
+rules:
+  - play:
+      cost:
+        - pick: { as: d, from: { character: { controller: you } }, count: 2, exactly: true, choose: true, prompt: "Destroy 2 characters you control." }
+        - destroy: d
+        - pick: { as: c, from: { character: any }, count: 4, up_to: true }
+      effect:
+        - take_control: { card: c, who: you }

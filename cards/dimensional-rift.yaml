@@ -8,3 +8,11 @@ text: |
   TELEPORT
   COST: Pay 4. Deplete this card. Pick a character.
   EFFECT: Put the character into its owner's hand.
+rules:
+  - ability:
+      name: Teleport
+      cost:
+        - pay: 4
+        - deplete: self
+        - pick: { as: c, from: { character: any } }
+      effect: [ move: { card: c, to: hand } ]

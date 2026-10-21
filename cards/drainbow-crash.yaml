@@ -8,3 +8,12 @@ rarity: common
 text: |
   PROVIDES: [E][E]
   FLIP UP: 5 [E] and you may pick an item. If you do, destroy it.
+rules:
+  - flip_up:
+      pay: 5
+      threshold: { elitism: 1 }
+      cost:
+        - pick: { as: fi, from: { item: any }, optional: true }
+        - if:
+            cond: { defined: fi }
+            then: [ destroy: fi ]

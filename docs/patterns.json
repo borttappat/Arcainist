@@ -1,10 +1,10 @@
 {
  "summary": {
   "total": 1231,
-  "automated": 340,
-  "ready": 688,
-  "needsNew": 117,
-  "unclear": 86
+  "automated": 441,
+  "ready": 603,
+  "needsNew": 108,
+  "unclear": 79
  },
  "patterns": [
   {
@@ -10349,7 +10349,7 @@
     "destroy"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Desperate Defender": {
    "patterns": [
@@ -10360,7 +10360,7 @@
     "deplete"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Desserted Island": {
    "patterns": [
@@ -10373,7 +10373,7 @@
     "void"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Dethmürderblüdgeon, the Craghammer": {
    "patterns": [
@@ -10404,7 +10404,7 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Devilfang Thunderhoof": {
    "patterns": [
@@ -10420,7 +10420,7 @@
     "discard"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Difference of Opinion": {
    "patterns": [
@@ -10434,7 +10434,7 @@
    "unrecognised": [
     "If you control an attacking party of at least 2 members, you may pick a character."
    ],
-   "automated": false
+   "automated": true
   },
   "Digital Claywork Compendium": {
    "patterns": [
@@ -10446,7 +10446,7 @@
     "destroy"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Dimensional Rift": {
    "patterns": [
@@ -10457,7 +10457,7 @@
     "to_hand"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Direstock Cuffs": {
    "patterns": [
@@ -10473,14 +10473,14 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Direstock Paratrooper": {
    "patterns": [
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Direstock Stronghold": {
    "patterns": [
@@ -10496,7 +10496,7 @@
     "markers"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Discommodiousness": {
    "patterns": [
@@ -10518,7 +10518,7 @@
     "Lose 2 influence.",
     "EFFECT: This turn, this card gains \" PROVIDES: [R][R][R] \"."
    ],
-   "automated": false
+   "automated": true
   },
   "Disposable Meatsack": {
    "patterns": [
@@ -10528,7 +10528,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Distraction": {
    "patterns": [
@@ -10537,7 +10537,7 @@
     "deplete"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Dizzying Blow": {
    "patterns": [
@@ -10548,7 +10548,7 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Doarden Flee Market": {
    "patterns": [
@@ -10559,7 +10559,7 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Dock Sentinel": {
    "patterns": [],
@@ -10575,7 +10575,7 @@
     "stat_per"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Don't Trip": {
    "patterns": [
@@ -10587,7 +10587,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Downsizing": {
    "patterns": [
@@ -10595,7 +10595,7 @@
     "gain_infl"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Dowsing Cleric": {
    "patterns": [
@@ -10604,7 +10604,7 @@
     "to_hand"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Draconarius Slitherform": {
    "patterns": [
@@ -10614,7 +10614,7 @@
     "t_destroyed"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Draconic Luteoderm Suit": {
    "patterns": [
@@ -10634,7 +10634,7 @@
     "attach_effect"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Dragon Archer": {
    "patterns": [
@@ -10644,7 +10644,7 @@
     "inflict"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Dragon Catheter": {
    "patterns": [
@@ -10656,7 +10656,7 @@
    "unrecognised": [
     "If there is a tie, you decide which character gets the token."
    ],
-   "automated": false
+   "automated": true
   },
   "Dragon Juice": {
    "patterns": [
@@ -10666,7 +10666,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Dragon Rider": {
    "patterns": [
@@ -10674,7 +10674,7 @@
     "stat_per"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Dragon's Anthem": {
    "patterns": [
@@ -10682,7 +10682,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Dragon's Quarters": {
    "patterns": [
@@ -10699,7 +10699,7 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Dragon Tank": {
    "patterns": [
@@ -10708,7 +10708,7 @@
     "destroy"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Drainbow Crash": {
    "patterns": [
@@ -10718,7 +10718,7 @@
     "destroy"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Drill Garrison": {
    "patterns": [
@@ -10731,7 +10731,7 @@
     "t_dmg"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Drill Instructor": {
    "patterns": [
@@ -10742,7 +10742,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Drive By Boobing": {
    "patterns": [
@@ -10751,7 +10751,7 @@
     "void"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Drivey Car": {
    "patterns": [
@@ -10760,7 +10760,7 @@
     "micromajig"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Drowned Catacombs": {
    "patterns": [
@@ -10790,7 +10790,7 @@
     "void"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Duelist of Surfeit": {
    "patterns": [
@@ -10801,7 +10801,7 @@
     "stat_per"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Duskfall Buckgriff": {
    "patterns": [
@@ -10813,7 +10813,7 @@
     "gains_kw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Dwarvish Grimalkin": {
    "patterns": [
@@ -10838,7 +10838,7 @@
    "unrecognised": [
     "Put that card into your discard pile."
    ],
-   "automated": false
+   "automated": true
   },
   "Dying Hero": {
    "patterns": [
@@ -10849,7 +10849,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Early Investment": {
    "patterns": [
@@ -10860,7 +10860,7 @@
     "replace_other"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Early Retirement": {
    "patterns": [
@@ -10871,7 +10871,7 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Eccentric Inquisition": {
    "patterns": [
@@ -10892,7 +10892,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Ecto-Agriolimax": {
    "patterns": [
@@ -10903,7 +10903,7 @@
     "to_hand"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Ecto-Conduit": {
    "patterns": [
@@ -10946,7 +10946,7 @@
     "attach_effect"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Ectypal Stave": {
    "patterns": [
@@ -10965,7 +10965,7 @@
     "destroy"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Eidolic Cove": {
    "patterns": [
@@ -10978,7 +10978,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Elbow Dropper": {
    "patterns": [
@@ -10988,7 +10988,7 @@
     "cannot_attack"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Eldridge Gosche, Godstealer": {
    "patterns": [
@@ -11022,7 +11022,7 @@
     "discard"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Elementary Elemental": {
    "patterns": [
@@ -11032,7 +11032,7 @@
     "to_hand"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Elite Acrolos Engineer": {
    "patterns": [
@@ -11040,7 +11040,7 @@
     "stat_per"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Elite Team Registration": {
    "patterns": [
@@ -11048,7 +11048,7 @@
     "to_hand"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Elitist Upgrade": {
    "patterns": [
@@ -11065,7 +11065,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Elitistmajig": {
    "patterns": [
@@ -11076,7 +11076,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Elusive Wolf": {
    "patterns": [
@@ -11087,7 +11087,7 @@
     "gains_kw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Elzibeth, Counter Imperial Countess": {
    "patterns": [
@@ -11101,7 +11101,7 @@
     "replace_other"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Elzibeth, Military Sorceress": {
    "patterns": [
@@ -11113,7 +11113,7 @@
     "to_deck"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Embezzling Bookkeeper": {
    "patterns": [
@@ -11122,14 +11122,14 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Embittered Cadet": {
    "patterns": [
     "provides"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Emergency Obfuscation": {
    "patterns": [
@@ -11160,7 +11160,7 @@
     "gains_kw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Emphatic Ecto-Manipulator": {
    "patterns": [
@@ -11170,7 +11170,7 @@
     "tokens"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Encumber": {
    "patterns": [
@@ -11187,7 +11187,7 @@
     "discard"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Enduring Swordsman": {
    "patterns": [
@@ -11197,7 +11197,7 @@
     "inflict"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Enlightened Mau": {
    "patterns": [
@@ -11208,7 +11208,7 @@
     "gains_kw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Enormous and Uncooperative Golem": {
    "patterns": [
@@ -11223,7 +11223,7 @@
     "while"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Ensmallment Ray": {
    "patterns": [
@@ -11234,7 +11234,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Ensorcelled Familiar": {
    "patterns": [
@@ -11251,7 +11251,7 @@
     "pick"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Entangle": {
    "patterns": [
@@ -11262,7 +11262,7 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Enter The Demon Knights": {
    "patterns": [
@@ -11277,7 +11277,7 @@
    "unrecognised": [
     "That opponent chooses one of those characters."
    ],
-   "automated": false
+   "automated": true
   },
   "Entrancing Harlot": {
    "patterns": [
@@ -11286,7 +11286,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Entry-Level Employee": {
    "patterns": [
@@ -11298,7 +11298,7 @@
     "pay"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Epic Smackdown": {
    "patterns": [
@@ -11312,7 +11312,7 @@
     "Destroy X characters you control.",
     "Each opponent that controls at least X characters, destroys X characters they control."
    ],
-   "automated": false
+   "automated": true
   },
   "Epic Turncoat Maneuver": {
    "patterns": [
@@ -11321,7 +11321,7 @@
     "control"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Epicureous Mammajamma": {
    "patterns": [
@@ -11331,7 +11331,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Epiphanal Mechanic": {
    "patterns": [
@@ -11342,7 +11342,7 @@
     "deploy_free"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Epiphany Ball": {
    "patterns": [
@@ -11353,14 +11353,14 @@
     "control"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "EPM (Extra Powerful Magnetic) Pulse": {
    "patterns": [
     "destroy"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Erotic Assassin": {
    "patterns": [
@@ -11395,7 +11395,7 @@
     "gated"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Essence of Deception": {
    "patterns": [
@@ -11411,7 +11411,7 @@
    "unrecognised": [
     "Put it into their discard pile."
    ],
-   "automated": false
+   "automated": true
   },
   "Essence of Elitism": {
    "patterns": [
@@ -11426,7 +11426,7 @@
     "to_hand"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Essence of Greed": {
    "patterns": [
@@ -11440,7 +11440,7 @@
     "gain_infl"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Essence of Obsession": {
    "patterns": [
@@ -11455,7 +11455,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Essence of Rage": {
    "patterns": [
@@ -11469,7 +11469,7 @@
     "deplete"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Eustace Padamose-Gristwalter": {
    "patterns": [
@@ -11483,7 +11483,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Eustace, Sensible Glutton": {
    "patterns": [
@@ -11501,7 +11501,7 @@
     "gain_infl"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Evanesce": {
    "patterns": [
@@ -11511,7 +11511,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Everlasting Blade of Light": {
    "patterns": [
@@ -11529,7 +11529,7 @@
     "into_play"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Ex Machina Majig": {
    "patterns": [
@@ -11541,7 +11541,7 @@
     "into_play"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Executive Order #6370u7": {
    "patterns": [
@@ -11552,7 +11552,7 @@
    "unrecognised": [
     "At the start of an opponent's turn you may pay 2 and pick a character."
    ],
-   "automated": false
+   "automated": true
   },
   "Executive Poaching": {
    "patterns": [
@@ -11560,7 +11560,7 @@
     "t_destroyed"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Expedition Advisor": {
    "patterns": [
@@ -11577,7 +11577,7 @@
     "void"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Expedition AutoBlind": {
    "patterns": [
@@ -11610,7 +11610,7 @@
     "gains_kw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Expert Debater": {
    "patterns": [
@@ -11627,7 +11627,7 @@
     "pick"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Exploding Sock Puppet!": {
    "patterns": [
@@ -11648,7 +11648,7 @@
     "provides"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Explosive Fury": {
    "patterns": [
@@ -11659,14 +11659,14 @@
     "inflict"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Extortify": {
    "patterns": [
     "gain_infl"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Extravagant Contusion": {
    "patterns": [
@@ -11679,7 +11679,7 @@
     "destroy"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Extremely Tiny Bonnet of Invisibility": {
    "patterns": [
@@ -11692,7 +11692,7 @@
     "gains_kw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Eye Gouge": {
    "patterns": [
@@ -11701,7 +11701,7 @@
     "inflict"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Ezekial Cutpurse": {
    "patterns": [
@@ -11715,7 +11715,7 @@
     "attach_effect"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Face in the Crowd": {
    "patterns": [
@@ -11723,7 +11723,7 @@
     "unblockable"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Fade of the Devoured Emperor": {
    "patterns": [],
@@ -11749,7 +11749,7 @@
     "inflict"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Fantastic Über Kool Creator Majig": {
    "patterns": [

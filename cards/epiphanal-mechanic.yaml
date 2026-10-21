@@ -12,3 +12,15 @@ text: |
   DEPLOYMENT
   COST: Deplete this card.
   EFFECT: You may deploy an item for free. (You still need to meet its threshold and satisfy its extra costs.)
+rules:
+  - ability:
+      name: Development
+      cost: [ deplete: self ]
+      effect:
+        - search: { deck: you, for: { item: any }, reveal: true, to: hand }
+  - ability:
+      name: Deployment
+      cost: [ deplete: self ]
+      effect:
+        - pick: { as: c, from: { item: { zone: hand, owner: you } }, choose: true, optional: true, prompt: "Deploy an item for free (or skip)." }
+        - play_card: { card: c, free: true }

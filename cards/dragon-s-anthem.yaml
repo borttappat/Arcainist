@@ -6,3 +6,7 @@ set: "1st Edition"
 rarity: uncommon
 text: |
   This turn, your characters gain 5 strength.
+rules:
+  - play:
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: 5 }, target: { character: { controller: you } } } ] }

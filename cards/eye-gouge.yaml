@@ -7,3 +7,8 @@ rarity: common
 text: |
   EXTRA COST: Pick a blocking character.
   Inflict 3 damage to the character.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { blocking: true } } }
+      effect: [ damage: { card: c, amount: 3 } ]

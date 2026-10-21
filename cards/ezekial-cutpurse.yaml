@@ -12,3 +12,18 @@ text: |
   YOINK!
   COST: Destroy this card. Pick a "gear" card. Pick a character.
   EFFECT: Take control of the "gear" card. Attach it to the character.
+rules:
+  - unique: Ezekial Cutpurse
+  - static:
+      mods:
+        - { stat: { str: 1 }, target: { character: { controller: you, cost_lte: 2 } } }
+        - { stat: { spd: 1 }, target: { character: { controller: you, cost_gte: 4 } } }
+  - ability:
+      name: Yoink!
+      cost:
+        - destroy: self
+        - pick: { as: g, from: { item: { subtype: gear } } }
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - take_control: { card: g, who: you }
+        - attach: { card: g, to: c }

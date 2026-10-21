@@ -7,3 +7,11 @@ rarity: common
 text: |
   EXTRA COST: Pick a character.
   Remove the character from the game if it has X life or less, where X is the number of [D] you control.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - if:
+            cond: { lte: [ { stat: [ c, life ] }, { icons: deception } ] }
+            then: [ void: c ]

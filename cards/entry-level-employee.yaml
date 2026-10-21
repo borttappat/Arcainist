@@ -11,3 +11,11 @@ text: |
   INVEST
   COST: Pay 2.
   EFFECT: Remove a token from this card.
+enters_with_tokens: 2
+rules:
+  - static:
+      mods: [ { stat: { str: { neg: { tokens: self } }, life: { neg: { tokens: self } } } } ]
+  - ability:
+      name: Invest
+      cost: [ pay: 2 ]
+      effect: [ tokens: { card: self, remove: 1 } ]

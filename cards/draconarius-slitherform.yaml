@@ -9,3 +9,12 @@ text: |
   UNIQUE DRACONARIUS
   When this card is blocked, X is this card's strength. Inflict X damage divided however you want to the blocking party.
   When this card is destroyed, X is this card's strength. Inflict X damage divided however you want to your opponents' characters.
+rules:
+  - unique: Draconarius
+  - trigger: { on: blocked, card: self }
+    effect:
+      - divide_damage: { amount: { stat: [ self, str ] }, from: { character: { blocking: true } } }
+  - trigger: { on: destroyed, card: self }
+    effect:
+      # Out of play its current strength is gone; its printed strength is used.
+      - divide_damage: { amount: { printed: [ self, str ] }, from: { character: { controller: opponent } } }

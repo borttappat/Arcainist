@@ -7,3 +7,6 @@ set: "Ungodly Mess"
 rarity: common
 text: |
   This card gains 1 strength and 1 life for each different staple resource you control.
+rules:
+  - static:
+      mods: [ { stat: { str: { different_staples: you }, life: { different_staples: you } } } ]

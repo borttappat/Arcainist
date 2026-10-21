@@ -8,3 +8,14 @@ rarity: rare
 text: |
   EXTRA COST: You may pick a character.
   When this card enters play, if you picked a character as part of its cost, X is that character's strength and Y is this card's strength. Inflict X damage to this card. Inflict Y damage to that character.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any }, optional: true }
+      effect:
+        - if:
+            cond: { defined: c }
+            then:
+              - let: { X: { stat: [ c, str ] }, Y: { stat: [ self, str ] } }
+              - damage: { card: self, amount: X }
+              - damage: { card: c, amount: Y }

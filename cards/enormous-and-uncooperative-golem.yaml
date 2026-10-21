@@ -10,3 +10,12 @@ text: |
   This card enters play with X tokens on it.
   At the start of your turn, remove a token from this card.
   While there is a token on this card, it gains 5 strength and 5 life.
+enters_with_tokens: X
+rules:
+  - play:
+      cost: [ choose_number: { as: X, min: 0 }, pay: X ]
+  - trigger: { on: start_of_turn, player: you }
+    effect: [ tokens: { card: self, remove: 1 } ]
+  - static:
+      while: { gt: [ { tokens: self }, 0 ] }
+      mods: [ { stat: { str: 5, life: 5 } } ]

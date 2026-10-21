@@ -10,3 +10,11 @@ text: |
   SLITHER
   COST: Remove a token from this card. Pick an item or location.
   EFFECT: Put the card into its owner's hand.
+enters_with_tokens: 2
+rules:
+  - ability:
+      name: Slither
+      cost:
+        - tokens: { card: self, remove: 1 }
+        - pick: { as: c, from: [ { item: any }, { location: any } ] }
+      effect: [ move: { card: c, to: hand } ]

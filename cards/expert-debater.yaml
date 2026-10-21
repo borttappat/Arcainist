@@ -11,3 +11,18 @@ text: |
   RECUR: [G][G]
   COST: Use this only if this card is in your discard pile. Pay 1. Remove this card from the game. Pick a character.
   EFFECT: Remove a token from the card.
+rules:
+  - static:
+      mods:
+        - { stat: { life: { neg: { tokens: self } } } }
+        - { damage_as_tokens: { battle: true }, while: { blocking: self } }
+  - ability:
+      name: Recur
+      keyword: recur
+      threshold: { greed: 2 }
+      from: discard
+      cost:
+        - pay: 1
+        - void: self
+        - pick: { as: c, from: { character: any } }
+      effect: [ tokens: { card: c, remove: 1 } ]

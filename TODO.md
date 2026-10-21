@@ -35,6 +35,16 @@ Where things stand and what's left. Update this as work lands.
   next card), Counter-Attack (attacking during the opponent's turn). Next card in
   order: Desolate.
 
+- **2026-10-22 (fourth session):** 101 more cards, Desolate to Fanatical Shriever
+  (scenario tests in `engine/test/cards-d.test.ts`). New building blocks: the
+  destroying player on `destroyed` (`by: opponent`, which finishes Ecneret),
+  faction-damage tracking (`damaged_faction`), the `threshold` value, the
+  `str_gte`, `strongest`, `costliest`, `keyword`, `equipped` and `text_has`
+  filters, the `attack_target` condition, damage modifiers limited by source
+  (`from`), cost reductions with a `floor`, and the `battle_damage_to_self`,
+  `stays_in_play` and `damage_as_tokens` modifiers. 607 tests pass. **Skipped:**
+  Emergency Obfuscation (players swap sides). Next card in order: Fat Pants.
+
 ## State at the end of the first session (2026-10-21)
 
 - **Cards:** 1,230 cards from the spoilstoolbox.com database, plus a Micromajig token card.
@@ -67,15 +77,12 @@ Where things stand and what's left. Update this as work lands.
   says 144 cards are blocked only because of this.
 - [ ] **Client:** show `topCard` (top card revealed at all times) next to the deck
   counter in `Board.tsx`. The view already sends it.
-- [ ] **Still missing:**
-  - "When this card is destroyed by an opposing card" (Ecneret): needs the
-    destroying source on the `destroyed` event;
-  - "when a coin is flipped" payment loops (Candy Skull Commander).
+- [x] **Ecneret and Candy Skull Commander:** both automated (third and fourth sessions).
 
 ## 2. Automate every card (the main job)
 
 - [ ] Write `rules` for every card without them, in alphabetical batches of about 25
-  (about 340 of 1,230 done; 857 cards with text remain):
+  (about 440 of 1,230 done; 756 cards with text remain):
   - list the batch's cards with their text and numbers;
   - write the rules;
   - append them to the YAML files;
@@ -83,7 +90,8 @@ Where things stand and what's left. Update this as work lands.
 - [ ] Cards that don't fit the language get a small script in `engine/scripts.ts`. If
   a pattern repeats, promote it into the language instead.
 - [ ] Skipped cards, each needing a new building block (see the progress log):
-  Arcane Escrow, Cathedrale de Mau, Clockman Skydocks, Counter-Attack.
+  Arcane Escrow, Cathedrale de Mau, Clockman Skydocks, Counter-Attack, Emergency
+  Obfuscation.
 - [ ] Gear bonuses: the database has no gear stats. Read "The attached character
   gains N strength..." from each gear card's text into `gear` in its JSON.
 - [ ] When done, add a **coverage test** that fails if any playable card (not a

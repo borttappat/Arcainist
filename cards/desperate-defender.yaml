@@ -11,3 +11,10 @@ text: |
   SHOW EVIDENCE
   COST: Use this ability only once each turn. Pick a character.
   EFFECT: Deplete that character.
+rules:
+  - ability:
+      name: Show Evidence
+      once_per_turn: true
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect: [ deplete: c ]

@@ -7,3 +7,6 @@ set: "2nd Edition"
 rarity: rare
 text: |
   When this card enters play, an opponent draws a card.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect: [ draw: { who: opponent, count: 1 } ]

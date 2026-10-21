@@ -10,3 +10,16 @@ text: |
   RECUR: [G][G][G]
   COST: Use this only if this card is in your discard pile. Pay 1. Remove this card from the game.
   EFFECT: Draw 2 cards then discard 2 cards.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may:
+          prompt: "draw 2 cards, then discard 2 cards"
+          steps: [ draw: 2, discard: 2 ]
+  - ability:
+      name: Recur
+      keyword: recur
+      threshold: { greed: 3 }
+      from: discard
+      cost: [ pay: 1, void: self ]
+      effect: [ draw: 2, discard: 2 ]

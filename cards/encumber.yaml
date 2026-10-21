@@ -10,3 +10,18 @@ text: |
   RECUR: [O]
   COST: Use this only if this card is in your discard pile. Pay 2. Remove this card from the game.
   EFFECT: Look at an opponent's hand and choose a non-resource card in it. That opponent discards that card.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: [ { character: any }, { location: any } ] }
+      effect: [ move: { card: c, to: hand } ]
+  - ability:
+      name: Recur
+      keyword: recur
+      threshold: { obsession: 1 }
+      from: discard
+      cost: [ pay: 2, void: self ]
+      effect:
+        - reveal_hand: opponent
+        - pick: { as: c, from: { card: { zone: hand, owner: opponent, not_type: resource } }, choose: true }
+        - discard: { who: opponent, cards: c }

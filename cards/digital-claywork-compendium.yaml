@@ -12,3 +12,16 @@ text: |
   SMASH KEYS
   COST: Destroy this card.
   EFFECT: Reduce the next numeric cost you pay this turn by 2.
+rules:
+  - static:
+      mods: [ { cannot: pick } ]
+  - ability:
+      name: Research
+      cost: [ pay: 2, deplete: self ]
+      effect:
+        - create_effect: { duration: next, mods: [ { cost: -4, applies: any, by: you, target: all } ] }
+  - ability:
+      name: Smash Keys
+      cost: [ destroy: self ]
+      effect:
+        - create_effect: { duration: next, mods: [ { cost: -2, applies: any, by: you, target: all } ] }

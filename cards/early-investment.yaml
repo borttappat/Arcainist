@@ -6,3 +6,8 @@ set: "Holy Heist"
 rarity: common
 text: |
   Search your deck for a resource and reveal it. Put it into your hand. Put this card into play under its owner's control as a face-down resource instead of into their discard pile.
+rules:
+  - play:
+      then: face_down_resource
+      effect:
+        - search: { deck: you, for: { resource: any }, reveal: true, to: hand }

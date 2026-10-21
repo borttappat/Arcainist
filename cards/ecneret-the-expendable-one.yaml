@@ -8,3 +8,20 @@ rarity: uncommon
 text: |
   UNIQUE ECNERET
   When this card is destroyed by an opposing card, characters you control gain 2 strength and 2 life until the end of your next turn.
+rules:
+  - unique: Ecneret
+  - trigger: { on: destroyed, card: self, by: opponent }
+    effect:
+      # "Until the end of your next turn."
+      - create_effect:
+          duration: game
+          tag: ecneret
+          mods: [ { stat: { str: 2, life: 2 }, target: { character: { controller: you } } } ]
+          rules:
+            - trigger: { on: start_of_turn, player: you, once: true }
+              effect:
+                - create_effect:
+                    duration: game
+                    rules:
+                      - trigger: { on: end_of_turn, player: you, once: true }
+                        effect: [ clear_effects: { tag: ecneret } ]

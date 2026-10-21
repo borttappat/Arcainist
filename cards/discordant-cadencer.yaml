@@ -10,3 +10,12 @@ text: |
   COST: Pay 1. Lose 2 influence.
   EFFECT: This turn, this card gains " PROVIDES: [R][R][R] ".
   [R][R][R][R][R][R]: This card gains 2 strength.
+rules:
+  - ability:
+      name: Agitate
+      cost: [ pay: 1, lose_influence: { who: you, amount: 2 } ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { provides: { rage: 3 } } ] }
+  - static:
+      requires: { rage: 6 }
+      mods: [ { stat: { str: 2 } } ]

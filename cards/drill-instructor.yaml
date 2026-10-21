@@ -10,3 +10,18 @@ text: |
   TACTICAL
   EXTRA COST: Deploy this only not during a battle.
   When this card enters play, pick another character. At the start of the next turn that character gains 3 strength for that turn.
+rules:
+  - play:
+      timing: { not_in_battle: true }
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - pick: { as: c, from: { character: { not_self: true } } }
+      - if:
+          cond: { defined: c }
+          then:
+            - create_effect:
+                duration: game
+                rules:
+                  - trigger: { on: start_of_turn, player: any, once: true }
+                    effect:
+                      - create_effect: { duration: turn, mods: [ { stat: { str: 3 }, target: c } ] }

@@ -6,3 +6,7 @@ set: "2nd Edition"
 rarity: rare
 text: |
   Search your deck for up to 2 Gearsmith characters with different names and reveal them. Put them into your hand.
+rules:
+  - play:
+      effect:
+        - search: { deck: you, for: { character: { trade: gearsmith } }, count: 2, different_names: true, reveal: true, to: hand }

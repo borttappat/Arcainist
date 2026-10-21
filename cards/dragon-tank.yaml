@@ -7,3 +7,11 @@ set: "2nd Edition"
 rarity: rare
 text: |
   At the start of your turn, you may pick a character an opponent controls. If you do, destroy it. Otherwise, destroy this card.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - pick: { as: c, from: { character: { controller: opponent } }, optional: true, prompt: "Dragon Tank: pick a character to destroy (otherwise Dragon Tank is destroyed)." }
+      - if:
+          cond: { defined: c }
+          then: [ destroy: c ]
+          else: [ destroy: self ]

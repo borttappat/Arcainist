@@ -14,3 +14,20 @@ text: |
   OPTION 3
   EXTRA COST: Pick a character.
   EFFECT: If damage has been inflicted to the character this turn, destroy it.
+rules:
+  - play:
+      cost:
+        - choose_one:
+            - { label: "Search an opponent's deck for a card; put it into their discard pile", steps: [ let: { o: 1 } ] }
+            - { label: "A character gains 1 speed this turn", steps: [ let: { o: 2 }, pick: { as: c, from: { character: any } } ] }
+            - { label: "Destroy a character that was dealt damage this turn", steps: [ let: { o: 3 }, pick: { as: c, from: { character: any } } ] }
+      effect:
+        - if:
+            cond: { eq: [ o, 1 ] }
+            then: [ search: { deck: opponent, for: { card: any }, to: discard } ]
+        - if:
+            cond: { eq: [ o, 2 ] }
+            then: [ modify: { card: c, stat: spd, gain: 1 } ]
+        - if:
+            cond: { all: [ { eq: [ o, 3 ] }, { gt: [ { damage: c }, 0 ] } ] }
+            then: [ destroy: c ]

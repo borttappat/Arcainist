@@ -7,3 +7,16 @@ rarity: uncommon
 text: |
   EXTRA COST: Deploy this only not during a battle. Pick an opponent. Reveal 3 characters with numeric cost 6 or less from your hand.
   That opponent chooses one of those characters. Put that character into play under your control. Put any revealed UNIQUE GLOAMSPIKE and "demon knight" cards into play under your control.
+rules:
+  - play:
+      timing: { not_in_battle: true }
+      cost:
+        - pick: { as: r, from: { character: { zone: hand, owner: you, cost_lte: 6, not_self: true } }, count: 3, exactly: true, choose: true, prompt: "Reveal 3 characters with numeric cost 6 or less from your hand." }
+        - reveal: r
+      effect:
+        - as:
+            who: opponent
+            steps:
+              - pick: { as: c, from: { character: { zone: hand, among: r } }, choose: true, prompt: "Choose the character your opponent puts into play." }
+        - put_into_play: { card: c, controller: you }
+        - put_into_play: { card: [ { character: { zone: hand, among: r, unique: Gloamspike } }, { character: { zone: hand, among: r, subtype: demon knight } } ], controller: you }

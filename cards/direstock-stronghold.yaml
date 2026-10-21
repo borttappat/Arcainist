@@ -8,3 +8,18 @@ text: |
   UNIQUE STRONGHOLD
   At the end of your turn, you may search your deck for a warlord character and reveal it. If you do, put it on top of your deck.
   When you deploy a character, X is that character's numeric cost and you may pick a faction. If you do, inflict X damage to that faction and put X damage markers on this card.
+rules:
+  - unique: Stronghold
+  - trigger: { on: end_of_turn, player: you }
+    effect:
+      - may:
+          - search: { deck: you, for: { character: { trade: warlord } }, reveal: true, to: deck_top }
+  - trigger: { on: played, card: { character: any }, player: you }
+    effect:
+      - let: { X: { cost: it } }
+      - pick: { as: f, from: { faction: any }, optional: true }
+      - if:
+          cond: { defined: f }
+          then:
+            - damage: { card: f, amount: X }
+            - markers: { card: self, add: X }

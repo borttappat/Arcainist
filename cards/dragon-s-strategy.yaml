@@ -6,3 +6,8 @@ set: "1st Edition"
 rarity: common
 text: |
   An opponent's faction loses 2 influence. Draw a card.
+rules:
+  - play:
+      effect:
+        - lose_influence: { who: opponent, amount: 2 }
+        - draw: 1

@@ -6,3 +6,13 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   At the start of an opponent's turn you may pay 2 and pick a character. If you do, deplete that character and this turn, it cannot be restored by its controller's faction's RESTORE RULE.
+rules:
+  - trigger: { on: start_of_turn, player: opponent }
+    effect:
+      - may_pay:
+          amount: 2
+          prompt: "deplete a character; it can't be restored by its Restore Rule this turn"
+          then:
+            - pick: { as: c, from: { character: any } }
+            - deplete: c
+            - create_effect: { duration: turn, mods: [ { cannot: restore_by_rule, target: c } ] }

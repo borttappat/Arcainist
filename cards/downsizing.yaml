@@ -6,3 +6,9 @@ set: "2nd Edition"
 rarity: rare
 text: |
   Destroy all characters. Each opponent's faction gains X influence, where X is the number of characters destroyed this way.
+rules:
+  - play:
+      effect:
+        - let: { X: { count: { character: any } } }
+        - destroy: { character: any }
+        - gain_influence: { who: opponent, amount: X }

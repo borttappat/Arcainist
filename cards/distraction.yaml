@@ -7,3 +7,8 @@ rarity: common
 text: |
   EXTRA COST: Pick a character.
   Deplete the character.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect: [ deplete: c ]

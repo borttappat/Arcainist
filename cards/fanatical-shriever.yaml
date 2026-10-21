@@ -11,3 +11,18 @@ text: |
   EXTRA COST: Deploy this only not during a battle. You may pick an item.
   When this card enters play, if you picked an item as part of its cost, destroy that item.
   [R][R][R][R][R][R]: When this card enters play you may pick a location. If you do, inflict 2 damage to that card.
+rules:
+  - play:
+      timing: { not_in_battle: true }
+      cost:
+        - pick: { as: i, from: { item: any }, optional: true }
+      effect:
+        - if:
+            cond: { defined: i }
+            then: [ destroy: i ]
+  - trigger: { on: enters_play, card: self, requires: { rage: 6 } }
+    effect:
+      - pick: { as: l, from: { location: any }, optional: true }
+      - if:
+          cond: { defined: l }
+          then: [ damage: { card: l, amount: 2 } ]

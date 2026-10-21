@@ -7,3 +7,25 @@ rarity: uncommon
 text: |
   You may pick a character. If you do, inflict 1 damage to the character. If you control an attacking party of at least 2 members, you may pick a character. If you do, inflict 2 damage to the character.
   FLIP UP: 4 [R] and you may pick an item. If you do, destroy it.
+rules:
+  - play:
+      effect:
+        - pick: { as: c, from: { character: any }, optional: true }
+        - if:
+            cond: { defined: c }
+            then: [ damage: { card: c, amount: 1 } ]
+        - if:
+            cond: { gte: [ { count: { character: { attacking: true, controller: you } } }, 2 ] }
+            then:
+              - pick: { as: d, from: { character: any }, optional: true }
+              - if:
+                  cond: { defined: d }
+                  then: [ damage: { card: d, amount: 2 } ]
+  - flip_up:
+      pay: 4
+      threshold: { rage: 1 }
+      cost:
+        - pick: { as: fi, from: { item: any }, optional: true }
+        - if:
+            cond: { defined: fi }
+            then: [ destroy: fi ]

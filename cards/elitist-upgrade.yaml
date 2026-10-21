@@ -11,3 +11,13 @@ text: |
   FLIP IT: [E]
   COST: Use this only while this card is a face-down resource and not during a battle. Reveal this card. Pay 4.
   EFFECT: Put this card into play face-up. This turn, all 'majig' characters you control gain 1 strength and 1 life.
+rules:
+  - ability:
+      name: Flip It
+      from: face_down_resource
+      threshold: { elitism: 1 }
+      timing: { not_in_battle: true }
+      cost: [ reveal: self, pay: 4 ]
+      effect:
+        - flip_face_up: self
+        - create_effect: { duration: turn, mods: [ { stat: { str: 1, life: 1 }, target: { character: { controller: you, subtype: majig } } } ] }

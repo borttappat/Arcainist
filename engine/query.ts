@@ -73,6 +73,9 @@ const MOD_KINDS = [
   "assign_to_target",
   "must_be_assigned",
   "search_tax",
+  "battle_damage_to_self",
+  "stays_in_play",
+  "damage_as_tokens",
 ];
 
 export class Q {
@@ -513,6 +516,11 @@ export class Q {
       const list = this.s.turnLog.played.filter((e) => !f.type || e.types.includes(f.type));
       return list.length ? list[list.length - 1].cost : 0;
     }
+    if ("threshold" in x) {
+      // Total icons in a card's threshold.
+      const r = this.ref(x.threshold, scope);
+      return r ? Object.values(this.def(r).threshold ?? {}).reduce((n: number, v) => n + (v ?? 0), 0) : 0;
+    }
     if ("printed" in x) {
       const [ref, st] = x.printed;
       const r = this.ref(ref, scope);
@@ -594,6 +602,9 @@ export class Q {
         const r = this.ref(v, scope);
         return !!r && !!this.s.turnLog.assigned?.[r];
       }
+      case "attack_target":
+        // { attack_target: faction } or a location reference
+        return !!this.s.battle && (v === "faction" ? this.s.battle.target === "faction" : this.s.battle.target === this.ref(v, scope));
       case "battle_damage":
         // Has any damage been assigned in the current battle?
         return !!this.s.battle?.done.length === !!v;
@@ -655,6 +666,13 @@ export class Q {
     if (f.token !== undefined && !!d.token !== !!f.token) return false;
     if (f.trade && d.trade !== f.trade) return false;
     if (f.not_trade && d.trade === f.not_trade) return false;
+    // "inflicted damage to your faction this turn": damaged_faction: you
+    if (f.damaged_faction !== undefined && !(this.s.turnLog.factionHits?.[this.who(f.damaged_faction, scope)] ?? []).includes(iid)) return false;
+    if (f.keyword !== undefined && !this.keyword(iid, String(f.keyword).toLowerCase())) return false;
+    // "the character an opponent controls with the highest numeric cost" (among its controller's characters)
+    if (f.costliest && (c.zone !== "play" || (d.cost ?? 0) < Math.max(...this.characters(c.controller).map((i) => this.def(i).cost ?? 0)))) return false;
+    // "characters with items attached to them"
+    if (f.equipped !== undefined && this.attachments(iid).some((a) => this.is(a, "item")) !== !!f.equipped) return false;
     if (f.has_tokens !== undefined && (c.tokens > 0) !== !!f.has_tokens) return false;
     if (f.printed_type && !d.types.includes(f.printed_type)) return false;
     if (f.not_types && (f.not_types as string[]).some((t) => types.includes(t as CardType))) return false;
@@ -670,6 +688,11 @@ export class Q {
     const statNow = (st: Stat) => (c.zone === "play" ? this.stat(iid, st) : this.printed(iid, st));
     if (f.str_lte !== undefined && statNow("str") > this.value(f.str_lte, scope)) return false;
     if (f.life_lte !== undefined && statNow("life") > this.value(f.life_lte, scope)) return false;
+    if (f.str_gte !== undefined && statNow("str") < this.value(f.str_gte, scope)) return false;
+    // "the character with the highest strength"
+    if (f.strongest && (c.zone !== "play" || this.stat(iid, "str") < Math.max(...this.allInPlay().filter((i) => this.isCharacter(i)).map((i) => this.stat(i, "str"))))) return false;
+    // Printed text contains this ("has a [V] icon in its rules text").
+    if (f.text_has !== undefined && !(d.text ?? "").includes(String(f.text_has))) return false;
     // "the top N cards of your deck"
     if (f.top !== undefined && (c.zone !== "deck" || this.s.players[c.owner].deck.indexOf(iid) >= this.value(f.top, scope))) return false;
     if (f.trade_not_among !== undefined) {

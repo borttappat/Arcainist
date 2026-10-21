@@ -7,3 +7,13 @@ rarity: rare
 text: |
   At the start of your turn, you may pick a character. If you do, put a token on it.
   All characters lose 1 strength, 1 life, and 1 speed for each token on them.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ tokens: { card: c, add: 1 } ]
+  - static:
+      mods:
+        - { stat: { str: { neg: { tokens: it } }, life: { neg: { tokens: it } }, spd: { neg: { tokens: it } } }, target: { character: any } }

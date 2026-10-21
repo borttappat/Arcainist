@@ -116,6 +116,8 @@ export interface CardInst {
   /** Face-down in the void: only the owner and `knownTo` may look. */
   voidFaceDown?: boolean;
   knownTo?: PlayerId[];
+  /** Controller of the card that last inflicted damage to this card (who destroyed it). */
+  hitBy?: PlayerId;
   /** An optional destroy replacement is waiting on its owner's answer. */
   replacing?: boolean;
   /** Source iids that put this card where it is (for "removed by this card"). */
@@ -292,6 +294,8 @@ export interface TurnLog {
   abilities?: Record<string, boolean>;
   /** Characters that assigned battle damage this turn. */
   assigned?: Record<string, boolean>;
+  /** Cards that inflicted damage to each player's faction this turn. */
+  factionHits?: Partial<Record<PlayerId, string[]>>;
 }
 
 export interface GameState {

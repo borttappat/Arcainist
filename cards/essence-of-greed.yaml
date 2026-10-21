@@ -13,3 +13,20 @@ text: |
   This turn, the character gains 2 life.
   OPTION 3
   Your faction gains 4 influence.
+rules:
+  - play:
+      cost:
+        - choose_one:
+            - { label: "Draw a card", steps: [ let: { o: 1 } ] }
+            - { label: "A character gains 2 life this turn", steps: [ let: { o: 2 }, pick: { as: c, from: { character: any } } ] }
+            - { label: "Your faction gains 4 influence", steps: [ let: { o: 3 } ] }
+      effect:
+        - if:
+            cond: { eq: [ o, 1 ] }
+            then: [ draw: 1 ]
+        - if:
+            cond: { eq: [ o, 2 ] }
+            then: [ modify: { card: c, stat: life, gain: 2 } ]
+        - if:
+            cond: { eq: [ o, 3 ] }
+            then: [ gain_influence: { who: you, amount: 4 } ]

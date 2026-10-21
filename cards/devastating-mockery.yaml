@@ -7,3 +7,10 @@ rarity: common
 text: |
   EXTRA COST: Pick a character.
   If the character is COVERT, it loses COVERT this turn. Draw a card.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { lose_keyword: covert, target: c } ] }
+        - draw: 1

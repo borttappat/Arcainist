@@ -12,3 +12,14 @@ text: |
   PROWL
   COST: Remove a token from this card.
   EFFECT: This turn, this card gains COVERT.
+rules:
+  - ability:
+      name: Howl
+      cost:
+        - destroy: { from: { resource: { name: Deception, owner: you } }, choose: true }
+      effect: [ tokens: { card: self, add: 1 } ]
+  - ability:
+      name: Prowl
+      cost: [ tokens: { card: self, remove: 1 } ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { keyword: covert } ] }

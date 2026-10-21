@@ -8,3 +8,10 @@ text: |
   EXTRA COST: Pick an attacking character.
   If the picked character would inflict battle damage, inflict that damage to itself instead.
   FLIP UP: 3 [D]
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { attacking: true } } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { battle_damage_to_self: true, target: c } ] }
+  - flip_up: { pay: 3, threshold: { deception: 1 } }

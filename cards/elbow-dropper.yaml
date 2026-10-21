@@ -9,3 +9,11 @@ text: |
   OFF THE TOP ROPE
   COST: Deplete this card. Pick a character.
   EFFECT: This turn, the character cannot block.
+rules:
+  - ability:
+      name: Off the Top Rope
+      cost:
+        - deplete: self
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { cannot: block, target: c } ] }

@@ -9,3 +9,12 @@ text: |
   UNIQUE EX MACHINA
   When this card enters play, all your characters gain 1 strength and 1 life this turn.
   When this card leaves play, you may put up to five Micromajigs into play.
+rules:
+  - unique: Ex Machina
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - create_effect: { duration: turn, mods: [ { stat: { str: 1, life: 1 }, target: { character: { controller: you } } } ] }
+  - trigger: { on: leaves_play, card: self }
+    effect:
+      - choose_number: { as: X, min: 0, max: 5, prompt: "Ex Machina Majig: put up to 5 Micromajig tokens into play." }
+      - create_token: { card: micromajig-token, count: X }

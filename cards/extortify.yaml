@@ -6,3 +6,6 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   Your faction gains 8 influence.
+rules:
+  - play:
+      effect: [ gain_influence: { who: you, amount: 8 } ]

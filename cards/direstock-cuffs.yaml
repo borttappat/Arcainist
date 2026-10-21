@@ -13,3 +13,15 @@ text: |
   COST: Pick a character that is not in battle. Pay 2.
   EFFECT: Attach this card to the character.
   FLIP UP: 1 [E]
+rules:
+  - static:
+      mods:
+        - { lose_keyword: covert, target: host }
+        - { no_rules: true, target: host, while: { matches: [ host, { character: { text_has: "[V]" } } ] } }
+  - ability:
+      name: Move
+      cost:
+        - pick: { as: c, from: { character: { attacking: false, blocking: false } } }
+        - pay: 2
+      effect: [ attach: { card: self, to: c } ]
+  - flip_up: { pay: 1, threshold: { elitism: 1 } }

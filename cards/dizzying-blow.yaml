@@ -7,3 +7,12 @@ rarity: common
 text: |
   EXTRA COST: Pick a character that is attacking your faction.
   Inflict 1 damage to the character and remove it from the battle. Draw a card.
+rules:
+  - play:
+      cost:
+        - require: { all: [ { your_turn: false }, { attack_target: faction } ] }
+        - pick: { as: c, from: { character: { attacking: true } } }
+      effect:
+        - damage: { card: c, amount: 1 }
+        - remove_from_battle: c
+        - draw: 1

@@ -7,3 +7,10 @@ set: "Seed Saga"
 rarity: common
 text: |
   When this card leaves play, you may pick a character. If you do, inflict 1 damage to it.
+rules:
+  - trigger: { on: leaves_play, card: self }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ damage: { card: c, amount: 1 } ]

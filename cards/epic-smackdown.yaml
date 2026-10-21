@@ -7,3 +7,21 @@ rarity: rare
 text: |
   EXTRA COST: Choose a number for X. Destroy X characters you control.
   Each opponent that controls at least X characters, destroys X characters they control. Otherwise, destroy all of that opponent's characters. Draw a card.
+rules:
+  - play:
+      cost:
+        - choose_number: { as: X, min: 0, max: { count: { character: { controller: you } } } }
+        - pick: { as: d, from: { character: { controller: you } }, count: X, exactly: true, choose: true, prompt: "Destroy X characters you control." }
+        - destroy: d
+      effect:
+        - as:
+            who: opponent
+            steps:
+              - if:
+                  cond: { gte: [ { count: { character: { controller: you } } }, X ] }
+                  then:
+                    - pick: { as: e, from: { character: { controller: you } }, count: X, exactly: true, choose: true, prompt: "Destroy X characters you control." }
+                    - destroy: e
+                  else:
+                    - destroy: { character: { controller: you } }
+        - draw: 1

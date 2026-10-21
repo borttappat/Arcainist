@@ -8,3 +8,9 @@ rarity: rare
 text: |
   At the end of your turn, if this card is depleted, inflict 1 damage to it.
   [R][R][R][R][R][R][R][R][R]: This card gains 4 life.
+rules:
+  - trigger: { on: end_of_turn, player: you, while: { matches: [ self, { character: { depleted: true } } ] } }
+    effect: [ damage: { card: self, amount: 1 } ]
+  - static:
+      requires: { rage: 9 }
+      mods: [ { stat: { life: 4 } } ]

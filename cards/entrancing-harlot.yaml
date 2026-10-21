@@ -7,3 +7,7 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   When this card attacks, all other members of its party gain 1 speed this turn.
+rules:
+  - trigger: { on: attacks, card: self }
+    effect:
+      - create_effect: { duration: turn, mods: [ { stat: { spd: 1 }, target: { character: { attacking: true, not_self: true } } } ] }

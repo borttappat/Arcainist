@@ -8,3 +8,11 @@ rarity: common
 text: |
   EXTRA COST: You may pick a character you control.
   When this card enters play, if you picked a character as part of its cost, put 2 tokens on that character.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { controller: you } }, optional: true }
+      effect:
+        - if:
+            cond: { defined: c }
+            then: [ tokens: { card: c, add: 2 } ]

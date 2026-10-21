@@ -15,3 +15,25 @@ text: |
   SERAPHIM FUSION
   COST: Use this ability only if this card is attached to a UNIQUE RUDOLPHUS. Pay 1. Destroy this card.
   EFFECT: Search your deck for a card named "Vexillarius Dacian-Draco" and put it into play.
+rules:
+  - unique: Blade of Light
+  - static:
+      mods: [ { stays_in_play: true } ]
+  - ability:
+      name: Equip
+      cost:
+        - pick: { as: c, from: { character: any } }
+        - if:
+            cond: { matches: [ c, { character: { unique: Rudolphus } } ] }
+            then: [ let: { X: 0 } ]
+            else: [ let: { X: 2 } ]
+        - pay: X
+      effect: [ attach: { card: self, to: c } ]
+  - ability:
+      name: Seraphim Fusion
+      cost:
+        - require: { matches: [ host, { character: { unique: Rudolphus } } ] }
+        - pay: 1
+        - destroy: self
+      effect:
+        - search: { deck: you, for: { card: { name: Vexillarius Dacian-Draco } }, reveal: true, to: play }

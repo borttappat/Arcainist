@@ -7,3 +7,10 @@ rarity: uncommon
 text: |
   EXTRA COST: Pick 2 or fewer characters.
   This turn, the characters lose 1 speed. Draw a card.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any }, count: 2, up_to: true }
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { spd: -1 }, target: c } ] }
+        - draw: 1

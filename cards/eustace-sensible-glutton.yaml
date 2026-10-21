@@ -10,3 +10,18 @@ text: |
   FEALTY: While this card is in your hand and you control at least 4 staple resources of different trades, reduce this card's threshold requirement by any 3 resource icons.
   When this card attacks, you may have your faction lose 3 influence. If you do, this card gains 3 strength and COVERT this turn.
   When this card inflicts battle damage to a faction, your faction gains 3 influence.
+rules:
+  - unique: Eustace
+  - static:
+      zone: hand
+      while: { gte: [ { different_staples: you }, 4 ] }
+      mods: [ { threshold_reduce: 3 } ]
+  - trigger: { on: attacks, card: self }
+    effect:
+      - may:
+          prompt: "your faction loses 3 influence; Eustace gains 3 strength and COVERT this turn"
+          steps:
+            - lose_influence: { who: you, amount: 3 }
+            - create_effect: { duration: turn, mods: [ { stat: { str: 3 } }, { keyword: covert } ] }
+  - trigger: { on: damage, source: self, battle: true, faction: true }
+    effect: [ gain_influence: { who: you, amount: 3 } ]

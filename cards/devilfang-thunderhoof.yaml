@@ -12,3 +12,13 @@ text: |
   DISRUPT
   COST: Pay 2. Remove a token from this card. Pick an opponent.
   EFFECT: That player discards a card.
+rules:
+  - unique: Thunderhoof
+  - trigger: { on: enters_play, card: self }
+    effect: [ tokens: { card: self, add: { icons: obsession } } ]
+  - static:
+      mods: [ { stat: { str: { tokens: self } } } ]
+  - ability:
+      name: Disrupt
+      cost: [ pay: 2, tokens: { card: self, remove: 1 } ]
+      effect: [ discard: { who: opponent, count: 1 } ]

@@ -7,3 +7,8 @@ rarity: common
 text: |
   EXTRA COST: Pick a character that inflicted damage to your faction this turn.
   Remove that character from the game.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { damaged_faction: you } } }
+      effect: [ void: c ]

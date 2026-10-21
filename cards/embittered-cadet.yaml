@@ -7,3 +7,5 @@ set: "Seed Saga"
 rarity: common
 text: |
   PROVIDES: [R]
+# PROVIDES: [R] is in its numbers file.
+rules: []

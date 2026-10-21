@@ -8,3 +8,9 @@ text: |
   EXTRA COST: Pick a character.
   Put the character into its owner's hand.
   FLIP UP: 1 [O][O]
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect: [ move: { card: c, to: hand } ]
+  - flip_up: { pay: 1, threshold: { obsession: 2 } }

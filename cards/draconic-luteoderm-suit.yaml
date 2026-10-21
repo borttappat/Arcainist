@@ -15,3 +15,28 @@ text: |
   EQUIP
   COST: Pick a character. If it is a UNIQUE JO then X is 0, otherwise X is 2. Pay X.
   EFFECT: Attach this card to the character.
+rules:
+  - unique: Draconic Luteoderm Suit
+  - trigger: { on: played, card: { item: { subtype: gear, not_self: true } }, player: any }
+    effect:
+      - may:
+          prompt: "draw a card"
+          steps: [ draw: 1 ]
+  - ability:
+      name: Seraphim Fusion
+      cost:
+        - require: { matches: [ host, { character: { unique: Jo } } ] }
+        - pay: 3
+        - destroy: self
+      effect:
+        - search: { deck: you, for: { card: { name: Testudine Autoframe } }, reveal: true, to: play }
+  - ability:
+      name: Equip
+      cost:
+        - pick: { as: c, from: { character: any } }
+        - if:
+            cond: { matches: [ c, { character: { unique: Jo } } ] }
+            then: [ let: { X: 0 } ]
+            else: [ let: { X: 2 } ]
+        - pay: X
+      effect: [ attach: { card: self, to: c } ]

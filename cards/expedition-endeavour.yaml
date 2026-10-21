@@ -15,3 +15,35 @@ text: |
   OPTION 3
   EXTRA COST: Pick a character.
   EFFECT: This turn, the character gains COVERT.
+rules:
+  - play:
+      cost:
+        - choose_one:
+            - label: "An opponent may detach up to 3 resources; search for an Arcanist character"
+              steps:
+                - let: { o: 1 }
+                - as:
+                    who: opponent
+                    steps:
+                      - choose_number: { as: Y, min: 0, max: 3, prompt: "Expedition Endeavour: detach up to 3 resources from your faction." }
+                      - detach: { count: Y }
+            - label: "Deplete X characters you control; detach X+3 resources"
+              steps:
+                - let: { o: 2 }
+                - pick: { as: d, from: { character: { controller: you, depleted: false } }, count: { count: { character: { controller: you, depleted: false } } }, up_to: true, choose: true, prompt: "Deplete X characters you control." }
+                - deplete: d
+                - let: { X: { len: d } }
+            - label: "A character gains COVERT this turn"
+              steps: [ let: { o: 3 }, pick: { as: c, from: { character: any } } ]
+      effect:
+        - if:
+            cond: { eq: [ o, 1 ] }
+            then:
+              - may:
+                  - search: { deck: you, for: { character: { trade: arcanist } }, reveal: true, to: hand }
+        - if:
+            cond: { eq: [ o, 2 ] }
+            then: [ detach: { count: "X + 3" } ]
+        - if:
+            cond: { eq: [ o, 3 ] }
+            then: [ create_effect: { duration: turn, mods: [ { keyword: covert, target: c } ] } ]
