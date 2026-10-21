@@ -7,3 +7,6 @@ set: "Seed Saga"
 rarity: common
 text: |
   When this card enters play, your faction loses 2 influence.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect: [ lose_influence: { who: you, amount: 2 } ]

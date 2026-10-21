@@ -2,6 +2,7 @@ id: "flabbergasting-philosopher"
 name: "Flabbergasting Philosopher"
 trade: banker
 types: [character]
+keywords: [tactical]
 subtypes: ["mau"]
 set: "Seed Saga"
 rarity: uncommon

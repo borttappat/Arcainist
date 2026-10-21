@@ -7,3 +7,10 @@ rarity: common
 text: |
   EXTRA COST: Pick a character.
   This turn, the character loses 5 strength. Draw a card.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - modify: { card: c, stat: str, lose: 5 }
+        - draw: 1

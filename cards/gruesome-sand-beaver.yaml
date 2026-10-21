@@ -2,6 +2,7 @@ id: "gruesome-sand-beaver"
 name: "Gruesome Sand Beaver"
 trade: arcanist
 types: [character]
+keywords: [covert]
 subtypes: ["beast"]
 set: "Holy Heist"
 rarity: uncommon

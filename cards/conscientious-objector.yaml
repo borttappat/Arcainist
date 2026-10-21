@@ -2,6 +2,7 @@ id: "conscientious-objector"
 name: "Conscientious Objector"
 trade: warlord
 types: [character]
+keywords: [tactical]
 subtypes: ["pacifist"]
 set: "Seed Saga"
 rarity: rare
@@ -10,3 +11,17 @@ text: |
   EXTRA COST: Pick a location you control.
   While the picked location is in play, this card cannot attack or block.
   FLIP UP: 2 [R][R]
+rules:
+  - play:
+      cost:
+        - pick: { as: l, from: { location: { controller: you } } }
+      effect:
+        - create_effect:
+            duration: game
+            mods:
+              - { cannot: attack, while: { in_play: l } }
+              - { cannot: block, while: { in_play: l } }
+            rules:
+              - trigger: { on: leaves_play, card: self, player: any, once: true }
+                effect: [ clear_effects: self ]
+  - flip_up: { pay: 2, threshold: { rage: 2 } }

@@ -7,3 +7,14 @@ rarity: rare
 text: |
   EXTRA COST: Choose a number for X. Pay X. Pick 2 characters, locations, and/or factions.
   The next X damage that would be inflicted to the first picked card this turn is inflicted to the second picked card instead.
+rules:
+  - play:
+      cost:
+        - choose_number: { as: X, min: 0 }
+        - pay: X
+        - pick: { as: a, from: [ { character: any }, { location: any }, { faction: any } ], prompt: "Pick the card whose damage is moved." }
+        - pick: { as: b, from: [ { character: { not: a } }, { location: { not: a } }, { faction: { not: a } } ], prompt: "Pick the card that takes the damage instead." }
+      effect:
+        - create_effect:
+            duration: turn
+            mods: [ { redirect_damage: { to: b, amount: X }, target: a } ]

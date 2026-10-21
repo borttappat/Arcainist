@@ -7,3 +7,9 @@ set: "Ungodly Mess"
 rarity: ultra-rare
 text: |
   When this card enters play, you may search your deck for a card named Elitism and reveal it. If you do, put it into play. Attach it to your faction.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may:
+          - search: { deck: you, for: { card: { name: Elitism } }, reveal: true, to: keep, as: found }
+          - put_into_play: { card: found, controller: you, attached: true }

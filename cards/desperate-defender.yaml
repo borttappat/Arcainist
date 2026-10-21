@@ -2,6 +2,7 @@ id: "desperate-defender"
 name: "Desperate Defender"
 trade: banker
 types: [character]
+keywords: [covert]
 subtypes: ["lawyer"]
 set: "Ungodly Mess"
 rarity: common

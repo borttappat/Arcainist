@@ -2,6 +2,7 @@ id: "swollen-ostrich"
 name: "Swollen Ostrich"
 trade: rogue
 types: [character]
+keywords: [tactical]
 subtypes: ["beast"]
 set: "Seed Saga"
 rarity: uncommon

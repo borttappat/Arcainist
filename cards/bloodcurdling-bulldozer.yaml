@@ -7,3 +7,10 @@ set: "2nd Edition"
 rarity: common
 text: |
   When this card attacks, you may pick a character. If you do, deplete it.
+rules:
+  - trigger: { on: attacks, card: self }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ deplete: c ]

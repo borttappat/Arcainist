@@ -13,3 +13,18 @@ text: |
   Destroy that character.
   OPTION 3
   Their faction loses 3 influence.
+rules:
+  - unique: Contiguous Defalcating Machine
+  - trigger: { on: enters_play, card: { character: any }, player: any }
+    effect:
+      - as:
+          who: { controller_of: it }
+          steps:
+            - choose_one:
+                - label: "Put a resource you control into its owner's hand"
+                  when: { exists: { resource: { controller: you } } }
+                  steps:
+                    - pick: { as: r, from: { resource: { controller: you } }, choose: true }
+                    - move: { card: r, to: hand }
+                - { label: "Destroy that character", steps: [ destroy: it ] }
+                - { label: "Your faction loses 3 influence", steps: [ lose_influence: { who: you, amount: 3 } ] }

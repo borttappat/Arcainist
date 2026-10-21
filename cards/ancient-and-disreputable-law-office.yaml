@@ -7,3 +7,7 @@ rarity: rare
 text: |
   UNIQUE A & D LAW
   Characters with numeric cost 2 or less cannot attack.
+rules:
+  - unique: A & D Law
+  - static:
+      mods: [ { cannot: attack, target: { character: { cost_lte: 2 } } } ]

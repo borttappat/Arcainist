@@ -9,3 +9,9 @@ text: |
   SNUB
   COST: Pay 1. Deplete this card.
   EFFECT: Search your deck for a card named Elitism and reveal it. Put it into your hand.
+rules:
+  - ability:
+      name: Snub
+      cost: [ pay: 1, deplete: self ]
+      effect:
+        - search: { deck: you, for: { card: { name: Elitism } }, reveal: true, to: hand }

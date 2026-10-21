@@ -9,3 +9,18 @@ text: |
   RECUR: [O][O]
   COST: Use this only if this card is in your discard pile. Pay 4. Remove this card from the game.
   EFFECT: An opponent discards a card. Draw a card.
+rules:
+  - play:
+      effect:
+        - draw: 2
+        - pick: { as: b, from: { card: { zone: hand, owner: you } }, choose: true, prompt: "Put a card from your hand on the bottom of your deck." }
+        - move: { card: b, to: deck_bottom }
+  - ability:
+      name: Recur
+      keyword: recur
+      threshold: { obsession: 2 }
+      from: discard
+      cost: [ pay: 4, void: self ]
+      effect:
+        - discard: { who: opponent, count: 1 }
+        - draw: 1

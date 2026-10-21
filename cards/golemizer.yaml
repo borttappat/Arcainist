@@ -2,6 +2,7 @@ id: "golemizer"
 name: "Golemizer"
 trade: gearsmith
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "Seed Saga"
 rarity: common

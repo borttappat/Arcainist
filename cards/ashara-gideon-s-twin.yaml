@@ -9,3 +9,12 @@ text: |
   UNIQUE ASHARA
   EXTRA COST: You may pick a character in an opponent's discard pile with 3 life or less.
   When this card enters play, if you picked a character as part of its cost, put the character into play under your control.
+rules:
+  - unique: Ashara
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { zone: discard, owner: opponent, life_lte: 3 } }, optional: true }
+      effect:
+        - if:
+            cond: { defined: c }
+            then: [ put_into_play: { card: c, controller: you } ]

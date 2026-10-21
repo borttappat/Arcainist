@@ -7,3 +7,10 @@ rarity: common
 text: |
   EXTRA COST: Pick a character.
   This turn, the character gains COVERT. Draw a card.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { keyword: covert, target: c } ] }
+        - draw: 1

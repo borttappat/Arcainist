@@ -8,3 +8,15 @@ text: |
   UNIQUE AKASHIC OBJECT
   When a card that provides at least [V] enters play under an opponent's control, you may pay 1. If you do, play a face-down resource attached to your faction. Otherwise, flip this card face-down under its owner's control.
   FLIP UP: 3 [V][V]
+rules:
+  - unique: Akashic Object
+  - trigger: { on: enters_play, card: { controller: opponent, provides_at_least: { volition: 1 } } }
+    effect:
+      - may_pay:
+          amount: 1
+          prompt: "play a face-down resource attached to your faction (otherwise Akashic Notes flips face-down)"
+          then:
+            - pick: { as: r, from: { card: { zone: hand, owner: you } }, choose: true, prompt: "Choose a card to play as a face-down resource." }
+            - put_into_play: { card: r, controller: you, as: face_down_resource, attached: true }
+          else: [ flip_face_down: { card: self, controller: owner } ]
+  - flip_up: { pay: 3, threshold: { volition: 2 } }

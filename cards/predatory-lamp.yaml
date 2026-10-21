@@ -2,6 +2,7 @@ id: "predatory-lamp"
 name: "Predatory Lamp"
 trade: arcanist
 types: [character]
+keywords: [covert]
 subtypes: ["lurker"]
 set: "Holy Heist"
 rarity: common

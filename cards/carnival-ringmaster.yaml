@@ -2,6 +2,7 @@ id: "carnival-ringmaster"
 name: "Carnival Ringmaster"
 trade: rogue
 types: [character]
+keywords: [tactical]
 subtypes: ["performer"]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
@@ -9,3 +10,25 @@ text: |
   TACTICAL
   When this card enters play you may add it to your attacking or blocking party. All characters in that party gain 1 speed.
   When this card enters play you may pick a character. If you do, put a token on that card.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - if:
+          cond: { in_battle: true }
+          then:
+            - may:
+                prompt: "add Carnival Ringmaster to your party; its members gain 1 speed this turn"
+                steps:
+                  - add_to_battle: { card: self }
+                  - if:
+                      cond: { attacking: self }
+                      then:
+                        - create_effect: { duration: turn, mods: [ { stat: { spd: 1 }, target: { character: { attacking: true } } } ] }
+                      else:
+                        - create_effect: { duration: turn, mods: [ { stat: { spd: 1 }, target: { character: { blocking: true } } } ] }
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ tokens: { card: c, add: 1 } ]

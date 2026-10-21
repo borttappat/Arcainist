@@ -2,6 +2,7 @@ id: "key-to-the-city"
 name: "Key to the City"
 trade: banker
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "Ungodly Mess"
 rarity: uncommon

@@ -8,3 +8,10 @@ rarity: common
 text: |
   PROVIDES: [E]
   At the start of each opponent's turn, you may pick a resource attached to your faction. If you do, detach it from your faction.
+rules:
+  - trigger: { on: start_of_turn, player: opponent }
+    effect:
+      - pick: { as: r, from: { resource: { controller: you, spent: true } }, optional: true }
+      - if:
+          cond: { defined: r }
+          then: [ detach: { card: r } ]

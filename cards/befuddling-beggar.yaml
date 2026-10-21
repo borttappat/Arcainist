@@ -9,3 +9,13 @@ text: |
   PANHANDLE
   COST: Deplete this card. Pick a character.
   EFFECT: This turn, the character either gains or loses 1 speed.
+rules:
+  - ability:
+      name: Panhandle
+      cost:
+        - deplete: self
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - choose_one:
+            - { label: "It gains 1 speed", steps: [ modify: { card: c, stat: spd, gain: 1 } ] }
+            - { label: "It loses 1 speed", steps: [ modify: { card: c, stat: spd, lose: 1 } ] }

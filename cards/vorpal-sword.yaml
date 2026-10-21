@@ -2,6 +2,7 @@ id: "vorpal-sword"
 name: "Vorpal Sword"
 trade: warlord
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "Seed Saga"
 rarity: uncommon

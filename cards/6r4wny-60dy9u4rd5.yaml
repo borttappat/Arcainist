@@ -8,3 +8,18 @@ rarity: uncommon
 text: |
   EXTRA COST: Pick a character you control.
   If the picked character would be dealt damage, deal damage to this card instead. If the picked character would leave play, this character leaves play in that way instead.
+rules:
+  - play:
+      cost:
+        - pick: { as: guarded, from: { character: { controller: you } } }
+      effect:
+        # Damage and destruction of the picked character go to this card while it is in play.
+        - create_effect:
+            duration: game
+            mods:
+              - { redirect_damage: { to: self }, target: guarded, while: { in_play: self } }
+            rules:
+              - replace: { event: destroy, card: guarded }
+                instead: [ destroy: self ]
+              - trigger: { on: leaves_play, card: self, player: any, once: true }
+                effect: [ clear_effects: self ]

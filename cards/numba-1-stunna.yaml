@@ -2,6 +2,7 @@ id: "numba-1-stunna"
 name: "Numba 1 Stunna!"
 trade: rogue
 types: [character]
+keywords: [tactical]
 subtypes: ["grifter"]
 set: "Shade of the Devoured Emperor"
 rarity: common

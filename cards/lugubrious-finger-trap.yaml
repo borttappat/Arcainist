@@ -2,6 +2,7 @@ id: "lugubrious-finger-trap"
 name: "Lugubrious Finger Trap"
 trade: arcanist
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "2nd Edition"
 rarity: common

@@ -11,3 +11,16 @@ text: |
   BURN IT
   COST: Pay 2. Destroy this card.
   EFFECT: Draw 2 cards.
+rules:
+  - trigger: { on: enters_play, card: { controller: you, provides_at_least: { deception: 1 } } }
+    effect:
+      - may_pay:
+          amount: 1
+          prompt: "a character gains 1 speed this turn"
+          then:
+            - pick: { as: c, from: { character: any } }
+            - modify: { card: c, stat: spd, gain: 1 }
+  - ability:
+      name: Burn It
+      cost: [ pay: 2, destroy: self ]
+      effect: [ draw: 2 ]

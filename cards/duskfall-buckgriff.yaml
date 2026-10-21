@@ -2,6 +2,7 @@ id: "duskfall-buckgriff"
 name: "Duskfall Buckgriff"
 trade: rogue
 types: [character]
+keywords: [tactical]
 subtypes: ["seraphim", "dragon"]
 set: "Seed Saga"
 rarity: uncommon

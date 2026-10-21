@@ -7,3 +7,12 @@ rarity: rare
 text: |
   EXTRA COST: Deploy this only during your turn.
   You may deploy up to 4 non-tactic cards for free. (You still need to meet its threshold and satisfy its extra costs.)
+rules:
+  - play:
+      timing: { your_turn: true }
+      effect:
+        - repeat:
+            times: 4
+            steps:
+              - pick: { as: c, from: { card: { zone: hand, owner: you, not_types: [tactic, resource] } }, choose: true, optional: true, prompt: "Deploy a non-tactic card for free (or skip)." }
+              - play_card: { card: c, free: true }

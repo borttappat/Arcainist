@@ -11,3 +11,27 @@ text: |
   RELEASE
   COST: Deplete this card. Choose a number for X.
   EFFECT: Remove X tokens from this card. If you do, pick a character you own in the void with numeric cost X. Put that character into play under your control.
+rules:
+  - ability:
+      name: Entrapment
+      cost:
+        - deplete: self
+        - pick: { as: c, from: { character: { controller: you } } }
+        - let: { X: { cost: c } }
+      effect:
+        - void: c
+        - tokens: { card: self, add: "X - 1" }
+  - ability:
+      name: Release
+      cost:
+        - deplete: self
+        - choose_number: { as: X, min: 0, max: { tokens: self } }
+      effect:
+        - if:
+            cond: { gte: [ { tokens: self }, X ] }
+            then:
+              - tokens: { card: self, remove: X }
+              - pick: { as: c, from: { character: { zone: void, owner: you, cost_gte: X, cost_lte: X } } }
+              - if:
+                  cond: { defined: c }
+                  then: [ put_into_play: { card: c, controller: you } ]

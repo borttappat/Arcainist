@@ -8,10 +8,10 @@ regex-based and approximate: use it as a map for building the keyword engine, no
 | | Cards |
 |---|---|
 | Cards analysed (with text) | 1231 |
-| Already automated (have `rules`) | 133 |
-| Only use patterns the engine supports: ready to write rules for | 840 |
-| Use at least one pattern the engine doesn't support yet | 144 |
-| Use only supported patterns, but have text no pattern recognises | 114 |
+| Already automated (have `rules`) | 340 |
+| Only use patterns the engine supports: ready to write rules for | 688 |
+| Use at least one pattern the engine doesn't support yet | 117 |
+| Use only supported patterns, but have text no pattern recognises | 86 |
 
 A card counted as ready still needs its `rules` written; the engine just has every building block it needs.
 
@@ -21,24 +21,23 @@ Each card that isn't automated yet and uses a pattern the engine lacks, counted 
 
 | Pattern | Cards blocked | Examples |
 |---|---|---|
-| Create Micromajig (or other majig) tokens | 30 | 4rm0r3d 31f, 5n4p, A Boy and His Toy |
-| Top card of a deck revealed at all times | 18 | Auction House, Axeclaw Grandchest, Barracks of Precipitancy |
-| Coin flip | 17 | Bipolar Sarcophyle, Candy Skull Commander, Card Counter |
-| Cannot be blocked | 14 | Clockman Pickpocket, Cute Cutpurse, Face in the Crowd |
-| When a card is put into a zone (hand, discard, void) | 9 | Avuncular Merlion, Flailing Knife, Mountainous Golem |
+| Create Micromajig (or other majig) tokens | 24 | 4rm0r3d 31f, 5n4p, A Boy and His Toy |
+| Coin flip | 14 | Bipolar Sarcophyle, Candy Skull Commander, Card Counter |
+| Top card of a deck revealed at all times | 12 | Auction House, Axeclaw Grandchest, Barracks of Precipitancy |
+| Cannot be blocked | 12 | Clockman Pickpocket, Cute Cutpurse, Face in the Crowd |
 | Loses a keyword | 9 | Devastating Mockery, Direstock Cuffs, Essence of Elitism |
-| When an attacking / blocking party is formed | 8 | Anxious Oaf, Arcana Department, Carnival King |
 | Only once each turn (abilities, effects) | 8 | Desperate Defender, Frickin' Sweet Pogo-Bunny, Gnarling Lupine |
-| When ... restores / is restored | 6 | 5n4p, Defalcating Accountant, God's Blessing of Moola |
-| Must attack / must block | 6 | 94r913 My 908570pp3r5, Defense Attorney, Gore Engine |
-| Remove a character from the battle | 6 | Aweless Charger, Change of Tactics, Dizzying Blow |
-| Put the top card of a deck on the bottom | 6 | Bottlebeard Brandyshanks, Cheats McGuillicutty, Dauntless Gambler |
+| When a card is put into a zone (hand, discard, void) | 8 | Avuncular Merlion, Flailing Knife, Mountainous Golem |
 | Treat as having no rules text | 6 | Direstock Cuffs, Heavy Fists of Robotic Pounding, iDumb De-Itemizer |
-| Take control this turn (temporary) | 3 | Cicibeo, The Implicator, Ecneret, The Expendable One, Unloyal Necromorph |
+| When an attacking / blocking party is formed | 5 | Anxious Oaf, Arcana Department, Carnival King |
+| Remove a character from the battle | 4 | Aweless Charger, Change of Tactics, Dizzying Blow |
+| When ... restores / is restored | 4 | 5n4p, Defalcating Accountant, God's Blessing of Moola |
+| Must attack / must block | 4 | 94r913 My 908570pp3r5, Defense Attorney, Gore Engine |
+| Put the top card of a deck on the bottom | 3 | Bottlebeard Brandyshanks, Cheats McGuillicutty, Dauntless Gambler |
 | Only during a battle | 3 | Inconvenient Roadblock, Rumply Ruse, Sneaker Attack! |
 | When a battle ends / after battle | 3 | Pinguid Bodyguard, Spurious Anthropologist, Torchlight District |
+| Take control this turn (temporary) | 2 | Cicibeo, The Implicator, Ecneret, The Expendable One, Unloyal Necromorph |
 | Enters play depleted | 2 | Impeccable Triggerman, Mighty Ballista |
-| Abilities cannot be used | 1 | 0v3rw0rk3d 31f |
 | When ... is depleted | 1 | Humiliating Torture Apparatus |
 | Swap / exchange | 1 | Moneychanger |
 

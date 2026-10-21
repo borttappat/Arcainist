@@ -64,6 +64,15 @@ const MOD_KINDS = [
   "party",
   "reveal_top",
   "no_deplete_on_attack",
+  "covert_blockable",
+  "redirect_damage",
+  "attack_cost",
+  "draw_bonus",
+  "destroy_self",
+  "party_covert",
+  "assign_to_target",
+  "must_be_assigned",
+  "search_tax",
 ];
 
 export class Q {
@@ -317,7 +326,8 @@ export class Q {
       return d.icon ? { [d.icon]: 1 } : {};
     }
     if (!this.active(iid)) return {};
-    const out: Icons = this.silenced(iid) ? {} : { ...(this.ruleOf(iid, "provides") ?? {}) };
+    // PROVIDES on a permanent: the `provides` number in its JSON.
+    const out: Icons = this.silenced(iid) ? {} : { ...(this.ruleOf(iid, "provides") ?? this.def(iid).provides ?? {}) };
     for (const m of this.modsFor("provides", iid)) {
       for (const [k, v] of Object.entries(m.value as Icons)) out[k as Icon] = (out[k as Icon] ?? 0) + (v ?? 0);
     }
@@ -436,6 +446,11 @@ export class Q {
       const item = this.s.stack.find((i) => i.id === scope.responding);
       return item?.iid;
     }
+    // The character the card or ability being responded to picked as a cost.
+    if (x === "responded_pick") {
+      const item = this.s.stack.find((i) => i.id === scope.responding);
+      return item?.pickedInCost?.[0];
+    }
     if (typeof x === "string") {
       const v = scope.vars[x];
       if (typeof v === "string") return v;
@@ -498,6 +513,11 @@ export class Q {
       const list = this.s.turnLog.played.filter((e) => !f.type || e.types.includes(f.type));
       return list.length ? list[list.length - 1].cost : 0;
     }
+    if ("printed" in x) {
+      const [ref, st] = x.printed;
+      const r = this.ref(ref, scope);
+      return r ? this.printed(r, st) : 0;
+    }
     if ("damage" in x) {
       const r = this.ref(x.damage, scope);
       return r ? this.card(r).damage + this.card(r).markers : 0;
@@ -511,6 +531,11 @@ export class Q {
     if (x === "A" || x === "B") return x;
     if (typeof x === "string" && (scope.vars[x] === "A" || scope.vars[x] === "B")) return scope.vars[x];
     if (x && typeof x === "object" && "opponent_of" in x) return other(this.who(x.opponent_of, scope));
+    // "Pick a player" is written as picking their faction: { controller_of: f }.
+    if (x && typeof x === "object" && "controller_of" in x) {
+      const r = this.ref(x.controller_of, scope);
+      return r ? this.card(r).controller : scope.controller;
+    }
     return scope.controller;
   }
 
@@ -565,6 +590,15 @@ export class Q {
         return scope.via === v;
       case "in_battle":
         return !!this.s.battle === !!v;
+      case "assigned_damage": {
+        const r = this.ref(v, scope);
+        return !!r && !!this.s.turnLog.assigned?.[r];
+      }
+      case "battle_damage":
+        // Has any damage been assigned in the current battle?
+        return !!this.s.battle?.done.length === !!v;
+      case "even":
+        return this.value(v, scope) % 2 === 0;
       case "your_turn":
         return (this.s.active === scope.controller) === !!v;
       case "attacking": {
@@ -617,7 +651,11 @@ export class Q {
     if (f.controller && !rel(f.controller, c.controller)) return false;
     const d = this.lib[c.defId];
     if (f.subtype && !(d.subtypes ?? []).map((x) => x.toLowerCase()).includes(this.str(f.subtype, scope).toLowerCase())) return false;
+    if (f.not_subtype && (d.subtypes ?? []).map((x) => x.toLowerCase()).includes(this.str(f.not_subtype, scope).toLowerCase())) return false;
+    if (f.token !== undefined && !!d.token !== !!f.token) return false;
     if (f.trade && d.trade !== f.trade) return false;
+    if (f.not_trade && d.trade === f.not_trade) return false;
+    if (f.has_tokens !== undefined && (c.tokens > 0) !== !!f.has_tokens) return false;
     if (f.printed_type && !d.types.includes(f.printed_type)) return false;
     if (f.not_types && (f.not_types as string[]).some((t) => types.includes(t as CardType))) return false;
     if (f.among !== undefined) {
@@ -628,13 +666,27 @@ export class Q {
     if (f.name_not && (d.name === this.str(f.name_not, scope) || d.id === this.str(f.name_not, scope))) return false;
     if (f.cost_lte !== undefined && (d.cost ?? 0) > this.value(f.cost_lte, scope)) return false;
     if (f.cost_gte !== undefined && (d.cost ?? 0) < this.value(f.cost_gte, scope)) return false;
-    if (f.str_lte !== undefined && (c.zone !== "play" || this.stat(iid, "str") > this.value(f.str_lte, scope))) return false;
+    // Strength and life: current values in play, printed values elsewhere.
+    const statNow = (st: Stat) => (c.zone === "play" ? this.stat(iid, st) : this.printed(iid, st));
+    if (f.str_lte !== undefined && statNow("str") > this.value(f.str_lte, scope)) return false;
+    if (f.life_lte !== undefined && statNow("life") > this.value(f.life_lte, scope)) return false;
+    // "the top N cards of your deck"
+    if (f.top !== undefined && (c.zone !== "deck" || this.s.players[c.owner].deck.indexOf(iid) >= this.value(f.top, scope))) return false;
     if (f.trade_not_among !== undefined) {
       // "doesn't share a trade with any characters you control"
       const trades = new Set(this.find(f.trade_not_among, scope).filter((x) => x !== iid).map((x) => this.lib[this.s.cards[x].defId].trade));
       if (trades.has(d.trade)) return false;
     }
+    // "a character with the UNIQUE keyword in its rules text" (`unique: true`), or a
+    // specific one ("cards with 'UNIQUE JO'": `unique: Jo`).
+    if (f.unique !== undefined) {
+      const names = [...(d.text ?? "").matchAll(/(?:^|\n|, )UNIQUE ([^\n,]+)/g)].map((m) => m[1].trim().toLowerCase());
+      const ok = typeof f.unique === "string" ? names.includes(f.unique.toLowerCase()) : names.length > 0;
+      if (ok !== (f.unique !== false)) return false;
+    }
     if (f.face_down !== undefined && c.faceDown !== f.face_down) return false;
+    // A resource attached to its controller's faction (spent paying costs).
+    if (f.spent !== undefined && (c.attachedTo === "faction") !== !!f.spent) return false;
     if (f.depleted !== undefined && c.depleted !== f.depleted) return false;
     if (f.staple && !d.staple) return false;
     if (f.not_self && iid === scope.source) return false;

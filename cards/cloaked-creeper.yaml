@@ -2,9 +2,13 @@ id: "cloaked-creeper"
 name: "Cloaked Creeper"
 trade: arcanist
 types: [character]
+keywords: [covert]
 subtypes: ["lurker"]
 set: "2nd Edition"
 rarity: uncommon
 text: |
   COVERT
   While this card is a member of an attacking party, the party is COVERT.
+rules:
+  - static:
+      mods: [ { party_covert: true } ]

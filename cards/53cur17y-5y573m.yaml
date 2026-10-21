@@ -7,3 +7,7 @@ rarity: uncommon
 text: |
   COVERT parties can be blocked by characters without COVERT.
   FLIP UP: 2 [E]
+rules:
+  - static:
+      mods: [ { covert_blockable: true, target: all } ]
+  - flip_up: { pay: 2, threshold: { elitism: 1 } }

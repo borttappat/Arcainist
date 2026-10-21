@@ -2,6 +2,7 @@ id: "ectological-hazard-suit"
 name: "Ectological Hazard Suit"
 trade: arcanist
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "2nd Edition"
 rarity: common

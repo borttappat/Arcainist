@@ -6,3 +6,7 @@ set: "1st Edition Part 2"
 rarity: common
 text: |
   This turn, all your characters gain 1 strength.
+rules:
+  - play:
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: 1 }, target: { character: { controller: you } } } ] }

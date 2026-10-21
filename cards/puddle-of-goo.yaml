@@ -2,6 +2,7 @@ id: "puddle-of-goo"
 name: "Puddle of Goo"
 trade: arcanist
 types: [character]
+keywords: [covert]
 subtypes: ["lurker"]
 set: "1st Edition Part 2"
 rarity: common

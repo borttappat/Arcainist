@@ -7,3 +7,14 @@ rarity: uncommon
 text: |
   EXTRA COST: Your opponents cannot respond to this card. Pick an opponent.
   That player discards a card. You may deploy a non-resource card with numeric cost X or less for free, where X is the numeric cost of the discarded card. (You still need to meet its threshold and satisfy its extra costs.) Repeat this card's effect until that player has no cards in their hand.
+rules:
+  - play:
+      no_response: true
+      effect:
+        - repeat:
+            times: { hand_size: opponent }
+            steps:
+              - discard: { who: opponent, count: 1, as: d }
+              - let: { X: { cost: d } }
+              - pick: { as: c, from: { card: { zone: hand, owner: you, not_type: resource, cost_lte: X } }, choose: true, optional: true, prompt: "Deploy a non-resource card with numeric cost X or less for free (or skip)." }
+              - play_card: { card: c, free: true }

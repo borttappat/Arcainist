@@ -2,7 +2,40 @@
 
 Where things stand and what's left. Update this as work lands.
 
-## State at the end of the last session (2026-10-21)
+## Progress log
+
+- **2026-10-21 (second session):** 105 more cards automated, alphabetically from
+  0p3r4710n 1337 h4x0rz to Boilstorm (scenario tests in
+  `engine/test/cards-a.test.ts`). New building blocks, documented in
+  `docs/CARDS.md`: `divide_damage`, `retarget_attack`, optional `destroy`
+  replacements, the `redirect_damage`, `covert_blockable`, `attack_cost` and
+  `draw_bonus` modifiers, `cannot: draw`, `deplete` on lists, the `unique`,
+  `life_lte` and `top` filters (`str_lte` now reads printed strength outside play),
+  `{ controller_of: f }` for "pick a player", the `assigned_damage` condition,
+  `attach_to` selectors, and PROVIDES numbers on permanents read from JSON.
+  Data fixes: `attach_to` added to 58 gear cards that lacked it, and
+  printed COVERT / AGGRO / TACTICAL added as `keywords` to 71 cards. 370 tests pass.
+  **Skipped for now:** Arcane Escrow (needs "if you would discard, void face-down
+  instead" and a develop-rule draw replacement). Next card in order: Boorish Boar.
+
+- **2026-10-21 (third session):** 101 more cards, Boorish Boar to Derelict Seafarer
+  (scenario tests in `engine/test/cards-b.test.ts`). New building blocks, documented
+  in `docs/CARDS.md`: the `party_formed` event, `divide_damage` with `up_to`,
+  "next X damage" redirects spread over several hits and onto factions, `deplete` on
+  selectors, `flip_face_down` under the opponent, `detach` of specific resources,
+  attached resources from `put_into_play`, the `destroy_self`, `party_covert`,
+  `assign_to_target` (with labels and caps on the damage prompt),
+  `must_be_assigned` and `search_tax` modifiers, `applies: ability` costs (also
+  charged on abilities with no numeric cost), `damage` with `over`, the
+  `not_subtype`, `not_trade`, `token`, `spent` and `has_tokens` filters, the
+  `printed` value, the `battle_damage` and `even` conditions, the
+  `responded_pick` reference, and `rules: []` for cards with nothing to automate.
+  491 tests pass. **Skipped:** Cathedrale de Mau (an optional "reduce the damage
+  by 1" choice), Clockman Skydocks (threshold reduction of a named icon for the
+  next card), Counter-Attack (attacking during the opponent's turn). Next card in
+  order: Desolate.
+
+## State at the end of the first session (2026-10-21)
 
 - **Cards:** 1,230 cards from the spoilstoolbox.com database, plus a Micromajig token card.
   About 135 have automated `rules` (including all 16 playable factions); the rest
@@ -41,13 +74,16 @@ Where things stand and what's left. Update this as work lands.
 
 ## 2. Automate every card (the main job)
 
-- [ ] Write `rules` for every card without them, in alphabetical batches of about 40:
+- [ ] Write `rules` for every card without them, in alphabetical batches of about 25
+  (about 340 of 1,230 done; 857 cards with text remain):
   - list the batch's cards with their text and numbers;
   - write the rules;
   - append them to the YAML files;
   - run `npm test` (the validator, smoke test and fuzz test).
 - [ ] Cards that don't fit the language get a small script in `engine/scripts.ts`. If
   a pattern repeats, promote it into the language instead.
+- [ ] Skipped cards, each needing a new building block (see the progress log):
+  Arcane Escrow, Cathedrale de Mau, Clockman Skydocks, Counter-Attack.
 - [ ] Gear bonuses: the database has no gear stats. Read "The attached character
   gains N strength..." from each gear card's text into `gear` in its JSON.
 - [ ] When done, add a **coverage test** that fails if any playable card (not a

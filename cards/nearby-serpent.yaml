@@ -2,6 +2,7 @@ id: "nearby-serpent"
 name: "Nearby Serpent"
 trade: arcanist
 types: [character]
+keywords: [covert]
 subtypes: ["lurker"]
 set: "2nd Edition"
 rarity: rare

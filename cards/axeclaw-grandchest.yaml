@@ -12,3 +12,13 @@ text: |
   SHAKE UP
   COST: Pay 2.
   EFFECT: Shuffle your deck.
+rules:
+  - unique: Grandchest
+  - static:
+      mods:
+        - { reveal_top: you, target: none }
+        - { stat: { str: { cost: top_of_you } } }
+  - ability:
+      name: Shake Up
+      cost: [ pay: 2 ]
+      effect: [ shuffle: you ]

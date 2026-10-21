@@ -2,6 +2,7 @@ id: "foolhardy-desperado"
 name: "Foolhardy Desperado"
 trade: banker
 types: [character]
+keywords: [covert]
 subtypes: ["pirate", "mau"]
 set: "Seed Saga"
 rarity: uncommon

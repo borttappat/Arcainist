@@ -2,6 +2,7 @@ id: "swordchucks"
 name: "Swordchucks"
 trade: warlord
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "1st Edition Part 2"
 rarity: uncommon

@@ -2,6 +2,7 @@ id: "form-37-ohhhhh"
 name: "Form 37-Ohhhhh"
 trade: banker
 types: [item]
+attach_to: character
 set: "Holy Heist"
 rarity: rare
 text: |

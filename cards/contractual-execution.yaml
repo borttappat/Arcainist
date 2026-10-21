@@ -7,3 +7,14 @@ rarity: common
 text: |
   EXTRA COST: Pick a character. That character's controller picks a resource they control. Put the resource into its owners's hand.
   Flip the character face down under its owners's control.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+        - as:
+            who: { controller_of: c }
+            steps:
+              - pick: { as: r, from: { resource: { controller: you } } }
+              - move: { card: r, to: hand }
+      effect:
+        - flip_face_down: { card: c, controller: owner }

@@ -7,3 +7,10 @@ rarity: common
 text: |
   EXTRA COST: Pick a character you control.
   Put the card into its owner's hand. Put this card into play under its owner's control as a face-down resource instead of into their discard pile.
+rules:
+  - play:
+      then: face_down_resource
+      cost:
+        - pick: { as: c, from: { character: { controller: you } } }
+      effect:
+        - move: { card: c, to: hand }

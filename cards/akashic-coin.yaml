@@ -8,3 +8,17 @@ text: |
   UNIQUE AKASHIC OBJECT
   When a card that provides at least [V] enters play under an opponent's control, that player may pay 2. If they don't, you may have your faction lose 1 influence. If you do, draw a card. Otherwise, flip this card face-down under its owner's control.
   FLIP UP: 3 [G]
+rules:
+  - unique: Akashic Object
+  - trigger: { on: enters_play, card: { controller: opponent, provides_at_least: { volition: 1 } } }
+    effect:
+      - may_pay:
+          who: opponent
+          amount: 2
+          prompt: "or Akashic Coin's controller may lose 1 influence to draw a card"
+          else:
+            - may:
+                prompt: "your faction loses 1 influence and you draw a card (otherwise Akashic Coin flips face-down)"
+                steps: [ lose_influence: { who: you, amount: 1 }, draw: 1 ]
+                else: [ flip_face_down: { card: self, controller: owner } ]
+  - flip_up: { pay: 3, threshold: { greed: 1 } }

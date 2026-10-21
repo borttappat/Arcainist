@@ -10,3 +10,17 @@ text: |
   RECUR: [O][O]
   COST: Use this only if this card is in your discard pile. Pay 3. Remove this card from the game.
   EFFECT: Search your deck for a character with the UNIQUE keyword in its rules text and reveal it. Put it into your hand.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: [ { character: { unique: true } }, { character: { zone: discard, owner: opponent } } ] }
+      effect:
+        - void: c
+  - ability:
+      name: Recur
+      keyword: recur
+      threshold: { obsession: 2 }
+      from: discard
+      cost: [ pay: 3, void: self ]
+      effect:
+        - search: { deck: you, for: { character: { unique: true } }, reveal: true, to: hand }

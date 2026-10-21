@@ -10,3 +10,13 @@ text: |
   COST: Pay 1. Deplete another character you control.
   EFFECT: This turn, this card gains 1 speed.
   FLIP UP: 4 [D]
+rules:
+  - ability:
+      name: Consume Force
+      cost:
+        - pay: 1
+        - pick: { as: d, from: { character: { controller: you, not_self: true, depleted: false } }, choose: true, prompt: "Deplete another character you control." }
+        - deplete: d
+      effect:
+        - modify: { card: self, stat: spd, gain: 1 }
+  - flip_up: { pay: 4, threshold: { deception: 1 } }

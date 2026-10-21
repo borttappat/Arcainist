@@ -10,3 +10,20 @@ text: |
   RECUR: [O][O][O]
   COST: Use this only if this card is in your discard pile. Pay 3. Pick a character. Remove this card from the game.
   EFFECT: Put the character into its owner's hand.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { card: { not_type: resource } } }
+      effect:
+        - move: { card: c, to: deck_top }
+  - ability:
+      name: Recur
+      keyword: recur
+      threshold: { obsession: 3 }
+      from: discard
+      cost:
+        - pay: 3
+        - pick: { as: c, from: { character: any } }
+        - void: self
+      effect:
+        - move: { card: c, to: hand }

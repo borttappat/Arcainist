@@ -2,6 +2,7 @@ id: "emergency-obfuscation"
 name: "Emergency Obfuscation"
 trade: rogue
 types: [item]
+keywords: [tactical]
 set: "1st Edition"
 rarity: rare
 text: |

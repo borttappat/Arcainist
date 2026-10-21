@@ -8,3 +8,12 @@ text: |
   EXTRA COST: Pick a location. Pick a character.
   Inflict X damage to the character, where X is the location's structure. Draw a card.
   FLIP UP: 3 [R]
+rules:
+  - play:
+      cost:
+        - pick: { as: l, from: { location: any } }
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - damage: { card: c, amount: { stat: [ l, structure ] } }
+        - draw: 1
+  - flip_up: { pay: 3, threshold: { rage: 1 } }

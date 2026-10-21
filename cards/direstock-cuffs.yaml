@@ -2,6 +2,7 @@ id: "direstock-cuffs"
 name: "Direstock Cuffs"
 trade: gearsmith
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "Ungodly Mess"
 rarity: common

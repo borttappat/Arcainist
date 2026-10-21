@@ -10,3 +10,12 @@ text: |
   COST: Destroy this card. Pick a faction or character.
   EFFECT: Inflict 4 damage to that card.
   FLIP UP: 4 [R]
+rules:
+  - ability:
+      name: Hemorage
+      cost:
+        - destroy: self
+        - pick: { as: c, from: [ { faction: any }, { character: any } ] }
+      effect:
+        - damage: { card: c, amount: 4 }
+  - flip_up: { pay: 4, threshold: { rage: 1 } }

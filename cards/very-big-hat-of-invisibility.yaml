@@ -2,6 +2,7 @@ id: "very-big-hat-of-invisibility"
 name: "Very Big Hat of Invisibility"
 trade: arcanist
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "1st Edition"
 rarity: common

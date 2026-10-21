@@ -7,3 +7,9 @@ rarity: uncommon
 text: |
   EXTRA COST: Pick a character or faction.
   Inflict 5 damage to the character or faction.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: [ { character: any }, { faction: any } ] }
+      effect:
+        - damage: { card: c, amount: 5 }

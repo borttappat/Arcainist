@@ -7,3 +7,11 @@ rarity: uncommon
 text: |
   EXTRA COST: Choose a number for X. Pay X+X. Pick 2 or fewer characters.
   This turn, the characters gain X strength and X life.
+rules:
+  - play:
+      cost:
+        - choose_number: { as: X, min: 0 }
+        - pay: "X + X"
+        - pick: { as: c, from: { character: any }, count: 2, up_to: true }
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: X, life: X }, target: c } ] }

@@ -2,6 +2,7 @@ id: "unbearably-heavy-shoes-of-teleportation"
 name: "Unbearably Heavy Shoes of Teleportation"
 trade: gearsmith
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "Seed Saga"
 rarity: uncommon

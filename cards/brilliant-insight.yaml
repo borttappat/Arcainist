@@ -6,3 +6,7 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   You may play up to 2 resources.
+rules:
+  - play:
+      effect:
+        - play_resource: { count: 2, optional: true }

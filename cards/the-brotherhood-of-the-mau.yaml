@@ -2,6 +2,7 @@ id: "the-brotherhood-of-the-mau"
 name: "The Brotherhood of the Mau"
 trade: banker
 types: [character]
+keywords: [covert]
 subtypes: ["advisor", "politician", "mau"]
 set: "Seed Saga"
 rarity: uncommon

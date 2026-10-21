@@ -2,6 +2,7 @@ id: "chum-the-ugliest-sarume"
 name: "Chum, the Ugliest Sarume"
 trade: rogue
 types: [character]
+keywords: [tactical]
 subtypes: ["dragon"]
 set: "Holy Heist"
 rarity: rare
@@ -12,3 +13,23 @@ text: |
   SERAPHIM FUSION
   COST: Pay 4. Pick a UNIQUE PLUCK you control. Destroy this card.
   EFFECT: Search your deck for a card named "Omahkapi'si Pi'kssii" and put it into play.
+rules:
+  - unique: Chum
+  - play:
+      cost:
+        - pick: { as: c, from: { card: { zone: discard } }, optional: true }
+      effect:
+        - if:
+            cond: { defined: c }
+            then:
+              - let: { X: { cost: c } }
+              - void: c
+              - search: { deck: opponent, for: { card: { cost_lte: X } }, to: discard }
+  - ability:
+      name: Seraphim Fusion
+      cost:
+        - pay: 4
+        - pick: { as: p, from: { character: { controller: you, unique: Pluck } } }
+        - destroy: self
+      effect:
+        - search: { deck: you, for: { card: { name: "Omahkapi'si Pi'kssii" } }, reveal: true, to: play }

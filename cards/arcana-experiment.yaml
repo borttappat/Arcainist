@@ -7,3 +7,15 @@ rarity: rare
 text: |
   EXTRA COST: Deploy this only if you have at least 5 cards in your deck. Deplete up to 5 characters you control. X is the number of characters you deplete this way.
   Search your deck for 5 cards and reveal them. An opponent chooses X of those cards. Put the chosen cards into your hand and the rest into your discard pile.
+rules:
+  - play:
+      cost:
+        - require: { gte: [ { count: { card: { zone: deck, owner: you } } }, 5 ] }
+        - pick: { as: d, from: { character: { controller: you, depleted: false } }, count: 5, up_to: true, choose: true, prompt: "Deplete up to 5 characters you control (X is how many)." }
+        - deplete: d
+        - let: { X: { len: d } }
+      effect:
+        - search: { deck: you, for: { card: any }, count: 5, exactly: true, reveal: true, to: keep, as: found }
+        - pick: { as: kept, from: { card: { zone: deck, among: found } }, count: X, who: opponent, choose: true, prompt: "Choose the cards your opponent puts into their hand (the rest go to their discard pile)." }
+        - move: { card: kept, to: hand }
+        - move: { card: { card: { zone: deck, among: found } }, to: discard }

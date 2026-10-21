@@ -424,6 +424,7 @@ export class Game {
         if (Object.keys(m).some((k) => !d.targets.includes(k))) throw new GameError("Invalid target.");
         if (Object.values(m).some((v) => !Number.isInteger(v) || v < 0)) throw new GameError("Amounts must be whole numbers.");
         if (sum > d.total || sum < (d.min ?? d.total)) throw new GameError(d.min === undefined ? `Assign exactly ${d.total}.` : `Assign between ${d.min} and ${d.total}.`);
+        for (const [k, cap] of Object.entries(d.caps ?? {})) if ((m[k] ?? 0) > cap) throw new GameError(`At most ${cap} can go to ${d.labels?.[k] ?? "that card"}.`);
         return;
       }
       case "play_resource": {
@@ -687,8 +688,9 @@ export class Game {
     }
     this.move(iid, "stack");
     c.controller = p;
-    // "Attach to Character": picking the host is part of the cost.
-    const attach: Step[] = def.attach_to ? [{ pick: { as: "__host", from: { [def.attach_to]: "any" } } }] : [];
+    // "Attach to Character" (a type), or a selector ("Attach to character you control").
+    const hostSel = typeof def.attach_to === "string" ? { [def.attach_to]: "any" } : def.attach_to;
+    const attach: Step[] = def.attach_to ? [{ pick: { as: "__host", from: hostSel } }] : [];
     this.push(
       ...this.steps([...attach, ...(play.cost ?? []), ...extra], ctx, "cost"),
       { t: "payNumeric", ctx: ctx.id, base: def.cost ?? 0, deploying: iid },
@@ -724,8 +726,11 @@ export class Game {
       if (!this.q.by(m, payer)) continue;
       const applies = m.mod.applies ?? "deploy";
       if (applies === "deploy" && (!deploying || !this.q.targets(m, deploying))) continue;
+      // Abilities only ("must pay 2 to use a character's ability").
+      if (applies === "ability" && (deploying || (m.mod.target && !this.q.targets(m, ctx.source)))) continue;
       if (applies === "flip_up" && (ctx.via !== "flip_up" || !deploying || !this.q.targets(m, deploying))) continue;
-      if (applies === "any" && m.mod.target && deploying && !this.q.targets(m, deploying)) continue;
+      // For abilities, the target is the card whose ability it is.
+      if (applies === "any" && m.mod.target && !this.q.targets(m, deploying ?? ctx.source)) continue;
       const v = this.q.value(m.value, m.scope);
       if (v > 0) up += v;
       else down -= v;
@@ -744,7 +749,8 @@ export class Game {
     const ctx = this.s.ctxs[task.ctx];
     const p = ctx.actor;
     const hasNumeric = task.deploying !== undefined || ctx.pay > 0;
-    if (!hasNumeric) return;
+    // An ability with no numeric cost still pays cost increases (Department of Rejections).
+    if (!hasNumeric && this.numericCost(ctx, task.base, task.deploying, false) <= 0) return;
     const total = this.numericCost(ctx, task.base, task.deploying, false);
     if (total <= 0) {
       this.numericCost(ctx, task.base, task.deploying, true);
@@ -820,7 +826,8 @@ export class Game {
       return;
     }
     this.log(`${item.label} resolves.`);
-    if (item.kind === "card" && !this.q.def(item.iid).rules?.length && this.q.def(item.iid).text) {
+    // `rules: []` marks a card with nothing to automate (its text is a deckbuilding rule).
+    if (item.kind === "card" && !this.q.def(item.iid).rules && this.q.def(item.iid).text) {
       this.log(`${item.label} isn't automated yet: resolve its text with the manual controls.`);
     }
     if (item.kind === "ability") {
@@ -967,6 +974,7 @@ export class Game {
         if (r.cause !== undefined && ev.cause !== r.cause) continue;
         if (r.from !== undefined && ev.from !== r.from) continue;
         if (r.to !== undefined && ev.to !== r.to) continue;
+        if (r.side !== undefined && ev.side !== r.side) continue;
         if (r.requires && !this.q.meets(src.controller, r.requires)) continue;
         if (r.while && !this.q.cond(r.while, scope)) continue;
         const ctx = this.newCtx(src.controller, src.iid);
@@ -1422,7 +1430,8 @@ export class Game {
   protected op_void(arg: any, ctx: Ctx, task: Task): StepResult {
     const a = typeof arg === "object" && arg !== null && !Array.isArray(arg) && "card" in arg ? arg : { card: arg };
     const ids = this.refs(ctx, a.card);
-    if (!ids.length) return task.phase === "cost" ? "fail" : "ok";
+    // An empty list ("put X characters into the void" with X = 0) is fine.
+    if (!ids.length) return task.phase === "cost" && !Array.isArray(this.scope(ctx).vars[a.card]) ? "fail" : "ok";
     for (const iid of ids) {
       this.log(`${a.face_down ? "A card" : this.q.name(iid)} is removed from the game${a.face_down ? " face-down" : ""}.`);
       this.move(iid, "void", { tag: a.tag ? ctx.source : undefined, faceDown: !!a.face_down, knownTo: a.face_down ? [ctx.controller] : undefined });
@@ -1430,12 +1439,18 @@ export class Game {
     return "ok";
   }
 
-  protected op_deplete(arg: any, ctx: Ctx): StepResult {
-    const iid = this.ref(ctx, arg);
-    if (!iid || !this.q.inPlay(iid)) return "fail";
-    const c = this.s.cards[iid];
-    if (c.depleted || c.isResource) return "fail";
-    this.setDepleted(iid, true);
+  /**
+   * Deplete a card, every card in a list, or all cards matching a selector. As a
+   * cost it fails if any can't be depleted; as an effect it depletes those it can.
+   */
+  protected op_deplete(arg: any, ctx: Ctx, task: Task): StepResult {
+    const ids = this.refs(ctx, arg);
+    const list = Array.isArray(this.scope(ctx).vars[arg]) || (arg && typeof arg === "object");
+    if (!ids.length) return list ? "ok" : "fail";
+    const ok = (i: string) => this.q.inPlay(i) && !this.s.cards[i].depleted && !this.s.cards[i].isResource;
+    if (task.phase === "cost" && !ids.every(ok)) return "fail";
+    if (!ids.some(ok)) return task.phase === "cost" ? "fail" : "ok";
+    for (const iid of ids.filter(ok)) this.setDepleted(iid, true);
     return "ok";
   }
 
@@ -1543,7 +1558,8 @@ export class Game {
     for (const iid of this.refs(ctx, a.card)) {
       if (!this.q.inPlay(iid)) continue;
       const c = this.s.cards[iid];
-      this.flipFaceDown(iid, a.controller === "you" ? ctx.controller : c.owner);
+      // controller: owner (default) | you | opponent (the opponent of its current controller)
+      this.flipFaceDown(iid, a.controller === "you" ? ctx.controller : a.controller === "opponent" ? other(c.controller) : c.owner);
     }
     return "ok";
   }
@@ -1573,6 +1589,7 @@ export class Game {
         this.log(`${this.pname(ctl)} puts ${this.visibleName(iid)} into play as a face-down resource.`);
       } else if (arg.as === "resource" || (!arg.as && this.q.def(iid).types.includes("resource"))) {
         this.putResource(ctl, iid, false, false);
+        if (arg.attached) this.s.cards[iid].attachedTo = "faction";
         this.log(`${this.pname(ctl)} puts ${this.q.name(iid)} into play as a resource.`);
       } else {
         const def = this.q.def(iid);
@@ -1680,6 +1697,28 @@ export class Game {
     return this.ask(task, { type: "assign", player: ctx.actor, prompt: `${this.q.name(ctx.source)}: put up to ${total} tokens on cards you control.`, total, min: 0, targets: cands });
   }
 
+  /** "Inflict X damage divided however you want among ...": { amount, from: <selector>, up_to } */
+  protected op_divide_damage(arg: any, ctx: Ctx, task: Task): StepResult {
+    if (task.answer) {
+      for (const [iid, n] of Object.entries(task.answer.assign as Record<string, number>)) if (n > 0) this.inflict(iid, n, false, [ctx.source]);
+      return "ok";
+    }
+    const cands = this.q.find(arg.from, this.scope(ctx));
+    const total = this.num(ctx, arg.amount);
+    if (!cands.length || total <= 0) return "ok";
+    return this.ask(task, { type: "assign", player: ctx.actor, prompt: `${this.q.name(ctx.source)}: divide ${arg.up_to ? "up to " : ""}${total} damage.`, total, targets: cands, ...(arg.up_to ? { min: 0 } : {}) });
+  }
+
+  /** Change the target of the current attack to a location the defender controls. */
+  protected op_retarget_attack(arg: any, ctx: Ctx): StepResult {
+    const b = this.s.battle;
+    const iid = this.ref(ctx, arg);
+    if (!b || !iid || !this.q.inPlay(iid) || !this.q.is(iid, "location") || this.s.cards[iid].controller !== b.defender) return "ok";
+    b.target = iid;
+    this.log(`The attack now targets ${this.q.name(iid)}.`);
+    return "ok";
+  }
+
   /** Search a deck: { deck: who, for, count (number|"any"), to, reveal, attach_to, controller, different_names, as, tag, face_down } */
   protected op_search(arg: any, ctx: Ctx, task: Task): StepResult {
     const p = this.who(ctx, arg.deck);
@@ -1710,6 +1749,19 @@ export class Game {
       return "ok";
     }
     if (count <= 0) return "ok";
+    // "Your opponents must pay 2 to search their deck" (Department of Rejections).
+    if (p === searcher && !task.taxed) {
+      const tax = this.q.mods("search_tax").reduce((n, m) => (this.q.by(m, searcher) ? n + this.q.value(m.value, m.scope) : n), 0);
+      if (tax > 0) {
+        if (!this.payNow(searcher, tax)) {
+          this.log(`${this.pname(searcher)} can't pay ${tax} to search their deck.`);
+          this.setDid(ctx, false);
+          return "ok";
+        }
+        this.log(`${this.pname(searcher)} pays ${tax} to search their deck.`);
+      }
+      task.taxed = true;
+    }
     const scope = this.scope(ctx);
     const cands = deck.filter((iid) => this.q.matches(arg.for ?? {}, iid, scope, null));
     return this.ask(task, {
@@ -1915,8 +1967,12 @@ export class Game {
     return "ok";
   }
 
-  /** Detach up to N resources from your faction: { who, count } */
+  /** Detach up to N resources from your faction: { who, count }, or specific ones: { card: r } */
   protected op_detach(arg: any, ctx: Ctx): StepResult {
+    if (arg.card !== undefined) {
+      for (const iid of this.refs(ctx, arg.card)) if (this.s.cards[iid].attachedTo === "faction") this.s.cards[iid].attachedTo = null;
+      return "ok";
+    }
     const p = this.who(ctx, arg.who);
     const n = this.num(ctx, arg.count ?? 1);
     const spent = this.q.resources(p).filter((i) => this.s.cards[i].attachedTo === "faction");
@@ -2117,13 +2173,21 @@ export class Game {
     // Party rules ("must have at least 2 members", "only 1 member", "even number").
     const partyErr = this.partyRuleError(attackers, "attacking", p);
     if (partyErr) throw new GameError(partyErr);
+    // "Must pay N to attack with it" (Auspicious Tax).
+    const toll = attackers.reduce((n, iid) => n + q.modsFor("attack_cost", iid).reduce((k, m) => k + q.value(m.value, m.scope), 0), 0);
+    if (toll > 0) {
+      if (!this.payNow(p, toll)) throw new GameError(`Attacking with those characters costs ${toll}.`);
+      this.log(`${this.pname(p)} pays ${toll} to attack.`);
+    }
     for (const iid of attackers) {
       if (!q.mods("no_deplete_on_attack").some((m) => q.targets(m, iid))) this.setDepleted(iid, true);
       this.s.turnLog.attacks[iid] = (this.s.turnLog.attacks[iid] ?? 0) + 1;
     }
-    const covert = attackers.every((i) => q.keyword(i, "covert"));
+    // COVERT parties: every member has COVERT, or a member makes its party COVERT (Cloaked Creeper).
+    const covert = attackers.every((i) => q.keyword(i, "covert")) || attackers.some((i) => q.modsFor("party_covert", i).length > 0);
     this.s.battle = { attacker: p, defender: d, target, attackers, blockers: [], covert, done: [], speed: null, locked: {}, sources: {}, step: "declared" };
     this.log(`${this.pname(p)} attacks ${target === "faction" ? this.pname(d) + "'s faction" : q.name(target)} with ${attackers.map((i) => q.name(i)).join(", ")}${covert ? " (Covert)" : ""}.`);
+    this.emit({ e: "party_formed", player: p, side: "attacking" });
     for (const iid of attackers) this.emit({ e: "attacks", iid, player: p });
     this.s.window = { kind: "battle", current: p, passes: 0, next: "blockers" };
   }
@@ -2179,11 +2243,12 @@ export class Game {
 
     switch (b.step) {
       case "blockers": {
-        const cands = q.characters(b.defender).filter((i) => !this.s.cards[i].depleted && !q.cannot("block", i, b.defender) && (b.covert ? q.keyword(i, "covert") : !q.keyword(i, "covert")) && this.canBlockParty(i, b.attackers));
+        const cands = q.characters(b.defender).filter((i) => !this.s.cards[i].depleted && !q.cannot("block", i, b.defender) && (b.covert ? q.keyword(i, "covert") || q.mods("covert_blockable").length > 0 : !q.keyword(i, "covert")) && this.canBlockParty(i, b.attackers));
         if (task.answer || !cands.length) {
           b.blockers = task.answer?.ids ?? [];
           if (b.blockers.length) {
             this.log(`${this.pname(b.defender)} blocks with ${b.blockers.map((i) => q.name(i)).join(", ")}.`);
+            this.emit({ e: "party_formed", player: b.defender, side: "blocking" });
             for (const iid of b.blockers) this.emit({ e: "blocks", iid, player: b.defender });
             for (const iid of b.attackers) this.emit({ e: "blocked", iid, player: b.attacker });
           } else this.log(cands.length ? `${this.pname(b.defender)} does not block.` : `${this.pname(b.defender)} has no characters able to block.`);
@@ -2255,6 +2320,7 @@ export class Game {
     const group = (task.group as string[]).filter((i) => this.inBattle(i));
     const total = group.reduce((n, i) => n + this.q.stat(i, "str"), 0);
     if (total <= 0) return;
+    for (const i of group) if (this.q.stat(i, "str") > 0) (this.s.turnLog.assigned ??= {})[i] = true;
     const attacking = task.side === "attacker";
     const player = attacking ? b.attacker : b.defender;
     const targets = attacking ? b.blockers.filter((i) => this.inBattle(i)) : b.attackers.filter((i) => this.inBattle(i));
@@ -2274,6 +2340,16 @@ export class Game {
       if (attacking) lock({ target: total });
       return;
     }
+    // "You may assign its battle damage to the target of the attack instead of the blocking party" (Colossal Flattener).
+    const past = attacking ? group.filter((i) => this.q.modsFor("assign_to_target", i).length).reduce((n, i) => n + this.q.stat(i, "str"), 0) : 0;
+    if (past > 0) {
+      const label = b.target === "faction" ? `${this.pname(b.defender)}'s faction` : this.q.name(b.target);
+      this.ask(task, { type: "assign", player, prompt: `Divide ${total} damage among the blocking party (up to ${past} may go to ${label}).`, total, targets: [...targets, "target"], labels: { target: label }, caps: { target: past } });
+      return;
+    }
+    // "All battle damage that could be assigned to this card must be assigned to it" (Courageous Paladin).
+    const forced = targets.filter((i) => this.q.modsFor("must_be_assigned", i).length);
+    if (forced.length) targets.splice(0, targets.length, ...forced);
     if (targets.length === 1) return lock({ [targets[0]]: total });
     this.ask(task, { type: "assign", player, prompt: `Divide ${total} damage among the ${attacking ? "blocking" : "attacking"} party.`, total, targets });
   }
@@ -2295,6 +2371,8 @@ export class Game {
           if (c.attachedTo && c.attachedTo !== "faction" && !q.isCharacter(c.attachedTo)) out.push({ iid, cause: "rule" });
           else if (q.is(iid, "character") && c.damage >= q.stat(iid, "life")) out.push({ iid, cause: "damage" });
           else if (q.is(iid, "location") && c.markers >= q.stat(iid, "structure")) out.push({ iid, cause: "damage" });
+          // "[R][R][R]: Destroy this card." (Boorish Boar)
+          else if (q.modsFor("destroy_self", iid).length) out.push({ iid, cause: "rule" });
         }
         return out;
       });
@@ -2477,9 +2555,11 @@ export class Game {
    * `cause` distinguishes costs (Limited Liability) from effects, damage and rules.
    * Returns true if something happened to the card.
    */
-  destroy(iid: string, cause: "cost" | "effect" | "damage" | "rule" = "effect"): boolean {
+  destroy(iid: string, cause: "cost" | "effect" | "damage" | "rule" = "effect", skipOptional = false): boolean {
     const q = this.q;
     if (!q.inPlay(iid) || q.isFaction(iid)) return false;
+    // Waiting on an optional replacement ("its owner may ... instead").
+    if (this.s.cards[iid].replacing) return true;
     if (cause !== "cost" && cause !== "rule" && q.mods("cannot").some((m) => m.value === "destroy_except_cost" && q.targets(m, iid))) return false;
     // Replacements: from cards in play, then from continuous effects.
     const candidates: { rules: any[]; scope: Scope }[] = [];
@@ -2489,6 +2569,12 @@ export class Game {
       for (const r of rules) {
         if (!r.replace || r.replace.event !== "destroy") continue;
         if (r.replace.card !== undefined && !q.matches(r.replace.card, iid, scope, null)) continue;
+        if (r.replace.optional) {
+          if (skipOptional) continue;
+          this.s.cards[iid].replacing = true;
+          this.push({ t: "optionalReplace", iid, cause, instead: r.instead, prompt: r.replace.prompt, controller: scope.controller, source: scope.source, vars: scope.vars });
+          return true;
+        }
         const ctx = this.newCtx(scope.controller, scope.source);
         Object.assign(ctx.vars, scope.vars, { it: iid });
         this.log(`${q.name(iid)} would be destroyed; ${q.name(scope.source)} replaces it.`);
@@ -2504,6 +2590,39 @@ export class Game {
     return true;
   }
 
+  /** "Its owner may ... instead": ask the destroyed card's owner, then replace or destroy. */
+  protected t_optionalReplace(task: Task): void {
+    const c = this.s.cards[task.iid];
+    if (!task.answer) {
+      if (!this.q.inPlay(task.iid)) {
+        c.replacing = undefined;
+        return;
+      }
+      this.ask(task, {
+        type: "choose",
+        player: c.owner,
+        prompt: `${this.q.name(task.iid)} would be destroyed. ${task.prompt ?? "Replace it"}?`,
+        options: [
+          { id: "yes", label: "Yes" },
+          { id: "no", label: "No, destroy it" },
+        ],
+        min: 1,
+        max: 1,
+      });
+      return;
+    }
+    c.replacing = undefined;
+    if (task.answer.ids[0] !== "yes") {
+      this.destroy(task.iid, task.cause, true);
+      return;
+    }
+    const ctx = this.newCtx(task.controller, task.source);
+    Object.assign(ctx.vars, task.vars, { it: task.iid });
+    this.log(`${this.q.name(task.iid)} would be destroyed; ${this.q.name(task.source)} replaces it.`);
+    for (const step of task.instead) this.t_step({ t: "step", step, ctx: ctx.id, phase: "effect" });
+    this.dropCtx(ctx.id);
+  }
+
   /** Damage modifiers: "reduce the amount to 0", Limited Liability. */
   private modifyDamage(target: string, n: number, battle: boolean): number {
     let set: number | null = null;
@@ -2512,15 +2631,45 @@ export class Game {
       const v = m.value;
       if (v.battle !== undefined && !!v.battle !== battle) continue;
       if (!this.q.targets(m, target)) continue;
+      // "When any amount of damage greater than 4 is inflicted, reduce it to 0": { set: 0, over: 4 }
+      if (v.over !== undefined && n <= v.over) continue;
       if (v.set !== undefined) set = set === null ? v.set : Math.min(set, v.set);
       if (v.delta !== undefined) delta += this.q.value(v.delta, m.scope);
     }
     return Math.max(0, (set ?? n) + delta);
   }
 
-  inflict(iid: string, n: number, battle: boolean, sources: string[] = []): void {
+  /**
+   * "Damage that would be inflicted to X is inflicted to Y instead": moves damage to
+   * other cards and returns what is left. With `amount`, only the next that much
+   * damage moves, across any number of hits; then the effect is used up.
+   */
+  private redirectDamage(iid: string, n: number, battle: boolean, sources: string[], seen: string[]): number {
     const q = this.q;
-    if (q.isFaction(iid)) return this.damageFaction(this.s.cards[iid].owner, n, sources, battle);
+    for (const m of q.modsFor("redirect_damage", iid)) {
+      const to = q.ref(m.value?.to ?? "self", m.scope);
+      if (!to || to === iid || seen.includes(to) || !q.inPlay(to) || m.effect?.used) continue;
+      let k = n;
+      if (m.value?.amount !== undefined && m.effect) {
+        m.effect.left ??= q.value(m.value.amount, m.scope);
+        k = Math.min(n, m.effect.left);
+        m.effect.left -= k;
+        if (m.effect.left <= 0) m.effect.used = true;
+      }
+      if (k <= 0) continue;
+      this.log(`${k} damage to ${q.name(iid)} is inflicted to ${q.name(to)} instead.`);
+      this.inflict(to, k, battle, sources, [...seen, iid]);
+      n -= k;
+      if (n <= 0) return 0;
+    }
+    return n;
+  }
+
+  inflict(iid: string, n: number, battle: boolean, sources: string[] = [], seen: string[] = []): void {
+    const q = this.q;
+    if (q.isFaction(iid)) return this.damageFaction(this.s.cards[iid].owner, n, sources, battle, undefined, seen);
+    n = this.redirectDamage(iid, n, battle, sources, seen);
+    if (n <= 0) return;
     n = this.modifyDamage(iid, n, battle);
     if (n <= 0) return;
     const c = this.s.cards[iid];
@@ -2531,7 +2680,9 @@ export class Game {
     this.emit({ e: "damage", iid, player: c.controller, amount: n, battle, sources, source: sources[0] });
   }
 
-  damageFaction(p: PlayerId, n: number, sources: string[], battle: boolean, by?: PlayerId): void {
+  damageFaction(p: PlayerId, n: number, sources: string[], battle: boolean, by?: PlayerId, seen: string[] = []): void {
+    n = this.redirectDamage(this.s.players[p].factionIid, n, battle, sources, seen);
+    if (n <= 0) return;
     n = this.modifyDamage(this.s.players[p].factionIid, n, battle);
     if (n <= 0) return;
     // Optional replacements on faction damage (Trickster's Globe): ask first.
@@ -2615,7 +2766,14 @@ export class Game {
     const ps = this.s.players[p];
     const drawn: string[] = [];
     let count = 0;
+    // "When you draw any number of cards, increase the amount by 1" (Beatrix Winterbottom).
+    if (n > 0) for (const m of this.q.mods("draw_bonus")) if (this.q.by(m, p)) n += this.q.value(m.value, m.scope);
     for (let i = 0; i < n && ps.deck.length; i++) {
+      if (this.q.cannot("draw", null, p)) {
+        this.log(`${this.pname(p)} can't draw cards.`);
+        n = i;
+        break;
+      }
       const iid = ps.deck[0];
       this.move(iid, "hand");
       count++;
@@ -2624,7 +2782,7 @@ export class Game {
     if (n > 0) {
       this.log(`${this.pname(p)} draws ${count} card${count === 1 ? "" : "s"}${count < n ? " (deck empty)" : ""}.`);
       if (drawn.length) this.log(`You drew: ${drawn.map((i) => this.q.name(i)).join(", ")}.`, p);
-      if (count) this.emit({ e: "draw", player: p, count });
+      if (count) this.emit({ e: "draw", player: p, count, amount: count });
     }
   }
 

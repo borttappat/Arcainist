@@ -9,3 +9,12 @@ text: |
   WARDROBE CHANGE
   COST: Deplete this card. Pick a character. Pick a "gear" card you control.
   EFFECT: Attach the "gear" card to the character.
+rules:
+  - ability:
+      name: Wardrobe Change
+      cost:
+        - deplete: self
+        - pick: { as: c, from: { character: any } }
+        - pick: { as: g, from: { item: { subtype: gear, controller: you } } }
+      effect:
+        - attach: { card: g, to: c }

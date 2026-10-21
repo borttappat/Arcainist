@@ -2,6 +2,7 @@ id: "opportunistic-pirate"
 name: "Opportunistic Pirate"
 trade: rogue
 types: [character]
+keywords: [tactical]
 subtypes: ["pirate"]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon

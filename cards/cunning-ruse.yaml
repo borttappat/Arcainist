@@ -7,3 +7,9 @@ rarity: uncommon
 text: |
   EXTRA COST: Pick an item.
   Flip the item face-down under its opponent's control.
+rules:
+  - play:
+      cost:
+        - pick: { as: i, from: { item: any } }
+      effect:
+        - flip_face_down: { card: i, controller: opponent }

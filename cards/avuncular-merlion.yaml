@@ -8,3 +8,17 @@ rarity: rare
 text: |
   This card enters play with 2 tokens on it.
   When a character you control is put into your discard pile from play, you may pay 1 and remove a token from this card. If you do, put that character into play under your control. Deplete it.
+enters_with_tokens: 2
+rules:
+  - trigger: { on: moved, from: play, to: discard, card: { character: { owner: you } } }
+    effect:
+      - if:
+          cond: { gt: [ { tokens: self }, 0 ] }
+          then:
+            - may_pay:
+                amount: 1
+                prompt: "remove a token from Avuncular Merlion and return the character to play, depleted"
+                then:
+                  - tokens: { card: self, remove: 1 }
+                  - put_into_play: { card: it, controller: you }
+                  - deplete: it

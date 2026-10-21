@@ -2,6 +2,7 @@ id: "extremely-tiny-bonnet-of-invisibility"
 name: "Extremely Tiny Bonnet of Invisibility"
 trade: arcanist
 types: [item]
+attach_to: { character: { controller: you } }
 subtypes: ["gear"]
 set: "Ungodly Mess"
 rarity: common

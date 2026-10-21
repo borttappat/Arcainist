@@ -10,3 +10,12 @@ text: |
   COST: Pay 2.
   EFFECT: This turn, this card gains PROVIDES: [O][O][O] .
   [O][O][O][O][O][O]: This card gains COVERT.
+rules:
+  - ability:
+      name: Obsess
+      cost: [ pay: 2 ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { provides: { obsession: 3 } } ] }
+  - static:
+      requires: { obsession: 6 }
+      mods: [ { keyword: covert } ]

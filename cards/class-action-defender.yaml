@@ -8,3 +8,12 @@ rarity: rare
 text: |
   When any amount of damage greater than 4 is inflicted to this card, reduce it to 0.
   When you are attacked, you may pay 2. If you do, restore this card.
+rules:
+  - static:
+      mods: [ { damage: { set: 0, over: 4 } } ]
+  - trigger: { on: party_formed, player: opponent, side: attacking }
+    effect:
+      - may_pay:
+          amount: 2
+          prompt: "restore Class-Action Defender"
+          then: [ restore: self ]

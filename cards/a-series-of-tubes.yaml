@@ -13,3 +13,22 @@ text: |
   All other node characters gain 1 strength and 1 life.
   When this card enters play, you may search your deck for a node card and reveal it. If you do, put it into your hand.
   When this card is destroyed, destroy all other node cards.
+rules:
+  - unique: Series of Tubes
+  - ability:
+      name: Redirect
+      cost:
+        - pick: { as: c, from: { character: { subtype: node } } }
+      effect:
+        - create_effect:
+            duration: next
+            mods: [ { redirect_damage: { to: self, amount: 1 }, target: c } ]
+  - static:
+      mods: [ { stat: { str: 1, life: 1 }, target: { character: { subtype: node, not_self: true } } } ]
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may:
+          - search: { deck: you, for: { card: { subtype: node } }, reveal: true, to: hand }
+  - trigger: { on: destroyed, card: self }
+    effect:
+      - destroy: { card: { subtype: node, not_self: true } }

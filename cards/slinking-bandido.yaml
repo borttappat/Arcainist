@@ -2,6 +2,7 @@ id: "slinking-bandido"
 name: "Slinking Bandido"
 trade: rogue
 types: [character]
+keywords: [covert]
 subtypes: ["outlaw"]
 set: "Seed Saga"
 rarity: common

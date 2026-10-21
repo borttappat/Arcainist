@@ -2,6 +2,7 @@ id: "rocket-lawnchair"
 name: "Rocket Lawnchair"
 trade: gearsmith
 types: [item]
+keywords: [tactical]
 set: "Shade of the Devoured Emperor"
 rarity: rare
 text: |

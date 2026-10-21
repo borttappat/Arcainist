@@ -12,3 +12,18 @@ text: |
   DEFILE
   COST: Deplete this card.
   EFFECT: Look at an opponent's hand and choose a character in it. That player discards that character.
+rules:
+  - ability:
+      name: Corrupt
+      cost:
+        - pay: 2
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { keyword: covert, target: c } ] }
+  - ability:
+      name: Defile
+      cost: [ deplete: self ]
+      effect:
+        - reveal_hand: opponent
+        - pick: { as: c, from: { character: { zone: hand, owner: opponent } }, choose: true }
+        - discard: { who: opponent, cards: c }

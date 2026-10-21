@@ -2,6 +2,7 @@ id: "nefarious-horror"
 name: "Nefarious Horror"
 trade: arcanist
 types: [character]
+keywords: [covert]
 subtypes: ["monstrosity"]
 set: "Seed Saga"
 rarity: uncommon

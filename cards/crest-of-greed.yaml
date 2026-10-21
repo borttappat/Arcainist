@@ -9,3 +9,11 @@ text: |
   UNIQUE CREST
   PROVIDES: [G][G]
   When a card that provides at least [G] enters play under your control, you may pick a faction. If you do, it gains 2 influence.
+rules:
+  - unique: Crest
+  - trigger: { on: enters_play, card: { controller: you, provides_at_least: { greed: 1 } } }
+    effect:
+      - pick: { as: f, from: { faction: any }, optional: true }
+      - if:
+          cond: { defined: f }
+          then: [ gain_influence: { who: { controller_of: f }, amount: 2 } ]

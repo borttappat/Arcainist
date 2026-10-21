@@ -7,3 +7,10 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   While this card is in a battle, it loses 1 strength and 1 life for each member of the opposing party.
+rules:
+  - static:
+      while: { attacking: self }
+      mods: [ { stat: { str: { neg: { count: { character: { blocking: true } } } }, life: { neg: { count: { character: { blocking: true } } } } } } ]
+  - static:
+      while: { blocking: self }
+      mods: [ { stat: { str: { neg: { count: { character: { attacking: true } } } }, life: { neg: { count: { character: { attacking: true } } } } } } ]

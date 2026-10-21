@@ -7,3 +7,16 @@ rarity: uncommon
 text: |
   EXTRA COST: Deploy this only while you are attacking and an opponent is blocking. Destroy an attacking character you control. X is twice its strength. Y is its strength.
   Inflict X damage divided however you want to the blocking party. Inflict Y damage divided however that opponent wants to the attacking party.
+rules:
+  - play:
+      cost:
+        - require: { all: [ { in_battle: true }, { your_turn: true }, { exists: { character: { blocking: true } } } ] }
+        - pick: { as: d, from: { character: { controller: you, attacking: true } }, choose: true, prompt: "Destroy an attacking character you control (X is twice its strength, Y its strength)." }
+        - let: { Y: { stat: [ d, str ] } }
+        - let: { X: "Y + Y" }
+        - destroy: d
+      effect:
+        - divide_damage: { amount: X, from: { character: { blocking: true } } }
+        - as:
+            who: opponent
+            steps: [ divide_damage: { amount: Y, from: { character: { attacking: true } } } ]

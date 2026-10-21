@@ -8,3 +8,17 @@ rarity: common
 text: |
   While an opponent controls an item, this card cannot be blocked by that player.
   When this card inflicts damage to a faction, that faction's controller picks an item they control if they can. If they do, take control of it and destroy this card.
+rules:
+  - static:
+      while: { exists: { item: { controller: opponent } } }
+      mods: [ { cannot_be_blocked: true } ]
+  - trigger: { on: damage, source: self, faction: true }
+    effect:
+      - as:
+          who: opponent
+          steps: [ pick: { as: i, from: { item: { controller: you } } } ]
+      - if:
+          cond: { defined: i }
+          then:
+            - take_control: { card: i, who: you }
+            - destroy: self

@@ -9,3 +9,12 @@ text: |
   COST: Deplete this card.
   EFFECT: Reduce the next numeric cost you pay this turn by 2.
   FLIP UP: 5 [E][E]
+rules:
+  - ability:
+      name: Research
+      cost: [ deplete: self ]
+      effect:
+        - create_effect:
+            duration: next
+            mods: [ { cost: -2, applies: any, by: you, target: all } ]
+  - flip_up: { pay: 5, threshold: { elitism: 2 } }

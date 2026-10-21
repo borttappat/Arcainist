@@ -7,3 +7,16 @@ rarity: uncommon
 text: |
   EXTRA COST: Pick a character.
   That character's controller chooses a number for X. Choose one: That player's faction loses X influence, or destroy the picked character and your faction loses X+X influence.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - as:
+            who: { controller_of: c }
+            steps: [ choose_number: { as: X, min: 0, max: 99, prompt: "Audacious Appraisal: choose a number for X." } ]
+        - choose_one:
+            - label: "That player's faction loses X influence"
+              steps: [ lose_influence: { who: { controller_of: c }, amount: X } ]
+            - label: "Destroy the character; your faction loses X+X influence"
+              steps: [ destroy: c, lose_influence: { who: you, amount: "X + X" } ]

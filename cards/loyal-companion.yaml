@@ -2,6 +2,7 @@ id: "loyal-companion"
 name: "Loyal Companion"
 trade: rogue
 types: [character]
+keywords: [tactical]
 subtypes: ["outcast", "mau"]
 set: "Holy Heist"
 rarity: uncommon

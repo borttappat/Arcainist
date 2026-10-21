@@ -2,6 +2,8 @@ id: "hidden-dagger"
 name: "Hidden Dagger"
 trade: rogue
 types: [item]
+keywords: [tactical]
+attach_to: character
 subtypes: ["gear"]
 set: "Seed Saga"
 rarity: common

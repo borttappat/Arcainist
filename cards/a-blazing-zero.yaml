@@ -6,3 +6,12 @@ set: "Seed Saga"
 rarity: rare
 text: |
   If you deployed this card in response to a tactic, terminate that tactic. Put that tactic into play under its owner's control as a face-down resource instead of into their discard pile.
+rules:
+  - play:
+      effect:
+        - if:
+            cond: { matches: [ responded, { tactic: { zone: stack } } ] }
+            then:
+              - let: { t: { card: responded } }
+              - terminate: responded
+              - put_into_play: { card: t, controller: owner, as: face_down_resource }

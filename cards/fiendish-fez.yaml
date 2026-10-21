@@ -2,6 +2,7 @@ id: "fiendish-fez"
 name: "Fiendish Fez"
 trade: arcanist
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "Seed Saga"
 rarity: common

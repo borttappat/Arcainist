@@ -2,6 +2,7 @@ id: "kinky-asp"
 name: "Kinky Asp"
 trade: arcanist
 types: [character]
+keywords: [covert]
 subtypes: ["lurker"]
 set: "2nd Edition"
 rarity: common

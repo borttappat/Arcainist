@@ -8,3 +8,9 @@ text: |
   Your opponents must pay 2 to search their deck.
   Your opponents must pay 2 to use a character's ability. (This includes abilities used when the character is not in play.)
   FLIP UP: 1 [G]
+rules:
+  - static:
+      mods:
+        - { search_tax: 2, by: opponent, target: none }
+        - { cost: 2, applies: ability, by: opponent, target: { character: any } }
+  - flip_up: { pay: 1, threshold: { greed: 1 } }

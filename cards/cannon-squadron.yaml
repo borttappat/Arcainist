@@ -9,3 +9,11 @@ text: |
   FIRE!
   COST: Deplete this card. Pick 2 or fewer characters.
   EFFECT: Inflict up to 2 damage divided however you want to the characters.
+rules:
+  - ability:
+      name: Fire!
+      cost:
+        - deplete: self
+        - pick: { as: c, from: { character: any }, count: 2, up_to: true }
+      effect:
+        - divide_damage: { amount: 2, from: c, up_to: true }

@@ -7,3 +7,10 @@ set: "Holy Heist"
 rarity: common
 text: |
   When this card enters play you may pick a character. If you do, inflict 1 damage to that character.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ damage: { card: c, amount: 1 } ]

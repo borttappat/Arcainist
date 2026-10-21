@@ -8,3 +8,8 @@ rarity: common
 text: |
   While this card is depleted, your opponents cannot pick this card.
   FLIP UP:1 [D]
+rules:
+  - static:
+      while: { matches: [ self, { character: { depleted: true } } ] }
+      mods: [ { cannot: pick, by: opponent } ]
+  - flip_up: { pay: 1, threshold: { deception: 1 } }

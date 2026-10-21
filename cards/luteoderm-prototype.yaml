@@ -2,6 +2,7 @@ id: "luteoderm-prototype"
 name: "Luteoderm Prototype"
 trade: gearsmith
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "2nd Edition"
 rarity: uncommon

@@ -10,3 +10,12 @@ text: |
   COST: Use this only if this card has not assigned damage this turn. Pay 1.
   EFFECT: Flip this card face-down under its owner's control.
   FLIP UP: 3 [D][D]
+rules:
+  - ability:
+      name: Exit Stage Right
+      cost:
+        - require: { not: { assigned_damage: self } }
+        - pay: 1
+      effect:
+        - flip_face_down: { card: self, controller: owner }
+  - flip_up: { pay: 3, threshold: { deception: 2 } }

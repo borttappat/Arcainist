@@ -10,3 +10,17 @@ text: |
   TRASH: [E][E][E][E][E][E]
   COST: Pay 1. Pick an item. Destroy this card.
   EFFECT: Destroy that card.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may:
+          - search: { deck: you, for: { item: any }, reveal: true, to: keep, as: found }
+          - put_into_play: { card: found, controller: you, as: face_down_resource }
+  - ability:
+      name: Trash
+      threshold: { elitism: 6 }
+      cost:
+        - pay: 1
+        - pick: { as: i, from: { item: any } }
+        - destroy: self
+      effect: [ destroy: i ]

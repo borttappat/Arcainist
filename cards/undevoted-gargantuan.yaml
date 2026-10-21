@@ -2,6 +2,7 @@ id: "undevoted-gargantuan"
 name: "Undevoted Gargantuan"
 trade: arcanist
 types: [character]
+keywords: [covert]
 subtypes: ["monstrosity"]
 set: "Shade of the Devoured Emperor"
 rarity: rare

@@ -8,3 +8,15 @@ rarity: rare
 text: |
   EXTRA COST: You may pick a character.
   When this card enters play, if you picked a character as part of its cost, destroy that character. That character's controller's faction gains X influence, where X is the strength of that character.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any }, optional: true }
+      effect:
+        - if:
+            cond: { defined: c }
+            then:
+              # Read the strength and controller before the character leaves play.
+              - let: { X: { stat: [ c, str ] } }
+              - gain_influence: { who: { controller_of: c }, amount: X }
+              - destroy: c

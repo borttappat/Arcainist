@@ -9,3 +9,14 @@ text: |
   REINSTATE
   COST: Pay 4. Destroy this card. Pick a character in your discard pile.
   EFFECT: Put the character into play under your control if it has numeric cost X or less, where X is the number of [G] you control.
+rules:
+  - ability:
+      name: Reinstate
+      cost:
+        - pay: 4
+        - destroy: self
+        - pick: { as: c, from: { character: { zone: discard, owner: you } } }
+      effect:
+        - if:
+            cond: { lte: [ { cost: c }, { icons: greed } ] }
+            then: [ put_into_play: { card: c, controller: you } ]

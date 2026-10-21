@@ -2,6 +2,7 @@ id: "smear-campaign"
 name: "Smear Campaign"
 trade: banker
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "2nd Edition"
 rarity: uncommon

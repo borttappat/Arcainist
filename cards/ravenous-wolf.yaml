@@ -2,6 +2,7 @@ id: "ravenous-wolf"
 name: "Ravenous Wolf"
 trade: rogue
 types: [character]
+keywords: [covert, tactical]
 subtypes: ["beast"]
 set: "1st Edition"
 rarity: common

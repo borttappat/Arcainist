@@ -8,3 +8,11 @@ rarity: uncommon
 text: |
   EXTRA COST: You may pick a character.
   When this card enters play, if you picked a character as part of its cost, put that character into its owner's hand.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any }, optional: true }
+      effect:
+        - if:
+            cond: { defined: c }
+            then: [ move: { card: c, to: hand } ]

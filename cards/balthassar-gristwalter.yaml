@@ -10,3 +10,9 @@ text: |
   SCHMOOZE
   COST: Deplete this card.
   EFFECT: Draw a card.
+rules:
+  - unique: Balthassar
+  - ability:
+      name: Schmooze
+      cost: [ deplete: self ]
+      effect: [ draw: 1 ]

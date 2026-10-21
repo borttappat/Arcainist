@@ -8,3 +8,29 @@ rarity: uncommon
 text: |
   When this card enters play, you may choose a card type. If you do, reveal the top card of your deck. If that card is the chosen type, put a token on this card. Put the top card of your deck on the bottom.
   While there is a token on this card, it gains 1 strength and 1 life.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may:
+          prompt: "choose a card type and reveal the top card of your deck"
+          steps:
+            - choose_one:
+                - { label: "Character", steps: [ let: { ty: 1 } ] }
+                - { label: "Tactic", steps: [ let: { ty: 2 } ] }
+                - { label: "Item", steps: [ let: { ty: 3 } ] }
+                - { label: "Location", steps: [ let: { ty: 4 } ] }
+                - { label: "Resource", steps: [ let: { ty: 5 } ] }
+            - reveal_top: { who: you, count: 1, as: rev }
+            - if:
+                cond:
+                  any:
+                    - { all: [ { eq: [ ty, 1 ] }, { matches: [ rev, { character: { zone: deck } } ] } ] }
+                    - { all: [ { eq: [ ty, 2 ] }, { matches: [ rev, { tactic: { zone: deck } } ] } ] }
+                    - { all: [ { eq: [ ty, 3 ] }, { matches: [ rev, { item: { zone: deck } } ] } ] }
+                    - { all: [ { eq: [ ty, 4 ] }, { matches: [ rev, { location: { zone: deck } } ] } ] }
+                    - { all: [ { eq: [ ty, 5 ] }, { matches: [ rev, { resource: { zone: deck } } ] } ] }
+                then: [ tokens: { card: self, add: 1 } ]
+            - move: { card: rev, to: deck_bottom }
+  - static:
+      while: { gt: [ { tokens: self }, 0 ] }
+      mods: [ { stat: { str: 1, life: 1 } } ]

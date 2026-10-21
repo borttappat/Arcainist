@@ -8,3 +8,16 @@ text: |
   EXTRA COST: Deploy this only in response to a card or ability that picked a character as an extra cost.
   Put the character into its owner's hand. If you do and the character is a UNIQUE PLUCK, draw a card.
   FLIP UP: 1 [D]
+rules:
+  - play:
+      timing: { response_to: { picked_character_as_cost: true } }
+      effect:
+        - let: { c: { card: responded_pick } }
+        - if:
+            cond: { in_play: c }
+            then:
+              - move: { card: c, to: hand }
+              - if:
+                  cond: { matches: [ c, { character: { zone: hand, unique: Pluck } } ] }
+                  then: [ draw: 1 ]
+  - flip_up: { pay: 1, threshold: { deception: 1 } }

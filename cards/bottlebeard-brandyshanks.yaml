@@ -11,3 +11,16 @@ text: |
   CHUG!
   COST: Pay 2. Pick an opponent.
   EFFECT: Put the top card of that player's deck on the bottom of their deck.
+rules:
+  - unique: Pluck
+  - static:
+      mods:
+        - { reveal_top: opponent, target: none }
+  - static:
+      while: { matches: [ top_of_opponent, { character: { zone: deck } } ] }
+      mods: [ { stat: { spd: 3 } } ]
+  - ability:
+      name: Chug!
+      cost: [ pay: 2 ]
+      effect:
+        - move: { card: top_of_opponent, to: deck_bottom }

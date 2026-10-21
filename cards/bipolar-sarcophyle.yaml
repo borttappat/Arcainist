@@ -8,3 +8,12 @@ rarity: common
 text: |
   When this card enters play, flip a coin. If you win, put a token on this card.
   This card gains 1 strength and 1 life for each token on it.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - coin_flip: { as: won }
+      - if:
+          cond: { did: true }
+          then: [ tokens: { card: self, add: 1 } ]
+  - static:
+      mods: [ { stat: { str: { tokens: self }, life: { tokens: self } } } ]

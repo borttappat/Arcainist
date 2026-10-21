@@ -7,3 +7,9 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   [D][D][D]: When this card inflicts damage to a character, destroy that character.
+rules:
+  - trigger: { on: damage, source: self, requires: { deception: 3 } }
+    effect:
+      - if:
+          cond: { matches: [ it, { character: any } ] }
+          then: [ destroy: it ]

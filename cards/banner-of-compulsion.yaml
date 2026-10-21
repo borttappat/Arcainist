@@ -11,3 +11,14 @@ text: |
   BURN IT
   COST: Pay 2. Destroy this card.
   EFFECT: Draw 2 cards.
+rules:
+  - trigger: { on: enters_play, card: { controller: you, provides_at_least: { obsession: 1 } } }
+    effect:
+      - may_pay:
+          amount: 1
+          prompt: "look at the top 3 cards of your deck"
+          then: [ look: { deck: you, count: 3, bottom: any } ]
+  - ability:
+      name: Burn It
+      cost: [ pay: 2, destroy: self ]
+      effect: [ draw: 2 ]

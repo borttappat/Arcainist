@@ -9,3 +9,11 @@ text: |
   BETRAY
   COST: Pick a non-tactic card in an opponent's discard pile. Destroy this card. 
   EFFECT: Put the card into play under your control.
+rules:
+  - ability:
+      name: Betray
+      cost:
+        - pick: { as: c, from: { card: { zone: discard, owner: opponent, not_type: tactic } } }
+        - destroy: self
+      effect:
+        - put_into_play: { card: c, controller: you }

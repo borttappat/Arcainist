@@ -2,6 +2,7 @@ id: "wrinkly-rabbit"
 name: "Wrinkly Rabbit"
 trade: arcanist
 types: [character]
+keywords: [covert]
 subtypes: ["monstrosity", "rabbit"]
 set: "Seed Saga"
 rarity: rare

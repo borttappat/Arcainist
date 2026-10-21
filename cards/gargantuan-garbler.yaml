@@ -2,6 +2,7 @@ id: "gargantuan-garbler"
 name: "Gargantuan Garbler"
 trade: arcanist
 types: [character]
+keywords: [covert]
 subtypes: ["lurker"]
 set: "2nd Edition"
 rarity: rare

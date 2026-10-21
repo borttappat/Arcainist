@@ -7,3 +7,9 @@ rarity: uncommon
 text: |
   EXTRA COST: Pick a blocking character.
   This turn, the character gains 5 strength and 5 life.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { blocking: true } } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: 5, life: 5 }, target: c } ] }

@@ -7,3 +7,20 @@ rarity: uncommon
 text: |
   EXTRA COST: Pick a character an opponent controls. You may pay 2. If you do, that character's controller picks another character they control.
   Put the characters on the bottom of their owner's deck. Draw a card.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { controller: opponent } } }
+        - may_pay:
+            amount: 2
+            prompt: "its controller picks another character they control"
+            then:
+              - as:
+                  who: { controller_of: c }
+                  steps: [ pick: { as: c2, from: { character: { controller: you, not: c } } } ]
+      effect:
+        - move: { card: c, to: deck_bottom }
+        - if:
+            cond: { defined: c2 }
+            then: [ move: { card: c2, to: deck_bottom } ]
+        - draw: 1

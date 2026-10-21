@@ -2,6 +2,7 @@ id: "hired-goons"
 name: "Hired Goons"
 trade: banker
 types: [character]
+keywords: [covert]
 subtypes: ["mercenary", "mau"]
 set: "2nd Edition"
 rarity: rare

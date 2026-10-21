@@ -2,6 +2,7 @@ id: "heavy-sword"
 name: "Heavy Sword"
 trade: warlord
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "Seed Saga"
 rarity: common

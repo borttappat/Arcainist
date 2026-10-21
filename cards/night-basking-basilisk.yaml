@@ -2,6 +2,7 @@ id: "night-basking-basilisk"
 name: "Night-basking Basilisk"
 trade: arcanist
 types: [character]
+keywords: [covert]
 subtypes: ["beast"]
 set: "Holy Heist"
 rarity: common

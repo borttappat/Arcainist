@@ -8,3 +8,9 @@ rarity: common
 text: |
   When this card enters play, your faction loses 3 influence.
   When this card blocks, it gains 4 strength and 4 life this turn.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect: [ lose_influence: { who: you, amount: 3 } ]
+  - trigger: { on: blocks, card: self }
+    effect:
+      - create_effect: { duration: turn, mods: [ { stat: { str: 4, life: 4 } } ] }

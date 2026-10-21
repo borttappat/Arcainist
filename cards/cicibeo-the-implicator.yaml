@@ -11,3 +11,26 @@ text: |
   COST: Deplete this card. Pick a character.
   EFFECT: That character's controller depletes that character or reveals the top card of their deck. If they reveal the top card of their deck and it's a character, take control of the picked character this turn.
   [D][D][D][D]: When another "cicibeo" character enters play, if it was deployed from your hand, you may pick a depleted character. If you do, destroy that character.
+rules:
+  - unique: Cicibeo
+  - ability:
+      name: Imply
+      cost:
+        - deplete: self
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - as:
+            who: { controller_of: c }
+            steps:
+              - choose_one:
+                  - { label: "Deplete the character", steps: [ deplete: c ] }
+                  - { label: "Reveal the top card of your deck", steps: [ reveal_top: { who: you, count: 1, as: rev } ] }
+        - if:
+            cond: { all: [ { defined: rev }, { matches: [ rev, { character: { zone: deck } } ] } ] }
+            then: [ take_control: { card: c, who: you, duration: turn } ]
+  - trigger: { on: enters_play, card: { character: { subtype: cicibeo, controller: you, not_self: true } }, requires: { deception: 4 } }
+    effect:
+      - pick: { as: d, from: { character: { depleted: true } }, optional: true }
+      - if:
+          cond: { defined: d }
+          then: [ destroy: d ]

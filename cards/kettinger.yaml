@@ -2,6 +2,7 @@ id: "kettinger"
 name: "Kettinger"
 trade: warlord
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "1st Edition"
 rarity: common

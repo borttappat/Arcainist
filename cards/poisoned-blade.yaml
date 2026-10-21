@@ -2,6 +2,7 @@ id: "poisoned-blade"
 name: "Poisoned Blade"
 trade: rogue
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "2nd Edition"
 rarity: common

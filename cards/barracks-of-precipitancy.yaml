@@ -11,3 +11,32 @@ text: |
   AT ANY COST!
   COST: Pay 2. Inflict 3 damage to this card.
   EFFECT: Restore this card.
+rules:
+  - ability:
+      name: Go Time!
+      cost: [ deplete: self ]
+      effect:
+        - shuffle: you
+        - reveal_top: { who: you, count: 1, as: rev }
+        - if:
+            cond: { matches: [ rev, { character: { zone: deck } } ] }
+            then:
+              - put_into_play: { card: rev, controller: you }
+              - create_effect:
+                  duration: game
+                  mods:
+                    - { keyword: aggro, target: rev }
+                    - { redirect: { from: play, to: discard, instead: void }, target: rev }
+                    - { redirect: { from: play, to: hand, instead: void }, target: rev }
+                    - { redirect: { from: play, to: deck, instead: void }, target: rev }
+                  rules:
+                    - trigger: { on: end_of_turn, player: any, once: true }
+                      effect:
+                        - if:
+                            cond: { in_play: rev }
+                            then: [ void: rev ]
+            else: [ move: { card: rev, to: deck_bottom } ]
+  - ability:
+      name: At Any Cost!
+      cost: [ pay: 2, damage: { card: self, amount: 3 } ]
+      effect: [ restore: self ]

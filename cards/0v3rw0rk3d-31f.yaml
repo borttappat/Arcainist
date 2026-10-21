@@ -9,3 +9,10 @@ text: |
   Abilities on locations cannot be used.
   [E][E][E][E][E][E]: Locations opponents control lose 1 structure.
   FLIP UP: 2 [E][E]
+rules:
+  - static:
+      mods: [ { cannot: use_ability, target: { location: any } } ]
+  - static:
+      requires: { elitism: 6 }
+      mods: [ { stat: { structure: -1 }, target: { location: { controller: opponent } } } ]
+  - flip_up: { pay: 2, threshold: { elitism: 2 } }

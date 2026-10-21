@@ -11,3 +11,14 @@ text: |
   BURN IT
   COST: Pay 2. Destroy this card.
   EFFECT: Draw 2 cards.
+rules:
+  - trigger: { on: enters_play, card: { controller: you, provides_at_least: { elitism: 1 } } }
+    effect:
+      - may_pay:
+          amount: 1
+          prompt: "detach 2 resources from your faction"
+          then: [ detach: { count: 2 } ]
+  - ability:
+      name: Burn It
+      cost: [ pay: 2, destroy: self ]
+      effect: [ draw: 2 ]

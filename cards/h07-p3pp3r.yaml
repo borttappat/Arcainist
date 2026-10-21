@@ -2,6 +2,7 @@ id: "h07-p3pp3r"
 name: "H07 P3pp3r"
 trade: gearsmith
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "Seed Saga"
 rarity: uncommon

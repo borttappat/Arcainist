@@ -2,6 +2,7 @@ id: "flagitious-denunciator"
 name: "Flagitious Denunciator"
 trade: arcanist
 types: [character]
+keywords: [covert]
 subtypes: ["wizard"]
 set: "Seed Saga"
 rarity: uncommon

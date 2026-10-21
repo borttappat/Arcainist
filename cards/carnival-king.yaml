@@ -9,3 +9,16 @@ text: |
   CONGA LINE
   COST: Pay 3. Deplete this card. Pick a character not in a battle.
   EFFECT: This turn, all characters able to block the character must do so. When an attacking party is formed including the character, it must have only 1 member.
+rules:
+  - ability:
+      name: Conga Line
+      cost:
+        - pay: 3
+        - deplete: self
+        - pick: { as: c, from: { character: { attacking: false, blocking: false } } }
+      effect:
+        - create_effect:
+            duration: turn
+            mods:
+              - { must_block: true, target: all, while: { attacking: c } }
+              - { party: { side: attacking, max: 1, including: c } }

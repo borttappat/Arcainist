@@ -2,6 +2,7 @@ id: "heavy-fists-of-robotic-pounding"
 name: "Heavy Fists of Robotic Pounding"
 trade: gearsmith
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "Holy Heist"
 rarity: common

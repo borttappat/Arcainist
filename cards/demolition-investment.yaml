@@ -8,3 +8,20 @@ text: |
   EXTRA COST: Pick a player. Your faction loses 3 influence.
   That player reveals a face-down resource they control. Your faction gains influence equal to that card's numeric cost. Destroy that card.
   FLIP UP: 4 [G]
+rules:
+  - play:
+      cost:
+        - pick: { as: f, from: { faction: any }, choose: true, prompt: "Pick a player (their faction)." }
+        - lose_influence: { who: you, amount: 3 }
+      effect:
+        - as:
+            who: { controller_of: f }
+            steps:
+              - pick: { as: r, from: { resource: { controller: you, face_down: true } }, choose: true, prompt: "Reveal a face-down resource you control." }
+        - if:
+            cond: { defined: r }
+            then:
+              - reveal: r
+              - gain_influence: { who: you, amount: { cost: r } }
+              - destroy: r
+  - flip_up: { pay: 4, threshold: { greed: 1 } }

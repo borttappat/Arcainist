@@ -6,3 +6,8 @@ set: "Holy Heist"
 rarity: uncommon
 text: |
   Search your deck for a Gearsmith card and reveal it. If you do, put it into play under your control as a face-down resource.
+rules:
+  - play:
+      effect:
+        - search: { deck: you, for: { card: { trade: gearsmith } }, reveal: true, to: keep, as: found }
+        - put_into_play: { card: found, controller: you, as: face_down_resource }

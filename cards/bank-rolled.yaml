@@ -8,3 +8,11 @@ text: |
   EXTRA COST: Choose a number for X. Your faction loses X influence.
   Destroy a character with numeric cost X.
   FLIP UP: 4 [G][G] and your faction gains 4 influence.
+rules:
+  - play:
+      cost:
+        - choose_number: { as: X, min: 0 }
+        - lose_influence: { who: you, amount: X }
+      effect:
+        - destroy: { from: { character: { cost_gte: X, cost_lte: X } }, choose: true }
+  - flip_up: { pay: 4, threshold: { greed: 2 }, cost: [ gain_influence: { who: you, amount: 4 } ] }

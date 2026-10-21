@@ -8,3 +8,21 @@ rarity: uncommon
 text: |
   Whenever an opponent forms an attacking party, you may pay 2. If you do, you may flip a coin. If you win the flip, all of your characters gain 1 speed this turn.
   [D][D][D][D][D][D]: When a coin is flipped, you may pay 1. If you do, draw a card.
+rules:
+  - trigger: { on: party_formed, player: opponent, side: attacking }
+    effect:
+      - may_pay:
+          amount: 2
+          prompt: "flip a coin: if you win, your characters gain 1 speed this turn"
+          then:
+            - coin_flip: { as: won }
+            - if:
+                cond: { did: true }
+                then:
+                  - create_effect: { duration: turn, mods: [ { stat: { spd: 1 }, target: { character: { controller: you } } } ] }
+  - trigger: { on: coin_flipped, player: any, requires: { deception: 6 } }
+    effect:
+      - may_pay:
+          amount: 1
+          prompt: "draw a card"
+          then: [ draw: 1 ]

@@ -6,3 +6,9 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   Look at an opponent's hand and choose a non-resource card in it. Put it into play under that opponent's control as a face-down resource.
+rules:
+  - play:
+      effect:
+        - reveal_hand: opponent
+        - pick: { as: c, from: { card: { zone: hand, owner: opponent, not_type: resource } }, choose: true }
+        - put_into_play: { card: c, controller: opponent, as: face_down_resource }

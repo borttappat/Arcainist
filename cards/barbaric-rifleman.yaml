@@ -7,3 +7,6 @@ set: "2nd Edition"
 rarity: common
 text: |
   When this card enters play, inflict 1 damage to an opponent's faction.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect: [ damage: { faction: opponent, amount: 1 } ]

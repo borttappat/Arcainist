@@ -2,6 +2,7 @@ id: "heavy-plating"
 name: "Heavy Plating"
 trade: gearsmith
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "2nd Edition"
 rarity: common

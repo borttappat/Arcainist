@@ -23,3 +23,53 @@ text: |
   RUNE OF DESTRUCTION
   COST: Destroy this card. Pick an item.
   EFFECT: Remove the item from the game.
+rules:
+  - ability:
+      name: Rune of Enhancement
+      cost:
+        - destroy: self
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: 2, life: 2 }, target: c } ] }
+  - ability:
+      name: Rune of Summoning
+      cost: [ destroy: self ]
+      effect: [ create_token: { card: micromajig-token, count: 2 } ]
+  - ability:
+      name: Rune of Animation
+      cost:
+        - destroy: self
+        - pick: { as: i, from: { item: any } }
+      effect:
+        - create_effect:
+            duration: turn
+            mods:
+              - { add_type: character, target: i }
+              - { set_stats: { str: { cost: i }, life: { cost: i }, spd: 3 }, target: i }
+  - ability:
+      name: Rune of Acceleration
+      cost: [ destroy: self ]
+      effect:
+        - search: { deck: you, for: { card: { name: Elitism } }, to: keep, as: found }
+        - if:
+            cond: { defined: found }
+            then:
+              - put_into_play: { card: found, controller: you }
+              - create_effect:
+                  duration: game
+                  rules:
+                    - trigger: { on: end_of_turn, player: any, once: true }
+                      effect:
+                        - destroy: { from: { resource: { name: Elitism, controller: you } }, choose: true }
+  - ability:
+      name: Rune of Overclocking
+      cost:
+        - destroy: self
+        - pick: { as: c, from: { card: { trade: gearsmith, controller: you } } }
+      effect: [ tokens: { card: c, add: 1 } ]
+  - ability:
+      name: Rune of Destruction
+      cost:
+        - destroy: self
+        - pick: { as: i, from: { item: any } }
+      effect: [ void: i ]

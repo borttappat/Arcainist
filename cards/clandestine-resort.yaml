@@ -6,3 +6,6 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   All your characters gain 1 life.
+rules:
+  - static:
+      mods: [ { stat: { life: 1 }, target: { character: { controller: you } } } ]

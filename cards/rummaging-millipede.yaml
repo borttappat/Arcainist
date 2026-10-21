@@ -2,6 +2,7 @@ id: "rummaging-millipede"
 name: "Rummaging Millipede"
 trade: arcanist
 types: [character]
+keywords: [covert]
 subtypes: ["lurker"]
 set: "2nd Edition"
 rarity: uncommon

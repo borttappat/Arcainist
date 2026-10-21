@@ -11,3 +11,19 @@ text: |
   COST: Use this only while this card is not in a battle. Pay 2.
   EFFECT: Flip this card face-down under its owner's control.
   FLIP UP: 3 [G]
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - lose_influence: { who: you, amount: 3 }
+      - pick: { as: c, from: { card: { zone: discard, owner: you } }, random: true, choose: true }
+      - if:
+          cond: { defined: c }
+          then: [ move: { card: c, to: hand } ]
+  - ability:
+      name: Retire
+      threshold: { greed: 3 }
+      timing: { not_in_battle: true }
+      cost: [ pay: 2 ]
+      effect:
+        - flip_face_down: { card: self, controller: owner }
+  - flip_up: { pay: 3, threshold: { greed: 1 } }

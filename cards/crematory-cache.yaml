@@ -6,3 +6,9 @@ set: "Holy Heist"
 rarity: common
 text: |
   When a character is destroyed, you may gain 1 influence.
+rules:
+  - trigger: { on: destroyed, card: { character: any }, player: any }
+    effect:
+      - may:
+          prompt: "gain 1 influence"
+          steps: [ gain_influence: { who: you, amount: 1 } ]

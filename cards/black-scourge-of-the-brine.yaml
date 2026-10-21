@@ -9,3 +9,10 @@ text: |
   ENCROACH: [G][G][G][G][G]
   COST: Pay 1.
   EFFECT: This turn, this card gains COVERT.
+rules:
+  - ability:
+      name: Encroach
+      threshold: { greed: 5 }
+      cost: [ pay: 1 ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { keyword: covert } ] }

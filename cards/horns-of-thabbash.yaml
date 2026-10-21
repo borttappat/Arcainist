@@ -2,6 +2,7 @@ id: "horns-of-thabbash"
 name: "Horns of Thabbash"
 trade: warlord
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "Holy Heist"
 rarity: common

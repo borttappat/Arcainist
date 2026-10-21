@@ -14,7 +14,8 @@ reported immediately with the file and path. Restart the server after editing a
 card.
 
 A card with no `rules` (or an instruction the engine doesn't know) is still
-playable: players use the manual controls, as on Jinteki.
+playable: players use the manual controls, as on Jinteki. `rules: []` marks a card
+whose text needs no automation (Crow With Fists' deckbuilding rule).
 
 ## Contents
 
@@ -48,7 +49,7 @@ playable: players use the manual controls, as on Jinteki.
 | `stats` | `str`, `life`, `spd` (characters). |
 | `structure` | Locations. |
 | `gear` | `str`, `life`, `spd` bonus a gear item gives the character it's attached to. |
-| `provides` | Icons a face-up non-staple resource provides (Violence: `{ "rage": 2 }`). |
+| `provides` | Icons a face-up non-staple resource provides (Violence: `{ "rage": 2 }`), or a permanent with PROVIDES (the Banners). |
 | `influence`, `starting_draw` | Factions: `{ "first": 8, "second": 9 }`. |
 | `starting_resources` | Factions, any combination of: `specific: { "rage": 2 }` (these staples), `face_down: { "obsession": 1 }`, `any_staples: N`, `different_staples: N`, `any_resources: N` (non-staple too), `any_cards_face_down: N`, `choose_staples: 10` (choose X from 1 to 10, then X staples). |
 
@@ -74,7 +75,7 @@ Other optional YAML fields:
 
 | Field | Meaning |
 |---|---|
-| `attach_to: character` | "Attach to Character": picking the host is part of the cost. |
+| `attach_to: character` | "Attach to Character": picking the host is part of the cost. A selector also works: `attach_to: { character: { controller: you } }`. |
 | `keywords: [covert, aggro, tactical]` | Built-in keywords (section 6 can grant them too). |
 | `staple: true`, `icon: rage` | Staple resources. |
 | `face_down_only: true` | Resource that may only be played face-down. |
@@ -193,6 +194,10 @@ Static rules are only active while the card is face-up in play, or in `zone`.
 | `tactic_to_discard` | A tactic you deployed would go to the discard pile (`by: you`); `it` is the tactic. If the `instead` steps don't move it, it goes to the discard pile as normal (Thabbash). |
 | `faction_damage` | Damage to a faction (`by: you`, `to: opponent`, `label`). The controller chooses how much is replaced. `amount` and `player` are set (Trickster's Globe). |
 
+A `destroy` replacement with `optional: true` ("its owner may ... instead") asks the
+destroyed card's owner first, with `prompt` as the question; on "no" the card is
+destroyed as normal (Adriel, Supreme General).
+
 Zone changes ("would be put into X, put it into Y instead") are the `redirect`
 modifier. Damage amount changes are the `damage` modifier.
 
@@ -211,7 +216,10 @@ illegal (it's undone). In effects, the engine does as much as it can.
 
 **Who is "you"?** The controller of the card or ability. `as` and `each_player`
 change it for the steps inside. Variables (`as: name`) are shared by every step
-of the same card resolution, from cost through effect.
+of the same card resolution, from cost through effect. "Pick a player" is written as
+picking their faction (`pick: { as: f, from: { faction: any }, choose: true }`), and
+`{ controller_of: f }` then names that player wherever a player is expected
+(`who`, `discard: { who: ... }`, `lose_influence: { who: ... }`).
 
 ### Control flow
 
@@ -252,12 +260,12 @@ while paying costs are recorded for Mistaken Identity.
 | `discard` | `discard: 1`, `discard: { who: opponent, count: 2, random: true, chooser: you, filter: <sel>, cards: d, as: d }` |
 | `move` | `move: { card: c, to: hand \| discard \| void \| deck_top \| deck_bottom \| deck_shuffle, tag: true }` |
 | `void` | `void: self`, `void: { card: x, face_down: true, tag: true }` |
-| `put_into_play` | `put_into_play: { card: c, controller: you \| opponent \| owner, as: face_down_resource \| resource, attach_to: self }` |
-| `flip_face_down` | `flip_face_down: { card: c, controller: owner }` |
+| `put_into_play` | `put_into_play: { card: c, controller: you \| opponent \| owner, as: face_down_resource \| resource, attach_to: self, attached: true }` (`attached`: a resource enters attached to the faction) |
+| `flip_face_down` | `flip_face_down: { card: c, controller: owner \| you \| opponent }` (`opponent`: its controller's opponent) |
 | `flip_face_up` | `flip_face_up: self` (stays a resource) |
 | `take_control` | `take_control: { card: c, who: opponent }` |
 | `attach` | `attach: { card: g, to: c }` |
-| `deplete` / `restore` | `deplete: self` |
+| `deplete` / `restore` | `deplete: self`, `deplete: d` (a list), `deplete: { character: { not_trade: rogue } }` (all matching). As a cost it fails if any can't be depleted; as an effect it depletes those it can. |
 | `reveal` | `reveal: c` |
 | `reveal_hand` | `reveal_hand: opponent` |
 | `tokens` | `tokens: { card: self, add: 1 }`, `{ remove: 2 }`, `{ remove: all, as: X }`, `{ set: 0 }` |
@@ -270,6 +278,7 @@ while paying costs are recorded for Mistaken Identity.
 | `cancel_end_turn` | `cancel_end_turn: true` |
 | `coin_flip` | `coin_flip: { as: won }`, then `if: { cond: { did: true } ... }`. Two-Headed Coin (`coin_reflip`) is offered automatically. |
 | `transform` | `transform: counter-imperial-army` (turn a double-sided faction over) |
+| `retarget_attack` | `retarget_attack: l` (the current attack now targets that location of the defender) |
 
 ### Decks and hands
 
@@ -287,10 +296,11 @@ while paying costs are recorded for Mistaken Identity.
 | Step | Example |
 |---|---|
 | `damage` | `damage: { card: c, amount: 2 }`, `damage: { faction: opponent, amount: 1 }` |
+| `divide_damage` | `divide_damage: { amount: X, from: { character: { attacking: true } } }` ("X damage divided however you want"); `up_to: true` for "up to X" |
 | `heal` | `heal: { card: l, amount: 2 }`, `heal: { card: it, all: true }` |
 | `markers` | `markers: { card: loc, add: 3 }` (damage markers that aren't damage) |
 | `lose_influence` / `gain_influence` | `lose_influence: { who: you, amount: 5 }` |
-| `detach` | `detach: { count: 9 }` |
+| `detach` | `detach: { count: 9 }`, or specific resources: `detach: { card: r }` |
 | `destroy_resource` | `destroy_resource: { who: opponent, face_down: true }` (that player picks) |
 | `restore_all_depleted`, `detach_all_resources` | Faction restore rules. |
 
@@ -340,11 +350,17 @@ Type keys: `character`, `item`, `location`, `tactic`, `resource`, `faction`, or
 |---|---|
 | `zone` | `play` (default) \| `hand` \| `deck` \| `discard` \| `void` \| `stack` \| `any` |
 | `owner`, `controller` | `you` \| `opponent` |
+| `unique` | `true`: a UNIQUE keyword in its text; a name (`unique: Jo`): that UNIQUE line |
+| `not_subtype`, `not_trade` | |
+| `token` | `token: false`: not a token (non-"micromajig") |
+| `spent` | A resource attached to its faction |
+| `has_tokens` | true / false |
 | `type`, `not_type`, `not_types: [..]`, `printed_type` | `printed_type` ignores face-down status |
 | `subtype` | `gear`, or a variable holding a named subtype |
 | `trade`, `name`, `name_not` | `name` can be a variable holding a named card |
 | `cost_lte`, `cost_gte` | Numeric cost, any value |
-| `str_lte` | Current strength (cards in play) |
+| `str_lte`, `life_lte` | Current strength or life in play, printed values elsewhere |
+| `top` | `top: 8`: among the top 8 cards of a deck ("look at the top 8 cards") |
 | `trade_not_among: <selector>` | Doesn't share a trade with any card matching the selector |
 | `face_down`, `depleted`, `staple` | true / false |
 | `not_self`, `not: c`, `among: list` | |
@@ -368,6 +384,7 @@ Type keys: `character`, `item`, `location`, `tactic`, `resource`, `faction`, or
 | `{ icons: greed }` | Your icon count |
 | `{ different_staples: you }` | Different staple resources you control |
 | `{ hand_size: opponent }` | |
+| `{ printed: [ c, str ] }` | A card's printed stat |
 | `{ len: list }` | Size of a list variable |
 | `{ half_up: <value> }`, `{ sum: [..] }`, `{ neg: <value> }` | |
 | `{ played_this_turn: { by: you, type: tactic, not_type: resource } }` | Cards played this turn |
@@ -387,7 +404,10 @@ card's printed stats.
 | `{ in_play: c }`, `{ destroyed: c }`, `{ in_zone: [c, void] }` | Where a card is |
 | `{ matches: [c, <selector>] }`, `{ exists: <selector> }` | |
 | `{ via: flip_up }` | "If you deployed this using FLIP UP" |
-| `{ your_turn: true }`, `{ attacking: self }`, `{ blocking: self }`, `{ in_battle: true }` | |
+| `{ your_turn: true }`, `{ attacking: self }`, `{ blocking: self }`, `{ in_battle: true }` | "While you are being attacked": `{ all: [ { in_battle: true }, { your_turn: false } ] }` |
+| `{ assigned_damage: self }` | The card assigned battle damage this turn |
+| `{ battle_damage: false }` | No damage has been assigned yet in the current battle |
+| `{ even: { hand_size: you } }` | The value is even |
 | `{ all: [..] }`, `{ any: [..] }`, `{ not: .. }` | |
 
 ## 6. Modifiers
@@ -405,7 +425,7 @@ Modifiers are continuous effects. They appear in `static` rules and
 | `keyword` | `{ keyword: covert }` | |
 | `provides` | `{ provides: { obsession: 2 } }` | Icons for threshold (Crest). |
 | `player_icons` | `{ player_icons: { elitism: 4 }, target: none }` | Icons not tied to a card (31337!). |
-| `cost` | `{ cost: -4, by: you, target: { card: { zone: stack } } }` | Cost increase or reduction. `applies: any` also covers ability costs; `applies: flip_up` only deploys using FLIP UP. |
+| `cost` | `{ cost: -4, by: you, target: { card: { zone: stack } } }` | Cost increase or reduction. `applies: any` also covers ability costs (the target is the ability's card); `applies: ability` only abilities; `applies: flip_up` only deploys using FLIP UP. |
 | `cost_min` | `{ cost_min: 3, by: opponent, target: { tactic: { zone: stack } } }` | Canny Bailiff. |
 | `threshold_reduce` | `{ threshold_reduce: 3 }` | Ignore that many missing icons. |
 | `cannot` | `{ cannot: play \| pick \| attack \| block \| restore_by_rule \| lose_game \| destroy_except_cost }` | Prohibitions. "Cannot" beats "can". |
@@ -414,13 +434,22 @@ Modifiers are continuous effects. They appear in `static` rules and
 | `play_from` | `{ play_from: { ignore_threshold: true }, target: { card: { zone: void, tagged_by: self } } }` | Play cards from other zones. |
 | `tactical` | `{ tactical: true }` | May be played whenever a tactic could. |
 | `grant_rules` | `{ grant_rules: [ <rules> ], target: { character: any } }` | Lodge Dock Florist. |
-| `damage` | `{ damage: { set: 0, battle: true }, while: { blocking: self } }` | Change damage taken. |
+| `damage` | `{ damage: { set: 0, battle: true }, while: { blocking: self } }` | Change damage taken. `over: 4` only changes amounts greater than 4. |
 | `influence_loss` | `{ influence_loss: { player: opponent, delta: 1 }, target: all }` | Gideon. |
 | `attack_limit` | `{ attack_limit: 1 }` | "Can attack only once each turn." |
 | `redirect` | `{ redirect: { from: play, to: discard, instead: hand } }` | "Would go to X; instead Y". |
 | `reveal_hand` | `{ reveal_hand: opponent, target: none }` | Odious Diva. |
 | `use_opponent_abilities` | `{ use_opponent_abilities: true }` | The Billionaire. |
 | `lose_when_deck_empty` | `{ lose_when_deck_empty: true }` | Trickster's Globe. |
+| `redirect_damage` | `{ redirect_damage: { to: self, amount: 1 }, target: c }` | Damage to the target is inflicted to `to` instead (all of it, or the first `amount`; a `next` effect ends after one use). |
+| `covert_blockable` | `{ covert_blockable: true, target: all }` | COVERT parties can be blocked by characters without COVERT. |
+| `attack_cost` | `{ attack_cost: 3, target: host }` | Its controller must pay that much to attack with it. |
+| `draw_bonus` | `{ draw_bonus: 1, by: you, target: none }` | Each time the player draws, they draw that many more. `{ cannot: draw, by: you, target: all }` stops draws. |
+| `destroy_self` | `{ destroy_self: true }` with `requires` | "[R][R][R]: Destroy this card." |
+| `party_covert` | `{ party_covert: true }` | Its attacking party is COVERT. |
+| `assign_to_target` | `{ assign_to_target: true }` | While attacking, its battle damage may go to the attack's target instead of the blockers. |
+| `must_be_assigned` | `{ must_be_assigned: true }` | Battle damage that could be assigned to it must be. |
+| `search_tax` | `{ search_tax: 2, by: opponent, target: none }` | Searching your own deck costs that much. |
 
 Derived values are recomputed from scratch, so modifiers switch on and off by
 themselves when their source leaves play or their condition changes. Increases
@@ -428,7 +457,7 @@ apply before reductions, and numbers never go below 0.
 
 ## 7. Events
 
-`played`, `ability_used`, `enters_play`, `leaves_play`, `destroyed`, `attacks`,
+`party_formed` (once per attacking or blocking party; filter with `side: attacking | blocking`), `played`, `ability_used`, `enters_play`, `leaves_play`, `destroyed`, `attacks`,
 `blocks`, `blocked` (each attacker, when blockers are declared), `damage`,
 `influence_lost`, `start_of_turn`, `end_of_turn`, `draw`, `picked`, `discarded`.
 
@@ -516,3 +545,12 @@ marked "Confirmed" are user rulings; the rest are still open.
 | Quotidian Misfire | Confirmed: every card going to a hand, drawn, searched or returned. |
 | Two-Headed Coin | Not automated: coins are only flipped at setup. |
 | Lost on Floor 3 | Playable whenever you have priority after declaring the end of your turn. |
+| 6r4wny 60dy9u4rd5 | "Leaves play in that way instead" covers destruction only; other ways of leaving play aren't redirected. |
+| Banana Peel | "You may pay 1. If you don't, terminate it": deployed during an opponent's turn, it simply costs 1 more. |
+| Akashic Notes | "Play a face-down resource attached to your faction": choose a card from hand; it enters face-down and attached. |
+| Bewilderbeast | Gains 1 strength and 1 life per card discarded, one trigger per card. |
+| Carnival Funhouse | Swaps printed stats; each character keeps its own other modifiers. |
+| Cicibeo the Implicator / the Swift | "If it was deployed from your hand" isn't checked: any other cicibeo entering play under your control counts. |
+| Community Chest | The mulligan clause (reveal it to draw at the start of your turn) is resolved by hand. |
+| Corrosive Waste Dispenser | Flips face-down when Convert removes its last token (the only way it loses tokens). |
+| Department of Rejections | The search tax is paid when the search resolves; if it can't be paid, there is no search. |

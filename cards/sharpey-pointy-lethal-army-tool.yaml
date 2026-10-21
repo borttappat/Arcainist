@@ -2,6 +2,7 @@ id: "sharpey-pointy-lethal-army-tool"
 name: "Sharpey Pointy Lethal Army Tool"
 trade: rogue
 types: [item]
+attach_to: { character: { controller: you } }
 subtypes: ["gear"]
 set: "Shade of the Devoured Emperor"
 rarity: rare

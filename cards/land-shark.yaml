@@ -2,6 +2,7 @@ id: "land-shark"
 name: "Land Shark"
 trade: arcanist
 types: [character]
+keywords: [covert]
 subtypes: ["lurker"]
 set: "2nd Edition"
 rarity: rare

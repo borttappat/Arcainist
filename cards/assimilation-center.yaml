@@ -8,3 +8,9 @@ text: |
   RECRUIT
   COST: Pay 1. Deplete this card.
   EFFECT: Search your deck for a character and reveal it. Put it on the top of your deck.
+rules:
+  - ability:
+      name: Recruit
+      cost: [ pay: 1, deplete: self ]
+      effect:
+        - search: { deck: you, for: { character: any }, reveal: true, to: deck_top }

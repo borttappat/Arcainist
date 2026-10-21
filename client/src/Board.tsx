@@ -498,7 +498,7 @@ function Prompt({ view, cards, send, sel, setSel, defOf, attack, setAttack, setH
           <div className="assign">
             {d.targets.map((iid) => (
               <div key={iid} className="assign-row" onMouseEnter={() => setHover(defOf(iid))} onMouseLeave={() => setHover(null)}>
-                <span>{defOf(iid)?.name}</span>
+                <span>{d.labels?.[iid] ?? defOf(iid)?.name}</span>
                 <button className="tiny" onClick={() => set(iid, (assign[iid] ?? 0) - 1)}>
                   −
                 </button>

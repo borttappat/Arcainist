@@ -7,3 +7,13 @@ rarity: common
 text: |
   EXTRA COST: Deploy this only while you are being attacked. Destroy a character you control. X is twice its strength.
   Inflict X damage divided however you want to the attacking party.
+rules:
+  - play:
+      cost:
+        - require: { all: [ { in_battle: true }, { your_turn: false } ] }
+        - pick: { as: d, from: { character: { controller: you } }, choose: true, prompt: "Destroy a character you control (X is twice its strength)." }
+        - let: { s: { stat: [ d, str ] } }
+        - let: { X: "s + s" }
+        - destroy: d
+      effect:
+        - divide_damage: { amount: X, from: { character: { attacking: true } } }

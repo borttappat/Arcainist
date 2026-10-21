@@ -7,3 +7,8 @@ rarity: common
 text: |
   Inflict 1 damage to all characters.
   FLIP UP: 3 [R][R] and play a resource.
+rules:
+  - play:
+      effect:
+        - damage: { card: { character: any }, amount: 1 }
+  - flip_up: { pay: 3, threshold: { rage: 2 }, cost: [ play_resource: 1 ] }

@@ -9,3 +9,16 @@ text: |
   RECUR: [O]
   COST: Use this only if this card is in your discard pile. Pay 4. Remove this card from the game.
   EFFECT: Destroy each card with a token on it.
+rules:
+  - play:
+      effect:
+        - pick: { as: t, from: { card: { not_type: resource } }, count: { count: { card: { not_type: resource } } }, up_to: true, choose: true, prompt: "Put a token on any number of non-resource cards." }
+        - tokens: { card: t, add: 1 }
+  - ability:
+      name: Recur
+      keyword: recur
+      threshold: { obsession: 1 }
+      from: discard
+      cost: [ pay: 4, void: self ]
+      effect:
+        - destroy: { card: { has_tokens: true, not_type: resource } }

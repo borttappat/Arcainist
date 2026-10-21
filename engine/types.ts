@@ -45,7 +45,7 @@ export interface CardDef {
   structure?: number;
   keywords?: string[];
   /** "character" for "Attach to Character". */
-  attach_to?: string;
+  attach_to?: string | Record<string, any>;
   /** Copies allowed in a constructed deck; null means any number. */
   deck_limit?: number | null;
   /** Tokens the card enters play with (number or value). */
@@ -116,6 +116,8 @@ export interface CardInst {
   /** Face-down in the void: only the owner and `knownTo` may look. */
   voidFaceDown?: boolean;
   knownTo?: PlayerId[];
+  /** An optional destroy replacement is waiting on its owner's answer. */
+  replacing?: boolean;
   /** Source iids that put this card where it is (for "removed by this card"). */
   tags?: string[];
   /** Choices remembered by the card while in play (a named card, subtype, icon). */
@@ -204,6 +206,8 @@ export interface Effect {
   used?: boolean;
   /** Lets the creating card clear some of its effects (`clear_effects: { tag }`). */
   tag?: string;
+  /** "The next X damage": how much is still to be redirected. */
+  left?: number;
 }
 
 export interface BattleState {
@@ -256,7 +260,19 @@ export type Decision =
   | { type: "name"; player: PlayerId; prompt: string; kind: "card" | "subtype"; options: Option[] }
   | { type: "number"; player: PlayerId; prompt: string; min: number; max: number; cancellable?: boolean }
   | { type: "blockers"; player: PlayerId; candidates: string[] }
-  | { type: "assign"; player: PlayerId; prompt: string; total: number; min?: number; targets: string[]; perTarget?: number }
+  | {
+      type: "assign";
+      player: PlayerId;
+      prompt: string;
+      total: number;
+      min?: number;
+      targets: string[];
+      perTarget?: number;
+      /** Display names for targets that aren't cards ("target": the attack's target). */
+      labels?: Record<string, string>;
+      /** Most that may go to a target. */
+      caps?: Record<string, number>;
+    }
   | { type: "play_resource"; player: PlayerId; optional: boolean };
 
 export interface LogEntry {
@@ -274,6 +290,8 @@ export interface TurnLog {
   attacks: Record<string, number>;
   /** "iid:index" of abilities used this turn (for once-per-turn abilities). */
   abilities?: Record<string, boolean>;
+  /** Characters that assigned battle damage this turn. */
+  assigned?: Record<string, boolean>;
 }
 
 export interface GameState {

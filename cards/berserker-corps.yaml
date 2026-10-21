@@ -8,3 +8,16 @@ rarity: rare
 text: |
   This card gains 1 strength for each token on it.
   At the start of your turn, you may pick a character you control. If you do, destroy it. Put X tokens on this card, where X is the destroyed character's strength when it was destroyed. Otherwise, destroy this card.
+rules:
+  - static:
+      mods: [ { stat: { str: { tokens: self } } } ]
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - pick: { as: c, from: { character: { controller: you } }, optional: true, prompt: "Berserker Corps: pick a character you control to destroy (otherwise Berserker Corps is destroyed)." }
+      - if:
+          cond: { defined: c }
+          then:
+            - let: { X: { stat: [ c, str ] } }
+            - destroy: c
+            - tokens: { card: self, add: X }
+          else: [ destroy: self ]

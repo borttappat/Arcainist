@@ -2,6 +2,7 @@ id: "delusive-strumpet"
 name: "Delusive Strumpet"
 trade: rogue
 types: [character]
+keywords: [tactical]
 subtypes: ["dancer"]
 set: "Seed Saga"
 rarity: common
@@ -11,3 +12,10 @@ text: |
   COST: Discard a card.
   EFFECT: Flip this card face-down under its owner's control.
   FLIP UP: 4 [D][D] and play a resource.
+rules:
+  - ability:
+      name: Graceful Exit
+      cost: [ discard: 1 ]
+      effect:
+        - flip_face_down: { card: self, controller: owner }
+  - flip_up: { pay: 4, threshold: { deception: 2 }, cost: [ play_resource: 1 ] }

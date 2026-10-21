@@ -7,3 +7,6 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   While this card is attacking, you may assign its battle damage to the target of the attack instead of the blocking party.
+rules:
+  - static:
+      mods: [ { assign_to_target: true } ]

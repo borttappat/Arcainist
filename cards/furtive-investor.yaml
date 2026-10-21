@@ -2,6 +2,7 @@ id: "furtive-investor"
 name: "Furtive Investor"
 trade: banker
 types: [character]
+keywords: [covert]
 subtypes: ["investor", "mau"]
 set: "2nd Edition"
 rarity: uncommon

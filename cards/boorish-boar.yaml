@@ -9,3 +9,14 @@ text: |
   [R][R]: This card gains 1 strength and loses 1 life.
   [R][R][R]: Destroy this card.
   When this card is destroyed, you may pick up to 2 characters and/or factions. If you do, inflict 2 damage divided however you want to those cards.
+rules:
+  - static:
+      requires: { rage: 2 }
+      mods: [ { stat: { str: 1, life: -1 } } ]
+  - static:
+      requires: { rage: 3 }
+      mods: [ { destroy_self: true } ]
+  - trigger: { on: destroyed, card: self }
+    effect:
+      - pick: { as: c, from: [ { character: any }, { faction: any } ], count: 2, up_to: true }
+      - divide_damage: { amount: 2, from: c }

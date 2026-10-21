@@ -2,6 +2,7 @@ id: "p3pp3r-0f-1n54n17y"
 name: "P3pp3r 0f 1n54n17y"
 trade: gearsmith
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "Seed Saga"
 rarity: rare

@@ -7,3 +7,7 @@ set: "Shade of the Devoured Emperor"
 rarity: common
 text: |
   [R][R][R][R][R][R]: This card gains 1 strength, 1 life and 1 speed.
+rules:
+  - static:
+      requires: { rage: 6 }
+      mods: [ { stat: { str: 1, life: 1, spd: 1 } } ]

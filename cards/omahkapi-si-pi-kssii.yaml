@@ -2,6 +2,7 @@ id: "omahkapi-si-pi-kssii"
 name: "Omahkapi'si Pi'kssii"
 trade: rogue
 types: [character]
+keywords: [tactical]
 subtypes: ["omahkapi'si", "seraphim", "dragon"]
 set: "Ungodly Mess"
 rarity: rare

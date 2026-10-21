@@ -7,3 +7,10 @@ rarity: common
 text: |
   EXTRA COST: Pick a character.
   Destroy the character. An opponent draws a card.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - destroy: c
+        - draw: { who: opponent, count: 1 }

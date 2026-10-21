@@ -6,3 +6,12 @@ set: "2nd Edition"
 rarity: rare
 text: |
   At the start of your turn, put a card from your hand on the bottom of your deck if you can. If you do, draw a card.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - if:
+          cond: { gt: [ { hand_size: you }, 0 ] }
+          then:
+            - pick: { as: b, from: { card: { zone: hand, owner: you } }, choose: true, prompt: "Put a card from your hand on the bottom of your deck." }
+            - move: { card: b, to: deck_bottom }
+            - draw: 1

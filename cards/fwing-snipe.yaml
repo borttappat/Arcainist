@@ -2,6 +2,7 @@ id: "fwing-snipe"
 name: "Fwing Snipe"
 trade: rogue
 types: [character]
+keywords: [tactical]
 subtypes: ["beast"]
 set: "Holy Heist"
 rarity: common

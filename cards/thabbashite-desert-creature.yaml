@@ -2,6 +2,7 @@ id: "thabbashite-desert-creature"
 name: "Thabbashite Desert Creature"
 trade: arcanist
 types: [character]
+keywords: [covert]
 subtypes: ["monstrosity"]
 set: "Ungodly Mess"
 rarity: common

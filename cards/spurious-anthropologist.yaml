@@ -2,6 +2,7 @@ id: "spurious-anthropologist"
 name: "Spurious Anthropologist"
 trade: banker
 types: [character]
+keywords: [tactical]
 subtypes: ["advisor"]
 set: "Holy Heist"
 rarity: rare

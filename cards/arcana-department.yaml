@@ -6,3 +6,6 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   When an attacking or blocking party is formed, it must have an even number of members.
+rules:
+  - static:
+      mods: [ { party: { side: both, even: true } } ]

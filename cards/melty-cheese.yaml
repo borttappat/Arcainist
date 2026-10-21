@@ -2,6 +2,7 @@ id: "melty-cheese"
 name: "Melty Cheese"
 trade: banker
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "Seed Saga"
 rarity: common

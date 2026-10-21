@@ -6,3 +6,13 @@ set: "1st Edition Part 2"
 rarity: rare
 text: |
   At the start of each player's turn, that player chooses a number for X. Each player puts X cards from their hand on the bottom of their deck in any order, or their entire hand if they have less than X cards in it. Each player puts the top Y cards of their deck into their hand, where Y is the number of cards that player put on the bottom of their deck.
+rules:
+  - trigger: { on: start_of_turn, player: any }
+    effect:
+      - as:
+          who: player
+          steps: [ choose_number: { as: X, min: 0, max: 20, prompt: "Ambiguity Embiggener: choose X (each player puts X cards from hand on the bottom of their deck, then draws that many from the top)." } ]
+      - each_player:
+          - pick: { as: b, from: { card: { zone: hand, owner: you } }, count: X, choose: true, prompt: "Put cards on the bottom of your deck (in this order)." }
+          - move: { card: b, to: deck_bottom }
+          - mill: { who: you, count: { len: b }, to: hand }

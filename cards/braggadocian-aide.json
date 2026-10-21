@@ -1,5 +1,6 @@
 {
   "cost": 4,
   "threshold": { "elitism": 1 },
-  "stats": { "str": 2, "life": 3, "spd": 3 }
+  "stats": { "str": 2, "life": 3, "spd": 3 },
+  "provides": { "elitism": 1 }
 }

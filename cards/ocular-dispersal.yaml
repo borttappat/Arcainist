@@ -2,6 +2,7 @@ id: "ocular-dispersal"
 name: "Ocular Dispersal"
 trade: rogue
 types: [tactic]
+attach_to: character
 subtypes: ["mutation"]
 set: "Holy Heist"
 rarity: uncommon

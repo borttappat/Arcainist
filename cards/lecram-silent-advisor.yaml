@@ -2,6 +2,7 @@ id: "lecram-silent-advisor"
 name: "Lecram, Silent Advisor"
 trade: rogue
 types: [character]
+keywords: [covert]
 subtypes: ["advisor"]
 set: "Seed Saga"
 rarity: common

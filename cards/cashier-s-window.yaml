@@ -8,3 +8,10 @@ text: |
   CASH IN
   COST: Destroy a character you control. Deplete this card.
   EFFECT: Draw a card.
+rules:
+  - ability:
+      name: Cash In
+      cost:
+        - destroy: { from: { character: { controller: you } }, choose: true }
+        - deplete: self
+      effect: [ draw: 1 ]

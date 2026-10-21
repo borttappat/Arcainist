@@ -2,6 +2,7 @@ id: "brummagem-jewelry"
 name: "Brummagem Jewelry"
 trade: banker
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "2nd Edition"
 rarity: common
@@ -9,3 +10,8 @@ text: |
   ATTACH TO CHARACTER
   When this card enters play, deplete the attached character.
   The attached character cannot be restored by its controller's faction's Restore Rule.
+rules:
+  - play:
+      effect: [ deplete: host ]
+  - static:
+      mods: [ { cannot: restore_by_rule, target: host } ]

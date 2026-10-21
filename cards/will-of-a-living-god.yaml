@@ -2,6 +2,7 @@ id: "will-of-a-living-god"
 name: "Will of a Living God"
 trade: arcanist
 types: [tactic]
+attach_to: character
 subtypes: ["mutation"]
 set: "Holy Heist"
 rarity: uncommon

@@ -2,6 +2,7 @@ id: "sudden-osprey"
 name: "Sudden Osprey"
 trade: rogue
 types: [character]
+keywords: [tactical]
 subtypes: ["beast"]
 set: "2nd Edition"
 rarity: common

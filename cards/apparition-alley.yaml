@@ -8,3 +8,11 @@ text: |
   WOOSH
   COST: Deplete this card. Pick a character.
   EFFECT: This turn, this character gains 1 speed.
+rules:
+  - ability:
+      name: Woosh
+      cost:
+        - deplete: self
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - modify: { card: c, stat: spd, gain: 1 }

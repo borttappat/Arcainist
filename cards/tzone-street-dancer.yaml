@@ -2,6 +2,7 @@ id: "tzone-street-dancer"
 name: "TZONE! Street Dancer"
 trade: rogue
 types: [character]
+keywords: [tactical]
 subtypes: ["dancer", "outcast", "performer"]
 set: "Holy Heist"
 rarity: common

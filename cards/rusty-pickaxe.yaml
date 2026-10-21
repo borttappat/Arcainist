@@ -2,6 +2,7 @@ id: "rusty-pickaxe"
 name: "Rusty Pickaxe"
 trade: rogue
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "Seed Saga"
 rarity: common

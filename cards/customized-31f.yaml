@@ -7,3 +7,7 @@ set: "Ungodly Mess"
 rarity: common
 text: |
   While there is a location or item in play, this card gains 2 strength and 2 life.
+rules:
+  - static:
+      while: { exists: [ { location: any }, { item: any } ] }
+      mods: [ { stat: { str: 2, life: 2 } } ]

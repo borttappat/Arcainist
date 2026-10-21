@@ -8,3 +8,12 @@ text: |
   EXTRA COST: Choose a number for X that is greater than 0. Remove X tactics in your discard pile from the game.
   You may search your deck for a tactic with numeric cost X or less and reveal it. If you do, put it into your hand.
   FLIP UP: 1 [O] and draw a card.
+rules:
+  - play:
+      cost:
+        - choose_number: { as: X, min: 1 }
+        - pick: { as: v, from: { tactic: { zone: discard, owner: you } }, count: X, exactly: true, choose: true, prompt: "Remove X tactics in your discard pile from the game." }
+        - void: v
+      effect:
+        - search: { deck: you, for: { tactic: { cost_lte: X } }, reveal: true, to: hand }
+  - flip_up: { pay: 1, threshold: { obsession: 1 }, cost: [ draw: 1 ] }

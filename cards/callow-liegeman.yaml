@@ -7,3 +7,10 @@ set: "2nd Edition"
 rarity: common
 text: |
   When this card attacks in a party with more than 1 member, it gains 1 strength and 1 life this turn.
+rules:
+  - trigger:
+      on: attacks
+      card: self
+      while: { gt: [ { count: { character: { attacking: true } } }, 1 ] }
+    effect:
+      - create_effect: { duration: turn, mods: [ { stat: { str: 1, life: 1 } } ] }

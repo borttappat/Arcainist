@@ -2,6 +2,7 @@ id: "waylay-blade"
 name: "Waylay Blade"
 trade: rogue
 types: [item]
+keywords: [tactical]
 subtypes: ["gear"]
 set: "Seed Saga"
 rarity: uncommon

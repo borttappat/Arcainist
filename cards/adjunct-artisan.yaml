@@ -9,3 +9,11 @@ text: |
   FABRICATE
   COST: Deplete this card.
   EFFECT: Reduce the next item's or item's ability's numeric cost you pay this turn by 2.
+rules:
+  - ability:
+      name: Fabricate
+      cost: [ deplete: self ]
+      effect:
+        - create_effect:
+            duration: next
+            mods: [ { cost: -2, applies: any, by: you, target: { item: any } } ]

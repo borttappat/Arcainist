@@ -2,6 +2,7 @@ id: "shadowy-mugger"
 name: "Shadowy Mugger"
 trade: rogue
 types: [character]
+keywords: [covert]
 subtypes: ["thief"]
 set: "Seed Saga"
 rarity: uncommon

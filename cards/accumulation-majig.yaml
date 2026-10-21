@@ -11,3 +11,19 @@ text: |
   FEED
   COST: Pay 3.
   EFFECT: Remove a token from this card.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - if:
+          cond: { gt: [ { tokens: self }, 0 ] }
+          then:
+            - may_pay:
+                amount: { tokens: self }
+                prompt: "keep Accumulation Majig"
+                else: [ destroy: self ]
+  - trigger: { on: end_of_turn, player: you }
+    effect: [ tokens: { card: self, add: 1 } ]
+  - ability:
+      name: Feed
+      cost: [ pay: 3 ]
+      effect: [ tokens: { card: self, remove: 1 } ]

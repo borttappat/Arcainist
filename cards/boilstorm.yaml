@@ -7,3 +7,9 @@ rarity: rare
 text: |
   EXTRA COST: Pick 3 or fewer characters.
   Inflict X damage divided however you want to the characters, where X is the number of [R] you control.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any }, count: 3, up_to: true }
+      effect:
+        - divide_damage: { amount: { icons: rage }, from: c }

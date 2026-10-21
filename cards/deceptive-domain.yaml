@@ -11,3 +11,16 @@ text: |
   FLIP IT: [D]
   COST: Use this only while this card is a face-down resource. Reveal this card. Pick a location. X is its numeric cost. Pay X+4.
   EFFECT: Put this card into play face-up. Take control of the location.
+rules:
+  - ability:
+      name: Flip It
+      from: face_down_resource
+      threshold: { deception: 1 }
+      cost:
+        - reveal: self
+        - pick: { as: l, from: { location: any } }
+        - let: { X: { cost: l } }
+        - pay: "X + 4"
+      effect:
+        - flip_face_up: self
+        - take_control: { card: l, who: you }

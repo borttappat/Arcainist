@@ -7,3 +7,6 @@ set: "1st Edition"
 rarity: common
 text: |
   When you are attacked, this card must block if it can.
+rules:
+  - static:
+      mods: [ { must_block: true } ]

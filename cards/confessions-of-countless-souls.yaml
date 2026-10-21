@@ -7,3 +7,13 @@ rarity: uncommon
 text: |
   EXTRA COST: Choose a number for X. Put X characters you control into the void. Pick X+1 characters.
   Put those characters into their owners's hand. Look at the top X+1 cards of your deck. You may put any number of those cards on the bottom of your deck in any order. Put the remaining cards on the top of your deck in any order.
+rules:
+  - play:
+      cost:
+        - pick: { as: v, from: { character: { controller: you } }, count: { count: { character: { controller: you } } }, up_to: true, choose: true, prompt: "Put X characters you control into the void (X is how many)." }
+        - let: { X: { len: v } }
+        - void: v
+        - pick: { as: c, from: { character: any }, count: "X + 1", exactly: true }
+      effect:
+        - move: { card: c, to: hand }
+        - look: { deck: you, count: "X + 1", bottom: any }

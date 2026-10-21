@@ -10,3 +10,14 @@ text: |
   FIREBREATHING
   COST: Choose a number for X. Pay X+X. Deplete this card. Pick a character.
   EFFECT: Inflict X damage to the character.
+rules:
+  - unique: Bladefist
+  - ability:
+      name: Firebreathing
+      cost:
+        - choose_number: { as: X, min: 0 }
+        - pay: "X + X"
+        - deplete: self
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - damage: { card: c, amount: X }

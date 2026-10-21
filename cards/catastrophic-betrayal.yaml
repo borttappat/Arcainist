@@ -7,3 +7,12 @@ rarity: common
 text: |
   EXTRA COST: Deploy this only while you are attacking. Pick a character in an opponent's discard pile.
   Put the character into play under your control as a member of the attacking party. Deplete it.
+rules:
+  - play:
+      cost:
+        - require: { all: [ { in_battle: true }, { your_turn: true } ] }
+        - pick: { as: c, from: { character: { zone: discard, owner: opponent } } }
+      effect:
+        - put_into_play: { card: c, controller: you }
+        - add_to_battle: { card: c, side: attacking }
+        - deplete: c

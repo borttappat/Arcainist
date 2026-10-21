@@ -7,3 +7,27 @@ rarity: common
 text: |
   When this card enters play, pick one character your opponent controls and one character you control.
   Switch the picked character's strength, life, and speed for as long as this card is in play.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - pick: { as: a, from: { character: { controller: opponent } } }
+      - pick: { as: b, from: { character: { controller: you } } }
+      - if:
+          cond: { all: [ { defined: a }, { defined: b } ] }
+          then:
+            # Printed stats are swapped; each card keeps its own other modifiers.
+            - let:
+                as_: { printed: [ a, str ] }
+                al_: { printed: [ a, life ] }
+                ap_: { printed: [ a, spd ] }
+                bs_: { printed: [ b, str ] }
+                bl_: { printed: [ b, life ] }
+                bp_: { printed: [ b, spd ] }
+            - create_effect:
+                duration: game
+                mods:
+                  - { set_stats: { str: bs_, life: bl_, spd: bp_ }, target: a, while: { in_play: self } }
+                  - { set_stats: { str: as_, life: al_, spd: ap_ }, target: b, while: { in_play: self } }
+                rules:
+                  - trigger: { on: leaves_play, card: self, player: any, once: true }
+                    effect: [ clear_effects: self ]

@@ -8,3 +8,12 @@ text: |
   EXTRA COST: Deploy this only not during a battle. Pick a character.
   This turn, the character gains strength equal to its numeric cost. You may play a resource.
   FLIP UP: 3 [R]
+rules:
+  - play:
+      timing: { not_in_battle: true }
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: { cost: c } }, target: c } ] }
+        - play_resource: { optional: true }
+  - flip_up: { pay: 3, threshold: { rage: 1 } }

@@ -7,3 +7,12 @@ rarity: rare
 text: |
   Look at the top 8 cards of your deck. You may choose a character among them with 1 strength or less and reveal it. If you do, put it into your hand. Shuffle your deck.
   FLIP UP: 3 [G]
+rules:
+  - play:
+      effect:
+        - pick: { as: c, from: { character: { zone: deck, owner: you, top: 8, str_lte: 1 } }, choose: true, optional: true, prompt: "You look at the top 8 cards of your deck. Choose a character with 1 strength or less to reveal and put into your hand." }
+        - if:
+            cond: { defined: c }
+            then: [ reveal: c, move: { card: c, to: hand } ]
+        - shuffle: you
+  - flip_up: { pay: 3, threshold: { greed: 1 } }

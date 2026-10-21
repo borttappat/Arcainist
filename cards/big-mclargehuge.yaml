@@ -10,3 +10,15 @@ text: |
   EXTRA COST: Destroy 2 resources you control.
   When this card leaves play, you may play a resource or pick an opponent and that player destroys a face-down resource they control.
   FLIP UP: 4 [R]
+rules:
+  - unique: McLargehuge
+  - play:
+      cost:
+        - destroy_resource: { who: you }
+        - destroy_resource: { who: you }
+  - trigger: { on: leaves_play, card: self }
+    effect:
+      - choose_one:
+          - { label: "Play a resource", steps: [ play_resource: { optional: true } ] }
+          - { label: "Your opponent destroys a face-down resource they control", steps: [ destroy_resource: { who: opponent, face_down: true } ] }
+  - flip_up: { pay: 4, threshold: { rage: 1 } }

@@ -9,3 +9,20 @@ text: |
   You may deploy the item. Draw a card.
   While this card is in your discard pile, when a card that provides at least [E] enters play under your control, you may pay 2. If you do, put this card into play under your control as a face-down resource.
   FLIP UP: 1 [E]
+rules:
+  - play:
+      cost:
+        - pick: { as: i, from: { resource: { controller: you, face_down: true, printed_type: item } }, choose: true }
+        - reveal: i
+      effect:
+        - may:
+            prompt: "deploy the revealed item"
+            steps: [ play_card: { card: i } ]
+        - draw: 1
+  - trigger: { on: enters_play, card: { controller: you, provides_at_least: { elitism: 1 } }, zone: discard }
+    effect:
+      - may_pay:
+          amount: 2
+          prompt: "put Accidental Invention into play as a face-down resource"
+          then: [ put_into_play: { card: self, controller: you, as: face_down_resource } ]
+  - flip_up: { pay: 1, threshold: { elitism: 1 } }

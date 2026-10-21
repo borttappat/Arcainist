@@ -12,3 +12,15 @@ text: |
   COST: Pay 1. Remove a token from this card. Pick a location.
   EFFECT: Put a damage marker on the card.
   FLIP UP: 4 [G][G][G]
+enters_with_tokens: 3
+rules:
+  - static:
+      mods: [ { stat: { str: { neg: { tokens: self } }, life: { neg: { tokens: self } } } } ]
+  - ability:
+      name: Extra Interest
+      cost:
+        - pay: 1
+        - tokens: { card: self, remove: 1 }
+        - pick: { as: l, from: { location: any } }
+      effect: [ markers: { card: l, add: 1 } ]
+  - flip_up: { pay: 4, threshold: { greed: 3 } }

@@ -9,3 +9,22 @@ text: |
   [O][O][O]: At the start of your turn, you may draw a card. If you do, an opponent may draw a card.
   [O][O][O][O][O]: At the start of your turn, an opponent discards a card.
   [O][O][O][O][O][O][O]: At the start of your turn, you may pick a character. If you do, put it into its owner's hand.
+rules:
+  - unique: Cryptic Athenaeum
+  - trigger: { on: start_of_turn, player: you, requires: { obsession: 3 } }
+    effect:
+      - may:
+          prompt: "draw a card (then your opponent may draw a card)"
+          steps:
+            - draw: 1
+            - as:
+                who: opponent
+                steps: [ may: { prompt: "draw a card", steps: [ draw: 1 ] } ]
+  - trigger: { on: start_of_turn, player: you, requires: { obsession: 5 } }
+    effect: [ discard: { who: opponent, count: 1 } ]
+  - trigger: { on: start_of_turn, player: you, requires: { obsession: 7 } }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ move: { card: c, to: hand } ]

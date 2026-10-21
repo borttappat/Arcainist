@@ -2,6 +2,7 @@ id: "murderous-kleptomaniac"
 name: "Murderous Kleptomaniac"
 trade: rogue
 types: [character]
+keywords: [covert]
 subtypes: ["vigilante"]
 set: "Shade of the Devoured Emperor"
 rarity: rare

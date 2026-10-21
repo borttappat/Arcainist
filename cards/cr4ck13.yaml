@@ -7,3 +7,6 @@ set: "Holy Heist"
 rarity: uncommon
 text: |
   When damage is inflicted to this card, put that many Micromajig tokens into play under your control.
+rules:
+  - trigger: { on: damage, card: self }
+    effect: [ create_token: { card: micromajig-token, count: amount } ]

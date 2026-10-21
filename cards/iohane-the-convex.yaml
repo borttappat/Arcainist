@@ -2,6 +2,7 @@ id: "iohane-the-convex"
 name: "Iohane, the Convex"
 trade: rogue
 types: [character]
+keywords: [tactical]
 subtypes: ["iohane", "sword of great justice"]
 set: "Seed 3"
 rarity: fixed

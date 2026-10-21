@@ -2,9 +2,13 @@ id: "concealed-goon"
 name: "Concealed Goon"
 trade: banker
 types: [character]
+keywords: [covert]
 subtypes: ["mercenary"]
 set: "2nd Edition"
 rarity: uncommon
 text: |
   COVERT
   When this card enters play, your faction loses 5 influence.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect: [ lose_influence: { who: you, amount: 5 } ]

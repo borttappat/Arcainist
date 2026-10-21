@@ -2,6 +2,7 @@ id: "insidious-ecto-manipulator"
 name: "Insidious Ecto-Manipulator"
 trade: arcanist
 types: [character]
+keywords: [covert]
 subtypes: ["ecto-manipulator"]
 set: "2nd Edition"
 rarity: uncommon

@@ -8,3 +8,12 @@ text: |
   EXTRA COST: Deploy this only while an opponent is attacking you. Pick a location in your discard pile.
   Put the location into play under your control. Change the target of that opponent's attack to the location.
   FLIP UP: 2 [G][G]
+rules:
+  - play:
+      cost:
+        - require: { all: [ { in_battle: true }, { your_turn: false } ] }
+        - pick: { as: l, from: { location: { zone: discard, owner: you } } }
+      effect:
+        - put_into_play: { card: l, controller: you }
+        - retarget_attack: l
+  - flip_up: { pay: 2, threshold: { greed: 2 } }

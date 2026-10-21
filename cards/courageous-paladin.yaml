@@ -7,3 +7,6 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   All battle damage that could be assigned to this card must be assigned to it.
+rules:
+  - static:
+      mods: [ { must_be_assigned: true } ]

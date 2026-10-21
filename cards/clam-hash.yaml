@@ -8,3 +8,13 @@ text: |
   EXTRA COST: Pick a character.
   This turn, the character gains 2 life. If you deployed this card using FLIP UP, put this card into its owner's hand instead of their discard pile.
   FLIP UP: 2 [G][G]
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - modify: { card: c, stat: life, gain: 2 }
+        - if:
+            cond: { via: flip_up }
+            then: [ move: { card: self, to: hand } ]
+  - flip_up: { pay: 2, threshold: { greed: 2 } }

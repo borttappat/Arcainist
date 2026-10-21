@@ -9,3 +9,18 @@ text: |
   RECUR: [O][O][O][O]
   COST: Use this only if this card is in your discard pile. Pay 4. Remove this card from the game. Pick a player.
   EFFECT: That player discards 2 cards.
+rules:
+  - play:
+      effect:
+        - search: { deck: you, for: { tactic: any }, count: 2, to: discard }
+  - ability:
+      name: Recur
+      keyword: recur
+      threshold: { obsession: 4 }
+      from: discard
+      cost:
+        - pay: 4
+        - void: self
+        - pick: { as: f, from: { faction: any }, choose: true, prompt: "Pick a player (their faction)." }
+      effect:
+        - discard: { who: { controller_of: f }, count: 2 }

@@ -2,6 +2,7 @@ id: "guttersnipe"
 name: "Guttersnipe"
 trade: rogue
 types: [character]
+keywords: [tactical]
 subtypes: ["outcast"]
 set: "Seed Saga"
 rarity: common

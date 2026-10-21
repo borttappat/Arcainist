@@ -2,6 +2,7 @@ id: "severed-limb"
 name: "Severed Limb"
 trade: warlord
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "Ungodly Mess"
 rarity: common

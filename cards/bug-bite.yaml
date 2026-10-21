@@ -10,3 +10,26 @@ text: |
   RECUR: [D][D]
   COST: Use this only if this card is in your discard pile. Pay 4. Remove this card from the game. Pick a character.
   EFFECT: Put 2 tokens on the character. Destroy it if it has at least X tokens on it, where X is its numeric cost.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - tokens: { card: c, add: 1 }
+        - if:
+            cond: { gte: [ { tokens: c }, { cost: c } ] }
+            then: [ destroy: c ]
+  - ability:
+      name: Recur
+      keyword: recur
+      threshold: { deception: 2 }
+      from: discard
+      cost:
+        - pay: 4
+        - void: self
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - tokens: { card: c, add: 2 }
+        - if:
+            cond: { gte: [ { tokens: c }, { cost: c } ] }
+            then: [ destroy: c ]

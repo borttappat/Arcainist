@@ -9,3 +9,11 @@ text: |
   GRAND DESIGN
   COST: Pay 2. Discard a card. Deplete this card.
   EFFECT: Reduce the next numeric cost you pay this turn by 6.
+rules:
+  - ability:
+      name: Grand Design
+      cost: [ pay: 2, discard: 1, deplete: self ]
+      effect:
+        - create_effect:
+            duration: next
+            mods: [ { cost: -6, applies: any, by: you, target: all } ]

@@ -2,6 +2,7 @@ id: "luteoderm-armor"
 name: "Luteoderm Armor"
 trade: gearsmith
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "1st Edition"
 rarity: common

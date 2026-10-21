@@ -2,6 +2,7 @@ id: "god-s-blessing-of-readiness"
 name: "God's Blessing of Readiness"
 trade: gearsmith
 types: [tactic]
+attach_to: character
 subtypes: ["mutation"]
 set: "Ungodly Mess"
 rarity: rare

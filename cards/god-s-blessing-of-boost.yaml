@@ -2,6 +2,7 @@ id: "god-s-blessing-of-boost"
 name: "God's Blessing of Boost"
 trade: warlord
 types: [tactic]
+attach_to: character
 subtypes: ["mutation"]
 set: "Ungodly Mess"
 rarity: rare

@@ -10,3 +10,13 @@ text: |
   CRUSH WAVE
   COST: Pay 2. Destroy this card.
   EFFECT: Inflict 1 damage to all characters.
+rules:
+  - trigger: { on: leaves_play, card: self }
+    effect:
+      - damage: { card: { character: any }, amount: 1 }
+      - draw: 1
+  - ability:
+      name: Crush Wave
+      cost: [ pay: 2, destroy: self ]
+      effect:
+        - damage: { card: { character: any }, amount: 1 }

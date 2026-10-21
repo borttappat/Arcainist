@@ -1,10 +1,10 @@
 {
  "summary": {
   "total": 1231,
-  "automated": 133,
-  "ready": 840,
-  "needsNew": 144,
-  "unclear": 114
+  "automated": 340,
+  "ready": 688,
+  "needsNew": 117,
+  "unclear": 86
  },
  "patterns": [
   {
@@ -7453,7 +7453,7 @@
     "deploy_free"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "0v3rw0rk3d 31f": {
    "patterns": [
@@ -7463,7 +7463,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "12 Man Brunch of Doom": {
    "patterns": [
@@ -7474,7 +7474,7 @@
     "destroy"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "313373 M3ch4n1c": {
    "patterns": [
@@ -7488,7 +7488,7 @@
     "into_play"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "3cc3n7r1c 73chn1c14n": {
    "patterns": [
@@ -7511,7 +7511,7 @@
     "gear_bonus"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "3p1ph4ny 31f": {
    "patterns": [
@@ -7531,7 +7531,7 @@
     "while"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "4rm0r3d 31f": {
    "patterns": [
@@ -7544,7 +7544,7 @@
     "micromajig"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "53cur17y 5y573m": {
    "patterns": [
@@ -7552,7 +7552,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "5n4p": {
    "patterns": [
@@ -7561,7 +7561,7 @@
     "micromajig"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "633fy 31f": {
    "patterns": [
@@ -7579,7 +7579,7 @@
     "t_leaves"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "700160x 31f": {
    "patterns": [
@@ -7600,7 +7600,7 @@
     "face_down"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "94r913 My 908570pp3r5": {
    "patterns": [
@@ -7611,7 +7611,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "A Blazing Zero": {
    "patterns": [
@@ -7621,7 +7621,7 @@
     "replace_other"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "A Boy and His Toy": {
    "patterns": [
@@ -7630,7 +7630,7 @@
     "micromajig"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "A Death Fit for a King": {
    "patterns": [
@@ -7646,7 +7646,7 @@
     "to_hand"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "A Series of Tubes": {
    "patterns": [
@@ -7663,7 +7663,7 @@
     "destroy"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Abandoned Testing Complex": {
    "patterns": [
@@ -7672,7 +7672,7 @@
     "play_resource"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Abecedarian Investor": {
    "patterns": [
@@ -7682,7 +7682,7 @@
     "tokens"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Abram Ka-darbo Alkazin": {
    "patterns": [
@@ -7697,7 +7697,7 @@
     "into_play"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Abused 31f Conveyer": {
    "patterns": [
@@ -7706,7 +7706,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Abusive Major General": {
    "patterns": [
@@ -7716,7 +7716,7 @@
     "inflict"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Accidental Invention": {
    "patterns": [
@@ -7732,7 +7732,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Accumulation Majig": {
    "patterns": [
@@ -7745,7 +7745,7 @@
     "pay"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Acidic Phlegm": {
    "patterns": [
@@ -7754,7 +7754,7 @@
     "play_resource"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Acrolosian Outpost #30016968A": {
    "patterns": [
@@ -7765,7 +7765,7 @@
     "to_hand"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Acuminous Gigantitect": {
    "patterns": [
@@ -7776,7 +7776,7 @@
     "next_cost"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Additional Tribute": {
    "patterns": [
@@ -7803,7 +7803,7 @@
     "next_cost"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Adriel, Defender of Marduun": {
    "patterns": [
@@ -7826,7 +7826,7 @@
     "replace_other"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Adroit Marauder": {
    "patterns": [
@@ -7834,7 +7834,7 @@
     "while"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Affectionate Dollkeeper": {
    "patterns": [
@@ -7843,7 +7843,7 @@
     "destroy"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Agile Highwayman": {
    "patterns": [],
@@ -7859,7 +7859,7 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Akashic Coin": {
    "patterns": [
@@ -7873,7 +7873,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Akashic Notes": {
    "patterns": [
@@ -7886,7 +7886,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "All-Nighter": {
    "patterns": [
@@ -7939,7 +7939,7 @@
     "to_hand"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Ambiguity Inhibitor": {
    "patterns": [
@@ -7949,7 +7949,7 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Ambuscade": {
    "patterns": [
@@ -7959,7 +7959,7 @@
     "inflict"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Ameliorate": {
    "patterns": [
@@ -7979,7 +7979,7 @@
     "pay"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Anathematize": {
    "patterns": [
@@ -7990,7 +7990,7 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Anatidaephobia": {
    "patterns": [
@@ -8011,7 +8011,7 @@
     "cannot_attack"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Anesthetizing Opulence": {
    "patterns": [
@@ -8021,7 +8021,7 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Animated Scrap Heap": {
    "patterns": [
@@ -8036,7 +8036,7 @@
     "ability"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Anxious Imp": {
    "patterns": [
@@ -8048,14 +8048,14 @@
     "gains_kw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Anxious Oaf": {
    "patterns": [
     "t_party"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Apparition Alley": {
    "patterns": [
@@ -8066,14 +8066,14 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Arcana Department": {
    "patterns": [
     "t_party"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Arcana Experiment": {
    "patterns": [
@@ -8087,7 +8087,7 @@
    "unrecognised": [
     "An opponent chooses X of those cards."
    ],
-   "automated": false
+   "automated": true
   },
   "Arcane Ambush": {
    "patterns": [
@@ -8102,7 +8102,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Arcane Escrow": {
    "patterns": [
@@ -8135,7 +8135,7 @@
    "unrecognised": [
     "Put them into your discard pile."
    ],
-   "automated": false
+   "automated": true
   },
   "Arcane Research": {
    "patterns": [
@@ -8163,7 +8163,7 @@
     "gains_kw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Architectural Restitution": {
    "patterns": [
@@ -8175,7 +8175,7 @@
    "unrecognised": [
     "Change the target of that opponent's attack to the location."
    ],
-   "automated": false
+   "automated": true
   },
   "Arena Quarter-Finalist": {
    "patterns": [],
@@ -8191,7 +8191,7 @@
     "to_hand"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Armored Keep": {
    "patterns": [
@@ -8208,7 +8208,7 @@
     "pay_x"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Arrakis Eternity": {
    "patterns": [
@@ -8224,7 +8224,7 @@
     "discard"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Arrogance": {
    "patterns": [
@@ -8234,7 +8234,7 @@
     "provides"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Asbestos Drywall": {
    "patterns": [
@@ -8245,7 +8245,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Ascendant Madcap": {
    "patterns": [
@@ -8256,7 +8256,7 @@
     "stat_per"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Ashara, Gideon's Twin": {
    "patterns": [
@@ -8267,7 +8267,7 @@
     "into_play"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Ashes of Zenobia": {
    "patterns": [
@@ -8279,7 +8279,7 @@
     "to_hand"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Ass": {
    "patterns": [
@@ -8299,7 +8299,7 @@
     "to_deck"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Assistant Mud Whisperer": {
    "patterns": [
@@ -8309,7 +8309,7 @@
    "unrecognised": [
     "At the start of each opponent's turn, you may pick a character."
    ],
-   "automated": false
+   "automated": true
   },
   "Athalamund Mangod, The Iron Fist": {
    "patterns": [
@@ -8322,7 +8322,7 @@
     "inflict"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Auction House": {
    "patterns": [
@@ -8347,7 +8347,7 @@
    "unrecognised": [
     "That character's controller chooses a number for X."
    ],
-   "automated": false
+   "automated": true
   },
   "Auditory Adulation": {
    "patterns": [
@@ -8360,7 +8360,7 @@
    "unrecognised": [
     "This turn, the character gains strength equal to its numeric cost."
    ],
-   "automated": false
+   "automated": true
   },
   "Auspicious Arrival": {
    "patterns": [
@@ -8373,7 +8373,7 @@
    "unrecognised": [
     "You may choose a character among them with 1 strength or less and reveal it."
    ],
-   "automated": false
+   "automated": true
   },
   "Auspicious Tax": {
    "patterns": [
@@ -8382,7 +8382,7 @@
    "unrecognised": [
     "The attached character's controller must pay 3 to attack with it."
    ],
-   "automated": false
+   "automated": true
   },
   "Avuncular Merlion": {
    "patterns": [
@@ -8395,7 +8395,7 @@
     "deplete"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Aweless Charger": {
    "patterns": [
@@ -8406,7 +8406,7 @@
     "leave_battle"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Axeclaw Grandchest": {
    "patterns": [
@@ -8419,7 +8419,7 @@
     "shuffle"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "B.A.S.E. Jump": {
    "patterns": [
@@ -8430,7 +8430,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "B14nd P3pp3r": {
    "patterns": [
@@ -8443,7 +8443,7 @@
     "stat_this_turn"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Backdoor Brigand": {
    "patterns": [
@@ -8454,7 +8454,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Balking Foecrusher": {
    "patterns": [
@@ -8468,7 +8468,7 @@
     "destroy"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Balthassar Gristwalter": {
    "patterns": [
@@ -8478,7 +8478,7 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Banana Peel": {
    "patterns": [
@@ -8493,7 +8493,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Bank Rolled": {
    "patterns": [
@@ -8505,7 +8505,7 @@
     "gain_infl"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Banner of Avarice": {
    "patterns": [
@@ -8522,7 +8522,7 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Banner of Betrayal": {
    "patterns": [
@@ -8538,7 +8538,7 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Banner of Compulsion": {
    "patterns": [
@@ -8554,7 +8554,7 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Banner of Elysium": {
    "patterns": [
@@ -8569,7 +8569,7 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Banner of Fury": {
    "patterns": [
@@ -8585,7 +8585,7 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Barbaric Rifleman": {
    "patterns": [
@@ -8595,7 +8595,7 @@
     "inflict"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Barracks of Precipitancy": {
    "patterns": [
@@ -8614,7 +8614,7 @@
     "restore"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Barrier of Benevolence": {
    "patterns": [
@@ -8627,7 +8627,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Basic Node": {
    "patterns": [
@@ -8648,7 +8648,7 @@
     "inflict"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Bask Bomb": {
    "patterns": [
@@ -8658,7 +8658,7 @@
     "inflict"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Battle-Ready Back-Breaker": {
    "patterns": [
@@ -8667,7 +8667,7 @@
     "deplete"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Battle Surge": {
    "patterns": [
@@ -8675,7 +8675,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Beatrix Winterbottom": {
    "patterns": [
@@ -8684,7 +8684,7 @@
     "while"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Because God Said So!": {
    "patterns": [
@@ -8694,7 +8694,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Beefy Researcher": {
    "patterns": [
@@ -8705,7 +8705,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Befuddling Beggar": {
    "patterns": [
@@ -8716,7 +8716,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Berserker Corps": {
    "patterns": [
@@ -8728,7 +8728,7 @@
     "destroy"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Bewilderbeast": {
    "patterns": [
@@ -8737,7 +8737,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Big McLargehuge": {
    "patterns": [
@@ -8750,7 +8750,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Billowing Bouffant": {
    "patterns": [
@@ -8759,7 +8759,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Bipolar Sarcophyle": {
    "patterns": [
@@ -8770,7 +8770,7 @@
     "stat_per"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Black Scourge of the Brine": {
    "patterns": [
@@ -8780,7 +8780,7 @@
     "gains_kw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Bladefist Doomwing": {
    "patterns": [
@@ -8794,7 +8794,7 @@
     "inflict"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Blanching Butcher": {
    "patterns": [
@@ -8806,7 +8806,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Blazing Shriever": {
    "patterns": [
@@ -8817,7 +8817,7 @@
     "inflict"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Blitz of Destruction": {
    "patterns": [
@@ -8835,7 +8835,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Bloodcrazed Berserker": {
    "patterns": [
@@ -8846,7 +8846,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Bloodcurdling Bulldozer": {
    "patterns": [
@@ -8855,7 +8855,7 @@
     "deplete"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Bloody Fisted Fanatic": {
    "patterns": [],
@@ -8870,7 +8870,7 @@
     "lose_infl"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Boilstorm": {
    "patterns": [
@@ -8879,7 +8879,7 @@
     "inflict"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Boorish Boar": {
    "patterns": [
@@ -8892,7 +8892,7 @@
     "inflict"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Booty Licker": {
    "patterns": [
@@ -8921,7 +8921,7 @@
     "top_to_bottom"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Braggadocian Aide": {
    "patterns": [
@@ -8931,7 +8931,7 @@
    "unrecognised": [
     "At the start of each opponent's turn, you may pick a resource attached to your faction."
    ],
-   "automated": false
+   "automated": true
   },
   "Brainbath": {
    "patterns": [
@@ -8946,7 +8946,7 @@
     "discard"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Brash Basher": {
    "patterns": [],
@@ -8963,14 +8963,14 @@
    "unrecognised": [
     "Each player destroys 2 character they own."
    ],
-   "automated": false
+   "automated": true
   },
   "Brilliant Insight": {
    "patterns": [
     "play_resource"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Brummagem Jewelry": {
    "patterns": [
@@ -8980,7 +8980,7 @@
     "no_restore"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Bug Bite": {
    "patterns": [
@@ -8996,7 +8996,7 @@
     "void"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Burly Assailment": {
    "patterns": [
@@ -9024,7 +9024,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Caboodling Gladhander": {
    "patterns": [
@@ -9035,7 +9035,7 @@
     "gain_infl"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Callow Liegeman": {
    "patterns": [
@@ -9044,7 +9044,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Camouflaged Urchin": {
    "patterns": [
@@ -9053,7 +9053,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Candy Skull Commander": {
    "patterns": [
@@ -9067,7 +9067,7 @@
    "unrecognised": [
     "Whenever an opponent forms an attacking party, you may pay 2."
    ],
-   "automated": false
+   "automated": true
   },
   "Cannon Squadron": {
    "patterns": [
@@ -9078,7 +9078,7 @@
    "unrecognised": [
     "EFFECT: Inflict up to 2 damage divided however you want to the characters."
    ],
-   "automated": false
+   "automated": true
   },
   "Canny Bailiff": {
    "patterns": [
@@ -9112,7 +9112,7 @@
    "unrecognised": [
     "$$$ MORPH"
    ],
-   "automated": false
+   "automated": true
   },
   "Card Counter": {
    "patterns": [
@@ -9122,7 +9122,7 @@
     "mill"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Carnival Funhouse": {
    "patterns": [
@@ -9131,7 +9131,7 @@
    "unrecognised": [
     "Switch the picked character's strength, life, and speed for as long as this card is in play."
    ],
-   "automated": false
+   "automated": true
   },
   "Carnival King": {
    "patterns": [
@@ -9145,7 +9145,7 @@
    "unrecognised": [
     "EFFECT: This turn, all characters able to block the character must do so."
    ],
-   "automated": false
+   "automated": true
   },
   "Carnival Ringmaster": {
    "patterns": [
@@ -9156,7 +9156,7 @@
     "tokens"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Carnival Whipmaster": {
    "patterns": [
@@ -9166,7 +9166,7 @@
     "control"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Cash Out": {
    "patterns": [
@@ -9188,7 +9188,7 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Casino Kingpin": {
    "patterns": [],
@@ -9203,7 +9203,7 @@
     "deplete"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Catastrophic Caper": {
    "patterns": [
@@ -9217,7 +9217,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Cathédrale de Mau": {
    "patterns": [
@@ -9239,7 +9239,7 @@
     "replace_other"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Chain Reaction": {
    "patterns": [
@@ -9266,7 +9266,7 @@
     "cost_mod"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Change of Tactics": {
    "patterns": [
@@ -9281,7 +9281,7 @@
    "unrecognised": [
     "Add the depleted characters to the attacking party."
    ],
-   "automated": false
+   "automated": true
   },
   "Changing Boothmajig": {
    "patterns": [
@@ -9291,7 +9291,7 @@
     "attach_effect"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Cheats McGuillicutty": {
    "patterns": [
@@ -9307,7 +9307,7 @@
     "into_play"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Cheats, the Dirty Rotten": {
    "patterns": [
@@ -9335,7 +9335,7 @@
    "unrecognised": [
     "Deplete another character you control."
    ],
-   "automated": false
+   "automated": true
   },
   "Chum, the Ugliest Sarume": {
    "patterns": [
@@ -9354,7 +9354,7 @@
     "into_play"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Cicibeo, The Implicator": {
    "patterns": [
@@ -9373,7 +9373,7 @@
    "unrecognised": [
     "EFFECT: That character's controller depletes that character or reveals the top card of their deck."
    ],
-   "automated": false
+   "automated": true
   },
   "Cicibeo the Swift": {
    "patterns": [
@@ -9385,7 +9385,7 @@
     "control"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Circumspect Hijacker": {
    "patterns": [
@@ -9398,7 +9398,7 @@
     "destroy"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Clam Hash": {
    "patterns": [
@@ -9411,14 +9411,14 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Clandestine Resort": {
    "patterns": [
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Class Action Defender": {
    "patterns": [
@@ -9429,7 +9429,7 @@
     "When any amount of damage greater than 4 is inflicted to this card, reduce it to 0.",
     "When you are attacked, you may pay 2."
    ],
-   "automated": false
+   "automated": true
   },
   "Clay Node": {
    "patterns": [
@@ -9455,7 +9455,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Cloaked Creeper": {
    "patterns": [
@@ -9463,14 +9463,14 @@
     "while"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Cloaked Weaponmaster": {
    "patterns": [],
    "unrecognised": [
     "You may deploy gear cards whenever you could deploy a tactic."
    ],
-   "automated": false
+   "automated": true
   },
   "Clockman City Shuffle": {
    "patterns": [
@@ -9478,7 +9478,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Clockman Junk Picker": {
    "patterns": [
@@ -9493,7 +9493,7 @@
     "destroy"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Clockman Pickpocket": {
    "patterns": [
@@ -9506,7 +9506,7 @@
     "control"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Clockman Skydocks": {
    "patterns": [
@@ -9530,7 +9530,7 @@
     "replace_other"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Club Mau Bouncer": {
    "patterns": [
@@ -9538,7 +9538,7 @@
     "inflict"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Cock Block": {
    "patterns": [
@@ -9560,7 +9560,7 @@
     "replace_other"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Community Chest": {
    "patterns": [
@@ -9573,7 +9573,7 @@
     "t_start_you"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Compulsive Creeper": {
    "patterns": [
@@ -9581,7 +9581,7 @@
     "while"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Concealed Goon": {
    "patterns": [
@@ -9591,7 +9591,7 @@
     "lose_infl"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Concentriculation": {
    "patterns": [
@@ -9607,7 +9607,7 @@
     "to_hand"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Confessions of Countless Souls": {
    "patterns": [
@@ -9621,7 +9621,7 @@
    "unrecognised": [
     "Put those characters into their owners's hand."
    ],
-   "automated": false
+   "automated": true
   },
   "Confounding Conjurer": {
    "patterns": [
@@ -9631,7 +9631,7 @@
     "to_hand"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Confrontational Conflagration": {
    "patterns": [
@@ -9645,7 +9645,7 @@
    "unrecognised": [
     "If the picked character you control is a \"dragon\", X is 2 times its strength, otherwise X is its strength."
    ],
-   "automated": false
+   "automated": true
   },
   "Conniving Puppeteer": {
    "patterns": [
@@ -9655,7 +9655,7 @@
     "into_play"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Conscientious Objector": {
    "patterns": [
@@ -9667,7 +9667,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Contiguous Defalcating Machine": {
    "patterns": [
@@ -9680,7 +9680,7 @@
    "unrecognised": [
     "Put a resource they control into its owners's hand."
    ],
-   "automated": false
+   "automated": true
   },
   "Contrabulous Fabtraption": {
    "patterns": [
@@ -9700,7 +9700,7 @@
    "unrecognised": [
     "EFFECT: This turn, the item is a golem character with strength and life equal to its numeric cost and 3 speed."
    ],
-   "automated": false
+   "automated": true
   },
   "Contractual Execution": {
    "patterns": [
@@ -9712,7 +9712,7 @@
     "Put the resource into its owners's hand.",
     "Flip the character face down under its owners's control."
    ],
-   "automated": false
+   "automated": true
   },
   "Contriving Engineer": {
    "patterns": [
@@ -9723,7 +9723,7 @@
     "attach_effect"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Corrosive Waste Dispenser": {
    "patterns": [
@@ -9736,7 +9736,7 @@
    "unrecognised": [
     "EFFECT: Each opponent destroys a character they control."
    ],
-   "automated": false
+   "automated": true
   },
   "Costly Filcher": {
    "patterns": [],
@@ -9773,7 +9773,7 @@
    "unrecognised": [
     "All battle damage that could be assigned to this card must be assigned to it."
    ],
-   "automated": false
+   "automated": true
   },
   "Cowering Golem": {
    "patterns": [
@@ -9782,7 +9782,7 @@
     "while"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Cowslaw": {
    "patterns": [
@@ -9797,7 +9797,7 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Cr4ck13": {
    "patterns": [
@@ -9805,7 +9805,7 @@
     "micromajig"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Craniata Nester": {
    "patterns": [
@@ -9825,7 +9825,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Crazed Executioner": {
    "patterns": [
@@ -9835,7 +9835,7 @@
     "inflict"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Creaky Old Swordsman": {
    "patterns": [],
@@ -9848,7 +9848,7 @@
     "gain_infl"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Crest of Deception": {
    "patterns": [
@@ -9861,7 +9861,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Crest of Elitism": {
    "patterns": [
@@ -9873,7 +9873,7 @@
     "micromajig"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Crest of Greed": {
    "patterns": [
@@ -9885,7 +9885,7 @@
     "gain_infl"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Crest of Obsession": {
    "patterns": [
@@ -9911,7 +9911,7 @@
     "to_deck"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Crimson Pandiatus": {
    "patterns": [
@@ -9920,7 +9920,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Crooked Appraiser": {
    "patterns": [
@@ -9930,14 +9930,14 @@
     "inflict"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Crow With Fists": {
    "patterns": [
     "copies"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Crushing Usury": {
    "patterns": [
@@ -9948,7 +9948,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Crushjaw Oceanhide": {
    "patterns": [
@@ -9960,7 +9960,7 @@
     "gains_kw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Cryptic Athenaeum": {
    "patterns": [
@@ -9973,7 +9973,7 @@
     "to_hand"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Cunning Disguise": {
    "patterns": [
@@ -9984,7 +9984,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Cunning Ruse": {
    "patterns": [
@@ -9994,7 +9994,7 @@
    "unrecognised": [
     "Flip the item face-down under its opponent's control."
    ],
-   "automated": false
+   "automated": true
   },
   "Customized 31f": {
    "patterns": [
@@ -10002,7 +10002,7 @@
     "while"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Cute Cutpurse": {
    "patterns": [
@@ -10014,7 +10014,7 @@
     "destroy"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "D3ck W4rd3n": {
    "patterns": [
@@ -10023,7 +10023,7 @@
     "lose_infl"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Damascus Sword Swinger": {
    "patterns": [
@@ -10031,7 +10031,7 @@
     "while"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Dandy Day-Trader": {
    "patterns": [],
@@ -10060,7 +10060,7 @@
     "while"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Day of the Tentacle": {
    "patterns": [
@@ -10069,7 +10069,7 @@
     "face_down"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Dazzling Trapezist": {
    "patterns": [
@@ -10080,7 +10080,7 @@
     "stat_static"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Deadly Striker": {
    "patterns": [
@@ -10121,7 +10121,7 @@
    "unrecognised": [
     "Put the characters on the bottom of their owner's deck."
    ],
-   "automated": false
+   "automated": true
   },
   "Deceitful Mortgage Underwriter": {
    "patterns": [
@@ -10136,7 +10136,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Deceptive Domain": {
    "patterns": [
@@ -10154,7 +10154,7 @@
     "control"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Deceptive Muddler": {
    "patterns": [
@@ -10173,7 +10173,7 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Defenders of Marduun": {
    "patterns": [
@@ -10201,14 +10201,14 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Defense Attorney": {
    "patterns": [
     "must_attack"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Defiler of Innocence": {
    "patterns": [
@@ -10222,7 +10222,7 @@
     "discard"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Degenerate Molestation": {
    "patterns": [
@@ -10237,7 +10237,7 @@
    "unrecognised": [
     "Repeat this card's effect until that player has no cards in their hand."
    ],
-   "automated": false
+   "automated": true
   },
   "Deicidal Detonation": {
    "patterns": [
@@ -10251,7 +10251,7 @@
     "destroy"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Deity Delimitation Device": {
    "patterns": [
@@ -10266,7 +10266,7 @@
     "into_play"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Delectable Boon": {
    "patterns": [
@@ -10278,7 +10278,7 @@
     "replace_other"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Delicious Strawberry Flavored Death": {
    "patterns": [
@@ -10288,7 +10288,7 @@
     "lose_infl"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Delusive Strumpet": {
    "patterns": [
@@ -10300,7 +10300,7 @@
     "play_resource"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Demolition Investment": {
    "patterns": [
@@ -10315,7 +10315,7 @@
    "unrecognised": [
     "Your faction gains influence equal to that card's numeric cost."
    ],
-   "automated": false
+   "automated": true
   },
   "Department of Rejections": {
    "patterns": [
@@ -10325,7 +10325,7 @@
    "unrecognised": [
     "Your opponents must pay 2 to use a character's ability."
    ],
-   "automated": false
+   "automated": true
   },
   "Derelict Seafarer": {
    "patterns": [
@@ -10340,7 +10340,7 @@
     "flip_up"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Desolate": {
    "patterns": [
@@ -15209,7 +15209,7 @@
     "Token.",
     "Treat Micromajig tokens as Gearsmith character cards with 1 strength, 1 life, 3 speed, and the majig subtype."
    ],
-   "automated": false
+   "automated": true
   },
   "Micromajig": {
    "patterns": [],

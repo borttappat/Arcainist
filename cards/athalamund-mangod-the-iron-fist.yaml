@@ -10,3 +10,16 @@ text: |
   PUNCH
   COST: Pay 1. Deplete this card. Pick a character. X is its strength. Y is twice this card's strength.
   EFFECT: Inflict X damage to this card. Inflict Y damage to the character.
+rules:
+  - unique: Athalamund
+  - ability:
+      name: Punch
+      cost:
+        - pay: 1
+        - deplete: self
+        - pick: { as: c, from: { character: any } }
+        - let: { X: { stat: [ c, str ] }, s: { stat: [ self, str ] } }
+        - let: { Y: "s + s" }
+      effect:
+        - damage: { card: self, amount: X }
+        - damage: { card: c, amount: Y }

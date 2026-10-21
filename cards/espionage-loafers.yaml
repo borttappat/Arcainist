@@ -2,6 +2,7 @@ id: "espionage-loafers"
 name: "Espionage Loafers"
 trade: banker
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "Holy Heist"
 rarity: uncommon

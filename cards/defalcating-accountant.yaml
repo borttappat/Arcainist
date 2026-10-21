@@ -7,3 +7,9 @@ set: "Holy Heist"
 rarity: common
 text: |
   When this card restores, you may draw a card.
+rules:
+  - trigger: { on: restored, card: self }
+    effect:
+      - may:
+          prompt: "draw a card"
+          steps: [ draw: 1 ]

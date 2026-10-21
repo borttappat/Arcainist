@@ -7,3 +7,6 @@ set: "Holy Heist"
 rarity: common
 text: |
   When this card enters play, put a Micromajig token into play under your control.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect: [ create_token: { card: micromajig-token } ]

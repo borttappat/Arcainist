@@ -8,3 +8,10 @@ rarity: uncommon
 text: |
   When this card enters play, you may destroy an item.
   FLIP UP: 6 [E]
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may:
+          prompt: "destroy an item"
+          steps: [ destroy: { from: { item: any }, choose: true } ]
+  - flip_up: { pay: 6, threshold: { elitism: 1 } }

@@ -8,3 +8,15 @@ text: |
   EXTRA COST: If you deployed this card using FLIP UP X is 4, otherwise X is 2. Pick X or fewer characters.
   This turn, the characters must attack if they can. Draw a card.
   FLIP UP: 2 [E]
+rules:
+  - play:
+      cost:
+        - if:
+            cond: { via: flip_up }
+            then: [ let: { X: 4 } ]
+            else: [ let: { X: 2 } ]
+        - pick: { as: c, from: { character: any }, count: X, up_to: true }
+      effect:
+        - create_effect: { duration: turn, mods: [ { must_attack: true, target: c } ] }
+        - draw: 1
+  - flip_up: { pay: 2, threshold: { elitism: 1 } }

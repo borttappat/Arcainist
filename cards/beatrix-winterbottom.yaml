@@ -9,3 +9,9 @@ text: |
   UNIQUE BEATRIX
   When you draw any number of cards, increase the amount by 1.
   While you have at least 10 cards in your hand, you cannot draw cards.
+rules:
+  - unique: Beatrix
+  - static:
+      mods:
+        - { draw_bonus: 1, by: you, target: none }
+        - { cannot: draw, by: you, target: all, while: { gte: [ { hand_size: you }, 10 ] } }

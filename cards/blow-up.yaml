@@ -7,3 +7,11 @@ rarity: uncommon
 text: |
   EXTRA COST: Pick an item.
   Destroy the item. That item's controller's faction loses 3 influence.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { item: any } }
+      effect:
+        # The item's controller loses influence first, while it is still in play.
+        - lose_influence: { who: { controller_of: c }, amount: 3 }
+        - destroy: c

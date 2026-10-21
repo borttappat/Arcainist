@@ -9,3 +9,10 @@ text: |
   INSPECT
   COST: Deplete this card. Pick a location.
   EFFECT: Inflict 2 damage to the location.
+rules:
+  - ability:
+      name: Inspect
+      cost:
+        - deplete: self
+        - pick: { as: l, from: { location: any } }
+      effect: [ damage: { card: l, amount: 2 } ]

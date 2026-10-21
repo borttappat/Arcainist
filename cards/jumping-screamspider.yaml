@@ -2,6 +2,7 @@ id: "jumping-screamspider"
 name: "Jumping Screamspider"
 trade: rogue
 types: [character]
+keywords: [covert]
 subtypes: ["beast"]
 set: "1st Edition"
 rarity: common

@@ -7,3 +7,6 @@ set: "Shade of the Devoured Emperor"
 rarity: common
 text: |
   When this card restores, put a Micromajig token into play under your control.
+rules:
+  - trigger: { on: restored, card: self }
+    effect: [ create_token: { card: micromajig-token } ]

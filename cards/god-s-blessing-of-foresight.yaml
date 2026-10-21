@@ -2,6 +2,7 @@ id: "god-s-blessing-of-foresight"
 name: "God's Blessing of Foresight"
 trade: arcanist
 types: [tactic]
+attach_to: character
 subtypes: ["mutation"]
 set: "Ungodly Mess"
 rarity: rare

@@ -2,6 +2,7 @@ id: "leaping-sarume"
 name: "Leaping Sarume"
 trade: warlord
 types: [character]
+keywords: [tactical]
 subtypes: ["dragon"]
 set: "Holy Heist"
 rarity: uncommon

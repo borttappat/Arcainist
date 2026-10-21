@@ -2,6 +2,7 @@ id: "arrakis-eternity"
 name: "Arrakis Eternity"
 trade: arcanist
 types: [character]
+keywords: [covert]
 subtypes: ["monstrosity"]
 set: "Ungodly Mess"
 rarity: common
@@ -10,3 +11,15 @@ text: |
   RECUR: [O]
   COST: Use this only if this card is in your discard pile. Pay 2. Pick a player. Remove this card from the game.
   EFFECT: That player discards 3 cards.
+rules:
+  - ability:
+      name: Recur
+      keyword: recur
+      threshold: { obsession: 1 }
+      from: discard
+      cost:
+        - pay: 2
+        - pick: { as: f, from: { faction: any }, choose: true, prompt: "Pick a player (their faction)." }
+        - void: self
+      effect:
+        - discard: { who: { controller_of: f }, count: 3 }

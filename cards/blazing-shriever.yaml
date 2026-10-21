@@ -9,3 +9,12 @@ text: |
   INFLAME
   COST: Pay 2. Destroy this card. Pick a character or location.
   EFFECT: Inflict X damage to the character or location, where X is the number of [R] you control.
+rules:
+  - ability:
+      name: Inflame
+      cost:
+        - pay: 2
+        - destroy: self
+        - pick: { as: c, from: [ { character: any }, { location: any } ] }
+      effect:
+        - damage: { card: c, amount: { icons: rage } }

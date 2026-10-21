@@ -10,3 +10,18 @@ text: |
   CONVERT
   COST: Remove a token from this card. Destroy a non-"micromajig" character you control.
   EFFECT: Each opponent destroys a character they control.
+enters_with_tokens: 4
+rules:
+  - ability:
+      name: Convert
+      cost:
+        - tokens: { card: self, remove: 1 }
+        - destroy: { from: { character: { controller: you, token: false } }, choose: true }
+      effect:
+        - as:
+            who: opponent
+            steps: [ destroy: { from: { character: { controller: you } }, choose: true } ]
+        # "When this card has no tokens on it": Convert is the only way it loses them.
+        - if:
+            cond: { eq: [ { tokens: self }, 0 ] }
+            then: [ flip_face_down: { card: self, controller: owner } ]

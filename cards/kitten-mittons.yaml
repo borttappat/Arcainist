@@ -2,6 +2,7 @@ id: "kitten-mittons"
 name: "Kitten Mittons"
 trade: banker
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "Ungodly Mess"
 rarity: common

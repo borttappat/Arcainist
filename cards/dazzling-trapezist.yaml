@@ -9,3 +9,12 @@ text: |
   INSPIRE
   COST: Put a card from your hand on the top of your deck. Pick a character.
   EFFECT: This turn, the character gains 1 speed.
+rules:
+  - ability:
+      name: Inspire
+      cost:
+        - pick: { as: h, from: { card: { zone: hand, owner: you } }, choose: true, prompt: "Put a card from your hand on top of your deck." }
+        - move: { card: h, to: deck_top }
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - modify: { card: c, stat: spd, gain: 1 }

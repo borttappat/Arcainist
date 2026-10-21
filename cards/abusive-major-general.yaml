@@ -9,3 +9,11 @@ text: |
   BLEED
   COST: Pick a character in battle. Destroy a resource you control.
   EFFECT: Inflict 2 damage to the character.
+rules:
+  - ability:
+      name: Bleed
+      cost:
+        - pick: { as: c, from: [ { character: { attacking: true } }, { character: { blocking: true } } ] }
+        - destroy_resource: { who: you }
+      effect:
+        - damage: { card: c, amount: 2 }

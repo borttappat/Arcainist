@@ -7,3 +7,11 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   At the start of your turn, pick a character an opponent controls. It gains COVERT until the start of your next turn.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - pick: { as: c, from: { character: { controller: opponent } } }
+      - if:
+          cond: { defined: c }
+          then:
+            - create_effect: { duration: until_your_next_turn, mods: [ { keyword: covert, target: c } ] }

@@ -9,3 +9,13 @@ text: |
   BORE
   COST: Pay 3. Deplete this card. Pick a blocking character.
   EFFECT: Remove the character from the battle. Deplete it.
+rules:
+  - ability:
+      name: Bore
+      cost:
+        - pay: 3
+        - deplete: self
+        - pick: { as: c, from: { character: { blocking: true } } }
+      effect:
+        - remove_from_battle: c
+        - deplete: c

@@ -14,3 +14,23 @@ text: |
   MAKE REAPPEAR
   COST: Deplete this card. Pay 1.
   EFFECT: Put a character voided by this card into play under your control.
+rules:
+  - unique: Pluck
+  - static:
+      zone: hand
+      while: { gte: [ { different_staples: you }, 4 ] }
+      mods: [ { threshold_reduce: 3 } ]
+  - ability:
+      name: Make Vanish
+      cost:
+        - deplete: self
+        - pick: { as: c, from: { character: any } }
+        - pay: 5
+      effect:
+        - void: { card: c, tag: true }
+  - ability:
+      name: Make Reappear
+      cost: [ deplete: self, pay: 1 ]
+      effect:
+        - pick: { as: c, from: { character: { zone: void, tagged_by: self } }, choose: true }
+        - put_into_play: { card: c, controller: you }

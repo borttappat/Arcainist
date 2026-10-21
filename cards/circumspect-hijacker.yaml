@@ -10,3 +10,10 @@ text: |
   RETREAT
   COST: Pay 2. Destroy this card.
   EFFECT: Draw a card.
+rules:
+  - trigger: { on: enters_play, card: self, requires: { greed: 3 } }
+    effect: [ draw: 1 ]
+  - ability:
+      name: Retreat
+      cost: [ pay: 2, destroy: self ]
+      effect: [ draw: 1 ]

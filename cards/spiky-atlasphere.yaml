@@ -2,6 +2,7 @@ id: "spiky-atlasphere"
 name: "Spiky Atlasphere"
 trade: gearsmith
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "1st Edition"
 rarity: common

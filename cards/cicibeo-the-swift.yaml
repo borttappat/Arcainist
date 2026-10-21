@@ -2,6 +2,7 @@ id: "cicibeo-the-swift"
 name: "Cicibeo the Swift"
 trade: rogue
 types: [character]
+keywords: [tactical]
 subtypes: ["grifter", "cicibeo"]
 set: "Shade of the Devoured Emperor"
 rarity: rare
@@ -10,3 +11,14 @@ text: |
   TACTICAL
   EXTRA COST: Discard a non-resource Rogue card.
   [D][D][D][D][D][D]: When another "cicibeo" card enters play, if it was deployed from your hand, you may pick a character and take control of it.
+rules:
+  - unique: Cicibeo
+  - play:
+      cost:
+        - discard: { count: 1, filter: { card: { trade: rogue, not_type: resource } } }
+  - trigger: { on: enters_play, card: { card: { subtype: cicibeo, controller: you, not_self: true } }, requires: { deception: 6 } }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ take_control: { card: c, who: you } ]

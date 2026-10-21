@@ -8,3 +8,11 @@ rarity: common
 text: |
   This character cannot attack.
   [R][R][R][R][R][R]: This card gains 4 life and loses all other rules text.
+rules:
+  # With [R]x6 it gains 4 life and loses "This character cannot attack".
+  - static:
+      while: { not: { icons: { rage: 6 } } }
+      mods: [ { cannot: attack } ]
+  - static:
+      requires: { rage: 6 }
+      mods: [ { stat: { life: 4 } } ]

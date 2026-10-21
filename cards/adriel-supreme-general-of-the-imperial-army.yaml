@@ -9,3 +9,19 @@ text: |
   UNIQUE ADRIEL
   When this character blocks or is blocked, you may pick a character or faction. If you do, inflict 1 damage to that character or faction.
   If this card would be destroyed, its owner may put it on top of their deck instead.
+rules:
+  - unique: Adriel
+  - trigger: { on: blocks, card: self }
+    effect:
+      - pick: { as: c, from: [ { character: any }, { faction: any } ], optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ damage: { card: c, amount: 1 } ]
+  - trigger: { on: blocked, card: self }
+    effect:
+      - pick: { as: c, from: [ { character: any }, { faction: any } ], optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ damage: { card: c, amount: 1 } ]
+  - replace: { event: destroy, card: self, optional: true, prompt: "Put it on top of its owner's deck instead" }
+    instead: [ move: { card: self, to: deck_top } ]

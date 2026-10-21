@@ -7,3 +7,5 @@ set: "Ungodly Mess"
 rarity: common
 text: |
   You may include as many copies of this card in your deck as you want.
+deck_limit: null
+rules: []

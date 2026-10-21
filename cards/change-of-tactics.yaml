@@ -8,3 +8,15 @@ text: |
   EXTRA COST: Deploy this only while you are attacking, while there is a blocking party and before any damage is assigned during this battle. X is the number of characters in the attacking party. Deplete X non-attacking characters you control.
   Remove all attacking characters from the battle. Add the depleted characters to the attacking party. Draw a card.
   FLIP UP: 4 [R][R] and you may play a resource.
+rules:
+  - play:
+      cost:
+        - require: { all: [ { in_battle: true }, { your_turn: true }, { exists: { character: { blocking: true } } }, { battle_damage: false } ] }
+        - let: { X: { count: { character: { attacking: true, controller: you } } } }
+        - pick: { as: d, from: { character: { controller: you, attacking: false, depleted: false } }, count: X, exactly: true, choose: true, prompt: "Deplete X non-attacking characters you control (X = attackers)." }
+        - deplete: d
+      effect:
+        - remove_from_battle: { character: { attacking: true } }
+        - add_to_battle: { card: d, side: attacking }
+        - draw: 1
+  - flip_up: { pay: 4, threshold: { rage: 2 }, cost: [ play_resource: { optional: true } ] }

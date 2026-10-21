@@ -7,3 +7,8 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   EXTRA COST: Pay X, where X is 7 minus the number of [R] you control.
+rules:
+  - play:
+      cost:
+        - let: { R: { icons: rage } }
+        - pay: "max(0, 7 - R)"

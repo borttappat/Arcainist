@@ -8,3 +8,11 @@ text: |
   EXTRA COST: Pick a character.
   Destroy the character. Your faction loses 3 influence.
   FLIP UP: 2 [G]
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - destroy: c
+        - lose_influence: { who: you, amount: 3 }
+  - flip_up: { pay: 2, threshold: { greed: 1 } }

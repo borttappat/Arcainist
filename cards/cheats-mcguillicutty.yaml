@@ -17,3 +17,34 @@ text: |
   CHANGE COSTUME
   COST: Pay 3. Shuffle this card into its owner's deck.
   EFFECT: Search your deck for a pluck card with a different name than this card and reveal it. Put it into play under your control.
+rules:
+  - unique: Pluck
+  - static:
+      mods: [ { reveal_top: you, target: none } ]
+  - ability:
+      name: Bottom Deal
+      cost: [ pay: 1 ]
+      effect: [ move: { card: top_of_you, to: deck_bottom } ]
+  - ability:
+      name: Cheat
+      cost: [ deplete: self ]
+      effect:
+        - let: { t: { card: top_of_you } }
+        - if:
+            cond: { defined: t }
+            then:
+              - reveal: t
+              - if:
+                  cond: { not: { matches: [ t, { card: { zone: deck, type: resource } } ] } }
+                  then:
+                    - may:
+                        prompt: "deploy the revealed card"
+                        steps: [ play_card: { card: t } ]
+  - ability:
+      name: Change Costume
+      cost:
+        - pay: 3
+        - move: { card: self, to: deck_shuffle }
+      effect:
+        - let: { me: { name_of: self } }
+        - search: { deck: you, for: { card: { subtype: pluck, name_not: me } }, reveal: true, to: play }

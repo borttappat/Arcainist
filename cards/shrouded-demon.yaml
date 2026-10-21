@@ -2,6 +2,7 @@ id: "shrouded-demon"
 name: "Shrouded Demon"
 trade: arcanist
 types: [character]
+keywords: [covert]
 subtypes: ["demon"]
 set: "Seed Saga"
 rarity: common

@@ -10,3 +10,14 @@ text: |
   COST: Deplete this card.
   EFFECT: Reduce the next numeric cost you pay this turn by 1.
   [E][E][E][E][E][E]: This card gains 2 strength, 2 life and 2 speed.
+rules:
+  - ability:
+      name: Research
+      cost: [ deplete: self ]
+      effect:
+        - create_effect:
+            duration: next
+            mods: [ { cost: -1, applies: any, by: you, target: all } ]
+  - static:
+      requires: { elitism: 6 }
+      mods: [ { stat: { str: 2, life: 2, spd: 2 } } ]

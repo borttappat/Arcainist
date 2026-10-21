@@ -7,3 +7,7 @@ set: "2nd Edition"
 rarity: common
 text: |
   When this card is blocked, it gains 2 strength and 2 life this turn.
+rules:
+  - trigger: { on: blocked, card: self }
+    effect:
+      - create_effect: { duration: turn, mods: [ { stat: { str: 2, life: 2 } } ] }

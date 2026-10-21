@@ -2,6 +2,7 @@ id: "sneaky-mansion"
 name: "Sneaky Mansion"
 trade: arcanist
 types: [character]
+keywords: [covert]
 subtypes: ["lurker"]
 set: "2nd Edition"
 rarity: uncommon

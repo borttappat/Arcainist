@@ -2,6 +2,7 @@ id: "luteoderm-goliath"
 name: "Luteoderm Goliath"
 trade: gearsmith
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "2nd Edition"
 rarity: rare

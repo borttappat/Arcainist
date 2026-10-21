@@ -8,3 +8,11 @@ rarity: common
 text: |
   EXTRA COST: You may pick a card.
   When this card enters play, if you picked a card as part of its cost, remove a token from the card.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { card: any }, optional: true }
+      effect:
+        - if:
+            cond: { defined: c }
+            then: [ tokens: { card: c, remove: 1 } ]

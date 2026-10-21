@@ -7,3 +7,6 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   You may deploy gear cards whenever you could deploy a tactic.
+rules:
+  - static:
+      mods: [ { tactical: true, target: { item: { subtype: gear, zone: hand, owner: you } } } ]

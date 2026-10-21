@@ -7,3 +7,7 @@ set: "1st Edition Part 2"
 rarity: common
 text: |
   When a character inflicts damage to this card, inflict 1 damage to that character.
+rules:
+  - trigger: { on: damage, card: self, source: { character: any } }
+    effect:
+      - damage: { card: source, amount: 1 }

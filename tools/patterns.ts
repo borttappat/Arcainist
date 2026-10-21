@@ -255,7 +255,7 @@ let unclear = 0;
 const blockers = new Map<string, number>();
 for (const d of cards) {
   const info = perCard.get(d.name)!;
-  if (d.rules?.length) {
+  if (d.rules) {
     automated++;
     continue;
   }
@@ -310,7 +310,7 @@ writeFileSync(join(ROOT, "docs/PATTERNS.md"), lines.join("\n"));
 const data = {
   summary: { total, automated, ready, needsNew, unclear },
   patterns: PATTERNS.map((p) => ({ id: p.id, category: p.category, label: p.label, engine: p.engine, cards: [...new Set(hits.get(p.id)!.map((h) => h.card))] })),
-  cards: Object.fromEntries([...perCard].map(([name, i]) => [name, { patterns: [...i.patterns], unrecognised: i.unknown, automated: !!(lib[Object.keys(lib).find((k) => lib[k].name === name)!] as CardDef).rules?.length }])),
+  cards: Object.fromEntries([...perCard].map(([name, i]) => [name, { patterns: [...i.patterns], unrecognised: i.unknown, automated: !!(lib[Object.keys(lib).find((k) => lib[k].name === name)!] as CardDef).rules }])),
 };
 writeFileSync(join(ROOT, "docs/patterns.json"), JSON.stringify(data, null, 1) + "\n");
 console.log(`Analysed ${total} cards: ${automated} automated, ${ready} ready, ${needsNew} need new building blocks, ${unclear} unclear.`);

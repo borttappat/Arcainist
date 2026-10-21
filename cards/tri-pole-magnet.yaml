@@ -2,6 +2,7 @@ id: "tri-pole-magnet"
 name: "Tri-Pole Magnet"
 trade: gearsmith
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "2nd Edition"
 rarity: uncommon

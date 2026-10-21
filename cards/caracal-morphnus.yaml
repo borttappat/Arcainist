@@ -13,3 +13,15 @@ text: |
   $$$ MORPH
   COST: Remove 3 tokens from this card.
   EFFECT: Draw a card.
+rules:
+  - unique: Caracal
+  - trigger: { on: enters_play, card: self }
+    effect: [ tokens: { card: self, add: 5 } ]
+  - static:
+      mods: [ { stat: { str: { tokens: self }, life: { tokens: self } } } ]
+  - trigger: { on: draw, player: you }
+    effect: [ tokens: { card: self, add: amount } ]
+  - ability:
+      name: $$$ Morph
+      cost: [ tokens: { card: self, remove: 3 } ]
+      effect: [ draw: 1 ]

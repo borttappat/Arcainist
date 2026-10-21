@@ -7,3 +7,14 @@ rarity: common
 text: |
   EXTRA COST: Choose a number for X. Deplete X characters you control. Pick a character.
   If the the picked character has X+X strength or less, destroy it.
+rules:
+  - play:
+      cost:
+        - pick: { as: d, from: { character: { controller: you, depleted: false } }, count: { count: { character: { controller: you, depleted: false } } }, up_to: true, choose: true, prompt: "Choose the characters to deplete (X is how many)." }
+        - deplete: d
+        - let: { X: { len: d } }
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - if:
+            cond: { lte: [ { stat: [ c, str ] }, "X + X" ] }
+            then: [ destroy: c ]

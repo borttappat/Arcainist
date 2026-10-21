@@ -2,6 +2,7 @@ id: "impressionistic-furball"
 name: "Impressionistic Furball"
 trade: banker
 types: [item]
+attach_to: character
 subtypes: ["gear"]
 set: "Shade of the Devoured Emperor"
 rarity: common

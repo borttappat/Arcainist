@@ -11,3 +11,11 @@ text: |
   INSTALLMENT PLAN
   COST: Pay 3.
   EFFECT: Remove a token from this card.
+enters_with_tokens: 3
+rules:
+  - static:
+      mods: [ { stat: { str: { neg: { tokens: self } }, life: { neg: { tokens: self } } } } ]
+  - ability:
+      name: Installment Plan
+      cost: [ pay: 3 ]
+      effect: [ tokens: { card: self, remove: 1 } ]

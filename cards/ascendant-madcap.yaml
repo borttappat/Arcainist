@@ -8,3 +8,8 @@ rarity: uncommon
 text: |
   When a card that provides at least [R] enters play under your control, put a token on this card.
   This card gains 1 strength for each token on it.
+rules:
+  - trigger: { on: enters_play, card: { controller: you, provides_at_least: { rage: 1 } } }
+    effect: [ tokens: { card: self, add: 1 } ]
+  - static:
+      mods: [ { stat: { str: { tokens: self } } } ]
