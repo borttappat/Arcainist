@@ -261,6 +261,8 @@ export class Game {
       }
       case "end_turn": {
         if (!main) throw new GameError("You can only end your turn when nothing else is happening.");
+        const must = this.q.characters(p).filter((i) => this.q.modsFor("must_attack", i).length && this.q.canAttack(i));
+        if (must.length) throw new GameError(`${must.map((i) => this.q.name(i)).join(", ")} must attack this turn if able.`);
         s.pending = null;
         s.endTurn = true;
         s.window = { kind: "endturn", current: other(p), passes: 0 };
@@ -306,6 +308,8 @@ export class Game {
     const s = this.s;
     const top = s.stack[s.stack.length - 1];
     if (timing.your_turn && s.active !== p) return "Only during your turn.";
+    if (timing.in_battle && !s.battle) return "Only during a battle.";
+    if (timing.not_in_battle && s.battle) return "Not during a battle.";
     if (timing.after_end_turn && !(s.endTurn && s.active === p)) return "Only after you have declared the end of your turn.";
     const r = timing.response_to;
     if (r) {
@@ -372,6 +376,8 @@ export class Game {
                   ? c.zone === "hand" && c.owner === p
                   : false;
       if (!where) return "You can't use that ability from where the card is.";
+      if (q.cannot("use_ability", a.iid, p)) return "That card's abilities can't be used right now.";
+      if (ab.rule.once_per_turn && s.turnLog.abilities?.[`${a.iid}:${a.index}`]) return "That ability can only be used once each turn.";
       if (!q.meets(p, ab.rule.threshold)) return "You don't meet that ability's threshold.";
       return this.timingOk(ab.rule.timing, p, { controller: p, source: a.iid, vars: {} });
     }
@@ -405,6 +411,11 @@ export class Game {
       case "blockers": {
         const ids = a.ids ?? [];
         if (!ids.every((i) => d.candidates.includes(i))) throw new GameError("Invalid blocker.");
+        const err = this.partyRuleError(ids, "blocking", d.player);
+        if (err) throw new GameError(err);
+        // "must block if it can"
+        const missing = d.candidates.filter((i) => this.q.modsFor("must_block", i).length && !ids.includes(i));
+        if (missing.length) throw new GameError(`${missing.map((i) => this.q.name(i)).join(", ")} must block if able.`);
         return;
       }
       case "assign": {
@@ -792,6 +803,7 @@ export class Game {
 
   protected t_activated(task: Task): void {
     const ctx = this.s.ctxs[task.ctx];
+    (this.s.turnLog.abilities ??= {})[`${task.iid}:${task.index}`] = true;
     this.commitCosts();
     this.s.stack.push({ id: rng.id(this.s), kind: "ability", controller: ctx.actor, iid: task.iid, rule: task.index, ctx: ctx.id, label: task.label, noResponse: task.noResponse, pickedInCost: ctx.picked });
     this.s.priority = other(ctx.actor);
@@ -808,6 +820,9 @@ export class Game {
       return;
     }
     this.log(`${item.label} resolves.`);
+    if (item.kind === "card" && !this.q.def(item.iid).rules?.length && this.q.def(item.iid).text) {
+      this.log(`${item.label} isn't automated yet: resolve its text with the manual controls.`);
+    }
     if (item.kind === "ability") {
       const rule = this.q.rules(item.iid)[item.rule!]?.ability;
       this.push(...this.steps(rule?.effect ?? [], ctx, "effect"), { t: "afterResolve", ctx: ctx.id });
@@ -950,6 +965,8 @@ export class Game {
         if (r.faction !== undefined && !!ev.faction !== !!r.faction) continue;
         if (r.battle !== undefined && !!ev.battle !== !!r.battle) continue;
         if (r.cause !== undefined && ev.cause !== r.cause) continue;
+        if (r.from !== undefined && ev.from !== r.from) continue;
+        if (r.to !== undefined && ev.to !== r.to) continue;
         if (r.requires && !this.q.meets(src.controller, r.requires)) continue;
         if (r.while && !this.q.cond(r.while, scope)) continue;
         const ctx = this.newCtx(src.controller, src.iid);
@@ -1418,12 +1435,20 @@ export class Game {
     if (!iid || !this.q.inPlay(iid)) return "fail";
     const c = this.s.cards[iid];
     if (c.depleted || c.isResource) return "fail";
-    c.depleted = true;
+    this.setDepleted(iid, true);
     return "ok";
   }
 
+  /** Deplete or restore a card, emitting "depleted" / "restored" for triggers. */
+  setDepleted(iid: string, v: boolean): void {
+    const c = this.s.cards[iid];
+    if (c.depleted === v) return;
+    c.depleted = v;
+    this.emit({ e: v ? "depleted" : "restored", iid, player: c.controller });
+  }
+
   protected op_restore(arg: any, ctx: Ctx): StepResult {
-    for (const iid of this.refs(ctx, arg)) if (this.q.inPlay(iid)) this.s.cards[iid].depleted = false;
+    for (const iid of this.refs(ctx, arg)) if (this.q.inPlay(iid)) this.setDepleted(iid, false);
     return "ok";
   }
 
@@ -1595,9 +1620,24 @@ export class Game {
     return "ok";
   }
 
+  /** Take control: { card, who, duration: turn } (a "this turn" control change reverts at end of turn). */
   protected op_take_control(arg: any, ctx: Ctx): StepResult {
     const p = this.who(ctx, arg.who ?? "you");
-    for (const iid of this.refs(ctx, arg.card)) this.takeControl(iid, p);
+    for (const iid of this.refs(ctx, arg.card)) {
+      const prev = this.s.cards[iid].controller;
+      this.takeControl(iid, p);
+      if (arg.duration === "turn" && prev !== p) {
+        this.s.effects.push({
+          id: rng.id(this.s),
+          source: iid,
+          controller: p,
+          vars: { back: prev, card: iid },
+          rules: [{ trigger: { on: "end_of_turn", player: "any", once: true }, effect: [{ take_control: { card: "card", who: "back" } }] }],
+          duration: "game",
+          turn: this.s.turn,
+        });
+      }
+    }
     return "ok";
   }
 
@@ -1688,7 +1728,10 @@ export class Game {
     const p = this.who(ctx, arg.who ?? "opponent");
     const ids = this.s.players[p].deck.slice(0, this.num(ctx, arg.count ?? 1));
     const to: Zone = arg.to ?? "discard";
-    for (const iid of ids) this.move(iid, to, { tag: arg.tag ? ctx.source : undefined, faceDown: !!arg.face_down, knownTo: arg.face_down ? [ctx.controller] : undefined });
+    for (const iid of ids) {
+      if ((to as string) === "deck_bottom") this.move(iid, "deck", { bottom: true });
+      else this.move(iid, to, { tag: arg.tag ? ctx.source : undefined, faceDown: !!arg.face_down, knownTo: arg.face_down ? [ctx.controller] : undefined });
+    }
     if (ids.length) {
       const names = arg.face_down || to === "hand" ? `${ids.length} card${ids.length === 1 ? "" : "s"}` : ids.map((i) => this.q.name(i)).join(", ");
       this.log(`${names} from the top of ${this.pname(p)}'s deck ${ids.length === 1 ? "goes" : "go"} to ${to === "void" ? "the void" + (arg.face_down ? " face-down" : "") : to === "hand" ? "their hand" : "the discard pile"}.`);
@@ -1775,7 +1818,9 @@ export class Game {
       task.cards = deck.slice(0, this.num(ctx, arg.count));
       this.log(`${this.pname(looker)} looks at the top ${task.cards.length} card${task.cards.length === 1 ? "" : "s"} of ${whose} deck.`);
     }
-    const remaining = () => (task.cards as string[]).filter((i) => deck.includes(i));
+    // Cards still to be placed: looked at, still in the deck, not yet sent to hand or bottom.
+    task.placed ??= [];
+    const remaining = () => (task.cards as string[]).filter((i) => deck.includes(i) && !task.placed.includes(i));
     if (task.stage === "hand") {
       if (arg.to_hand && !task.answer && remaining().length) {
         const n = Math.min(arg.to_hand, remaining().length);
@@ -1791,6 +1836,7 @@ export class Game {
       }
       const toBottom: string[] = arg.bottom === "rest" ? remaining() : (task.answer?.ids ?? []);
       for (const iid of toBottom) this.move(iid, "deck", { bottom: true });
+      task.placed.push(...toBottom);
       if (toBottom.length) this.log(`${toBottom.length} card${toBottom.length === 1 ? " goes" : "s go"} to the bottom of ${whose} deck.`);
       task.answer = undefined;
       task.stage = "order";
@@ -1858,7 +1904,8 @@ export class Game {
     const byRule = !!this.root(ctx).vars.by_rule;
     for (const iid of [...this.s.players[p].play, this.s.players[p].factionIid]) {
       if (byRule && this.q.cannot("restore_by_rule", iid, p)) continue;
-      this.s.cards[iid].depleted = false;
+      if (this.q.cannot("restore", iid, p)) continue;
+      this.setDepleted(iid, false);
     }
     return "ok";
   }
@@ -1925,6 +1972,7 @@ export class Game {
     const p = ctx.controller;
     const vars = this.root(ctx).vars;
     const settle = (won: boolean) => {
+      this.emit({ e: "coin_flipped", player: p, won });
       vars[arg?.as ?? "won"] = won;
       this.setDid(ctx, won);
       this.log(`${this.pname(p)} flips a coin and ${won ? "wins" : "loses"}.`);
@@ -1949,6 +1997,53 @@ export class Game {
     task.coin = coin;
     this.log(`${this.pname(p)} would lose a coin flip.`);
     return this.ask(task, { type: "choose", player: p, prompt: `You would lose the coin flip. Shuffle ${this.q.name(coin)} into your deck to reflip and draw a card?`, options: [{ id: "yes", label: "Yes, reflip" }, { id: "no", label: "No" }], min: 1, max: 1 });
+  }
+
+  /** Put tokens into play: { card: micromajig-token, count, controller, as } */
+  protected op_create_token(arg: any, ctx: Ctx): StepResult {
+    const a = typeof arg === "string" ? { card: arg } : (arg ?? {});
+    const defId = a.card ?? "micromajig-token";
+    if (!this.lib[defId]) {
+      this.log(`[engine] Unknown token ${defId}.`);
+      return "ok";
+    }
+    const ctl = this.who(ctx, a.controller ?? "you");
+    const made: string[] = [];
+    for (let i = 0; i < this.num(ctx, a.count ?? 1); i++) {
+      const iid = this.newCard(defId, ctl, "void");
+      this.s.players[ctl].void.push(iid);
+      this.enterPlay(iid, ctl, { ctx });
+      made.push(iid);
+    }
+    if (a.as) this.root(ctx).vars[a.as] = made.length === 1 ? made[0] : made;
+    return "ok";
+  }
+
+  /** Remove characters from the current battle: { remove_from_battle: c } */
+  protected op_remove_from_battle(arg: any, ctx: Ctx): StepResult {
+    const b = this.s.battle;
+    if (!b) return "ok";
+    for (const iid of this.refs(ctx, arg)) {
+      if (!b.attackers.includes(iid) && !b.blockers.includes(iid)) continue;
+      b.attackers = b.attackers.filter((i) => i !== iid);
+      b.blockers = b.blockers.filter((i) => i !== iid);
+      delete b.locked[iid];
+      this.log(`${this.q.name(iid)} is removed from the battle.`);
+    }
+    return "ok";
+  }
+
+  /** Add characters to a party in the current battle: { card, side: attacking|blocking } (default: their controller's side). */
+  protected op_add_to_battle(arg: any, ctx: Ctx): StepResult {
+    const b = this.s.battle;
+    if (!b) return "ok";
+    for (const iid of this.refs(ctx, arg.card)) {
+      if (!this.q.isCharacter(iid) || b.attackers.includes(iid) || b.blockers.includes(iid)) continue;
+      const side = arg.side ?? (this.s.cards[iid].controller === b.attacker ? "attacking" : "blocking");
+      (side === "attacking" ? b.attackers : b.blockers).push(iid);
+      this.log(`${this.q.name(iid)} joins the ${side} party.`);
+    }
+    return "ok";
   }
 
   /** Turn a double-sided faction over: { transform: <card id of the other side> } */
@@ -2019,8 +2114,11 @@ export class Game {
     for (const iid of attackers) {
       if (!this.s.cards[iid] || this.s.cards[iid].controller !== p || !q.canAttack(iid)) throw new GameError(`${this.s.cards[iid] ? q.name(iid) : iid} can't attack.`);
     }
+    // Party rules ("must have at least 2 members", "only 1 member", "even number").
+    const partyErr = this.partyRuleError(attackers, "attacking", p);
+    if (partyErr) throw new GameError(partyErr);
     for (const iid of attackers) {
-      this.s.cards[iid].depleted = true;
+      if (!q.mods("no_deplete_on_attack").some((m) => q.targets(m, iid))) this.setDepleted(iid, true);
       this.s.turnLog.attacks[iid] = (this.s.turnLog.attacks[iid] ?? 0) + 1;
     }
     const covert = attackers.every((i) => q.keyword(i, "covert"));
@@ -2028,6 +2126,39 @@ export class Game {
     this.log(`${this.pname(p)} attacks ${target === "faction" ? this.pname(d) + "'s faction" : q.name(target)} with ${attackers.map((i) => q.name(i)).join(", ")}${covert ? " (Covert)" : ""}.`);
     for (const iid of attackers) this.emit({ e: "attacks", iid, player: p });
     this.s.window = { kind: "battle", current: p, passes: 0, next: "blockers" };
+  }
+
+  /**
+   * "This card cannot be blocked [by ...]": a party can't be blocked by a character
+   * if every attacker in it can't be blocked by that character (like COVERT, which
+   * only protects a party when all its members have it).
+   */
+  private canBlockParty(blocker: string, attackers: string[]): boolean {
+    const q = this.q;
+    const unblockable = (a: string) =>
+      q.modsFor("cannot_be_blocked", a).some((m) => {
+        const by = m.value?.by;
+        return by === undefined || q.matches(by, blocker, m.scope, null);
+      });
+    return !attackers.length || !attackers.every(unblockable);
+  }
+
+  /** Party rules from modifiers: { party: { side, min, max, even, including } }. */
+  partyRuleError(members: string[], side: "attacking" | "blocking", p: PlayerId): string | null {
+    const q = this.q;
+    for (const m of q.mods("party")) {
+      const r = m.value;
+      if (r.side && r.side !== side && r.side !== "both") continue;
+      if (r.by && !q.by({ ...m, mod: { by: r.by } }, p)) continue;
+      if (r.including && !members.some((x) => q.targets({ ...m, mod: { target: r.including } }, x))) continue;
+      const n = members.length;
+      if (!n) continue;
+      const who = q.name(m.source);
+      if (r.min !== undefined && n < r.min) return `${who}: the ${side} party must have at least ${r.min} members.`;
+      if (r.max !== undefined && n > r.max) return `${who}: the ${side} party can have at most ${r.max} member${r.max === 1 ? "" : "s"}.`;
+      if (r.even && n % 2) return `${who}: the ${side} party must have an even number of members.`;
+    }
+    return null;
   }
 
   private inBattle(iid: string): boolean {
@@ -2048,7 +2179,7 @@ export class Game {
 
     switch (b.step) {
       case "blockers": {
-        const cands = q.characters(b.defender).filter((i) => !this.s.cards[i].depleted && !q.cannot("block", i, b.defender) && (b.covert ? q.keyword(i, "covert") : !q.keyword(i, "covert")));
+        const cands = q.characters(b.defender).filter((i) => !this.s.cards[i].depleted && !q.cannot("block", i, b.defender) && (b.covert ? q.keyword(i, "covert") : !q.keyword(i, "covert")) && this.canBlockParty(i, b.attackers));
         if (task.answer || !cands.length) {
           b.blockers = task.answer?.ids ?? [];
           if (b.blockers.length) {
@@ -2104,8 +2235,9 @@ export class Game {
         return;
       }
       case "end": {
-        for (const iid of [...b.attackers, ...b.blockers]) this.s.cards[iid].depleted = true;
+        for (const iid of [...b.attackers, ...b.blockers]) this.setDepleted(iid, true);
         this.log("The battle ends.");
+        this.emit({ e: "battle_end", player: b.attacker, attackers: [...b.attackers], blockers: [...b.blockers] });
         this.s.battle = null;
         return;
       }
@@ -2174,7 +2306,7 @@ export class Game {
       for (const p of ["A", "B"] as PlayerId[]) {
         const groups = new Map<string, string[]>();
         for (const iid of s.players[p].play) {
-          if (!q.active(iid)) continue;
+          if (!q.active(iid) || q.silenced(iid)) continue;
           const u = q.ruleOf(iid, "unique");
           if (u) groups.set(u, [...(groups.get(u) ?? []), iid]);
         }
@@ -2230,6 +2362,8 @@ export class Game {
       }
     }
     const wasInPlay = from === "play";
+    // Tokens that would leave play are removed from the game instead.
+    if (wasInPlay && zone !== "play" && this.lib[c.defId].token) zone = "void";
     const attached = wasInPlay ? this.q.attachments(iid) : [];
     for (const p of ["A", "B"] as PlayerId[]) {
       const ps = this.s.players[p];
@@ -2267,6 +2401,7 @@ export class Game {
         else list.push(iid);
       }
     }
+    if (from !== zone && zone !== "stack" && from !== "stack") this.emit({ e: "moved", iid, from, to: zone, player: c.owner });
     // "If something causes a card to leave play, any cards attached to it leave play in the same way."
     for (const a of attached) if (this.s.cards[a].zone === "play") this.move(a, zone);
   }
@@ -2317,6 +2452,7 @@ export class Game {
     c.controlSince = this.s.turn;
     c.attachedTo = opts.attachTo && this.q.isCharacter(opts.attachTo) ? opts.attachTo : null;
     const def = this.q.def(iid);
+    if (def.enters_depleted) c.depleted = true;
     if (def.enters_with_tokens !== undefined) {
       const scope: Scope = opts.ctx ? this.scope(opts.ctx) : { controller: ctl, source: iid, vars: {} };
       c.tokens = Math.max(0, this.q.value(def.enters_with_tokens, scope));
@@ -2574,6 +2710,18 @@ export class Game {
       case "shuffle":
         rng.shuffle(s, s.players[p].deck);
         say("shuffles their deck.");
+        break;
+      case "search_deck":
+        s.players[p].searching = true;
+        say("looks through their deck.");
+        break;
+      case "end_search":
+        if (!s.players[p].searching) break;
+        s.players[p].searching = false;
+        if (op.shuffle) {
+          rng.shuffle(s, s.players[p].deck);
+          say("stops looking through their deck and shuffles it.");
+        } else say("stops looking through their deck (not shuffled).");
         break;
     }
     // Manual changes don't fire triggers, but rules consequences (lethal damage, wins) apply.

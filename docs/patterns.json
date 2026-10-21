@@ -1,10 +1,10 @@
 {
  "summary": {
-  "total": 1230,
-  "automated": 131,
-  "ready": 841,
-  "needsNew": 145,
-  "unclear": 113
+  "total": 1231,
+  "automated": 133,
+  "ready": 840,
+  "needsNew": 144,
+  "unclear": 114
  },
  "patterns": [
   {
@@ -3101,6 +3101,7 @@
     "Key to the City",
     "Living God of Thabbash",
     "Luteoderm Prototype",
+    "Micromajig Token",
     "Overinsured Figurehead",
     "Retreat to Mount Mulrich",
     "Scavengemajig",
@@ -13936,7 +13937,7 @@
     "draw"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Insect Appreciator": {
    "patterns": [
@@ -14235,7 +14236,7 @@
     "void"
    ],
    "unrecognised": [],
-   "automated": false
+   "automated": true
   },
   "Keen Stratagem": {
    "patterns": [
@@ -15198,6 +15199,16 @@
     "micromajig"
    ],
    "unrecognised": [],
+   "automated": false
+  },
+  "Micromajig Token": {
+   "patterns": [
+    "t_leaves"
+   ],
+   "unrecognised": [
+    "Token.",
+    "Treat Micromajig tokens as Gearsmith character cards with 1 strength, 1 life, 3 speed, and the majig subtype."
+   ],
    "automated": false
   },
   "Micromajig": {

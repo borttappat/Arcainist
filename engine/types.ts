@@ -50,6 +50,10 @@ export interface CardDef {
   deck_limit?: number | null;
   /** Tokens the card enters play with (number or value). */
   enters_with_tokens?: any;
+  /** A token (Micromajig): removed from the game whenever it would leave play; not allowed in decks. */
+  token?: boolean;
+  /** "This card enters play depleted." */
+  enters_depleted?: boolean;
   /** Player who controls the card when it enters play: "opponent" for Hollow Moose. */
   enters_under?: "you" | "opponent";
   text?: string;
@@ -129,6 +133,8 @@ export interface PlayerState {
   play: string[];
   discard: string[]; // top is the last element
   void: string[];
+  /** Looking through their own deck with the manual controls. */
+  searching?: boolean;
 }
 
 export interface StackItem {
@@ -266,6 +272,8 @@ export interface LogEntry {
 export interface TurnLog {
   played: { iid: string; defId: string; player: PlayerId; types: CardType[]; cost: number }[];
   attacks: Record<string, number>;
+  /** "iid:index" of abilities used this turn (for once-per-turn abilities). */
+  abilities?: Record<string, boolean>;
 }
 
 export interface GameState {
@@ -333,4 +341,6 @@ export type ManualOp =
   | { op: "tokens"; iid: string; delta: number }
   | { op: "influence"; delta: number }
   | { op: "draw" }
-  | { op: "shuffle" };
+  | { op: "shuffle" }
+  | { op: "search_deck" }
+  | { op: "end_search"; shuffle?: boolean };

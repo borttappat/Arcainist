@@ -453,6 +453,9 @@ are only available while the engine is not waiting on the opponent.
 11. **Characters, items and locations** are deployed only as a free action on your
     own turn with an empty stack, never as a response, unless they have TACTICAL.
 12. **Card readings** confirmed: see `docs/CARDS.md` section 10.
+13. **"This card inflicts damage"** covers any damage the card inflicts, through its
+    own rules text as well as in battle (Sadistic Colonel's trigger damage sets off
+    an attached Dethmurderbludgeon).
 
 ### Assumptions (still unconfirmed)
 

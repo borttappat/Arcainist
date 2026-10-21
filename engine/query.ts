@@ -56,6 +56,14 @@ const MOD_KINDS = [
   "reveal_hand",
   "use_opponent_abilities",
   "lose_when_deck_empty",
+  "no_rules",
+  "cannot_be_blocked",
+  "lose_keyword",
+  "must_attack",
+  "must_block",
+  "party",
+  "reveal_top",
+  "no_deplete_on_attack",
 ];
 
 export class Q {
@@ -119,9 +127,15 @@ export class Q {
     return this.def(iid).rules ?? [];
   }
 
+  /** "Treat the card as though it has no rules text" (Inhibit, Mittens of Muffled Thought). */
+  silenced(iid: string): boolean {
+    return this.s.cards[iid]?.zone === "play" && this.modsFor("no_rules", iid).length > 0;
+  }
+
   rules(iid: string): Rule[] {
     const base = this.baseRules(iid);
     if (!this.active(iid)) return base;
+    if (this.silenced(iid)) return [];
     const granted = this.modsFor("grant_rules", iid).flatMap((m) => m.value as Rule[]);
     return granted.length ? [...base, ...granted] : base;
   }
@@ -175,9 +189,25 @@ export class Q {
         if (m.while && !this.cond(m.while, scope)) return;
         out.push({ kind: k, value: m[k], mod: m, source, controller, scope, effect });
       };
+      // First pass: which cards in play have no rules text right now.
+      const silenced = new Set<string>();
+      const silencers: { m: any; scope: Scope }[] = [];
+      for (const e of this.s.effects) for (const m of e.mods ?? []) if ("no_rules" in m && !e.used) silencers.push({ m, scope: { controller: e.controller, source: e.source, vars: e.vars } });
+      for (const c of Object.values(this.s.cards)) {
+        if (c.zone !== "play" || !this.active(c.iid)) continue;
+        for (const r of this.lib[c.defId].rules ?? []) for (const m of r.static?.mods ?? []) if ("no_rules" in m) silencers.push({ m, scope: { controller: c.controller, source: c.iid, vars: c.notes ?? {} } });
+      }
+      for (const { m, scope } of silencers) {
+        if (m.while && !this.cond(m.while, scope)) continue;
+        const t = m.target ?? "self";
+        for (const c of Object.values(this.s.cards)) {
+          if (c.zone !== "play") continue;
+          if (t === "all" || (t?.iids ? t.iids.includes(c.iid) : this.matches(t, c.iid, scope, null))) silenced.add(c.iid);
+        }
+      }
       for (const c of Object.values(this.s.cards)) {
         const def = this.lib[c.defId];
-        if (!def.rules) continue;
+        if (!def.rules || silenced.has(c.iid)) continue;
         for (const r of def.rules) {
           if (!r.static) continue;
           const st = r.static;
@@ -242,7 +272,8 @@ export class Q {
   }
 
   keyword(iid: string, kw: string): boolean {
-    if (!this.active(iid)) return false;
+    if (!this.active(iid) || this.silenced(iid)) return false;
+    if (this.modsFor("lose_keyword", iid).some((m) => String(m.value).toLowerCase() === kw)) return false;
     if ((this.def(iid).keywords ?? []).some((k) => k.toLowerCase() === kw)) return true;
     return this.modsFor("keyword", iid).some((m) => String(m.value).toLowerCase() === kw);
   }
@@ -286,7 +317,7 @@ export class Q {
       return d.icon ? { [d.icon]: 1 } : {};
     }
     if (!this.active(iid)) return {};
-    const out: Icons = { ...(this.ruleOf(iid, "provides") ?? {}) };
+    const out: Icons = this.silenced(iid) ? {} : { ...(this.ruleOf(iid, "provides") ?? {}) };
     for (const m of this.modsFor("provides", iid)) {
       for (const [k, v] of Object.entries(m.value as Icons)) out[k as Icon] = (out[k as Icon] ?? 0) + (v ?? 0);
     }
@@ -398,6 +429,8 @@ export class Q {
   /** Resolve a card reference: "self", "responded", "host", a variable, or an iid. */
   ref(x: any, scope: Scope): string | undefined {
     if (x === "self") return scope.source;
+    // The top card of a deck: "top_of_you" / "top_of_opponent".
+    if (x === "top_of_you" || x === "top_of_opponent") return this.s.players[x === "top_of_you" ? scope.controller : other(scope.controller)].deck[0];
     if (x === "host") return this.s.cards[scope.source]?.attachedTo ?? undefined;
     if (x === "responded") {
       const item = this.s.stack.find((i) => i.id === scope.responding);

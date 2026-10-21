@@ -41,6 +41,10 @@ export function parseDeck(text: string, lib: CardLibrary): ParsedDeck {
       out.errors.push(`Unknown card: "${name.trim()}"`);
       continue;
     }
+    if (lib[id].token) {
+      out.errors.push(`${lib[id].name} is a token: cards put it into play, it can't be in a deck.`);
+      continue;
+    }
     if (lib[id].back_of) {
       out.errors.push(`${lib[id].name} is the back side of ${lib[lib[id].back_of!]?.name ?? lib[id].back_of}; put that card in the decklist instead.`);
       continue;

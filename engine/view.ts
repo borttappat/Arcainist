@@ -43,6 +43,10 @@ export interface PlayerView {
   deckCount: number;
   handCount: number;
   hand: CardView[] | null;
+  /** Your own deck, top first, only while you are searching it. */
+  deck: CardView[] | null;
+  /** Top card of this deck, when an effect reveals it at all times. */
+  topCard: CardView | null;
   play: CardView[];
   discard: CardView[];
   void: CardView[];
@@ -134,6 +138,9 @@ function buildView(g: Game, you: PlayerId): GameView {
       deckCount: ps.deck.length,
       handCount: ps.hand.length,
       hand: p === you || q.mods("reveal_hand").some((m) => m.controller === you) ? ps.hand.map(cv) : null,
+      deck: p === you && ps.searching ? ps.deck.map(cv) : null,
+      // "The top card of your deck is revealed at all times."
+      topCard: ps.deck.length && q.mods("reveal_top").some((m) => (m.value === "opponent" ? other(m.controller) : m.controller) === p) ? { ...cv(ps.deck[0]), defId: s.cards[ps.deck[0]].defId } : null,
       play: ps.play.map(cv),
       discard: ps.discard.map(cv),
       void: ps.void.map(cv),

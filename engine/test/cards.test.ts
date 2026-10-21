@@ -738,6 +738,59 @@ describe("turn-based and scripted cards", () => {
     expect(g.s.cards[meat].tokens).toBe(1);
   });
 
+  it("Obsessive Compulsion: cards sent to the bottom stay there; only the rest are reordered on top", () => {
+    const { g, p } = setup();
+    resources(g, p, "obsession", 1);
+    const oc = put(g, p, "obsessive-compulsion", "hand");
+    act(g, p, { type: "deploy", iid: oc });
+    pass(g);
+    const deck = g.s.players[p].deck;
+    const [a, b, c] = deck.slice(0, 3);
+    answer(g, [a, b]);
+    // Only one card left for the top: no ordering prompt; then the draw takes it.
+    expect(deck.slice(-2)).toEqual([a, b]);
+    expect(g.s.cards[c].zone).toBe("hand");
+  });
+
+  it("Inhibit removes a card's rules text until the start of your next turn", () => {
+    const { g, p, o } = setup();
+    const fh = put(g, o, "fired-hand", "play");
+    const forn = put(g, o, "fornicaves", "play");
+    expect(g.q.stat(fh, "life")).toBe(2);
+    resources(g, p, "obsession", 1);
+    const inh = put(g, p, "inhibit", "hand");
+    const hand = g.s.players[p].hand.length;
+    act(g, p, { type: "deploy", iid: inh });
+    const d = expectPending(g, "choose", p);
+    expect(d.options.map((x: any) => x.id)).toEqual(expect.arrayContaining([fh, forn]));
+    answer(g, [forn]);
+    pass(g);
+    expect(g.q.stat(fh, "life")).toBe(4); // Fornicaves has no rules text
+    expect(g.s.players[p].hand.length).toBe(hand); // Inhibit left, one card drawn
+    nextTurn(g);
+    expect(g.q.stat(fh, "life")).toBe(4); // still silenced during the opponent's turn
+    nextTurn(g);
+    expect(g.q.stat(fh, "life")).toBe(2); // back at the start of your next turn
+  });
+
+  it("Karmic Cake fetches a resource, and Recur fetches a staple", () => {
+    const { g, p } = setup();
+    resources(g, p, "greed", 2);
+    const viol = put(g, p, "violence", "deck");
+    const cake = put(g, p, "karmic-cake", "hand");
+    act(g, p, { type: "deploy", iid: cake });
+    pass(g);
+    let d = expectPending(g, "choose", p);
+    expect(d.options.map((x: any) => x.id)).toContain(viol); // non-staple resources count
+    answer(g, [viol]);
+    expect(zone(g, viol)).toBe("hand");
+    act(g, p, { type: "ability", iid: cake, index: ability(g, cake, "Recur") });
+    pass(g);
+    d = expectPending(g, "choose", p);
+    expect(d.options.every((x: any) => g.q.def(x.id).staple)).toBe(true);
+    expect(zone(g, cake)).toBe("void");
+  });
+
   it("Cantankerous Claywork only boosts characters already in play when it attacks", () => {
     const { g, p } = setup();
     const clay = put(g, p, "cantankerous-claywork", "play");

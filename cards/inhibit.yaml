@@ -7,3 +7,10 @@ rarity: rare
 text: |
   EXTRA COST: Pick a non-resource card.
   Until the start of your next turn, treat the card as though it has no rules text. Draw a card.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { card: { not_type: resource } } }
+      effect:
+        - create_effect: { duration: until_your_next_turn, mods: [ { no_rules: true, target: c } ] }
+        - draw: 1

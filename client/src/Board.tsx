@@ -33,7 +33,7 @@ export function Board({ view, cards, send }: { view: GameView; cards: CardLibrar
   const all = useMemo(() => {
     const m = new Map<string, CardView>();
     for (const p of [view.players.A, view.players.B]) {
-      for (const c of [p.faction, ...(p.hand ?? []), ...p.play, ...p.discard, ...p.void]) m.set(c.iid, c);
+      for (const c of [p.faction, ...(p.hand ?? []), ...(p.deck ?? []), ...p.play, ...p.discard, ...p.void]) m.set(c.iid, c);
     }
     for (const s of view.stack) m.set(s.card.iid, s.card);
     return m;
@@ -126,6 +126,9 @@ export function Board({ view, cards, send }: { view: GameView; cards: CardLibrar
 
       {menu && <CardMenu menu={menu} view={view} card={all.get(menu.iid)!} def={defOf(menu.iid)} send={send} close={() => setMenu(null)} />}
       {pile && <PileViewer view={view} cards={cards} pile={pile} close={() => setPile(null)} clickCard={clickCard} classFor={classFor} setHover={setHover} />}
+      {view.players[me].deck && (
+        <DeckViewer view={view} cards={cards} done={(shuffle) => send({ type: "manual", op: { op: "end_search", shuffle } })} clickCard={clickCard} classFor={classFor} setHover={setHover} />
+      )}
     </div>
   );
 }
@@ -176,7 +179,13 @@ function Side({ p, me, view, cards, renderCard, clickCard, classFor, setHover, s
         )}
       </div>
       <div className="counts">
-        <span title="Cards in deck">Deck {p.deckCount}</span>
+        {me ? (
+          <button className="small" title="Look through your deck (manual)" onClick={() => manual({ op: "search_deck" })}>
+            Deck {p.deckCount}
+          </button>
+        ) : (
+          <span title="Cards in deck">Deck {p.deckCount}</span>
+        )}
         <span title="Cards in hand">Hand {p.handCount}</span>
         <button className="small" onClick={() => setPile({ p: p.id, zone: "discard" })}>
           Discard {p.discard.length}
@@ -208,23 +217,39 @@ function Side({ p, me, view, cards, renderCard, clickCard, classFor, setHover, s
       ))}
     </div>
   );
+  // Attached gear sits behind its character, offset up and to the right.
+  const withGear = (c: CardView) => {
+    const gear = attachedTo(c.iid);
+    if (!gear.length) return renderCard(c);
+    return (
+      <div key={c.iid} className="hosted" style={{ marginRight: gear.length * 22 }}>
+        {gear.map((g, i) => (
+          <div key={g.iid} className="gear-slot" style={{ left: (i + 1) * 22, top: 0, zIndex: gear.length - i }}>
+            {renderCard(g)}
+          </div>
+        ))}
+        <div className="host-slot">{renderCard(c)}</div>
+      </div>
+    );
+  };
+  const kind = (c: CardView) => (c.types?.includes("character") ? "character" : c.types?.includes("location") ? "location" : "item");
+  const region = (k: string, title: string) => {
+    const list = field.filter((c) => kind(c) === k);
+    return (
+      <div className={`region region-${k} ${list.length ? "" : "collapsed"}`}>
+        <div className="region-title">
+          {title}
+          {list.length ? ` (${list.length})` : ""}
+        </div>
+        {list.length > 0 && <div className="region-cards">{list.map(withGear)}</div>}
+      </div>
+    );
+  };
   const fieldRow = (
     <div className="field">
-      {field.length ? (
-        field.map((c) => {
-          const gear = attachedTo(c.iid);
-          return gear.length ? (
-            <div key={c.iid} className="hosted">
-              {renderCard(c)}
-              <div className="gear">{gear.map(renderCard)}</div>
-            </div>
-          ) : (
-            renderCard(c)
-          );
-        })
-      ) : (
-        <span className="muted">No cards in play</span>
-      )}
+      {region("character", "Characters")}
+      {region("item", "Items")}
+      {region("location", "Locations")}
     </div>
   );
   const revealedHand = !me && p.hand ? (
@@ -244,21 +269,25 @@ function Side({ p, me, view, cards, renderCard, clickCard, classFor, setHover, s
   );
 }
 
+/** Cards and abilities waiting to resolve, newest (resolves first) on the left. */
 function Stack({ view, cards, setHover }: { view: GameView; cards: CardLibrary; setHover: (d: CardDef | null) => void }) {
   if (!view.stack.length) return null;
   return (
     <div className="stack">
-      <span className="muted">Stack (top resolves first):</span>
-      {[...view.stack].reverse().map((s, i) => (
-        <span
-          key={s.id}
-          className={`stack-item ${s.controller === view.you ? "mine" : "theirs"} ${i === 0 ? "top" : ""}`}
-          onMouseEnter={() => setHover(s.card.defId ? cards[s.card.defId] : null)}
-          onMouseLeave={() => setHover(null)}
-        >
-          {s.label}
-        </span>
-      ))}
+      <div className="region-title">Stack: resolves left to right</div>
+      <div className="stack-cards">
+        {[...view.stack].reverse().map((s, i) => (
+          <div key={s.id} className={`stack-entry ${s.controller === view.you ? "mine" : "theirs"} ${i === 0 ? "top" : ""}`}>
+            <Tile def={s.card.defId ? cards[s.card.defId] : null} card={{ ...s.card, depleted: false }} onHover={setHover} />
+            <div className="stack-caption">
+              {i === 0 && <b>Next: </b>}
+              {s.kind === "card" ? "" : s.kind === "duplicate" ? "Duplicate: " : "Ability: "}
+              {s.label}
+              <div className="muted">{s.controller === view.you ? "yours" : view.players[s.controller].name}</div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -636,6 +665,7 @@ function CardMenu({ menu, view, card, def, send, close }: { menu: Menu; view: Ga
     if (card.zone !== "discard") m("Move to discard", { op: "move", iid, zone: "discard" });
     if (card.zone !== "void") m("Move to void", { op: "move", iid, zone: "void" });
     if (card.zone !== "deck") m("Put on top of deck", { op: "move", iid, zone: "deck" });
+    else m("Move to top of deck", { op: "move", iid, zone: "deck" });
   }
 
   const x = Math.min(menu.x, window.innerWidth - 240);
@@ -693,6 +723,46 @@ function PileViewer({
             <Tile key={c.iid} def={c.defId ? cards[c.defId] : null} card={c} className={classFor(c.iid)} onClick={(e) => clickCard(c.iid, e)} onHover={setHover} />
           ))}
           {!list.length && <span className="muted">Empty.</span>}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** Your deck while searching it with the manual controls. Click a card for its manual moves. */
+function DeckViewer({
+  view,
+  cards,
+  done,
+  clickCard,
+  classFor,
+  setHover,
+}: {
+  view: GameView;
+  cards: CardLibrary;
+  done: (shuffle: boolean) => void;
+  clickCard: (iid: string, e: React.MouseEvent) => void;
+  classFor: (iid: string) => string;
+  setHover: (d: CardDef | null) => void;
+}) {
+  const deck = view.players[view.you].deck ?? [];
+  return (
+    <div className="overlay">
+      <div className="panel pile" onClick={(e) => e.stopPropagation()}>
+        <div className="row">
+          <h3>Your deck ({deck.length}), top first</h3>
+          <span className="spacer" />
+          <button onClick={() => done(false)}>Close</button>
+          <button className="primary" onClick={() => done(true)}>
+            Close and shuffle
+          </button>
+        </div>
+        <p className="muted">Click a card to move it. Your opponent sees that you searched, not what you took.</p>
+        <div className="pile-cards">
+          {deck.map((c) => (
+            <Tile key={c.iid} def={c.defId ? cards[c.defId] : null} card={c} className={classFor(c.iid)} onClick={(e) => clickCard(c.iid, e)} onHover={setHover} />
+          ))}
+          {!deck.length && <span className="muted">Empty.</span>}
         </div>
       </div>
     </div>

@@ -1,0 +1,18 @@
+# Test deck A: Warlord / Rogue. Only cards with automated rules.
+# Exercises: triggers, Flip Up, gear, responses, must-pick, pick tax, retargeting.
+Faction: Hall of Great Justice
+10 Rage
+8 Deception
+2 Sadistic Colonel
+2 Deadly Striker
+2 Chain Reaction
+2 Dark Awakening
+2 Fired Hand
+2 Ferrous Ferret
+2 Lucky Charm
+2 Late Addition
+2 Dethmürderblüdgeon, the Craghammer
+2 Tactician Vacation
+2 Mistaken Identity
+2 Expedition AutoBlind
+2 Booty Licker

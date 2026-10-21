@@ -132,6 +132,28 @@ describe("deploying and the stack", () => {
     expect(viewFor(g, o).log.some((e) => e.text.includes("plays Wanton Wizard"))).toBe(true);
   });
 
+  it("lets a player look through their own deck manually, shuffling when done", () => {
+    const g = newGame();
+    const p = toMain(g);
+    const o = other(p);
+    expect(viewFor(g, p).players[p].deck).toBeNull();
+    act(g, p, { type: "manual", op: { op: "search_deck" } });
+    const deck = viewFor(g, p).players[p].deck!;
+    expect(deck.length).toBe(g.s.players[p].deck.length);
+    expect(deck.every((c) => c.defId)).toBe(true);
+    expect(viewFor(g, o).players[p].deck).toBeNull(); // the opponent never sees it
+    act(g, p, { type: "manual", op: { op: "move", iid: deck[5].iid, zone: "hand" } });
+    expect(g.s.cards[deck[5].iid].zone).toBe("hand");
+    const order = [...g.s.players[p].deck];
+    act(g, p, { type: "manual", op: { op: "end_search" } });
+    expect(viewFor(g, p).players[p].deck).toBeNull();
+    expect(g.s.players[p].deck).toEqual(order); // "Close" doesn't shuffle
+    act(g, p, { type: "manual", op: { op: "search_deck" } });
+    act(g, p, { type: "manual", op: { op: "end_search", shuffle: true } });
+    expect(g.s.players[p].deck).not.toEqual(order);
+    expect(viewFor(g, o).log.some((e) => e.text.includes("looks through their deck"))).toBe(true);
+  });
+
   it("rolls back when the numeric cost is unaffordable", () => {
     const g = newGame();
     const p = toMain(g);

@@ -102,6 +102,11 @@ export function Tile({ def, card, className = "", tag, onClick, onHover }: TileP
         </span>
       )}
       {tag && <span className="tag">{tag}</span>}
+      {def && def.text && !def.rules?.length && !def.staple && !def.types.includes("faction") && (
+        <span className="manual-badge" title="Not automated yet: resolve its text with the manual controls">
+          manual
+        </span>
+      )}
     </div>
   );
 }

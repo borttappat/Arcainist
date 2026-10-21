@@ -7,11 +7,11 @@ regex-based and approximate: use it as a map for building the keyword engine, no
 
 | | Cards |
 |---|---|
-| Cards analysed (with text) | 1230 |
-| Already automated (have `rules`) | 131 |
-| Only use patterns the engine supports: ready to write rules for | 841 |
-| Use at least one pattern the engine doesn't support yet | 145 |
-| Use only supported patterns, but have text no pattern recognises | 113 |
+| Cards analysed (with text) | 1231 |
+| Already automated (have `rules`) | 133 |
+| Only use patterns the engine supports: ready to write rules for | 840 |
+| Use at least one pattern the engine doesn't support yet | 144 |
+| Use only supported patterns, but have text no pattern recognises | 114 |
 
 A card counted as ready still needs its `rules` written; the engine just has every building block it needs.
 
@@ -29,11 +29,11 @@ Each card that isn't automated yet and uses a pattern the engine lacks, counted 
 | Loses a keyword | 9 | Devastating Mockery, Direstock Cuffs, Essence of Elitism |
 | When an attacking / blocking party is formed | 8 | Anxious Oaf, Arcana Department, Carnival King |
 | Only once each turn (abilities, effects) | 8 | Desperate Defender, Frickin' Sweet Pogo-Bunny, Gnarling Lupine |
-| Treat as having no rules text | 7 | Direstock Cuffs, Heavy Fists of Robotic Pounding, iDumb De-Itemizer |
 | When ... restores / is restored | 6 | 5n4p, Defalcating Accountant, God's Blessing of Moola |
 | Must attack / must block | 6 | 94r913 My 908570pp3r5, Defense Attorney, Gore Engine |
 | Remove a character from the battle | 6 | Aweless Charger, Change of Tactics, Dizzying Blow |
 | Put the top card of a deck on the bottom | 6 | Bottlebeard Brandyshanks, Cheats McGuillicutty, Dauntless Gambler |
+| Treat as having no rules text | 6 | Direstock Cuffs, Heavy Fists of Robotic Pounding, iDumb De-Itemizer |
 | Take control this turn (temporary) | 3 | Cicibeo, The Implicator, Ecneret, The Expendable One, Unloyal Necromorph |
 | Only during a battle | 3 | Inconvenient Roadblock, Rumply Ruse, Sneaker Attack! |
 | When a battle ends / after battle | 3 | Pinguid Bodyguard, Spurious Anthropologist, Torchlight District |
@@ -101,7 +101,7 @@ Each card that isn't automated yet and uses a pattern the engine lacks, counted 
 | When damage / battle damage is inflicted | 84 | `event damage` | Adriel, Supreme General of the Imperial Army, Affectionate Dollkeeper, Arcane Ambush |
 | At the start of your turn | 82 | `event start_of_turn` | Abandoned Testing Complex, Accumulation Majig, Alliance of Handy Weirdos |
 | When ... is destroyed | 40 | `event destroyed` | A Series of Tubes, Basic Node, Boorish Boar |
-| When ... leaves play | 35 | `event leaves_play` | 6r4wny 60dy9u4rd5, Balking Foecrusher, Barracks of Precipitancy |
+| When ... leaves play | 36 | `event leaves_play` | 6r4wny 60dy9u4rd5, Balking Foecrusher, Barracks of Precipitancy |
 | When ... discards | 35 | `event discarded` | Avuncular Merlion, Bewilderbeast, Death Investor |
 | When a player draws | 32 | `event draw` | Balking Foecrusher, Beatrix Winterbottom, Caracal Morphnus |
 | When ... inflicts damage to a faction | 30 | `event damage faction` | Barbaric Rifleman, Chain Reaction, Clockman Pickpocket |
@@ -282,4 +282,4 @@ Clauses no pattern matched, grouped after replacing numbers with N, icon runs wi
 | 1 | If there is a tie, you decide which character gets the token. | Dragon Catheter |
 | 1 | STARTING RESOURCES: N Deception, N staple resource | Drowned Catacombs |
 
-208 distinct unrecognised templates in total.
+210 distinct unrecognised templates in total.
