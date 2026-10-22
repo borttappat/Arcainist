@@ -7,7 +7,8 @@ Faction: The Tournament Faction
 4 Selective Gluttony
 4 Exploitation
 3 Crest of Greed
-6 Greed
+5 Greed
+1 Elitism
 4 3cc3n7r1c 73chn1c14n
 3 Master Scavenger
 4 The Garbageman
