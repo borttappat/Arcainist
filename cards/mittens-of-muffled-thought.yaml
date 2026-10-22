@@ -12,3 +12,14 @@ text: |
   MOVE
   COST: Pick a character that is not in battle. Pay 3.
   EFFECT: Attach this card to the character.
+rules:
+  - static:
+      mods:
+        - { cannot: attack, target: host }
+        - { no_rules: true, target: host }
+  - ability:
+      name: Move
+      cost:
+        - pick: { as: c, from: { character: { attacking: false, blocking: false } } }
+        - pay: 3
+      effect: [ attach: { card: self, to: c } ]

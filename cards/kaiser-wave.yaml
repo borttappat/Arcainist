@@ -8,3 +8,15 @@ rarity: uncommon
 text: |
   EXTRA COST: Pick a character.
   This turn, the character gains 1 strength and 1 life. It gains an additional 1 strength and 1 life for each kaiser card in play. It gains an additional 1 strength and 1 life if it is a kaiser character.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - let: { n: { count: { card: { subtype: kaiser } } } }
+        - if:
+            cond: { matches: [ c, { character: { subtype: kaiser } } ] }
+            then: [ let: { k: 1 } ]
+            else: [ let: { k: 0 } ]
+        - modify: { card: c, stat: str, gain: "1 + n + k" }
+        - modify: { card: c, stat: life, gain: "1 + n + k" }

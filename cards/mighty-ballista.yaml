@@ -9,3 +9,15 @@ text: |
   FIRE!
   COST: Choose a number for X. Pay X. Deplete this card. Pick a character or location.
   EFFECT: Inflict X damage to the character or location. Inflict X damage to this card.
+enters_depleted: true
+rules:
+  - ability:
+      name: Fire!
+      cost:
+        - choose_number: { as: X, min: 0 }
+        - pay: X
+        - deplete: self
+        - pick: { as: c, from: [ { character: any }, { location: any } ] }
+      effect:
+        - damage: { card: c, amount: X }
+        - damage: { card: self, amount: X }

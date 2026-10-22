@@ -8,3 +8,13 @@ text: |
   EXTRA COST: Pick a character you control. That character loses 2 life this turn. Pick another character.
   The character gains 1 strength and COVERT this turn. Draw a card.
   FLIP UP: 2 [O]
+rules:
+  - play:
+      cost:
+        - pick: { as: m, from: { character: { controller: you } } }
+        - modify: { card: m, stat: life, lose: 2 }
+        - pick: { as: c, from: { character: { not: m } } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: 1 }, target: c }, { keyword: covert, target: c } ] }
+        - draw: 1
+  - flip_up: { pay: 2, threshold: { obsession: 1 } }

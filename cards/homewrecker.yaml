@@ -11,3 +11,22 @@ text: |
   PROSTRATE
   COST: Deplete a location you control. Pick a character.
   EFFECT: Deplete that card.
+rules:
+  - play:
+      cost:
+        - choose_one:
+            - label: "Inflict 2 damage to a location you own"
+              when: { exists: { location: { owner: you } } }
+              steps:
+                - pick: { as: l, from: { location: { owner: you } }, choose: true }
+                - damage: { card: l, amount: 2 }
+            - { label: "Pay 3", steps: [ pay: 3 ] }
+  - static:
+      mods: [ { stat: { structure: 1 }, target: { location: { controller: you } } } ]
+  - ability:
+      name: Prostrate
+      cost:
+        - pick: { as: l, from: { location: { controller: you, depleted: false } }, choose: true, prompt: "Deplete a location you control." }
+        - deplete: l
+        - pick: { as: c, from: { character: any } }
+      effect: [ deplete: c ]

@@ -7,3 +7,11 @@ rarity: uncommon
 text: |
   EXTRA COST: Pick a character an opponent controls. Your faction loses X influence, where X is the numeric cost of that character.
   This turn, take control of the character. Restore it.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { controller: opponent } } }
+        - lose_influence: { who: you, amount: { cost: c } }
+      effect:
+        - take_control: { card: c, who: you, duration: turn }
+        - restore: c

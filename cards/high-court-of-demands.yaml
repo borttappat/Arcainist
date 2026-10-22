@@ -7,3 +7,8 @@ rarity: uncommon
 text: |
   When this card enters play, draw a card.
   Your opponents cannot attack your faction.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect: [ draw: 1 ]
+  - static:
+      mods: [ { cannot: attack_faction, by: opponent, target: all } ]

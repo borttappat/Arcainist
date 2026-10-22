@@ -7,3 +7,13 @@ rarity: rare
 text: |
   EXTRA COST: Deploy this only not during a battle. Destroy a resource you control. Pick a character with 3 strength or less.
   Restore that character. Draw a card.
+rules:
+  - play:
+      timing: { not_in_battle: true }
+      cost:
+        - pick: { as: r, from: { resource: { controller: you } }, choose: true, prompt: "Destroy a resource you control." }
+        - destroy: r
+        - pick: { as: c, from: { character: { str_lte: 3 } } }
+      effect:
+        - restore: c
+        - draw: 1

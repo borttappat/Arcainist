@@ -7,3 +7,6 @@ set: "Holy Heist"
 rarity: uncommon
 text: |
   When battle damage is inflicted to this card while it's attacking, reduce the amount to 0.
+rules:
+  - static:
+      mods: [ { damage: { set: 0, battle: true }, while: { attacking: self } } ]

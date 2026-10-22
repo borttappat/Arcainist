@@ -6,3 +6,8 @@ set: "Holy Heist"
 rarity: uncommon
 text: |
   Put the top 5 cards of an opponent's deck into their discard pile. Draw 2 cards.
+rules:
+  - play:
+      effect:
+        - mill: { who: opponent, count: 5 }
+        - draw: 2

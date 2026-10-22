@@ -7,3 +7,10 @@ rarity: uncommon
 text: |
   EXTRA COST: Pick a resource you control. (You can pick face-down resources.)
   Put the resource into its owner's hand. You may play a resource.
+rules:
+  - play:
+      cost:
+        - pick: { as: r, from: { resource: { controller: you } } }
+      effect:
+        - move: { card: r, to: hand }
+        - play_resource: { optional: true }

@@ -8,3 +8,14 @@ text: |
   BINGE
   COST: Deplete this card. Pick a character.
   EFFECT: Put a token on the character. Destroy it if it has at least X tokens on it, where X is its numeric cost.
+rules:
+  - ability:
+      name: Binge
+      cost:
+        - deplete: self
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - tokens: { card: c, add: 1 }
+        - if:
+            cond: { gte: [ { tokens: c }, { cost: c } ] }
+            then: [ destroy: c ]

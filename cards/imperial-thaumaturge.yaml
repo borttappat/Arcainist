@@ -9,3 +9,8 @@ text: |
   TICKLE
   COST: Pay 1. Deplete this card.
   EFFECT: An opponent discards a card.
+rules:
+  - ability:
+      name: Tickle
+      cost: [ pay: 1, deplete: self ]
+      effect: [ discard: { who: opponent, count: 1 } ]

@@ -10,3 +10,33 @@ text: |
    inflict 1 damage to it. If it is destroyed by that damage, you may pick another character and inflict 1
   damage to it. If it is destroyed by that damage, you may pick another character and inflict 1 damage to it.
   FLIP UP: 4 [R]
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - damage: { card: c, amount: 1 }
+        - if:
+            cond: { destroyed: c }
+            then:
+              - pick: { as: c2, from: { character: any }, optional: true }
+              - if:
+                  cond: { defined: c2 }
+                  then:
+                    - damage: { card: c2, amount: 1 }
+                    - if:
+                        cond: { destroyed: c2 }
+                        then:
+                          - pick: { as: c3, from: { character: any }, optional: true }
+                          - if:
+                              cond: { defined: c3 }
+                              then:
+                                - damage: { card: c3, amount: 1 }
+                                - if:
+                                    cond: { destroyed: c3 }
+                                    then:
+                                      - pick: { as: c4, from: { character: any }, optional: true }
+                                      - if:
+                                          cond: { defined: c4 }
+                                          then: [ damage: { card: c4, amount: 1 } ]
+  - flip_up: { pay: 4, threshold: { rage: 1 } }

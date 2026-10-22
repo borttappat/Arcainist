@@ -12,3 +12,15 @@ text: |
   While there is a token on this card, it loses COVERT and gains 1 strength and 1 life.
   If there are no tokens on this card and it would be destroyed, flip it face-down under its owner's control instead.
   FLIP UP: 3 [O][O]
+rules:
+  - play:
+      effect:
+        - if:
+            cond: { via: flip_up }
+            then: [ tokens: { card: self, add: 1 } ]
+  - static:
+      while: { gt: [ { tokens: self }, 0 ] }
+      mods: [ { lose_keyword: covert }, { stat: { str: 1, life: 1 } } ]
+  - replace: { event: destroy, card: self, while: { eq: [ { tokens: self }, 0 ] } }
+    instead: [ flip_face_down: { card: self, controller: owner } ]
+  - flip_up: { pay: 3, threshold: { obsession: 2 } }

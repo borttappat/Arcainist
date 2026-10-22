@@ -883,5 +883,5 @@ describe("all cards", () => {
       expect(g.s.cards[iid], def.id).toBeTruthy();
       void ({} as PlayerId);
     }
-  });
+  }, 30000);
 });

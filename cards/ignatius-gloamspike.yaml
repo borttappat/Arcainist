@@ -9,3 +9,11 @@ text: |
   UNIQUE IGNATIOUS
   When this card attacks, look at the top 2 cards of your deck. You may put any number of those cards on the bottom of your deck in any order. Put the remaining cards on the top of your deck in any order.
   When this card inflicts damage to a faction, look at the top 2 cards of the faction's controller's deck. Put any number of those cards on the bottom of their deck in any order. Put the remaining cards on the top of their deck in any order. Draw a card.
+rules:
+  - unique: Ignatious
+  - trigger: { on: attacks, card: self }
+    effect: [ look: { deck: you, count: 2, bottom: any } ]
+  - trigger: { on: damage, source: self, faction: true }
+    effect:
+      - look: { deck: { controller_of: it }, count: 2, bottom: any }
+      - draw: 1

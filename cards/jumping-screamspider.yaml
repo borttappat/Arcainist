@@ -11,3 +11,15 @@ text: |
   SCREAM
   COST: This card loses COVERT this turn.
   EFFECT: This turn, while this card is in a battle, all characters in the opposing party lose 2 speed.
+rules:
+  - ability:
+      name: Scream
+      cost:
+        - require: { matches: [ self, { character: { keyword: covert } } ] }
+        - create_effect: { duration: turn, mods: [ { lose_keyword: covert } ] }
+      effect:
+        - create_effect:
+            duration: turn
+            mods:
+              - { stat: { spd: -2 }, target: { character: { blocking: true } }, while: { attacking: self } }
+              - { stat: { spd: -2 }, target: { character: { attacking: true } }, while: { blocking: self } }

@@ -202,7 +202,9 @@ export interface Effect {
   mods?: any[];
   rules?: Rule[];
   /** Removed at the start of turn `expires + 1`... see game.expireEffects. */
-  duration: "turn" | "game" | "until_your_next_turn" | "next";
+  duration: "turn" | "game" | "until_your_next_turn" | "next" | "battle" | "next_restore";
+  /** For "next_restore": the player whose next Restore Rule ends it. */
+  restorer?: PlayerId;
   turn: number;
   /** For "next" durations: removed after being used once. */
   used?: boolean;
@@ -290,6 +292,8 @@ export interface LogEntry {
 export interface TurnLog {
   played: { iid: string; defId: string; player: PlayerId; types: CardType[]; cost: number }[];
   attacks: Record<string, number>;
+  /** Attacks declared this turn (Narrow Passage). */
+  declared?: number;
   /** "iid:index" of abilities used this turn (for once-per-turn abilities). */
   abilities?: Record<string, boolean>;
   /** Characters that assigned battle damage this turn. */

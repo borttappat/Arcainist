@@ -6,3 +6,6 @@ set: "2nd Edition"
 rarity: rare
 text: |
   When a card is depleted, that card's controller's faction loses 1 influence. (Resources don't deplete when used; they attach to your faction.)
+rules:
+  - trigger: { on: depleted, card: { card: any }, player: any }
+    effect: [ lose_influence: { who: { controller_of: it }, amount: 1 } ]

@@ -6,3 +6,8 @@ set: "1st Edition"
 rarity: uncommon
 text: |
   You may search your deck for a gear card and reveal it. If you do, put it into your hand.
+rules:
+  - play:
+      effect:
+        - may:
+            - search: { deck: you, for: { card: { subtype: gear } }, reveal: true, to: hand }

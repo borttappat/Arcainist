@@ -11,3 +11,18 @@ text: |
   TREK
   COST: Pay 2. Destroy a face-down resource you control.
   EFFECT: Search your deck for a card. Put it into your hand.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { controller: you } }, count: 3, up_to: true }
+      effect:
+        - if:
+            cond: { defined: c }
+            then: [ flip_face_down: { card: c, controller: owner } ]
+  - ability:
+      name: Trek
+      cost:
+        - pay: 2
+        - destroy_resource: { who: you, face_down: true }
+      effect:
+        - search: { deck: you, for: { card: any }, to: hand }

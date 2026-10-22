@@ -9,3 +9,14 @@ text: |
   HYPNOTIZE
   COST: Pay 5. Destroy this card. Pick a character.
   EFFECT: Take control of the character if it has numeric cost X or less, where X is the number of [D] you control.
+rules:
+  - ability:
+      name: Hypnotize
+      cost:
+        - pay: 5
+        - destroy: self
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - if:
+            cond: { lte: [ { cost: c }, { icons: deception } ] }
+            then: [ take_control: { card: c, who: you } ]

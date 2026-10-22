@@ -7,3 +7,7 @@ set: "Shade of the Devoured Emperor"
 rarity: uncommon
 text: |
   While you control more characters than any opponent, this card cannot be picked.
+rules:
+  - static:
+      while: { gt: [ { count: { character: { controller: you } } }, { count: { character: { controller: opponent } } } ] }
+      mods: [ { cannot: pick } ]

@@ -12,3 +12,22 @@ text: |
   CIPHER
   COST: Pay 2. Deplete this card. Pick a tactic in your discard pile.
   EFFECT: You may deploy the card. If that card would go to its owner's discard pile, remove it from the game instead.
+rules:
+  - unique: Ignatious
+  - static:
+      zone: hand
+      while: { gte: [ { different_staples: you }, 4 ] }
+      mods: [ { threshold_reduce: 3 } ]
+  - static:
+      mods: [ { stat: { str: 3, life: 3 }, target: { character: { unique: Uhluhtc } } } ]
+  - ability:
+      name: Cipher
+      cost:
+        - pay: 2
+        - deplete: self
+        - pick: { as: c, from: { tactic: { zone: discard, owner: you } } }
+      effect:
+        - create_effect: { duration: game, mods: [ { redirect: { to: discard, instead: void }, target: c } ] }
+        - may:
+            prompt: "deploy that tactic"
+            steps: [ play_card: { card: c } ]

@@ -56,6 +56,30 @@ Where things stand and what's left. Update this as work lands.
   (an optional paid replacement of a card going to the opponent's hand) and God's
   Autograph (every card gains "Unique <its name>"). Next card in order: Hangdog Alley.
 
+- **2026-10-22 (sixth session):** 100 more cards, Hangdog Alley to Last-Minute
+  Weaponization. Limited Liability now also stops the unique rule (several copies of
+  a UNIQUE card stay until it ends). New building blocks: `cannot: attack_faction`,
+  `terminate: all`, `played_this_turn` with `same_name`, the `covert_party` and
+  `since_turn_start` conditions, `both_players: opponent` abilities, the `battle`
+  effect duration, `look` with an exact bottom count, `strongest: controller`,
+  `name_not_among`, and `card: host` triggers on `leaves_play` firing although the
+  attachment leaves too. The all-cards smoke test now has a 30s timeout (it scales
+  with the card count). 841 tests pass. Next card in order: Lead the Assault.
+
+- **2026-10-22 (seventh session):** 100 more cards, Lead the Assault to Nearby
+  Serpent. New building blocks: the `next_restore` effect duration ("does not
+  restore during its controller's next RESTORE RULE"; Numba 1 Stunna and Wily
+  Circumvention can use it next), `cannot: flip_up`, `cannot: destroy` with `from`,
+  `redirect` to `deck_shuffle` or `stay`, static rules in `zone: any`, conditional
+  replacements (`while`), `remember` of a variable, `duplicate: responded`, the
+  `attack_declarations` modifier, `not` with several variables, and the `max`,
+  `max_stat` and `total_str` values. `choose_one` with nothing to offer now fails as
+  a cost. Engine fix: a destroy replacement that queues steps (an `if`) could be
+  replaced again by the state checks before it finished, looping forever (Lucky
+  Bastard). 959 tests pass. **Skipped:** Mustache Aficionado (both players split
+  their top 3 cards into piles). The dump script now starts at index 8. Next card in
+  order: Necromantic Healer.
+
 ## State at the end of the first session (2026-10-21)
 
 - **Cards:** 1,230 cards from the spoilstoolbox.com database, plus a Micromajig token card.
@@ -93,7 +117,7 @@ Where things stand and what's left. Update this as work lands.
 ## 2. Automate every card (the main job)
 
 - [ ] Write `rules` for every card without them, in alphabetical batches of about 25
-  (about 540 of 1,230 done; 655 cards with text remain):
+  (about 740 of 1,230 done; 455 cards with text remain):
   - list the batch's cards with their text and numbers;
   - write the rules;
   - append them to the YAML files;

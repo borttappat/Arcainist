@@ -7,3 +7,7 @@ set: "2nd Edition"
 rarity: rare
 text: |
   When you control any other characters you own, destroy this card.
+rules:
+  - static:
+      while: { exists: { character: { controller: you, owner: you, not_self: true } } }
+      mods: [ { destroy_self: true } ]

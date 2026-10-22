@@ -9,3 +9,20 @@ text: |
   You may deploy the tactic. Draw a card.
   While this card is in your discard pile, when a card that provides at least [O] enters play under your control, you may pay 2. If you do, put this card into play under your control as a face-down resource.
   FLIP UP: 1 [O]
+rules:
+  - play:
+      cost:
+        - pick: { as: t, from: { resource: { controller: you, face_down: true, printed_type: tactic } }, choose: true, prompt: "Reveal a face-down tactic you control." }
+        - reveal: t
+      effect:
+        - may:
+            prompt: "deploy the revealed tactic"
+            steps: [ play_card: { card: t } ]
+        - draw: 1
+  - trigger: { on: enters_play, card: { controller: you, provides_at_least: { obsession: 1 } }, zone: discard }
+    effect:
+      - may_pay:
+          amount: 2
+          prompt: "put Manifest into play as a face-down resource"
+          then: [ put_into_play: { card: self, controller: you, as: face_down_resource } ]
+  - flip_up: { pay: 1, threshold: { obsession: 1 } }

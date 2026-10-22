@@ -7,3 +7,21 @@ rarity: uncommon
 text: |
   EXTRA COST: Pick 3 characters.
   Deplete one of the characters. Inflict 1 damage to another one of the characters. The remaining character gains 2 strength this turn. Draw a card.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any }, count: 3 }
+      effect:
+        - pick: { as: x, from: { character: { among: c } }, choose: true, prompt: "Choose the character to deplete." }
+        - pick: { as: y, from: { character: { among: c, not: x } }, choose: true, prompt: "Choose the character to take 1 damage." }
+        - pick: { as: z, from: { character: { among: c, not: [ x, y ] } }, choose: true, prompt: "The remaining character gains 2 strength this turn." }
+        - if:
+            cond: { defined: x }
+            then: [ deplete: x ]
+        - if:
+            cond: { defined: y }
+            then: [ damage: { card: y, amount: 1 } ]
+        - if:
+            cond: { defined: z }
+            then: [ modify: { card: z, stat: str, gain: 2 } ]
+        - draw: 1

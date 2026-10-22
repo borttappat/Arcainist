@@ -7,3 +7,10 @@ set: "Seed Saga"
 rarity: common
 text: |
   When this card blocks, you may pick a character. If you do, restore that character.
+rules:
+  - trigger: { on: blocks, card: self }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ restore: c ]

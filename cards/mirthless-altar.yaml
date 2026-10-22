@@ -6,3 +6,10 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   At the start of each player's turn, you may pick a character. If you do, it loses 1 strength this turn.
+rules:
+  - trigger: { on: start_of_turn, player: any }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ modify: { card: c, stat: str, lose: 1 } ]

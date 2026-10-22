@@ -9,3 +9,9 @@ text: |
   CONVINCE
   COST: Deplete this card.
   EFFECT: This turn, all your soldier characters gain 1 strength.
+rules:
+  - ability:
+      name: Convince
+      cost: [ deplete: self ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: 1 }, target: { character: { controller: you, subtype: soldier } } } ] }

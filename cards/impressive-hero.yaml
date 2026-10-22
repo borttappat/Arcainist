@@ -8,3 +8,11 @@ rarity: common
 text: |
   EXTRA COST: You may pick a character.
   When this card enters play, if you picked a character as part of its cost, deplete that character.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any }, optional: true }
+      effect:
+        - if:
+            cond: { defined: c }
+            then: [ deplete: c ]

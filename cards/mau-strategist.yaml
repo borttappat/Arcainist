@@ -8,3 +8,11 @@ rarity: common
 text: |
   When this card enters play, you may search your deck for a staple resource, reveal it, and put it into your hand.
   When this card is destroyed, you may draw a card.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may:
+          - search: { deck: you, for: { resource: { staple: true } }, reveal: true, to: hand }
+  - trigger: { on: destroyed, card: self }
+    effect:
+      - may: { prompt: "draw a card", steps: [ draw: 1 ] }

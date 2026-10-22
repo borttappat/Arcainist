@@ -8,3 +8,10 @@ text: |
   EXTRA COST: Deploy this only during a battle.
   Reduce all battle damage inflicted during this battle to 0. Draw a card.
   FLIP UP: 1 [G]
+rules:
+  - play:
+      timing: { in_battle: true }
+      effect:
+        - create_effect: { duration: battle, mods: [ { damage: { set: 0, battle: true }, target: all } ] }
+        - draw: 1
+  - flip_up: { pay: 1, threshold: { greed: 1 } }

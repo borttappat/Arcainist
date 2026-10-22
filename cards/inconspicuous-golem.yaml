@@ -8,3 +8,13 @@ rarity: common
 text: |
   When this card enters play, you may pay 1. If you do, put a token on it.
   While there is a token on this card, it can block COVERT parties.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may_pay:
+          amount: 1
+          prompt: "put a token on Inconspicuous Golem (it can block COVERT parties)"
+          then: [ tokens: { card: self, add: 1 } ]
+  - static:
+      while: { gt: [ { tokens: self }, 0 ] }
+      mods: [ { blocks_any: true } ]

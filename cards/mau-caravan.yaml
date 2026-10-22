@@ -6,3 +6,11 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   At the start of your turn, you may destroy this card. If you do, search your deck for a location, reveal it, and put it into your hand.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - may:
+          prompt: "destroy Mau Caravan to search your deck for a location"
+          steps:
+            - destroy: self
+            - search: { deck: you, for: { location: any }, reveal: true, to: hand }

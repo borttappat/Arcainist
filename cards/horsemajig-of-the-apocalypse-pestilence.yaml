@@ -7,3 +7,6 @@ set: "2nd Edition"
 rarity: common
 text: |
   All other horsemajig characters gain 1 life.
+rules:
+  - static:
+      mods: [ { stat: { life: 1 }, target: { character: { subtype: horsemajig, not_self: true } } } ]

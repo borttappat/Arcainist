@@ -6,3 +6,6 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   When an attacking party is formed, it must have only 1 member.
+rules:
+  - static:
+      mods: [ { party: { side: attacking, max: 1 } } ]

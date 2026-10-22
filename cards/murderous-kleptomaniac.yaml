@@ -12,3 +12,17 @@ text: |
   KLEPT: [D][D][D][D][D][D][D][D][D][D]
   COST: Pay 4. Pick a character or item.
   EFFECT: Take control of that card.
+rules:
+  - trigger: { on: moved, card: self, from: play, to: discard, zone: discard }
+    effect:
+      - pick: { as: c, from: [ { character: any }, { item: any }, { location: any } ], optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ void: c ]
+  - ability:
+      name: Klept
+      threshold: { deception: 10 }
+      cost:
+        - pay: 4
+        - pick: { as: c, from: [ { character: any }, { item: any } ] }
+      effect: [ take_control: { card: c, who: you } ]

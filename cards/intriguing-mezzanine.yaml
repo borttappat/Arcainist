@@ -11,3 +11,18 @@ text: |
   COST: Inflict 1 damage to this location. If you do, pick a character.
   EFFECT: Deplete the character.
   Characters depleted by this card cannot be restored by their controller's factions's restore rule.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any }, count: 2 }
+      effect:
+        - deplete: c
+        - create_effect: { duration: game, mods: [ { cannot: restore_by_rule, target: { character: { among: c, depleted: true } }, while: { in_play: self } } ] }
+  - ability:
+      name: Party On!
+      cost:
+        - damage: { card: self, amount: 1 }
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - deplete: c
+        - create_effect: { duration: game, mods: [ { cannot: restore_by_rule, target: { character: { among: c, depleted: true } }, while: { in_play: self } } ] }

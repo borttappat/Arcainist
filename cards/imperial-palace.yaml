@@ -6,3 +6,23 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   At the end of your turn you may pay 1. If you do, pick a character you control and put it into the void. At the start of your next turn put the voided character into play under your control.
+rules:
+  - trigger: { on: end_of_turn, player: you }
+    effect:
+      - may_pay:
+          amount: 1
+          prompt: "put a character you control into the void until the start of your next turn"
+          then:
+            - pick: { as: c, from: { character: { controller: you } }, prompt: "Pick a character you control to put into the void." }
+            - if:
+                cond: { defined: c }
+                then:
+                  - void: c
+                  - create_effect:
+                      duration: game
+                      rules:
+                        - trigger: { on: start_of_turn, player: you, once: true }
+                          effect:
+                            - if:
+                                cond: { in_zone: [ c, void ] }
+                                then: [ put_into_play: { card: c, controller: you } ]

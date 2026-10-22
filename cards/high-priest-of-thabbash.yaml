@@ -10,3 +10,19 @@ text: |
   NEGATE
   COST: Pay 2. Deplete this card. Discard a card. Pick a card being deployed of the same type as the discarded card.
   EFFECT: Terminate the card being deployed.
+rules:
+  - unique: Gloamspike
+  - ability:
+      name: Negate
+      timing: { response_to: { deploying: { card: any } } }
+      cost:
+        - pay: 2
+        - deplete: self
+        - discard: { count: 1, as: d }
+        - require:
+            any:
+              - { all: [ { matches: [ d, { character: { zone: discard } } ] }, { matches: [ responded, { character: { zone: stack } } ] } ] }
+              - { all: [ { matches: [ d, { tactic: { zone: discard } } ] }, { matches: [ responded, { tactic: { zone: stack } } ] } ] }
+              - { all: [ { matches: [ d, { item: { zone: discard } } ] }, { matches: [ responded, { item: { zone: stack } } ] } ] }
+              - { all: [ { matches: [ d, { location: { zone: discard } } ] }, { matches: [ responded, { location: { zone: stack } } ] } ] }
+      effect: [ terminate: responded ]

@@ -9,3 +9,8 @@ rarity: common
 text: |
   ATTACH TO CHARACTER
   The attached character cannot attack or block.
+rules:
+  - static:
+      mods:
+        - { cannot: attack, target: host }
+        - { cannot: block, target: host }

@@ -9,3 +9,10 @@ text: |
   FLASH-BANG
   COST: Destroy this card. Pick a character you control.
   EFFECT: Put the character into its owner's hand.
+rules:
+  - ability:
+      name: Flash-Bang
+      cost:
+        - destroy: self
+        - pick: { as: c, from: { character: { controller: you } } }
+      effect: [ move: { card: c, to: hand } ]

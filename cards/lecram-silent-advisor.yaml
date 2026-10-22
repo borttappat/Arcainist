@@ -10,3 +10,16 @@ text: |
   COVERT, UNIQUE LECRAM
   At the start of your turn, you may look at the top card of your deck.
   At the end of your turn, flip a coin. If you win, look at the top card of an opponent's deck.
+rules:
+  - unique: Lecram
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - may:
+          prompt: "look at the top card of your deck"
+          steps: [ peek: { who: you, top: 1 } ]
+  - trigger: { on: end_of_turn, player: you }
+    effect:
+      - coin_flip: { as: won }
+      - if:
+          cond: { did: true }
+          then: [ peek: { who: opponent, top: 1 } ]

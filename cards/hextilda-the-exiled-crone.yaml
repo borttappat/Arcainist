@@ -10,3 +10,12 @@ text: |
   TOIL AND TROUBLE
   COST: Pay 4. Deplete this card. Pick a card you control with at least 1 token on it.
   EFFECT: Double the number of tokens on the card.
+rules:
+  - unique: Hextilda
+  - ability:
+      name: Toil and Trouble
+      cost:
+        - pay: 4
+        - deplete: self
+        - pick: { as: c, from: { card: { controller: you, has_tokens: true } } }
+      effect: [ tokens: { card: c, add: { tokens: c } } ]

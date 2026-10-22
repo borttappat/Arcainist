@@ -7,3 +7,7 @@ set: "1st Edition"
 rarity: common
 text: |
   While you have at least 6 cards in your hand, this card gains 1 strength and COVERT.
+rules:
+  - static:
+      while: { gte: [ { hand_size: you }, 6 ] }
+      mods: [ { stat: { str: 1 } }, { keyword: covert } ]

@@ -7,3 +7,7 @@ rarity: rare
 text: |
   EXTRA COST: Deploy this only in response to a character with numeric cost X or less being deployed, where X is number of [D] you control.
   The character enters play under your control.
+rules:
+  - play:
+      timing: { response_to: { deploying: { character: { cost_lte: { icons: deception } } } } }
+      effect: [ steal_deploy: responded ]

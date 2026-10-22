@@ -10,3 +10,12 @@ text: |
   EXCHANGE
   COST: Deplete this card. Put a token on this card.
   EFFECT: Draw a card.
+rules:
+  - static:
+      mods: [ { stat: { str: { neg: { tokens: self } }, life: { neg: { tokens: self } } } } ]
+  - ability:
+      name: Exchange
+      cost:
+        - deplete: self
+        - tokens: { card: self, add: 1 }
+      effect: [ draw: 1 ]

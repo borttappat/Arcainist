@@ -7,3 +7,6 @@ set: "2nd Edition"
 rarity: common
 text: |
   All other horsemajig characters gain 1 strength.
+rules:
+  - static:
+      mods: [ { stat: { str: 1 }, target: { character: { subtype: horsemajig, not_self: true } } } ]

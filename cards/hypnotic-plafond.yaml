@@ -6,3 +6,7 @@ set: "1st Edition"
 rarity: uncommon
 text: |
   Reduce all battle damage inflicted to your faction by characters in COVERT parties to 0.
+rules:
+  - static:
+      mods:
+        - { damage: { set: 0, battle: true, from: { character: { attacking: true } } }, target: { faction: { controller: you } }, while: { covert_party: true } }

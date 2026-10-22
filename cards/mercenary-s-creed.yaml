@@ -14,3 +14,15 @@ text: |
   BLACKMAIL
   COST: Use this only if you own this card. Pay 2.
   EFFECT: Take control of the attached character.
+rules:
+  - ability:
+      name: Bribe
+      both_players: true
+      cost: [ pay: 3 ]
+      effect: [ take_control: { card: host, who: you } ]
+  - ability:
+      name: Blackmail
+      cost:
+        - require: { matches: [ self, { card: { owner: you } } ] }
+        - pay: 2
+      effect: [ take_control: { card: host, who: you } ]

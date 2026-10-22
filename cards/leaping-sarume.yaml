@@ -11,3 +11,10 @@ text: |
   EXTRA COST: Deploy this only not during a battle.
   When this card enters play, inflict 1 damage to all characters.
   [R][R][R][R][R][R]: When this card enters play, inflict 1 damage to all your opponent's characters.
+rules:
+  - play:
+      timing: { not_in_battle: true }
+  - trigger: { on: enters_play, card: self }
+    effect: [ damage: { card: { character: any }, amount: 1 } ]
+  - trigger: { on: enters_play, card: self, requires: { rage: 6 } }
+    effect: [ damage: { card: { character: { controller: opponent } }, amount: 1 } ]

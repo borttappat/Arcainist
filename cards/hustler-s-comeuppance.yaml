@@ -7,3 +7,7 @@ rarity: rare
 text: |
   Destroy all characters that inflicted damage to your faction this turn.
   FLIP UP: 3 [D][D]
+rules:
+  - play:
+      effect: [ destroy: { card: { character: { damaged_faction: you } } } ]
+  - flip_up: { pay: 3, threshold: { deception: 2 } }

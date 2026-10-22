@@ -9,3 +9,17 @@ text: |
   [D][D][D]: At the start of your turn, you may pick a character. If you do, it gains COVERT this turn.
   [D][D][D][D][D]: At the start of your turn, you may search an opponent's deck for a card. If you do, put it into their discard pile.
   [D][D][D][D][D][D][D]: At the start of your turn, an opponent discards a card at random.
+rules:
+  - unique: Heist Training Grounds
+  - trigger: { on: start_of_turn, player: you, requires: { deception: 3 } }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ create_effect: { duration: turn, mods: [ { keyword: covert, target: c } ] } ]
+  - trigger: { on: start_of_turn, player: you, requires: { deception: 5 } }
+    effect:
+      - may:
+          - search: { deck: opponent, for: { card: any }, to: discard }
+  - trigger: { on: start_of_turn, player: you, requires: { deception: 7 } }
+    effect: [ discard: { who: opponent, count: 1, random: true } ]

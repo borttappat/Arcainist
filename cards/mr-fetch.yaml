@@ -11,3 +11,53 @@ text: |
   GOOD DEAL
   COST: Deplete this card. Pick 2 cards of the same type in your discard pile. Remove them from the game.
   EFFECT: Search your deck for a card with the same type as the picked cards and reveal it. If you do, put it into your hand.
+rules:
+  - unique: Pluck
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - pick: { as: v, from: { card: { zone: discard, owner: you } }, choose: true, optional: true, prompt: "You may remove a card in your discard pile from the game to draw a card." }
+      - if:
+          cond: { defined: v }
+          then:
+            - void: v
+            - draw: 1
+  - ability:
+      name: Good Deal
+      cost:
+        - deplete: self
+        - choose_one:
+            - label: "Two characters"
+              when: { gte: [ { count: { character: { zone: discard, owner: you } } }, 2 ] }
+              steps: [ let: { ty: 1 }, pick: { as: d, from: { character: { zone: discard, owner: you } }, count: 2, exactly: true } ]
+            - label: "Two tactics"
+              when: { gte: [ { count: { tactic: { zone: discard, owner: you } } }, 2 ] }
+              steps: [ let: { ty: 2 }, pick: { as: d, from: { tactic: { zone: discard, owner: you } }, count: 2, exactly: true } ]
+            - label: "Two items"
+              when: { gte: [ { count: { item: { zone: discard, owner: you } } }, 2 ] }
+              steps: [ let: { ty: 3 }, pick: { as: d, from: { item: { zone: discard, owner: you } }, count: 2, exactly: true } ]
+            - label: "Two locations"
+              when: { gte: [ { count: { location: { zone: discard, owner: you } } }, 2 ] }
+              steps: [ let: { ty: 4 }, pick: { as: d, from: { location: { zone: discard, owner: you } }, count: 2, exactly: true } ]
+            - label: "Two resources"
+              when: { gte: [ { count: { resource: { zone: discard, owner: you } } }, 2 ] }
+              steps: [ let: { ty: 5 }, pick: { as: d, from: { resource: { zone: discard, owner: you } }, count: 2, exactly: true } ]
+        - void: d
+      effect:
+        - may:
+            prompt: "search your deck for a card of the same type"
+            steps:
+              - if:
+                  cond: { eq: [ ty, 1 ] }
+                  then: [ search: { deck: you, for: { character: any }, reveal: true, to: hand } ]
+              - if:
+                  cond: { eq: [ ty, 2 ] }
+                  then: [ search: { deck: you, for: { tactic: any }, reveal: true, to: hand } ]
+              - if:
+                  cond: { eq: [ ty, 3 ] }
+                  then: [ search: { deck: you, for: { item: any }, reveal: true, to: hand } ]
+              - if:
+                  cond: { eq: [ ty, 4 ] }
+                  then: [ search: { deck: you, for: { location: any }, reveal: true, to: hand } ]
+              - if:
+                  cond: { eq: [ ty, 5 ] }
+                  then: [ search: { deck: you, for: { resource: any }, reveal: true, to: hand } ]

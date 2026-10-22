@@ -10,3 +10,22 @@ text: |
   RECUR: [G]
   COST: Use this only if this card is in your discard pile. Pay 2. Remove this card from the game. Pick a character in your discard pile.
   EFFECT: Put the character into your hand.
+rules:
+  - static:
+      zone: stack
+      while: { gte: [ { count: { character: { zone: discard, owner: you } } }, 4 ] }
+      mods: [ { cost: -3, target: self } ]
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect: [ destroy: c ]
+  - ability:
+      name: Recur
+      keyword: recur
+      threshold: { greed: 1 }
+      from: discard
+      cost:
+        - pay: 2
+        - void: self
+        - pick: { as: c, from: { character: { zone: discard, owner: you } } }
+      effect: [ move: { card: c, to: hand } ]

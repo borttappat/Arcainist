@@ -8,3 +8,11 @@ text: |
   EXTRA COST: Pick an item.
   Destroy the item. Put a Micromajig token into play under your control.
   FLIP UP: 2 [E][E]
+rules:
+  - play:
+      cost:
+        - pick: { as: i, from: { item: any } }
+      effect:
+        - destroy: i
+        - create_token: { card: micromajig-token }
+  - flip_up: { pay: 2, threshold: { elitism: 2 } }

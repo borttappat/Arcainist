@@ -7,3 +7,15 @@ rarity: uncommon
 text: |
   Pick an attacking character you control. It gains 2 strength and 2 life this turn. If you control an attacking party of at least 2 members, that character gains an additional 2 strength and 2 life this turn.
   FLIP UP: 4 [E]
+rules:
+  - play:
+      effect:
+        - pick: { as: c, from: { character: { controller: you, attacking: true } } }
+        - if:
+            cond: { defined: c }
+            then:
+              - create_effect: { duration: turn, mods: [ { stat: { str: 2, life: 2 }, target: c } ] }
+              - if:
+                  cond: { gte: [ { count: { character: { controller: you, attacking: true } } }, 2 ] }
+                  then: [ create_effect: { duration: turn, mods: [ { stat: { str: 2, life: 2 }, target: c } ] } ]
+  - flip_up: { pay: 4, threshold: { elitism: 1 } }

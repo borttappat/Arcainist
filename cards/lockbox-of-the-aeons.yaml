@@ -6,3 +6,10 @@ set: "Ungodly Mess"
 rarity: super-rare
 text: |
   Your opponents cannot use FLIP UP and cards cannot be put into your opponents' hands from the void, discard pile or play
+rules:
+  - static:
+      mods:
+        - { cannot: flip_up, by: opponent, target: all }
+        - { redirect: { from: void, to: hand, instead: stay }, target: { card: { owner: opponent, zone: any } } }
+        - { redirect: { from: discard, to: hand, instead: stay }, target: { card: { owner: opponent, zone: any } } }
+        - { redirect: { from: play, to: hand, instead: stay }, target: { card: { owner: opponent, zone: any } } }

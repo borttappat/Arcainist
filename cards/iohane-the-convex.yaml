@@ -12,3 +12,16 @@ text: |
   SNEAK
   COST: Pay 1.
   EFFECT: This card gains COVERT this turn.
+rules:
+  - unique: Iohane
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - coin_flip: { as: won }
+      - if:
+          cond: { did: true }
+          then: [ draw: 1 ]
+  - ability:
+      name: Sneak
+      cost: [ pay: 1 ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { keyword: covert } ] }

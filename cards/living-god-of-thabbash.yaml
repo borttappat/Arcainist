@@ -10,3 +10,12 @@ text: |
   HIGHER CALLING
   COST: Pay 2. Pick a character you control.
   EFFECT: Put the character into its owner's hand.
+rules:
+  - trigger: { on: leaves_play, player: you, card: { character: any } }
+    effect: [ discard: { who: opponent, count: 1 } ]
+  - ability:
+      name: Higher Calling
+      cost:
+        - pay: 2
+        - pick: { as: c, from: { character: { controller: you } } }
+      effect: [ move: { card: c, to: hand } ]

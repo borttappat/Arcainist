@@ -8,3 +8,10 @@ text: |
   PROFIT
   COST: Deplete this card.
   EFFECT: Draw 4 cards. An opponent takes control of this card.
+rules:
+  - ability:
+      name: Profit
+      cost: [ deplete: self ]
+      effect:
+        - draw: 4
+        - take_control: { card: self, who: opponent }

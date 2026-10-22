@@ -9,3 +9,12 @@ text: |
   COST: Pick an attacking character.
   EFFECT: Inflict 2 damage to the character. Flip this card face-down under its owner's control.
   FLIP UP: 5 [R]
+rules:
+  - ability:
+      name: Ambush
+      cost:
+        - pick: { as: c, from: { character: { attacking: true } } }
+      effect:
+        - damage: { card: c, amount: 2 }
+        - flip_face_down: { card: self, controller: owner }
+  - flip_up: { pay: 5, threshold: { rage: 1 } }

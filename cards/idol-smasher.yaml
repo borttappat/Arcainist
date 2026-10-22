@@ -8,3 +8,11 @@ rarity: common
 text: |
   EXTRA COST: You may pick an item.
   When this card enters play, if you picked an item as part of its cost, destroy that item.
+rules:
+  - play:
+      cost:
+        - pick: { as: i, from: { item: any }, optional: true }
+      effect:
+        - if:
+            cond: { defined: i }
+            then: [ destroy: i ]

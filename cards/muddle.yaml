@@ -7,3 +7,10 @@ rarity: rare
 text: |
   EXTRA COST: Deploy this only in response to a tactic being deployed. Pay X, where X is its numeric cost.
   Duplicate the tactic. Terminate the tactic.
+rules:
+  - play:
+      timing: { response_to: { deploying: { tactic: any } } }
+      cost: [ pay: { cost: responded } ]
+      effect:
+        - duplicate: responded
+        - terminate: responded

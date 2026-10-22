@@ -7,3 +7,11 @@ rarity: common
 text: |
   EXTRA COST: Pick a character. X is its strength.
   Destroy the character. That character’s controller's faction gains X influence.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+        - let: { X: { stat: [ c, str ] } }
+      effect:
+        - gain_influence: { who: { controller_of: c }, amount: X }
+        - destroy: c

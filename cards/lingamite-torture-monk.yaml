@@ -12,3 +12,20 @@ text: |
   RECUR: [O][O]
   COST: Use this only if this card is in your discard pile. Pay 2. Remove this card from the game. Pick a character you own.
   EFFECT: Put the character into its owner's hand.
+rules:
+  - ability:
+      name: Torture
+      cost:
+        - pick: { as: c, from: { character: { owner: you } } }
+        - destroy: self
+      effect: [ move: { card: c, to: hand } ]
+  - ability:
+      name: Recur
+      keyword: recur
+      threshold: { obsession: 2 }
+      from: discard
+      cost:
+        - pay: 2
+        - void: self
+        - pick: { as: c, from: { character: { owner: you } } }
+      effect: [ move: { card: c, to: hand } ]

@@ -10,3 +10,14 @@ text: |
   STRUT
   COST: Pay 2. Pick a character.
   EFFECT: This turn, the character gains 1 speed or loses 1 life.
+rules:
+  - unique: Maxwell
+  - ability:
+      name: Strut
+      cost:
+        - pay: 2
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - choose_one:
+            - { label: "It gains 1 speed this turn", steps: [ modify: { card: c, stat: spd, gain: 1 } ] }
+            - { label: "It loses 1 life this turn", steps: [ modify: { card: c, stat: life, lose: 1 } ] }

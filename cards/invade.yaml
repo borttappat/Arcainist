@@ -10,3 +10,20 @@ text: |
   REUSE: [R][R]
   COST: Use this only while this card is a face-down resource. Reveal this card. Pay 4. Discard a card. Pick a character.
   EFFECT: This turn, the character cannot block.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { cannot: block, target: c } ] }
+  - ability:
+      name: Reuse
+      threshold: { rage: 2 }
+      from: face_down_resource
+      cost:
+        - reveal: self
+        - pay: 4
+        - discard: 1
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { cannot: block, target: c } ] }

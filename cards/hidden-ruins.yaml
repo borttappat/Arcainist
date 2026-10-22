@@ -9,3 +9,20 @@ text: |
   You may deploy the location. Draw a card.
   While this card is in your discard pile, when a card that provides at least [G] enters play under your control, you may pay 2. If you do, put this card into play under your control as a face-down resource.
   FLIP UP: 1 [G]
+rules:
+  - play:
+      cost:
+        - pick: { as: l, from: { resource: { controller: you, face_down: true, printed_type: location } }, choose: true, prompt: "Reveal a face-down location you control." }
+        - reveal: l
+      effect:
+        - may:
+            prompt: "deploy the revealed location"
+            steps: [ play_card: { card: l } ]
+        - draw: 1
+  - trigger: { on: enters_play, card: { controller: you, provides_at_least: { greed: 1 } }, zone: discard }
+    effect:
+      - may_pay:
+          amount: 2
+          prompt: "put Hidden Ruins into play as a face-down resource"
+          then: [ put_into_play: { card: self, controller: you, as: face_down_resource } ]
+  - flip_up: { pay: 1, threshold: { greed: 1 } }

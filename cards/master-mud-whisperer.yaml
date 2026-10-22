@@ -7,3 +7,9 @@ set: "Seed Saga"
 rarity: rare
 text: |
   At the start of each opponent's turn, you may restore all characters you control.
+rules:
+  - trigger: { on: start_of_turn, player: opponent }
+    effect:
+      - may:
+          prompt: "restore all characters you control"
+          steps: [ restore: { character: { controller: you } } ]

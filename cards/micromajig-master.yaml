@@ -11,3 +11,14 @@ text: |
   COST: Destroy 3 Micromajig tokens you control.
   EFFECT: Search your deck for a card. Put it into your hand.
   (Treat Micromajig tokens as Gearsmith character cards with 1 strength, 1 life, 3 speed, and the majig subtype. When a Micromajig token leaves play, it disappears.)
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may: { prompt: "put 2 Micromajig tokens into play", steps: [ create_token: { card: micromajig-token, count: 2 } ] }
+  - ability:
+      name: Tiny Sacrifices
+      cost:
+        - pick: { as: t, from: { character: { controller: you, name: Micromajig Token } }, count: 3, exactly: true, choose: true, prompt: "Destroy 3 Micromajig tokens you control." }
+        - destroy: t
+      effect:
+        - search: { deck: you, for: { card: any }, to: hand }

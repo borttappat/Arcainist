@@ -8,3 +8,15 @@ rarity: common
 text: |
   When this card enters play, you may pay 2. If you do, you may put a token on up to 2 different non-resource cards.
   While there is a token on this card, it gains 2 strength and 2 life.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may_pay:
+          amount: 2
+          prompt: "put a token on up to 2 different non-resource cards"
+          then:
+            - pick: { as: c, from: { card: { not_type: resource } }, count: 2, up_to: true, choose: true }
+            - tokens: { card: c, add: 1 }
+  - static:
+      while: { gt: [ { tokens: self }, 0 ] }
+      mods: [ { stat: { str: 2, life: 2 } } ]

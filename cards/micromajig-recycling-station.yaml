@@ -6,3 +6,13 @@ set: "Shade of the Devoured Emperor"
 rarity: common
 text: |
   At the start of your turn, you may choose a number for X and destroy X Micromajig tokens you control. If you do, reduce the next numeric cost you pay this turn by X+1.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - choose_number: { as: X, min: 0, max: { count: { character: { controller: you, name: Micromajig Token } } }, prompt: "Micromajig Recycling Station: destroy how many Micromajig tokens?" }
+      - if:
+          cond: { gt: [ X, 0 ] }
+          then:
+            - pick: { as: t, from: { character: { controller: you, name: Micromajig Token } }, count: X, exactly: true, choose: true }
+            - destroy: t
+            - create_effect: { duration: next, mods: [ { cost: "-(X + 1)", applies: any, by: you, target: all } ] }

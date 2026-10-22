@@ -8,3 +8,10 @@ text: |
   EXTRA COST: Pick an opponent's character with the highest strength. (If there is tie, you decide which character is picked.)
   This turn, the character cannot block.
   FLIP UP: 2 [R]
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { controller: opponent, strongest: controller } } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { cannot: block, target: c } ] }
+  - flip_up: { pay: 2, threshold: { rage: 1 } }

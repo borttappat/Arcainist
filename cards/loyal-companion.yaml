@@ -14,3 +14,20 @@ text: |
   NINE LIVES: [D]
   COST: Use this only if this card is in your discard pile. Pay 5.
   EFFECT: Put this card into play under your control.
+rules:
+  - ability:
+      name: Helping Paw
+      threshold: { deception: 1 }
+      from: hand
+      cost:
+        - move: { card: self, to: discard }
+        - pick: { as: c, from: [ { character: { blocking: true } }, { character: { attacking: true } } ] }
+        - pay: 4
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: 3, life: 3 }, target: c } ] }
+  - ability:
+      name: Nine Lives
+      threshold: { deception: 1 }
+      from: discard
+      cost: [ pay: 5 ]
+      effect: [ put_into_play: { card: self, controller: you } ]

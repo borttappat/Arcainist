@@ -8,3 +8,18 @@ text: |
   IMBIBE
   COST: Pay 1. Deplete this card.
   EFFECT: Look at the top 3 cards of your deck. You may choose a tactic among them and reveal it. If you do, put it into your hand. Put the remaining cards on the bottom of your deck in any order.
+rules:
+  - ability:
+      name: Imbibe
+      cost: [ pay: 1, deplete: self ]
+      effect:
+        - peek: { who: you, top: 3 }
+        - pick: { as: v, from: { tactic: { zone: deck, owner: you, top: 3 } }, choose: true, optional: true, prompt: "You may reveal a tactic among your top 3 cards and put it into your hand." }
+        - if:
+            cond: { defined: v }
+            then:
+              - reveal: v
+              - move: { card: v, to: hand }
+              - look: { deck: you, count: 2, bottom: rest }
+            else:
+              - look: { deck: you, count: 3, bottom: rest }

@@ -10,3 +10,8 @@ text: |
   ATTACH TO CHARACTER
   The attached character gains 1 strength and 1 life.
   When the attached character leaves play, you may search your deck for a card. If you do, put it into your hand.
+rules:
+  - trigger: { on: leaves_play, card: host }
+    effect:
+      - may:
+          - search: { deck: you, for: { card: any }, to: hand }

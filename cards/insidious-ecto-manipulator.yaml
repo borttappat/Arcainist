@@ -9,3 +9,10 @@ rarity: uncommon
 text: |
   COVERT
   At the start of your turn, you may pick a non-resource card you control. If you do, put a token on it.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - pick: { as: c, from: { card: { controller: you, not_type: resource } }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ tokens: { card: c, add: 1 } ]

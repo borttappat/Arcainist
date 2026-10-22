@@ -6,3 +6,44 @@ set: "1st Edition"
 rarity: common
 text: |
   Reveal the top card of an opponent's deck. Put it into their hand. You may search your deck for a card of the same type as the card and reveal it. If you do, put it into your hand.
+rules:
+  - play:
+      effect:
+        - reveal_top: { who: opponent, count: 1, as: rev }
+        - if:
+            cond: { defined: rev }
+            then:
+              - if:
+                  cond: { matches: [ rev, { character: { zone: deck } } ] }
+                  then: [ let: { ty: 1 } ]
+              - if:
+                  cond: { matches: [ rev, { tactic: { zone: deck } } ] }
+                  then: [ let: { ty: 2 } ]
+              - if:
+                  cond: { matches: [ rev, { item: { zone: deck } } ] }
+                  then: [ let: { ty: 3 } ]
+              - if:
+                  cond: { matches: [ rev, { location: { zone: deck } } ] }
+                  then: [ let: { ty: 4 } ]
+              - if:
+                  cond: { matches: [ rev, { resource: { zone: deck } } ] }
+                  then: [ let: { ty: 5 } ]
+              - move: { card: rev, to: hand }
+              - may:
+                  prompt: "search your deck for a card of the same type"
+                  steps:
+                    - if:
+                        cond: { eq: [ ty, 1 ] }
+                        then: [ search: { deck: you, for: { character: any }, reveal: true, to: hand } ]
+                    - if:
+                        cond: { eq: [ ty, 2 ] }
+                        then: [ search: { deck: you, for: { tactic: any }, reveal: true, to: hand } ]
+                    - if:
+                        cond: { eq: [ ty, 3 ] }
+                        then: [ search: { deck: you, for: { item: any }, reveal: true, to: hand } ]
+                    - if:
+                        cond: { eq: [ ty, 4 ] }
+                        then: [ search: { deck: you, for: { location: any }, reveal: true, to: hand } ]
+                    - if:
+                        cond: { eq: [ ty, 5 ] }
+                        then: [ search: { deck: you, for: { resource: any }, reveal: true, to: hand } ]

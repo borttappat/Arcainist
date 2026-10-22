@@ -8,3 +8,9 @@ rarity: common
 text: |
   When this card enters play, your faction loses 2 influence.
   When this card is destroyed during a battle, your faction gains X influence, where X is the total strength of the opposing party.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect: [ lose_influence: { who: you, amount: 2 } ]
+  - trigger: { on: destroyed, card: self, while: { in_battle: true } }
+    effect:
+      - gain_influence: { who: you, amount: { total_str: [ { character: { controller: opponent, attacking: true } }, { character: { controller: opponent, blocking: true } } ] } }

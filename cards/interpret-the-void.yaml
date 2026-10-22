@@ -7,3 +7,15 @@ rarity: rare
 text: |
   Search your deck for up to 3 cards and put them into the void. If you deployed this card using FLIP UP, you may pick a tactic in the void. If you do, put that tactic into its owner's hand.
   FLIP UP: 5 [O][O]
+rules:
+  - play:
+      effect:
+        - search: { deck: you, for: { card: any }, count: 3, to: void }
+        - if:
+            cond: { via: flip_up }
+            then:
+              - pick: { as: t, from: { tactic: { zone: void } }, optional: true }
+              - if:
+                  cond: { defined: t }
+                  then: [ move: { card: t, to: hand } ]
+  - flip_up: { pay: 5, threshold: { obsession: 2 } }

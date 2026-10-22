@@ -6,3 +6,6 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   Players can attack only once each turn.
+rules:
+  - static:
+      mods: [ { attack_declarations: 1, target: none } ]

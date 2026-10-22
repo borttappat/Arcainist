@@ -10,3 +10,12 @@ text: |
   SPREAD THE HATE
   COST: Pay 2. Deplete this card.
   EFFECT: Put a token on this card.
+rules:
+  - static:
+      mods:
+        - { stat: { life: { neg: { tokens: self } } } }
+        - { stat: { str: { neg: { tokens: self } } }, target: { character: { not_trade: arcanist } } }
+  - ability:
+      name: Spread the Hate
+      cost: [ pay: 2, deplete: self ]
+      effect: [ tokens: { card: self, add: 1 } ]

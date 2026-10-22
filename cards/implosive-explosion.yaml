@@ -7,3 +7,13 @@ rarity: uncommon
 text: |
   EXTRA COST: Reveal a face-down resource card you control. X is its numeric cost. Destroy it. Pick a character or location.
   Inflict X damage to the character or location. Put this card into play under its owner's control as a face-down resource instead of into their discard pile.
+rules:
+  - play:
+      cost:
+        - pick: { as: r, from: { resource: { controller: you, face_down: true } }, choose: true, prompt: "Reveal a face-down resource you control (X is its numeric cost); it is destroyed." }
+        - reveal: r
+        - let: { X: { cost: r } }
+        - destroy: r
+        - pick: { as: c, from: [ { character: any }, { location: any } ] }
+      effect: [ damage: { card: c, amount: X } ]
+      then: face_down_resource

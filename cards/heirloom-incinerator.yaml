@@ -7,3 +7,10 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   When this card inflicts damage to a faction, you may pick an item. If you do, destroy it.
+rules:
+  - trigger: { on: damage, source: self, faction: true }
+    effect:
+      - pick: { as: i, from: { item: any }, optional: true }
+      - if:
+          cond: { defined: i }
+          then: [ destroy: i ]

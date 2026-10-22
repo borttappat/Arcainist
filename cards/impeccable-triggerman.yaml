@@ -13,3 +13,20 @@ text: |
   RELOAD
   COST: Pay 3.
   EFFECT: Restore this card. This turn, it cannot attack.
+enters_depleted: true
+rules:
+  - ability:
+      name: Assassinate
+      cost:
+        - deplete: self
+        - pick: { as: c, from: { character: { depleted: true } } }
+      effect:
+        - if:
+            cond: { lte: [ { stat: [ c, life ] }, 4 ] }
+            then: [ destroy: c ]
+  - ability:
+      name: Reload
+      cost: [ pay: 3 ]
+      effect:
+        - restore: self
+        - create_effect: { duration: turn, mods: [ { cannot: attack } ] }

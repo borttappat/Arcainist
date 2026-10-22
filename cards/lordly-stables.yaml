@@ -6,3 +6,6 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   When an attacking character you control inflicts battle damage to a character, increase the amount by 1.
+rules:
+  - static:
+      mods: [ { damage: { delta: 1, battle: true, from: { character: { controller: you, attacking: true } } }, target: { character: any } } ]

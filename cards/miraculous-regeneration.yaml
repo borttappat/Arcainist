@@ -7,3 +7,14 @@ rarity: uncommon
 text: |
   EXTRA COST: Pick 2 characters in your discard pile.
   Put 1 of the characters into play under your control as a face-down resource. Put the other character into your hand.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { zone: discard, owner: you } }, count: 2, exactly: true }
+      effect:
+        - pick: { as: x, from: { character: { zone: discard, among: c } }, choose: true, prompt: "Choose the character to put into play as a face-down resource (the other goes to your hand)." }
+        - if:
+            cond: { defined: x }
+            then:
+              - put_into_play: { card: x, controller: you, as: face_down_resource }
+              - move: { card: { character: { zone: discard, among: c, not: x } }, to: hand }

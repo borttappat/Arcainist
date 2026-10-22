@@ -211,7 +211,8 @@ function buildLegal(g: Game, p: PlayerId): Legal | null {
     }
   }
   const flipUp = ps.play.filter((iid) => s.cards[iid].faceDown && ok({ type: "flip_up", iid }));
-  const attackers = main ? q.characters(p).filter((iid) => q.canAttack(iid)) : [];
-  const targets = main ? ["faction", ...s.players[other(p)].play.filter((iid) => q.active(iid) && q.is(iid, "location"))] : [];
+  const limited = q.mods("attack_declarations").some((m) => (s.turnLog.declared ?? 0) >= q.value(m.value, m.scope));
+  const attackers = main && !limited ? q.characters(p).filter((iid) => q.canAttack(iid)) : [];
+  const targets = main ? [...(q.cannot("attack_faction", null, p) ? [] : ["faction"]), ...s.players[other(p)].play.filter((iid) => q.active(iid) && q.is(iid, "location"))] : [];
   return { deploy, abilities, flipUp, attackers, targets, canEndTurn: main, canPass: !main };
 }

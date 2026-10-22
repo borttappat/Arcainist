@@ -9,3 +9,11 @@ text: |
   SHARPSHOOT
   COST: Pay 1. Deplete this card. Pick a character.
   EFFECT: Inflict 1 damage to the character.
+rules:
+  - ability:
+      name: Sharpshoot
+      cost:
+        - pay: 1
+        - deplete: self
+        - pick: { as: c, from: { character: any } }
+      effect: [ damage: { card: c, amount: 1 } ]

@@ -8,3 +8,9 @@ rarity: common
 text: |
   When this card inflicts damage to a faction, you may put a token on it.
   This card gains 1 strength and 1 life for each token on it.
+rules:
+  - trigger: { on: damage, source: self, faction: true }
+    effect:
+      - may: { prompt: "put a token on Hyperphagic Sarcophyle", steps: [ tokens: { card: self, add: 1 } ] }
+  - static:
+      mods: [ { stat: { str: { tokens: self }, life: { tokens: self } } } ]

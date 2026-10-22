@@ -10,3 +10,18 @@ text: |
   HARASH: [V][V][V]
   COST: Use this only if this card is in your discard pile and only during your turn. Pay 1. Destroy a face-down resource you control.
   EFFECT: Put this card into play under your control.
+rules:
+  - trigger: { on: destroyed, card: self }
+    effect:
+      - as:
+          who: opponent
+          steps: [ destroy: { from: { character: { controller: you } }, choose: true } ]
+  - ability:
+      name: Harash
+      threshold: { volition: 3 }
+      from: discard
+      timing: { your_turn: true }
+      cost:
+        - pay: 1
+        - destroy_resource: { who: you, face_down: true }
+      effect: [ put_into_play: { card: self, controller: you } ]

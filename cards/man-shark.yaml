@@ -10,3 +10,19 @@ text: |
   FOLLOW SUIT
   COST: Pay 3. Pick an opponent.
   EFFECT: That player puts a card from their hand face-down as a resource under their control.
+rules:
+  - static:
+      mods: [ { stat: { str: { count: { resource: { controller: opponent, face_down: true } } }, life: { count: { resource: { controller: opponent, face_down: true } } } } } ]
+  - ability:
+      name: Follow Suit
+      cost:
+        - pay: 3
+        - pick: { as: f, from: { faction: { controller: opponent } }, choose: true, prompt: "Pick an opponent." }
+      effect:
+        - as:
+            who: { controller_of: f }
+            steps:
+              - pick: { as: h, from: { card: { zone: hand, owner: you } }, choose: true, prompt: "Put a card from your hand into play face-down as a resource." }
+              - if:
+                  cond: { defined: h }
+                  then: [ put_into_play: { card: h, controller: you, as: face_down_resource } ]

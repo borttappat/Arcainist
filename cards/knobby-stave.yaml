@@ -9,3 +9,9 @@ text: |
   DISRUPT
   COST: Remove 2 tokens from this card.
   EFFECT: An opponent discards a card.
+enters_with_tokens: 2
+rules:
+  - ability:
+      name: Disrupt
+      cost: [ tokens: { card: self, remove: 2 } ]
+      effect: [ discard: { who: opponent, count: 1 } ]

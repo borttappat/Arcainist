@@ -7,3 +7,6 @@ set: "2nd Edition"
 rarity: rare
 text: |
   All other horsemajig characters gain 1 strength, 1 life, and 1 speed.
+rules:
+  - static:
+      mods: [ { stat: { str: 1, life: 1, spd: 1 }, target: { character: { subtype: horsemajig, not_self: true } } } ]

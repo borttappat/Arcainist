@@ -12,3 +12,9 @@ text: |
   COUGH UP: [G][G][G]
   COST: Destroy this card.
   EFFECT: Draw a card.
+rules:
+  - ability:
+      name: Cough Up
+      threshold: { greed: 3 }
+      cost: [ destroy: self ]
+      effect: [ draw: 1 ]

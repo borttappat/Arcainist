@@ -8,3 +8,19 @@ rarity: uncommon
 text: |
   When this card enters play, draw a card.
   If this card would be destroyed, each player removes the top card of their deck from the game instead. If the numeric cost of your removed card is greater than or equal to the numeric cost of all opponent's, draw a card and reduce the amount of damage already inflicted to this card this turn to 0. Otherwise, remove this card from the game.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect: [ draw: 1 ]
+  - replace: { event: destroy, card: self }
+    instead:
+      - mill: { who: you, count: 1, to: void, as: mine }
+      - mill: { who: opponent, count: 1, to: void, as: theirs }
+      - if:
+          cond:
+            all:
+              - { defined: mine }
+              - any: [ { not: { defined: theirs } }, { gte: [ { cost: mine }, { cost: theirs } ] } ]
+          then:
+            - draw: 1
+            - heal: { card: self, all: true }
+          else: [ void: self ]

@@ -9,3 +9,18 @@ text: |
   GO MEGA-NEKO-KAISER!
   COST: Deplete a card named PantherKaiser you control. Deplete a card named TigerKaiser you control.
   EFFECT: This turn, this card gains 8 strength, 8 life, and 2 speed and while it is the only member of an attacking party, only parties with at least 3 members can block it.
+rules:
+  - ability:
+      name: Go Mega-Neko-Kaiser!
+      cost:
+        - pick: { as: a, from: { card: { controller: you, name: PantherKaiser, depleted: false } }, choose: true, prompt: "Deplete a PantherKaiser you control." }
+        - deplete: a
+        - pick: { as: b, from: { card: { controller: you, name: TigerKaiser, depleted: false } }, choose: true, prompt: "Deplete a TigerKaiser you control." }
+        - deplete: b
+      effect:
+        - create_effect:
+            duration: turn
+            mods:
+              - { stat: { str: 8, life: 8, spd: 2 } }
+              - party: { side: blocking, min: 3 }
+                while: { all: [ { attacking: self }, { eq: [ { count: { character: { attacking: true } } }, 1 ] } ] }

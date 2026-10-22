@@ -11,3 +11,22 @@ text: |
   PREPARE
   COST: Pay 2.
   EFFECT: Restore this card.
+rules:
+  - ability:
+      name: Release the Majigs!
+      cost:
+        - deplete: self
+        - pick: { as: f, from: { faction: { controller: opponent } }, choose: true, prompt: "Pick an opponent." }
+        - as:
+            who: { controller_of: f }
+            steps:
+              - may:
+                  prompt: "put a Micromajig token into play (damage to it is reduced to 0 this turn)"
+                  steps:
+                    - create_token: { card: micromajig-token, as: tk }
+                    - create_effect: { duration: turn, mods: [ { damage: { set: 0 }, target: tk } ] }
+      effect: [ create_token: { card: micromajig-token } ]
+  - ability:
+      name: Prepare
+      cost: [ pay: 2 ]
+      effect: [ restore: self ]

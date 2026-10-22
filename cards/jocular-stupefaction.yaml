@@ -8,3 +8,9 @@ text: |
   EXTRA COST: Pick a character with COVERT.
   Destroy the character.
   FLIP UP: 3 [E]
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { keyword: covert } } }
+      effect: [ destroy: c ]
+  - flip_up: { pay: 3, threshold: { elitism: 1 } }

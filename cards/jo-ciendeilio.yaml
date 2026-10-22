@@ -10,3 +10,10 @@ text: |
   RESEARCH
   COST: Deplete this card.
   EFFECT: Reduce the next numeric cost you pay this turn by 3.
+rules:
+  - unique: Jo
+  - ability:
+      name: Research
+      cost: [ deplete: self ]
+      effect:
+        - create_effect: { duration: next, mods: [ { cost: -3, applies: any, by: you, target: all } ] }

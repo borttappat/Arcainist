@@ -7,3 +7,10 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   When this card is destroyed, you may pick a non-tactic card in an opponent's discard pile. If you do, put it into play under your control.
+rules:
+  - trigger: { on: destroyed, card: self }
+    effect:
+      - pick: { as: c, from: { card: { zone: discard, owner: opponent, not_type: tactic } }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ put_into_play: { card: c, controller: you } ]

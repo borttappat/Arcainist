@@ -8,3 +8,16 @@ text: |
   EXTRA COST: Deploy this only on your turn.
   This turn, characters you control and deploy can attack even if they have not been in play under your control since the start of the turn. Draw a card. If you picked any characters as part of this card's FLIP UP cost, deplete those characters.
   FLIP UP: 4 [E][E][E] and you may pick up to 2 characters.
+rules:
+  - play:
+      timing: { your_turn: true }
+      effect:
+        - create_effect: { duration: turn, mods: [ { keyword: aggro, target: { character: { controller: you } }, live: true } ] }
+        - draw: 1
+        - if:
+            cond: { defined: fp }
+            then: [ deplete: fp ]
+  - flip_up:
+      pay: 4
+      threshold: { elitism: 3 }
+      cost: [ pick: { as: fp, from: { character: any }, count: 2, up_to: true, prompt: "You may pick up to 2 characters (they are depleted)." } ]

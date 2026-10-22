@@ -12,3 +12,13 @@ text: |
   COST: Only an opponent may use this ability. Pay 3.
   EFFECT: This turn, this card loses all rules text.
   FLIP UP: 2 [G]
+rules:
+  - static:
+      mods: [ { no_rules: true, target: host } ]
+  - ability:
+      name: Reset
+      both_players: opponent
+      cost: [ pay: 3 ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { no_rules: true, target: self } ] }
+  - flip_up: { pay: 2, threshold: { greed: 1 } }

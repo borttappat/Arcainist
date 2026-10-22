@@ -13,3 +13,17 @@ text: |
   HANDOFF
   COST: Pay 5. Deplete a character you control that is not in a battle.
   EFFECT: Attach this card to the character.
+rules:
+  - static:
+      mods: [ { stat: { spd: -1 }, target: host } ]
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - choose_number: { as: Y, min: 0, max: 2, prompt: "Heavy Plating: detach up to 2 resources from your faction." }
+      - detach: { count: Y }
+  - ability:
+      name: Handoff
+      cost:
+        - pay: 5
+        - pick: { as: c, from: { character: { controller: you, attacking: false, blocking: false, depleted: false } }, choose: true, prompt: "Deplete a character you control that is not in a battle." }
+        - deplete: c
+      effect: [ attach: { card: self, to: c } ]

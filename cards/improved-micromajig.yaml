@@ -13,3 +13,18 @@ text: |
   DETACH
   COST: Pay 2. Remove a token from this card.
   EFFECT: Put a Micromajig token into play under your control.
+rules:
+  - static:
+      mods: [ { stat: { str: { tokens: self }, life: { tokens: self } } } ]
+  - ability:
+      name: Assemble
+      cost:
+        - pay: 2
+        - destroy: { from: { character: { controller: you, name: Micromajig Token } }, choose: true }
+      effect: [ tokens: { card: self, add: 1 } ]
+  - ability:
+      name: Detach
+      cost:
+        - pay: 2
+        - tokens: { card: self, remove: 1 }
+      effect: [ create_token: { card: micromajig-token } ]

@@ -9,3 +9,5 @@ rarity: common
 text: |
   COVERT
   PROVIDES: [O]
+# COVERT is a keyword and PROVIDES is in the numbers.
+rules: []

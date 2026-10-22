@@ -8,3 +8,12 @@ text: |
   EXTRA COST: Pick an item you control. Pick a character.
   Put the cards into their owner's hand.
   FLIP UP: 2 [E]
+rules:
+  - play:
+      cost:
+        - pick: { as: i, from: { item: { controller: you } } }
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - move: { card: i, to: hand }
+        - move: { card: c, to: hand }
+  - flip_up: { pay: 2, threshold: { elitism: 1 } }

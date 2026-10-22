@@ -10,3 +10,16 @@ text: |
   EXHUMATION
   COST: Pay 3. Pick a character in an opponent's discard pile.
   EFFECT: Remove that character from the game. This turn, this card gains COVERT. You may put the top 3 cards of that opponent's deck into their discard pile.
+rules:
+  - unique: Ipsighast
+  - ability:
+      name: Exhumation
+      cost:
+        - pay: 3
+        - pick: { as: c, from: { character: { zone: discard, owner: opponent } } }
+      effect:
+        - void: c
+        - create_effect: { duration: turn, mods: [ { keyword: covert } ] }
+        - may:
+            prompt: "put the top 3 cards of that opponent's deck into their discard pile"
+            steps: [ mill: { who: opponent, count: 3 } ]

@@ -8,3 +8,19 @@ text: |
   EXTRA COST: Pick a character with COVERT.
   This turn, the character loses COVERT. If you control [V][V][V], this turn, the character loses 1 speed. Put this card into play under its owner's control as a face-down resource instead of into their discard pile.
   FLIP UP: 3 [E][E] and destroy another resource you control.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { keyword: covert } } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { lose_keyword: covert, target: c } ] }
+        - if:
+            cond: { icons: { volition: 3 } }
+            then: [ modify: { card: c, stat: spd, lose: 1 } ]
+      then: face_down_resource
+  - flip_up:
+      pay: 3
+      threshold: { elitism: 2 }
+      cost:
+        - pick: { as: r, from: { resource: { controller: you } }, choose: true, prompt: "Destroy another resource you control." }
+        - destroy: r

@@ -9,3 +9,11 @@ text: |
   RECLAIM
   COST: Remove 3 cards in an opponent's discard pile from the game.
   EFFECT: This card gains 1 strength and 1 life this turn.
+rules:
+  - ability:
+      name: Reclaim
+      cost:
+        - pick: { as: d, from: { card: { zone: discard, owner: opponent } }, count: 3, exactly: true, choose: true, prompt: "Remove 3 cards in an opponent's discard pile from the game." }
+        - void: d
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: 1, life: 1 } } ] }

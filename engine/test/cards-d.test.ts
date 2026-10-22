@@ -12,6 +12,13 @@ function setup() {
   return { g, p, o };
 }
 
+/** Put a card on top of its owner's deck. */
+function top(g: ReturnType<typeof newGame>, p: "A" | "B", iid: string) {
+  const d = g.s.players[p].deck;
+  d.splice(d.indexOf(iid), 1);
+  d.unshift(iid);
+}
+
 describe("cards: D onwards", () => {
   it("Desolate: destroys every character with exactly X strength", () => {
     const { g, p, o } = setup();
@@ -484,5 +491,493 @@ describe("cards: D onwards", () => {
     answer(g, [gids[0]]);
     expect(gids.filter((i) => g.s.cards[i].zone === "play")).toEqual([gids[0]]);
     void o;
+  });
+  it("High Court of Demands: opponents can't attack your faction", () => {
+    const { g, p, o } = setup();
+    put(g, o, "high-court-of-demands", "play");
+    const atk = put(g, p, "fired-hand", "play");
+    expect(() => act(g, p, { type: "attack", target: "faction", attackers: [atk] })).toThrow(/can't attack/);
+  });
+
+  it("Hangdog Alley: attacking parties have only 1 member", () => {
+    const { g, p, o } = setup();
+    put(g, o, "hangdog-alley", "play");
+    const a = put(g, p, "fired-hand", "play");
+    const b = put(g, p, "wanton-wizard", "play");
+    expect(() => act(g, p, { type: "attack", target: "faction", attackers: [a, b] })).toThrow(/at most 1/);
+    act(g, p, { type: "attack", target: "faction", attackers: [a] });
+    expect(g.s.battle?.attackers).toEqual([a]);
+  });
+
+  it("Hilarious Refrigerator Alarm: terminates the other unresolved cards", () => {
+    const { g, p, o } = setup();
+    resources(g, p, "deception", 6);
+    resources(g, o, "elitism", 2);
+    const hand = put(g, p, "fired-hand", "hand");
+    const t = put(g, o, "hilarious-refrigerator-alarm", "hand");
+    act(g, p, { type: "deploy", iid: hand });
+    act(g, o, { type: "deploy", iid: t });
+    pass(g);
+    // The deploying player is offered 3 Micromajig tokens; decline.
+    const d = g.s.pending!;
+    expect(d.player).toBe(p);
+    answer(g, ["no"]);
+    passAll(g);
+    expect(g.s.cards[hand].zone).toBe("discard");
+  });
+
+  it("Headshot: keeps going while each target is destroyed", () => {
+    const { g, p, o } = setup();
+    resources(g, p, "rage", 3);
+    const a = put(g, o, "wanton-wizard", "play");
+    const b = put(g, o, "wanton-wizard", "play");
+    const c = put(g, o, "fired-hand", "play");
+    const t = put(g, p, "headshot", "hand");
+    act(g, p, { type: "deploy", iid: t });
+    answer(g, [a]);
+    pass(g);
+    answer(g, [b]);
+    answer(g, [c]);
+    expect(g.s.cards[a].zone).toBe("discard");
+    expect(g.s.cards[b].zone).toBe("discard");
+    expect(g.s.cards[c].damage).toBe(1);
+    expect(g.s.pending?.type).not.toBe("choose");
+  });
+
+  it("Hate of Man: each token costs non-Arcanist characters 1 strength", () => {
+    const { g, p, o } = setup();
+    const h = put(g, p, "hate-of-man", "play");
+    const f = put(g, o, "fired-hand", "play");
+    g.s.cards[h].tokens = 2;
+    expect(g.q.stat(f, "str")).toBe(3);
+    expect(g.q.stat(h, "str")).toBe(1);
+  });
+
+  it("Hasty Pursuit: characters you deploy this turn can attack", () => {
+    const { g, p } = setup();
+    resources(g, p, "elitism", 3);
+    resources(g, p, "deception", 6);
+    const t = put(g, p, "hasty-pursuit", "hand");
+    act(g, p, { type: "deploy", iid: t });
+    passAll(g);
+    const f = put(g, p, "fired-hand", "hand");
+    act(g, p, { type: "deploy", iid: f });
+    passAll(g);
+    expect(g.q.canAttack(f)).toBe(true);
+  });
+  it("Hypnotic Plafond: battle damage from a COVERT party to your faction is 0", () => {
+    const { g, p, o } = setup();
+    put(g, o, "hypnotic-plafond", "play");
+    const atk = put(g, p, "fired-hand", "play");
+    const covert = put(g, p, "hired-goons", "play");
+    const inf = g.s.players[o].influence;
+    act(g, p, { type: "attack", target: "faction", attackers: [covert] });
+    for (let i = 0; i < 10 && g.s.battle; i++) pass(g);
+    expect(g.s.players[o].influence).toBe(inf);
+    act(g, p, { type: "attack", target: "faction", attackers: [atk] });
+    for (let i = 0; i < 10 && g.s.battle; i++) pass(g);
+    expect(g.s.players[o].influence).toBe(inf - 5);
+  });
+
+  it("iDumb De-Itemizer: only an opponent may use Reset", () => {
+    const { g, p, o } = setup();
+    const d = put(g, p, "idumb-de-itemizer", "play");
+    resources(g, p, "greed", 3);
+    resources(g, o, "greed", 3);
+    const idx = g.q.abilities(d)[0].index;
+    expect(() => act(g, p, { type: "ability", iid: d, index: idx })).toThrow(/Only an opponent/);
+  });
+
+  it("Humiliating Torture Apparatus: attacking costs the attacker 1 influence", () => {
+    const { g, p, o } = setup();
+    put(g, o, "humiliating-torture-apparatus", "play");
+    const atk = put(g, p, "wanton-wizard", "play");
+    const inf = g.s.players[p].influence;
+    act(g, p, { type: "attack", target: "faction", attackers: [atk] });
+    expect(g.s.players[p].influence).toBe(inf - 1);
+  });
+
+  it("Horrendous Behemoth: the opposing party loses 1 strength and 1 speed", () => {
+    const { g, p, o } = setup();
+    const b = put(g, p, "horrendous-behemoth", "play");
+    const f = put(g, o, "fired-hand", "play");
+    expect(g.q.stat(f, "str")).toBe(5);
+    act(g, p, { type: "attack", target: "faction", attackers: [b] });
+    pass(g);
+    pass(g);
+    act(g, o, { type: "answer", ids: [f] });
+    expect(g.q.stat(f, "str")).toBe(4);
+    expect(g.q.stat(f, "spd")).toBe(2);
+  });
+  it("Inconvenient Roadblock: no battle damage in this battle, but the next battle is normal", () => {
+    const { g, p, o } = setup();
+    const a = put(g, p, "fired-hand", "play");
+    const b = put(g, p, "wanton-wizard", "play");
+    resources(g, o, "greed", 3);
+    const t = put(g, o, "inconvenient-roadblock", "hand");
+    const inf = g.s.players[o].influence;
+    act(g, p, { type: "attack", target: "faction", attackers: [a] });
+    pass(g);
+    act(g, o, { type: "deploy", iid: t });
+    for (let i = 0; i < 12 && g.s.battle; i++) pass(g);
+    expect(g.s.players[o].influence).toBe(inf);
+    act(g, p, { type: "attack", target: "faction", attackers: [b] });
+    for (let i = 0; i < 12 && g.s.battle; i++) pass(g);
+    expect(g.s.players[o].influence).toBe(inf - 1);
+  });
+
+  it("Infatuated Armchair: exactly 1 of the 2 looked-at cards goes to the bottom", () => {
+    const { g, p } = setup();
+    const a = put(g, p, "infatuated-armchair", "play");
+    resources(g, p, "rage", 3);
+    const t = put(g, p, "improvised-blowtorch", "hand");
+    act(g, p, { type: "deploy", iid: t });
+    answer(g, [a]);
+    pass(g);
+    answer(g, ["yes"]);
+    let d = expectPending(g, "choose", p); // which deck
+    answer(g, [d.options[0].id]);
+    d = expectPending(g, "choose", p);
+    expect(d.min).toBe(1);
+    expect(d.max).toBe(1);
+  });
+
+  it("Insect Appreciator: its party must have an even number of members", () => {
+    const { g, p } = setup();
+    const a = put(g, p, "insect-appreciator", "play");
+    const b = put(g, p, "wanton-wizard", "play");
+    expect(() => act(g, p, { type: "attack", target: "faction", attackers: [a] })).toThrow(/even/);
+    act(g, p, { type: "attack", target: "faction", attackers: [a, b] });
+    expect(g.s.battle).toBeTruthy();
+  });
+  it("Key to the City: when the attached character leaves play, you may search for a resource", () => {
+    const { g, p } = setup();
+    const w = put(g, p, "wanton-wizard", "play");
+    const k = put(g, p, "key-to-the-city", "play");
+    g.s.cards[k].attachedTo = w;
+    const r = put(g, p, "greed", "deck");
+    resources(g, p, "rage", 3);
+    const t = put(g, p, "improvised-blowtorch", "hand");
+    act(g, p, { type: "deploy", iid: t });
+    answer(g, [w]);
+    pass(g);
+    answer(g, ["yes"]);
+    const d = expectPending(g, "choose", p);
+    expect(d.options.some((o: any) => o.id === r)).toBe(true);
+  });
+
+  it("Jo, M07h3r of 1337: granted Research needs the character in play since the start of the turn", () => {
+    const { g, p } = setup();
+    put(g, p, "jo-ciendeilio-m07h3r-0f-1337", "play");
+    const old = put(g, p, "wanton-wizard", "play");
+    const fresh = put(g, p, "wanton-wizard", "play", { since: g.s.turn });
+    const ab = (iid: string) => g.q.abilities(iid).find((a) => a.rule.name === "Research")!.index;
+    try {
+      act(g, p, { type: "ability", iid: fresh, index: ab(fresh) });
+    } catch {
+      // refused outright
+    }
+    expect(g.s.cards[fresh].depleted).toBe(false);
+    act(g, p, { type: "ability", iid: old, index: ab(old) });
+    expect(g.s.cards[old].depleted).toBe(true);
+  });
+
+  it("Juice Sale: only the opponent's strongest character can be picked", () => {
+    const { g, p, o } = setup();
+    resources(g, p, "rage", 3);
+    const big = put(g, o, "fired-hand", "play");
+    put(g, o, "wanton-wizard", "play");
+    put(g, p, "horrendous-behemoth", "play");
+    const t = put(g, p, "juice-sale", "hand");
+    act(g, p, { type: "deploy", iid: t });
+    // Only one candidate: picked automatically or offered alone.
+    expect(expectPending(g, "choose", p).options.map((x: any) => x.id)).toEqual([big]);
+    answer(g, [big]);
+    passAll(g);
+    expect(g.q.cannot("block", big, o)).toBe(true);
+  });
+
+  it("Kitten Mittons: damage to the attached character gains that much influence", () => {
+    const { g, p } = setup();
+    const f = put(g, p, "fired-hand", "play");
+    const m = put(g, p, "kitten-mittons", "play");
+    g.s.cards[m].attachedTo = f;
+    resources(g, p, "rage", 3);
+    const t = put(g, p, "improvised-blowtorch", "hand");
+    const inf = g.s.players[p].influence;
+    act(g, p, { type: "deploy", iid: t });
+    answer(g, [f]);
+    passAll(g);
+    expect(g.s.players[p].influence).toBe(inf + 2);
+  });
+  it("Lucky Bastard: survives when its removed card costs at least as much", () => {
+    const { g, p, o } = setup();
+    const lb = put(g, p, "lucky-bastard", "play");
+    top(g, p, put(g, p, "fired-hand", "deck")); // cost 6
+    top(g, o, put(g, o, "wanton-wizard", "deck")); // cost 3
+    resources(g, p, "rage", 3);
+    const t = put(g, p, "improvised-blowtorch", "hand");
+    const hand = g.s.players[p].hand.length;
+    act(g, p, { type: "deploy", iid: t });
+    answer(g, [lb]);
+    g.s.cards[lb].damage = 3;
+    passAll(g);
+    expect(g.s.cards[lb].zone).toBe("play");
+    expect(g.s.cards[lb].damage).toBe(0);
+    expect(g.s.players[p].hand.length).toBe(hand); // drew 1, deployed the Blowtorch
+  });
+
+  it("Lucky Bastard: removed from the game when its card costs less", () => {
+    const { g, p, o } = setup();
+    const lb = put(g, p, "lucky-bastard", "play");
+    top(g, p, put(g, p, "wanton-wizard", "deck"));
+    top(g, o, put(g, o, "fired-hand", "deck"));
+    resources(g, p, "rage", 3);
+    const t = put(g, p, "improvised-blowtorch", "hand");
+    act(g, p, { type: "deploy", iid: t });
+    answer(g, [lb]);
+    g.s.cards[lb].damage = 3;
+    passAll(g);
+    expect(g.s.cards[lb].zone).toBe("void");
+  });
+
+  it("Lockbox of the Aeons: opponents can't flip up, and their cards can't return to hand", () => {
+    const { g, p, o } = setup();
+    put(g, o, "lockbox-of-the-aeons", "play");
+    const fd = put(g, p, "improvised-blowtorch", "play", { faceDown: true });
+    resources(g, p, "rage", 2);
+    expect(() => act(g, p, { type: "flip_up", iid: fd })).toThrow(/Flip Up/);
+    const w = put(g, p, "wanton-wizard", "play");
+    g.move(w, "hand");
+    expect(g.s.cards[w].zone).toBe("play");
+  });
+
+  it("Lugubrious Node: node cards can't destroy it, other cards can", () => {
+    const { g, p } = setup();
+    const n = put(g, p, "lugubrious-node", "play");
+    const hub = put(g, p, "hub-node", "play");
+    g.destroy(hub);
+    passAll(g);
+    expect(g.s.cards[n].zone).toBe("play");
+  });
+
+  it("Leokaiser: while it attacks alone, only parties of 3 or more can block it", () => {
+    const { g, p, o } = setup();
+    const lk = put(g, p, "leokaiser", "play");
+    put(g, p, "pantherkaiser", "play");
+    put(g, p, "tigerkaiser", "play");
+    const ab = g.q.abilities(lk)[0].index;
+    act(g, p, { type: "ability", iid: lk, index: ab });
+    for (let i = 0; i < 4 && g.s.pending?.type === "choose"; i++) answer(g, [g.s.pending.options[0].id]);
+    passAll(g);
+    expect(g.q.stat(lk, "str")).toBe(11);
+    const b1 = put(g, o, "wanton-wizard", "play");
+    const b2 = put(g, o, "wanton-wizard", "play");
+    act(g, p, { type: "attack", target: "faction", attackers: [lk] });
+    pass(g);
+    pass(g);
+    expectPending(g, "blockers", o);
+    expect(() => act(g, o, { type: "answer", ids: [b1, b2] })).toThrow(/at least 3/);
+  });
+
+  it("Mafia Lawyer: destroyed in battle, gains the opposing party's total strength", () => {
+    const { g, p, o } = setup();
+    const ml = put(g, o, "mafia-lawyer", "play");
+    const a = put(g, p, "fired-hand", "play");
+    const inf = g.s.players[o].influence;
+    act(g, p, { type: "attack", target: "faction", attackers: [a] });
+    pass(g);
+    pass(g);
+    act(g, o, { type: "answer", ids: [ml] });
+    for (let i = 0; i < 12 && g.s.battle; i++) {
+      if (g.s.pending?.type === "assign") g.act(p, { type: "answer", assign: { [ml]: 5 } } as any);
+      else pass(g);
+    }
+    expect(g.s.cards[ml].zone).toBe("discard");
+    expect(g.s.players[o].influence).toBe(inf + 5);
+  });
+  it("Marauding Madster: shuffled into the deck instead of the discard pile, from anywhere", () => {
+    const { g, p } = setup();
+    const m = put(g, p, "marauding-madster", "play");
+    g.destroy(m);
+    expect(g.s.cards[m].zone).toBe("deck");
+    const h = put(g, p, "marauding-madster", "hand");
+    g.move(h, "discard");
+    expect(g.s.cards[h].zone).toBe("deck");
+  });
+
+  it("Manful Skirmish: deplete one, damage another, the last gains 2 strength", () => {
+    const { g, p, o } = setup();
+    resources(g, p, "rage", 4);
+    const [a, b, c] = [put(g, o, "fired-hand", "play"), put(g, o, "fired-hand", "play"), put(g, o, "fired-hand", "play")];
+    const t = put(g, p, "manful-skirmish", "hand");
+    act(g, p, { type: "deploy", iid: t });
+    answer(g, [a, b, c]);
+    pass(g);
+    answer(g, [a]);
+    const d = expectPending(g, "choose", p);
+    expect(d.options.map((x: any) => x.id).sort()).toEqual([b, c].sort());
+    answer(g, [b]);
+    answer(g, [c]);
+    passAll(g);
+    expect(g.s.cards[a].depleted).toBe(true);
+    expect(g.s.cards[b].damage).toBe(1);
+    expect(g.q.stat(c, "str")).toBe(7);
+  });
+
+  it("Martial Arts Master: gains its speed minus the opposing party's highest speed", () => {
+    const { g, p, o } = setup();
+    const m = put(g, p, "martial-arts-master", "play");
+    const w = put(g, o, "wanton-wizard", "play");
+    act(g, p, { type: "attack", target: "faction", attackers: [m] });
+    expect(g.q.stat(m, "str")).toBe(1);
+    pass(g);
+    pass(g);
+    act(g, o, { type: "answer", ids: [w] });
+    expect(g.q.stat(m, "str")).toBe(1 + 6 - 3);
+  });
+
+  it("Mass Confusion: divides damage equal to the difference in characters", () => {
+    const { g, p, o } = setup();
+    resources(g, p, "rage", 4);
+    const ws = [0, 1, 2].map(() => put(g, o, "wanton-wizard", "play"));
+    const t = put(g, p, "mass-confusion", "hand");
+    act(g, p, { type: "deploy", iid: t });
+    g.act(p, { type: "answer", value: 2 });
+    answer(g, [g.s.players[o].factionIid]);
+    answer(g, [ws[0], ws[1]]);
+    pass(g);
+    const d = expectPending(g, "assign", p);
+    expect(d.total).toBe(3);
+  });
+  it("Moment of Annihilation: each removed card reduces its cost by 1", () => {
+    const { g, p, o } = setup();
+    const res = resources(g, p, "deception", 2);
+    const junk = [0, 1, 2].map(() => put(g, o, "improvised-blowtorch", "discard"));
+    const w = put(g, o, "wanton-wizard", "play");
+    const t = put(g, p, "moment-of-annihilation", "hand");
+    act(g, p, { type: "deploy", iid: t });
+    answer(g, junk);
+    answer(g, [w]);
+    passAll(g);
+    expect(g.s.cards[w].zone).toBe("discard");
+    expect(res.every((r) => g.s.cards[r].zone === "play")).toBe(true);
+  });
+
+  it("Mendacious Brigand: swaps a blocker for another of that player's characters", () => {
+    const { g, p, o } = setup();
+    const m = put(g, p, "mendacious-brigand", "play");
+    const b1 = put(g, o, "wanton-wizard", "play");
+    const b2 = put(g, o, "fired-hand", "play");
+    act(g, p, { type: "attack", target: "faction", attackers: [m] });
+    pass(g);
+    pass(g);
+    act(g, o, { type: "answer", ids: [b1] });
+    answer(g, [b1]);
+    answer(g, [b2]);
+    expect(g.s.battle?.blockers).toEqual([b2]);
+  });
+
+  it("Microdefense Autosystem: pay 1 to add a Micromajig token to your blocking party", () => {
+    const { g, p, o } = setup();
+    put(g, o, "microdefense-autosystem", "play");
+    resources(g, o, "elitism", 1);
+    const a = put(g, p, "fired-hand", "play");
+    const b = put(g, o, "wanton-wizard", "play");
+    act(g, p, { type: "attack", target: "faction", attackers: [a] });
+    pass(g);
+    pass(g);
+    act(g, o, { type: "answer", ids: [b] });
+    answer(g, ["yes"]);
+    expect(g.s.battle?.blockers.length).toBe(2);
+  });
+
+  it("Mercenary's Creed: any player may pay 3 to take the attached character", () => {
+    const { g, p, o } = setup();
+    const w = put(g, o, "wanton-wizard", "play");
+    const cr = put(g, o, "mercenary-s-creed", "play");
+    g.s.cards[cr].attachedTo = w;
+    resources(g, p, "deception", 3);
+    const bribe = g.q.abilities(cr).find((x) => x.rule.name === "Bribe")!.index;
+    const mail = g.q.abilities(cr).find((x) => x.rule.name === "Blackmail")!.index;
+    expect(() => act(g, p, { type: "ability", iid: cr, index: mail })).toThrow();
+    act(g, p, { type: "ability", iid: cr, index: bribe });
+    passAll(g);
+    expect(g.s.cards[w].controller).toBe(p);
+  });
+  it("Narrow Passage: each player can attack only once each turn", () => {
+    const { g, p, o } = setup();
+    put(g, o, "narrow-passage", "play");
+    const a = put(g, p, "wanton-wizard", "play");
+    const b = put(g, p, "wanton-wizard", "play");
+    act(g, p, { type: "attack", target: "faction", attackers: [a] });
+    for (let i = 0; i < 12 && g.s.battle; i++) pass(g);
+    expect(() => act(g, p, { type: "attack", target: "faction", attackers: [b] })).toThrow(/again/);
+  });
+
+  it("Mr. Chesterton: COVERT while the picked tactic stays in the discard pile", () => {
+    const { g, p, o } = setup();
+    resources(g, p, "obsession", 2);
+    const t = put(g, o, "improvised-blowtorch", "discard");
+    const m = put(g, p, "mr-chesterton", "hand");
+    act(g, p, { type: "deploy", iid: m });
+    answer(g, [t]);
+    passAll(g);
+    expect(g.q.keyword(m, "covert")).toBe(true);
+    g.move(t, "void");
+    expect(g.q.keyword(m, "covert")).toBe(false);
+  });
+
+  it("Nattering Stoopswaggler: flips face-down when destroyed without tokens", () => {
+    const { g, p } = setup();
+    const n = put(g, p, "nattering-stoopswaggler", "play");
+    g.destroy(n);
+    expect(g.s.cards[n].faceDown).toBe(true);
+    const n2 = put(g, p, "nattering-stoopswaggler", "play");
+    g.s.cards[n2].tokens = 1;
+    expect(g.q.keyword(n2, "covert")).toBe(false);
+    g.destroy(n2);
+    expect(g.s.cards[n2].zone).toBe("discard");
+  });
+
+  it("Motivational Dancer: the character skips its controller's next Restore Rule only", () => {
+    const { g, p, o } = setup();
+    put(g, p, "motivational-dancer", "play");
+    resources(g, p, "greed", 1);
+    const w = put(g, o, "wanton-wizard", "play");
+    act(g, p, { type: "end_turn" });
+    for (let i = 0; i < 10 && !(g.s.pending?.type === "choose" && g.s.pending.player === p); i++) pass(g);
+    answer(g, ["yes"]);
+    answer(g, [w]);
+    for (let i = 0; i < 30 && g.s.pending?.type !== "main"; i++) {
+      const d = g.s.pending!;
+      if (d.type === "choose") answer(g, [d.options[0].id]);
+      else pass(g);
+    }
+    expect(g.s.active).toBe(o);
+    expect(g.s.cards[w].depleted).toBe(true);
+    expect(g.s.effects.some((e) => e.duration === "next_restore")).toBe(false);
+  });
+
+  it("Muddle: duplicates the tactic it responds to, then terminates it", () => {
+    const { g, p, o } = setup();
+    resources(g, p, "rage", 3);
+    resources(g, o, "obsession", 6);
+    const w1 = put(g, o, "wanton-wizard", "play");
+    const w2 = put(g, o, "wanton-wizard", "play");
+    const t = put(g, p, "improvised-blowtorch", "hand");
+    const m = put(g, o, "muddle", "hand");
+    act(g, p, { type: "deploy", iid: t });
+    answer(g, [w1]);
+    act(g, o, { type: "deploy", iid: m });
+    pass(g);
+    // The duplicate is Bob's: Bob picks its target.
+    const d = expectPending(g, "choose", o);
+    answer(g, [w2]);
+    void d;
+    passAll(g);
+    expect(g.s.cards[w2].zone).toBe("discard");
+    expect(g.s.cards[w1].zone).toBe("play");
+    expect(g.s.cards[t].zone).toBe("discard");
   });
 });

@@ -7,3 +7,16 @@ set: "1st Edition Part 2"
 rarity: common
 text: |
   When this card is blocked, you may pick a blocking character and a character that character's controller controls that is not in a battle. If you do, remove the blocking character from the battle and add the other character to the blocking party.
+rules:
+  - trigger: { on: blocked, card: self }
+    effect:
+      - pick: { as: b, from: { character: { blocking: true } }, optional: true }
+      - if:
+          cond: { defined: b }
+          then:
+            - pick: { as: n, from: { character: { controller: { controller_of: b }, attacking: false, blocking: false } }, optional: true }
+            - if:
+                cond: { defined: n }
+                then:
+                  - remove_from_battle: b
+                  - add_to_battle: { card: n, side: blocking }

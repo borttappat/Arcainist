@@ -7,3 +7,7 @@ set: "Seed Saga"
 rarity: common
 text: |
   When a card that provides at least [D] enters play under your control, this card gains 1 strength and COVERT this turn.
+rules:
+  - trigger: { on: enters_play, card: { controller: you, provides_at_least: { deception: 1 } } }
+    effect:
+      - create_effect: { duration: turn, mods: [ { stat: { str: 1 } }, { keyword: covert } ] }

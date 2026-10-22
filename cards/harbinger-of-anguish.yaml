@@ -9,3 +9,11 @@ text: |
   DEMOTIVATE
   COST: Pay 1. Deplete this card. Pick a character.
   EFFECT: This turn, the character loses 1 life.
+rules:
+  - ability:
+      name: Demotivate
+      cost:
+        - pay: 1
+        - deplete: self
+        - pick: { as: c, from: { character: any } }
+      effect: [ modify: { card: c, stat: life, lose: 1 } ]

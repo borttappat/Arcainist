@@ -9,3 +9,6 @@ rarity: common
 text: |
   ATTACH TO CHARACTER
   When damage is inflicted to the attached card, your faction gains influence equal to that damage.
+rules:
+  - trigger: { on: damage, card: host }
+    effect: [ gain_influence: { who: you, amount: amount } ]

@@ -7,3 +7,7 @@ set: "Shade of the Devoured Emperor"
 rarity: common
 text: |
   When this card restores, it gains COVERT this turn.
+rules:
+  - trigger: { on: restored, card: self }
+    effect:
+      - create_effect: { duration: turn, mods: [ { keyword: covert } ] }

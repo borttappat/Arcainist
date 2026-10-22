@@ -7,3 +7,8 @@ set: "Seed Saga"
 rarity: common
 text: |
   While this card is in a battle, characters in the opposing party lose 1 strength and 1 speed.
+rules:
+  - static:
+      mods:
+        - { stat: { str: -1, spd: -1 }, target: { character: { blocking: true } }, while: { attacking: self } }
+        - { stat: { str: -1, spd: -1 }, target: { character: { attacking: true } }, while: { blocking: self } }

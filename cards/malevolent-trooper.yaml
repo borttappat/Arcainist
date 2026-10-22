@@ -9,3 +9,11 @@ text: |
   PUSH
   COST: Pay 1. Deplete a character you control.
   EFFECT: This turn, this card gains 2 strength.
+rules:
+  - ability:
+      name: Push
+      cost:
+        - pay: 1
+        - pick: { as: c, from: { character: { controller: you, depleted: false } }, choose: true, prompt: "Deplete a character you control." }
+        - deplete: c
+      effect: [ modify: { card: self, stat: str, gain: 2 } ]

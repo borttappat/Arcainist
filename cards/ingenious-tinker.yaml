@@ -7,3 +7,7 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   When this card enters play, reduce the next numeric cost you pay this turn by 3.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - create_effect: { duration: next, mods: [ { cost: -3, applies: any, by: you, target: all } ] }

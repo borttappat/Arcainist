@@ -7,3 +7,8 @@ set: "Ungodly Mess"
 rarity: ultra-rare
 text: |
   When this card is destroyed, you may search your deck for an item and reveal it. If you do, put it into your hand.
+rules:
+  - trigger: { on: destroyed, card: self }
+    effect:
+      - may:
+          - search: { deck: you, for: { item: any }, reveal: true, to: hand }

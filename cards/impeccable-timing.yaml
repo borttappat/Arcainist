@@ -7,3 +7,11 @@ rarity: common
 text: |
   EXTRA COST: Pick a depleted character.
   If the character has 4 life or less, destroy it.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { depleted: true } } }
+      effect:
+        - if:
+            cond: { lte: [ { stat: [ c, life ] }, 4 ] }
+            then: [ destroy: c ]

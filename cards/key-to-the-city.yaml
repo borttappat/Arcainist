@@ -12,3 +12,17 @@ text: |
   UNLOCK POTENTIAL: [G]
   COST: Discard this card from your hand. Pay 2.
   EFFECT: Search your deck for a resource with a name you don't control, reveal it, and put it into your hand.
+rules:
+  - trigger: { on: leaves_play, card: host }
+    effect:
+      - may:
+          - search: { deck: you, for: { resource: any }, reveal: true, to: hand }
+  - ability:
+      name: Unlock Potential
+      threshold: { greed: 1 }
+      from: hand
+      cost:
+        - move: { card: self, to: discard }
+        - pay: 2
+      effect:
+        - search: { deck: you, for: { resource: { name_not_among: { card: { controller: you } } } }, reveal: true, to: hand }

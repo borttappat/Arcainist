@@ -9,3 +9,11 @@ text: |
   EXTRA COST: Pick a character you control.
   When this card enters play, destroy the picked character.
   If this character would be put into your discard pile from anywhere, shuffle it into your deck instead.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { controller: you } } }
+      effect: [ destroy: c ]
+  - static:
+      mods: [ { redirect: { to: discard, instead: deck_shuffle } } ]
+      zone: any

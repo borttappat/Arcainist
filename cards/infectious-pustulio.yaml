@@ -9,3 +9,9 @@ text: |
   ATTACH TO CHARACTER (put this card into play attached to that character instead of into its owner's discard pile)
   EXTRA COST: Deploy this only not during a battle.
   When the attached character is blocked, inflict 1 damage to each member of the blocking party.
+attach_to: character
+rules:
+  - play:
+      timing: { not_in_battle: true }
+  - trigger: { on: blocked, card: host }
+    effect: [ damage: { card: { character: { blocking: true } }, amount: 1 } ]

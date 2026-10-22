@@ -8,3 +8,8 @@ text: |
   CAPITALIZE
   COST: Pay 1. Deplete this card.
   EFFECT: Draw a card.
+rules:
+  - ability:
+      name: Capitalize
+      cost: [ pay: 1, deplete: self ]
+      effect: [ draw: 1 ]

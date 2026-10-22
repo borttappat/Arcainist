@@ -9,3 +9,8 @@ text: |
   CUNNING PLAN
   COST: Pay 2. Discard a card. Deplete this card.
   EFFECT: Inflict 2 damage to an opponent's faction.
+rules:
+  - ability:
+      name: Cunning Plan
+      cost: [ pay: 2, discard: 1, deplete: self ]
+      effect: [ damage: { faction: opponent, amount: 2 } ]

@@ -7,3 +7,10 @@ set: "1st Edition Part 2"
 rarity: common
 text: |
   When this card leaves play, you may look at the top 2 cards of any one deck. If you do, put 1 card on the bottom of that deck and 1 card on the top. Draw a card.
+rules:
+  - trigger: { on: leaves_play, card: self }
+    effect:
+      - may:
+          prompt: "look at the top 2 cards of any one deck (1 goes on the bottom, 1 on top)"
+          steps: [ look: { deck: choose, count: 2, bottom: 1 } ]
+      - draw: 1

@@ -10,3 +10,7 @@ text: |
   ATTACH TO CHARACTER
   The attached character gains 2 life and cannot attack.
   FLIP UP: 2 [G] and your faction gains 4 influence.
+rules:
+  - static:
+      mods: [ { cannot: attack, target: host } ]
+  - flip_up: { pay: 2, threshold: { greed: 1 }, cost: [ gain_influence: { who: you, amount: 4 } ] }

@@ -8,3 +8,23 @@ text: |
   INNOVATE
   COST: Pay 1. Discard a card.
   EFFECT: If the discarded card is a resource, search your deck for a location. If it is a location, search your deck for a character. If it is a character, search your deck for a tactic. If it is a tactic, search your deck for an item. If it is an item, search your deck for a resource. Reveal the card you searched for and put it into your hand.
+rules:
+  - ability:
+      name: Innovate
+      cost: [ pay: 1, discard: { count: 1, as: d } ]
+      effect:
+        - if:
+            cond: { matches: [ d, { resource: { zone: discard } } ] }
+            then: [ search: { deck: you, for: { location: any }, reveal: true, to: hand } ]
+        - if:
+            cond: { matches: [ d, { location: { zone: discard } } ] }
+            then: [ search: { deck: you, for: { character: any }, reveal: true, to: hand } ]
+        - if:
+            cond: { matches: [ d, { character: { zone: discard } } ] }
+            then: [ search: { deck: you, for: { tactic: any }, reveal: true, to: hand } ]
+        - if:
+            cond: { matches: [ d, { tactic: { zone: discard } } ] }
+            then: [ search: { deck: you, for: { item: any }, reveal: true, to: hand } ]
+        - if:
+            cond: { matches: [ d, { item: { zone: discard } } ] }
+            then: [ search: { deck: you, for: { resource: any }, reveal: true, to: hand } ]

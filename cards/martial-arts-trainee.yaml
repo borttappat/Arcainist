@@ -7,3 +7,6 @@ set: "2nd Edition"
 rarity: common
 text: |
   Your opponents cannot pick this card.
+rules:
+  - static:
+      mods: [ { cannot: pick, by: opponent } ]

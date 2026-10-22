@@ -8,3 +8,7 @@ rarity: uncommon
 text: |
   When this card comes into play, on your next turn, skip your faction's RESTORE RULE.
   [V][V][V][V]: This card loses all other rules text.
+rules:
+  - trigger: { on: enters_play, card: self, while: { not: { icons: { volition: 4 } } } }
+    effect:
+      - create_effect: { duration: next_restore, who: you, mods: [ { cannot: restore_by_rule, target: all } ] }

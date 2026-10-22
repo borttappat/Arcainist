@@ -9,3 +9,10 @@ text: |
   Your opponents cannot take control of this card.
   When this card is put into your discard pile from anywhere, remove it from the game.
   FLIP UP: 13 [E][E]
+rules:
+  - static:
+      mods: [ { cannot: take_control, by: opponent } ]
+  - static:
+      zone: any
+      mods: [ { redirect: { to: discard, instead: void } } ]
+  - flip_up: { pay: 13, threshold: { elitism: 2 } }

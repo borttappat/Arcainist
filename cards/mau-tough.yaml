@@ -7,3 +7,6 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   When this card enters play, your faction loses 4 influence.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect: [ lose_influence: { who: you, amount: 4 } ]

@@ -7,3 +7,6 @@ set: "2nd Edition"
 rarity: common
 text: |
   All other horsemajig characters gain 1 speed.
+rules:
+  - static:
+      mods: [ { stat: { spd: 1 }, target: { character: { subtype: horsemajig, not_self: true } } } ]

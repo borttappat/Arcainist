@@ -9,3 +9,12 @@ text: |
   When this card enters play, you may search your deck for a node card and reveal it. If you do, put it into your hand.
   When this card is destroyed, destroy all other node cards.
   This card gains 1 strength and 1 life for each other node card in play.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may:
+          - search: { deck: you, for: { card: { subtype: node } }, reveal: true, to: hand }
+  - trigger: { on: destroyed, card: self }
+    effect: [ destroy: { card: { subtype: node, not_self: true } } ]
+  - static:
+      mods: [ { stat: { str: { count: { card: { subtype: node, not_self: true } } }, life: { count: { card: { subtype: node, not_self: true } } } } } ]

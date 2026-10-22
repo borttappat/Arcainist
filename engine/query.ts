@@ -78,6 +78,7 @@ const MOD_KINDS = [
   "damage_as_tokens",
   "blocks_any",
   "numeric_cost",
+  "attack_declarations",
 ];
 
 export class Q {
@@ -226,7 +227,8 @@ export class Q {
           if (!r.static) continue;
           const st = r.static;
           const zone = st.zone ?? "play";
-          if (c.zone !== zone) continue;
+          // `zone: any`: "from anywhere" (Marauding Madster), except while face-down.
+          if (zone === "any" ? c.faceDown : c.zone !== zone) continue;
           if (zone === "play" && !this.active(c.iid)) continue;
           const scope: Scope = { controller: zone === "play" ? c.controller : c.owner, source: c.iid, vars: (c as any).notes ?? {} };
           if (st.requires && !this.meetsBase(scope.controller, st.requires)) continue;
@@ -434,6 +436,8 @@ export class Q {
       const act = typeof m.value === "string" ? m.value : m.value.action;
       if (act !== action || !this.by(m, p)) return false;
       if (m.value?.unless && source && this.matches(m.value.unless, source, m.scope, null)) return false;
+      // Only against matching sources: { cannot: { action: destroy, from: { card: { subtype: node } } } }
+      if (m.value?.from && (!source || !this.matches(m.value.from, source, m.scope, null))) return false;
       return iid === null ? m.mod.target === "all" : this.targets(m, iid);
     });
   }
@@ -518,19 +522,29 @@ export class Q {
     if ("sum" in x) return (x.sum as any[]).reduce((n, v) => n + this.value(v, scope), 0);
     if ("neg" in x) return -this.value(x.neg, scope);
     if ("var" in x) return Number(scope.vars[x.var] ?? 0);
+    // The highest of several values, and the highest stat among cards: { max_stat: [ <selector>, spd ] }
+    if ("max" in x) return Math.max(...(x.max as any[]).map((v) => this.value(v, scope)));
+    if ("max_stat" in x) return Math.max(0, ...this.find(x.max_stat[0], scope).map((i) => this.stat(i, x.max_stat[1])));
+    // "the total strength of the opposing party"
+    if ("total_str" in x) return this.find(x.total_str, scope).reduce((n, i) => n + this.stat(i, "str"), 0);
     if ("len" in x) {
       const v = scope.vars[x.len];
       return Array.isArray(v) ? v.length : v ? 1 : 0;
     }
     if ("played_this_turn" in x) {
       const f = x.played_this_turn ?? {};
-      return this.s.turnLog.played.filter(
+      const list = this.s.turnLog.played.filter(
         (e) =>
           (f.by === undefined || f.by === "any" || e.player === this.who(f.by, scope)) &&
           (!f.type || e.types.includes(f.type)) &&
           (!f.not_type || !e.types.includes(f.not_type)) &&
           (!f.not_self || e.iid !== scope.source),
-      ).length;
+      );
+      if (!f.same_name) return list.length;
+      // The most cards with one name ("deployed at least 2 cards with the same name").
+      const n: Record<string, number> = {};
+      for (const e of list) n[this.lib[e.defId].name] = (n[this.lib[e.defId].name] ?? 0) + 1;
+      return Math.max(0, ...Object.values(n));
     }
     if ("last_played_cost" in x) {
       const f = x.last_played_cost ?? {};
@@ -627,6 +641,14 @@ export class Q {
       case "attack_target":
         // { attack_target: faction } or a location reference
         return !!this.s.battle && (v === "faction" ? this.s.battle.target === "faction" : this.s.battle.target === this.ref(v, scope));
+      case "since_turn_start": {
+        // "Use this only if this card has been in play since the start of the turn."
+        const r = this.ref(v, scope);
+        return !!r && this.s.cards[r].zone === "play" && this.s.cards[r].controlSince < this.s.turn;
+      }
+      case "covert_party":
+        // The attacking party in the current battle is COVERT.
+        return !!this.s.battle?.covert === !!v;
       case "battle_damage":
         // Has any damage been assigned in the current battle?
         return !!this.s.battle?.done.length === !!v;
@@ -706,6 +728,8 @@ export class Q {
     }
     if (f.name && d.name !== this.str(f.name, scope) && d.id !== this.str(f.name, scope)) return false;
     if (f.name_not && (d.name === this.str(f.name_not, scope) || d.id === this.str(f.name_not, scope))) return false;
+    // "a resource with a name you don't control": no card matching the selector shares its name.
+    if (f.name_not_among !== undefined && this.find(f.name_not_among, scope).some((x) => x !== iid && this.def(x).name === d.name)) return false;
     if (f.cost_lte !== undefined && this.numericCost(iid) > this.value(f.cost_lte, scope)) return false;
     if (f.cost_gte !== undefined && this.numericCost(iid) < this.value(f.cost_gte, scope)) return false;
     // Strength and life: current values in play, printed values elsewhere.
@@ -714,7 +738,8 @@ export class Q {
     if (f.life_lte !== undefined && statNow("life") > this.value(f.life_lte, scope)) return false;
     if (f.str_gte !== undefined && statNow("str") < this.value(f.str_gte, scope)) return false;
     // "the character with the highest strength"
-    if (f.strongest && (c.zone !== "play" || this.stat(iid, "str") < Math.max(...this.allInPlay().filter((i) => this.isCharacter(i)).map((i) => this.stat(i, "str"))))) return false;
+    // `strongest: controller`: the highest among its controller's characters ("an opponent's character with the highest strength").
+    if (f.strongest && (c.zone !== "play" || this.stat(iid, "str") < Math.max(...(f.strongest === "controller" ? this.characters(c.controller) : this.allInPlay().filter((i) => this.isCharacter(i))).map((i) => this.stat(i, "str"))))) return false;
     // Printed text contains this ("has a [V] icon in its rules text").
     if (f.text_has !== undefined && !(d.text ?? "").includes(String(f.text_has))) return false;
     // "the top N cards of your deck"
@@ -737,7 +762,8 @@ export class Q {
     if (f.depleted !== undefined && c.depleted !== f.depleted) return false;
     if (f.staple && !d.staple) return false;
     if (f.not_self && iid === scope.source) return false;
-    if (f.not && this.refs(f.not, scope).includes(iid)) return false;
+    // `not: c`, or several variables: `not: [x, y]`
+    if (f.not && (Array.isArray(f.not) && f.not.every((n: any) => typeof n === "string") ? f.not.flatMap((n: string) => this.refs(n, scope)) : this.refs(f.not, scope)).includes(iid)) return false;
     if (f.host_of && this.ref(f.host_of, scope) && this.card(this.ref(f.host_of, scope)!).attachedTo !== iid) return false;
     if (f.host_of && !this.ref(f.host_of, scope)) return false;
     if (f.attached_to && c.attachedTo !== this.ref(f.attached_to, scope)) return false;

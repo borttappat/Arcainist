@@ -7,3 +7,5 @@ set: "Holy Heist"
 rarity: common
 text: |
   FLIP UP: 7 [O]
+rules:
+  - flip_up: { pay: 7, threshold: { obsession: 1 } }

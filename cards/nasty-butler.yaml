@@ -7,3 +7,6 @@ set: "2nd Edition"
 rarity: common
 text: |
   When this card enters play, your faction gains 4 influence.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect: [ gain_influence: { who: you, amount: 4 } ]

@@ -7,3 +7,6 @@ set: "Holy Heist"
 rarity: common
 text: |
   At the start of each opponent's turn, restore this card.
+rules:
+  - trigger: { on: start_of_turn, player: opponent }
+    effect: [ restore: self ]

@@ -8,3 +8,9 @@ text: |
   EXTRA COST: Pick a character.
   Inflict 2 damage to the character.
   FLIP UP: 1 [R]
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect: [ damage: { card: c, amount: 2 } ]
+  - flip_up: { pay: 1, threshold: { rage: 1 } }

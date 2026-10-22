@@ -6,3 +6,7 @@ set: "2nd Edition"
 rarity: common
 text: |
   Search your deck for a staple resource and reveal it. Put it into your hand.
+rules:
+  - play:
+      effect:
+        - search: { deck: you, for: { resource: { staple: true } }, reveal: true, to: hand }

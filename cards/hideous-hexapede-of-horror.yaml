@@ -9,3 +9,20 @@ text: |
   HIDEOUSLY HORRENDOUS HEX OF HELLISHLY HORRIFYING HATRED
   COST: Pay 6. Destroy this card. Pick 6 characters.
   EFFECT: Inflict 6 damage to each of the characters. Inflict 6 damage to all factions. All players remove 6 cards in their hand from the game. All players remove 6 cards in their discard pile from the game. All players remove the top 6 cards of their deck from the game.
+rules:
+  - ability:
+      name: Hideously Horrendous Hex
+      cost:
+        - pay: 6
+        - destroy: self
+        - pick: { as: c, from: { character: any }, count: 6 }
+      effect:
+        - damage: { card: c, amount: 6 }
+        - damage: { faction: you, amount: 6 }
+        - damage: { faction: opponent, amount: 6 }
+        - each_player:
+            - pick: { as: h, from: { card: { zone: hand, owner: you } }, count: 6, choose: true, prompt: "Remove 6 cards in your hand from the game." }
+            - void: h
+            - pick: { as: dd, from: { card: { zone: discard, owner: you } }, count: 6, choose: true, prompt: "Remove 6 cards in your discard pile from the game." }
+            - void: dd
+            - mill: { who: you, count: 6, to: void }

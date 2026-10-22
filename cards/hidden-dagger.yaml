@@ -15,3 +15,11 @@ text: |
   COST: Deplete a character you control that is not in a battle.
   EFFECT: Attach this card to the character.
   FLIP UP: 1 [D]
+rules:
+  - ability:
+      name: Handoff
+      cost:
+        - pick: { as: c, from: { character: { controller: you, attacking: false, blocking: false, depleted: false } }, choose: true, prompt: "Deplete a character you control that is not in a battle." }
+        - deplete: c
+      effect: [ attach: { card: self, to: c } ]
+  - flip_up: { pay: 1, threshold: { deception: 1 } }

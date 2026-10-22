@@ -142,6 +142,8 @@ the stack, before the opponent can respond.
 ```
 
 RECUR is just an ability with `from: discard` whose cost voids the card.
+`both_players: true` lets either player use the ability; `both_players: opponent`
+means only an opponent may use it (iDumb De-Itemizer).
 
 ### `trigger`: "if", "when", "at"
 
@@ -166,7 +168,9 @@ Trigger filters, all optional:
 | `while: <condition>` | Only while the condition holds. |
 
 "When this card is destroyed / leaves play" works: with `card: self` the engine
-looks back at the card after it left. Triggers can't be responded to. When
+looks back at the card after it left. "When the attached character leaves play"
+(`on: leaves_play, card: host`) works the same way, although the attachment leaves
+with it (Key to the City). Triggers can't be responded to. When
 several fire at once, the controller (or the active player, if mixed) orders them.
 
 Inside a trigger, these variables are set: `it` (the event's card), `player`,
@@ -183,7 +187,8 @@ Inside a trigger, these variables are set: `it` (the event's card), `player`,
 ```
 
 Static rules are only active while the card is face-up in play, or in `zone` (`hand`,
-or `stack` for a card reducing its own cost while it is being deployed).
+`stack` for a card reducing its own cost while it is being deployed, or `any` for
+"from anywhere", which still excludes face-down cards).
 
 ### `replace`: "instead"
 
@@ -198,7 +203,9 @@ or `stack` for a card reducing its own cost while it is being deployed).
 | `tactic_to_discard` | A tactic you deployed would go to the discard pile (`by: you`); `it` is the tactic. If the `instead` steps don't move it, it goes to the discard pile as normal (Thabbash). |
 | `faction_damage` | Damage to a faction (`by: you`, `to: opponent`, `label`). The controller chooses how much is replaced. `amount` and `player` are set (Trickster's Globe). |
 
-A `destroy` replacement with `optional: true` ("its owner may ... instead") asks the
+A replacement with `while: <condition>` only applies while it holds ("If there are no
+tokens on this card and it would be destroyed"). A replacement runs to the end before
+the same card can be destroyed again. A `destroy` replacement with `optional: true` ("its owner may ... instead") asks the
 destroyed card's owner first, with `prompt` as the question; on "no" the card is
 destroyed as normal (Adriel, Supreme General).
 
@@ -238,7 +245,7 @@ picking their faction (`pick: { as: f, from: { faction: any }, choose: true }`),
 | `repeat` | `repeat: { times: X, steps: [..] }` | |
 | `let` | `let: { X: { cost: c }, who: { card: it }, n: { name_of: m } }` | Set variables. |
 | `require` | `require: <condition>` | "Play this only if…". |
-| `remember` | `remember: { picked_opponent: true }` | Store a value on the card while it's in play. |
+| `remember` | `remember: { picked_opponent: true }`, `remember: { picked: { var: t } }` | Store a value (or a variable's value) on the card while it's in play; its static rules can use it. |
 
 ### Paying and choosing
 
@@ -276,9 +283,9 @@ while paying costs are recorded for Mistaken Identity.
 | `distribute_tokens` | `distribute_tokens: { total: 3, from: <selector> }` |
 | `play_card` | `play_card: { card: c, free: true, ignore_threshold: true }` |
 | `play_resource` | `play_resource: 1`, `play_resource: { who: opponent, count: 2, optional: true }` |
-| `terminate` | `terminate: responded` (the card or ability responded to), `terminate: self` (stop resolving this card) |
+| `terminate` | `terminate: responded` (the card or ability responded to), `terminate: self` (stop resolving this card), `terminate: all` (every other unresolved card and ability) |
 | `nullify` | `nullify: responded` ("the ability has no effect") |
-| `duplicate` | `duplicate: last_tactic` |
+| `duplicate` | `duplicate: last_tactic`, `duplicate: responded` (the tactic this card responds to) |
 | `cancel_end_turn` | `cancel_end_turn: true` |
 | `coin_flip` | `coin_flip: { as: won }`, then `if: { cond: { did: true } ... }`. Two-Headed Coin (`coin_reflip`) is offered automatically. |
 | `transform` | `transform: counter-imperial-army` (turn a double-sided faction over) |
@@ -292,7 +299,7 @@ while paying costs are recorded for Mistaken Identity.
 |---|---|
 | `draw` | `draw: 2`, `draw: { who: opponent, count: X }` |
 | `search` | `search: { deck: you \| opponent, for: <selector>, count: 1 \| any, to: hand \| discard \| play \| void \| deck_top \| keep, reveal: true, attach_to: self, different_names: true, face_down: true, tag: true, as: found }` |
-| `look` | `look: { deck: you \| opponent \| choose, count: 3, to_hand: 1, bottom: any \| rest }` (the rest go back on top, in an order the player chooses) |
+| `look` | `look: { deck: you \| opponent \| choose, count: 3, to_hand: 1, bottom: any \| rest \| 1 }` (a number: exactly that many go to the bottom; the rest go back on top, in an order the player chooses) |
 | `mill` | `mill: { who: opponent, count: 4, to: discard \| hand \| void, face_down: true, tag: true, as: x }` (top N cards) |
 | `reveal_top` | `reveal_top: { who: opponent, count: 7, as: rev }` (they stay on the deck) |
 | `shuffle` | `shuffle: you` |
@@ -315,7 +322,9 @@ while paying costs are recorded for Mistaken Identity.
 ```yaml
 - modify: { card: c, stat: life, lose: 1 }          # "This turn, the character loses 1 life."
 - create_effect:
-    duration: turn | game | until_your_next_turn | next
+    duration: turn | game | until_your_next_turn | next | battle | next_restore
+    # battle: "during this battle"; next_restore: until the RESTORE RULE of `who`
+    # (default you) has run once ("does not restore during its controller's next RESTORE RULE")
     mods: [ <modifier>, ... ]                         # section 6
     rules: [ <trigger or replace rule>, ... ]         # delayed triggers ("at the start of your next turn")
 - clear_effects: self                                 # remove effects this card created
@@ -360,7 +369,7 @@ Type keys: `character`, `item`, `location`, `tactic`, `resource`, `faction`, or
 | `not_subtype`, `not_trade` | |
 | `token` | `token: false`: not a token (non-"micromajig") |
 | `str_gte` | Strength at least (current in play, printed elsewhere) |
-| `strongest` | The character with the highest strength in play |
+| `strongest` | The character with the highest strength in play; `strongest: controller`: the highest among its controller's characters |
 | `costliest` | The character with the highest numeric cost its controller controls |
 | `keyword` | `keyword: covert`: has the keyword now |
 | `equipped` | Has an item attached |
@@ -372,12 +381,13 @@ Type keys: `character`, `item`, `location`, `tactic`, `resource`, `faction`, or
 | `type`, `not_type`, `not_types: [..]`, `printed_type` | `printed_type` ignores face-down status |
 | `subtype` | `gear`, or a variable holding a named subtype |
 | `trade`, `name`, `name_not` | `name` can be a variable holding a named card |
+| `name_not_among: <selector>` | No other card matching the selector has its name ("a resource with a name you don't control") |
 | `cost_lte`, `cost_gte` | Numeric cost, any value |
 | `str_lte`, `life_lte` | Current strength or life in play, printed values elsewhere |
 | `top` | `top: 8`: among the top 8 cards of a deck ("look at the top 8 cards") |
 | `trade_not_among: <selector>` | Doesn't share a trade with any card matching the selector |
 | `face_down`, `depleted`, `staple` | true / false |
-| `not_self`, `not: c`, `among: list` | |
+| `not_self`, `not: c`, `not: [x, y]`, `among: list` | |
 | `host_of: self` | The character this card is attached to |
 | `attached_to: self` | Cards attached to this one |
 | `tagged_by: self` | Cards this card put where they are (`tag: true`) |
@@ -402,8 +412,10 @@ Type keys: `character`, `item`, `location`, `tactic`, `resource`, `faction`, or
 | `{ threshold: c }` | Total icons in a card's threshold |
 | `{ influence: you }` | A player's influence |
 | `{ len: list }` | Size of a list variable |
-| `{ half_up: <value> }`, `{ sum: [..] }`, `{ neg: <value> }` | |
-| `{ played_this_turn: { by: you, type: tactic, not_type: resource } }` | Cards played this turn |
+| `{ half_up: <value> }`, `{ sum: [..] }`, `{ neg: <value> }`, `{ max: [..] }` | |
+| `{ max_stat: [ <selector>, spd ] }` | The highest stat among matching cards (0 if none) |
+| `{ total_str: <selector> }` | Total strength of matching cards ("the total strength of the opposing party") |
+| `{ played_this_turn: { by: you, type: tactic, not_type: resource } }` | Cards played this turn; with `same_name: true`, the most played with one name |
 | `{ last_played_cost: { type: tactic } }` | Ectypal Stave |
 
 Inside a stat modifier, `printed.str`, `printed.life` and so on are the affected
@@ -424,6 +436,8 @@ card's printed stats.
 | `{ assigned_damage: self }` | The card assigned battle damage this turn |
 | `{ battle_damage: false }` | No damage has been assigned yet in the current battle |
 | `{ even: { hand_size: you } }` | The value is even |
+| `{ covert_party: true }` | The attacking party in the current battle is COVERT |
+| `{ since_turn_start: self }` | The card has been in play under its controller since the start of the turn |
 | `{ attack_target: faction }` | The current attack targets the defender's faction (or a named location) |
 | `{ all: [..] }`, `{ any: [..] }`, `{ not: .. }` | |
 
@@ -445,7 +459,7 @@ Modifiers are continuous effects. They appear in `static` rules and
 | `cost` | `{ cost: -4, by: you, target: { card: { zone: stack } } }` | Cost increase or reduction. `applies: any` also covers ability costs (the target is the ability's card); `applies: ability` only abilities; `applies: flip_up` only deploys using FLIP UP. `floor: 1`: "to a minimum of 1". |
 | `cost_min` | `{ cost_min: 3, by: opponent, target: { tactic: { zone: stack } } }` | Canny Bailiff. |
 | `threshold_reduce` | `{ threshold_reduce: 3 }` | Ignore that many missing icons. |
-| `cannot` | `{ cannot: play \| pick \| attack \| block \| restore \| restore_by_rule \| draw \| take_control \| lose_game \| destroy_except_cost }` | Prohibitions. "Cannot" beats "can". `{ cannot: { action: pick, unless: { item: any } } }` exempts sources matching `unless` ("cannot be picked by non-item cards"). |
+| `cannot` | `{ cannot: play \| pick \| attack \| block \| restore \| restore_by_rule \| draw \| take_control \| lose_game \| destroy_except_cost \| attack_faction \| flip_up \| destroy }` | Prohibitions. "Cannot" beats "can". `{ cannot: { action: pick, unless: { item: any } } }` exempts sources matching `unless` ("cannot be picked by non-item cards"); `from` limits it to matching sources (`{ cannot: { action: destroy, from: { card: { subtype: node, zone: any } } } }`, "cannot be destroyed by the effects of node cards"). |
 | `must_pick` | `{ must_pick: true }` | Ferrous Ferret. |
 | `pick_tax` | `{ pick_tax: 1, by: opponent, target: { character: { controller: you } } }` | Lucky Charm. |
 | `play_from` | `{ play_from: { ignore_threshold: true }, target: { card: { zone: void, tagged_by: self } } }` | Play cards from other zones. |
@@ -454,7 +468,7 @@ Modifiers are continuous effects. They appear in `static` rules and
 | `damage` | `{ damage: { set: 0, battle: true }, while: { blocking: self } }` | Change damage taken. `over: 4` only changes amounts greater than 4; `from: <selector>` only damage from matching sources. |
 | `influence_loss` | `{ influence_loss: { player: opponent, delta: 1 }, target: all }` | Gideon. |
 | `attack_limit` | `{ attack_limit: 1 }` | "Can attack only once each turn." |
-| `redirect` | `{ redirect: { from: play, to: discard, instead: hand } }` | "Would go to X; instead Y". |
+| `redirect` | `{ redirect: { from: play, to: discard, instead: hand } }` | "Would go to X; instead Y". `instead: deck_shuffle` shuffles it into its owner's deck; `instead: stay` stops the move ("cannot be put into your opponents' hands"). |
 | `reveal_hand` | `{ reveal_hand: opponent, target: none }` | Odious Diva. |
 | `use_opponent_abilities` | `{ use_opponent_abilities: true }` | The Billionaire. |
 | `lose_when_deck_empty` | `{ lose_when_deck_empty: true }` | Trickster's Globe. |
@@ -464,6 +478,9 @@ Modifiers are continuous effects. They appear in `static` rules and
 | `draw_bonus` | `{ draw_bonus: 1, by: you, target: none }` | Each time the player draws, they draw that many more. `{ cannot: draw, by: you, target: all }` stops draws. |
 | `destroy_self` | `{ destroy_self: true }` with `requires` | "[R][R][R]: Destroy this card." |
 | `party_covert` | `{ party_covert: true }` | Its attacking party is COVERT. |
+| `party` | `{ party: { side: attacking \| blocking \| both, min: 2, max: 1, even: true, including: self } }` | Party size rules ("must have only 1 member"); `including` limits it to parties with a matching member. |
+| `no_rules` | `{ no_rules: true, target: host }` | The target is treated as having no rules text. |
+| `attack_declarations` | `{ attack_declarations: 1, target: none }` | Players can attack only that many times each turn (Narrow Passage). |
 | `assign_to_target` | `{ assign_to_target: true }` | While attacking, its battle damage may go to the attack's target instead of the blockers. |
 | `must_be_assigned` | `{ must_be_assigned: true }` | Battle damage that could be assigned to it must be. |
 | `search_tax` | `{ search_tax: 2, by: opponent, target: none }` | Searching your own deck costs that much. |

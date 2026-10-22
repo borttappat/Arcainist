@@ -7,3 +7,10 @@ set: "2nd Edition"
 rarity: rare
 text: |
   While this card is in a battle and there is at least one character in the opposing party, it gains X strength, where X is this card's speed minus the highest speed among characters in the opposing party.
+rules:
+  - static:
+      mods:
+        - stat: { str: { max: [ 0, { sum: [ { stat: [ self, spd ] }, { neg: { max_stat: [ { character: { blocking: true } }, spd ] } } ] } ] } }
+          while: { all: [ { attacking: self }, { exists: { character: { blocking: true } } } ] }
+        - stat: { str: { max: [ 0, { sum: [ { stat: [ self, spd ] }, { neg: { max_stat: [ { character: { attacking: true } }, spd ] } } ] } ] } }
+          while: { blocking: self }

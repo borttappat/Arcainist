@@ -9,3 +9,10 @@ text: |
   KIDNAP
   COST: Destroy this card. Pick an attacking or blocking character.
   EFFECT: Destroy the character.
+rules:
+  - ability:
+      name: Kidnap
+      cost:
+        - destroy: self
+        - pick: { as: c, from: [ { character: { attacking: true } }, { character: { blocking: true } } ] }
+      effect: [ destroy: c ]

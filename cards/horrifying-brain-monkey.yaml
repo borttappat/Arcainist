@@ -9,3 +9,14 @@ text: |
   SLOBBER
   COST: Pay 4. Destroy this card. Pick a character.
   EFFECT: Destroy the character if it has X strength or less, where X is the number of [O] you control.
+rules:
+  - ability:
+      name: Slobber
+      cost:
+        - pay: 4
+        - destroy: self
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - if:
+            cond: { lte: [ { stat: [ c, str ] }, { icons: obsession } ] }
+            then: [ destroy: c ]

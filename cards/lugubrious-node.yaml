@@ -10,3 +10,13 @@ text: |
   RECONSTRUCT
   COST: Pay 1. Deplete this card. Pick a node card in your discard pile.
   EFFECT: Shuffle the card into its owner's deck.
+rules:
+  - static:
+      mods: [ { cannot: { action: destroy, from: { card: { subtype: node, zone: any } } } } ]
+  - ability:
+      name: Reconstruct
+      cost:
+        - pay: 1
+        - deplete: self
+        - pick: { as: c, from: { card: { zone: discard, owner: you, subtype: node } } }
+      effect: [ move: { card: c, to: deck_shuffle } ]

@@ -8,3 +8,7 @@ rarity: common
 text: |
   When this card enters play, you may put a Micromajig token into play.
   (Treat Micromajig tokens as Gearsmith character cards with 1 strength, 1 life, 3 speed, and the majig subtype. When a Micromajig token leaves play, it disappears.)
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may: { prompt: "put a Micromajig token into play", steps: [ create_token: { card: micromajig-token } ] }

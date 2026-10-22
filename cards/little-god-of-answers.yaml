@@ -7,3 +7,10 @@ set: "Ungodly Mess"
 rarity: uncommon
 text: |
   At the end of your turn, if this card is depleted, you may pay 1. If you do, search your deck for a tactic, reveal it, and put it into your hand.
+rules:
+  - trigger: { on: end_of_turn, player: you, while: { matches: [ self, { character: { depleted: true } } ] } }
+    effect:
+      - may_pay:
+          amount: 1
+          prompt: "search your deck for a tactic"
+          then: [ search: { deck: you, for: { tactic: any }, reveal: true, to: hand } ]

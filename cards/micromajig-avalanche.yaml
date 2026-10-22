@@ -8,3 +8,9 @@ text: |
   EXTRA COST: Choose a number for X. Pay X+X.
   Put X Micromajig tokens into play.
   (Treat Micromajig tokens as Gearsmith character cards with 1 strength, 1 life, 3 speed, and the majig subtype. If a Micromajig token leaves play, it disappears.)
+rules:
+  - play:
+      cost:
+        - choose_number: { as: X, min: 0 }
+        - pay: "X + X"
+      effect: [ create_token: { card: micromajig-token, count: X } ]

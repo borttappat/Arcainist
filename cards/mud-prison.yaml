@@ -7,3 +7,16 @@ rarity: uncommon
 text: |
   At the start of your turn, you may pay 1. If you do, pick a character an opponent controls and put a token on it.
   Treat characters your opponents control with a token on them as though they have no rules text.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - may_pay:
+          amount: 1
+          prompt: "put a token on a character an opponent controls"
+          then:
+            - pick: { as: c, from: { character: { controller: opponent } } }
+            - if:
+                cond: { defined: c }
+                then: [ tokens: { card: c, add: 1 } ]
+  - static:
+      mods: [ { no_rules: true, target: { character: { controller: opponent, has_tokens: true } } } ]

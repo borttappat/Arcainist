@@ -8,3 +8,8 @@ text: |
   DEPLOY
   COST: Pay 1. Deplete this card.
   EFFECT: Play a resource.
+rules:
+  - ability:
+      name: Deploy
+      cost: [ pay: 1, deplete: self ]
+      effect: [ play_resource: 1 ]

@@ -8,3 +8,11 @@ rarity: common
 text: |
   EXTRA COST: You may pick 4 or fewer characters.
   When this card enters play, if you picked characters as part of its cost, they cannot attack until the start of your next turn.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any }, count: 4, up_to: true }
+      effect:
+        - if:
+            cond: { defined: c }
+            then: [ create_effect: { duration: until_your_next_turn, mods: [ { cannot: attack, target: c } ] } ]

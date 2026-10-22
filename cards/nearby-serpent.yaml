@@ -9,3 +9,10 @@ rarity: rare
 text: |
   COVERT
   When this card enters play, look at up to the top 5 cards of any one deck. Put them back in any order.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - choose_number: { as: X, min: 0, max: 5, prompt: "Nearby Serpent: look at how many cards (up to 5)?" }
+      - if:
+          cond: { gt: [ X, 0 ] }
+          then: [ look: { deck: choose, count: X } ]

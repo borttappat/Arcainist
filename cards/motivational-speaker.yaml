@@ -7,3 +7,7 @@ set: "1st Edition Part 2"
 rarity: uncommon
 text: |
   When this card blocks, all members of the blocking party gain 2 strength and 2 life this turn. (This includes this character.)
+rules:
+  - trigger: { on: blocks, card: self }
+    effect:
+      - create_effect: { duration: turn, mods: [ { stat: { str: 2, life: 2 }, target: { character: { blocking: true } } } ] }

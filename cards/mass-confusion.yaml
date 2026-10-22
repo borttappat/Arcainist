@@ -7,3 +7,18 @@ rarity: uncommon
 text: |
   EXTRA COST: Choose a number for X. Pay X. Pick a player. Pick X characters that player controls.
   Inflict Y damage divided however you want to the characters, where Y is the number of characters that player controls minus the number of characters you control.
+rules:
+  - play:
+      cost:
+        - choose_number: { as: X, min: 0 }
+        - pay: X
+        - pick: { as: f, from: { faction: any }, choose: true, prompt: "Pick a player." }
+        - as:
+            who: { controller_of: f }
+            steps: [ let: { theirs: { count: { character: { controller: you } } } } ]
+        - pick: { as: c, from: { character: { controller: { controller_of: f } } }, count: X, exactly: true }
+      effect:
+        - let: { Y: { sum: [ theirs, { neg: { count: { character: { controller: you } } } } ] } }
+        - if:
+            cond: { gt: [ Y, 0 ] }
+            then: [ divide_damage: { amount: Y, from: { character: { among: c } } } ]

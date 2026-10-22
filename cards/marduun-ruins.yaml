@@ -7,3 +7,7 @@ rarity: uncommon
 text: |
   UNIQUE MARDUUN RUINS
   Characters you control with a [V] icon in their rules text gain 2 strength and 2 life.
+rules:
+  - unique: Marduun Ruins
+  - static:
+      mods: [ { stat: { str: 2, life: 2 }, target: { character: { controller: you, text_has: "[V]" } } } ]

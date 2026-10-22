@@ -9,3 +9,9 @@ text: |
   QUOTIDIAN INSTRUCTION
   COST: Deplete this card.
   EFFECT: Search your deck for a tactic and reveal it. Put it into your hand.
+rules:
+  - ability:
+      name: Quotidian Instruction
+      cost: [ deplete: self ]
+      effect:
+        - search: { deck: you, for: { tactic: any }, reveal: true, to: hand }

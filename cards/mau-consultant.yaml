@@ -7,3 +7,8 @@ set: "1st Edition"
 rarity: common
 text: |
   When this card enters play, draw a card. Your faction loses 2 influence.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - draw: 1
+      - lose_influence: { who: you, amount: 2 }

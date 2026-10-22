@@ -9,3 +9,10 @@ rarity: rare
 text: |
   COVERT
   At the start of your turn, you may pay 2. If you don't, an opponent takes control of this card.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - may_pay:
+          amount: 2
+          prompt: "keep Hired Goons (otherwise an opponent takes control of it)"
+          else: [ take_control: { card: self, who: opponent } ]

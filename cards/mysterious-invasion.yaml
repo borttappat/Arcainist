@@ -8,3 +8,12 @@ text: |
   OVERWHELM
   COST: Deplete this card. Destroy 2 characters you control. Pick a character.
   EFFECT: Destroy the character.
+rules:
+  - ability:
+      name: Overwhelm
+      cost:
+        - deplete: self
+        - pick: { as: d, from: { character: { controller: you } }, count: 2, exactly: true, choose: true, prompt: "Destroy 2 characters you control." }
+        - destroy: d
+        - pick: { as: c, from: { character: any } }
+      effect: [ destroy: c ]

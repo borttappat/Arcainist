@@ -12,3 +12,14 @@ text: |
   EJECT
   COST: Remove 2 tokens from this card. Pick another non-resource card.
   EFFECT: Put the card into its owner's hand.
+enters_with_tokens: 8
+rules:
+  - unique: Hungermaw
+  - static:
+      mods: [ { stat: { str: { tokens: self }, life: { tokens: self } } } ]
+  - ability:
+      name: Eject
+      cost:
+        - tokens: { card: self, remove: 2 }
+        - pick: { as: c, from: { card: { not_type: resource, not_self: true } } }
+      effect: [ move: { card: c, to: hand } ]

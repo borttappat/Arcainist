@@ -11,3 +11,16 @@ text: |
   "RESEARCH
   COST: Use this only if this card has been in play since the start of the turn. Deplete this card.
   EFFECT: Reduce the next numeric cost you pay this turn by 1."
+rules:
+  - unique: Jo
+  - static:
+      mods:
+        - grant_rules:
+            - ability:
+                name: Research
+                cost:
+                  - require: { since_turn_start: self }
+                  - deplete: self
+                effect:
+                  - create_effect: { duration: next, mods: [ { cost: -1, applies: any, by: you, target: all } ] }
+          target: { character: { controller: you } }

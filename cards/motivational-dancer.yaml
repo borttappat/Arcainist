@@ -13,3 +13,31 @@ text: |
   PAY UP
   COST: Pay 1. Inflict 1 damage to your faction. Deplete this card. Pick a depleted character.
   EFFECT: Inflict 1 damage to the character.
+rules:
+  - trigger: { on: end_of_turn, player: you }
+    effect:
+      - may_pay:
+          amount: 1
+          prompt: "pick a character and deplete it (it skips its controller's next Restore Rule)"
+          then:
+            - pick: { as: c, from: { character: any } }
+            - if:
+                cond: { defined: c }
+                then:
+                  - deplete: c
+                  - create_effect: { duration: next_restore, who: { controller_of: c }, mods: [ { cannot: restore_by_rule, target: c } ] }
+  - ability:
+      name: Private Dance
+      cost:
+        - pay: 1
+        - deplete: self
+        - pick: { as: c, from: { character: any } }
+      effect: [ deplete: c ]
+  - ability:
+      name: Pay Up
+      cost:
+        - pay: 1
+        - damage: { faction: you, amount: 1 }
+        - deplete: self
+        - pick: { as: c, from: { character: { depleted: true } } }
+      effect: [ damage: { card: c, amount: 1 } ]
