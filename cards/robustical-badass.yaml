@@ -7,3 +7,9 @@ set: "Seed Saga"
 rarity: common
 text: |
   [R][R][R]: At the start of your turn, you may inflict 1 damage to an opponent's faction.
+rules:
+  - trigger: { on: start_of_turn, player: you, requires: { rage: 3 } }
+    effect:
+      - may:
+          prompt: "inflict 1 damage to your opponent's faction"
+          steps: [ damage: { faction: opponent, amount: 1 } ]

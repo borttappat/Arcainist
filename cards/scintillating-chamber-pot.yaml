@@ -8,3 +8,13 @@ text: |
   TANTALIZE
   COST: Pay 1. Deplete this card. Pick a character.
   EFFECT: This turn, reduce all damage the character inflicts to your faction to 0. The character cannot be restored until the start of your next turn.
+rules:
+  - ability:
+      name: Tantalize
+      cost:
+        - pay: 1
+        - deplete: self
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { damage: { set: 0, from: c }, target: { faction: { controller: you } } } ] }
+        - create_effect: { duration: until_your_next_turn, mods: [ { cannot: restore, target: c } ] }

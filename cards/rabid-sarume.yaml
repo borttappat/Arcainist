@@ -7,3 +7,6 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   When this card enters play, inflict 1 damage to all your opponent's characters.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect: [ damage: { card: { character: { controller: opponent } }, amount: 1 } ]

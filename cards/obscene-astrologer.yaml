@@ -9,3 +9,14 @@ text: |
   GAZE UPON THE STARS
   COST: Deplete this card.
   EFFECT: You may deploy a tactic with numeric cost X or less for free, where X is either 5 or the number of [O] you control, whichever is lower.
+rules:
+  - ability:
+      name: Gaze Upon the Stars
+      cost: [ deplete: self ]
+      effect:
+        - let: { o: { icons: obsession } }
+        - let: { X: "min(5, o)" }
+        - pick: { as: t, from: { tactic: { zone: hand, owner: you, cost_lte: X } }, choose: true, optional: true, prompt: "You may deploy a tactic from your hand for free." }
+        - if:
+            cond: { defined: t }
+            then: [ play_card: { card: t, free: true } ]

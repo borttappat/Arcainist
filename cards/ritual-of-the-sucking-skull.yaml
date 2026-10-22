@@ -8,3 +8,19 @@ text: |
   EXTRA COST: Deploy this card only in response to a card being deployed using FLIP UP. X is the cards's numeric cost.
   Terminate the card. If you did not deploy this card using FLIP UP, the terminated card's controller may detach up to X resources from their faction.
   FLIP UP: 4 [O]
+rules:
+  - play:
+      timing: { response_to: { deploying: { card: any }, via: flip_up } }
+      cost:
+        - let: { X: { cost: responded } }
+      effect:
+        - terminate: responded
+        - if:
+            cond: { not: { via: flip_up } }
+            then:
+              - as:
+                  who: opponent   # you can only respond to an opponent's card
+                  steps:
+                    - choose_number: { as: N, min: 0, max: X }
+                    - detach: { count: N }
+  - flip_up: { pay: 4, threshold: { obsession: 1 } }

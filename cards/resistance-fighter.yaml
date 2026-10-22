@@ -8,3 +8,7 @@ rarity: common
 text: |
   PROVIDES: [D]
   While you control a character you don't own, this card gains 2 strength, 2 life, and 1 speed.
+rules:
+  - static:
+      while: { exists: { character: { controller: you, owner: opponent } } }
+      mods: [ { stat: { str: 2, life: 2, spd: 1 } } ]

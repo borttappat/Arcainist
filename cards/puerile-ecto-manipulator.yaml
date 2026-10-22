@@ -7,3 +7,10 @@ set: "Holy Heist"
 rarity: common
 text: |
   When this card enters play you may pick a non-resource card. If you do, put a token on the card.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - pick: { as: c, from: { card: { not_type: resource } }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ tokens: { card: c, add: 1 } ]

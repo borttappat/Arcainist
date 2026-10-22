@@ -8,3 +8,7 @@ rarity: rare
 text: |
   UNIQUE SAMUEL
   Reduce all damage inflicted to your faction to 0.
+rules:
+  - unique: Samuel
+  - static:
+      mods: [ { damage: { set: 0 }, target: { faction: { controller: you } } } ]

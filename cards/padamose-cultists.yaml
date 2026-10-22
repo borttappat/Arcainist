@@ -7,3 +7,6 @@ set: "Ungodly Mess"
 rarity: common
 text: |
   When this card enters play, if you have deployed a non-character card this turn, draw 2 cards.
+rules:
+  - trigger: { on: enters_play, card: self, while: { gte: [ { played_this_turn: { by: you, not_type: character } }, 1 ] } }
+    effect: [ draw: 2 ]

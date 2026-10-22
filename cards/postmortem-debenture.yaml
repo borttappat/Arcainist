@@ -7,3 +7,8 @@ rarity: common
 text: |
   EXTRA COST: Pick a character in your discard pile.
   Put the character into your hand.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { zone: discard, owner: you } } }
+      effect: [ move: { card: c, to: hand } ]

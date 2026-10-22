@@ -8,3 +8,15 @@ text: |
   EXTRA COST: Pick a character.
   If the character would leave play this turn, put it into its owner's hand instead.
   FLIP UP: 1 [D]
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - create_effect:
+            duration: turn
+            mods:
+              - { redirect: { from: play, to: discard, instead: hand }, target: c }
+              - { redirect: { from: play, to: void, instead: hand }, target: c }
+              - { redirect: { from: play, to: deck, instead: hand }, target: c }
+  - flip_up: { pay: 1, threshold: { deception: 1 } }

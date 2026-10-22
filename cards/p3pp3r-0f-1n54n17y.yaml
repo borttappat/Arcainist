@@ -13,3 +13,14 @@ text: |
   SPIT OUT
   COST: Destroy this card. Pick a character.
   EFFECT: This turn, the character gains 3 strength and 3 life. Restore it.
+rules:
+  - trigger: { on: start_of_turn, player: opponent }
+    effect: [ restore: host ]
+  - ability:
+      name: Spit Out
+      cost:
+        - destroy: self
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: 3, life: 3 }, target: c } ] }
+        - restore: c

@@ -11,3 +11,17 @@ text: |
   FIRE
   COST: Deplete this card. Pick a character.
   EFFECT: Inflict X damage to the character, where X is the number of tokens on this card. Remove all tokens from this card.
+rules:
+  - ability:
+      name: Load
+      cost: [ pay: 3 ]
+      effect: [ tokens: { card: self, add: 1 } ]
+  - ability:
+      name: Fire
+      cost:
+        - deplete: self
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - let: { X: { tokens: self } }
+        - damage: { card: c, amount: X }
+        - tokens: { card: self, remove: all }

@@ -14,3 +14,24 @@ text: |
   SPREAD OUT!
   COST: Pay 3. X is the number of tokens on this card. Destroy this card.
   EFFECT: Put X tokens divided however you want on any number of non-resource cards you control.
+rules:
+  - ability:
+      name: Load
+      cost: [ pay: 2 ]
+      effect: [ tokens: { card: self, add: 1 } ]
+  - ability:
+      name: Gather
+      cost:
+        - choose_number: { as: X, min: 1 }
+        - pay: "X + 1"
+        - pick: { as: c, from: { card: { controller: you, has_tokens: true } }, choose: true, prompt: "Remove X tokens from a card you control." }
+        - tokens: { card: c, remove: X }
+      effect: [ tokens: { card: self, add: X } ]
+  - ability:
+      name: Spread Out!
+      cost:
+        - pay: 3
+        - let: { X: { tokens: self } }
+        - destroy: self
+      effect:
+        - distribute_tokens: { total: X, from: { card: { controller: you, not_type: resource } } }

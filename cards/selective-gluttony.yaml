@@ -6,3 +6,8 @@ set: "1st Edition"
 rarity: rare
 text: |
   Draw 10 cards. Discard 9 cards.
+rules:
+  - play:
+      effect:
+        - draw: 10
+        - discard: 9

@@ -7,3 +7,10 @@ rarity: rare
 text: |
   EXTRA COST: Pick a character or item.
   Take control of the character or item. Draw a card.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: [ { character: any }, { item: any } ] }
+      effect:
+        - take_control: { card: c, who: you }
+        - draw: 1

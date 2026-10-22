@@ -8,3 +8,13 @@ text: |
   EXTRA COST: Pick a character you own. Pick a character an opponent owns.
   Destroy the characters. Draw a card.
   FLIP UP: 0 [R][R]
+rules:
+  - play:
+      cost:
+        - pick: { as: a, from: { character: { owner: you } } }
+        - pick: { as: b, from: { character: { owner: opponent } } }
+      effect:
+        - destroy: a
+        - destroy: b
+        - draw: 1
+  - flip_up: { pay: 0, threshold: { rage: 2 } }

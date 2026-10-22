@@ -12,3 +12,16 @@ text: |
   ABSORB HUMOUR
   COST: Pay 2. Deplete this card.
   EFFECT: Put a token on this card.
+enters_with_tokens: 2
+rules:
+  - ability:
+      name: Seize
+      cost:
+        - tokens: { card: self, remove: 1 }
+        - deplete: self
+        - pick: { as: f, from: { faction: any }, choose: true, prompt: "Pick a player." }
+      effect: [ discard: { who: { controller_of: f }, count: 1 } ]
+  - ability:
+      name: Absorb Humour
+      cost: [ pay: 2, deplete: self ]
+      effect: [ tokens: { card: self, add: 1 } ]

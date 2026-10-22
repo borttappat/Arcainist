@@ -11,3 +11,20 @@ text: |
   PROTECT
   COST: Deplete this card. Pick a character.
   EFFECT: This turn, the character gains 2 life.
+rules:
+  - static:
+      mods: [ { attack_limit: 1 } ]
+  - trigger: { on: attacks, card: self }
+    effect:
+      - create_effect:
+          duration: turn
+          rules:
+            - trigger: { on: battle_end, once: true }
+              effect: [ restore: self ]
+  - ability:
+      name: Protect
+      cost:
+        - deplete: self
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { life: 2 }, target: c } ] }

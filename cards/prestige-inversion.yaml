@@ -10,3 +10,15 @@ text: |
   RECUR: [G][G]
   COST: Use this only while this card is in your discard pile. Pay 1. Remove this card from the game.
   EFFECT: Draw a card.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { unique: true } } }
+      effect: [ void: c ]
+  - ability:
+      name: Recur
+      keyword: recur
+      threshold: { greed: 2 }
+      from: discard
+      cost: [ pay: 1, void: self ]
+      effect: [ draw: 1 ]

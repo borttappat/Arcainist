@@ -9,3 +9,10 @@ rarity: uncommon
 text: |
   COVERT
   When this card enters play, you may pick a tactic in your discard pile. If you do, put it into your hand.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - pick: { as: t, from: { tactic: { zone: discard, owner: you } }, optional: true }
+      - if:
+          cond: { defined: t }
+          then: [ move: { card: t, to: hand } ]

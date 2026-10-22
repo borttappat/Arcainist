@@ -9,3 +9,19 @@ text: |
   COST: Pay 2. Deplete this card. Pick a character.
   EFFECT: The next time the character would be destroyed by battle damage this turn, if this card is in play you may destroy it instead. If you do, reduce the amount of damage already inflicted to the character this turn to 0.
   FLIP UP: 0 [E][E]
+rules:
+  - ability:
+      name: Protect
+      cost:
+        - pay: 2
+        - deplete: self
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - create_effect:
+            duration: turn
+            rules:
+              - replace: { event: destroy, card: c, cause: damage, optional: true, while: { in_play: self }, prompt: "Destroy Rune of Concealment instead (its damage is removed)" }
+                instead:
+                  - destroy: self
+                  - heal: { card: it, all: true }
+  - flip_up: { pay: 0, threshold: { elitism: 2 } }

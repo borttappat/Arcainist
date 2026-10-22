@@ -9,3 +9,9 @@ rarity: uncommon
 text: |
   TACTICAL
   EXTRA COST: You may remove up to 4 cards in an opponent's discard pile from the game. If you do, reduce this card's numeric cost by the number of cards removed.
+rules:
+  - play:
+      cost:
+        - pick: { as: r, from: { card: { zone: discard, owner: opponent } }, count: 4, up_to: true, choose: true, prompt: "You may remove up to 4 cards in an opponent's discard pile (each reduces the cost by 1)." }
+        - void: r
+        - create_effect: { duration: next, mods: [ { cost: { neg: { len: r } }, target: self } ] }

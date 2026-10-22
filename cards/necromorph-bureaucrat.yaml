@@ -9,3 +9,10 @@ text: |
   SUBJUGATE
   COST: Deplete this card. Pick 2 or fewer characters.
   EFFECT: Deplete the characters.
+rules:
+  - ability:
+      name: Subjugate
+      cost:
+        - deplete: self
+        - pick: { as: c, from: { character: any }, count: 2, up_to: true }
+      effect: [ deplete: c ]

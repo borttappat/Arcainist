@@ -80,6 +80,29 @@ Where things stand and what's left. Update this as work lands.
   their top 3 cards into piles). The dump script now starts at index 8. Next card in
   order: Necromantic Healer.
 
+- **2026-10-22 (eighth session):** 100 more cards, Necromantic Healer to Randolph von
+  Macovawitz. New building blocks: the `party_with` filter, the `assign_cost` modifier
+  (battle damage equal to numeric cost), `assign_to_target` with `must`,
+  `repeat` with `while` (Negotiation Ceremonies), optional destroy replacements with
+  `pay` (Node-in-a-Box), and `by` on `discarded` triggers (Phalludrix). A `next`
+  effect with a damage modifier is now used up by the first damage it changes
+  (Pride of Goru-Goru Gidea). Approximation: Parkour Hoodlum ignores locations by
+  not being pickable by them and taking no damage from them; location static
+  modifiers still apply. 1,069 tests pass. **Skipped:** Notion Sickness (use a card's
+  ability with the effect happening twice), Phantasmagoric Tollbooth (replaces a
+  character entering play). The dump script now starts at index 10. Next card in
+  order: Rapacious Soldier.
+
+- **2026-10-22 (ninth session):** 125 more cards, Rapacious Soldier to Sneaker Attack.
+  New building blocks: the `total_cost` value, the `attacked_this_turn` condition, the
+  `damaged_this_turn` filter, `let` with `cards` (a fixed list of matching cards),
+  `response_to` with `via: flip_up` (Ritual of the Sucking Skull), `cause: damage` on
+  destroy replacements (Rune of Concealment), and the `add_subtype` modifier
+  (Sarcophyle Matriculation). Interpretations added to `docs/CARDS.md` for Rudo Mangod,
+  Dragonweight Champion, Rune of Concealment and Reality Shift. 1,200 tests pass. No
+  cards skipped. The dump script still starts at index 10. Next card in order:
+  Sneaking Spitspider.
+
 ## State at the end of the first session (2026-10-21)
 
 - **Cards:** 1,230 cards from the spoilstoolbox.com database, plus a Micromajig token card.
@@ -117,7 +140,7 @@ Where things stand and what's left. Update this as work lands.
 ## 2. Automate every card (the main job)
 
 - [ ] Write `rules` for every card without them, in alphabetical batches of about 25
-  (about 740 of 1,230 done; 455 cards with text remain):
+  (about 965 of 1,230 done; 232 cards with text remain):
   - list the batch's cards with their text and numbers;
   - write the rules;
   - append them to the YAML files;
@@ -126,7 +149,8 @@ Where things stand and what's left. Update this as work lands.
   a pattern repeats, promote it into the language instead.
 - [ ] Skipped cards, each needing a new building block (see the progress log):
   Arcane Escrow, Cathedrale de Mau, Clockman Skydocks, Counter-Attack, Emergency
-  Obfuscation, Geiseric the Souleater, God's Autograph.
+  Obfuscation, Geiseric the Souleater, God's Autograph, Mustache Aficionado, Notion
+  Sickness, Phantasmagoric Tollbooth.
 - [ ] Gear bonuses: the database has no gear stats. Read "The attached character
   gains N strength..." from each gear card's text into `gear` in its JSON.
 - [ ] When done, add a **coverage test** that fails if any playable card (not a

@@ -6,3 +6,10 @@ set: "2nd Edition"
 rarity: rare
 text: |
   Each player may search their deck for up to 3 staple resources and put them into play.
+rules:
+  - play:
+      effect:
+        - each_player:
+            - may:
+                prompt: "search your deck for up to 3 staple resources and put them into play"
+                steps: [ search: { deck: you, for: { resource: { staple: true } }, count: 3, to: play } ]

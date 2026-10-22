@@ -8,3 +8,5 @@ set: "1st Edition Part 2"
 rarity: common
 text: |
   COVERT
+# COVERT is its only rule (a keyword).
+rules: []

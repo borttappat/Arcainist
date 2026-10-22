@@ -12,3 +12,17 @@ text: |
   SCHPROING!
   COST: Destroy a character you control.
   EFFECT: This turn, this card cannot be blocked.
+rules:
+  - ability:
+      name: Pump-Up
+      cost:
+        - pick: { as: c, from: { character: { controller: you, not_self: true, depleted: false } }, choose: true, prompt: "Deplete another character you control." }
+        - deplete: c
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: 2, life: 2 } } ] }
+  - ability:
+      name: Schproing!
+      cost:
+        - destroy: { from: { character: { controller: you } }, choose: true }
+      effect:
+        - create_effect: { duration: turn, mods: [ { cannot_be_blocked: true } ] }

@@ -9,3 +9,9 @@ rarity: uncommon
 text: |
   COVERT
   While an opponent controls more characters than you, this card gains 2 strength, 2 life, and loses COVERT.
+rules:
+  - static:
+      while: { gt: [ { count: { character: { controller: opponent } } }, { count: { character: { controller: you } } } ] }
+      mods:
+        - { stat: { str: 2, life: 2 } }
+        - { lose_keyword: covert }

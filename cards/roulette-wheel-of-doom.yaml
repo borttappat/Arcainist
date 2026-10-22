@@ -6,3 +6,18 @@ set: "Seed Saga"
 rarity: common
 text: |
   Reveal the top card of your deck. You may pick a character with X life or less, where X is the numeric cost of the revealed card. If you do, destroy that character. Otherwise, draw 2 cards.
+rules:
+  - play:
+      effect:
+        - let: { t: { card: top_of_you } }
+        - if:
+            cond: { defined: t }
+            then:
+              - reveal_top: { who: you, count: 1 }
+              - let: { X: { cost: t } }
+              - pick: { as: c, from: { character: { life_lte: X } }, optional: true }
+              - if:
+                  cond: { defined: c }
+                  then: [ destroy: c ]
+                  else: [ draw: 2 ]
+            else: [ draw: 2 ]

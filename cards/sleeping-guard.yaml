@@ -7,3 +7,7 @@ set: "1st Edition"
 rarity: common
 text: |
   While an opponent controls a character, this card gains 1 strength and 1 life.
+rules:
+  - static:
+      while: { exists: { character: { controller: opponent } } }
+      mods: [ { stat: { str: 1, life: 1 } } ]

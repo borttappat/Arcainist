@@ -7,3 +7,6 @@ set: "2nd Edition"
 rarity: common
 text: |
   When this card enters play, put the top 2 cards of an opponent's deck into their discard pile.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect: [ mill: { who: opponent, count: 2 } ]

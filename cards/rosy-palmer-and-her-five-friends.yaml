@@ -8,3 +8,13 @@ rarity: rare
 text: |
   UNIQUE ROSY
   When this card is destroyed, reveal the top 5 cards of an opponent's deck. You may choose a revealed character. If you do, put it into play under your control. That player puts the remaining cards on the bottom of their deck in any order.
+rules:
+  - unique: Rosy
+  - trigger: { on: destroyed, card: self }
+    effect:
+      - reveal_top: { who: opponent, count: 5, as: rev }
+      - pick: { as: c, from: { character: { zone: deck, among: rev } }, choose: true, optional: true, prompt: "You may put a revealed character into play under your control." }
+      - if:
+          cond: { defined: c }
+          then: [ put_into_play: { card: c, controller: you } ]
+      - move: { card: { card: { zone: deck, among: rev } }, to: deck_bottom }

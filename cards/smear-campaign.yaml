@@ -9,3 +9,7 @@ rarity: uncommon
 text: |
   ATTACH TO CHARACTER
   When the attached character inflicts damage, inflict the same amount of damage to the character's controller's faction.
+rules:
+  - trigger: { on: damage, source: host }
+    effect:
+      - damage: { faction: { controller_of: host }, amount: amount }

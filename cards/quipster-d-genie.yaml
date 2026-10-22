@@ -9,3 +9,9 @@ text: |
   WISH
   COST: Pay 2. Destroy this card.
   EFFECT: Search your deck for a tactic and reveal it. If you do, put it into your hand.
+rules:
+  - ability:
+      name: Wish
+      cost: [ pay: 2, destroy: self ]
+      effect:
+        - search: { deck: you, for: { tactic: any }, reveal: true, to: hand }

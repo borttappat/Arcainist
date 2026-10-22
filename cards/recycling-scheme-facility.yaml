@@ -7,3 +7,17 @@ rarity: uncommon
 text: |
   When this card enters play, you may draw a card.
   When a character is put into a discard pile, any player may pay 4 to put that card on top of its owner's deck.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may: { prompt: "draw a card", steps: [ draw: 1 ] }
+  - trigger: { on: moved, card: { character: { zone: discard } }, to: discard }
+    effect:
+      - each_player:
+          - if:
+              cond: { in_zone: [ it, discard ] }
+              then:
+                - may_pay:
+                    amount: 4
+                    prompt: "put that character on top of its owner's deck"
+                    then: [ move: { card: it, to: deck_top } ]

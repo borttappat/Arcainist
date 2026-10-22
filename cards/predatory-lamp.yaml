@@ -9,3 +9,12 @@ rarity: common
 text: |
   COVERT
   When this card enters play, you may pick a character with COVERT. If you do, that character loses COVERT while this card is in play.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - pick: { as: c, from: { character: { keyword: covert } }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ remember: { picked: { var: c } } ]
+  - static:
+      mods: [ { lose_keyword: covert, target: picked } ]

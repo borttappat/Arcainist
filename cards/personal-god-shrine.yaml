@@ -6,3 +6,14 @@ set: "Holy Heist"
 rarity: uncommon
 text: |
   When a card that provides at least [V] enters play under your control, you may pay 3. If you do, you may pick a character or location in your discard pile and put it on top of your deck.
+rules:
+  - trigger: { on: enters_play, card: { controller: you, provides_at_least: { volition: 1 } } }
+    effect:
+      - may_pay:
+          amount: 3
+          prompt: "put a character or location from your discard pile on top of your deck"
+          then:
+            - pick: { as: c, from: [ { character: { zone: discard, owner: you } }, { location: { zone: discard, owner: you } } ], optional: true }
+            - if:
+                cond: { defined: c }
+                then: [ move: { card: c, to: deck_top } ]

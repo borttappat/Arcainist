@@ -11,3 +11,7 @@ text: |
   The attached character gains 1 strength and 1 life.
   If this card would be destroyed, flip it face-down under its owner's control instead.
   FLIP UP: 1 [D]
+rules:
+  - replace: { event: destroy, card: self }
+    instead: [ flip_face_down: { card: self, controller: owner } ]
+  - flip_up: { pay: 1, threshold: { deception: 1 } }

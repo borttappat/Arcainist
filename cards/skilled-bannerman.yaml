@@ -7,3 +7,5 @@ set: "Holy Heist"
 rarity: common
 text: |
   PROVIDES: [R]
+# PROVIDES is its only rule (a number in its JSON).
+rules: []

@@ -7,3 +7,12 @@ rarity: common
 text: |
   EXTRA COST: Pick a character.
   If the character has received damage this turn, destroy it. Draw a card.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - if:
+            cond: { matches: [ c, { character: { damaged_this_turn: true } } ] }
+            then: [ destroy: c ]
+        - draw: 1

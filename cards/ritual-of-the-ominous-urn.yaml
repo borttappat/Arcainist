@@ -6,3 +6,28 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   An opponent discards a card. You may search your deck for a card of the same type as the discarded card and reveal it. If you do, put it into your hand.
+rules:
+  - play:
+      effect:
+        - discard: { who: opponent, count: 1, as: d }
+        - if:
+            cond: { defined: d }
+            then:
+              - may:
+                  prompt: "search your deck for a card of the same type as the discarded card"
+                  steps:
+                    - if:
+                        cond: { matches: [ d, { character: { zone: discard } } ] }
+                        then: [ search: { deck: you, for: { character: any }, reveal: true, to: hand } ]
+                    - if:
+                        cond: { matches: [ d, { tactic: { zone: discard } } ] }
+                        then: [ search: { deck: you, for: { tactic: any }, reveal: true, to: hand } ]
+                    - if:
+                        cond: { matches: [ d, { item: { zone: discard } } ] }
+                        then: [ search: { deck: you, for: { item: any }, reveal: true, to: hand } ]
+                    - if:
+                        cond: { matches: [ d, { location: { zone: discard } } ] }
+                        then: [ search: { deck: you, for: { location: any }, reveal: true, to: hand } ]
+                    - if:
+                        cond: { matches: [ d, { resource: { zone: discard } } ] }
+                        then: [ search: { deck: you, for: { resource: any }, reveal: true, to: hand } ]

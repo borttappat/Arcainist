@@ -7,3 +7,12 @@ rarity: common
 text: |
   EXTRA COST: Pick a character without an item attached to it.
   Destroy the character. If you control [V][V][V], draw a card.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { equipped: false } } }
+      effect:
+        - destroy: c
+        - if:
+            cond: { icons: { volition: 3 } }
+            then: [ draw: 1 ]

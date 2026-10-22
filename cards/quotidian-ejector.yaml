@@ -10,3 +10,11 @@ text: |
   EJECT
   COST: Remove 2 tokens from this card. Pick a non-resource card.
   EFFECT: Put the card into its owner's hand.
+enters_with_tokens: 2
+rules:
+  - ability:
+      name: Eject
+      cost:
+        - tokens: { card: self, remove: 2 }
+        - pick: { as: c, from: { card: { not_type: resource } } }
+      effect: [ move: { card: c, to: hand } ]

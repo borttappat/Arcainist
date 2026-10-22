@@ -8,3 +8,13 @@ text: |
   EXTRA COST: Pick a character or location.
   If the card has a [V] icon in its rules text, inflict 6 damage to the card. Otherwise, inflict 2 damage to the card.
   FLIP UP: 1 [R][R]
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: [ { character: any }, { location: any } ] }
+      effect:
+        - if:
+            cond: { matches: [ c, { card: { text_has: "[V]" } } ] }
+            then: [ damage: { card: c, amount: 6 } ]
+            else: [ damage: { card: c, amount: 2 } ]
+  - flip_up: { pay: 1, threshold: { rage: 2 } }

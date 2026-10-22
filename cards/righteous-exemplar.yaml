@@ -7,3 +7,7 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   [R][R][R][R][R]: This card gains 1 strength and 1 life.
+rules:
+  - static:
+      requires: { rage: 5 }
+      mods: [ { stat: { str: 1, life: 1 } } ]

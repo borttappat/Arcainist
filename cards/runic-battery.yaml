@@ -9,3 +9,22 @@ text: |
   DISCHARGE
   COST: If there is a token on this card X is 5, otherwise X is 2. Destroy this card.
   EFFECT: Detach up to X resources from your faction. Draw a card.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may_pay:
+          amount: 3
+          prompt: "put a token on Runic Battery"
+          then: [ tokens: { card: self, add: 1 } ]
+  - ability:
+      name: Discharge
+      cost:
+        - if:
+            cond: { gt: [ { tokens: self }, 0 ] }
+            then: [ let: { X: 5 } ]
+            else: [ let: { X: 2 } ]
+        - destroy: self
+      effect:
+        - choose_number: { as: N, min: 0, max: X }
+        - detach: { count: N }
+        - draw: 1

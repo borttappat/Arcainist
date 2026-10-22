@@ -9,3 +9,10 @@ text: |
   DISRUPT
   COST: Pay 2. Discard a card. Deplete this card.
   EFFECT: Look at an opponent's hand and choose a card in it. That player discards that card.
+rules:
+  - ability:
+      name: Disrupt
+      cost: [ pay: 2, discard: 1, deplete: self ]
+      effect:
+        - peek: { who: opponent, hand: true }
+        - discard: { who: opponent, count: 1, chooser: you }

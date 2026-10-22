@@ -7,3 +7,6 @@ set: "Seed Saga"
 rarity: common
 text: |
   When battle damage is inflicted to a character in a party with this card, reduce the amount by 1. (This includes this character.)
+rules:
+  - static:
+      mods: [ { damage: { delta: -1, battle: true }, target: { character: { party_with: self } } } ]

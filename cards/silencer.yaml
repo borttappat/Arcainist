@@ -8,3 +8,12 @@ rarity: rare
 text: |
   Characters with a token on them cannot block this card.
   If a character enters play under your opponent's control, you may pay 1. If you do, put a token on it.
+rules:
+  - static:
+      mods: [ { cannot_be_blocked: { by: { character: { has_tokens: true } } } } ]
+  - trigger: { on: enters_play, card: { character: { controller: opponent } } }
+    effect:
+      - may_pay:
+          amount: 1
+          prompt: "put a token on that character"
+          then: [ tokens: { card: it, add: 1 } ]

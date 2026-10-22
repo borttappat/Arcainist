@@ -9,3 +9,11 @@ text: |
   SIZE UP
   COST: Pay 1.
   EFFECT: Look at the top card of either deck.
+rules:
+  - ability:
+      name: Size Up
+      cost: [ pay: 1 ]
+      effect:
+        - choose_one:
+            - { label: "Look at the top card of your deck", steps: [ peek: { who: you, top: 1 } ] }
+            - { label: "Look at the top card of your opponent's deck", steps: [ peek: { who: opponent, top: 1 } ] }

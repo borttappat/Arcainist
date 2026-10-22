@@ -7,3 +7,9 @@ set: "2nd Edition"
 rarity: common
 text: |
   When this card enters play, you may search your deck for a tactic and reveal it. If you do, put it into your hand.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may:
+          prompt: "search your deck for a tactic and put it into your hand"
+          steps: [ search: { deck: you, for: { tactic: any }, reveal: true, to: hand } ]

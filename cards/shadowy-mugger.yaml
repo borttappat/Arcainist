@@ -9,3 +9,9 @@ rarity: uncommon
 text: |
   COVERT
   When this card enters play, you may search an opponent's deck for a card. If you do, put it into their discard pile.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may:
+          prompt: "search your opponent's deck for a card and put it into their discard pile"
+          steps: [ search: { deck: opponent, for: { card: any }, to: discard } ]

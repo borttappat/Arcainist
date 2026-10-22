@@ -10,3 +10,12 @@ text: |
   PUSH OVERBOARD AND LOOT
   COST: Pay 1. Destroy a character you own.
   EFFECT: Put a token on this card.
+rules:
+  - static:
+      mods: [ { stat: { str: { tokens: self }, life: { tokens: self } } } ]
+  - ability:
+      name: Push Overboard and Loot
+      cost:
+        - pay: 1
+        - destroy: { from: { character: { owner: you } }, choose: true }
+      effect: [ tokens: { card: self, add: 1 } ]

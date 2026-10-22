@@ -7,3 +7,6 @@ rarity: rare
 text: |
   When this card enters play, your faction loses 1 influence.
   PROVIDES: [O][O]
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect: [ lose_influence: { who: you, amount: 1 } ]

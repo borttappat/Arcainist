@@ -14,3 +14,15 @@ text: |
   SOUL CHARGE
   COST: Use this ability only once each turn. Pay 1.
   EFFECT: Restore the attached character. It cannot attack this turn.
+rules:
+  - ability:
+      name: Soul Drain
+      cost: [ pay: 1 ]
+      effect: [ deplete: host ]
+  - ability:
+      name: Soul Charge
+      once_per_turn: true
+      cost: [ pay: 1 ]
+      effect:
+        - restore: host
+        - create_effect: { duration: turn, mods: [ { cannot: attack, target: host } ] }

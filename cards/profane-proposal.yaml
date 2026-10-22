@@ -7,3 +7,17 @@ rarity: rare
 text: |
   EXTRA COST: Pick an opponent.
   Search your deck for 5 cards with different names and reveal them. That player separates those cards into two piles. Put one pile into your hand and shuffle the other into your deck.
+rules:
+  - play:
+      effect:
+        - search: { deck: you, for: { card: any }, count: 5, different_names: true, reveal: true, to: keep, as: found }
+        - if:
+            cond: { defined: found }
+            then:
+              - pick: { as: p1, from: { card: { zone: deck, among: found } }, count: 5, up_to: true, choose: true, who: opponent, prompt: "Separate the revealed cards into two piles: pick the cards for the first pile." }
+              - choose_one:
+                  - label: "Put the first pile into your hand"
+                    steps: [ move: { card: p1, to: hand } ]
+                  - label: "Put the second pile into your hand"
+                    steps: [ move: { card: { card: { zone: deck, among: found, not: p1 } }, to: hand } ]
+              - shuffle: you

@@ -8,3 +8,13 @@ text: |
   EXTRA COST: Pick a non-resource card.
   If the card has a [V] icon in its rules text, put the card into the void. Otherwise, put the card into its owner's hand.
   FLIP UP: 3 [O]
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { card: { not_type: resource } } }
+      effect:
+        - if:
+            cond: { matches: [ c, { card: { text_has: "[V]" } } ] }
+            then: [ void: c ]
+            else: [ move: { card: c, to: hand } ]
+  - flip_up: { pay: 3, threshold: { obsession: 1 } }

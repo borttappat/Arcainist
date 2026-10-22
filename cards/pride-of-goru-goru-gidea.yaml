@@ -12,3 +12,16 @@ text: |
   DISAPPEAR
   COST: Pay 2.
   EFFECT: This turn, this card gains covert.
+rules:
+  - ability:
+      name: Resist
+      cost:
+        - pay: 1
+        - lose_influence: { who: you, amount: 1 }
+      effect:
+        - create_effect: { duration: next, mods: [ { damage: { delta: -1 } } ] }
+  - ability:
+      name: Disappear
+      cost: [ pay: 2 ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { keyword: covert } ] }

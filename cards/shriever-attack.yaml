@@ -6,3 +6,6 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   Inflict 2 damage to all characters.
+rules:
+  - play:
+      effect: [ damage: { card: { character: any }, amount: 2 } ]

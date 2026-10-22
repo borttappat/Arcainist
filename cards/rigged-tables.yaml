@@ -14,3 +14,22 @@ text: |
   WALK AWAY
   COST: Pay 1. Destroy this card.
   EFFECT: Draw a card.
+rules:
+  - ability:
+      name: Size Up
+      cost: [ deplete: self ]
+      effect:
+        - choose_one:
+            - { label: "Look at the top card of your deck", steps: [ peek: { who: you, top: 1 } ] }
+            - { label: "Look at the top card of your opponent's deck", steps: [ peek: { who: opponent, top: 1 } ] }
+  - ability:
+      name: Rig
+      cost: [ pay: 1 ]
+      effect:
+        - choose_one:
+            - { label: "Put the top card of your deck on the bottom", steps: [ move: { card: top_of_you, to: deck_bottom } ] }
+            - { label: "Put the top card of your opponent's deck on the bottom", steps: [ move: { card: top_of_opponent, to: deck_bottom } ] }
+  - ability:
+      name: Walk Away
+      cost: [ pay: 1, destroy: self ]
+      effect: [ draw: 1 ]

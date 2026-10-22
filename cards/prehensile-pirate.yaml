@@ -7,3 +7,8 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   EXTRA COST: Remove 4 cards in your discard pile from the game.
+rules:
+  - play:
+      cost:
+        - pick: { as: r, from: { card: { zone: discard, owner: you } }, count: 4, choose: true, prompt: "Remove 4 cards in your discard pile from the game." }
+        - void: r

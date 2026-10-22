@@ -6,3 +6,6 @@ set: "2nd Edition"
 rarity: rare
 text: |
   All your characters gain 1 strength.
+rules:
+  - static:
+      mods: [ { stat: { str: 1 }, target: { character: { controller: you } } } ]

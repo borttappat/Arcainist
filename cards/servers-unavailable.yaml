@@ -8,3 +8,8 @@ text: |
   EXTRA COST: Deploy this only in response to a card being deployed.
   Terminate the card.
   FLIP UP:  5 [E][E][E] and put a micromajig token into play under your control.
+rules:
+  - play:
+      timing: { response_to: { deploying: { card: any } } }
+      effect: [ terminate: responded ]
+  - flip_up: { pay: 5, threshold: { elitism: 3 }, cost: [ create_token: { card: micromajig-token } ] }

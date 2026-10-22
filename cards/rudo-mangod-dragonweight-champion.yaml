@@ -9,3 +9,12 @@ text: |
   UNIQUE RUDOLPHUS
   When this card enters play, deplete all other characters you control. They cannot be restored by your faction's RESTORE RULE.
   This character gains 1 strength for each depleted warlord character you control.
+rules:
+  - unique: Rudolphus
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - let: { others: { cards: { character: { controller: you, not_self: true } } } }
+      - deplete: others
+      - create_effect: { duration: game, mods: [ { cannot: restore_by_rule, target: others } ] }
+  - static:
+      mods: [ { stat: { str: { count: { character: { controller: you, trade: warlord, depleted: true } } } } } ]

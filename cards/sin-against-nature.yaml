@@ -7,3 +7,8 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   When this card enters play, pick a resource you control. Put it into its owner's hand. (You may pick face-down resources.)
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - pick: { as: r, from: { resource: { controller: you } } }
+      - move: { card: r, to: hand }

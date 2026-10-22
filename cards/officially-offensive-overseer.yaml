@@ -8,3 +8,14 @@ rarity: uncommon
 text: |
   EXTRA COST: If you control at least [O][O][O], you may pick a character or a location.
   When this card enters play, if you picked a character or location as part of its cost and the character has strength 3 or less or the location has structure 3 or less, put that card into its owners's hand.
+rules:
+  - play:
+      cost:
+        - if:
+            cond: { icons: { obsession: 3 } }
+            then:
+              - pick: { as: t, from: [ { character: any }, { location: any } ], optional: true, prompt: "You may pick a character or a location." }
+      effect:
+        - if:
+            cond: { all: [ { defined: t }, { matches: [ t, [ { character: { str_lte: 3 } }, { location: { life_lte: 3 } } ] ] } ] }
+            then: [ move: { card: t, to: hand } ]

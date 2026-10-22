@@ -9,3 +9,9 @@ text: |
   UNIQUE PADAMOSE
   All your "sword of great justice" characters gain 1 strength and 1 life.
   All your opponent's "mau" characters and Arcanist characters lose 1 strength and 1 life.
+rules:
+  - unique: Padamose
+  - static:
+      mods:
+        - { stat: { str: 1, life: 1 }, target: { character: { controller: you, subtype: sword of great justice } } }
+        - { stat: { str: -1, life: -1 }, target: [ { character: { controller: opponent, subtype: mau } }, { character: { controller: opponent, trade: arcanist } } ] }

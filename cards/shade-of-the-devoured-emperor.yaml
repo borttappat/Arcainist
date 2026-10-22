@@ -9,3 +9,24 @@ text: |
   UNIQUE PADAMOSE
   At the end of an opponent's turn, you may remove this card from the game, then choose a player and search their deck for a UNIQUE JO, UNIQUE EUSTACE, UNIQUE PLUCK, UNIQUE RUDOLPHUS, or UNIQUE IGNATIOUS and reveal it. If you do, put it into play under your control.
   FLIP UP: 2 [V][V][V][V]
+rules:
+  - unique: Padamose
+  - trigger: { on: end_of_turn, player: opponent }
+    effect:
+      - may:
+          prompt: "remove Shade of the Devoured Emperor from the game to search a deck for a UNIQUE Jo, Eustace, Pluck, Rudolphus or Ignatious"
+          steps:
+            - void: self
+            - pick: { as: f, from: { faction: any }, choose: true, prompt: "Choose a player whose deck to search." }
+            - search:
+                deck: { controller_of: f }
+                for:
+                  - { character: { unique: Jo } }
+                  - { character: { unique: Eustace } }
+                  - { character: { unique: Pluck } }
+                  - { character: { unique: Rudolphus } }
+                  - { character: { unique: Ignatious } }
+                reveal: true
+                to: play
+                controller: you
+  - flip_up: { pay: 2, threshold: { volition: 4 } }

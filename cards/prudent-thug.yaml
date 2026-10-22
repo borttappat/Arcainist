@@ -12,3 +12,16 @@ text: |
   RESTORE
   COST: Pay 1. Put a token on this card.
   EFFECT: Restore this card.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect: [ lose_influence: { who: you, amount: 3 } ]
+  - static:
+      mods:
+        - { stat: { str: { neg: { tokens: self } }, life: { neg: { tokens: self } } } }
+        - { attack_limit: 1 }
+  - ability:
+      name: Restore
+      cost:
+        - pay: 1
+        - tokens: { card: self, add: 1 }
+      effect: [ restore: self ]

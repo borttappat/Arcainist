@@ -7,3 +7,8 @@ rarity: common
 text: |
   EXTRA COST: Pick an item.
   Destroy the item.
+rules:
+  - play:
+      cost:
+        - pick: { as: i, from: { item: any } }
+      effect: [ destroy: i ]

@@ -9,3 +9,13 @@ text: |
   SNEAK
   COST: Use this only if an opponent has at least 10 cards in their discard pile. Pay 1. Remove 2 cards in that player's discard pile from the game.
   EFFECT: This turn, this card gains COVERT.
+rules:
+  - ability:
+      name: Sneak
+      cost:
+        - require: { gte: [ { count: { card: { zone: discard, owner: opponent } } }, 10 ] }
+        - pay: 1
+        - pick: { as: v, from: { card: { zone: discard, owner: opponent } }, count: 2, exactly: true, choose: true, prompt: "Remove 2 cards in your opponent's discard pile from the game." }
+        - void: v
+      effect:
+        - create_effect: { duration: turn, mods: [ { keyword: covert } ] }

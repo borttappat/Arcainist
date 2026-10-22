@@ -7,3 +7,7 @@ set: "2nd Edition"
 rarity: common
 text: |
   When you are attacked, you may restore this card.
+rules:
+  - trigger: { on: party_formed, player: opponent, side: attacking }
+    effect:
+      - may: { prompt: "restore Omnidirectional Patrolmajig", steps: [ restore: self ] }

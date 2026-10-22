@@ -7,3 +7,8 @@ rarity: rare
 text: |
   EXTRA COST: Deploy this only in response to an item being deployed. Pay X, where X is its numeric cost.
   The item enters play under your control.
+rules:
+  - play:
+      timing: { response_to: { deploying: { item: any } } }
+      cost: [ pay: { cost: responded } ]
+      effect: [ steal_deploy: responded ]

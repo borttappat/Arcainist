@@ -9,3 +9,5 @@ rarity: uncommon
 text: |
   COVERT
   FLIP UP: 7 [O][O]
+rules:
+  - flip_up: { pay: 7, threshold: { obsession: 2 } }

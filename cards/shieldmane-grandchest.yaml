@@ -9,3 +9,9 @@ text: |
   UNIQUE GRANDCHEST
   When battle damage is inflicted to a character you control, reduce the amount by 2.
   When battle damage is inflicted to a character an opponent controls, increase the amount by 2.
+rules:
+  - unique: Grandchest
+  - static:
+      mods:
+        - { damage: { delta: -2, battle: true }, target: { character: { controller: you } } }
+        - { damage: { delta: 2, battle: true }, target: { character: { controller: opponent } } }

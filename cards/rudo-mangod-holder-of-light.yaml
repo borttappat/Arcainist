@@ -9,3 +9,13 @@ text: |
   UNIQUE RUDOLPHUS
   While this card is restored, all characters you control gain 1 strength and 1 life.
   At the start of each turn, if this card has a 'gear' card attached to it, restore this card.
+rules:
+  - unique: Rudolphus
+  - static:
+      while: { matches: [ self, { character: { depleted: false } } ] }
+      mods: [ { stat: { str: 1, life: 1 }, target: { character: { controller: you } } } ]
+  - trigger: { on: start_of_turn, player: any }
+    effect:
+      - if:
+          cond: { exists: { item: { attached_to: self, subtype: gear } } }
+          then: [ restore: self ]

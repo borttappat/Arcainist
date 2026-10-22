@@ -7,3 +7,7 @@ set: "Seed Saga"
 rarity: rare
 text: |
   When this card blocks, draw X cards, where X is the number of characters in the attacking party.
+rules:
+  - trigger: { on: blocks, card: self }
+    effect:
+      - draw: { count: { count: { character: { attacking: true } } } }

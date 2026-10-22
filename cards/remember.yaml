@@ -7,3 +7,8 @@ rarity: uncommon
 text: |
   EXTRA COST: Pick a tactic in your discard pile.
   Put the tactic into your hand.
+rules:
+  - play:
+      cost:
+        - pick: { as: t, from: { tactic: { zone: discard, owner: you } } }
+      effect: [ move: { card: t, to: hand } ]

@@ -8,3 +8,12 @@ text: |
   EXTRA COST: Deploy this only during a battle.
   This turn, all characters in your party gain 1 speed.
   FLIP UP: 4 [D][D]
+rules:
+  - play:
+      timing: { in_battle: true }
+      effect:
+        - create_effect:
+            duration: turn
+            mods:
+              - { stat: { spd: 1 }, target: [ { character: { controller: you, attacking: true } }, { character: { controller: you, blocking: true } } ] }
+  - flip_up: { pay: 4, threshold: { deception: 2 } }

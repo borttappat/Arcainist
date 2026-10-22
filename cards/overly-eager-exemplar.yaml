@@ -9,3 +9,9 @@ text: |
   FOR MY BROTHERS!
   COST: Pay 1. Destroy this card.
   EFFECT: Search your deck for a "soldier" card and reveal it. If you do, put it into your hand.
+rules:
+  - ability:
+      name: For My Brothers!
+      cost: [ pay: 1, destroy: self ]
+      effect:
+        - search: { deck: you, for: { card: { subtype: soldier } }, reveal: true, to: hand }

@@ -12,3 +12,18 @@ text: |
   DISCHARGE
   COST: Pick a character with numeric cost X or less, where X is the number of tokens on this card. Destroy this card.
   EFFECT: Destroy the character.
+rules:
+  - trigger: { on: party_formed, player: opponent, side: attacking }
+    effect:
+      - may: { prompt: "put a token on Runivoltaic Accumulator", steps: [ tokens: { card: self, add: 1 } ] }
+  - ability:
+      name: Energize
+      cost: [ pay: 2 ]
+      effect: [ tokens: { card: self, add: 1 } ]
+  - ability:
+      name: Discharge
+      cost:
+        - let: { X: { tokens: self } }
+        - pick: { as: c, from: { character: { cost_lte: X } } }
+        - destroy: self
+      effect: [ destroy: c ]

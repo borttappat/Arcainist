@@ -8,3 +8,13 @@ rarity: rare
 text: |
   While this card is in your hand and there is a location in play, this card gains tactical.
   This card ignores all rules text on locations. (this card cannot be picked by locations and any effects from locations do not affect this card.)
+rules:
+  - static:
+      zone: hand
+      while: { exists: { location: any } }
+      mods: [ { tactical: true } ]
+  # Ignores locations: they can't pick it and their damage doesn't affect it.
+  - static:
+      mods:
+        - { cannot: { action: pick, from: { location: { zone: any } } } }
+        - { damage: { set: 0, from: { location: { zone: any } } } }

@@ -11,3 +11,33 @@ text: |
   SERAPHIM FUSION
   COST: Pay 4. Pick a UNIQUE IGNATIOUS you control. Destroy this card.
   EFFECT: Search your deck for a card named "Uhluhtc Niudla" and put it into play.
+rules:
+  - ability:
+      name: Recycle Junk
+      cost:
+        - pay: 3
+        - pick: { as: c, from: { card: { zone: discard, owner: you, not_type: resource } } }
+        - let: { X: { cost: c } }
+        - void: c
+      effect:
+        - if:
+            cond: { matches: [ c, { character: { zone: void } } ] }
+            then: [ search: { deck: you, for: { character: { cost_lte: X } }, to: discard } ]
+        - if:
+            cond: { matches: [ c, { tactic: { zone: void } } ] }
+            then: [ search: { deck: you, for: { tactic: { cost_lte: X } }, to: discard } ]
+        - if:
+            cond: { matches: [ c, { item: { zone: void } } ] }
+            then: [ search: { deck: you, for: { item: { cost_lte: X } }, to: discard } ]
+        - if:
+            cond: { matches: [ c, { location: { zone: void } } ] }
+            then: [ search: { deck: you, for: { location: { cost_lte: X } }, to: discard } ]
+        - draw: 1
+  - ability:
+      name: Seraphim Fusion
+      cost:
+        - pay: 4
+        - pick: { as: e, from: { character: { controller: you, unique: Ignatious } } }
+        - destroy: self
+      effect:
+        - search: { deck: you, for: { card: { name: Uhluhtc Niudla } }, to: play }

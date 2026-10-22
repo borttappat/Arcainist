@@ -12,3 +12,15 @@ text: |
   RESEARCH HARDER: [E][E][E][E][E]
   COST: Deplete this card.
   EFFECT: Reduce the next numeric cost you pay this turn by 2.
+rules:
+  - ability:
+      name: Research
+      cost: [ deplete: self ]
+      effect:
+        - create_effect: { duration: next, mods: [ { cost: -1, applies: any, by: you, target: all } ] }
+  - ability:
+      name: Research Harder
+      threshold: { elitism: 5 }
+      cost: [ deplete: self ]
+      effect:
+        - create_effect: { duration: next, mods: [ { cost: -2, applies: any, by: you, target: all } ] }

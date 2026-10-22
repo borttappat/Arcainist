@@ -11,3 +11,19 @@ text: |
   FLIP IT: [R]
   COST: Use this only while this card is a face-down resource. Reveal this card. Pick a player. X is number of resources that player controls. Y is the number of resources you control. Pay 4.
   EFFECT: Put this card into play face-up. Inflict X - Y damage to the picked player's faction.
+rules:
+  - ability:
+      name: Flip It
+      from: face_down_resource
+      threshold: { rage: 1 }
+      cost:
+        - reveal: self
+        - pick: { as: f, from: { faction: any }, choose: true, prompt: "Pick a player (their faction)." }
+        - as:
+            who: { controller_of: f }
+            steps: [ let: { X: { count: { resource: { controller: you } } } } ]
+        - let: { Y: { count: { resource: { controller: you } } } }
+        - pay: 4
+      effect:
+        - flip_face_up: self
+        - damage: { card: f, amount: "max(0, X - Y)" }

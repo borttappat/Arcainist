@@ -7,3 +7,5 @@ set: "Seed Saga"
 rarity: common
 text: |
   FLIP UP: 0 [G]
+rules:
+  - flip_up: { pay: 0, threshold: { greed: 1 } }

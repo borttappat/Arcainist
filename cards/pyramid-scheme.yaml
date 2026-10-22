@@ -7,3 +7,12 @@ rarity: uncommon
 text: |
   EXTRA COST: Flip a coin. If you win, X is 3. Otherwise, X is 2.
   Draw X cards.
+rules:
+  - play:
+      cost:
+        - coin_flip: { as: won }
+        - if:
+            cond: { did: true }
+            then: [ let: { X: 3 } ]
+            else: [ let: { X: 2 } ]
+      effect: [ draw: X ]

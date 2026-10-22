@@ -7,3 +7,6 @@ set: "Holy Heist"
 rarity: common
 text: |
   This character cannot block.
+rules:
+  - static:
+      mods: [ { cannot: block } ]

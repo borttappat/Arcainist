@@ -1,5 +1,6 @@
 {
   "cost": 4,
   "threshold": { "rage": 1 },
-  "stats": { "str": 3, "life": 3, "spd": 3 }
+  "stats": { "str": 3, "life": 3, "spd": 3 },
+  "provides": { "rage": 1 }
 }

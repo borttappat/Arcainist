@@ -9,3 +9,7 @@ rarity: common
 text: |
   COVERT
   When this card attacks, it loses COVERT this turn.
+rules:
+  - trigger: { on: attacks, card: self }
+    effect:
+      - create_effect: { duration: turn, mods: [ { lose_keyword: covert } ] }

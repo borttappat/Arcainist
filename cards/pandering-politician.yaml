@@ -9,3 +9,10 @@ text: |
   PANDER
   COST: Deplete this card. Pick a character or item.
   EFFECT: Remove a token from the picked card.
+rules:
+  - ability:
+      name: Pander
+      cost:
+        - deplete: self
+        - pick: { as: c, from: [ { character: any }, { item: any } ] }
+      effect: [ tokens: { card: c, remove: 1 } ]

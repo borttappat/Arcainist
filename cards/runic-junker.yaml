@@ -6,3 +6,20 @@ set: "Shade of the Devoured Emperor"
 rarity: rare
 text: |
   At start of your turn you may pay 4. If you do and you control atleast 2 face-down resources, pick an opponent. That player must pick a face-down resource you control. If the face-down resource is a character or an item you may deploy it for free. (You still need to meet its threshold and satisfy its extra costs.)
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - may_pay:
+          amount: 4
+          prompt: "have your opponent pick one of your face-down resources (you may deploy it for free if it is a character or item)"
+          then:
+            - if:
+                cond: { gte: [ { count: { resource: { controller: you, face_down: true } } }, 2 ] }
+                then:
+                  - pick: { as: r, who: opponent, from: { resource: { controller: you, face_down: true } }, prompt: "Runic Junker: pick a face-down resource your opponent controls." }
+                  - if:
+                      cond: { any: [ { matches: [ r, { resource: { printed_type: character } } ] }, { matches: [ r, { resource: { printed_type: item } } ] } ] }
+                      then:
+                        - may:
+                            prompt: "deploy the picked card for free"
+                            steps: [ play_card: { card: r, free: true } ]

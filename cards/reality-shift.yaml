@@ -6,3 +6,20 @@ set: "Seed Saga"
 rarity: rare
 text: |
   X is the total numeric cost of all non-resource cards you control. Put those cards into their owners's hand. You may deploy any number of cards for free with total numeric cost X or less. (You still need to meet their threshold and satisfy their extra costs.)
+rules:
+  - play:
+      effect:
+        - let: { X: { total_cost: { card: { controller: you, not_type: resource } } } }
+        - move: { card: { card: { controller: you, not_type: resource } }, to: hand }
+        - let: { go: 1 }
+        - repeat:
+            while: { eq: [ go, 1 ] }
+            steps:
+              - pick: { as: c, from: { card: { zone: hand, owner: you, not_type: resource, cost_lte: X } }, choose: true, optional: true, prompt: "Reality Shift: you may deploy a card for free (total numeric cost left: X)." }
+              - if:
+                  cond: { defined: c }
+                  then:
+                    - let: { Y: { cost: c } }
+                    - let: { X: "X - Y" }
+                    - play_card: { card: c, free: true }
+                  else: [ let: { go: 0 } ]

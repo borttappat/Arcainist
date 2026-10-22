@@ -12,3 +12,19 @@ text: |
   FLEX
   COST: Pay 2. Pick a card in an opponent's discard pile.
   EFFECT: Remove that card from the game. If you do, this card gains 2 strength this turn.
+rules:
+  - unique: Omahkapi'si
+  - static:
+      while: { gte: [ { count: { card: { zone: discard, owner: opponent } } }, 10 ] }
+      mods: [ { cannot: pick, by: opponent } ]
+  - ability:
+      name: Flex
+      cost:
+        - pay: 2
+        - pick: { as: c, from: { card: { zone: discard, owner: opponent } } }
+      effect:
+        - void: c
+        - if:
+            cond: { in_zone: [ c, void ] }
+            then:
+              - create_effect: { duration: turn, mods: [ { stat: { str: 2 } } ] }

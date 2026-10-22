@@ -317,6 +317,8 @@ export class Game {
       if (top.noResponse) return "That can't be responded to.";
       if (r.deploying !== undefined) {
         if (top.kind !== "card" || !this.q.matches(r.deploying, top.iid, scope, null)) return "Only in response to a matching card being deployed.";
+        // "Only in response to a card being deployed using FLIP UP"
+        if (r.via && this.s.ctxs[top.ctx]?.via !== r.via) return "Only in response to a card deployed using FLIP UP.";
       }
       if (r.ability !== undefined) {
         if (top.kind !== "ability") return "Only in response to an ability.";
@@ -1095,6 +1097,8 @@ export class Game {
     const vars = this.root(ctx).vars;
     for (const [k, v] of Object.entries(arg)) {
       if (v && typeof v === "object" && "card" in (v as any)) vars[k] = this.ref(ctx, (v as any).card);
+      // A fixed list of the cards matching a selector now: let: { others: { cards: <selector> } }
+      else if (v && typeof v === "object" && "cards" in (v as any)) vars[k] = this.refs(ctx, (v as any).cards);
       else if (v && typeof v === "object" && "name_of" in (v as any)) {
         const r = this.ref(ctx, (v as any).name_of);
         vars[k] = r ? this.q.name(r) : undefined;
@@ -1105,6 +1109,11 @@ export class Game {
   }
 
   protected op_repeat(arg: any, ctx: Ctx, task: Task): StepResult {
+    // `while: <condition>`: run the steps, then check again ("repeat this until...").
+    if (arg.while !== undefined) {
+      if (this.q.cond(arg.while, this.scope(ctx))) this.push(...this.steps([...arg.steps, { repeat: arg }], ctx, task.phase));
+      return "ok";
+    }
     const n = this.num(ctx, arg.times);
     const list: Task[] = [];
     for (let i = 0; i < n; i++) list.push(...this.steps(arg.steps, ctx, task.phase));
@@ -1392,12 +1401,12 @@ export class Game {
     const p = this.who(ctx, a.who);
     const chooser = a.chooser ? this.who(ctx, a.chooser) : p;
     if (a.cards !== undefined) {
-      for (const iid of this.refs(ctx, a.cards)) if (this.s.cards[iid].zone === "hand") this.discardCard(iid);
+      for (const iid of this.refs(ctx, a.cards)) if (this.s.cards[iid].zone === "hand") this.discardCard(iid, ctx.controller);
       return "ok";
     }
     const hand = this.s.players[p].hand.filter((i) => !a.filter || this.q.matches(a.filter, i, this.scope(ctx), "hand"));
     if (task.answer) {
-      for (const iid of task.answer.ids) this.discardCard(iid);
+      for (const iid of task.answer.ids) this.discardCard(iid, ctx.controller);
       if (a.as) this.root(ctx).vars[a.as] = task.answer.ids.length === 1 ? task.answer.ids[0] : task.answer.ids;
       this.setDid(ctx, task.answer.ids.length > 0);
       return "ok";
@@ -1411,7 +1420,7 @@ export class Game {
     }
     if (a.random || (n === hand.length && !a.up_to && !a.as)) {
       const ids = this.randomPick(hand, n);
-      for (const iid of ids) this.discardCard(iid);
+      for (const iid of ids) this.discardCard(iid, ctx.controller);
       if (a.as) this.root(ctx).vars[a.as] = ids.length === 1 ? ids[0] : ids;
       this.setDid(ctx, true);
       return "ok";
@@ -1428,11 +1437,12 @@ export class Game {
     });
   }
 
-  private discardCard(iid: string): void {
+  /** `by`: the player controlling the effect that makes them discard. */
+  private discardCard(iid: string, by?: PlayerId): void {
     const c = this.s.cards[iid];
     this.log(`${this.pname(c.owner)} discards ${this.q.name(iid)}.`);
     this.move(iid, "discard");
-    this.emit({ e: "discarded", iid, player: c.owner });
+    this.emit({ e: "discarded", iid, player: c.owner, ...(by ? { by } : {}) });
   }
 
   protected op_reveal(arg: any, ctx: Ctx): StepResult {
@@ -1590,7 +1600,7 @@ export class Game {
     // "This turn, all your characters gain 1 strength" means the characters in play now.
     // Changes to cards' characteristics freeze their selector targets; rules about
     // future actions (costs, prohibitions, play permissions) stay live. `live: true` opts out.
-    const SNAPSHOT = ["stat", "set_stats", "add_type", "remove_type", "keyword"];
+    const SNAPSHOT = ["stat", "set_stats", "add_type", "remove_type", "keyword", "add_subtype"];
     const mods = (arg.mods ?? []).map((m: any) => {
       let target = fix(m.target);
       if (!m.live && SNAPSHOT.some((k) => k in m) && target && typeof target === "object" && !Array.isArray(target.iids)) target = { iids: this.q.find(target, scope) };
@@ -2411,6 +2421,11 @@ export class Game {
     if (b) this.s.window = { kind: "battle", current: b.attacker, passes: 0, next: "inflict" };
   }
 
+  /** The battle damage a character assigns: its strength, or its numeric cost under `assign_cost` (Ocular Dispersal). */
+  private battlePower(i: string): number {
+    return this.q.modsFor("assign_cost", i).length ? this.q.numericCost(i) : this.q.stat(i, "str");
+  }
+
   protected t_assignDamage(task: Task): void {
     const b = this.s.battle;
     if (!b) return;
@@ -2418,7 +2433,7 @@ export class Game {
     // "If the character would inflict battle damage, inflict that damage to itself instead" (Don't Trip).
     // (Only once: this task runs again with the answer to the assignment prompt.)
     for (const i of task.answer ? [] : group.filter((x) => this.q.modsFor("battle_damage_to_self", x).length)) {
-      const n = this.q.stat(i, "str");
+      const n = this.battlePower(i);
       if (n <= 0) continue;
       b.locked[i] = (b.locked[i] ?? 0) + n;
       b.sources[i] = [...new Set([...(b.sources[i] ?? []), i])];
@@ -2426,9 +2441,20 @@ export class Game {
       this.log(`${this.q.name(i)} assigns ${n} damage to itself.`);
     }
     group = group.filter((x) => !this.q.modsFor("battle_damage_to_self", x).length);
-    const total = group.reduce((n, i) => n + this.q.stat(i, "str"), 0);
+    // "If it would assign battle damage to the blocking party, assign it to the target of the attack instead" (Penetrate).
+    const mustPass = (x: string) => task.side === "attacker" && this.q.modsFor("assign_to_target", x).some((m) => m.value?.must);
+    for (const i of task.answer ? [] : group.filter(mustPass)) {
+      const n = this.battlePower(i);
+      if (n <= 0) continue;
+      b.locked.target = (b.locked.target ?? 0) + n;
+      b.sources.target = [...new Set([...(b.sources.target ?? []), i])];
+      (this.s.turnLog.assigned ??= {})[i] = true;
+      this.log(`${this.q.name(i)} assigns ${n} damage to the target of the attack.`);
+    }
+    group = group.filter((x) => !mustPass(x));
+    const total = group.reduce((n, i) => n + this.battlePower(i), 0);
     if (total <= 0) return;
-    for (const i of group) if (this.q.stat(i, "str") > 0) (this.s.turnLog.assigned ??= {})[i] = true;
+    for (const i of group) if (this.battlePower(i) > 0) (this.s.turnLog.assigned ??= {})[i] = true;
     const attacking = task.side === "attacker";
     const player = attacking ? b.attacker : b.defender;
     const targets = attacking ? b.blockers.filter((i) => this.inBattle(i)) : b.attackers.filter((i) => this.inBattle(i));
@@ -2449,7 +2475,7 @@ export class Game {
       return;
     }
     // "You may assign its battle damage to the target of the attack instead of the blocking party" (Colossal Flattener).
-    const past = attacking ? group.filter((i) => this.q.modsFor("assign_to_target", i).length).reduce((n, i) => n + this.q.stat(i, "str"), 0) : 0;
+    const past = attacking ? group.filter((i) => this.q.modsFor("assign_to_target", i).length).reduce((n, i) => n + this.battlePower(i), 0) : 0;
     if (past > 0) {
       const label = b.target === "faction" ? `${this.pname(b.defender)}'s faction` : this.q.name(b.target);
       this.ask(task, { type: "assign", player, prompt: `Divide ${total} damage among the blocking party (up to ${past} may go to ${label}).`, total, targets: [...targets, "target"], labels: { target: label }, caps: { target: past } });
@@ -2707,12 +2733,16 @@ export class Game {
         if (r.replace.card !== undefined && !q.matches(r.replace.card, iid, scope, null)) continue;
         // "destroyed by an opposing card or effect": by: opponent
         if (r.replace.by !== undefined && (!by || by !== q.who(r.replace.by, scope))) continue;
+        // "would be destroyed by battle damage": cause: damage
+        if (r.replace.cause !== undefined && r.replace.cause !== cause) continue;
         // "If there are no tokens on this card and it would be destroyed": while: <condition>
         if (r.replace.while !== undefined && !q.cond(r.replace.while, scope)) continue;
         if (r.replace.optional) {
           if (skipOptional) continue;
+          // "you may pay N to ... instead": only offered when its owner can pay.
+          if (r.replace.pay !== undefined && this.q.unattached(this.s.cards[iid].owner).length < q.value(r.replace.pay, scope)) continue;
           this.s.cards[iid].replacing = true;
-          this.push({ t: "optionalReplace", iid, cause, by, instead: r.instead, prompt: r.replace.prompt, controller: scope.controller, source: scope.source, vars: scope.vars });
+          this.push({ t: "optionalReplace", iid, cause, by, instead: r.instead, prompt: r.replace.prompt, pay: r.replace.pay !== undefined ? q.value(r.replace.pay, scope) : undefined, controller: scope.controller, source: scope.source, vars: scope.vars });
           return true;
         }
         const ctx = this.newCtx(scope.controller, scope.source);
@@ -2760,10 +2790,11 @@ export class Game {
       return;
     }
     c.replacing = undefined;
-    if (task.answer.ids[0] !== "yes") {
+    if (task.answer.ids[0] !== "yes" || (task.pay !== undefined && !this.payNow(c.owner, task.pay))) {
       this.destroy(task.iid, task.cause, true, task.by);
       return;
     }
+    if (task.pay !== undefined) this.log(`${this.pname(c.owner)} pays ${task.pay}.`);
     const ctx = this.newCtx(task.controller, task.source);
     Object.assign(ctx.vars, task.vars, { it: task.iid });
     this.log(`${this.q.name(task.iid)} would be destroyed; ${this.q.name(task.source)} replaces it.`);
@@ -2790,6 +2821,8 @@ export class Game {
       if (v.over !== undefined && n <= v.over) continue;
       if (v.set !== undefined) set = set === null ? v.set : Math.min(set, v.set);
       if (v.delta !== undefined) delta += this.q.value(v.delta, m.scope);
+      // "Reduce the next damage inflicted to this card": a `next` effect is used up.
+      if (m.effect?.duration === "next" && n > 0) m.effect.used = true;
     }
     return Math.max(0, (set ?? n) + delta);
   }

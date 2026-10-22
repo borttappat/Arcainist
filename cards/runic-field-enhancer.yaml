@@ -7,3 +7,11 @@ rarity: rare
 text: |
   UNIQUE RUNIC FIELD ENHANCER
   All your characters gain 1 strength and 1 life for each gear card you control.
+rules:
+  - unique: Runic Field Enhancer
+  - static:
+      mods:
+        - stat:
+            str: { count: { item: { controller: you, subtype: gear } } }
+            life: { count: { item: { controller: you, subtype: gear } } }
+          target: { character: { controller: you } }

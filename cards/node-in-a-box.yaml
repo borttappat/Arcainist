@@ -9,3 +9,13 @@ text: |
   When this card enters play, you may search your deck for a "node" card and reveal it. If you do, put it into your hand.
   If this card would be destroyed, you may pay 1 to flip it face-down under its owner's control instead.
   When this card is destroyed, destroy all other "node" cards.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may:
+          prompt: "search your deck for a node card"
+          steps: [ search: { deck: you, for: { card: { subtype: node } }, reveal: true, to: hand } ]
+  - replace: { event: destroy, card: self, optional: true, pay: 1, prompt: "Pay 1 to flip it face-down under its owner's control instead" }
+    instead: [ flip_face_down: { card: self, controller: owner } ]
+  - trigger: { on: destroyed, card: self }
+    effect: [ destroy: { card: { subtype: node, not_self: true } } ]

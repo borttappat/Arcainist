@@ -9,3 +9,19 @@ text: |
   RECUR: [G]
   COST: Use this only if this card is in your discard pile. Pay 4. Remove this card from the game. Pick a card in your discard pile.
   EFFECT: Put the card into play under your control as a face-down resource.
+rules:
+  - play:
+      effect:
+        - mill: { who: you, count: 8 }
+        - draw: 1
+  - ability:
+      name: Recur
+      keyword: recur
+      threshold: { greed: 1 }
+      from: discard
+      cost:
+        - pay: 4
+        - void: self
+        - pick: { as: c, from: { card: { zone: discard, owner: you } } }
+      effect:
+        - put_into_play: { card: c, controller: you, as: face_down_resource }

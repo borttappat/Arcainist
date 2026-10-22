@@ -6,3 +6,8 @@ set: "1st Edition"
 rarity: common
 text: |
   Your faction gains 2 influence. Draw a card.
+rules:
+  - play:
+      effect:
+        - gain_influence: { who: you, amount: 2 }
+        - draw: 1

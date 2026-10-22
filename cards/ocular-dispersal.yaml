@@ -11,3 +11,8 @@ text: |
   (put this card into play attached to that character instead of into its owner's discard pile)
   If the attached character would assign battle damage, it assigns damage equal to its numeric cost instead of its strength.
   If this card would be destroyed, flip it face-down under its owner's control instead.
+rules:
+  - static:
+      mods: [ { assign_cost: true, target: host } ]
+  - replace: { event: destroy, card: self }
+    instead: [ flip_face_down: { card: self, controller: owner } ]

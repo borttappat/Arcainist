@@ -9,3 +9,10 @@ text: |
   HAGGLE
   COST: Deplete this card. Pick a character.
   EFFECT: This turn, the character loses 2 strength.
+rules:
+  - ability:
+      name: Haggle
+      cost:
+        - deplete: self
+        - pick: { as: c, from: { character: any } }
+      effect: [ modify: { card: c, stat: str, lose: 2 } ]

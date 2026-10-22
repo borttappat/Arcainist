@@ -8,3 +8,9 @@ text: |
   EXTRA COST: Pick 2 or fewer items in your discard pile.
   Put the items into your hand.
   FLIP UP: 2 [E][E] and play a resource.
+rules:
+  - play:
+      cost:
+        - pick: { as: i, from: { item: { zone: discard, owner: you } }, count: 2, up_to: true }
+      effect: [ move: { card: i, to: hand } ]
+  - flip_up: { pay: 2, threshold: { elitism: 2 }, cost: [ play_resource: 1 ] }

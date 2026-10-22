@@ -7,3 +7,10 @@ rarity: common
 text: |
   EXTRA COST: Pick a character.
   Restore that character. This turn, it cannot attack.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - restore: c
+        - create_effect: { duration: turn, mods: [ { cannot: attack, target: c } ] }

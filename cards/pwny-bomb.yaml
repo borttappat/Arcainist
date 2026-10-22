@@ -14,3 +14,22 @@ text: |
   MOVE
   COST: Pick a character you control. Pay 3.
   EFFECT: Attach this card to the character if you can.
+rules:
+  - trigger: { on: enters_play, card: [ { character: { controller: you, token: true } }, { character: { controller: you, subtype: horsemajig } } ] }
+    effect:
+      - may: { prompt: "attach Pwny Bomb to it", steps: [ attach: { card: self, to: it } ] }
+  - ability:
+      name: Pwned
+      cost:
+        - pick: { as: h, from: [ { character: { host_of: self, token: true } }, { character: { host_of: self, subtype: horsemajig } } ] }
+        - pick: { as: c, from: { character: any } }
+        - destroy: self
+      effect:
+        - damage: { card: h, amount: 7 }
+        - damage: { card: c, amount: 7 }
+  - ability:
+      name: Move
+      cost:
+        - pick: { as: c, from: { character: { controller: you } } }
+        - pay: 3
+      effect: [ attach: { card: self, to: c } ]

@@ -7,3 +7,15 @@ rarity: common
 text: |
   EXTRA COST: Pick a character. X is its strength.
   If that character's controller controls at least X face-down resources, destroy the character.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+        - let: { X: { stat: [ c, str ] } }
+      effect:
+        - as:
+            who: { controller_of: c }
+            steps:
+              - if:
+                  cond: { gte: [ { count: { resource: { controller: you, face_down: true } } }, X ] }
+                  then: [ destroy: c ]

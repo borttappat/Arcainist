@@ -10,3 +10,16 @@ text: |
   RETURN
   COST: Use this only if there are no tokens on this card. Destroy it.
   EFFECT: Draw 3 cards.
+enters_with_tokens: 2
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - if:
+          cond: { gt: [ { tokens: self }, 0 ] }
+          then: [ tokens: { card: self, remove: 1 } ]
+  - ability:
+      name: Return
+      cost:
+        - require: { eq: [ { tokens: self }, 0 ] }
+        - destroy: self
+      effect: [ draw: 3 ]

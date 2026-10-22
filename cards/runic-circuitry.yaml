@@ -12,3 +12,16 @@ text: |
   POWER-UP
   COST: Use this only if there are no tokens on this card. Deplete this card.
   EFFECT: Reduce the next numeric cost you pay this turn by 3
+enters_with_tokens: 2
+rules:
+  - ability:
+      name: Construct
+      cost: [ pay: 3, deplete: self ]
+      effect: [ tokens: { card: self, remove: 1 } ]
+  - ability:
+      name: Power-Up
+      cost:
+        - require: { eq: [ { tokens: self }, 0 ] }
+        - deplete: self
+      effect:
+        - create_effect: { duration: next, mods: [ { cost: -3, applies: any, by: you, target: all } ] }

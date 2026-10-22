@@ -9,3 +9,10 @@ text: |
   CANNIBALIZE
   COST: Destroy a character you control.
   EFFECT: This turn, this card gains 2 strength.
+rules:
+  - ability:
+      name: Cannibalize
+      cost:
+        - destroy: { from: { character: { controller: you } }, choose: true }
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: 2 } } ] }

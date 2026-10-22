@@ -8,3 +8,10 @@ text: |
   EXTRA COST: Pick a character.
   This turn, the character gains COVERT.
   FLIP UP: 2 [O]
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { keyword: covert, target: c } ] }
+  - flip_up: { pay: 2, threshold: { obsession: 1 } }

@@ -9,3 +9,8 @@ text: |
   LIQUIDATE
   COST: Pay 2. Discard a card. Deplete this card.
   EFFECT: Draw 2 cards.
+rules:
+  - ability:
+      name: Liquidate
+      cost: [ pay: 2, discard: 1, deplete: self ]
+      effect: [ draw: 2 ]

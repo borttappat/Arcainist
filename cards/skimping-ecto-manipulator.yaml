@@ -9,3 +9,10 @@ text: |
   ENERGIZE
   COST: Deplete this card. Pick a non-resource card you control.
   EFFECT: Put a token on the card.
+rules:
+  - ability:
+      name: Energize
+      cost:
+        - deplete: self
+        - pick: { as: c, from: { card: { controller: you, not_type: resource } } }
+      effect: [ tokens: { card: c, add: 1 } ]

@@ -10,3 +10,18 @@ text: |
   CHEAP SHOT
   COST: Use this only if no tokens are on this card and only if an opponent deployed a character this turn. Destroy this card. Pick a character.
   EFFECT: Destroy the character.
+enters_with_tokens: 3
+rules:
+  - trigger: { on: played, player: opponent, card: { character: { zone: any } } }
+    effect:
+      - if:
+          cond: { gt: [ { tokens: self }, 0 ] }
+          then:
+            - may: { prompt: "remove a token from Slingerang", steps: [ tokens: { card: self, remove: 1 } ] }
+  - ability:
+      name: Cheap Shot
+      cost:
+        - require: { all: [ { eq: [ { tokens: self }, 0 ] }, { gt: [ { played_this_turn: { by: opponent, type: character } }, 0 ] } ] }
+        - destroy: self
+        - pick: { as: c, from: { character: any } }
+      effect: [ destroy: c ]

@@ -8,3 +8,13 @@ text: |
   EXTRA COST: Deploy this only during a battle. Deplete a character you control that is not in a battle party.
   Add the character you depleted to an attacking or blocking party you control. It gains 1 speed this turn.
   FLIP UP: 2 [D][D]
+rules:
+  - play:
+      timing: { in_battle: true }
+      cost:
+        - pick: { as: c, from: { character: { controller: you, attacking: false, blocking: false, depleted: false } }, choose: true, prompt: "Deplete a character you control that is not in a battle party." }
+        - deplete: c
+      effect:
+        - add_to_battle: { card: c }
+        - modify: { card: c, stat: spd, gain: 1 }
+  - flip_up: { pay: 2, threshold: { deception: 2 } }

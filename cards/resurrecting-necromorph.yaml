@@ -7,3 +7,12 @@ set: "Holy Heist"
 rarity: uncommon
 text: |
   When another character is put into your discard pile from play, if this card is in your discard pile, you may pay 1. If you do, put this card into play under your control. Deplete it.
+rules:
+  - trigger: { on: moved, card: { character: { zone: discard, owner: you, not_self: true } }, from: play, to: discard, zone: discard }
+    effect:
+      - may_pay:
+          amount: 1
+          prompt: "put Resurrecting Necromorph into play, depleted"
+          then:
+            - put_into_play: { card: self, controller: you }
+            - deplete: self

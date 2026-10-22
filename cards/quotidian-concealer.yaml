@@ -10,3 +10,12 @@ text: |
   OBSCURE
   COST: Remove a token from this card. Pick a character.
   EFFECT: This turn, the character gains COVERT.
+enters_with_tokens: 1
+rules:
+  - ability:
+      name: Obscure
+      cost:
+        - tokens: { card: self, remove: 1 }
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { keyword: covert, target: c } ] }

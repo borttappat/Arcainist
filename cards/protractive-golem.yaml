@@ -7,3 +7,7 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   [E][E][E][E][E][E]: This card gains 3 strength, 3 life, and loses 1 speed.
+rules:
+  - static:
+      requires: { elitism: 6 }
+      mods: [ { stat: { str: 3, life: 3, spd: -1 } } ]

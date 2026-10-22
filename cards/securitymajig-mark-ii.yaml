@@ -10,3 +10,14 @@ text: |
   This card gains 1 strength for each token on it.
   This card can block COVERT parties.
   FLIP UP: 5 [E]
+rules:
+  - play:
+      effect:
+        - if:
+            cond: { via: flip_up }
+            then: [ tokens: { card: self, add: 3 } ]
+  - static:
+      mods:
+        - { stat: { str: { tokens: self } } }
+        - { blocks_any: true }
+  - flip_up: { pay: 5, threshold: { elitism: 1 } }

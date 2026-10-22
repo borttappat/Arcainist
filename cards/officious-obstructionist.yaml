@@ -9,3 +9,9 @@ text: |
   STUBBORNNESS
   COST: Pay 1.
   EFFECT: This turn, this card gains 1 life.
+rules:
+  - ability:
+      name: Stubbornness
+      cost: [ pay: 1 ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { life: 1 } } ] }

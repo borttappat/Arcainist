@@ -19,6 +19,12 @@ function top(g: ReturnType<typeof newGame>, p: "A" | "B", iid: string) {
   d.unshift(iid);
 }
 
+/** Run the engine after a direct state change (a destroy outside any action). */
+function settle(g: ReturnType<typeof newGame>) {
+  g.s.pending = undefined as any;
+  (g as any).run();
+}
+
 describe("cards: D onwards", () => {
   it("Desolate: destroys every character with exactly X strength", () => {
     const { g, p, o } = setup();
@@ -979,5 +985,346 @@ describe("cards: D onwards", () => {
     expect(g.s.cards[w2].zone).toBe("discard");
     expect(g.s.cards[w1].zone).toBe("play");
     expect(g.s.cards[t].zone).toBe("discard");
+  });
+
+  it("Necromantic Healer: battle damage to its party members is reduced by 1", () => {
+    const { g, p, o } = setup();
+    const h = put(g, p, "necromantic-healer", "play");
+    const w = put(g, p, "fired-hand", "play");
+    const b = put(g, o, "fired-hand", "play");
+    act(g, p, { type: "attack", target: "faction", attackers: [h, w] });
+    pass(g);
+    pass(g);
+    act(g, o, { type: "answer", ids: [b] });
+    g.inflict(w, 3, true, [b]);
+    expect(g.s.cards[w].damage).toBe(2);
+    g.inflict(b, 3, true, [w]);
+    expect(g.s.cards[b].damage).toBe(3); // not in the Healer's party
+    g.inflict(w, 1, false, []);
+    expect(g.s.cards[w].damage).toBe(3); // not battle damage
+  });
+
+  it("Ocular Dispersal: the host assigns battle damage equal to its numeric cost", () => {
+    const { g, p, o } = setup();
+    const w = put(g, p, "wanton-wizard", "play");
+    const od = put(g, p, "ocular-dispersal", "play");
+    g.s.cards[od].attachedTo = w;
+    const inf = g.s.players[o].influence;
+    act(g, p, { type: "attack", target: "faction", attackers: [w] });
+    for (let i = 0; i < 12 && g.s.battle; i++) pass(g);
+    expect(inf - g.s.players[o].influence).toBe(g.q.numericCost(w));
+    expect(g.q.numericCost(w)).not.toBe(g.q.stat(w, "str"));
+  });
+
+  it("Negotiation Ceremonies: both players pay in turns and draw what they paid", () => {
+    const { g, p, o } = setup();
+    resources(g, p, "greed", 4);
+    resources(g, o, "greed", 3);
+    const t = put(g, p, "negotiation-ceremonies", "hand");
+    const hp = g.s.players[p].hand.length;
+    const ho = g.s.players[o].hand.length;
+    act(g, p, { type: "deploy", iid: t });
+    answer(g, ["yes"]); // Alice pays 1
+    answer(g, ["yes"]); // Bob pays 1
+    answer(g, ["yes"]); // Alice pays 1
+    answer(g, ["no"]); // Bob stops
+    passAll(g);
+    expect(g.s.players[p].hand.length).toBe(hp - 1 + 2);
+    expect(g.s.players[o].hand.length).toBe(ho + 1);
+  });
+
+  it("Node-in-a-Box: pay 1 to flip face-down instead; when destroyed, other nodes go too", () => {
+    const { g, p, o } = setup();
+    resources(g, p, "elitism", 1);
+    const n = put(g, p, "node-in-a-box", "play");
+    g.destroy(n);
+    settle(g);
+    answer(g, ["yes"]);
+    expect(g.s.cards[n].faceDown).toBe(true);
+    const n2 = put(g, p, "node-in-a-box", "play");
+    const other2 = put(g, o, "hub-node", "play");
+    const lug = put(g, o, "lugubrious-node", "play");
+    g.destroy(n2);
+    settle(g);
+    answer(g, ["no"]);
+    passAll(g);
+    expect(g.s.cards[n2].zone).toBe("discard");
+    expect(g.s.cards[other2].zone).not.toBe("play");
+    expect(g.s.cards[lug].zone).toBe("play"); // can't be destroyed by node cards
+  });
+
+  it("Octo-Ba-Ba: gets a token when an opposing character is destroyed", () => {
+    const { g, p, o } = setup();
+    const ob = put(g, p, "octo-ba-ba-the-devourer", "play");
+    const w = put(g, o, "wanton-wizard", "play");
+    const mine = put(g, p, "wanton-wizard", "play");
+    g.destroy(mine);
+    settle(g);
+    expect(g.s.cards[ob].tokens).toBe(0);
+    g.destroy(w);
+    settle(g);
+    expect(g.s.cards[ob].tokens).toBe(1);
+  });
+
+  it("Offering of False Friendship: same-named characters go to the bottom unless the opponent pays 2", () => {
+    const { g, p, o } = setup();
+    resources(g, p, "obsession", 3);
+    const w1 = put(g, o, "wanton-wizard", "play");
+    const w2 = put(g, p, "wanton-wizard", "play");
+    const f = put(g, o, "fired-hand", "play");
+    const t = put(g, p, "offering-of-false-friendship", "hand");
+    act(g, p, { type: "deploy", iid: t });
+    answer(g, [w1]);
+    passAll(g);
+    answer(g, ["no"]);
+    passAll(g);
+    for (const w of [w1, w2]) expect(g.s.cards[w].zone).toBe("deck");
+    expect(g.s.players[o].deck.at(-1)).toBe(w1);
+    expect(g.s.cards[f].zone).toBe("play");
+  });
+
+  it("Penetrate: the attacker's battle damage goes past the blockers to the target", () => {
+    const { g, p, o } = setup();
+    const atk = put(g, p, "fired-hand", "play");
+    const blk = put(g, o, "wanton-wizard", "play");
+    resources(g, p, "rage", 2);
+    const t = put(g, p, "penetrate", "hand");
+    const inf = g.s.players[o].influence;
+    act(g, p, { type: "attack", target: "faction", attackers: [atk] });
+    pass(g);
+    pass(g);
+    answer(g, [blk]);
+    act(g, p, { type: "deploy", iid: t });
+    answer(g, [atk]);
+    for (let i = 0; i < 12 && g.s.battle; i++) pass(g);
+    expect(inf - g.s.players[o].influence).toBe(g.q.stat(atk, "str"));
+    expect(g.s.cards[blk].zone).toBe("play");
+    expect(g.s.cards[blk].damage).toBe(0);
+  });
+
+  it("Padamose Cultists: draws 2 only after a non-character deploy this turn", () => {
+    const { g, p } = setup();
+    resources(g, p, "greed", 6);
+    const c1 = put(g, p, "padamose-cultists", "hand");
+    let h = g.s.players[p].hand.length;
+    act(g, p, { type: "deploy", iid: c1 });
+    passAll(g);
+    expect(g.s.players[p].hand.length).toBe(h - 1);
+    const t = put(g, p, "orgy-den-smoke-out", "hand");
+    resources(g, p, "deception", 2);
+    act(g, p, { type: "deploy", iid: t });
+    passAll(g);
+    const c2 = put(g, p, "padamose-cultists", "hand");
+    h = g.s.players[p].hand.length;
+    act(g, p, { type: "deploy", iid: c2 });
+    passAll(g);
+    expect(g.s.players[p].hand.length).toBe(h - 1 + 2);
+  });
+
+  it("Phalludrix: cards an opponent's effect makes you discard may go back to your hand", () => {
+    const { g, p, o } = setup();
+    put(g, o, "phalludrix-the-impotenator", "play");
+    const h = put(g, o, "wanton-wizard", "hand");
+    resources(g, p, "deception", 2);
+    const t = put(g, p, "orgy-den-smoke-out", "hand");
+    act(g, p, { type: "deploy", iid: t });
+    passAll(g);
+    expect(expectPending(g, "choose", o).prompt).toContain("back into your hand");
+    answer(g, ["yes"]);
+    passAll(g);
+    expect(g.s.cards[h].zone).toBe("hand");
+  });
+
+  it("Pride of Goru-Goru Gidea: Resist reduces only the next damage", () => {
+    const { g, p } = setup();
+    resources(g, p, "greed", 4);
+    const c = put(g, p, "pride-of-goru-goru-gidea", "play");
+    act(g, p, { type: "ability", iid: c, index: 0 });
+    passAll(g);
+    g.inflict(c, 1, false, []);
+    expect(g.s.cards[c].damage).toBe(0);
+    g.inflict(c, 1, false, []);
+    expect(g.s.cards[c].damage).toBe(1);
+  });
+
+  it("Pinguid Bodyguard: restores at the end of its battle", () => {
+    const { g, p } = setup();
+    const c = put(g, p, "pinguid-bodyguard", "play");
+    act(g, p, { type: "attack", target: "faction", attackers: [c] });
+    expect(g.s.cards[c].depleted).toBe(true);
+    for (let i = 0; i < 12 && g.s.battle; i++) pass(g);
+    passAll(g);
+    expect(g.s.battle).toBeFalsy();
+    expect(g.s.cards[c].depleted).toBe(false);
+  });
+
+  it("Predatory Lamp: the picked character loses COVERT while the Lamp is in play", () => {
+    const { g, p, o } = setup();
+    resources(g, p, "obsession", 3);
+    const oo = put(g, o, "ominous-oozling", "play");
+    const l = put(g, p, "predatory-lamp", "hand");
+    act(g, p, { type: "deploy", iid: l });
+    passAll(g);
+    answer(g, [oo]);
+    passAll(g);
+    expect(g.q.keyword(oo, "covert")).toBe(false);
+    g.move(l, "discard");
+    expect(g.q.keyword(oo, "covert")).toBe(true);
+  });
+
+  it("Purifying Priest: the next 1 damage to your faction goes to the location", () => {
+    const { g, p } = setup();
+    const pr = put(g, p, "purifying-priest", "play");
+    const loc = put(g, p, "personal-god-shrine", "play");
+    act(g, p, { type: "ability", iid: pr, index: 0 });
+    answer(g, [loc]);
+    passAll(g);
+    const inf = g.s.players[p].influence;
+    g.damageFaction(p, 2, [], false);
+    expect(g.s.cards[loc].markers).toBe(1);
+    expect(inf - g.s.players[p].influence).toBe(1);
+  });
+
+  it("Quipmajig: the insulted COVERT character deals no damage this turn", () => {
+    const { g, p, o } = setup();
+    const q = put(g, p, "quipmajig", "play");
+    const cv = put(g, o, "ominous-oozling", "play");
+    const w = put(g, p, "wanton-wizard", "play");
+    act(g, p, { type: "ability", iid: q, index: 0 });
+    answer(g, [cv]);
+    passAll(g);
+    expect(g.s.cards[cv].depleted).toBe(true);
+    g.inflict(w, 3, true, [cv]);
+    expect(g.s.cards[w].damage).toBe(0);
+  });
+
+  it("Reality Shift: returns your cards and redeploys them for free up to their total cost", () => {
+    const { g, p } = setup();
+    resources(g, p, "obsession", 7);
+    resources(g, p, "deception", 1);
+    const w = put(g, p, "wanton-wizard", "play");
+    const f = put(g, p, "fired-hand", "play");
+    const t = put(g, p, "reality-shift", "hand");
+    act(g, p, { type: "deploy", iid: t });
+    passAll(g);
+    expect(g.s.cards[w].zone).toBe("hand");
+    const d = expectPending(g, "choose", p);
+    expect(d.options.map((x: any) => x.id).sort()).toEqual([w, f].sort());
+    answer(g, [f]);
+    passAll(g);
+    // 9 - 6 = 3 left: the Wizard still fits; decline it.
+    expect(expectPending(g, "choose", p).options.map((x: any) => x.id)).toEqual([w]);
+    answer(g, []);
+    passAll(g);
+    expect(g.s.cards[f].zone).toBe("play");
+    expect(g.s.cards[w].zone).toBe("hand");
+  });
+
+  it("Reckless Challenger: destroyed at the end of turn unless it attacked", () => {
+    const { g, p } = setup();
+    const idle = put(g, p, "reckless-challenger", "play");
+    const fresh = put(g, p, "reckless-challenger", "play", { since: g.s.turn });
+    expect(g.q.cond({ attacked_this_turn: idle } as any, { controller: p, source: idle, vars: {} } as any)).toBe(false);
+    act(g, p, { type: "end_turn" });
+    passAll(g);
+    answer(g, ["0"]);
+    passAll(g);
+    expect(g.s.cards[idle].zone).toBe("discard");
+    expect(g.s.cards[fresh].zone).toBe("play"); // it entered this turn
+  });
+
+  it("Ritual of the Sucking Skull: terminates a FLIP UP deploy; its controller may detach X", () => {
+    const { g, p, o } = setup();
+    resources(g, p, "elitism", 5);
+    const gol = put(g, p, "recyclable-golem", "play", { faceDown: true });
+    const t = put(g, o, "ritual-of-the-sucking-skull", "hand");
+    resources(g, o, "obsession", 1);
+    const plain = put(g, p, "rapacious-soldier", "hand");
+    resources(g, p, "rage", 2);
+    act(g, p, { type: "deploy", iid: plain });
+    expect(() => act(g, o, { type: "deploy", iid: t })).toThrow(/FLIP UP/);
+    passAll(g);
+    act(g, p, { type: "flip_up", iid: gol });
+    act(g, o, { type: "deploy", iid: t });
+    passAll(g);
+    expectPending(g, "number", p);
+    g.act(p, { type: "answer", value: 2 });
+    passAll(g);
+    expect(g.s.cards[gol].zone).toBe("discard");
+  });
+
+  it("Rune of Concealment: destroy the Rune instead of the character killed by damage", () => {
+    const { g, p, o } = setup();
+    resources(g, p, "elitism", 2);
+    const r = put(g, p, "rune-of-concealment", "play");
+    const f = put(g, p, "runic-whale", "play");
+    const src = put(g, o, "wanton-wizard", "play");
+    act(g, p, { type: "ability", iid: r, index: 0 });
+    answer(g, [f]);
+    passAll(g);
+    g.destroy(f);
+    settle(g);
+    expect(g.s.cards[f].zone).toBe("discard"); // not destroyed by damage
+    const f2 = put(g, p, "runic-whale", "play");
+    g.s.cards[r].depleted = false;
+    act(g, p, { type: "ability", iid: r, index: 0 });
+    answer(g, [f2]);
+    passAll(g);
+    g.inflict(f2, 5, true, [src]);
+    settle(g);
+    answer(g, ["yes"]);
+    passAll(g);
+    expect(g.s.cards[r].zone).toBe("discard");
+    expect(g.s.cards[f2].zone).toBe("play");
+    expect(g.s.cards[f2].damage).toBe(0);
+  });
+
+  it("Rudo Mangod, Dragonweight Champion: depletes your others, which stop restoring", () => {
+    const { g, p } = setup();
+    resources(g, p, "rage", 4);
+    const w = put(g, p, "rapacious-soldier", "play");
+    const r = put(g, p, "rudo-mangod-dragonweight-champion", "hand");
+    act(g, p, { type: "deploy", iid: r });
+    passAll(g);
+    expect(g.s.cards[w].depleted).toBe(true);
+    expect(g.q.stat(r, "str")).toBe(6); // 1 depleted warlord character
+    expect(g.q.cannot("restore_by_rule", w, p)).toBe(true);
+    const later = put(g, p, "rapacious-soldier", "play");
+    expect(g.q.cannot("restore_by_rule", later, p)).toBe(false);
+  });
+
+  it("Sarcophyle Matriculation: take control of the attacker instead of it being destroyed", () => {
+    const { g, p, o } = setup();
+    const atk = put(g, p, "runic-whale", "play");
+    resources(g, o, "deception", 4);
+    const t = put(g, o, "sarcophyle-matriculation", "hand");
+    act(g, p, { type: "attack", target: "faction", attackers: [atk] });
+    pass(g);
+    act(g, o, { type: "deploy", iid: t });
+    answer(g, [atk]);
+    pass(g);
+    g.inflict(atk, 2, false, []);
+    g.destroy(atk);
+    settle(g);
+    expect(g.s.cards[atk].zone).toBe("play");
+    expect(g.s.cards[atk].controller).toBe(o);
+    expect(g.s.cards[atk].damage).toBe(0);
+    expect(g.q.matches({ character: { subtype: "sarcophyle" } }, atk, { controller: o, vars: {} } as any, null)).toBe(true);
+  });
+
+  it("Snake Eyes: destroys the character only if it was damaged this turn", () => {
+    const { g, p, o } = setup();
+    resources(g, p, "deception", 6);
+    const hurt = put(g, o, "runic-whale", "play");
+    const fine = put(g, o, "runic-whale", "play");
+    g.inflict(hurt, 1, false, []);
+    for (const c of [fine, hurt]) {
+      const t = put(g, p, "snake-eyes", "hand");
+      act(g, p, { type: "deploy", iid: t });
+      answer(g, [c]);
+      passAll(g);
+    }
+    expect(g.s.cards[fine].zone).toBe("play");
+    expect(g.s.cards[hurt].zone).toBe("discard");
   });
 });

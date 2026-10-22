@@ -9,3 +9,10 @@ text: |
   BANISH
   COST: Pick a location.
   EFFECT: The next 1 damage that would be inflicted to your faction this turn is inflicted to the location instead.
+rules:
+  - ability:
+      name: Banish
+      cost:
+        - pick: { as: l, from: { location: any } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { redirect_damage: { to: l, amount: 1 }, target: { faction: { controller: you } } } ] }

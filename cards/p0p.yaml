@@ -12,3 +12,29 @@ text: |
   TEAMWORK
   COST: Use this only once per turn. Pick 3 cards, each named "5n4p", "Cr4ck13" and "P0p". Destroy a micromajig token you control.
   EFFECT: This turn, the characters gain 1 strength, 1 life and cannot be blocked.
+rules:
+  - ability:
+      name: Bolster
+      cost:
+        - pick: { as: d, from: { character: { controller: you, not_self: true, depleted: false } }, choose: true, prompt: "Deplete another character you control." }
+        - deplete: d
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: 1, life: 1 } } ] }
+  - ability:
+      name: Teamwork
+      once_per_turn: true
+      cost:
+        - pick: { as: a, from: { card: { name: 5n4p } } }
+        - pick: { as: b, from: { card: { name: Cr4ck13 } } }
+        - pick: { as: c, from: { card: { name: P0p } } }
+        - destroy: { from: { character: { controller: you, token: true } }, choose: true }
+      effect:
+        - create_effect:
+            duration: turn
+            mods:
+              - { stat: { str: 1, life: 1 }, target: a }
+              - { stat: { str: 1, life: 1 }, target: b }
+              - { stat: { str: 1, life: 1 }, target: c }
+              - { cannot_be_blocked: true, target: a }
+              - { cannot_be_blocked: true, target: b }
+              - { cannot_be_blocked: true, target: c }

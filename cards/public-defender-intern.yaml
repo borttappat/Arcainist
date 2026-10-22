@@ -7,3 +7,6 @@ set: "Holy Heist"
 rarity: common
 text: |
   When this card enters play, draw a card.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect: [ draw: 1 ]

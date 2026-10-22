@@ -10,3 +10,28 @@ text: |
   OPTION 2: Each player puts a resource they control into its owner's hand. Each player may play a resource.
   OPTION 3: Each player discards a card.
   OPTION 4: Each player puts a card from their hand on the top of their deck.
+rules:
+  - trigger: { on: start_of_turn, player: any }
+    effect:
+      - choose_one:
+          who: player
+          options:
+            - label: "Each player draws a card, then puts a card from their hand on the bottom of their deck"
+              steps:
+                - each_player: [ draw: 1 ]
+                - each_player:
+                    - pick: { as: h, from: { card: { zone: hand, owner: you } }, choose: true, prompt: "Put a card from your hand on the bottom of your deck." }
+                    - move: { card: h, to: deck_bottom }
+            - label: "Each player puts a resource they control into its owner's hand, then may play a resource"
+              steps:
+                - each_player:
+                    - pick: { as: r, from: { resource: { controller: you } }, choose: true, prompt: "Put a resource you control into its owner's hand." }
+                    - move: { card: r, to: hand }
+                - each_player: [ play_resource: { optional: true } ]
+            - label: "Each player discards a card"
+              steps: [ each_player: [ discard: 1 ] ]
+            - label: "Each player puts a card from their hand on top of their deck"
+              steps:
+                - each_player:
+                    - pick: { as: h, from: { card: { zone: hand, owner: you } }, choose: true, prompt: "Put a card from your hand on top of your deck." }
+                    - move: { card: h, to: deck_top }

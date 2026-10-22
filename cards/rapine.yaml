@@ -7,3 +7,9 @@ rarity: uncommon
 text: |
   EXTRA COST: Destroy a character or item you control. Pick a character.
   Take control of the picked character.
+rules:
+  - play:
+      cost:
+        - destroy: { from: [ { character: { controller: you } }, { item: { controller: you } } ], choose: true }
+        - pick: { as: c, from: { character: any } }
+      effect: [ take_control: { card: c, who: you } ]

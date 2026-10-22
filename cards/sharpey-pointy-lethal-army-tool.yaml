@@ -12,3 +12,26 @@ text: |
   UNFOLD
   COST: Pay 2. Deplete the attached character. Reveal the top card of your deck.
   EFFECT: If the revealed card has a numeric cost of 5 or higher, all characters your opponents control lose 1 life. If the revealed card has a numeric cost of 0-4, destroy the attached character. If the revealed card is a resource, destroy the attached character and destroy all characters your opponents control.
+rules:
+  - ability:
+      name: Unfold
+      cost:
+        - pay: 2
+        - deplete: host
+        - let: { t: { card: top_of_you } }
+        - reveal_top: { who: you, count: 1 }
+      effect:
+        - if:
+            cond: { defined: t }
+            then:
+              - if:
+                  cond: { matches: [ t, { resource: { zone: deck } } ] }
+                  then:
+                    - destroy: host
+                    - destroy: { character: { controller: opponent } }
+                  else:
+                    - if:
+                        cond: { gte: [ { cost: t }, 5 ] }
+                        then:
+                          - create_effect: { duration: game, mods: [ { stat: { life: -1 }, target: { character: { controller: opponent } } } ] }
+                        else: [ destroy: host ]

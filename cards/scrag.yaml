@@ -7,3 +7,15 @@ rarity: common
 text: |
   EXTRA COST: Pick a character. X is its life.
   If that character's controller has at least X cards in their discard pile, destroy the character.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+        - let: { X: { stat: [ c, life ] } }
+      effect:
+        - as:
+            who: { controller_of: c }
+            steps:
+              - if:
+                  cond: { gte: [ { count: { card: { zone: discard, owner: you } } }, X ] }
+                  then: [ destroy: c ]

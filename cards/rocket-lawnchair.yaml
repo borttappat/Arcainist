@@ -11,3 +11,24 @@ text: |
   COST: Pick a character you own. Pick a character an opponent controls. Destroy this card.
   EFFECT: Destroy the characters. If either character was a member of an opponent's attacking party, destroy all characters in that party.
   FLIP UP: 4 [E][E]
+rules:
+  - ability:
+      name: No Eject!
+      cost:
+        - pick: { as: a, from: { character: { owner: you } } }
+        - pick: { as: b, from: { character: { controller: opponent } } }
+        - destroy: self
+      effect:
+        - if:
+            cond:
+              any:
+                - { matches: [ a, { character: { attacking: true, controller: opponent } } ] }
+                - { matches: [ b, { character: { attacking: true, controller: opponent } } ] }
+            then:
+              - destroy: a
+              - destroy: b
+              - destroy: { character: { attacking: true, controller: opponent } }
+            else:
+              - destroy: a
+              - destroy: b
+  - flip_up: { pay: 4, threshold: { elitism: 2 } }

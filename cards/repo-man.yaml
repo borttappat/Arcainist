@@ -7,3 +7,10 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   When this card enters play, you may pick a location. If you do, destroy it.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - pick: { as: l, from: { location: any }, optional: true }
+      - if:
+          cond: { defined: l }
+          then: [ destroy: l ]

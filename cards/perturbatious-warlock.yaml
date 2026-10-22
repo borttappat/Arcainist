@@ -7,3 +7,11 @@ set: "Seed Saga"
 rarity: common
 text: |
   When this card enters play, an opponent puts a card from their hand on the top of their deck.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - as:
+          who: opponent
+          steps:
+            - pick: { as: h, from: { card: { zone: hand, owner: you } }, choose: true, prompt: "Put a card from your hand on top of your deck." }
+            - move: { card: h, to: deck_top }

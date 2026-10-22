@@ -7,3 +7,6 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   When this card leaves play, draw 2 cards.
+rules:
+  - trigger: { on: leaves_play, card: self }
+    effect: [ draw: 2 ]

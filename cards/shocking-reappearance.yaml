@@ -7,3 +7,12 @@ rarity: uncommon
 text: |
   EXTRA COST: Deploy this only while you are being attacked. Pick a character in your discard pile.
   Put the character into play under your control as a member of the blocking party.
+rules:
+  - play:
+      timing: { in_battle: true }
+      cost:
+        - require: { your_turn: false }
+        - pick: { as: c, from: { character: { zone: discard, owner: you } } }
+      effect:
+        - put_into_play: { card: c, controller: you }
+        - add_to_battle: { card: c, side: blocking }

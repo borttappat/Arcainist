@@ -124,7 +124,7 @@ the stack, before the opponent can respond.
 |---|---|
 | `your_turn: true` | "Play this only during your turn." |
 | `after_end_turn: true` | Only after you declared the end of your turn (Lost on Floor 3). |
-| `response_to: { deploying: <selector> }` | Only in response to a matching card being deployed. |
+| `response_to: { deploying: <selector> }` | Only in response to a matching card being deployed. Add `via: flip_up` for "a card being deployed using FLIP UP". |
 | `response_to: { ability: true }` | Only in response to an ability. |
 | `response_to: { ability: <selector> }` | Only in response to an ability of a matching card ("a character's ability"). |
 | `response_to: { picked_character_as_cost: true }` | Mistaken Identity. |
@@ -203,11 +203,13 @@ Static rules are only active while the card is face-up in play, or in `zone` (`h
 | `tactic_to_discard` | A tactic you deployed would go to the discard pile (`by: you`); `it` is the tactic. If the `instead` steps don't move it, it goes to the discard pile as normal (Thabbash). |
 | `faction_damage` | Damage to a faction (`by: you`, `to: opponent`, `label`). The controller chooses how much is replaced. `amount` and `player` are set (Trickster's Globe). |
 
-A replacement with `while: <condition>` only applies while it holds ("If there are no
+A replacement with `cause: damage` only applies when the card would be destroyed by damage (`cost`, `effect` and `rule` are the other causes). A replacement with `while: <condition>` only applies while it holds ("If there are no
 tokens on this card and it would be destroyed"). A replacement runs to the end before
 the same card can be destroyed again. A `destroy` replacement with `optional: true` ("its owner may ... instead") asks the
 destroyed card's owner first, with `prompt` as the question; on "no" the card is
-destroyed as normal (Adriel, Supreme General).
+destroyed as normal (Adriel, Supreme General). With `pay: N` ("you may pay 1 to flip it
+face-down instead") it is only offered when the owner can pay, and "yes" pays it
+(Node-in-a-Box).
 
 Zone changes ("would be put into X, put it into Y instead") are the `redirect`
 modifier. Damage amount changes are the `damage` modifier.
@@ -242,8 +244,8 @@ picking their faction (`pick: { as: f, from: { faction: any }, choose: true }`),
 | `choose_one` | `choose_one: { who: opponent, options: [ { label, steps, when } ] }` | OPTION 1 / OPTION 2. An option with `when: <condition>` is only offered while it holds. |
 | `as` | `as: { who: opponent, steps: [..] }` | Run steps as another player. |
 | `each_player` | `each_player: [ ..steps.. ]` | Active player first. |
-| `repeat` | `repeat: { times: X, steps: [..] }` | |
-| `let` | `let: { X: { cost: c }, who: { card: it }, n: { name_of: m } }` | Set variables. |
+| `repeat` | `repeat: { times: X, steps: [..] }`, `repeat: { while: <condition>, steps: [..] }` | `while` checks before each pass ("repeat this cost until you or that player does not pay"). |
+| `let` | `let: { X: { cost: c }, who: { card: it }, n: { name_of: m }, others: { cards: <selector> } }` | Set variables. `cards` keeps the list of cards matching now ("they cannot be restored": the characters it depleted, not later ones). |
 | `require` | `require: <condition>` | "Play this only if…". |
 | `remember` | `remember: { picked_opponent: true }`, `remember: { picked: { var: t } }` | Store a value (or a variable's value) on the card while it's in play; its static rules can use it. |
 
@@ -340,7 +342,9 @@ selector targets (costs, prohibitions, play permissions) always stay live.
 `create_effect` takes a `tag`, and `clear_effects: { tag: form }` removes only the
 card's effects with that tag (`clear_effects: self` removes all of them). `next` effects end
 after their first use (1337!, Escrow Office) or at the start of the next turn.
-A delayed trigger with `once: true` removes its effect after firing.
+A delayed trigger with `once: true` removes its effect after firing. A `next` effect with a
+`damage` modifier is used up by the first damage it changes ("reduce the next damage
+inflicted to this card this turn by 1").
 
 ## 4. Selectors
 
@@ -376,6 +380,7 @@ Type keys: `character`, `item`, `location`, `tactic`, `resource`, `faction`, or
 | `text_has` | `text_has: "[V]"`: the printed text contains it |
 | `damaged_faction` | `damaged_faction: you`: inflicted damage to that player's faction this turn |
 | `damaged_by` | `damaged_by: self`: this card inflicted damage to it this turn |
+| `damaged_this_turn` | true / false: it received damage this turn |
 | `spent` | A resource attached to its faction |
 | `has_tokens` | true / false |
 | `type`, `not_type`, `not_types: [..]`, `printed_type` | `printed_type` ignores face-down status |
@@ -392,6 +397,7 @@ Type keys: `character`, `item`, `location`, `tactic`, `resource`, `faction`, or
 | `attached_to: self` | Cards attached to this one |
 | `tagged_by: self` | Cards this card put where they are (`tag: true`) |
 | `attacking`, `blocking` | In the current battle |
+| `party_with: self` | In the same party as that card in the current battle (itself included) |
 | `provides_at_least: { deception: 1 }` | Resource icons it provides |
 
 ## 5. Values and conditions
@@ -415,6 +421,7 @@ Type keys: `character`, `item`, `location`, `tactic`, `resource`, `faction`, or
 | `{ half_up: <value> }`, `{ sum: [..] }`, `{ neg: <value> }`, `{ max: [..] }` | |
 | `{ max_stat: [ <selector>, spd ] }` | The highest stat among matching cards (0 if none) |
 | `{ total_str: <selector> }` | Total strength of matching cards ("the total strength of the opposing party") |
+| `{ total_cost: <selector> }` | Total numeric cost of matching cards (Reality Shift) |
 | `{ played_this_turn: { by: you, type: tactic, not_type: resource } }` | Cards played this turn; with `same_name: true`, the most played with one name |
 | `{ last_played_cost: { type: tactic } }` | Ectypal Stave |
 
@@ -434,6 +441,7 @@ card's printed stats.
 | `{ via: flip_up }` | "If you deployed this using FLIP UP" |
 | `{ your_turn: true }`, `{ attacking: self }`, `{ blocking: self }`, `{ in_battle: true }` | "While you are being attacked": `{ all: [ { in_battle: true }, { your_turn: false } ] }` |
 | `{ assigned_damage: self }` | The card assigned battle damage this turn |
+| `{ attacked_this_turn: self }` | The card attacked this turn |
 | `{ battle_damage: false }` | No damage has been assigned yet in the current battle |
 | `{ even: { hand_size: you } }` | The value is even |
 | `{ covert_party: true }` | The attacking party in the current battle is COVERT |
@@ -481,7 +489,8 @@ Modifiers are continuous effects. They appear in `static` rules and
 | `party` | `{ party: { side: attacking \| blocking \| both, min: 2, max: 1, even: true, including: self } }` | Party size rules ("must have only 1 member"); `including` limits it to parties with a matching member. |
 | `no_rules` | `{ no_rules: true, target: host }` | The target is treated as having no rules text. |
 | `attack_declarations` | `{ attack_declarations: 1, target: none }` | Players can attack only that many times each turn (Narrow Passage). |
-| `assign_to_target` | `{ assign_to_target: true }` | While attacking, its battle damage may go to the attack's target instead of the blockers. |
+| `assign_to_target` | `{ assign_to_target: true }`, `{ assign_to_target: { must: true } }` | While attacking, its battle damage may go to the attack's target instead of the blockers; with `must`, it always does (Penetrate). |
+| `assign_cost` | `{ assign_cost: true, target: host }` | It assigns battle damage equal to its numeric cost instead of its strength (Ocular Dispersal). |
 | `must_be_assigned` | `{ must_be_assigned: true }` | Battle damage that could be assigned to it must be. |
 | `search_tax` | `{ search_tax: 2, by: opponent, target: none }` | Searching your own deck costs that much. |
 | `battle_damage_to_self` | `{ battle_damage_to_self: true, target: c }` | Its battle damage is inflicted to itself (Don't Trip). |
@@ -489,6 +498,7 @@ Modifiers are continuous effects. They appear in `static` rules and
 | `damage_as_tokens` | `{ damage_as_tokens: { battle: true }, while: { blocking: self } }` | Damage becomes that many tokens instead (Expert Debater). |
 | `blocks_any` | `{ blocks_any: true }` | Can block COVERT and non-COVERT parties. |
 | `numeric_cost` | `{ numeric_cost: 1, target: c }` | Changes a card's numeric cost in play (cost filters and values use it). |
+| `add_subtype` | `{ add_subtype: sarcophyle, target: it }` | It gains a subtype. Only in `create_effect`, aimed at specific cards. |
 
 Derived values are recomputed from scratch, so modifiers switch on and off by
 themselves when their source leaves play or their condition changes. Increases
@@ -499,6 +509,9 @@ apply before reductions, and numbers never go below 0.
 `party_formed` (once per attacking or blocking party; filter with `side: attacking | blocking`), `search` (a player is about to search a deck), `played`, `ability_used`, `enters_play`, `leaves_play`, `destroyed`, `attacks`,
 `blocks`, `blocked` (each attacker, when blockers are declared), `damage`,
 `influence_lost`, `start_of_turn`, `end_of_turn`, `draw`, `picked`, `discarded`.
+
+`discarded` takes `by: opponent` for "when an effect controlled by an opponent causes
+you to discard" (Phalludrix); `it` is the discarded card.
 
 Resources entering play fire `enters_play` too, which is how "When a card that
 provides at least [D] enters play under your control" works:
@@ -603,4 +616,7 @@ marked "Confirmed" are user rulings; the rest are still open.
 | Gore Engine | Tokens equal to the destroyed character's printed strength. |
 | Flaming Cube, Framptle | Their token counts are checked right after the rules that change them. |
 | Fornicaves | Confirmed: two in play both apply, so every character with printed life 4 or more is destroyed. |
+| Rudo Mangod, Dragonweight Champion | The characters it depletes can't be restored by the RESTORE RULE for the rest of the game (other effects still restore them). |
+| Rune of Concealment | "Destroyed by battle damage" is read as destroyed by any damage. |
+| Reality Shift | You deploy the returned cards (or any other cards in your hand) one at a time, each costing nothing, while their numeric costs fit in what is left of X. |
 | Limited Liability | Confirmed: it also stops the unique rule, so duplicates (several Gideons) stay in play that turn. When it ends, the unique rule applies again and their controller keeps one. |

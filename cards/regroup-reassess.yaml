@@ -7,3 +7,13 @@ rarity: uncommon
 text: |
   Draw 2 cards. If you control an attacking party of at least 2 members, draw 2 more cards, then discard a card.
   FLIP UP: 5 [G]
+rules:
+  - play:
+      effect:
+        - draw: 2
+        - if:
+            cond: { gte: [ { count: { character: { controller: you, attacking: true } } }, 2 ] }
+            then:
+              - draw: 2
+              - discard: 1
+  - flip_up: { pay: 5, threshold: { greed: 1 } }

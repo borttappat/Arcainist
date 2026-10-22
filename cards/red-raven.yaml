@@ -8,3 +8,9 @@ rarity: uncommon
 text: |
   When a coin is flipped, you may put a token on this card.
   This card gains 1 strength and 1 life for each token on it.
+rules:
+  - trigger: { on: coin_flipped }
+    effect:
+      - may: { prompt: "put a token on Red Raven", steps: [ tokens: { card: self, add: 1 } ] }
+  - static:
+      mods: [ { stat: { str: { tokens: self }, life: { tokens: self } } } ]

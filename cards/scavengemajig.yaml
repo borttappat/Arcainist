@@ -7,3 +7,16 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   When this card enters or leaves play, you may pick an item in your discard pile. If you do, put it into your hand.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - pick: { as: i, from: { item: { zone: discard, owner: you } }, optional: true }
+      - if:
+          cond: { defined: i }
+          then: [ move: { card: i, to: hand } ]
+  - trigger: { on: leaves_play, card: self }
+    effect:
+      - pick: { as: i, from: { item: { zone: discard, owner: you } }, optional: true }
+      - if:
+          cond: { defined: i }
+          then: [ move: { card: i, to: hand } ]

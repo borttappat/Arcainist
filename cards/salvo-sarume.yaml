@@ -7,3 +7,12 @@ set: "Ungodly Mess"
 rarity: common
 text: |
   When this card inflicts battle damage to a faction, you may put a resource you control into its owner's hand. If you do, inflict 1 damage to all characters.
+rules:
+  - trigger: { on: damage, source: self, faction: true, battle: true }
+    effect:
+      - pick: { as: r, from: { resource: { controller: you } }, choose: true, optional: true, prompt: "You may put a resource you control into its owner's hand to inflict 1 damage to all characters." }
+      - if:
+          cond: { defined: r }
+          then:
+            - move: { card: r, to: hand }
+            - damage: { card: { character: any }, amount: 1 }

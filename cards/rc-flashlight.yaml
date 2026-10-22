@@ -8,3 +8,8 @@ rarity: common
 text: |
   This card cannot be blocked.
   This card can block COVERT parties.
+rules:
+  - static:
+      mods:
+        - { cannot_be_blocked: true }
+        - { blocks_any: true }

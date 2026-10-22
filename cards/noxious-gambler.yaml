@@ -7,3 +7,9 @@ set: "Ungodly Mess"
 rarity: common
 text: |
   When this card is restored, you may look at the top card of your deck. If you do, you may put that card on the bottom of your deck.
+rules:
+  - trigger: { on: restored, card: self }
+    effect:
+      - may:
+          prompt: "look at the top card of your deck (you may put it on the bottom)"
+          steps: [ look: { deck: you, count: 1, bottom: any } ]

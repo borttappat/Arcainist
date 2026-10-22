@@ -12,3 +12,25 @@ text: |
   GATHER
   COST: Pay 1. Remove an item or 2 cards in your discard pile from the game.
   EFFECT: Put a token on this card.
+enters_with_tokens: 5
+rules:
+  - static:
+      mods: [ { stat: { str: { tokens: self }, life: { tokens: self } } } ]
+  - trigger: { on: depleted, card: self }
+    effect: [ tokens: { card: self, remove: 1 } ]
+  - ability:
+      name: Gather
+      cost:
+        - pay: 1
+        - choose_one:
+            - label: "Remove an item in your discard pile from the game"
+              when: { exists: { item: { zone: discard, owner: you } } }
+              steps:
+                - pick: { as: i, from: { item: { zone: discard, owner: you } }, choose: true }
+                - void: i
+            - label: "Remove 2 cards in your discard pile from the game"
+              when: { gte: [ { count: { card: { zone: discard, owner: you } } }, 2 ] }
+              steps:
+                - pick: { as: d, from: { card: { zone: discard, owner: you } }, count: 2, choose: true }
+                - void: d
+      effect: [ tokens: { card: self, add: 1 } ]

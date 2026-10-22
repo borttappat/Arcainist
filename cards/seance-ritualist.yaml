@@ -12,3 +12,20 @@ text: |
   BLUR: [O][O][O]
   COST: Remove a token from this card.
   EFFECT: This turn, this card gains COVERT.
+rules:
+  - ability:
+      name: Violate
+      cost:
+        - deplete: self
+        - pick: { as: f, from: { faction: { controller: opponent } }, choose: true, prompt: "Pick an opponent." }
+        - let: { X: { tokens: self } }
+        - pay: X
+      effect:
+        - discard: { who: { controller_of: f }, count: X }
+        - tokens: { card: self, add: 1 }
+  - ability:
+      name: Blur
+      threshold: { obsession: 3 }
+      cost: [ tokens: { card: self, remove: 1 } ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { keyword: covert } ] }

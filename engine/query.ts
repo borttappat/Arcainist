@@ -79,6 +79,7 @@ const MOD_KINDS = [
   "blocks_any",
   "numeric_cost",
   "attack_declarations",
+  "assign_cost",
 ];
 
 export class Q {
@@ -410,6 +411,17 @@ export class Q {
   }
 
   /** Numeric cost, with "this turn, the character gains/loses 1 numeric cost" for cards in play. */
+  /**
+   * Printed subtypes plus those gained from effects ("it gains the sarcophyle subtype").
+   * Only effects aimed at fixed cards count, so matching a subtype never recurses.
+   */
+  subtypes(iid: string): string[] {
+    const out = (this.def(iid).subtypes ?? []).map((x) => x.toLowerCase());
+    for (const e of this.s.effects)
+      for (const m of e.mods ?? []) if (m.add_subtype && m.target?.iids?.includes(iid)) out.push(String(m.add_subtype).toLowerCase());
+    return out;
+  }
+
   numericCost(iid: string): number {
     const base = this.def(iid).cost ?? 0;
     if (this.card(iid).zone !== "play") return base;
@@ -527,6 +539,8 @@ export class Q {
     if ("max_stat" in x) return Math.max(0, ...this.find(x.max_stat[0], scope).map((i) => this.stat(i, x.max_stat[1])));
     // "the total strength of the opposing party"
     if ("total_str" in x) return this.find(x.total_str, scope).reduce((n, i) => n + this.stat(i, "str"), 0);
+    // "the total numeric cost of all non-resource cards you control"
+    if ("total_cost" in x) return this.find(x.total_cost, scope).reduce((n, i) => n + this.numericCost(i), 0);
     if ("len" in x) {
       const v = scope.vars[x.len];
       return Array.isArray(v) ? v.length : v ? 1 : 0;
@@ -634,6 +648,10 @@ export class Q {
         return scope.via === v;
       case "in_battle":
         return !!this.s.battle === !!v;
+      case "attacked_this_turn": {
+        const r = this.ref(v, scope);
+        return !!r && (this.s.turnLog.attacks[r] ?? 0) > 0;
+      }
       case "assigned_damage": {
         const r = this.ref(v, scope);
         return !!r && !!this.s.turnLog.assigned?.[r];
@@ -705,8 +723,8 @@ export class Q {
     if (f.owner && !rel(f.owner, c.owner)) return false;
     if (f.controller && !rel(f.controller, c.controller)) return false;
     const d = this.lib[c.defId];
-    if (f.subtype && !(d.subtypes ?? []).map((x) => x.toLowerCase()).includes(this.str(f.subtype, scope).toLowerCase())) return false;
-    if (f.not_subtype && (d.subtypes ?? []).map((x) => x.toLowerCase()).includes(this.str(f.not_subtype, scope).toLowerCase())) return false;
+    if (f.subtype && !this.subtypes(iid).includes(this.str(f.subtype, scope).toLowerCase())) return false;
+    if (f.not_subtype && this.subtypes(iid).includes(this.str(f.not_subtype, scope).toLowerCase())) return false;
     if (f.token !== undefined && !!d.token !== !!f.token) return false;
     if (f.trade && d.trade !== this.str(f.trade, scope)) return false;
     if (f.not_trade && d.trade === f.not_trade) return false;
@@ -718,6 +736,8 @@ export class Q {
     // "characters with items attached to them"
     if (f.equipped !== undefined && this.attachments(iid).some((a) => this.is(a, "item")) !== !!f.equipped) return false;
     // "a character this card damaged this turn": damaged_by: self
+    // "has received damage this turn"
+    if (f.damaged_this_turn !== undefined && !!this.s.turnLog.hits?.[iid] !== !!f.damaged_this_turn) return false;
     if (f.damaged_by !== undefined && !(this.s.turnLog.hits?.[iid] ?? []).includes(this.ref(f.damaged_by, scope) ?? "")) return false;
     if (f.has_tokens !== undefined && (c.tokens > 0) !== !!f.has_tokens) return false;
     if (f.printed_type && !d.types.includes(f.printed_type)) return false;
@@ -770,6 +790,12 @@ export class Q {
     if (f.tagged_by && !(c.tags ?? []).includes(this.ref(f.tagged_by, scope) ?? "")) return false;
     if (f.attacking !== undefined && !!this.s.battle?.attackers.includes(iid) !== f.attacking) return false;
     if (f.blocking !== undefined && !!this.s.battle?.blockers.includes(iid) !== f.blocking) return false;
+    // `party_with: self`: in the same party as that card in the current battle (itself included).
+    if (f.party_with) {
+      const b = this.s.battle;
+      const o = this.ref(f.party_with, scope);
+      if (!b || !o || !([b.attackers, b.blockers].some((side) => side.includes(o) && side.includes(iid)))) return false;
+    }
     if (f.provides_at_least) {
       const prov = this.provided(iid);
       for (const [k, v] of Object.entries(f.provides_at_least as Icons)) if ((prov[k as Icon] ?? 0) < (v ?? 0)) return false;

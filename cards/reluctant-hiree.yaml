@@ -11,3 +11,13 @@ text: |
   INVEST
   COST: Pay X, where X is the number of tokens on this card.
   EFFECT: Remove a token from this card.
+enters_with_tokens: 3
+rules:
+  - static:
+      mods: [ { stat: { str: { neg: { tokens: self } } } } ]
+  - ability:
+      name: Invest
+      cost:
+        - let: { X: { tokens: self } }
+        - pay: X
+      effect: [ tokens: { card: self, remove: 1 } ]

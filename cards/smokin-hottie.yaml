@@ -8,3 +8,9 @@ rarity: common
 text: |
   When this card enters play, your faction loses 2 influence.
   [V]V][V][V]: This card gains COVERT.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect: [ lose_influence: { who: you, amount: 2 } ]
+  - static:
+      requires: { volition: 4 }
+      mods: [ { keyword: covert } ]

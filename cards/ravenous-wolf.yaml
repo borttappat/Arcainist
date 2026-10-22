@@ -10,3 +10,11 @@ text: |
   COVERT
   TACTICAL
   When this card enters play, if you deployed it during an opponent's turn, destroy a card named Deception you control or destroy this card.
+rules:
+  - trigger: { on: enters_play, card: self, while: { your_turn: false } }
+    effect:
+      - choose_one:
+          - label: "Destroy a card named Deception you control"
+            when: { exists: { card: { controller: you, name: Deception } } }
+            steps: [ destroy: { from: { card: { controller: you, name: Deception } }, choose: true } ]
+          - { label: "Destroy Ravenous Wolf", steps: [ destroy: self ] }

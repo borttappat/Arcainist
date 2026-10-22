@@ -14,3 +14,23 @@ text: |
   MICROMAJIG UNLOAD: [E][E][E][E][E]
   COST: Deplete this card. Remove X tokens from this card. Pay X. Pick a location, character or faction.
   EFFECT: Inflict X damage to that card.
+rules:
+  - unique: PT
+  - static:
+      mods: [ { stat: { str: { tokens: self }, life: { tokens: self } } } ]
+  - ability:
+      name: Micromajig Load
+      cost:
+        - pay: 1
+        - destroy: { from: { character: { controller: you, token: true } }, choose: true }
+      effect: [ tokens: { card: self, add: 1 } ]
+  - ability:
+      name: Micromajig Unload
+      threshold: { elitism: 5 }
+      cost:
+        - deplete: self
+        - choose_number: { as: X, min: 0, max: { tokens: self } }
+        - tokens: { card: self, remove: X }
+        - pay: X
+        - pick: { as: c, from: [ { location: any }, { character: any }, { faction: any } ] }
+      effect: [ damage: { card: c, amount: X } ]

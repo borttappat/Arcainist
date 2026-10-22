@@ -8,3 +8,7 @@ rarity: uncommon
 text: |
   This card enters play with 9-X tokens on it, where X is the number of [G] you control.
   This card loses 1 strength and 1 life for each token on it.
+enters_with_tokens: { sum: [ 9, { neg: { icons: greed } } ] }
+rules:
+  - static:
+      mods: [ { stat: { str: { neg: { tokens: self } }, life: { neg: { tokens: self } } } } ]

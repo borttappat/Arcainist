@@ -7,3 +7,13 @@ set: "Seed Saga"
 rarity: common
 text: |
   At the end of your turn, you may reveal the top card of your deck. If you do and it is a staple resource, put it into your hand.
+rules:
+  - trigger: { on: end_of_turn, player: you }
+    effect:
+      - may:
+          prompt: "reveal the top card of your deck (a staple resource goes to your hand)"
+          steps:
+            - reveal_top: { who: you, count: 1, as: rev }
+            - if:
+                cond: { matches: [ rev, { resource: { zone: deck, staple: true } } ] }
+                then: [ move: { card: rev, to: hand } ]

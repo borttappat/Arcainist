@@ -14,3 +14,18 @@ text: |
   AURIFEROUS AUGMENTAION
   COST: Discard 2 cards.
   EFFECT: This turn, this character gains 2 strength and 2 life.
+rules:
+  - unique: Siluriformes
+  - static:
+      mods: [ { stat: { str: 3, life: 3 }, target: { character: { unique: Eustace } } } ]
+  - ability:
+      name: Numismatic Emission
+      cost: [ pay: 5 ]
+      effect:
+        - draw: 2
+        - gain_influence: { who: you, amount: 2 }
+  - ability:
+      name: Auriferous Augmentation
+      cost: [ discard: 2 ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: 2, life: 2 } } ] }

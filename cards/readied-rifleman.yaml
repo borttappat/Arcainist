@@ -7,3 +7,10 @@ set: "Ungodly Mess"
 rarity: common
 text: |
   When this card is restored, you may pick a faction. If you do, inflict 1 damage to it.
+rules:
+  - trigger: { on: restored, card: self }
+    effect:
+      - pick: { as: f, from: { faction: any }, optional: true }
+      - if:
+          cond: { defined: f }
+          then: [ damage: { card: f, amount: 1 } ]

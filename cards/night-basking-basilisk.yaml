@@ -9,3 +9,8 @@ rarity: common
 text: |
   COVERT
   EXTRA COST: If you control [O][O][O][O][O][O], reduce the numeric cost of this card by 4.
+rules:
+  - static:
+      zone: stack
+      while: { icons: { obsession: 6 } }
+      mods: [ { cost: -4, target: self } ]

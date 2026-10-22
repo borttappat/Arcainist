@@ -6,3 +6,27 @@ set: "Seed Saga"
 rarity: common
 text: |
   Look at an opponent's hand and pick a non-resource card in it. That player discards that card. You may pick a card of the same type as the discarded card. If you do, put it into its owner's hand.
+rules:
+  - play:
+      effect:
+        - peek: { who: opponent, hand: true }
+        - pick: { as: h, from: { card: { zone: hand, owner: opponent, not_type: resource } }, choose: true, prompt: "Pick a non-resource card in your opponent's hand to discard." }
+        - if:
+            cond: { defined: h }
+            then:
+              - discard: { who: opponent, cards: h }
+              - if:
+                  cond: { matches: [ h, { character: { zone: any } } ] }
+                  then: [ pick: { as: x, from: { character: any }, optional: true } ]
+              - if:
+                  cond: { matches: [ h, { item: { zone: any } } ] }
+                  then: [ pick: { as: x, from: { item: any }, optional: true } ]
+              - if:
+                  cond: { matches: [ h, { location: { zone: any } } ] }
+                  then: [ pick: { as: x, from: { location: any }, optional: true } ]
+              - if:
+                  cond: { matches: [ h, { tactic: { zone: any } } ] }
+                  then: [ pick: { as: x, from: { tactic: any }, optional: true } ]
+              - if:
+                  cond: { defined: x }
+                  then: [ move: { card: x, to: hand } ]

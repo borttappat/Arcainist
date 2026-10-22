@@ -12,3 +12,16 @@ text: |
   OPTION 2
   EXTRA COST: Pick a character.
   EFFECT: This turn, the character loses 1 life. Draw a card.
+rules:
+  - play:
+      cost:
+        - choose_one:
+            - { label: "The character loses 2 life this turn", steps: [ let: { o: 1 }, pick: { as: c, from: { character: any } } ] }
+            - { label: "The character loses 1 life this turn; draw a card", steps: [ let: { o: 2 }, pick: { as: c, from: { character: any } } ] }
+      effect:
+        - if:
+            cond: { eq: [ o, 1 ] }
+            then: [ modify: { card: c, stat: life, lose: 2 } ]
+            else:
+              - modify: { card: c, stat: life, lose: 1 }
+              - draw: 1

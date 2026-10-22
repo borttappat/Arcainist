@@ -8,3 +8,7 @@ rarity: common
 text: |
   When this card inflicts battle damage to a faction, put this character into its owner's hand.
   FLIP UP: 0 [R]
+rules:
+  - trigger: { on: damage, source: self, faction: true, battle: true }
+    effect: [ move: { card: self, to: hand } ]
+  - flip_up: { pay: 0, threshold: { rage: 1 } }

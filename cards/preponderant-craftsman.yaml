@@ -9,3 +9,12 @@ text: |
   CREATE
   COST: Pay 5. Deplete this card.
   EFFECT: You may deploy a character for free. (You still need to meet its threshold and satisfy its extra costs.)
+rules:
+  - ability:
+      name: Create
+      cost: [ pay: 5, deplete: self ]
+      effect:
+        - pick: { as: c, from: { character: { zone: hand, owner: you } }, choose: true, optional: true, prompt: "You may deploy a character from your hand for free." }
+        - if:
+            cond: { defined: c }
+            then: [ play_card: { card: c, free: true } ]

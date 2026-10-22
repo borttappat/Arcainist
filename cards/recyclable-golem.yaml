@@ -10,3 +10,17 @@ text: |
   While there is a token on this card, it loses 2 strength and 2 life and can block COVERT parties.
   If there are no tokens on this card and it would be destroyed, flip it face-down under its owner's control instead.
   FLIP UP: 4 [E]
+rules:
+  - play:
+      effect:
+        - if:
+            cond: { via: flip_up }
+            then: [ tokens: { card: self, add: 1 } ]
+  - static:
+      while: { gt: [ { tokens: self }, 0 ] }
+      mods:
+        - { stat: { str: -2, life: -2 } }
+        - { blocks_any: true }
+  - replace: { event: destroy, card: self, while: { eq: [ { tokens: self }, 0 ] } }
+    instead: [ flip_face_down: { card: self, controller: owner } ]
+  - flip_up: { pay: 4, threshold: { elitism: 1 } }

@@ -8,3 +8,9 @@ text: |
   PAY OFF
   COST: Use this only in response to a character being deployed. Deplete this card. Pay 1. Destroy this card.
   EFFECT: Terminate the character.
+rules:
+  - ability:
+      name: Pay Off
+      timing: { response_to: { deploying: { character: any } } }
+      cost: [ deplete: self, pay: 1, destroy: self ]
+      effect: [ terminate: responded ]

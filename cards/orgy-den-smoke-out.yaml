@@ -6,3 +6,8 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   An opponent discards a card at random. Put the top 2 cards of their deck into their discard pile.
+rules:
+  - play:
+      effect:
+        - discard: { who: opponent, count: 1, random: true }
+        - mill: { who: opponent, count: 2 }

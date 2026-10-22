@@ -8,3 +8,8 @@ rarity: common
 text: |
   When this card attacks, pick an opponent. That player discards a card.
   [O][O][O][O][O][O]: When this card inflicts battle damage to an opponent's faction, that faction's owner discards a card.
+rules:
+  - trigger: { on: attacks, card: self }
+    effect: [ discard: { who: opponent, count: 1 } ]
+  - trigger: { on: damage, source: self, battle: true, faction: true, requires: { obsession: 6 } }
+    effect: [ discard: { who: opponent, count: 1 } ]

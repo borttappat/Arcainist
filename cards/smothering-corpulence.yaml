@@ -7,3 +7,16 @@ rarity: common
 text: |
   EXTRA COST: Pick a character an opponent controls. You and that character's controller remove the top card of your decks from the game. X is the numeric cost of that player's removed card minus the numeric cost of your removed card.
   This turn, the character loses X life. Draw a card.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { controller: opponent } } }
+        - let: { mine: { card: top_of_you }, theirs: { card: top_of_opponent } }
+        - move: { card: mine, to: void }
+        - move: { card: theirs, to: void }
+        - let: { X: { sum: [ { cost: theirs }, { neg: { cost: mine } } ] } }
+      effect:
+        - if:
+            cond: { gt: [ X, 0 ] }
+            then: [ modify: { card: c, stat: life, lose: X } ]
+        - draw: 1

@@ -9,3 +9,7 @@ rarity: common
 text: |
   COVERT
   [O][O][O]: This card gains 2 life.
+rules:
+  - static:
+      requires: { obsession: 3 }
+      mods: [ { stat: { life: 2 } } ]

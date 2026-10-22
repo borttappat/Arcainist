@@ -11,3 +11,15 @@ text: |
   DEVOUR
   COST: Pay 3. Deplete this card. Remove a token from this card. Pick a character or location.
   EFFECT: Inflict 3 damage to the character or location.
+rules:
+  - unique: Octo-Ba-Ba
+  - trigger: { on: destroyed, card: { character: any }, player: opponent }
+    effect: [ tokens: { card: self, add: 1 } ]
+  - ability:
+      name: Devour
+      cost:
+        - pay: 3
+        - deplete: self
+        - tokens: { card: self, remove: 1 }
+        - pick: { as: c, from: [ { character: any }, { location: any } ] }
+      effect: [ damage: { card: c, amount: 3 } ]

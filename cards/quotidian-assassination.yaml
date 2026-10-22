@@ -7,3 +7,8 @@ rarity: ultra-rare
 text: |
   EXTRA COST: Pick a character.
   Put the character into its owner's hand.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect: [ move: { card: c, to: hand } ]

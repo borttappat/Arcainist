@@ -10,3 +10,20 @@ text: |
   While this card is in play, the location cannot be restored by its controller's RESTORE RULE.
   While the location is depleted, this card gains 3 strength and 1 life.
   FLIP UP: 4 [E][E][E]
+rules:
+  - play:
+      cost:
+        - pick: { as: l, from: { location: { depleted: false } }, optional: true }
+        - if:
+            cond: { defined: l }
+            then: [ deplete: l ]
+      effect:
+        - if:
+            cond: { defined: l }
+            then: [ remember: { picked: { var: l } } ]
+  - static:
+      mods: [ { cannot: restore_by_rule, target: picked } ]
+  - static:
+      while: { matches: [ picked, { location: { depleted: true } } ] }
+      mods: [ { stat: { str: 3, life: 1 } } ]
+  - flip_up: { pay: 4, threshold: { elitism: 3 } }

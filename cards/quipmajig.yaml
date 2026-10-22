@@ -9,3 +9,12 @@ text: |
   INSULT
   COST: Deplete this card. Pick a character with COVERT.
   EFFECT: Deplete the character. This turn, reduce all damage inflicted by it to 0.
+rules:
+  - ability:
+      name: Insult
+      cost:
+        - deplete: self
+        - pick: { as: c, from: { character: { keyword: covert } } }
+      effect:
+        - deplete: c
+        - create_effect: { duration: turn, mods: [ { damage: { set: 0, from: c }, target: all } ] }

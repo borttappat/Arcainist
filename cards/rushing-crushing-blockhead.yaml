@@ -9,3 +9,14 @@ text: |
   When this card inflicts damage to a faction, destroy this card and inflict 2 damage to your faction.
   This character cannot block.
   [R][R][R][R][R][R]: This card loses all other rules text and loses 1 speed.
+rules:
+  - trigger: { on: damage, source: self, faction: true, while: { not: { icons: { rage: 6 } } } }
+    effect:
+      - destroy: self
+      - damage: { faction: you, amount: 2 }
+  - static:
+      while: { not: { icons: { rage: 6 } } }
+      mods: [ { cannot: block } ]
+  - static:
+      requires: { rage: 6 }
+      mods: [ { stat: { spd: -1 } } ]

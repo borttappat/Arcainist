@@ -12,3 +12,20 @@ text: |
   OPTION 2
   EXTRA COST: Deploy this only during your turn. Pick a character.
   EFFECT: Deplete the character. Draw a card.
+rules:
+  - play:
+      timing: { your_turn: true }
+      cost:
+        - choose_one:
+            - { label: "Search your deck for a dragon card", steps: [ let: { o: 1 } ] }
+            - { label: "Deplete a character and draw a card", steps: [ let: { o: 2 }, pick: { as: c, from: { character: any } } ] }
+      effect:
+        - if:
+            cond: { eq: [ o, 1 ] }
+            then:
+              - may:
+                  prompt: "search your deck for a dragon card and put it into your hand"
+                  steps: [ search: { deck: you, for: { card: { subtype: dragon } }, reveal: true, to: hand } ]
+            else:
+              - deplete: c
+              - draw: 1

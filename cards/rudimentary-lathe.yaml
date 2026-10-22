@@ -6,3 +6,6 @@ set: "1st Edition"
 rarity: uncommon
 text: |
   The numeric cost of items you deploy is reduced by 1, to a minimum of 1.
+rules:
+  - static:
+      mods: [ { cost: -1, floor: 1, by: you, target: { item: { zone: stack } } } ]

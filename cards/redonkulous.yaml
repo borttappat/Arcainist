@@ -8,3 +8,19 @@ text: |
   EXTRA COST: Pick a character.
   If you deployed this card using FLIP UP, that character's controller discards 2 cards. If that character's controller has 3 or fewer cards in their hand, remove the character from the game.
   FLIP UP: 5 [O][O]
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - if:
+            cond: { via: flip_up }
+            then:
+              - as:
+                  who: { controller_of: c }
+                  steps:
+                    - discard: 2
+                    - if:
+                        cond: { lte: [ { hand_size: you }, 3 ] }
+                        then: [ void: c ]
+  - flip_up: { pay: 5, threshold: { obsession: 2 } }

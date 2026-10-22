@@ -9,3 +9,27 @@ text: |
   GAMBLE
   COST: Pay 1. Choose a card type.
   EFFECT: Reveal the top card of your deck. If it is the chosen type, this card gains 2 strength and loses 1 life this turn. Put the top card of your deck on the bottom.
+rules:
+  - ability:
+      name: Gamble
+      cost:
+        - pay: 1
+        - choose_one:
+            - { label: "Character", steps: [ let: { ty: 1 } ] }
+            - { label: "Tactic", steps: [ let: { ty: 2 } ] }
+            - { label: "Item", steps: [ let: { ty: 3 } ] }
+            - { label: "Location", steps: [ let: { ty: 4 } ] }
+            - { label: "Resource", steps: [ let: { ty: 5 } ] }
+      effect:
+        - reveal_top: { who: you, count: 1, as: rev }
+        - if:
+            cond:
+              any:
+                - { all: [ { eq: [ ty, 1 ] }, { matches: [ rev, { character: { zone: deck } } ] } ] }
+                - { all: [ { eq: [ ty, 2 ] }, { matches: [ rev, { tactic: { zone: deck } } ] } ] }
+                - { all: [ { eq: [ ty, 3 ] }, { matches: [ rev, { item: { zone: deck } } ] } ] }
+                - { all: [ { eq: [ ty, 4 ] }, { matches: [ rev, { location: { zone: deck } } ] } ] }
+                - { all: [ { eq: [ ty, 5 ] }, { matches: [ rev, { resource: { zone: deck } } ] } ] }
+            then:
+              - create_effect: { duration: turn, mods: [ { stat: { str: 2, life: -1 } } ] }
+        - move: { card: rev, to: deck_bottom }

@@ -16,3 +16,30 @@ text: |
   NEW PLAN
   COST: Destroy a face-down resource you control.
   EFFECT: Add a token to this card.
+enters_with_tokens: 2
+rules:
+  # Its tokens only go down through PLAN and FOLLOW PLAN, so the 0-token check follows them.
+  - ability:
+      name: Plan
+      cost:
+        - pay: 1
+        - tokens: { card: self, remove: 1 }
+      effect:
+        - search: { deck: you, for: { card: { name: Elitism } }, reveal: true, to: hand }
+        - if:
+            cond: { eq: [ { tokens: self }, 0 ] }
+            then: [ destroy: self ]
+  - ability:
+      name: Follow Plan
+      cost:
+        - pay: 2
+        - tokens: { card: self, remove: 1 }
+      effect:
+        - play_resource: { optional: true }
+        - if:
+            cond: { eq: [ { tokens: self }, 0 ] }
+            then: [ destroy: self ]
+  - ability:
+      name: New Plan
+      cost: [ destroy_resource: { who: you, face_down: true } ]
+      effect: [ tokens: { card: self, add: 1 } ]

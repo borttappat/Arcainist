@@ -7,3 +7,11 @@ rarity: uncommon
 text: |
   EXTRA COST: Pick a gear card. X is its numeric cost.
   Inflict X damage to the character the gear card is attached to. Destroy the gear card.
+rules:
+  - play:
+      cost:
+        - pick: { as: g, from: { item: { subtype: gear } } }
+        - let: { X: { cost: g } }
+      effect:
+        - damage: { card: { character: { host_of: g } }, amount: X }
+        - destroy: g

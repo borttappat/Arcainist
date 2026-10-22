@@ -7,3 +7,9 @@ set: "2nd Edition"
 rarity: common
 text: |
   At the end of your turn, if this card started the turn under your control and did not attack this turn, destroy it.
+rules:
+  - trigger: { on: end_of_turn, player: you }
+    effect:
+      - if:
+          cond: { all: [ { since_turn_start: self }, { not: { attacked_this_turn: self } } ] }
+          then: [ destroy: self ]

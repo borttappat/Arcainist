@@ -7,3 +7,9 @@ rarity: uncommon
 text: |
   EXTRA COST: Pick an attacking character you control.
   If the character would assign battle damage to the blocking party during this battle, assign it to the target of the attack instead.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { controller: you, attacking: true } } }
+      effect:
+        - create_effect: { duration: battle, mods: [ { assign_to_target: { must: true }, target: c } ] }

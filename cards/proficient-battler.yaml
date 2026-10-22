@@ -7,3 +7,5 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   FLIP UP: 2 [R]
+rules:
+  - flip_up: { pay: 2, threshold: { rage: 1 } }

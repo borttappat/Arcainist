@@ -8,3 +8,9 @@ text: |
   RECALL
   COST: Pick a resource you control. (You can pick face-down resources.)
   EFFECT: Put the resource into it's owner's hand.
+rules:
+  - ability:
+      name: Recall
+      cost:
+        - pick: { as: r, from: { resource: { controller: you } } }
+      effect: [ move: { card: r, to: hand } ]

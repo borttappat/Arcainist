@@ -9,3 +9,10 @@ text: |
   IMPEDE
   COST: Deplete this card. Pick a character.
   EFFECT: Deplete the character.
+rules:
+  - ability:
+      name: Impede
+      cost:
+        - deplete: self
+        - pick: { as: c, from: { character: any } }
+      effect: [ deplete: c ]

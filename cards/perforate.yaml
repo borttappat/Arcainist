@@ -7,3 +7,10 @@ rarity: common
 text: |
   EXTRA COST: Choose a number for X. Pay X. Pick a character.
   Inflict X damage to the character.
+rules:
+  - play:
+      cost:
+        - choose_number: { as: X, min: 0, max: { count: { resource: { controller: you, spent: false } } } }
+        - pay: X
+        - pick: { as: c, from: { character: any } }
+      effect: [ damage: { card: c, amount: X } ]

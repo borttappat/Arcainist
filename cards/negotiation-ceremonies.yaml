@@ -7,3 +7,24 @@ rarity: common
 text: |
   EXTRA COST: Pick an opponent. You may pay 1. If you do, that opponent may pay 1. Repeat this cost until you or that player does not pay.
   Each player draws cards equal to the amount they paid.
+rules:
+  - play:
+      cost:
+        - let: { mine: 0, theirs: 0, go: 1 }
+        - repeat:
+            while: { eq: [ go, 1 ] }
+            steps:
+              - let: { go: 0 }
+              - may_pay:
+                  amount: 1
+                  prompt: "keep negotiating"
+                  then:
+                    - let: { mine: "mine + 1" }
+                    - may_pay:
+                        amount: 1
+                        who: opponent
+                        prompt: "keep negotiating"
+                        then: [ let: { theirs: "theirs + 1", go: 1 } ]
+      effect:
+        - draw: mine
+        - draw: { who: opponent, count: theirs }

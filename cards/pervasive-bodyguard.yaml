@@ -9,3 +9,11 @@ text: |
   PROTECT
   COST: Pay 1. Pick a character in a party with this card.
   EFFECT: This turn, the character gains 1 life.
+rules:
+  - ability:
+      name: Protect
+      cost:
+        - pay: 1
+        - pick: { as: c, from: { character: { party_with: self } } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { life: 1 }, target: c } ] }

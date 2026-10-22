@@ -12,3 +12,28 @@ text: |
   EFFECT: Attach this card to the character.
   The attached character gains 2 strength.
   At the start of each opponent's turn, you may restore the attached character.
+rules:
+  - unique: Phalludrix
+  - trigger: { on: discarded, player: you, by: opponent }
+    effect:
+      - may:
+          prompt: "put the discarded card back into your hand"
+          steps: [ move: { card: it, to: hand } ]
+  - ability:
+      name: Equip
+      cost:
+        - pick: { as: c, from: { character: any } }
+        - if:
+            cond: { matches: [ c, { character: { subtype: adriel } } ] }
+            then: [ let: { X: 0 } ]
+            else: [ let: { X: 3 } ]
+        - pay: X
+      effect: [ attach: { card: self, to: c } ]
+  - static:
+      mods: [ { stat: { str: 2 }, target: host } ]
+  - trigger: { on: start_of_turn, player: opponent }
+    effect:
+      - if:
+          cond: { exists: { character: { host_of: self } } }
+          then:
+            - may: { prompt: "restore the attached character", steps: [ restore: host ] }

@@ -7,3 +7,12 @@ set: "2nd Edition"
 rarity: rare
 text: |
   When this card is put into your discard pile from play, you may pay 1. If you do, put it into play under your control. Deplete it.
+rules:
+  - trigger: { on: moved, card: self, from: play, to: discard, zone: discard }
+    effect:
+      - may_pay:
+          amount: 1
+          prompt: "put Recapitulating Apparition back into play, depleted"
+          then:
+            - put_into_play: { card: self, controller: you }
+            - deplete: self

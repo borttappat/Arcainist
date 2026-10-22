@@ -15,3 +15,26 @@ text: |
   CLOCK OUT: [V]
   COST: Flip this card face-down under its owner's control.
   EFFECT: Detach a resource from your faction.
+rules:
+  - unique: Foreman Pete
+  - ability:
+      name: Clock In
+      threshold: { volition: 3 }
+      cost:
+        - discard: { count: 1, filter: { resource: { staple: true } } }
+        - pay: 2
+      effect: [ draw: 1 ]
+  - ability:
+      name: Work It
+      threshold: { volition: 2 }
+      cost:
+        - pick: { as: r, from: { resource: { controller: you, face_down: true } } }
+        - pay: 2
+      effect:
+        - move: { card: r, to: hand }
+        - play_resource: { optional: true }
+  - ability:
+      name: Clock Out
+      threshold: { volition: 1 }
+      cost: [ flip_face_down: { card: self, controller: owner } ]
+      effect: [ detach: { count: 1 } ]

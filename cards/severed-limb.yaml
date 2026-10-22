@@ -12,3 +12,11 @@ text: |
   BULK UP
   COST: Pay 1. Destroy a card named "Rage" you own.
   EFFECT: This turn, the attached character gains 1 strength.
+rules:
+  - ability:
+      name: Bulk Up
+      cost:
+        - pay: 1
+        - destroy: { from: { card: { owner: you, name: Rage } }, choose: true }
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: 1 }, target: host } ] }

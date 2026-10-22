@@ -11,3 +11,18 @@ text: |
   PAYDAY LOAN
   COST: Pay 1. Discard a resource or destroy a resource you control.
   EFFECT: Draw a card.
+rules:
+  - unique: Randolph
+  - trigger: { on: enters_play, card: self }
+    effect: [ draw: 1 ]
+  - ability:
+      name: Payday Loan
+      cost:
+        - pay: 1
+        - choose_one:
+            - label: "Discard a resource"
+              when: { exists: { resource: { zone: hand, owner: you } } }
+              steps: [ discard: { count: 1, filter: { resource: { zone: hand } } } ]
+            - label: "Destroy a resource you control"
+              steps: [ destroy_resource: { who: you } ]
+      effect: [ draw: 1 ]

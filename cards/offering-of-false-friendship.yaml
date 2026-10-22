@@ -7,3 +7,15 @@ rarity: uncommon
 text: |
   EXTRA COST: Pick a character.
   Any opponent may pay 2. If they do, terminate this card. Otherwise, put that character and characters with the same name as that character on the bottom of their owner's deck.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - let: { n: { name_of: c } }
+        - may_pay:
+            amount: 2
+            who: opponent
+            prompt: "terminate Offering of False Friendship"
+            then: [ terminate: self ]
+            else: [ move: { card: { character: { name: n } }, to: deck_bottom } ]

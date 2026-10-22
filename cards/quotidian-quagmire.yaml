@@ -7,3 +7,15 @@ rarity: common
 text: |
   EXTRA COST: Pick a character. That character's controller may detach up to 2 resources from their faction.
   This turn, the character loses 1 speed. Draw a card.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+        - as:
+            who: { controller_of: c }
+            steps:
+              - choose_number: { as: X, min: 0, max: 2, prompt: "Detach up to 2 resources from your faction." }
+              - detach: { count: X }
+      effect:
+        - modify: { card: c, stat: spd, lose: 1 }
+        - draw: 1

@@ -7,3 +7,6 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   This card gains 1 speed for each [D] you control.
+rules:
+  - static:
+      mods: [ { stat: { spd: { icons: deception } } } ]
