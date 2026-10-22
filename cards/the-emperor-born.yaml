@@ -10,3 +10,25 @@ text: |
   REUSE: [R]
   COST: Use this only while this card is a face-down resource. Reveal this card. Pay 4. Pick a character in your discard pile. Discard a card.
   EFFECT: You may deploy the character.
+rules:
+  - play:
+      timing: { not_in_battle: true }
+      cost:
+        - pick: { as: c, from: { character: { zone: discard, owner: you } } }
+      effect:
+        - may:
+            prompt: "deploy the character"
+            steps: [ play_card: { card: c } ]
+  - ability:
+      name: Reuse
+      threshold: { rage: 1 }
+      from: face_down_resource
+      cost:
+        - reveal: self
+        - pay: 4
+        - pick: { as: c, from: { character: { zone: discard, owner: you } } }
+        - discard: 1
+      effect:
+        - may:
+            prompt: "deploy the character"
+            steps: [ play_card: { card: c } ]

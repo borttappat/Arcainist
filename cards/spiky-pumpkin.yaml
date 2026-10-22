@@ -8,3 +8,18 @@ text: |
   This card enters play with 3 tokens on it.
   At the start of your turn, remove a token from this card. If there are no tokens on it, destroy it.
   At the end of your turn, you may pick a character. If you do, inflict X damage to that character, where X is the number of tokens on this card.
+enters_with_tokens: 3
+rules:
+  # Its tokens only change through this rule, so the 0-token check follows it.
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - tokens: { card: self, remove: 1 }
+      - if:
+          cond: { eq: [ { tokens: self }, 0 ] }
+          then: [ destroy: self ]
+  - trigger: { on: end_of_turn, player: you }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ damage: { card: c, amount: { tokens: self } } ]

@@ -8,3 +8,11 @@ text: |
   EXTRA COST: Pick an opponent. Destroy a Micromajig token you control.
   Destroy an attacking character that player controls. That player puts a Micromajig token into play under their control.
   FLIP UP: 2 [E][E] and draw a card.
+rules:
+  - play:
+      cost:
+        - destroy: { from: { character: { controller: you, token: true } }, choose: true }
+      effect:
+        - destroy: { from: { character: { controller: opponent, attacking: true } }, choose: true }
+        - create_token: { card: micromajig-token, controller: opponent }
+  - flip_up: { pay: 2, threshold: { elitism: 2 }, cost: [ draw: 1 ] }

@@ -2,6 +2,7 @@ id: "idumb-de-itemizer"
 name: "iDumb De-Itemizer"
 trade: banker
 types: [item]
+attach_to: item
 subtypes: ["upgrade"]
 set: "Holy Heist"
 rarity: uncommon

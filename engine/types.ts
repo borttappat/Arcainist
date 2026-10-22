@@ -106,6 +106,8 @@ export interface CardInst {
   isResource: boolean;
   /** "faction" for a spent resource, or the iid of the card this is attached to. */
   attachedTo: string | null;
+  /** The card it was attached to when it last left play ("when this card leaves play, the attached item..."). */
+  lastHost?: string;
   depleted: boolean;
   damage: number;
   markers: number;
@@ -277,7 +279,7 @@ export type Decision =
       /** Most that may go to a target. */
       caps?: Record<string, number>;
     }
-  | { type: "play_resource"; player: PlayerId; optional: boolean };
+  | { type: "play_resource"; player: PlayerId; optional: boolean; faceDown?: boolean };
 
 export interface LogEntry {
   n: number;

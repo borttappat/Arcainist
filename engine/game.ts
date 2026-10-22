@@ -441,8 +441,8 @@ export class Game {
         const c = this.s.cards[a.iid];
         if (!c || c.zone !== "hand" || c.owner !== d.player) throw new GameError("That card isn't in your hand.");
         const def = this.lib[c.defId];
-        if (!a.faceDown && !def.types.includes("resource")) throw new GameError("Only resource cards can be played face-up.");
-        if (!a.faceDown && def.face_down_only) throw new GameError("That resource may only be played face-down.");
+        if (!a.faceDown && !d.faceDown && !def.types.includes("resource")) throw new GameError("Only resource cards can be played face-up.");
+        if (!a.faceDown && !d.faceDown && def.face_down_only) throw new GameError("That resource may only be played face-down.");
         return;
       }
     }
@@ -856,7 +856,7 @@ export class Game {
     const permanent = def.types.some((t) => t === "character" || t === "item" || t === "location") || !!def.attach_to;
     if (permanent) {
       const host = ctx.vars.__host;
-      if (def.attach_to && (!host || !this.q.isCharacter(host))) {
+      if (def.attach_to && (!host || !this.q.canHost(item.iid, host))) {
         this.log(`${def.name} has nothing to attach to and is discarded.`);
         this.move(item.iid, "discard");
       } else {
@@ -1661,7 +1661,7 @@ export class Game {
         const def = this.q.def(iid);
         let host = arg.attach_to ? this.ref(ctx, arg.attach_to) : undefined;
         if (def.attach_to && !host) {
-          host = this.q.allInPlay().find((i) => this.q.isCharacter(i));
+          host = this.q.allInPlay().find((i) => this.q.canHost(iid, i));
           if (!host) {
             this.move(iid, "discard");
             continue;
@@ -1730,9 +1730,9 @@ export class Game {
 
   protected op_attach(arg: any, ctx: Ctx): StepResult {
     const host = this.ref(ctx, arg.to);
-    if (!host || !this.q.isCharacter(host)) return "ok";
+    if (!host) return "ok";
     for (const iid of this.refs(ctx, arg.card)) {
-      if (!this.q.inPlay(iid)) continue;
+      if (!this.q.inPlay(iid) || !this.q.canHost(iid, host)) continue;
       this.s.cards[iid].attachedTo = host;
       this.log(`${this.q.name(iid)} is attached to ${this.q.name(host)}.`);
     }
@@ -2016,8 +2016,10 @@ export class Game {
     if (task.answer) {
       const ans = task.answer;
       if (ans.iid) {
-        this.putResource(p, ans.iid, !!ans.faceDown, false);
-        if (ans.faceDown) {
+        // "Play a card as a face-down resource": face_down: true
+        const faceDown = !!ans.faceDown || !!a.face_down;
+        this.putResource(p, ans.iid, faceDown, false);
+        if (faceDown) {
           this.log(`${this.pname(p)} plays a face-down resource.`);
           this.log(`(face-down: ${this.q.name(ans.iid)})`, p);
         } else this.log(`${this.pname(p)} plays ${this.q.name(ans.iid)} as a resource.`);
@@ -2031,7 +2033,7 @@ export class Game {
       this.log(`${this.pname(p)} has no cards to play as a resource.`);
       return "ok";
     }
-    return this.ask(task, { type: "play_resource", player: p, optional: !!a.optional || !!a.up_to });
+    return this.ask(task, { type: "play_resource", player: p, optional: !!a.optional || !!a.up_to, ...(a.face_down ? { faceDown: true } : {}) });
   }
 
   protected op_restore_all_depleted(arg: any, ctx: Ctx): StepResult {
@@ -2062,6 +2064,17 @@ export class Game {
     const spent = this.q.resources(p).filter((i) => this.s.cards[i].attachedTo === "faction");
     for (const iid of spent.slice(0, n)) this.s.cards[iid].attachedTo = null;
     this.log(`${this.pname(p)} detaches ${Math.min(n, spent.length)} resource${Math.min(n, spent.length) === 1 ? "" : "s"}.`);
+    return "ok";
+  }
+
+  /** "Attach that resource to its controller's faction": attach_resource: r */
+  protected op_attach_resource(arg: any, ctx: Ctx): StepResult {
+    for (const iid of this.refs(ctx, arg)) {
+      const c = this.s.cards[iid];
+      if (!this.q.inPlay(iid) || !c.isResource || c.attachedTo === "faction") continue;
+      c.attachedTo = "faction";
+      this.log(`${this.pname(c.controller)} attaches ${c.faceDown ? "a face-down resource" : this.q.name(iid)} to their faction.`);
+    }
     return "ok";
   }
 
@@ -2501,8 +2514,8 @@ export class Game {
         for (const iid of q.allInPlay()) {
           const c = s.cards[iid];
           if (c.isResource || q.isFaction(iid)) continue;
-          // Attached cards whose host is gone or no longer a character are destroyed.
-          if (c.attachedTo && c.attachedTo !== "faction" && !q.isCharacter(c.attachedTo) && !q.modsFor("stays_in_play", iid).length) out.push({ iid, cause: "rule" });
+          // Attached cards whose host is gone or no longer a character (an item for ATTACH TO ITEM) are destroyed.
+          if (c.attachedTo && c.attachedTo !== "faction" && !q.canHost(iid, c.attachedTo) && !q.modsFor("stays_in_play", iid).length) out.push({ iid, cause: "rule" });
           else if (q.is(iid, "character") && c.damage >= q.stat(iid, "life")) out.push({ iid, cause: "damage" });
           else if (q.is(iid, "location") && c.markers >= q.stat(iid, "structure")) out.push({ iid, cause: "damage" });
           // "[R][R][R]: Destroy this card." (Boorish Boar)
@@ -2571,7 +2584,7 @@ export class Game {
     if (!opts.noRedirect && zone !== "play" && zone !== "stack") {
       for (const m of this.q.mods("redirect")) {
         const r = m.value;
-        if (r.to !== zone || (r.from && r.from !== from) || !this.q.targets(m, iid)) continue;
+        if ((r.to !== undefined && r.to !== zone) || (r.from && r.from !== from) || !this.q.targets(m, iid)) continue;
         // "Cards cannot be put into your opponents' hands" (Lockbox of the Aeons): it stays.
         if (r.instead === "stay") {
           this.log(`${this.q.name(iid)} can't be put there; it stays where it is.`);
@@ -2606,6 +2619,7 @@ export class Game {
       // Cards attached to it, for "when the attached character leaves play" (they leave too).
       const attached = Object.values(this.s.cards).filter((x) => x.attachedTo === iid && x.zone === "play").map((x) => x.iid);
       this.leavePlayCleanup(iid);
+      c.lastHost = c.attachedTo && c.attachedTo !== "faction" ? c.attachedTo : undefined;
       c.faceDown = false;
       c.isResource = false;
       c.attachedTo = null;
@@ -2687,7 +2701,7 @@ export class Game {
     c.faceDown = false;
     c.isResource = false;
     c.controlSince = this.s.turn;
-    c.attachedTo = opts.attachTo && this.q.isCharacter(opts.attachTo) ? opts.attachTo : null;
+    c.attachedTo = opts.attachTo && this.q.canHost(iid, opts.attachTo) ? opts.attachTo : null;
     const def = this.q.def(iid);
     if (def.enters_depleted) c.depleted = true;
     if (def.enters_with_tokens !== undefined) {

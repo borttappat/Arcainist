@@ -8,3 +8,14 @@ text: |
   EXTRA COST: Destroy a character you own. Pick a character your opponent owns.
   Inflict 5 damage to the character. If the character was destroyed by that damage, draw a card.
   FLIP UP: 1 [R]
+rules:
+  - play:
+      cost:
+        - destroy: { from: { character: { owner: you } }, choose: true }
+        - pick: { as: c, from: { character: { owner: opponent } } }
+      effect:
+        - damage: { card: c, amount: 5 }
+        - if:
+            cond: { destroyed: c }
+            then: [ draw: 1 ]
+  - flip_up: { pay: 1, threshold: { rage: 1 } }

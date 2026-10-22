@@ -6,3 +6,7 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   Destroy the character an opponent controls with the lowest numeric cost. If there is a tie, you decide which character is destroyed.
+rules:
+  - play:
+      effect:
+        - destroy: { from: { character: { controller: opponent, cheapest: true } }, choose: true }

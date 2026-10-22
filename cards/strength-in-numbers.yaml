@@ -7,3 +7,10 @@ rarity: uncommon
 text: |
   EXTRA COST: Deploy this only while you are attacking. X is the number of members in the attacking party.
   This turn, all members of the attacking party gain X strength and X life.
+rules:
+  - play:
+      cost:
+        - require: { all: [ { your_turn: true }, { exists: { character: { attacking: true, controller: you } } } ] }
+        - let: { X: { count: { character: { attacking: true } } } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: X, life: X }, target: { character: { attacking: true } } } ] }

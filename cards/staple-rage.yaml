@@ -5,3 +5,4 @@ types: [resource]
 staple: true
 icon: rage
 text: Staple resource. Provides one Rage icon.
+rules: []

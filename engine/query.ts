@@ -39,6 +39,7 @@ const MOD_KINDS = [
   "remove_type",
   "keyword",
   "provides",
+  "attack_ready",
   "player_icons",
   "cost",
   "cost_min",
@@ -302,6 +303,13 @@ export class Q {
     return this.inPlay(iid) && !this.card(iid).isResource && this.is(iid, "character");
   }
 
+  /** Can this card be attached to that one? "ATTACH TO ITEM" cards take items; the rest take characters. */
+  canHost(iid: string, host: string): boolean {
+    const a = this.def(iid).attach_to;
+    const t = (typeof a === "string" ? a : a && typeof a === "object" ? Object.keys(a)[0] : "character") as CardType;
+    return this.inPlay(host) && !this.card(host).isResource && this.is(host, t);
+  }
+
   keyword(iid: string, kw: string): boolean {
     if (!this.active(iid) || this.silenced(iid)) return false;
     if (this.modsFor("lose_keyword", iid).some((m) => String(m.value).toLowerCase() === kw)) return false;
@@ -342,7 +350,12 @@ export class Q {
     const c = this.card(iid);
     if (c.zone !== "play") return {};
     if (c.isResource) {
-      if (c.faceDown) return { volition: 1 };
+      if (c.faceDown) {
+        // "Each face-down resource that doesn't have PROVIDES X gains PROVIDES X" (Thabbashite Chemist).
+        const out: Icons = { volition: 1 };
+        for (const m of this.modsFor("provides", iid)) for (const [k, v] of Object.entries(m.value as Icons)) if (!out[k as Icon]) out[k as Icon] = v ?? 0;
+        return out;
+      }
       const d = this.def(iid);
       if (d.provides) return d.provides;
       return d.icon ? { [d.icon]: 1 } : {};
@@ -457,7 +470,7 @@ export class Q {
   canAttack(iid: string): boolean {
     const c = this.card(iid);
     if (!this.isCharacter(iid) || c.depleted || c.controller !== this.s.active) return false;
-    if (!(c.controlSince < this.s.turn || this.keyword(iid, "aggro"))) return false;
+    if (!(c.controlSince < this.s.turn || this.keyword(iid, "aggro") || this.modsFor("attack_ready", iid).length)) return false;
     if (this.cannot("attack", iid, c.controller)) return false;
     const limit = this.modsFor("attack_limit", iid).map((m) => this.value(m.value, m.scope));
     if (limit.length && (this.s.turnLog.attacks[iid] ?? 0) >= Math.min(...limit)) return false;
@@ -481,7 +494,11 @@ export class Q {
     if (x === "self") return scope.source;
     // The top card of a deck: "top_of_you" / "top_of_opponent".
     if (x === "top_of_you" || x === "top_of_opponent") return this.s.players[x === "top_of_you" ? scope.controller : other(scope.controller)].deck[0];
-    if (x === "host") return this.s.cards[scope.source]?.attachedTo ?? undefined;
+    if (x === "host") {
+      const c = this.s.cards[scope.source];
+      // After it left play, the card it was attached to (Sticky Stealy Hand).
+      return c ? (c.zone === "play" ? (c.attachedTo ?? undefined) : c.lastHost) : undefined;
+    }
     if (x === "responded") {
       const item = this.s.stack.find((i) => i.id === scope.responding);
       return item?.iid;
@@ -593,6 +610,10 @@ export class Q {
     if (x && typeof x === "object" && "controller_of" in x) {
       const r = this.ref(x.controller_of, scope);
       return r ? this.card(r).controller : scope.controller;
+    }
+    if (x && typeof x === "object" && "owner_of" in x) {
+      const r = this.ref(x.owner_of, scope);
+      return r ? this.card(r).owner : scope.controller;
     }
     return scope.controller;
   }
@@ -733,6 +754,7 @@ export class Q {
     if (f.keyword !== undefined && !this.keyword(iid, String(f.keyword).toLowerCase())) return false;
     // "the character an opponent controls with the highest numeric cost" (among its controller's characters)
     if (f.costliest && (c.zone !== "play" || this.numericCost(iid) < Math.max(...this.characters(c.controller).map((i) => this.numericCost(i))))) return false;
+    if (f.cheapest && (c.zone !== "play" || this.numericCost(iid) > Math.min(...this.characters(c.controller).map((i) => this.numericCost(i))))) return false;
     // "characters with items attached to them"
     if (f.equipped !== undefined && this.attachments(iid).some((a) => this.is(a, "item")) !== !!f.equipped) return false;
     // "a character this card damaged this turn": damaged_by: self

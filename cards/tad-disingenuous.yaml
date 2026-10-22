@@ -9,3 +9,9 @@ text: |
   UNDERHANDED DEAL
   COST: Discard a card.
   EFFECT: This turn, this card gains COVERT.
+rules:
+  - ability:
+      name: Underhanded Deal
+      cost: [ discard: 1 ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { keyword: covert } ] }

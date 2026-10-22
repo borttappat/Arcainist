@@ -8,3 +8,9 @@ text: |
   EXTRA COST: Pick a character with an ability in its rules text.
   Destroy the character.
   FLIP UP: 1 [E][E]
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { text_has: "COST:" } } }
+      effect: [ destroy: c ]
+  - flip_up: { pay: 1, threshold: { elitism: 2 } }

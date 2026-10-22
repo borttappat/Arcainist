@@ -6,3 +6,8 @@ set: "Ungodly Mess"
 rarity: common
 text: |
   Search your deck for up to 2 different types of staple resources, not named "Greed", and reveal them. Put them into your hand. Your faction gains 1 influence.
+rules:
+  - play:
+      effect:
+        - search: { deck: you, for: { resource: { staple: true, name_not: Greed } }, count: 2, different_names: true, reveal: true, to: hand }
+        - gain_influence: { who: you, amount: 1 }

@@ -7,3 +7,10 @@ set: "Holy Heist"
 rarity: common
 text: |
   When a card that provides at least [V] enters play under your control, you may pick a faction. If you do, it gains 1 influence.
+rules:
+  - trigger: { on: enters_play, card: { controller: you, provides_at_least: { volition: 1 } } }
+    effect:
+      - pick: { as: f, from: { faction: any }, choose: true, optional: true, prompt: "You may pick a faction; it gains 1 influence." }
+      - if:
+          cond: { defined: f }
+          then: [ gain_influence: { who: { controller_of: f }, amount: 1 } ]

@@ -103,6 +103,17 @@ Where things stand and what's left. Update this as work lands.
   cards skipped. The dump script still starts at index 10. Next card in order:
   Sneaking Spitspider.
 
+- **2026-10-22 (tenth session):** 100 more cards, Sneaking Spitspider to Theocratic Senate
+  of Marduun. New building blocks: ATTACH TO ITEM (`attach_to: item`, which also makes
+  iDumb De-Itemizer work), `host` remembered after the card leaves play, `{ owner_of: c }`
+  for players, `redirect` without `to` (leaving play to anywhere), the `attach_resource`
+  step, `play_resource` with `face_down`, the `cheapest` filter, the `attack_ready`
+  modifier, and `provides` on face-down resources (Thabbashite Chemist). New
+  interpretation rows for Stuttershy, Swinish Elder, Subsection 5 Paragraph 12, The Stone
+  of Shame, The Poshernacle and Spurious Anthropologist. 1,299 tests pass. No cards
+  skipped. The dump script still starts at index 10. Next card in order: Theological
+  Opportunist.
+
 ## State at the end of the first session (2026-10-21)
 
 - **Cards:** 1,230 cards from the spoilstoolbox.com database, plus a Micromajig token card.
@@ -140,7 +151,7 @@ Where things stand and what's left. Update this as work lands.
 ## 2. Automate every card (the main job)
 
 - [ ] Write `rules` for every card without them, in alphabetical batches of about 25
-  (about 965 of 1,230 done; 232 cards with text remain):
+  (about 1,065 of 1,230 done; 132 cards with text remain):
   - list the batch's cards with their text and numbers;
   - write the rules;
   - append them to the YAML files;

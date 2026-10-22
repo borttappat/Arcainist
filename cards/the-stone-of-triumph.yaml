@@ -6,3 +6,12 @@ set: "Seed 3"
 rarity: fixed
 text: |
   When a character you control is destroyed, you may pay 1. If you do, search your deck for a card with the same name, reveal it, and put it on top of your deck.
+rules:
+  - trigger: { on: destroyed, card: { character: { controller: you } } }
+    effect:
+      - let: { n: { name_of: it } }
+      - may_pay:
+          amount: 1
+          prompt: "search your deck for a card with the same name and put it on top of your deck"
+          then:
+            - search: { deck: you, for: { card: { name: n } }, reveal: true, to: deck_top }

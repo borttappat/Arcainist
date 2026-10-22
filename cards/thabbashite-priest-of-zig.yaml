@@ -8,3 +8,14 @@ rarity: uncommon
 text: |
   [O][O][V][V]: This card gains COVERT. When this card is destroyed, you may pick a non-resource card. If you do, put that card into its owner's hand.
   FLIP UP: 3 [V][V][V][V]
+rules:
+  - static:
+      requires: { obsession: 2, volition: 2 }
+      mods: [ { keyword: covert } ]
+  - trigger: { on: destroyed, card: self, requires: { obsession: 2, volition: 2 } }
+    effect:
+      - pick: { as: c, from: { card: { not_type: resource } }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ move: { card: c, to: hand } ]
+  - flip_up: { pay: 3, threshold: { volition: 4 } }

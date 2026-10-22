@@ -7,3 +7,9 @@ rarity: common
 text: |
   EXTRA COST: Pick a character.
   This turn, the character gains 1 speed. Put this card into play under its owner's control as a face-down resource instead of into their discard pile.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect: [ modify: { card: c, stat: spd, gain: 1 } ]
+      then: face_down_resource

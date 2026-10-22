@@ -8,3 +8,19 @@ rarity: uncommon
 text: |
   At the start of your turn, X is this card's strength and you may destroy this character. If you do, inflict X damage to each opponent's faction or pick an item with numeric cost X or less and destroy it.
   [V][V][V][V][V]: This card gains 2 strength.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - let: { X: { stat: [ self, str ] } }
+      - may:
+          prompt: "destroy Thabbashite Weapons Expert (then inflict X damage to your opponent's faction or destroy an item with numeric cost X or less)"
+          steps:
+            - destroy: self
+            - choose_one:
+                - { label: "Inflict X damage to your opponent's faction", steps: [ damage: { faction: opponent, amount: X } ] }
+                - label: "Destroy an item with numeric cost X or less"
+                  when: { exists: { item: { cost_lte: X } } }
+                  steps: [ destroy: { from: { item: { cost_lte: X } } } ]
+  - static:
+      requires: { volition: 5 }
+      mods: [ { stat: { str: 2 } } ]

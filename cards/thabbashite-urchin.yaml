@@ -7,3 +7,8 @@ set: "Holy Heist"
 rarity: common
 text: |
   [V][V][V]: While an opponent controls an item, this card cannot be blocked.
+rules:
+  - static:
+      requires: { volition: 3 }
+      while: { exists: { item: { controller: opponent } } }
+      mods: [ { cannot_be_blocked: true } ]

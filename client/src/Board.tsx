@@ -537,7 +537,7 @@ function Prompt({ view, cards, send, sel, setSel, defOf, attack, setAttack, setH
             ))}
           </div>
           <div className="row">
-            <button className="primary" disabled={!pickedDef?.types.includes("resource") || !!pickedDef?.face_down_only} onClick={() => send({ type: "answer", iid: resPick!, faceDown: false })}>
+            <button className="primary" disabled={!pickedDef?.types.includes("resource") || !!pickedDef?.face_down_only || !!d.faceDown} onClick={() => send({ type: "answer", iid: resPick!, faceDown: false })}>
               Face-up
             </button>
             <button disabled={!resPick} onClick={() => send({ type: "answer", iid: resPick!, faceDown: true })}>

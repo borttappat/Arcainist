@@ -11,3 +11,20 @@ text: |
   FEED
   COST: Pay 1. Remove a token from this card.
   EFFECT: This turn, this card gains 1 strength and 1 life.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - coin_flip: { as: won }
+      - if:
+          cond: { did: true }
+          then: [ tokens: { card: self, add: 1 } ]
+  - static:
+      while: { gt: [ { tokens: self }, 0 ] }
+      mods: [ { keyword: covert } ]
+  - ability:
+      name: Feed
+      cost:
+        - pay: 1
+        - tokens: { card: self, remove: 1 }
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: 1, life: 1 } } ] }

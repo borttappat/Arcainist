@@ -8,3 +8,9 @@ text: |
   UNIQUE THEOCRATIC SENATE OF MARDUUN
   Your opponents cannot attack your faction.
   When a character inflicts damage to this card, inflict the same amount of damage to the character.
+rules:
+  - unique: Theocratic Senate of Marduun
+  - static:
+      mods: [ { cannot: attack_faction, by: opponent, target: all } ]
+  - trigger: { on: damage, card: self, source: { character: any } }
+    effect: [ damage: { card: source, amount: amount } ]

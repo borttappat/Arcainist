@@ -8,3 +8,12 @@ rarity: common
 text: |
   When this card attacks, inflict 1 damage to an opponent's faction.
   [R][R][R][R]: When this card attacks, you may pick a character. If you do, inflict 1 damage to it.
+rules:
+  - trigger: { on: attacks, card: self }
+    effect: [ damage: { faction: opponent, amount: 1 } ]
+  - trigger: { on: attacks, card: self, requires: { rage: 4 } }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ damage: { card: c, amount: 1 } ]

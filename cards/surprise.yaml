@@ -7,3 +7,23 @@ rarity: rare
 text: |
   EXTRA COST: Pick a character attacking your faction or a location you control. X is that character's numeric cost.
   Reveal cards from the top of your deck until a character with numeric cost X or less is revealed or no cards are left. If an appropriate character is revealed, put it into play under your control as a member of the blocking party. Shuffle all other revealed cards into your deck.
+rules:
+  - play:
+      cost:
+        - pick: { as: a, from: { character: { attacking: true, controller: opponent } } }
+        - let: { X: { cost: a } }
+      effect:
+        - let: { n: { count: { card: { zone: deck, owner: you } } }, i: 0, go: 1 }
+        - repeat:
+            while: { all: [ { eq: [ go, 1 ] }, { lt: [ i, n ] } ] }
+            steps:
+              - let: { i: "i + 1" }
+              - reveal_top: { who: you, count: 1, as: rev }
+              - if:
+                  cond: { matches: [ rev, { character: { zone: deck, cost_lte: X } } ] }
+                  then:
+                    - put_into_play: { card: rev, controller: you }
+                    - add_to_battle: { card: rev, side: blocking }
+                    - let: { go: 0 }
+                  else: [ move: { card: rev, to: deck_bottom } ]
+        - shuffle: you

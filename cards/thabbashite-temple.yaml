@@ -11,3 +11,21 @@ text: |
   VOLATE
   COST: Pay 2. Pick a face-up resource you control.
   EFFECT: Flip that resource face-down under its owner's control.
+rules:
+  - ability:
+      name: Call Upon the Gods
+      cost:
+        - deplete: self
+        - let: { X: { icons: volition } }
+        - pay: "max(0, 10 - X)"
+      effect:
+        - search: { deck: you, for: { character: { cost_lte: X } }, to: play, as: found }
+        - if:
+            cond: { defined: found }
+            then: [ deplete: found ]
+  - ability:
+      name: Volate
+      cost:
+        - pay: 2
+        - pick: { as: r, from: { resource: { controller: you, face_down: false } }, choose: true }
+      effect: [ flip_face_down: { card: r, controller: owner } ]

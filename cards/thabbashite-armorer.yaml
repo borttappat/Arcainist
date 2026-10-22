@@ -12,3 +12,18 @@ text: |
   TAMESHIGIRI: [V][V][V][V][V][V]
   COST: Pay 2. Your faction loses 2 influence.
   EFFECT: This turn, this card gains 2 strength and 2 life.
+rules:
+  - ability:
+      name: For Thabbash
+      threshold: { volition: 3 }
+      cost: [ pay: 2 ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: 1, life: 1 } } ] }
+  - ability:
+      name: Tameshigiri
+      threshold: { volition: 6 }
+      cost:
+        - pay: 2
+        - lose_influence: { who: you, amount: 2 }
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: 2, life: 2 } } ] }

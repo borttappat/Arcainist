@@ -7,3 +7,7 @@ set: "Holy Heist"
 rarity: common
 text: |
   When a card that provides at least [V] enters play under your control, reduce the numeric cost of the next card you play this turn by 1.
+rules:
+  - trigger: { on: enters_play, card: { controller: you, provides_at_least: { volition: 1 } } }
+    effect:
+      - create_effect: { duration: next, mods: [ { cost: -1, by: you, target: { card: { zone: stack } } } ] }

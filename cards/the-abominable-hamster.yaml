@@ -9,3 +9,7 @@ rarity: common
 text: |
   COVERT
   [O][O][O][O][O]: This card gains 2 strength.
+rules:
+  - static:
+      requires: { obsession: 5 }
+      mods: [ { stat: { str: 2 } } ]

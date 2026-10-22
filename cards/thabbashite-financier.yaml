@@ -9,3 +9,11 @@ text: |
   BLOOD GOLD: [V][V]
   COST: Pay 2. Lose 1 influence.
   EFFECT: You may play a card as a face-down resource.
+rules:
+  - ability:
+      name: Blood Gold
+      threshold: { volition: 2 }
+      cost:
+        - pay: 2
+        - lose_influence: { who: you, amount: 1 }
+      effect: [ play_resource: { optional: true, face_down: true } ]

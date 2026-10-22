@@ -7,3 +7,22 @@ rarity: rare
 text: |
   EXTRA COST: Pick a player. That player may pay 2. If they do, look at the top card of your deck then terminate this card.
   The picked player cannot play characters this turn. Draw a card.
+rules:
+  - play:
+      cost:
+        - pick: { as: f, from: { faction: any }, choose: true, prompt: "Pick a player (their faction)." }
+      effect:
+        - may_pay:
+            who: { controller_of: f }
+            amount: 2
+            prompt: "look at the top card of Study Disturbance's controller's deck and terminate it"
+            then:
+              - as:
+                  who: { controller_of: f }
+                  steps: [ peek: { who: { controller_of: self }, top: 1 } ]
+              - terminate: self
+        - if:
+            cond: { matches: [ f, { faction: { controller: you } } ] }
+            then: [ create_effect: { duration: turn, mods: [ { cannot: play, by: you, target: { character: { zone: any } } } ] } ]
+            else: [ create_effect: { duration: turn, mods: [ { cannot: play, by: opponent, target: { character: { zone: any } } } ] } ]
+        - draw: 1

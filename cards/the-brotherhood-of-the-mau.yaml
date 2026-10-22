@@ -11,3 +11,24 @@ text: |
   This card enters play with 7 tokens on it.
   While this card has a token on it, it cannot attack.
   At the start of each turn, you may pay X. If you do, remove X tokens from this card and pick another character. That character gains X life this turn.
+enters_with_tokens: 7
+rules:
+  - static:
+      while: { gt: [ { tokens: self }, 0 ] }
+      mods: [ { cannot: attack } ]
+  - trigger: { on: start_of_turn, player: any }
+    effect:
+      - if:
+          cond: { all: [ { gt: [ { tokens: self }, 0 ] }, { exists: { character: { not_self: true } } } ] }
+          then:
+            - choose_number: { as: X, min: 0, max: { tokens: self } }
+            - if:
+                cond: { gt: [ X, 0 ] }
+                then:
+                  - may_pay:
+                      amount: X
+                      prompt: "remove X tokens from The Brotherhood of the Mau; another character gains X life this turn"
+                      then:
+                        - tokens: { card: self, remove: X }
+                        - pick: { as: c, from: { character: { not_self: true } } }
+                        - modify: { card: c, stat: life, gain: X }

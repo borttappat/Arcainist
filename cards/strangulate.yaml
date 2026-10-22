@@ -8,3 +8,12 @@ text: |
   EXTRA COST: Pick a character.
   If the character has 4 life or less, destroy it.
   FLIP UP: 2 [D]
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - if:
+            cond: { matches: [ c, { character: { life_lte: 4 } } ] }
+            then: [ destroy: c ]
+  - flip_up: { pay: 2, threshold: { deception: 1 } }

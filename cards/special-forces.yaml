@@ -9,3 +9,9 @@ text: |
   UNDERCOVERT OPERATIONS
   COST: Pay 3.
   EFFECT: This turn, this character gains COVERT and loses 1 life.
+rules:
+  - ability:
+      name: Undercovert Operations
+      cost: [ pay: 3 ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { keyword: covert }, { stat: { life: -1 } } ] }

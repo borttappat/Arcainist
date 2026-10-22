@@ -7,3 +7,8 @@ set: "Shade of the Devoured Emperor"
 rarity: uncommon
 text: |
   [V]: When a character inflicts battle damage to a faction, X is the number of threshold icons of the character. Inflict X damage to that character's controller's faction.
+rules:
+  - trigger: { on: damage, faction: true, battle: true, source: { character: any }, requires: { volition: 1 } }
+    effect:
+      - let: { X: { threshold: source } }
+      - damage: { faction: { controller_of: source }, amount: X }

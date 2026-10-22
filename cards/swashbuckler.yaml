@@ -7,3 +7,16 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   When this card enters play, you may remove 4 cards in an opponent's discard pile from the game. If you don't, destroy this card.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - if:
+          cond: { gte: [ { count: { card: { zone: discard, owner: opponent } } }, 4 ] }
+          then:
+            - may:
+                prompt: "remove 4 cards in your opponent's discard pile from the game (if you don't, destroy Swashbuckler)"
+                steps:
+                  - pick: { as: d, from: { card: { zone: discard, owner: opponent } }, count: 4, choose: true }
+                  - move: { card: d, to: void }
+                else: [ destroy: self ]
+          else: [ destroy: self ]

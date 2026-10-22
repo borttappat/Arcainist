@@ -8,3 +8,14 @@ rarity: uncommon
 text: |
   [E][E][V][V]: This card gains 1 strength and 1 life. When this card attacks, you may pick a face-up resource you control. If you do, flip it face-down under its owner's control.
   FLIP UP: 4 [V][V][V][V]
+rules:
+  - static:
+      requires: { elitism: 2, volition: 2 }
+      mods: [ { stat: { str: 1, life: 1 } } ]
+  - trigger: { on: attacks, card: self, requires: { elitism: 2, volition: 2 } }
+    effect:
+      - pick: { as: r, from: { resource: { controller: you, face_down: false } }, choose: true, optional: true, prompt: "You may flip a face-up resource you control face-down." }
+      - if:
+          cond: { defined: r }
+          then: [ flip_face_down: { card: r, controller: owner } ]
+  - flip_up: { pay: 4, threshold: { volition: 4 } }

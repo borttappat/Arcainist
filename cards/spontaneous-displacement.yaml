@@ -7,3 +7,14 @@ rarity: uncommon
 text: |
   EXTRA COST: Pick a non-resource card. X is half its numeric cost, rounded up.
   Put the card into its owner's hand. You may deploy a non-resource card with numeric cost X or less for free. (You still need to meet its threshold and satisfy its extra costs.)
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { card: { not_type: resource } } }
+        - let: { X: { half_up: { cost: c } } }
+      effect:
+        - move: { card: c, to: hand }
+        - pick: { as: d, from: { card: { zone: hand, owner: you, not_type: resource, cost_lte: X } }, choose: true, optional: true, prompt: "You may deploy a non-resource card with numeric cost X or less for free." }
+        - if:
+            cond: { defined: d }
+            then: [ play_card: { card: d, free: true } ]

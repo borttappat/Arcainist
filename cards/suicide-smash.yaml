@@ -8,3 +8,19 @@ text: |
   EXTRA COST: Pick a character you control. X is its strength. Destroy it. Pick a location.
   If you control [V][V][V], inflict 3 damage to an opponent's faction. Inflict X damage to the location. If it is destroyed by that damage, draw a card.
   FLIP UP: 3 [R]
+rules:
+  - play:
+      cost:
+        - pick: { as: m, from: { character: { controller: you } } }
+        - let: { X: { stat: [ m, str ] } }
+        - destroy: m
+        - pick: { as: l, from: { location: any } }
+      effect:
+        - if:
+            cond: { icons: { volition: 3 } }
+            then: [ damage: { faction: opponent, amount: 3 } ]
+        - damage: { card: l, amount: X }
+        - if:
+            cond: { destroyed: l }
+            then: [ draw: 1 ]
+  - flip_up: { pay: 3, threshold: { rage: 1 } }

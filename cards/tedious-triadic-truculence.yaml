@@ -7,3 +7,18 @@ rarity: rare
 text: |
   EXTRA COST: Pick 3 characters. Any opponent may pay 3. If they do, look at the top 3 cards of your deck and put them back in any order then terminate this card.
   Destroy each picked character with 3 strength or less.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any }, count: 3, exactly: true }
+      effect:
+        - may_pay:
+            who: opponent
+            amount: 3
+            prompt: "look at the top 3 cards of its controller's deck, put them back in any order and terminate Tedious Triadic Truculence"
+            then:
+              - as:
+                  who: opponent
+                  steps: [ look: { deck: opponent, count: 3 } ]
+              - terminate: self
+        - destroy: { character: { among: c, str_lte: 3 } }

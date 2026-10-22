@@ -11,3 +11,19 @@ text: |
   [E]: This card gains AGGRO.
   [D]: This card gains 1 speed.
   [R]: This card gains 2 strength.
+rules:
+  - static:
+      requires: { obsession: 1 }
+      mods: [ { keyword: covert } ]
+  - static:
+      requires: { greed: 1 }
+      mods: [ { stat: { life: 2 } } ]
+  - static:
+      requires: { elitism: 1 }
+      mods: [ { keyword: aggro } ]
+  - static:
+      requires: { deception: 1 }
+      mods: [ { stat: { spd: 1 } } ]
+  - static:
+      requires: { rage: 1 }
+      mods: [ { stat: { str: 2 } } ]

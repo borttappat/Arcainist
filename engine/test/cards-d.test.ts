@@ -1327,4 +1327,148 @@ describe("cards: D onwards", () => {
     expect(g.s.cards[fine].zone).toBe("play");
     expect(g.s.cards[hurt].zone).toBe("discard");
   });
+
+  it("iDumb De-Itemizer: attaches to an item, which then has no rules text", () => {
+    const { g, p, o } = setup();
+    const head = put(g, o, "the-enemy-s-head", "play");
+    g.s.cards[head].tokens = 2;
+    const w = put(g, o, "runic-whale", "play");
+    expect(g.q.stat(w, "str")).toBe(7);
+    resources(g, p, "greed", 3);
+    const d = put(g, p, "idumb-de-itemizer", "hand");
+    act(g, p, { type: "deploy", iid: d });
+    answer(g, [head]);
+    passAll(g);
+    expect(g.s.cards[d].attachedTo).toBe(head);
+    expect(g.q.stat(w, "str")).toBe(5);
+  });
+
+  it("Sticky Stealy Hand: a won flip takes the item, which goes back when the hand leaves", () => {
+    let checked = false;
+    for (let seed = 1; seed <= 12 && !checked; seed++) {
+      const g = newGame(seed);
+      const p = toMain(g);
+      const o = other(p);
+      const item = put(g, o, "the-enemy-s-head", "play");
+      resources(g, p, "deception", 2);
+      const h = put(g, p, "sticky-stealy-hand", "hand");
+      act(g, p, { type: "deploy", iid: h });
+      answer(g, [item]);
+      passAll(g);
+      if (g.s.cards[h].zone !== "play") {
+        expect(g.s.cards[h].zone).toBe("hand");
+        expect(g.s.cards[item].controller).toBe(o);
+        continue;
+      }
+      expect(g.s.cards[h].attachedTo).toBe(item);
+      expect(g.s.cards[item].controller).toBe(p);
+      g.destroy(h);
+      settle(g);
+      expect(g.s.cards[item].controller).toBe(o);
+      checked = true;
+    }
+    expect(checked).toBe(true);
+  });
+
+  it("Spurious Anthropologist: a character from the discard pile joins the block; both leave to the void", () => {
+    const { g, p, o } = setup();
+    const atk = put(g, p, "runic-whale", "play");
+    const sa = put(g, o, "spurious-anthropologist", "play");
+    const dead = put(g, o, "rapacious-soldier", "discard");
+    act(g, p, { type: "attack", target: "faction", attackers: [atk] });
+    pass(g);
+    pass(g);
+    act(g, o, { type: "answer", ids: [sa] });
+    answer(g, [dead]);
+    expect(g.s.cards[dead].zone).toBe("play");
+    expect(g.s.battle?.blockers).toContain(dead);
+    g.destroy(dead);
+    settle(g);
+    expect(g.s.cards[dead].zone).toBe("void");
+    expect(g.s.cards[sa].zone).toBe("void");
+  });
+
+  it("Swindle: the opponent attaches one of their resources to their faction", () => {
+    const { g, p, o } = setup();
+    resources(g, p, "greed", 2);
+    const [r] = resources(g, o, "rage", 1);
+    for (let i = 0; i < 3; i++) put(g, p, "runic-whale", "deck");
+    const t = put(g, p, "swindle", "hand");
+    act(g, p, { type: "deploy", iid: t });
+    passAll(g);
+    answer(g, [r]);
+    expect(g.s.cards[r].attachedTo).toBe("faction");
+  });
+
+  it("Subordinate Demotivation: destroys the opponent's cheapest character", () => {
+    const { g, p, o } = setup();
+    resources(g, p, "greed", 3);
+    const cheap = put(g, o, "rapacious-soldier", "play");
+    const dear = put(g, o, "runic-whale", "play");
+    const t = put(g, p, "subordinate-demotivation", "hand");
+    act(g, p, { type: "deploy", iid: t });
+    passAll(g);
+    if (g.s.pending?.type === "choose") answer(g, [cheap]);
+    expect(g.s.cards[cheap].zone).toBe("discard");
+    expect(g.s.cards[dear].zone).toBe("play");
+  });
+
+  it("Thabbashite Chemist: face-down resources gain PROVIDES of the named icon", () => {
+    const { g, p } = setup();
+    resources(g, p, "obsession", 2);
+    for (let i = 0; i < 2; i++) put(g, p, "runic-whale", "play", { faceDown: true });
+    const c = put(g, p, "thabbashite-chemist", "play");
+    const before = g.q.icons(p).rage;
+    act(g, p, { type: "ability", iid: c, index: g.q.abilities(c)[0].index });
+    answer(g, ["rage"]);
+    passAll(g);
+    expect(g.q.icons(p).rage).toBe(before + 2);
+    expect(g.q.icons(p).volition).toBe(2);
+  });
+
+  it("Testudine Autoframe: your characters can attack the turn they enter play", () => {
+    const { g, p } = setup();
+    const fresh = put(g, p, "runic-whale", "play", { since: g.s.turn });
+    expect(g.q.canAttack(fresh)).toBe(false);
+    put(g, p, "testudine-autoframe", "play");
+    expect(g.q.canAttack(fresh)).toBe(true);
+  });
+
+  it("Thabbashite Financier: Blood Gold plays a card face-down, even a resource card", () => {
+    const { g, p } = setup();
+    for (let i = 0; i < 2; i++) put(g, p, "runic-whale", "play", { faceDown: true });
+    resources(g, p, "greed", 1);
+    const f = put(g, p, "thabbashite-financier", "play");
+    const r = put(g, p, "rage", "hand");
+    act(g, p, { type: "ability", iid: f, index: g.q.abilities(f)[0].index });
+    passAll(g);
+    g.act(p, { type: "answer", iid: r, faceDown: false });
+    expect(g.s.cards[r].zone).toBe("play");
+    expect(g.s.cards[r].faceDown).toBe(true);
+  });
+
+  it("Thabbashite Desert Creature: pay 2 from hand when a [V] card enters play under you", () => {
+    const { g, p } = setup();
+    resources(g, p, "obsession", 2);
+    const dc = put(g, p, "thabbashite-desert-creature", "hand");
+    const x = put(g, p, "runic-whale", "hand");
+    g.putResource(p, x, true, false);
+    settle(g);
+    answer(g, ["yes"]);
+    passAll(g);
+    expect(g.s.cards[dc].zone).toBe("play");
+  });
+
+  it("The Great Wall of Keeping Stuff Out: terminates tactics and takes 1 damage each time", () => {
+    const { g, p, o } = setup();
+    const wall = put(g, o, "the-great-wall-of-keeping-stuff-out", "play");
+    resources(g, p, "greed", 3);
+    const t = put(g, p, "subordinate-demotivation", "hand");
+    const w = put(g, o, "rapacious-soldier", "play");
+    act(g, p, { type: "deploy", iid: t });
+    passAll(g);
+    expect(g.s.cards[t].zone).toBe("discard");
+    expect(g.s.cards[w].zone).toBe("play");
+    expect(g.s.cards[wall].markers).toBe(1);
+  });
 });

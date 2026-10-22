@@ -8,3 +8,13 @@ rarity: uncommon
 text: |
   [G][G][V][V]: When this card is destroyed, draw a card. When this card attacks, you may pick a card in a discard pile. If you do, remove it from the game.
   FLIP UP: 2 [V][V][V][V]
+rules:
+  - trigger: { on: destroyed, card: self, requires: { greed: 2, volition: 2 } }
+    effect: [ draw: 1 ]
+  - trigger: { on: attacks, card: self, requires: { greed: 2, volition: 2 } }
+    effect:
+      - pick: { as: d, from: { card: { zone: discard } }, optional: true }
+      - if:
+          cond: { defined: d }
+          then: [ move: { card: d, to: void } ]
+  - flip_up: { pay: 2, threshold: { volition: 4 } }

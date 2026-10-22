@@ -9,3 +9,10 @@ text: |
   PAY OFF
   COST: Any player may use this ability. Pay 1.
   EFFECT: This turn, if damage is inflicted to a character or faction by this card, reduce the amount by 1.
+rules:
+  - ability:
+      name: Pay Off
+      both_players: true
+      cost: [ pay: 1 ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { damage: { delta: -1, from: self }, target: all } ] }

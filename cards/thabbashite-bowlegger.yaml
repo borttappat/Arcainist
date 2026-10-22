@@ -7,3 +7,10 @@ set: "Holy Heist"
 rarity: common
 text: |
   When a card that provides at least [V] enters play under your control, you may pick a character. If you do, that character gains 2 strength this turn.
+rules:
+  - trigger: { on: enters_play, card: { controller: you, provides_at_least: { volition: 1 } } }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ modify: { card: c, stat: str, gain: 2 } ]

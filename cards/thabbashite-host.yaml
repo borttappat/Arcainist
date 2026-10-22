@@ -8,3 +8,14 @@ rarity: uncommon
 text: |
   [R][R][V][V]: This card gains 4 strength. When this card leaves play, you may pick a character. If you do, that character gains 4 strength this turn.
   FLIP UP: 7 [V][V][V][V]
+rules:
+  - static:
+      requires: { rage: 2, volition: 2 }
+      mods: [ { stat: { str: 4 } } ]
+  - trigger: { on: leaves_play, card: self, requires: { rage: 2, volition: 2 } }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ modify: { card: c, stat: str, gain: 4 } ]
+  - flip_up: { pay: 7, threshold: { volition: 4 } }

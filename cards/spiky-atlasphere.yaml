@@ -11,3 +11,14 @@ text: |
   The attached character gains 1 strength.
   When an attacking party is formed including the attached character, it must have only 1 member.
   When the attached character is blocked, destroy all members of the blocking party. If you do, reduce the attached character's battle damage during this battle to 0.
+rules:
+  - static:
+      mods: [ { party: { side: attacking, max: 1, including: host } } ]
+  - trigger: { on: blocked, card: host }
+    effect:
+      - let: { n: { count: { character: { blocking: true } } } }
+      - destroy: { character: { blocking: true } }
+      - if:
+          cond: { gt: [ n, 0 ] }
+          then:
+            - create_effect: { duration: battle, mods: [ { damage: { set: 0, battle: true, from: host }, target: all } ] }

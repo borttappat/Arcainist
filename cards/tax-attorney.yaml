@@ -7,3 +7,6 @@ set: "2nd Edition"
 rarity: common
 text: |
   When your faction loses influence, reduce the amount by 1.
+rules:
+  - static:
+      mods: [ { influence_loss: { player: you, delta: -1 }, target: all } ]

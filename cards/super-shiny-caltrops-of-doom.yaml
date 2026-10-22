@@ -12,3 +12,19 @@ text: |
   COST: Pay 2. Pick a character.
   EFFECT: Attach this card to the character if you can. (if you can't, this card remains in play)
   FLIP UP: 2 [R]
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ damage: { card: c, amount: 2 } ]
+  - replace: { event: destroy, card: self, optional: true, pay: 2, prompt: "Pay 2 to put it into play as a face-down resource under its owner's control instead" }
+    instead: [ flip_face_down: { card: self, controller: owner } ]
+  - ability:
+      name: Move
+      cost:
+        - pay: 2
+        - pick: { as: c, from: { character: any } }
+      effect: [ attach: { card: self, to: c } ]
+  - flip_up: { pay: 2, threshold: { rage: 1 } }

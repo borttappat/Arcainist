@@ -9,3 +9,13 @@ text: |
   DELINIATE: [V][V]
   COST: Pay 2. Deplete this card. Name a threshold icon. X is that icon.
   EFFECT: This turn, each face-down resource that doesn't have PROVIDES X, gains PROVIDES X.
+rules:
+  - ability:
+      name: Deliniate
+      threshold: { volition: 2 }
+      cost:
+        - pay: 2
+        - deplete: self
+        - name: { as: X, kind: icon }
+      effect:
+        - create_effect: { duration: turn, mods: [ { provides: X, target: { resource: { face_down: true } } } ] }

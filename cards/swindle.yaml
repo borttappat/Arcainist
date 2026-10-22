@@ -7,3 +7,14 @@ rarity: common
 text: |
   EXTRA COST: Your opponents cannot respond to this card.
   Each opponent must attach a resource to their faction. Draw a card. Discard a card.
+rules:
+  - play:
+      no_response: true
+      effect:
+        - as:
+            who: opponent
+            steps:
+              - pick: { as: r, from: { resource: { controller: you, spent: false } }, choose: true, prompt: "Attach a resource to your faction." }
+              - attach_resource: r
+        - draw: 1
+        - discard: 1

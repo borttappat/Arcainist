@@ -8,3 +8,14 @@ text: |
   LOBOTOMIZE
   COST: Deplete this card.
   EFFECT: Look at an opponent's hand and choose 2 or fewer non-resource cards in it. That player discards those cards. That player takes control of this card.
+rules:
+  - ability:
+      name: Lobotomize
+      cost: [ deplete: self ]
+      effect:
+        - peek: { who: opponent, hand: true }
+        - pick: { as: h, from: { card: { zone: hand, owner: opponent, not_type: resource } }, count: 2, up_to: true, choose: true, optional: true, prompt: "Choose up to 2 non-resource cards in your opponent's hand to discard." }
+        - if:
+            cond: { defined: h }
+            then: [ discard: { who: opponent, cards: h } ]
+        - take_control: { card: self, who: opponent }

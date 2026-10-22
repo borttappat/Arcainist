@@ -6,3 +6,6 @@ set: "Seed 3"
 rarity: fixed
 text: |
   If a character would be put into a player's hand, destroy it instead.
+rules:
+  - static:
+      mods: [ { redirect: { to: hand, instead: discard }, target: { character: { zone: any } } } ]

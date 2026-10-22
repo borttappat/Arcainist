@@ -10,3 +10,10 @@ text: |
   ATTACH TO CHARACTER
   While this card is attached to a character you control, that character gains 1 strength and 1 life.
   While this card is attached to a character you don't control, that character loses 1 strength and 1 life.
+rules:
+  - static:
+      while: { matches: [ host, { character: { controller: you } } ] }
+      mods: [ { stat: { str: 1, life: 1 }, target: host } ]
+  - static:
+      while: { matches: [ host, { character: { controller: opponent } } ] }
+      mods: [ { stat: { str: -1, life: -1 }, target: host } ]

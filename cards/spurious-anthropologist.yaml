@@ -11,3 +11,28 @@ text: |
   When this card blocks, you may pick a character in your discard pile. If you do, add that character to the blocking party. If that card or this card would leave play this turn, remove both cards from the game instead.
   At the end of a battle, if this card blocked, remove it from the game.
   FLIP UP: 1 [G][G][G]
+rules:
+  - trigger: { on: blocks, card: self }
+    effect:
+      - pick: { as: c, from: { character: { zone: discard, owner: you } }, optional: true }
+      - if:
+          cond: { defined: c }
+          then:
+            - put_into_play: { card: c, controller: you }
+            - add_to_battle: { card: c, side: blocking }
+            - create_effect:
+                duration: turn
+                mods:
+                  - { redirect: { from: play, instead: void }, target: c }
+                  - { redirect: { from: play, instead: void }, target: self }
+                rules:
+                  - trigger: { on: leaves_play, card: c, once: true }
+                    effect: [ void: self ]
+                  - trigger: { on: leaves_play, card: self, once: true }
+                    effect: [ void: c ]
+      - create_effect:
+          duration: game
+          rules:
+            - trigger: { on: battle_end, once: true }
+              effect: [ void: self ]
+  - flip_up: { pay: 1, threshold: { greed: 3 } }

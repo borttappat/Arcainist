@@ -8,3 +8,12 @@ text: |
   UNLOAD
   COST: Deplete this card. Pick a character or faction.
   EFFECT: Inflict 3 damage to the character or faction. That faction's or character's controller takes control of this card.
+rules:
+  - ability:
+      name: Unload
+      cost:
+        - deplete: self
+        - pick: { as: c, from: [ { character: any }, { faction: any } ] }
+      effect:
+        - damage: { card: c, amount: 3 }
+        - take_control: { card: self, who: { controller_of: c } }

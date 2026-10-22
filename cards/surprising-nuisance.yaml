@@ -6,3 +6,6 @@ set: "Seed Saga"
 rarity: common
 text: |
   Put 2 Micromajig tokens into play.
+rules:
+  - play:
+      effect: [ create_token: { card: micromajig-token, count: 2 } ]

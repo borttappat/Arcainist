@@ -7,3 +7,7 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   When this card enters play, you may detach up to 2 resources from your faction.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may: { prompt: "detach up to 2 resources from your faction", steps: [ detach: { count: 2 } ] }

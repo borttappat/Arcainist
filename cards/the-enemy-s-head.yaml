@@ -7,3 +7,12 @@ rarity: uncommon
 text: |
   When a character an opponent controls is destroyed, you may pay 1. If you do, put a token on this card.
   Characters you control gain 1 strength for each token on this card.
+rules:
+  - trigger: { on: destroyed, card: { character: { controller: opponent } } }
+    effect:
+      - may_pay:
+          amount: 1
+          prompt: "put a token on The Enemy's Head"
+          then: [ tokens: { card: self, add: 1 } ]
+  - static:
+      mods: [ { stat: { str: { tokens: self } }, target: { character: { controller: you } } } ]

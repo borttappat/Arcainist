@@ -12,3 +12,12 @@ text: |
   MOVE
   COST: Pay 2. Pick a character.
   EFFECT: Attach this card to the character.
+rules:
+  - static:
+      mods: [ { no_rules: true, target: host } ]
+  - ability:
+      name: Move
+      cost:
+        - pay: 2
+        - pick: { as: c, from: { character: any } }
+      effect: [ attach: { card: self, to: c } ]

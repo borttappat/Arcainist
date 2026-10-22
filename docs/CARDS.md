@@ -75,7 +75,7 @@ Other optional YAML fields:
 
 | Field | Meaning |
 |---|---|
-| `attach_to: character` | "Attach to Character": picking the host is part of the cost. A selector also works: `attach_to: { character: { controller: you } }`. A tactic with `attach_to` (the God's Blessings) stays in play attached instead of going to the discard pile. |
+| `attach_to: character` | "Attach to Character": picking the host is part of the cost. A selector also works: `attach_to: { character: { controller: you } }`. `attach_to: item` for "Attach to Item" (iDumb De-Itemizer); the card is destroyed when its host stops being that type. A tactic with `attach_to` (the God's Blessings) stays in play attached instead of going to the discard pile. |
 | `keywords: [covert, aggro, tactical]` | Built-in keywords (section 6 can grant them too). |
 | `staple: true`, `icon: rage` | Staple resources. |
 | `face_down_only: true` | Resource that may only be played face-down. |
@@ -232,7 +232,8 @@ change it for the steps inside. Variables (`as: name`) are shared by every step
 of the same card resolution, from cost through effect. "Pick a player" is written as
 picking their faction (`pick: { as: f, from: { faction: any }, choose: true }`), and
 `{ controller_of: f }` then names that player wherever a player is expected
-(`who`, `discard: { who: ... }`, `lose_influence: { who: ... }`).
+(`who`, `discard: { who: ... }`, `lose_influence: { who: ... }`). `{ owner_of: c }` names a
+card's owner ("the attached item's owner takes control of the item").
 
 ### Control flow
 
@@ -284,7 +285,8 @@ while paying costs are recorded for Mistaken Identity.
 | `tokens` | `tokens: { card: self, add: 1 }`, `{ remove: 2 }`, `{ remove: all, as: X }`, `{ set: 0 }` |
 | `distribute_tokens` | `distribute_tokens: { total: 3, from: <selector> }` |
 | `play_card` | `play_card: { card: c, free: true, ignore_threshold: true }` |
-| `play_resource` | `play_resource: 1`, `play_resource: { who: opponent, count: 2, optional: true }` |
+| `play_resource` | `play_resource: 1`, `play_resource: { who: opponent, count: 2, optional: true }`; `face_down: true`: "play a card as a face-down resource" |
+| `attach_resource` | `attach_resource: r`: attach that resource to its controller's faction (Swindle) |
 | `terminate` | `terminate: responded` (the card or ability responded to), `terminate: self` (stop resolving this card), `terminate: all` (every other unresolved card and ability) |
 | `nullify` | `nullify: responded` ("the ability has no effect") |
 | `duplicate` | `duplicate: last_tactic`, `duplicate: responded` (the tactic this card responds to) |
@@ -375,6 +377,7 @@ Type keys: `character`, `item`, `location`, `tactic`, `resource`, `faction`, or
 | `str_gte` | Strength at least (current in play, printed elsewhere) |
 | `strongest` | The character with the highest strength in play; `strongest: controller`: the highest among its controller's characters |
 | `costliest` | The character with the highest numeric cost its controller controls |
+| `cheapest` | The character with the lowest numeric cost its controller controls |
 | `keyword` | `keyword: covert`: has the keyword now |
 | `equipped` | Has an item attached |
 | `text_has` | `text_has: "[V]"`: the printed text contains it |
@@ -394,6 +397,7 @@ Type keys: `character`, `item`, `location`, `tactic`, `resource`, `faction`, or
 | `face_down`, `depleted`, `staple` | true / false |
 | `not_self`, `not: c`, `not: [x, y]`, `among: list` | |
 | `host_of: self` | The character this card is attached to |
+| `host` (a reference) | The card this card is attached to; after this card left play, the card it was attached to then |
 | `attached_to: self` | Cards attached to this one |
 | `tagged_by: self` | Cards this card put where they are (`tag: true`) |
 | `attacking`, `blocking` | In the current battle |
@@ -462,7 +466,7 @@ Modifiers are continuous effects. They appear in `static` rules and
 | `set_stats` | `{ set_stats: { str: 3, life: 3, spd: 3 } }` | |
 | `add_type`, `remove_type` | `{ add_type: character }` | |
 | `keyword` | `{ keyword: covert }` | |
-| `provides` | `{ provides: { obsession: 2 } }` | Icons for threshold (Crest). |
+| `provides` | `{ provides: { obsession: 2 } }` | Icons for threshold (Crest). On a face-down resource it adds only icons it doesn't already provide (Thabbashite Chemist). |
 | `player_icons` | `{ player_icons: { elitism: 4 }, target: none }` | Icons not tied to a card (31337!). |
 | `cost` | `{ cost: -4, by: you, target: { card: { zone: stack } } }` | Cost increase or reduction. `applies: any` also covers ability costs (the target is the ability's card); `applies: ability` only abilities; `applies: flip_up` only deploys using FLIP UP. `floor: 1`: "to a minimum of 1". |
 | `cost_min` | `{ cost_min: 3, by: opponent, target: { tactic: { zone: stack } } }` | Canny Bailiff. |
@@ -476,7 +480,7 @@ Modifiers are continuous effects. They appear in `static` rules and
 | `damage` | `{ damage: { set: 0, battle: true }, while: { blocking: self } }` | Change damage taken. `over: 4` only changes amounts greater than 4; `from: <selector>` only damage from matching sources. |
 | `influence_loss` | `{ influence_loss: { player: opponent, delta: 1 }, target: all }` | Gideon. |
 | `attack_limit` | `{ attack_limit: 1 }` | "Can attack only once each turn." |
-| `redirect` | `{ redirect: { from: play, to: discard, instead: hand } }` | "Would go to X; instead Y". `instead: deck_shuffle` shuffles it into its owner's deck; `instead: stay` stops the move ("cannot be put into your opponents' hands"). |
+| `redirect` | `{ redirect: { from: play, to: discard, instead: hand } }` | "Would go to X; instead Y". Without `to`, any zone ("if it would leave play, remove it from the game instead"). `instead: deck_shuffle` shuffles it into its owner's deck; `instead: stay` stops the move ("cannot be put into your opponents' hands"). |
 | `reveal_hand` | `{ reveal_hand: opponent, target: none }` | Odious Diva. |
 | `use_opponent_abilities` | `{ use_opponent_abilities: true }` | The Billionaire. |
 | `lose_when_deck_empty` | `{ lose_when_deck_empty: true }` | Trickster's Globe. |
@@ -499,6 +503,7 @@ Modifiers are continuous effects. They appear in `static` rules and
 | `blocks_any` | `{ blocks_any: true }` | Can block COVERT and non-COVERT parties. |
 | `numeric_cost` | `{ numeric_cost: 1, target: c }` | Changes a card's numeric cost in play (cost filters and values use it). |
 | `add_subtype` | `{ add_subtype: sarcophyle, target: it }` | It gains a subtype. Only in `create_effect`, aimed at specific cards. |
+| `attack_ready` | `{ attack_ready: true, target: { character: { controller: you } } }` | Can attack even if it hasn't been in play under its controller since the start of the turn (Testudine Autoframe). |
 
 Derived values are recomputed from scratch, so modifiers switch on and off by
 themselves when their source leaves play or their condition changes. Increases
@@ -619,4 +624,10 @@ marked "Confirmed" are user rulings; the rest are still open.
 | Rudo Mangod, Dragonweight Champion | The characters it depletes can't be restored by the RESTORE RULE for the rest of the game (other effects still restore them). |
 | Rune of Concealment | "Destroyed by battle damage" is read as destroyed by any damage. |
 | Reality Shift | You deploy the returned cards (or any other cards in your hand) one at a time, each costing nothing, while their numeric costs fit in what is left of X. |
+| Stuttershy | "When this card is flipped down" only follows its own replacement (the engine has no flip-down event). |
+| Swinish Elder | "When an opponent plays a resource": any resource entering play under an opponent. |
+| Subsection 5, Paragraph 12 | "It cannot be used again this turn": none of that card's abilities can be used this turn. |
+| The Stone of Shame | A character that would go to a hand (from anywhere, including draws) goes to its owner's discard pile instead; this isn't a destruction, so "when destroyed" doesn't trigger. |
+| The Poshernacle | "At the start of your turn, you may use an ability" is left to the players. |
+| Spurious Anthropologist | The recruited character and the Anthropologist go to the void instead of leaving play any other way this turn, and when either leaves, the other is voided too. |
 | Limited Liability | Confirmed: it also stops the unique rule, so duplicates (several Gideons) stay in play that turn. When it ends, the unique rule applies again and their controller keeps one. |

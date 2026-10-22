@@ -2,6 +2,7 @@ id: "sticky-stealy-hand"
 name: "Sticky Stealy Hand"
 trade: rogue
 types: [item]
+attach_to: item
 keywords: [tactical]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
@@ -10,3 +11,13 @@ text: |
   ATTACH TO ITEM
   When this card enters play, flip a coin. If you win, take control of the attached item. If you lose, put this card into its owner's hand.
   When this card leaves play, the attached item's owner takes control of the item.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - coin_flip: { as: won }
+      - if:
+          cond: { did: true }
+          then: [ take_control: { card: host, who: you } ]
+          else: [ move: { card: self, to: hand } ]
+  - trigger: { on: leaves_play, card: self }
+    effect: [ take_control: { card: host, who: { owner_of: host } } ]

@@ -7,3 +7,8 @@ rarity: common
 text: |
   EXTRA COST: Pick a character.
   Inflict 2 damage to the character.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect: [ damage: { card: c, amount: 2 } ]

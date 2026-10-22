@@ -6,3 +6,8 @@ set: "Seed 3"
 rarity: fixed
 text: |
   When a player deploys a tactic, terminate it and inflict 1 damage to this card.
+rules:
+  - trigger: { on: played, player: any, card: { tactic: { zone: stack } } }
+    effect:
+      - terminate: it
+      - damage: { card: self, amount: 1 }

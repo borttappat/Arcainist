@@ -9,3 +9,11 @@ text: |
   ULTIMATE SACRIFICE
   COST: X is this card's strength. Destroy this card. Pick a character.
   EFFECT: Inflict X damage to the character.
+rules:
+  - ability:
+      name: Ultimate Sacrifice
+      cost:
+        - let: { X: { stat: [ self, str ] } }
+        - destroy: self
+        - pick: { as: c, from: { character: any } }
+      effect: [ damage: { card: c, amount: X } ]

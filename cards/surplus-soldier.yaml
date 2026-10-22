@@ -7,3 +7,6 @@ set: "Seed Saga"
 rarity: common
 text: |
   If this card would be destroyed, flip it face-down under its owner's control instead.
+rules:
+  - replace: { event: destroy, card: self }
+    instead: [ flip_face_down: { card: self, controller: owner } ]

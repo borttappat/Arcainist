@@ -9,3 +9,11 @@ text: |
   DEFLECT
   COST: Pay 3. Deplete this card. Pick an attacking character.
   EFFECT: Remove the character from the battle.
+rules:
+  - ability:
+      name: Deflect
+      cost:
+        - pay: 3
+        - deplete: self
+        - pick: { as: c, from: { character: { attacking: true } } }
+      effect: [ remove_from_battle: c ]

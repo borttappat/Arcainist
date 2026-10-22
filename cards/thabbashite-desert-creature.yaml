@@ -9,3 +9,12 @@ rarity: common
 text: |
   COVERT
   While this card is in your hand, you may reveal this card when a card that provides [V] enters play under your control. If you do, you may pay 2 to deploy this card.
+rules:
+  - trigger: { on: enters_play, card: { controller: you, provides_at_least: { volition: 1 } }, zone: hand }
+    effect:
+      - may_pay:
+          amount: 2
+          prompt: "reveal Thabbashite Desert Creature and deploy it"
+          then:
+            - reveal: self
+            - play_card: { card: self, free: true }

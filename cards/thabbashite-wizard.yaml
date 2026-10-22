@@ -7,3 +7,9 @@ set: "Seed Saga"
 rarity: common
 text: |
   When this card enters play, each player may draw up to 2 cards.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - each_player:
+          - choose_number: { as: n, min: 0, max: 2 }
+          - draw: n

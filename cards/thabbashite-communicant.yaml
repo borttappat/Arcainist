@@ -7,3 +7,9 @@ set: "Holy Heist"
 rarity: common
 text: |
   When a card that provides at least [V] enters play under your control, you may look at the top card of your deck. If you do, you may put it on the bottom.
+rules:
+  - trigger: { on: enters_play, card: { controller: you, provides_at_least: { volition: 1 } } }
+    effect:
+      - may:
+          prompt: "look at the top card of your deck (you may put it on the bottom)"
+          steps: [ look: { deck: you, count: 1, bottom: any } ]

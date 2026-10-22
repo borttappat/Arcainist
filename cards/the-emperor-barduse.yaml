@@ -9,3 +9,14 @@ text: |
   UNIQUE EMPEROR BARDUSE
   When this card enters play, you may pick any number of characters. If you do, inflict X damage divided however you want to the characters, where X is twice the number of dragon characters you control.
   All your other "dragon" characters gain 1 strength and 1 life.
+rules:
+  - unique: Emperor Barduse
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - let: { D: { count: { character: { controller: you, subtype: dragon } } } }
+      - let: { X: "2 * D" }
+      - may:
+          prompt: "inflict X damage divided however you want among any characters"
+          steps: [ divide_damage: { amount: X, from: { character: any } } ]
+  - static:
+      mods: [ { stat: { str: 1, life: 1 }, target: { character: { controller: you, subtype: dragon, not_self: true } } } ]

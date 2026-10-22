@@ -15,3 +15,41 @@ text: |
   OPTION 3
   EXTRA COST: Pick a "gear" card. Pick a character.
   EFFECT: Attach the "gear" card to the character. This turn, the "gear" card loses all abilities.
+rules:
+  - play:
+      cost:
+        - choose_one:
+            - label: "Option 1: a player can't use FLIP UP this turn; look at the top card of any deck"
+              steps:
+                - let: { opt: 1 }
+                - pick: { as: f, from: { faction: any }, choose: true, prompt: "Pick a player (their faction)." }
+            - label: "Option 2: a character gains COVERT this turn; draw a card"
+              steps:
+                - let: { opt: 2 }
+                - pick: { as: c, from: { character: any } }
+            - label: "Option 3: attach a gear card to a character; it loses its abilities this turn"
+              steps:
+                - let: { opt: 3 }
+                - pick: { as: g, from: { item: { subtype: gear } } }
+                - pick: { as: c, from: { character: any } }
+      effect:
+        - if:
+            cond: { eq: [ opt, 1 ] }
+            then:
+              - if:
+                  cond: { matches: [ f, { faction: { controller: you } } ] }
+                  then: [ create_effect: { duration: turn, mods: [ { cannot: flip_up, by: you, target: all } ] } ]
+                  else: [ create_effect: { duration: turn, mods: [ { cannot: flip_up, by: opponent, target: all } ] } ]
+              - choose_one:
+                  - { label: "Look at the top card of your deck", steps: [ peek: { who: you, top: 1 } ] }
+                  - { label: "Look at the top card of your opponent's deck", steps: [ peek: { who: opponent, top: 1 } ] }
+        - if:
+            cond: { eq: [ opt, 2 ] }
+            then:
+              - create_effect: { duration: turn, mods: [ { keyword: covert, target: c } ] }
+              - draw: 1
+        - if:
+            cond: { eq: [ opt, 3 ] }
+            then:
+              - attach: { card: g, to: c }
+              - create_effect: { duration: turn, mods: [ { cannot: use_ability, target: g } ] }

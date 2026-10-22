@@ -7,3 +7,21 @@ rarity: uncommon
 text: |
   EXTRA COST: Pick a non-resource card.
   Any opponent may pay 2. If they do, put this card into its owner's hand and terminate it. Otherwise, put the picked card into its owner's hand. Look at an opponent's hand and choose a non-resource card in it. That player discards the card.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { card: { not_type: resource } } }
+      effect:
+        - may_pay:
+            who: opponent
+            amount: 2
+            prompt: "put Thabbashite Barbeque into its owner's hand and terminate it"
+            then:
+              - move: { card: self, to: hand }
+              - terminate: self
+        - move: { card: c, to: hand }
+        - peek: { who: opponent, hand: true }
+        - pick: { as: h, from: { card: { zone: hand, owner: opponent, not_type: resource } }, choose: true, prompt: "Choose a non-resource card in your opponent's hand to discard." }
+        - if:
+            cond: { defined: h }
+            then: [ discard: { who: opponent, cards: h } ]

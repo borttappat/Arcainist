@@ -8,3 +8,11 @@ rarity: common
 text: |
   COST: Pick an opponent. X is the number of different staple resources that player controls. Pay 6-X. 
   EFFECT: This turn, this card gains 1 life and COVERT
+rules:
+  - ability:
+      name: Penumbra
+      cost:
+        - let: { X: { different_staples: opponent } }
+        - pay: "max(0, 6 - X)"
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { life: 1 } }, { keyword: covert } ] }

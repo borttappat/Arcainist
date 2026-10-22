@@ -7,3 +7,10 @@ set: "Seed 2"
 rarity: common
 text: |
   When an opponent plays a resource, you may pay 1. If you do, attach that resource to that opponent's faction.
+rules:
+  - trigger: { on: enters_play, card: { resource: { controller: opponent } } }
+    effect:
+      - may_pay:
+          amount: 1
+          prompt: "attach that resource to your opponent's faction"
+          then: [ attach_resource: it ]

@@ -13,3 +13,17 @@ text: |
   RUMMAGE
   COST: Pay 2. Remove 3 cards in your discard pile from the game.
   EFFECT: Restore this card.
+rules:
+  - static:
+      mods: [ { attack_limit: 1 } ]
+  - ability:
+      name: Sift
+      cost: [ deplete: self ]
+      effect: [ draw: 1, discard: 1 ]
+  - ability:
+      name: Rummage
+      cost:
+        - pay: 2
+        - pick: { as: d, from: { card: { zone: discard, owner: you } }, count: 3, exactly: true, choose: true, prompt: "Remove 3 cards in your discard pile from the game." }
+        - move: { card: d, to: void }
+      effect: [ restore: self ]

@@ -5,3 +5,4 @@ types: [resource]
 staple: true
 icon: obsession
 text: Staple resource. Provides one Obsession icon.
+rules: []

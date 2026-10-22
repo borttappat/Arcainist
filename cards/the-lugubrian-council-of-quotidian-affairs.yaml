@@ -16,3 +16,30 @@ text: |
   PASS
   COST: Pay 2. Discard a tactic from your hand. X is that tactic's numeric cost. Pick an opponent's character with strength X or less.
   EFFECT: Put the character into its owner's hand. That character's controller may detach up to X resources from their faction.
+rules:
+  - unique: Council
+  - ability:
+      name: Convene
+      cost: [ pay: 2, discard: 2 ]
+      effect: [ tokens: { card: self, add: 2 } ]
+  - ability:
+      name: Cast Vote
+      cost:
+        - pay: 2
+        - tokens: { card: self, remove: 2 }
+      effect:
+        - search: { deck: you, for: { tactic: any }, reveal: true, to: hand }
+  - ability:
+      name: Pass
+      cost:
+        - pay: 2
+        - discard: { count: 1, filter: { tactic: any }, as: t }
+        - let: { X: { cost: t } }
+        - pick: { as: c, from: { character: { controller: opponent, str_lte: X } } }
+      effect:
+        - move: { card: c, to: hand }
+        - as:
+            who: opponent
+            steps:
+              - choose_number: { as: Y, min: 0, max: X, prompt: "Detach up to X resources from your faction." }
+              - detach: { count: Y }

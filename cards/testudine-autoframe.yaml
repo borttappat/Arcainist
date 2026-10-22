@@ -10,3 +10,21 @@ text: |
   When this card enters play, you may put a UNIQUE JO you control into the void. If you do, this turn, each other character you control gains 1 strength and 1 life.
   All characters you control can attack even if they have not been in play under your control since the start of the turn.
   When this card leaves play, put a UNIQUE JO that was voided by this card into play under your control.
+rules:
+  - unique: Testudine
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - pick: { as: j, from: { character: { controller: you, unique: Jo } }, choose: true, optional: true, prompt: "You may put a UNIQUE JO you control into the void (your other characters gain 1 strength and 1 life this turn)." }
+      - if:
+          cond: { defined: j }
+          then:
+            - void: { card: j, tag: true }
+            - create_effect: { duration: turn, mods: [ { stat: { str: 1, life: 1 }, target: { character: { controller: you, not_self: true } } } ] }
+  - static:
+      mods: [ { attack_ready: true, target: { character: { controller: you } } } ]
+  - trigger: { on: leaves_play, card: self }
+    effect:
+      - pick: { as: j, from: { character: { zone: void, tagged_by: self } }, choose: true, optional: true, prompt: "Put a UNIQUE JO voided by Testudine Autoframe into play under your control." }
+      - if:
+          cond: { defined: j }
+          then: [ put_into_play: { card: j, controller: you } ]

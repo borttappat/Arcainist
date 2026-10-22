@@ -7,3 +7,11 @@ set: "1st Edition"
 rarity: common
 text: |
   When this card enters play, each player puts a resource they control into its owner's hand.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - each_player:
+          - pick: { as: r, from: { resource: { controller: you } }, choose: true, prompt: "Put a resource you control into its owner's hand." }
+          - if:
+              cond: { defined: r }
+              then: [ move: { card: r, to: hand } ]

@@ -8,3 +8,19 @@ text: |
   THANK GOD WE INVENTED THE...
   COST: Choose a number for X. Pay X. Destroy this card.
   EFFECT: Search your deck for an item with numeric cost X or less and reveal it. You may deploy that card for free. If you don't, put it into your hand.
+rules:
+  - ability:
+      name: Thank God We Invented The...
+      cost:
+        - choose_number: { as: X, min: 0, max: 20 }
+        - pay: X
+        - destroy: self
+      effect:
+        - search: { deck: you, for: { item: { cost_lte: X } }, reveal: true, to: keep, as: found }
+        - if:
+            cond: { defined: found }
+            then:
+              - may:
+                  prompt: "deploy that card for free (if you don't, put it into your hand)"
+                  steps: [ play_card: { card: found, free: true } ]
+                  else: [ move: { card: found, to: hand } ]

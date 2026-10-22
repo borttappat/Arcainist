@@ -7,3 +7,14 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   When this card enters or leaves play, you may draw a card. If you do, put a card from your hand on the bottom of your deck.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect: &haruspex
+      - may:
+          prompt: "draw a card, then put a card from your hand on the bottom of your deck"
+          steps:
+            - draw: 1
+            - pick: { as: h, from: { card: { zone: hand, owner: you } }, choose: true, prompt: "Put a card from your hand on the bottom of your deck." }
+            - move: { card: h, to: deck_bottom }
+  - trigger: { on: leaves_play, card: self }
+    effect: *haruspex

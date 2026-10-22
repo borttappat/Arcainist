@@ -10,3 +10,16 @@ text: |
   [V][V]: This card gains 1 strength.
   [V][V][V]: This card gains 1 speed.
   [V][V][V][V]: This card gains 1 life, 1 strength, and 1 speed.
+rules:
+  - static:
+      requires: { volition: 1 }
+      mods: [ { stat: { life: 1 } } ]
+  - static:
+      requires: { volition: 2 }
+      mods: [ { stat: { str: 1 } } ]
+  - static:
+      requires: { volition: 3 }
+      mods: [ { stat: { spd: 1 } } ]
+  - static:
+      requires: { volition: 4 }
+      mods: [ { stat: { str: 1, life: 1, spd: 1 } } ]

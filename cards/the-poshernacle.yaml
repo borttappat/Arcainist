@@ -9,3 +9,11 @@ text: |
   At the start of your turn, you may use an ability.
   At the start of your turn, you may draw a card.
   At the start of your turn, your faction gains 1 influence.
+rules:
+  - unique: Poshernacle
+  # "At the start of your turn, you may use an ability" is left to the players.
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - may: { prompt: "draw a card", steps: [ draw: 1 ] }
+  - trigger: { on: start_of_turn, player: you }
+    effect: [ gain_influence: { who: you, amount: 1 } ]
