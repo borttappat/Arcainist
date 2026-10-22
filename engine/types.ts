@@ -159,6 +159,8 @@ export interface StackItem {
   nullified?: boolean;
   /** Characters picked while paying its costs (for Mistaken Identity and friends). */
   pickedInCost?: string[];
+  /** "The effect happens twice instead of once" (Notion Sickness). */
+  times?: number;
 }
 
 /** Variable bindings for one cost+effect run. Child contexts share their root's vars. */
@@ -230,6 +232,12 @@ export interface BattleState {
   locked: Record<string, number>;
   sources: Record<string, string[]>;
   step: string;
+  /** A battle an effect started (Counter Attack): stack items below this index wait for it. */
+  base?: number;
+  /** The window it interrupted, restored when it ends. */
+  resume?: Window | null;
+  /** Steps that run after the battle ("Draw a card"). */
+  then?: { steps: Step[]; p: PlayerId; source: string };
 }
 
 export interface Window {

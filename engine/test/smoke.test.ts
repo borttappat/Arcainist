@@ -88,6 +88,13 @@ function attempt(g: Game, p: PlayerId, a: Action) {
 
 const automated = Object.values(lib).filter((d) => d.rules?.length && !d.types.includes("faction") && !d.token && !d.id.startsWith("t-"));
 
+describe("coverage", () => {
+  it("every non-faction card with rules text has rules (`rules: []` when there is nothing to automate)", () => {
+    const missing = Object.values(lib).filter((d) => !d.types.includes("faction") && (d.text ?? "").trim() && !d.rules).map((d) => d.id);
+    expect(missing).toEqual([]);
+  });
+});
+
 describe("smoke: every automated card runs", () => {
   for (const def of automated) {
     it(def.name, () => {

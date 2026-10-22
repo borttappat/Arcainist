@@ -2,7 +2,7 @@
 
 import { describe, expect, it } from "vitest";
 import { other } from "../types.ts";
-import { legalFor } from "../view.ts";
+import { legalFor, viewFor } from "../view.ts";
 import { act, answer, expectPending, newGame, pass, passAll, put, resources, toMain } from "./helpers.ts";
 
 function setup() {
@@ -18,6 +18,25 @@ function top(g: ReturnType<typeof newGame>, p: "A" | "B", iid: string) {
   const d = g.s.players[p].deck;
   d.splice(d.indexOf(iid), 1);
   d.unshift(iid);
+}
+
+/** End the turn and start the next one, choosing "draw" for the develop rule. */
+function nextTurn(g: ReturnType<typeof newGame>) {
+  const p = g.s.active;
+  act(g, p, { type: "end_turn" });
+  pass(g);
+  for (let i = 0; i < 6; i++) {
+    const d = g.s.pending as any;
+    if (d?.type !== "choose") return;
+    if (d.prompt.includes("Several triggers")) {
+      const pick = d.options.find((o: any) => o.label.endsWith("Restore rule")) ?? d.options.find((o: any) => o.label.endsWith("Develop rule"));
+      if (!pick) return;
+      act(g, d.player, { type: "answer", ids: [pick.id] });
+    } else if (d.options.some((o: any) => o.label.startsWith("draw"))) {
+      act(g, d.player, { type: "answer", ids: [d.options.findIndex((o: any) => o.label.startsWith("draw")).toString()] });
+      return;
+    } else return;
+  }
 }
 
 /** Run the engine after a direct state change (a destroy outside any action). */
@@ -1636,5 +1655,203 @@ describe("cards: D onwards", () => {
     expect(g.s.cards[m].zone).toBe("discard");
     expect(g.s.cards[gear].zone).toBe("play");
     expect(g.s.cards[gear].attachedTo).toBe(c);
+  });
+
+  it("Arcane Escrow: discards may go to the void face-down, and the develop rule can return them", () => {
+    const { g, p, o } = setup();
+    const esc = put(g, p, "arcane-escrow", "play");
+    resources(g, p, "greed", 1);
+    const a = put(g, p, "fired-hand", "hand");
+    const b = put(g, p, "wanton-wizard", "hand");
+    act(g, p, { type: "ability", iid: esc, index: g.q.abilities(esc)[0].index });
+    pass(g); // Withdraw resolves: draw a card, then discard 2
+    answer(g, [a, b]);
+    for (let i = 0; i < 2; i++) {
+      expectPending(g, "choose", p);
+      answer(g, ["yes"]);
+    }
+    for (const x of [a, b]) {
+      expect(g.s.cards[x].zone).toBe("void");
+      expect(g.s.cards[x].voidFaceDown).toBe(true);
+      expect(g.s.cards[x].tags).toContain(esc);
+    }
+    expect(viewFor(g, o).players[p].void.find((c) => c.iid === a)?.defId).toBeNull();
+    expect(viewFor(g, p).players[p].void.find((c) => c.iid === a)?.defId).toBe("fired-hand");
+    nextTurn(g);
+    nextTurn(g);
+    const d = expectPending(g, "choose", p);
+    expect(d.options.map((x: any) => x.id).sort()).toEqual(["draw", a, b].sort());
+    answer(g, [a]);
+    expect(g.s.cards[a].zone).toBe("hand");
+    expect(g.s.cards[b].zone).toBe("void");
+  });
+
+  it("Cathedrale de Mau: may reduce damage to your locations and costly characters by 1 for 1 influence", () => {
+    const { g, p } = setup();
+    const cat = put(g, p, "cathedrale-de-mau", "play");
+    const big = put(g, p, "fired-hand", "play"); // numeric cost 6
+    const small = put(g, p, "wanton-wizard", "play"); // numeric cost 3
+    const inf = g.s.players[p].influence;
+    (g as any).inflict(big, 2, false, []);
+    settle(g);
+    expectPending(g, "choose", p);
+    answer(g, ["yes"]);
+    expect(g.s.cards[big].damage).toBe(1);
+    expect(g.s.players[p].influence).toBe(inf - 1);
+    (g as any).inflict(cat, 2, false, []);
+    settle(g);
+    answer(g, ["no"]);
+    expect(g.s.cards[cat].markers).toBe(2);
+    (g as any).inflict(small, 1, false, []);
+    settle(g);
+    expect(g.s.cards[small].zone).toBe("discard"); // not offered: it was simply destroyed
+  });
+
+  it("Clockman Skydocks: reduces one named icon of the next card's threshold", () => {
+    const { g, p } = setup();
+    const sky = put(g, p, "clockman-skydocks", "play");
+    resources(g, p, "elitism", 2);
+    resources(g, p, "greed", 4);
+    const w1 = put(g, p, "runic-whale", "hand"); // threshold: 3 elitism
+    const w2 = put(g, p, "runic-whale", "hand");
+    expect(legalFor(g, p)?.deploy).not.toContain(w1);
+    act(g, p, { type: "ability", iid: sky, index: g.q.abilities(sky)[0].index });
+    answer(g, ["elitism"]);
+    pass(g);
+    expect(legalFor(g, p)?.deploy).toContain(w1);
+    act(g, p, { type: "deploy", iid: w1 });
+    pass(g);
+    expect(g.s.cards[w1].zone).toBe("play");
+    // Used up by that deploy.
+    expect(g.canStart(p, { type: "deploy", iid: w2 }, true)).toMatch(/threshold/);
+  });
+
+  it("Counter Attack: attacks during the opponent's turn, then draws", () => {
+    const { g, p, o } = setup();
+    const ca = put(g, o, "counter-attack", "hand");
+    resources(g, o, "deception", 3);
+    const atk = put(g, o, "fired-hand", "play");
+    resources(g, p, "deception", 2);
+    const own = put(g, p, "counter-attack", "hand");
+    expect(g.canStart(p, { type: "deploy", iid: own }, true)).toMatch(/opponent's turn/);
+    act(g, p, { type: "end_turn" });
+    expectPending(g, "endturn", o);
+    const inf = g.s.players[p].influence;
+    const hand = g.s.players[o].hand.length;
+    act(g, o, { type: "deploy", iid: ca });
+    pass(g);
+    answer(g, [atk]);
+    expect(g.s.battle?.attacker).toBe(o);
+    for (let i = 0; i < 10 && g.s.battle; i++) pass(g);
+    expect(g.s.battle).toBeNull();
+    expect(g.s.players[p].influence).toBe(inf - 5);
+    expect(g.s.players[o].hand.length).toBe(hand); // Counter Attack left, a card was drawn
+    expectPending(g, "endturn", o); // the turn can still end
+  });
+
+  it("Emergency Obfuscation: players control each other's sides while it is in play", () => {
+    const { g, p, o } = setup();
+    const eo = put(g, p, "emergency-obfuscation", "play");
+    expect(g.sideOf(p)).toBe(o);
+    expect(viewFor(g, o).you).toBe(p);
+    expect(viewFor(g, o).seat).toBe(o);
+    expect(() => g.act(p, { type: "end_turn" })).toThrow();
+    g.s.cards[eo].tokens = 2;
+    g.act(o, { type: "end_turn" }); // the seat at o plays side p
+    g.act(p, { type: "pass" }); // and the seat at p lets side o's... side p's turn end
+    expect(g.s.cards[eo].zone).toBe("discard");
+    expect(g.sideOf(p)).toBe(p);
+  });
+
+  it("Geiseric: may pay 1 to void an opponent's character going to hand from play", () => {
+    const { g, p, o } = setup();
+    const gs = put(g, p, "geiseric-the-souleater", "play");
+    resources(g, p, "obsession", 1);
+    const theirs = put(g, o, "wanton-wizard", "play");
+    const mine = put(g, p, "wanton-wizard", "play");
+    g.move(theirs, "hand");
+    settle(g);
+    expectPending(g, "choose", p);
+    answer(g, ["yes"]);
+    expect(g.s.cards[theirs].zone).toBe("void");
+    expect(g.s.cards[gs].tokens).toBe(1);
+    g.move(mine, "hand");
+    expect(g.s.cards[mine].zone).toBe("hand");
+  });
+
+  it("God's Autograph: copies of a card are unique by name", () => {
+    const { g, p, o } = setup();
+    put(g, p, "god-s-autograph", "play");
+    const a = put(g, p, "wanton-wizard", "play");
+    const b = put(g, p, "wanton-wizard", "play");
+    const c = put(g, o, "wanton-wizard", "play");
+    settle(g);
+    expectPending(g, "choose", p);
+    answer(g, [a]);
+    expect(g.s.cards[a].zone).toBe("play");
+    expect(g.s.cards[b].zone).toBe("discard");
+    expect(g.s.cards[c].zone).toBe("play");
+  });
+
+  it("Mustache Aficionado: the higher chosen pile's owner takes a card from it", () => {
+    const { g, p, o } = setup();
+    const m = put(g, p, "mustache-aficionado", "play");
+    const fh = put(g, p, "fired-hand", "deck");
+    const ww = put(g, p, "wanton-wizard", "deck");
+    const rw = put(g, p, "runic-whale", "deck");
+    for (const x of [rw, ww, fh]) top(g, p, x);
+    act(g, p, { type: "ability", iid: m, index: g.q.abilities(m)[0].index });
+    pass(g);
+    answer(g, [fh]); // piles: [fh] and [ww, rw]
+    answer(g, [g.s.players[o].deck[0]]); // the opponent's piles (staples, cost 0)
+    answer(g, ["0"]);
+    answer(g, ["1"]); // the opponent picks [ww, rw]: 8 against 0
+    const d = expectPending(g, "choose", p);
+    expect(d.options.map((x: any) => x.id).sort()).toEqual([ww, rw].sort());
+    answer(g, [rw]);
+    expect(g.s.cards[rw].zone).toBe("hand");
+    expect(g.s.cards[fh].zone).toBe("deck");
+  });
+
+  it("Notion Sickness: uses a card's ability with its effect twice, then destroys the card", () => {
+    const { g, p } = setup();
+    const gl = put(g, p, "gideon-s-legacy", "play");
+    resources(g, p, "elitism", 2);
+    resources(g, p, "greed", 3);
+    const ns = put(g, p, "notion-sickness", "hand");
+    act(g, p, { type: "deploy", iid: ns });
+    answer(g, [gl]);
+    pass(g);
+    const seek = g.q.abilities(gl).find((a) => a.rule.name === "Seek")!.index;
+    answer(g, [String(seek)]);
+    expect(g.s.cards[gl].zone).toBe("discard");
+    const hand = g.s.players[p].hand.length;
+    passAll(g);
+    expect(g.s.players[p].hand.length).toBe(hand + 2);
+  });
+
+  it("Phantasmagoric Tollbooth: opposing characters cost 1 more to enter play, or go to the discard pile", () => {
+    const { g, p, o } = setup();
+    put(g, o, "phantasmagoric-tollbooth", "play");
+    resources(g, o, "rage", 6);
+    resources(g, p, "rage", 5);
+    const w1 = put(g, p, "plodding-brute", "hand");
+    act(g, p, { type: "deploy", iid: w1 });
+    pass(g);
+    expectPending(g, "choose", p);
+    answer(g, ["yes"]);
+    expect(g.s.cards[w1].zone).toBe("play");
+    resources(g, p, "rage", 4);
+    const w2 = put(g, p, "plodding-brute", "hand");
+    act(g, p, { type: "deploy", iid: w2 });
+    pass(g);
+    answer(g, ["no"]);
+    expect(g.s.cards[w2].zone).toBe("discard");
+    // [R]x6: the opponent may pay 1 to inflict 1 damage to a faction.
+    const inf = g.s.players[p].influence;
+    expectPending(g, "choose", o);
+    answer(g, ["yes"]);
+    answer(g, [g.s.players[p].factionIid]);
+    expect(g.s.players[p].influence).toBe(inf - 1);
   });
 });

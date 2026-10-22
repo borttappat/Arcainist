@@ -12,3 +12,16 @@ text: |
   OVERTIME: [V][V][V][V][V]
   COST: Pay 2. Deplete this card. Name a resource icon.
   EFFECT: This turn, reduce the threshold requirement of the next card you deploy by up to 6 of the named resource icon.
+rules:
+  - unique: Skydocks
+  - ability:
+      name: Business Day
+      cost: [ pay: 1, deplete: self, name: { as: I, kind: icon } ]
+      effect:
+        - create_effect: { duration: next, mods: [ { threshold_reduce: { icon: I, amount: 1 }, by: you, target: all } ] }
+  - ability:
+      name: Overtime
+      threshold: { volition: 5 }
+      cost: [ pay: 2, deplete: self, name: { as: I, kind: icon } ]
+      effect:
+        - create_effect: { duration: next, mods: [ { threshold_reduce: { icon: I, amount: 6 }, by: you, target: all } ] }

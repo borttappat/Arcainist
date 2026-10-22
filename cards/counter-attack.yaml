@@ -7,3 +7,8 @@ rarity: rare
 text: |
   EXTRA COST: Deploy this only during an opponent's turn and not during a battle.
   Attack that player. Draw a card. (This effect only allows you to attack once. You must resolve the battle immediately and before you draw the card.)
+rules:
+  - play:
+      timing: { opponent_turn: true, not_in_battle: true }
+      effect:
+        - attack: { then: [ draw: 1 ] }

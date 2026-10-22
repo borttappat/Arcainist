@@ -11,3 +11,14 @@ text: |
   SOUL CONSUMPTION
   COST: Pay 2. Remove a token from this card.
   EFFECT: Look at the top 2 cards of your deck. Put 1 into your hand and 1 on the bottom of your deck.
+rules:
+  - unique: Geiseric
+  - replace: { event: to_hand, card: { character: { owner: opponent } }, pay: 1, prompt: "Remove it from the game and put a token on Geiseric instead" }
+    instead:
+      - void: it
+      - tokens: { card: self, add: 1 }
+  - ability:
+      name: Soul Consumption
+      cost: [ pay: 2, tokens: { card: self, remove: 1 } ]
+      effect:
+        - look: { deck: you, count: 2, to_hand: 1, bottom: rest }

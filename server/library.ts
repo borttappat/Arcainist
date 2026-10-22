@@ -20,6 +20,7 @@ export const KNOWN_OPS = new Set([
   "search", "mill", "look", "play_card", "play_resource", "restore_all_depleted", "detach_all_resources", "detach", "attach_resource",
   "destroy_resource", "terminate", "nullify", "cancel_end_turn", "duplicate", "coin_flip", "transform",
   "create_token", "remove_from_battle", "add_to_battle", "divide_damage", "retarget_attack", "peek", "steal_deploy",
+  "attack", "use_ability",
 ]);
 
 const RULE_KEYS = new Set(["play", "ability", "trigger", "replace", "static", "unique", "provides", "flip_up", "script", "coin_reflip"]);
@@ -31,6 +32,7 @@ export const MOD_KINDS = new Set([
   "cannot_be_blocked", "lose_keyword", "must_attack", "must_block", "party", "reveal_top", "no_deplete_on_attack",
   "covert_blockable", "redirect_damage", "attack_cost", "draw_bonus", "destroy_self",
   "party_covert", "assign_to_target", "must_be_assigned", "search_tax", "battle_damage_to_self", "stays_in_play", "damage_as_tokens", "blocks_any", "numeric_cost", "attack_declarations", "assign_cost", "add_subtype", "attack_ready", "first_resource_attached", "damage_to_hand", "grant_flip_up",
+  "may_reduce_damage", "swap_seats", "all_unique",
 ]);
 
 export const EVENTS = new Set([

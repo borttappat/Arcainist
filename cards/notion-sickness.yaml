@@ -7,3 +7,10 @@ rarity: fixed
 text: |
   EXTRA COST: Pick a card you control with an ability in its rules text.
   You may use one of the card's abilities. If you do, the effect happens twice instead of once. Destroy the card.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { card: { controller: you, has_ability: true } } }
+      effect:
+        - use_ability: { card: c, twice: true, optional: true }
+        - destroy: c

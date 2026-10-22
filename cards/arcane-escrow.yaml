@@ -12,3 +12,15 @@ text: |
   COST: Pay 1.
   EFFECT: Draw a card. Discard 2 cards.
   FLIP UP: 1 [G][G]
+rules:
+  - replace: { event: discard, player: you, prompt: "Put it into the void face-down instead (you may look at it)" }
+    instead: [ void: { card: it, face_down: true, tag: true } ]
+  # Each card the Develop Rule would draw may instead be one of the cards it voided.
+  - replace: { event: develop_draw, choose_from: { card: { zone: void, tagged_by: self } } }
+  - ability:
+      name: Withdraw
+      cost: [ pay: 1 ]
+      effect:
+        - draw: 1
+        - discard: 2
+  - flip_up: { pay: 1, threshold: { greed: 2 } }

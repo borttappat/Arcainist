@@ -65,7 +65,10 @@ export interface Legal {
 }
 
 export interface GameView {
+  /** The side you play; it differs from your seat while sides are swapped (Emergency Obfuscation). */
   you: PlayerId;
+  /** Your seat: the side whose deck you own, which is who wins with it. */
+  seat: PlayerId;
   turn: number;
   active: PlayerId;
   phase: string;
@@ -82,11 +85,11 @@ export interface GameView {
   legal: Legal | null;
 }
 
-export function viewFor(g: Game, you: PlayerId): GameView {
-  return g.q.frozen(() => buildView(g, you));
+export function viewFor(g: Game, seat: PlayerId): GameView {
+  return g.q.frozen(() => buildView(g, g.sideOf(seat), seat));
 }
 
-function buildView(g: Game, you: PlayerId): GameView {
+function buildView(g: Game, you: PlayerId, seat: PlayerId): GameView {
   const s = g.s;
   const q = g.q;
 
@@ -164,6 +167,7 @@ function buildView(g: Game, you: PlayerId): GameView {
 
   return {
     you,
+    seat,
     turn: s.turn,
     active: s.active,
     phase: s.phase,

@@ -125,6 +125,19 @@ Where things stand and what's left. Update this as work lands.
   including Unwise Encirclement, which is listed as a character but reads like a
   tactic. 1,431 tests pass.
 
+- **2026-10-22 (twelfth session):** the 10 skipped cards. Every non-faction card now
+  has rules, and a coverage test keeps it that way. New building blocks: replacements
+  for `discard`, `to_hand`, `enter_play` (with `pay` or `unless_pay`) and
+  `develop_draw`; the `attack` step (attacking during an opponent's turn, the battle
+  resolved before the stack below it); `use_ability` with `twice`; the
+  `opponent_turn` timing; `threshold_reduce` of a named icon, used up by the next
+  deploy; the `may_reduce_damage`, `swap_seats` and `all_unique` modifiers; the
+  `has_ability` filter; and the `mustache_showdown` script. Engine changes: deployed
+  permanents enter play through a task (so a replacement can ask first), battle damage
+  waiting on a choice is dealt before the battle moves on, and a card moving from the
+  stack to a discard pile now fires `moved`. Views carry `seat` next to `you` (the side
+  played), for Emergency Obfuscation. 1,452 tests pass.
+
 ## State at the end of the first session (2026-10-21)
 
 - **Cards:** 1,230 cards from the spoilstoolbox.com database, plus a Micromajig token card.
@@ -161,22 +174,22 @@ Where things stand and what's left. Update this as work lands.
 
 ## 2. Automate every card (the main job)
 
-- [ ] Write `rules` for every card without them, in alphabetical batches of about 25
-  (about 1,187 of 1,230 done; only the 10 skipped cards below remain):
+- [x] Write `rules` for every card without them, in alphabetical batches of about 25
+  (all done; the two multiplayer Evil Alliance factions are left for multiplayer):
   - list the batch's cards with their text and numbers;
   - write the rules;
   - append them to the YAML files;
   - run `npm test` (the validator, smoke test and fuzz test).
 - [ ] Cards that don't fit the language get a small script in `engine/scripts.ts`. If
   a pattern repeats, promote it into the language instead.
-- [ ] Skipped cards, each needing a new building block (see the progress log):
-  Arcane Escrow, Cathedrale de Mau, Clockman Skydocks, Counter-Attack, Emergency
-  Obfuscation, Geiseric the Souleater, God's Autograph, Mustache Aficionado, Notion
-  Sickness, Phantasmagoric Tollbooth.
+- [x] Skipped cards, each needing a new building block: Arcane Escrow, Cathedrale de
+  Mau, Clockman Skydocks, Counter-Attack, Emergency Obfuscation, Geiseric the
+  Souleater, God's Autograph, Mustache Aficionado, Notion Sickness, Phantasmagoric
+  Tollbooth (twelfth session).
 - [ ] Gear bonuses: the database has no gear stats. Read "The attached character
   gains N strength..." from each gear card's text into `gear` in its JSON.
-- [ ] When done, add a **coverage test** that fails if any playable card (not a
-  token, not marked `incomplete`) lacks `rules`.
+- [x] **Coverage test** (`engine/test/smoke.test.ts`): fails if a non-faction card
+  with rules text lacks `rules`.
 - [ ] Re-run `npm run patterns` after each batch to track progress.
 
 ## 3. Open questions for the user
@@ -228,5 +241,5 @@ Where things stand and what's left. Update this as work lands.
 - Card database source: `~/Downloads/spoilstoolbox.com-master/spoilstoolbox.com-master/content/cards/`
   (`card-texts.json` for latest wordings; faction data had to be read from the card
   images there).
-- Test decks with only automated cards: `decks/test-warlord-rogue.txt`,
-  `decks/test-banker-gearsmith.txt`.
+- Sample decks in `decks/`: AWR Fornicaves Control, Monty and Meat (every card in
+  them is automated). Meat's list had no faction, so it uses The Tournament Faction.

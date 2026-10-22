@@ -123,6 +123,7 @@ the stack, before the opponent can respond.
 | Timing | Meaning |
 |---|---|
 | `your_turn: true` | "Play this only during your turn." |
+| `opponent_turn: true` | "Deploy this only during an opponent's turn" (Counter Attack). |
 | `after_end_turn: true` | Only after you declared the end of your turn (Lost on Floor 3). |
 | `response_to: { deploying: <selector> }` | Only in response to a matching card being deployed. Add `via: flip_up` for "a card being deployed using FLIP UP". |
 | `response_to: { ability: true }` | Only in response to an ability. |
@@ -204,6 +205,22 @@ Static rules are only active while the card is face-up in play, or in `zone` (`h
 | `destroy` | A matching card would be destroyed. In `instead`, `it` is that card. |
 | `tactic_to_discard` | A tactic you deployed would go to the discard pile (`by: you`); `it` is the tactic. If the `instead` steps don't move it, it goes to the discard pile as normal (Thabbash). |
 | `faction_damage` | Damage to a faction (`by: you`, `to: opponent`, `label`). The controller chooses how much is replaced. `amount` and `player` are set (Trickster's Globe). |
+| `discard` | A card would be discarded from a hand (Arcane Escrow: "if you would discard a card, you may put it in the void face-down instead"). |
+| `to_hand` | A card would be put into a hand from play (Geiseric: "if a character would be put into an opponent's hand from play, you may pay 1"). Tokens are skipped; they go to the void anyway. |
+| `enter_play` | A card would enter play: deployed, or put into play by an effect (Phantasmagoric Tollbooth). When a deployed card doesn't enter, the rest of its effect is skipped. |
+| `develop_draw` | Each card the Develop Rule would draw may instead be a card matching `choose_from`, put into its owner's hand; the player picks card by card (Arcane Escrow, `choose_from: { card: { zone: void, tagged_by: self } }`). No `instead`. |
+
+`discard`, `to_hand` and `enter_play` share these fields: `card` (a selector for the
+card), `player` (whom it happens to: the discarding player, the owner of the card going
+to hand, or the player it would enter play under; `you` or `opponent`), `requires`
+(icons), `who` (who decides; default the replacing card's controller; `player` names
+the player it happens to), `prompt`, and one of:
+
+- nothing, or `pay: N`: optional, offered only when that player can pay; "yes" pays and
+  replaces;
+- `unless_pay: N`: it happens unless that player pays ("they may pay 1. If they don't,
+  put that character into its owner's discard pile instead"); when they can't pay, it
+  happens without asking.
 
 A replacement with `cause: damage` only applies when the card would be destroyed by damage (`cost`, `effect` and `rule` are the other causes). A replacement with `while: <condition>` only applies while it holds ("If there are no
 tokens on this card and it would be destroyed"). A replacement runs to the end before
@@ -298,6 +315,8 @@ while paying costs are recorded for Mistaken Identity.
 | `transform` | `transform: counter-imperial-army` (turn a double-sided faction over) |
 | `retarget_attack` | `retarget_attack: l` (the current attack now targets that location of the defender) |
 | `peek` | `peek: { who: opponent, hand: true, top: 2, face_down: true }`: "look at" hidden cards; only the looking player sees them in the log |
+| `attack` | `attack: { then: [ draw: 1 ] }`: "attack that player" (Counter Attack). You choose a target and the attacking party now, even during an opponent's turn and with cards on the stack; that battle is resolved before anything below it, then `then` runs. Choosing no attackers skips the attack. The window the attack interrupted (such as the end of turn) comes back afterwards. |
+| `use_ability` | `use_ability: { card: c, twice: true, optional: true }`: "you may use one of the card's abilities" (Notion Sickness). Costs are paid as usual and it goes on the stack; timing restrictions are ignored, thresholds and per-turn limits are not. `twice`: its effect happens twice. |
 | `steal_deploy` | `steal_deploy: responded`: the card being deployed enters play under your control (Forced Recruitment) |
 
 ### Decks and hands
@@ -403,6 +422,7 @@ Type keys: `character`, `item`, `location`, `tactic`, `resource`, `faction`, or
 | `host` (a reference) | The card this card is attached to; after this card left play, the card it was attached to then |
 | `attached_to: self` | Cards attached to this one |
 | `tagged_by: self` | Cards this card put where they are (`tag: true`) |
+| `has_ability` | true / false: it has an ability (Notion Sickness: "a card you control with an ability in its rules text") |
 | `attacking`, `blocking` | In the current battle |
 | `party_with: self` | In the same party as that card in the current battle (itself included) |
 | `provides_at_least: { deception: 1 }` | Resource icons it provides |
@@ -474,7 +494,7 @@ Modifiers are continuous effects. They appear in `static` rules and
 | `player_icons` | `{ player_icons: { elitism: 4 }, target: none }` | Icons not tied to a card (31337!). |
 | `cost` | `{ cost: -4, by: you, target: { card: { zone: stack } } }` | Cost increase or reduction. `applies: any` also covers ability costs (the target is the ability's card); `applies: ability` only abilities; `applies: flip_up` only deploys using FLIP UP. `floor: 1`: "to a minimum of 1". |
 | `cost_min` | `{ cost_min: 3, by: opponent, target: { tactic: { zone: stack } } }` | Canny Bailiff. |
-| `threshold_reduce` | `{ threshold_reduce: 3 }` | Ignore that many missing icons. |
+| `threshold_reduce` | `{ threshold_reduce: 3 }`, `{ threshold_reduce: { icon: I, amount: 1 }, by: you, target: all }` | Ignore that many missing icons, or that many of a named icon (`I` from `name: { as: I, kind: icon }`). In a `next` effect it is used up by the next card that player deploys (Clockman Skydocks). |
 | `cannot` | `{ cannot: play \| pick \| attack \| block \| restore \| restore_by_rule \| draw \| take_control \| lose_game \| destroy_except_cost \| attack_faction \| flip_up \| destroy }` | Prohibitions. "Cannot" beats "can". `{ cannot: { action: pick, unless: { item: any } } }` exempts sources matching `unless` ("cannot be picked by non-item cards"); `from` limits it to matching sources (`{ cannot: { action: destroy, from: { card: { subtype: node, zone: any } } } }`, "cannot be destroyed by the effects of node cards"). |
 | `must_pick` | `{ must_pick: true }` | Ferrous Ferret. |
 | `pick_tax` | `{ pick_tax: 1, by: opponent, target: { character: { controller: you } } }` | Lucky Charm. |
@@ -510,6 +530,9 @@ Modifiers are continuous effects. They appear in `static` rules and
 | `attack_ready` | `{ attack_ready: true, target: { character: { controller: you } } }` | Can attack even if it hasn't been in play under its controller since the start of the turn (Testudine Autoframe). |
 | `first_resource_attached` | `{ first_resource_attached: true, by: opponent, target: none }` | The first resource that player plays each turn enters play attached to their faction (Vilghame). |
 | `damage_to_hand` | `{ damage_to_hand: { battle: true, from: self }, target: { character: any } }` | Damage to the target is replaced: it goes to its owner's hand instead (Vexing Nullifier). `from` limits the sources. |
+| `may_reduce_damage` | `{ may_reduce_damage: { amount: 1, lose_influence: 1 }, target: { location: { controller: you } } }` | When damage is inflicted to the target, after other modifiers, its controller may reduce it by `amount`; if they do, their faction loses `lose_influence` (Cathédrale de Mau). |
+| `swap_seats` | `{ swap_seats: true }` | "Each player moves 1 seat to the left": with two players, each plays the other's side while an odd number of these are active (Emergency Obfuscation). The game only knows sides; the winning side's deck owner wins. |
+| `all_unique` | `{ all_unique: true, target: all }` | Non-resource cards gain "Unique X", X being the card's name (God's Autograph). It doesn't change the `unique` selector filter, which reads printed text. |
 | `grant_flip_up` | `{ grant_flip_up: true, target: { resource: { controller: you, face_down: true, printed_type: tactic } } }` | The target gains FLIP UP with its regular numeric cost and threshold, unless it has its own (Woadenworm). |
 
 Derived values are recomputed from scratch, so modifiers switch on and off by
@@ -536,7 +559,7 @@ provides at least [D] enters play under your control" works:
 
 When a card doesn't fit the language, write a small TypeScript function in
 `engine/scripts.ts` and call it with `- script: name`. Current scripts:
-`auction_house`, `mistaken_identity`, `skin_suit`, `spatchcocking`,
+`auction_house`, `mistaken_identity`, `mustache_showdown`, `skin_suit`, `spatchcocking`,
 `spatchcocking_recur`, `voidal_poisoning`. If a pattern shows up on several cards,
 move it into the language instead.
 
@@ -651,4 +674,13 @@ marked "Confirmed" are user rulings; the rest are still open.
 | Witty Worm | Offered from your hand whenever a resource enters play under your control; you still need its threshold. |
 | Workshop | "A card of the same type": its printed type. |
 | Wyrmfang Deathskull | If the defender picks no characters, nobody can block. |
+| Arcane Escrow | Each discarded card is asked about separately, including discards an opponent's effect forces. |
+| Cathédrale de Mau | Asked once for each instance of damage, after other damage modifiers. |
+| Clockman Skydocks | The reduction is used up by the next card you deploy, including through FLIP UP, even if that card didn't need it. "Up to 6" is a reduction of 6. |
+| Counter Attack | When it resolves with cards still on the stack below it, the battle is resolved first, then those cards. |
+| Emergency Obfuscation | With two players the sides swap: each player sees and decides for the other side, including its hand. The log names the sides, not the people playing them. |
+| Geiseric, the Souleater | "An opponent's hand": a character an opponent owns. |
+| Mustache Aficionado | The players divide and choose one after the other; the piles stay hidden until both are chosen. |
+| Notion Sickness | The card is destroyed right after the ability goes on the stack; the ability still resolves. |
+| Phantasmagoric Tollbooth | The player whose character it is decides whether to pay. A deployed character that goes to the discard pile skips the rest of its effect. Moving from the stack to a discard pile now counts as "put into their discard pile from anywhere". |
 | Limited Liability | Confirmed: it also stops the unique rule, so duplicates (several Gideons) stay in play that turn. When it ends, the unique rule applies again and their controller keeps one. |

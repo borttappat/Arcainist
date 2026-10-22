@@ -334,7 +334,7 @@ function Prompt({ view, cards, send, sel, setSel, defOf, attack, setAttack, setH
 
   if (view.phase === "ended") {
     const w = view.winner;
-    return <div className="prompt end">{w === "draw" ? "The game is a draw." : w === view.you ? "You win!" : `${view.players[w!].name} wins.`}</div>;
+    return <div className="prompt end">{w === "draw" ? "The game is a draw." : w === (view.seat ?? view.you) ? "You win!" : `${view.players[w!].name} wins.`}</div>;
   }
   if (!d) {
     const w = view.waiting;

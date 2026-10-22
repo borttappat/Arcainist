@@ -71,6 +71,100 @@ function keepOnePerType(g: Game, ctx: Ctx, task: Task, mode: "play" | "hand"): S
 
 export const SCRIPTS: Record<string, Script> = {
   /**
+   * Mustache Aficionado: you and an opponent split the top 3 cards of your decks into 2
+   * face-down piles of at least 1 card each, then each chooses one of the other's piles.
+   * The chosen piles are revealed; the owner of the one with the higher total numeric
+   * cost may put a card from it into their hand. Both decks are then shuffled.
+   */
+  mustache_showdown(g, ctx, task) {
+    const s = g.s;
+    const q = g.q;
+    const order: PlayerId[] = [ctx.controller, other(ctx.controller)];
+    const top = (p: PlayerId) => s.players[p].deck.slice(0, 3);
+    // Stages: 0-1 each player divides, 2-3 each chooses a pile, 4 the winner takes a card.
+    task.stage ??= 0;
+    task.piles ??= {};
+    task.chosen ??= {};
+    if (task.answer) {
+      const st = task.stage as number;
+      const ids: string[] = task.answer.ids;
+      if (st < 2) {
+        const p = order[st];
+        task.piles[p] = [ids, top(p).filter((i) => !ids.includes(i))];
+      } else if (st < 4) task.chosen[other(order[st - 2])] = Number(ids[0]);
+      else if (ids.length) {
+        g.log(`${g.pname(task.winner)} puts ${q.name(ids[0])} into their hand.`);
+        g.move(ids[0], "hand");
+      }
+      task.answer = undefined;
+      task.stage++;
+    }
+    while (task.stage < 2) {
+      const p = order[task.stage];
+      const cards = top(p);
+      if (cards.length < 2) {
+        task.piles[p] = [cards, []];
+        task.stage++;
+        continue;
+      }
+      g.log(`${g.pname(p)} looks at the top ${cards.length} cards of their deck.`);
+      g.log(`Top of your deck: ${cards.map((i) => q.name(i)).join(", ")}.`, p);
+      return g.ask(task, {
+        type: "choose",
+        player: p,
+        prompt: `${q.name(ctx.source)}: choose the cards for your first face-down pile (the rest form the second).`,
+        options: cards.map((iid) => ({ id: iid, iid, label: q.name(iid) })),
+        min: 1,
+        max: cards.length - 1,
+        list: true,
+      });
+    }
+    while (task.stage < 4) {
+      const chooser = order[task.stage - 2];
+      const owner = other(chooser);
+      const piles: string[][] = task.piles[owner];
+      const filled = piles.map((x, i) => ({ x, i })).filter((o) => o.x.length);
+      if (filled.length <= 1) {
+        task.chosen[owner] = filled.length ? filled[0].i : -1;
+        task.stage++;
+        continue;
+      }
+      return g.ask(task, {
+        type: "choose",
+        player: chooser,
+        prompt: `${q.name(ctx.source)}: choose one of ${g.pname(owner)}'s face-down piles.`,
+        options: piles.map((x, i) => ({ id: String(i), label: `Pile ${i + 1} (${x.length} card${x.length === 1 ? "" : "s"})` })),
+        min: 1,
+        max: 1,
+      });
+    }
+    if (task.stage === 4) {
+      const pile = (p: PlayerId): string[] => (task.chosen[p] >= 0 ? task.piles[p][task.chosen[p]] : []);
+      const total = (p: PlayerId) => pile(p).reduce((n, i) => n + q.numericCost(i), 0);
+      for (const p of order) g.log(`${g.pname(p)}'s chosen pile: ${pile(p).map((i) => q.name(i)).join(", ") || "(none)"} (total numeric cost ${total(p)}).`);
+      const [a, b] = order.map(total);
+      const winner = a > b ? order[0] : b > a ? order[1] : null;
+      task.stage = 5;
+      if (winner && pile(winner).length) {
+        task.winner = winner;
+        task.stage = 4;
+        return g.ask(task, {
+          type: "choose",
+          player: winner,
+          prompt: `${q.name(ctx.source)}: your pile is higher. You may put one of its cards into your hand.`,
+          options: pile(winner).map((iid) => ({ id: iid, iid, label: q.name(iid) })),
+          min: 0,
+          max: 1,
+          list: true,
+        });
+      }
+    }
+    for (const p of order) rng.shuffle(s, s.players[p].deck);
+    g.log("Both players shuffle their decks.");
+    return "ok";
+  },
+
+  /**
    * Auction House: the turn player reveals cards from the top of their deck until a
    * character; players alternate bids (active player first), limited by their
    * detached resources. The winner pays and puts the character into play.

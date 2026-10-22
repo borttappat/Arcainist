@@ -8,3 +8,9 @@ text: |
   UNIQUE CATHEDRAL
   When damage is inflicted to a location you control, you may reduce the amount by 1. If you do, your faction loses 1 influence.
   When damage is inflicted to a character you control with numeric cost 6 or greater, you may reduce the amount by 1. If you do, your faction loses 1 influence.
+rules:
+  - unique: Cathedral
+  - static:
+      mods:
+        - may_reduce_damage: { amount: 1, lose_influence: 1 }
+          target: [ { location: { controller: you } }, { character: { controller: you, cost_gte: 6 } } ]

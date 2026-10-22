@@ -21,6 +21,12 @@ export interface Scope {
   did?: boolean;
 }
 
+/** How much a threshold is reduced: by any icons, and by specific icons. */
+export interface ThresholdReduction {
+  any: number;
+  icons: Icons;
+}
+
 /** An active modifier with the context it came from. */
 export interface ActiveMod {
   kind: string;
@@ -84,6 +90,9 @@ const MOD_KINDS = [
   "numeric_cost",
   "attack_declarations",
   "assign_cost",
+  "may_reduce_damage",
+  "swap_seats",
+  "all_unique",
 ];
 
 export class Q {
@@ -158,6 +167,19 @@ export class Q {
     if (this.silenced(iid)) return [];
     const granted = this.modsFor("grant_rules", iid).flatMap((m) => m.value as Rule[]);
     return granted.length ? [...base, ...granted] : base;
+  }
+
+  /**
+   * The UNIQUE names a card has: its printed one, plus its own name while
+   * `all_unique` applies to it (God's Autograph: "all non-resource cards gain the
+   * rules text Unique X, where X is the card's name").
+   */
+  uniqueNames(iid: string): string[] {
+    const out: string[] = [];
+    const printed = this.ruleOf(iid, "unique");
+    if (printed) out.push(printed);
+    if (!this.card(iid).isResource && this.modsFor("all_unique", iid).length && !out.includes(this.name(iid))) out.push(this.name(iid));
+    return out;
   }
 
   ruleOf(iid: string, key: string): any | undefined {
@@ -407,17 +429,30 @@ export class Q {
     return Object.entries(threshold).every(([k, v]) => (have[k] ?? 0) >= (v ?? 0));
   }
 
-  meets(p: PlayerId, threshold: Icons | undefined, reduceBy = 0): boolean {
+  /** `reduceBy`: any icons (a number), or that plus reductions of named icons. */
+  meets(p: PlayerId, threshold: Icons | undefined, reduceBy: number | ThresholdReduction = 0): boolean {
     if (!threshold) return true;
+    const r = typeof reduceBy === "number" ? { any: reduceBy, icons: {} as Icons } : reduceBy;
     const have = this.icons(p);
     let missing = 0;
-    for (const [k, v] of Object.entries(threshold)) missing += Math.max(0, (v ?? 0) - have[k as Icon]);
-    return missing <= reduceBy;
+    for (const [k, v] of Object.entries(threshold)) missing += Math.max(0, (v ?? 0) - (r.icons[k as Icon] ?? 0) - have[k as Icon]);
+    return missing <= r.any;
   }
 
-  /** Threshold reduction for deploying this card (Rudo Mangod's Fealty). */
-  thresholdReduction(iid: string): number {
-    return this.modsFor("threshold_reduce", iid).reduce((n, m) => n + this.value(m.value, m.scope), 0);
+  /**
+   * Threshold reduction for deploying this card: by any icons (Rudo Mangod's Fealty,
+   * `threshold_reduce: 3`) or by a named icon (Clockman Skydocks,
+   * `threshold_reduce: { icon, amount }`). `p`: the deploying player, for `by`.
+   */
+  thresholdReduction(iid: string, p?: PlayerId): ThresholdReduction {
+    const out: ThresholdReduction = { any: 0, icons: {} };
+    for (const m of this.modsFor("threshold_reduce", iid)) {
+      if (p && !this.by(m, p)) continue;
+      const v = m.value;
+      if (v && typeof v === "object") out.icons[v.icon as Icon] = (out.icons[v.icon as Icon] ?? 0) + this.value(v.amount ?? 1, m.scope);
+      else out.any += this.value(v, m.scope);
+    }
+    return out;
   }
 
   resources(p: PlayerId): string[] {
@@ -493,9 +528,10 @@ export class Q {
     });
   }
 
-  canAttack(iid: string): boolean {
+  /** `p`: the attacking player, the turn player unless an effect attacks (Counter Attack). */
+  canAttack(iid: string, p: PlayerId = this.s.active): boolean {
     const c = this.card(iid);
-    if (!this.isCharacter(iid) || c.depleted || c.controller !== this.s.active) return false;
+    if (!this.isCharacter(iid) || c.depleted || c.controller !== p) return false;
     if (!(c.controlSince < this.s.turn || this.keyword(iid, "aggro") || this.modsFor("attack_ready", iid).length)) return false;
     if (this.cannot("attack", iid, c.controller)) return false;
     const limit = this.modsFor("attack_limit", iid).map((m) => this.value(m.value, m.scope));
@@ -838,6 +874,8 @@ export class Q {
     if (f.host_of && this.ref(f.host_of, scope) && this.card(this.ref(f.host_of, scope)!).attachedTo !== iid) return false;
     if (f.host_of && !this.ref(f.host_of, scope)) return false;
     if (f.attached_to && c.attachedTo !== this.ref(f.attached_to, scope)) return false;
+    // "a card with an ability in its rules text" (Notion Sickness)
+    if (f.has_ability !== undefined && this.abilities(iid).length > 0 !== !!f.has_ability) return false;
     if (f.tagged_by && !(c.tags ?? []).includes(this.ref(f.tagged_by, scope) ?? "")) return false;
     if (f.attacking !== undefined && !!this.s.battle?.attackers.includes(iid) !== f.attacking) return false;
     if (f.blocking !== undefined && !!this.s.battle?.blockers.includes(iid) !== f.blocking) return false;

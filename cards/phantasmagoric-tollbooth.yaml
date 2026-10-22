@@ -8,3 +8,15 @@ text: |
   UNIQUE TOLLBOOTH
   If a non-token character would enter play under an opponent's control, they may pay 1. If they don't, put that character into its owner's discard pile instead.
   [R][R][R][R][R][R]: When a character an opponent owns is put into their discard pile from anywhere, you may pay 1. If you do, pick a faction and inflict 1 damage to it.
+rules:
+  - unique: Tollbooth
+  - replace: { event: enter_play, card: { character: { token: false } }, player: opponent, who: player, unless_pay: 1, prompt: "it goes to its owner's discard pile instead of entering play" }
+    instead: [ move: { card: it, to: discard } ]
+  - trigger: { on: moved, to: discard, card: { character: { zone: discard, owner: opponent } }, requires: { rage: 6 } }
+    effect:
+      - may_pay:
+          amount: 1
+          prompt: "pick a faction and inflict 1 damage to it"
+          then:
+            - pick: { as: f, from: { faction: any } }
+            - damage: { card: f, amount: 1 }

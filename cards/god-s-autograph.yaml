@@ -6,3 +6,6 @@ set: "Seed 3"
 rarity: fixed
 text: |
   All non-resource cards gain the rules text Unique X, where X is the card's name.
+rules:
+  - static:
+      mods: [ { all_unique: true, target: all } ]
