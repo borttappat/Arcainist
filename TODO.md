@@ -138,6 +138,15 @@ Where things stand and what's left. Update this as work lands.
   stack to a discard pile now fires `moved`. Views carry `seat` next to `you` (the side
   played), for Emergency Obfuscation. 1,452 tests pass.
 
+- **2026-10-22 (rules fixes):** without a room choice, both players roll a die and the
+  winner chooses to go first or second. Each player's starting resources are logged
+  (revealed) when they finish choosing, the first player before the second. The turn
+  player now orders the Restore and Develop rules every turn, so a resource can be
+  played before resources are detached. Cards that can't be responded to resolve
+  without giving the opponent priority (Tactician Vacation). Cards attached to a
+  destroyed card are destroyed right after it, so their replacements apply (Super
+  Shiny Caltrops of DOOM!). 1,454 tests pass.
+
 ## State at the end of the first session (2026-10-21)
 
 - **Cards:** 1,230 cards from the spoilstoolbox.com database, plus a Micromajig token card.

@@ -28,7 +28,7 @@ function nextTurn(g: ReturnType<typeof newGame>) {
   for (let i = 0; i < 6; i++) {
     const d = g.s.pending as any;
     if (d?.type !== "choose") return;
-    if (d.prompt.includes("Several triggers")) {
+    if (/Several triggers|Start of turn/.test(d.prompt)) {
       const pick = d.options.find((o: any) => o.label.endsWith("Restore rule")) ?? d.options.find((o: any) => o.label.endsWith("Develop rule"));
       if (!pick) return;
       act(g, d.player, { type: "answer", ids: [pick.id] });
@@ -1853,5 +1853,22 @@ describe("cards: D onwards", () => {
     answer(g, ["yes"]);
     answer(g, [g.s.players[p].factionIid]);
     expect(g.s.players[p].influence).toBe(inf - 1);
+  });
+
+  it("Super Shiny Caltrops of DOOM!: destroyed with the opponent's character it is attached to, its owner may pay 2 to flip it face-down", () => {
+    const { g, p, o } = setup();
+    resources(g, p, "rage", 2);
+    const host = put(g, o, "wanton-wizard", "play");
+    const cal = put(g, p, "super-shiny-caltrops-of-doom", "play");
+    g.s.cards[cal].attachedTo = host;
+    (g as any).destroy(host, "effect");
+    settle(g);
+    expect(g.s.cards[host].zone).toBe("discard");
+    const d = expectPending(g, "choose", p);
+    expect(d.prompt).toMatch(/Caltrops/);
+    answer(g, ["yes"]);
+    expect(g.s.cards[cal].zone).toBe("play");
+    expect(g.s.cards[cal].faceDown).toBe(true);
+    expect(g.s.cards[cal].controller).toBe(p);
   });
 });

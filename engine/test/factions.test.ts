@@ -164,7 +164,7 @@ describe("factions", () => {
     // Two triggers at once (Wanton Wizard and Legions): take them in order.
     for (let i = 0; i < 6 && g.s.pending?.type === "choose"; i++) {
       const d = g.s.pending;
-      if (d.prompt.includes("Several triggers")) g.act("A", { type: "answer", ids: [d.options.find((o) => o.label === "Legions of Chaos")?.id ?? d.options[0].id] });
+      if (/Several triggers|Start of turn/.test(d.prompt)) g.act("A", { type: "answer", ids: [d.options.find((o) => o.label === "Legions of Chaos")?.id ?? d.options[0].id] });
       else if (d.prompt.includes("pay 3")) g.act("A", { type: "answer", ids: ["yes"] });
       else if (d.prompt.includes("search")) {
         expect(d.options.every((o) => lib[g.s.cards[o.id].defId].trade !== "arcanist")).toBe(true);

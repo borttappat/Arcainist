@@ -5,6 +5,21 @@ import { other } from "../types.ts";
 import { act, answer, expectPending, lib, newGame, pass, passAll, put, quickStart, resources, toMain } from "./helpers.ts";
 
 describe("setup", () => {
+  it("without a room choice, the die roll winner chooses to go first or second", () => {
+    const g = newGame(5);
+    const d = expectPending(g, "choose");
+    expect(d.options.map((o: any) => o.id)).toEqual(["first", "second"]);
+    const winner = d.player;
+    answer(g, ["second"]);
+    expect(g.s.first).toBe(other(winner));
+    // The first player chooses and reveals their starting resources before the second.
+    expect(g.s.pending?.player).toBe(other(winner));
+    answer(g, [(g.s.pending as any).options[0].id]);
+    answer(g, [(g.s.pending as any).options[0].id]);
+    expect(g.s.log.some((l) => l.text.startsWith(`${g.s.players[other(winner)].name} starts with`))).toBe(true);
+    expect(g.s.pending?.player).toBe(winner);
+  });
+
   it("lets the room creator choose who goes first", () => {
     const deck = Array(20).fill("greed");
     const g = Game.create(lib, 5, { A: { name: "A", faction: "tournament-faction", cards: deck }, B: { name: "B", faction: "tournament-faction", cards: [...deck] } }, { first: "B" });
@@ -21,6 +36,10 @@ describe("setup", () => {
     expect(g.s.players[first].hand).toHaveLength(8);
     expect(g.s.players[second].hand).toHaveLength(9);
     expect(g.s.turn).toBe(1);
+    // The turn player orders the restore and develop rules.
+    const o = expectPending(g, "choose", first);
+    expect(o.prompt).toMatch(/Start of turn/);
+    answer(g, [o.options.find((x: any) => x.label.endsWith("Develop rule")).id]);
     // Develop rule: draw a card or play a resource.
     const d = expectPending(g, "choose", first);
     expect(d.options.map((o: any) => o.label)).toEqual(["draw 1 card", "play a resource"]);
@@ -28,9 +47,10 @@ describe("setup", () => {
 
   it("Unlikely Heroes needs different staples and searches for a third", () => {
     const g = newGame(3, { factionA: "unlikely-heroes", factionB: "unlikely-heroes" });
-    // The first player is random: no prompt.
+    // The die roll winner chooses to go first.
+    answer(g, ["first"]);
     const p = g.s.first!;
-    answer(g, [g.s.pending!.type === "choose" ? (g.s.pending as any).options[0].id : ""]);
+    answer(g, [(g.s.pending as any).options[0].id]);
     const second = expectPending(g, "choose", p);
     expect(second.options.map((o: any) => o.id)).not.toContain(g.s.cards[g.q.resources(p)[0]].defId);
     answer(g, [second.options[0].id]);
@@ -47,7 +67,7 @@ describe("setup", () => {
 
   it("mulligan puts cards on the bottom and redraws the same number", () => {
     const g = newGame(11);
-    for (let i = 0; i < 4; i++) answer(g, [(g.s.pending as any).options[0].id]);
+    for (let i = 0; i < 5; i++) answer(g, [(g.s.pending as any).options[0].id]); // die roll, then 2 staples each
     const p = g.s.first!;
     const before = [...g.s.players[p].hand];
     answer(g, before.slice(0, 3));
@@ -78,10 +98,14 @@ describe("deploying and the stack", () => {
     // Resources only detach at the start of their controller's own turn.
     const attached = () => g.q.resources(p).filter((r) => g.s.cards[r].attachedTo).length;
     expect(attached()).toBe(3);
+    const restoreFirst = () => answer(g, [(g.s.pending as any).options.find((x: any) => x.label.endsWith("Restore rule")).id]);
+    restoreFirst(); // the opponent orders their start of turn
     answer(g, ["0"]); // opponent's develop: draw
     act(g, other(p), { type: "end_turn" });
     pass(g);
     expect(g.s.active).toBe(p);
+    expect(attached()).toBe(3);
+    restoreFirst();
     expect(attached()).toBe(0);
   });
 

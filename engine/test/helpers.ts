@@ -74,10 +74,14 @@ export function expectPending(g: Game, type: string, player?: PlayerId) {
   return g.s.pending as any;
 }
 
-/** Start the first player's first turn and choose "draw" for the develop rule. */
+/** Start the first player's first turn: restore rule first, then "draw" for the develop rule. */
 export function toMain(g: Game): PlayerId {
   quickStart(g);
   const p = g.s.active;
+  for (let i = 0; i < 4 && /Start of turn/.test((g.s.pending as any)?.prompt ?? ""); i++) {
+    const o = (g.s.pending as any).options;
+    g.act(p, { type: "answer", ids: [(o.find((x: any) => x.label.endsWith("Restore rule")) ?? o.find((x: any) => x.label.endsWith("Develop rule")) ?? o[0]).id] });
+  }
   const d = expectPending(g, "choose", p);
   g.act(p, { type: "answer", ids: [d.options.findIndex((o: any) => o.label.startsWith("draw")).toString()] });
   expectPending(g, "main", p);

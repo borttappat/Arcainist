@@ -165,6 +165,12 @@ export class Game {
         continue;
       }
       if (this.s.phase !== "play") break;
+      // "Your opponents cannot respond to this card": it resolves without a priority pass.
+      const top = this.topItem();
+      if (top?.noResponse) {
+        this.s.tasks.push({ t: "resolve" });
+        continue;
+      }
       this.s.pending = this.freeDecision();
     }
   }
@@ -491,12 +497,45 @@ export class Game {
 
   // --- setup ---------------------------------------------------------------
 
-  /** Who goes first: chosen when the room was created, or random. */
+  /**
+   * Who goes first: chosen when the room was created, or a die roll whose winner
+   * chooses to go first or second. Ties are rolled again.
+   */
   protected t_coin(task: Task): void {
     const chosen = task.first as PlayerId | undefined;
-    this.s.first = chosen ?? (rng.int(this.s, 2) === 0 ? "A" : "B");
-    this.s.active = this.s.first;
-    this.log(`${this.pname(this.s.first)} goes first${chosen ? "" : " (random)"}.`);
+    const start = (p: PlayerId, why: string) => {
+      this.s.first = p;
+      this.s.active = p;
+      this.log(`${this.pname(p)} goes first${why}.`);
+    };
+    if (chosen) return start(chosen, "");
+    if (!task.winner) {
+      let a = 0;
+      let b = 0;
+      while (a === b) {
+        a = rng.int(this.s, 6) + 1;
+        b = rng.int(this.s, 6) + 1;
+        this.log(`Die roll: ${this.pname("A")} rolls ${a}, ${this.pname("B")} rolls ${b}${a === b ? ", a tie" : ""}.`);
+      }
+      task.winner = a > b ? "A" : "B";
+    }
+    const w = task.winner as PlayerId;
+    if (!task.answer) {
+      this.ask(task, {
+        type: "choose",
+        player: w,
+        prompt: "You won the die roll. Do you want to go first or second?",
+        options: [
+          { id: "first", label: "Go first" },
+          { id: "second", label: "Go second" },
+        ],
+        min: 1,
+        max: 1,
+      });
+      return;
+    }
+    const first = task.answer.ids[0] === "first" ? w : other(w);
+    start(first, ` (${this.pname(w)} won the die roll and chose to go ${first === w ? "first" : "second"})`);
   }
 
   private seat(which: string): PlayerId {
@@ -580,6 +619,13 @@ export class Game {
         max: 1,
       });
     }
+    // The first player's starting resources are revealed before the second player chooses.
+    const res = this.q.resources(p);
+    const up = res.filter((i) => !this.s.cards[i].faceDown).map((i) => this.q.name(i));
+    const down = res.filter((i) => this.s.cards[i].faceDown);
+    const parts = [...up, ...(down.length ? [`${down.length} face-down card${down.length === 1 ? "" : "s"}`] : [])];
+    this.log(`${this.pname(p)} starts with ${parts.join(", ") || "no resources"}.`);
+    if (down.length) this.log(`Your face-down starting resources: ${down.map((i) => this.q.name(i)).join(", ")}.`, p);
     rng.shuffle(this.s, ps.deck);
   }
 
@@ -672,9 +718,11 @@ export class Game {
     };
     rule(fdef.restore_rule, "Restore rule");
     if (!noDevelop) rule(fdef.develop_rule, "Develop rule");
+    // The turn player always orders them, so a resource can be played (Develop Rule)
+    // before cards are restored and resources detached (Restore Rule).
     const cards = this.triggersFor({ e: "start_of_turn", player: p });
-    if (!cards.length) this.push(...rules);
-    else this.s.tasks.push({ t: "orderTriggers", list: [...rules, ...cards] });
+    const all = [...rules, ...cards];
+    if (all.length) this.s.tasks.push({ t: "orderTriggers", list: all, prompt: "Start of turn: choose what resolves next." });
   }
 
   protected t_finishTurn(): void {
@@ -954,7 +1002,7 @@ export class Game {
     }
     if (task.answer) {
       const i = Number(task.answer.ids[0]);
-      this.push(list[i], { t: "orderTriggers", list: list.filter((_, j) => j !== i) });
+      this.push(list[i], { t: "orderTriggers", list: list.filter((_, j) => j !== i), prompt: task.prompt });
       return;
     }
     const owners = new Set(list.map((t) => this.s.ctxs[t.ctx]?.controller));
@@ -962,7 +1010,7 @@ export class Game {
     this.ask(task, {
       type: "choose",
       player: chooser,
-      prompt: "Several triggers happened at once. Choose which resolves next.",
+      prompt: task.prompt ?? "Several triggers happened at once. Choose which resolves next.",
       options: list.map((t, i) => ({ id: String(i), label: t.label ? `${this.q.name(t.iid)}: ${t.label}` : this.q.name(t.iid), iid: t.iid })),
       min: 1,
       max: 1,
@@ -2725,7 +2773,7 @@ export class Game {
         const out: { iid: string; cause: "rule" | "damage" }[] = [];
         for (const iid of q.allInPlay()) {
           const c = s.cards[iid];
-          if (c.isResource || q.isFaction(iid)) continue;
+          if (c.isResource || q.isFaction(iid) || c.replacing) continue;
           // Attached cards whose host is gone or no longer a character (an item for ATTACH TO ITEM) are destroyed.
           if (c.attachedTo && c.attachedTo !== "faction" && !q.canHost(iid, c.attachedTo) && !q.modsFor("stays_in_play", iid).length) out.push({ iid, cause: "rule" });
           else if (q.is(iid, "character") && c.damage >= q.stat(iid, "life")) out.push({ iid, cause: "damage" });
@@ -2789,7 +2837,7 @@ export class Game {
    * Move a card between zones, applying redirect modifiers ("if a card would be put
    * into X, put it into Y instead"). Cards attached to it follow it out of play.
    */
-  move(iid: string, zone: Zone, opts: { bottom?: boolean; controller?: PlayerId; tag?: string; faceDown?: boolean; knownTo?: PlayerId[]; noRedirect?: boolean; noReplace?: boolean } = {}): void {
+  move(iid: string, zone: Zone, opts: { bottom?: boolean; controller?: PlayerId; tag?: string; faceDown?: boolean; knownTo?: PlayerId[]; noRedirect?: boolean; noReplace?: boolean; keepAttached?: string[] } = {}): void {
     const c = this.s.cards[iid];
     const from = c.zone;
     if (!opts.noRedirect && zone !== "play" && zone !== "stack") {
@@ -2864,7 +2912,8 @@ export class Game {
     if (from !== zone && zone !== "stack" && !(from === "stack" && zone === "play")) this.emit({ e: "moved", iid, from, to: zone, player: c.owner });
     // "If something causes a card to leave play, any cards attached to it leave play in the same way."
     for (const a of attached) {
-      if (this.s.cards[a].zone !== "play") continue;
+      // Gone already, or about to be destroyed separately (its host was destroyed).
+      if (this.s.cards[a].zone !== "play" || this.s.cards[a].replacing || opts.keepAttached?.includes(a)) continue;
       // "This card does not leave play if the attached card leaves play" (Everlasting Blade of Light).
       if (this.q.modsFor("stays_in_play", a).length) this.s.cards[a].attachedTo = null;
       else this.move(a, zone);
@@ -2997,7 +3046,13 @@ export class Game {
     const ctl = this.s.cards[iid].controller;
     if (cause === "damage") this.log(`${q.name(iid)} is destroyed.`);
     this.emit({ e: "destroyed", iid, player: ctl, cause, ...(by ? { by } : {}) });
-    this.move(iid, "discard");
+    // "If something causes a card to leave play, any cards attached to it leave play in
+    // the same way": attachments are destroyed too, right after it, so their own
+    // replacements apply (Super Shiny Caltrops of DOOM!). They still count as attached
+    // when it leaves (Key to the City).
+    const atts = q.attachments(iid).filter((a) => !q.modsFor("stays_in_play", a).length);
+    this.move(iid, "discard", { keepAttached: atts });
+    for (const a of atts) if (q.inPlay(a)) this.destroy(a, cause, false, by);
     return true;
   }
 

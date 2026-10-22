@@ -27,7 +27,7 @@ function nextTurn(g: Game) {
   for (let i = 0; i < 6; i++) {
     const d = g.s.pending as any;
     if (d?.type !== "choose") return;
-    if (d.prompt.includes("Several triggers")) {
+    if (/Several triggers|Start of turn/.test(d.prompt)) {
       const pick = d.options.find((o: any) => o.label.endsWith("Restore rule")) ?? d.options.find((o: any) => o.label.endsWith("Develop rule"));
       if (!pick) return; // only card triggers left: the test handles them
       act(g, d.player, { type: "answer", ids: [pick.id] });
@@ -189,10 +189,10 @@ describe("prohibitions and requirements", () => {
     resources(g, p, "rage", 4);
     const tv = put(g, p, "tactician-vacation", "hand");
     act(g, p, { type: "deploy", iid: tv });
-    const cash = put(g, o, "cash-out", "hand");
-    resources(g, o, "greed", 2);
-    expect(g.canStart(o, { type: "deploy", iid: cash }, false)).toMatch(/can't be responded/);
-    pass(g);
+    // The opponent never gets priority: it resolves at once.
+    expect(g.s.stack).toHaveLength(0);
+    expectPending(g, "main", p);
+    expect(o).not.toBe(p);
     resources(g, p, "greed", 2);
     expect(g.canStart(p, { type: "deploy", iid: put(g, p, "cash-out", "hand") }, true)).toMatch(/can't be played/);
   });
@@ -392,9 +392,9 @@ describe("zones, attachments and control", () => {
     act(g, p, { type: "end_turn" });
     pass(g);
     // Two end-of-turn triggers: choose the order, then the opponent picks.
-    if (g.s.pending?.type === "choose" && (g.s.pending as any).prompt.includes("Several triggers")) answer(g, ["0"]);
+    if (g.s.pending?.type === "choose" && /Several triggers|Start of turn/.test((g.s.pending as any).prompt)) answer(g, ["0"]);
     if (g.s.pending?.type === "choose" && g.s.pending.player === o) answer(g, [w]);
-    if (g.s.pending?.type === "choose" && (g.s.pending as any).prompt.includes("Several triggers")) answer(g, ["0"]);
+    if (g.s.pending?.type === "choose" && /Several triggers|Start of turn/.test((g.s.pending as any).prompt)) answer(g, ["0"]);
     expect(g.s.cards[w].controller).toBe(p);
     expect(g.s.cards[ass].controller).toBe(o);
   });
@@ -465,9 +465,7 @@ describe("responses and the stack", () => {
     resources(g, o, "elitism", 2);
     const sp = put(g, o, "exploding-sock-puppet", "hand");
     act(g, o, { type: "deploy", iid: sp });
-    expectPending(g, "priority", p);
-    expect(g.canStart(p, { type: "deploy", iid: put(g, p, "cash-out", "hand") }, false)).toMatch(/can't be responded/);
-    pass(g);
+    // It can't be responded to, so it resolves without giving priority.
     expect(zone(g, ea)).toBe("discard");
     expect(g.s.stack).toHaveLength(0);
   });
@@ -565,7 +563,7 @@ describe("turn-based and scripted cards", () => {
     act(g, other(p), { type: "end_turn" });
     pass(g);
     const d = expectPending(g, "choose", p);
-    expect(d.prompt).toMatch(/Several triggers/);
+    expect(d.prompt).toMatch(/Start of turn/);
     expect(d.options.map((o: any) => o.label)).toEqual(expect.arrayContaining([expect.stringMatching(/Restore rule$/), expect.stringMatching(/Develop rule$/), "Party Clowns"]));
     // Resolve the card's trigger first: its "pay 1" prompt comes before the develop choice.
     answer(g, [d.options.find((o: any) => o.label === "Party Clowns").id]);
@@ -673,9 +671,9 @@ describe("turn-based and scripted cards", () => {
     const hand = g.s.players[p].hand.length;
     act(g, p, { type: "ability", iid: st, index: ability(g, st, "Counterfeit") });
     pass(g);
-    // The duplicate repeats Cash Out's written costs: choose X and pay 2X.
+    // The duplicate repeats Cash Out's written costs: choose X and pay 2X. It can't be
+    // responded to, so it resolves at once.
     act(g, p, { type: "answer", value: 0 });
-    pass(g);
     expect(g.s.players[p].hand.length).toBe(hand + 1);
   });
 

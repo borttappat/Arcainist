@@ -82,7 +82,7 @@ export function Lobby({ net }: { net: Net }) {
             ))}
           </select>
           <select value={first} onChange={(e) => setFirst(e.target.value as typeof first)} title="Who goes first">
-            <option value="random">Random first player</option>
+            <option value="random">Die roll (winner chooses)</option>
             <option value="me">I go first</option>
             <option value="opponent">Opponent goes first</option>
           </select>
