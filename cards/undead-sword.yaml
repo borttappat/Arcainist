@@ -12,3 +12,13 @@ text: |
   HIDE AMONG THE CORPSES
   COST: Remove a token from this card.
   EFFECT: This turn, this card gains COVERT.
+enters_with_tokens: 2
+rules:
+  - unique: Giada
+  - static:
+      mods: [ { stat: { str: { neg: { tokens: self } }, life: { neg: { tokens: self } } } } ]
+  - ability:
+      name: Hide Among the Corpses
+      cost: [ tokens: { card: self, remove: 1 } ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { keyword: covert } ] }

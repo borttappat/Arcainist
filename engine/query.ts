@@ -69,6 +69,9 @@ const MOD_KINDS = [
   "redirect_damage",
   "attack_cost",
   "draw_bonus",
+  "first_resource_attached",
+  "grant_flip_up",
+  "damage_to_hand",
   "destroy_self",
   "party_covert",
   "assign_to_target",
@@ -160,6 +163,18 @@ export class Q {
   ruleOf(iid: string, key: string): any | undefined {
     const r = this.baseRules(iid).find((r) => key in r);
     return r ? r[key] : undefined;
+  }
+
+  /**
+   * A card's FLIP UP: its own, or one granted by `grant_flip_up` ("your face-down tactics
+   * gain FLIP UP with numeric cost and threshold equal to their regular ones", Woadenworm).
+   */
+  flipUpRule(iid: string): any | undefined {
+    const own = this.ruleOf(iid, "flip_up");
+    if (own) return own;
+    if (!this.modsFor("grant_flip_up", iid).length) return undefined;
+    const d = this.def(iid);
+    return { pay: d.cost ?? 0, threshold: d.threshold ?? {} };
   }
 
   abilities(iid: string): { index: number; rule: any }[] {
@@ -441,6 +456,17 @@ export class Q {
     return Math.max(0, base + this.modsFor("numeric_cost", iid).reduce((n, m) => n + this.value(m.value, m.scope), 0));
   }
 
+  /** Different trades among face-up cards a player controls (Wary Reunion). */
+  differentTrades(p: PlayerId): number {
+    const real = ["arcanist", "banker", "gearsmith", "rogue", "warlord"];
+    const trades = new Set<string>();
+    for (const iid of this.s.players[p].play) {
+      const t = this.def(iid).trade;
+      if (!this.card(iid).faceDown && real.includes(t)) trades.add(t);
+    }
+    return trades.size;
+  }
+
   differentStaples(p: PlayerId): number {
     const kinds = new Set<string>();
     for (const r of this.resources(p)) {
@@ -546,6 +572,7 @@ export class Q {
     }
     if ("icons" in x) return this.icons(this.who(x.player ?? "you", scope))[x.icons as Icon] ?? 0;
     if ("different_staples" in x) return this.differentStaples(this.who(x.different_staples, scope));
+    if ("different_trades" in x) return this.differentTrades(this.who(x.different_trades, scope));
     if ("hand_size" in x) return this.s.players[this.who(x.hand_size, scope)].hand.length;
     if ("half_up" in x) return Math.ceil(this.value(x.half_up, scope) / 2);
     if ("sum" in x) return (x.sum as any[]).reduce((n, v) => n + this.value(v, scope), 0);
@@ -754,7 +781,8 @@ export class Q {
     if (f.keyword !== undefined && !this.keyword(iid, String(f.keyword).toLowerCase())) return false;
     // "the character an opponent controls with the highest numeric cost" (among its controller's characters)
     if (f.costliest && (c.zone !== "play" || this.numericCost(iid) < Math.max(...this.characters(c.controller).map((i) => this.numericCost(i))))) return false;
-    if (f.cheapest && (c.zone !== "play" || this.numericCost(iid) > Math.min(...this.characters(c.controller).map((i) => this.numericCost(i))))) return false;
+    // `cheapest: all`: the lowest among every character in play (Verrucose Brains).
+    if (f.cheapest && (c.zone !== "play" || this.numericCost(iid) > Math.min(...(f.cheapest === "all" ? [...this.characters("A"), ...this.characters("B")] : this.characters(c.controller)).map((i) => this.numericCost(i))))) return false;
     // "characters with items attached to them"
     if (f.equipped !== undefined && this.attachments(iid).some((a) => this.is(a, "item")) !== !!f.equipped) return false;
     // "a character this card damaged this turn": damaged_by: self
@@ -779,6 +807,7 @@ export class Q {
     if (f.str_lte !== undefined && statNow("str") > this.value(f.str_lte, scope)) return false;
     if (f.life_lte !== undefined && statNow("life") > this.value(f.life_lte, scope)) return false;
     if (f.str_gte !== undefined && statNow("str") < this.value(f.str_gte, scope)) return false;
+    if (f.spd_lte !== undefined && statNow("spd") > this.value(f.spd_lte, scope)) return false;
     // "the character with the highest strength"
     // `strongest: controller`: the highest among its controller's characters ("an opponent's character with the highest strength").
     if (f.strongest && (c.zone !== "play" || this.stat(iid, "str") < Math.max(...(f.strongest === "controller" ? this.characters(c.controller) : this.allInPlay().filter((i) => this.isCharacter(i))).map((i) => this.stat(i, "str"))))) return false;

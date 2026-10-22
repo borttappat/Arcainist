@@ -10,3 +10,22 @@ text: |
   RECUR: [O]
   COST: Use this only if this card is in your discard pile. Pay 2. Remove this card from the game. Pick a character in the void.
   EFFECT: Put the character on top of its owner's deck.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - if:
+            cond: { gt: [ { stat: [ c, life ] }, { stat: [ c, str ] } ] }
+            then: [ void: c ]
+        - draw: 1
+  - ability:
+      name: Recur
+      keyword: recur
+      threshold: { obsession: 1 }
+      from: discard
+      cost:
+        - pay: 2
+        - void: self
+        - pick: { as: c, from: { character: { zone: void } } }
+      effect: [ move: { card: c, to: deck_top } ]

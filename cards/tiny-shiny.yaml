@@ -7,3 +7,10 @@ rarity: common
 text: |
   EXTRA COST: Pick a character.
   Reduce the next damage inflicted to the character this turn by 2. Put this card into play under its owner's control as a face-down resource instead of into their discard pile.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - create_effect: { duration: next, mods: [ { damage: { delta: -2 }, target: c } ] }
+      then: face_down_resource

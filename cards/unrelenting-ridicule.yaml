@@ -7,3 +7,8 @@ rarity: uncommon
 text: |
   EXTRA COST: Pick a character with COVERT.
   Destroy the character.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { keyword: covert } } }
+      effect: [ destroy: c ]

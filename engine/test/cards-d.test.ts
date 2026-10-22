@@ -2,6 +2,7 @@
 
 import { describe, expect, it } from "vitest";
 import { other } from "../types.ts";
+import { legalFor } from "../view.ts";
 import { act, answer, expectPending, newGame, pass, passAll, put, resources, toMain } from "./helpers.ts";
 
 function setup() {
@@ -1470,5 +1471,170 @@ describe("cards: D onwards", () => {
     expect(g.s.cards[t].zone).toBe("discard");
     expect(g.s.cards[w].zone).toBe("play");
     expect(g.s.cards[wall].markers).toBe(1);
+  });
+  it("Unloyal Necromorph: the opponent may pay 2 to take control of it instead", () => {
+    const { g, p, o } = setup();
+    const n = put(g, p, "unloyal-necromorph", "play");
+    resources(g, o, "greed", 2);
+    g.s.cards[n].damage = 2;
+    g.destroy(n);
+    settle(g);
+    expectPending(g, "choose", o);
+    answer(g, ["yes"]);
+    expect(g.s.cards[n].zone).toBe("play");
+    expect(g.s.cards[n].controller).toBe(o);
+    expect(g.s.cards[n].damage).toBe(0);
+  });
+
+  it("Vast Mastabatorium: 5 uses each turn, and each use hands it to the opponent at the end of the turn", () => {
+    const { g, p, o } = setup();
+    const v = put(g, p, "vast-mastabatorium", "play");
+    resources(g, p, "deception", 6);
+    const idx = g.q.abilities(v)[0].index;
+    for (let i = 0; i < 5; i++) {
+      act(g, p, { type: "ability", iid: v, index: idx });
+      passAll(g);
+    }
+    expect(() => act(g, p, { type: "ability", iid: v, index: idx })).toThrow(/5 times/);
+    act(g, p, { type: "end_turn" });
+    for (let i = 0; i < 20 && g.s.active === p; i++) {
+      const d = g.s.pending!;
+      if (d.type === "choose") answer(g, [d.options[0].id]);
+      else pass(g);
+    }
+    expect(g.s.cards[v].controller).toBe(o);
+    expect(g.s.cards[v].tokens).toBe(5);
+  });
+
+  it("Verrucose Brains: the cheapest character in play goes to its owner's hand at the end of the turn", () => {
+    const { g, p, o } = setup();
+    put(g, p, "verrucose-brains", "play");
+    const mine = put(g, p, "runic-whale", "play");
+    const cheap = put(g, o, "rapacious-soldier", "play");
+    act(g, p, { type: "end_turn" });
+    for (let i = 0; i < 20 && g.s.active === p; i++) {
+      const d = g.s.pending!;
+      if (d.type === "choose") answer(g, [d.options[0].id]);
+      else pass(g);
+    }
+    expect(g.s.cards[cheap].zone).toBe("hand");
+    expect(g.s.cards[mine].zone).toBe("play");
+  });
+
+  it("Vilghame: the first resource an opponent plays each turn enters play attached", () => {
+    const { g, p, o } = setup();
+    put(g, p, "vilghame-manewaft", "play");
+    const r1 = put(g, o, "rage", "hand");
+    const r2 = put(g, o, "rage", "hand");
+    const step = (r: string) => {
+      (g as any).push({ t: "step", step: { play_resource: { who: "opponent" } }, ctx: (g as any).newCtx(p, r).id, phase: "effect" });
+      settle(g);
+      g.act(o, { type: "answer", iid: r });
+    };
+    step(r1);
+    step(r2);
+    expect(g.s.cards[r1].attachedTo).toBe("faction");
+    expect(g.s.cards[r2].attachedTo).toBe(null);
+  });
+
+  it("Vexing Nullifier: its battle damage puts the blocker into its owner's hand", () => {
+    const { g, p, o } = setup();
+    const v = put(g, p, "vexing-nullifier", "play");
+    const b = put(g, o, "runic-whale", "play");
+    act(g, p, { type: "attack", target: "faction", attackers: [v] });
+    pass(g);
+    pass(g);
+    expectPending(g, "blockers", o);
+    answer(g, [b]);
+    for (let i = 0; i < 10 && g.s.battle; i++) pass(g);
+    expect(g.s.cards[b].zone).toBe("hand");
+    expect(g.s.cards[b].damage).toBe(0);
+    expect(g.s.cards[v].zone).toBe("hand");
+  });
+
+  it("Voidal Interference: the card goes back to its owner's hand, who then tops a card", () => {
+    const { g, p, o } = setup();
+    resources(g, p, "elitism", 5);
+    resources(g, o, "obsession", 3);
+    const c = put(g, p, "runic-whale", "hand");
+    const t = put(g, o, "voidal-interference", "hand");
+    act(g, p, { type: "deploy", iid: c });
+    act(g, o, { type: "deploy", iid: t });
+    passAll(g);
+    expect(g.s.cards[c].zone).toBe("hand");
+    if (g.s.pending?.type === "choose") answer(g, [c]);
+    passAll(g);
+    expect(g.s.players[p].deck[0]).toBe(c);
+  });
+
+  it("Voidal Trinket: look at X cards, keep one on top and the rest go to the bottom", () => {
+    const { g, p } = setup();
+    const t = put(g, p, "voidal-trinket", "play");
+    const cards = ["runic-whale", "fired-hand", "wanton-wizard"].map((id) => put(g, p, id, "deck"));
+    for (const c of [...cards].reverse()) top(g, p, c);
+    act(g, p, { type: "ability", iid: t, index: g.q.abilities(t)[0].index });
+    g.act(p, { type: "answer", value: 3 });
+    passAll(g);
+    expectPending(g, "choose", p);
+    answer(g, [cards[1]]);
+    const d = g.s.players[p].deck;
+    expect(d[0]).toBe(cards[1]);
+    expect(d.slice(-2).sort()).toEqual([cards[0], cards[2]].sort());
+  });
+
+  it("Wary Reunion: X is the number of different trades among cards you control", () => {
+    const { g, p, o } = setup();
+    const base = g.q.differentTrades(p); // staple resources have trades too
+    put(g, p, "runic-whale", "play", { faceDown: true }); // face-down: no trade
+    expect(g.q.differentTrades(p)).toBe(base);
+    put(g, p, "wanton-wizard", "play");
+    expect(g.q.differentTrades(p)).toBeLessThan(5);
+    resources(g, p, "deception", 2);
+    const weak = put(g, o, "wanton-wizard", "play"); // 1 life
+    const tough = put(g, o, "runic-whale", "play"); // 5 life
+    for (const [target, gone] of [[weak, true], [tough, false]] as const) {
+      const t = put(g, p, "wary-reunion", "hand");
+      act(g, p, { type: "deploy", iid: t });
+      answer(g, [target]);
+      passAll(g);
+      expect(g.s.cards[target].zone === "void").toBe(gone);
+    }
+  });
+
+  it("Woadenworm: your face-down tactics gain FLIP UP for their normal cost", () => {
+    const { g, p } = setup();
+    resources(g, p, "greed", 3);
+    const fd = put(g, p, "subordinate-demotivation", "play", { faceDown: true });
+    expect(g.q.flipUpRule(fd)).toBeUndefined();
+    put(g, p, "woadenworm-gloamspike-thabbashite-prince", "play");
+    expect(g.q.flipUpRule(fd)).toEqual({ pay: g.q.def(fd).cost, threshold: g.q.def(fd).threshold });
+    expect(legalFor(g, p)?.flipUp).toContain(fd);
+  });
+
+  it("Wild Boars: attacking alone, only characters with at least its speed can block", () => {
+    const { g, p, o } = setup();
+    const boars = put(g, p, "wild-boars", "play");
+    const slow = put(g, o, "runic-whale", "play");
+    const fast = put(g, o, "wild-boars", "play");
+    act(g, p, { type: "attack", target: "faction", attackers: [boars] });
+    pass(g);
+    pass(g);
+    const d = expectPending(g, "blockers", o);
+    expect(d.candidates).toContain(fast);
+    expect(d.candidates).not.toContain(slow);
+  });
+
+  it("Tri-Pole Magnet: puts a gear card from your discard pile onto the character it was attached to", () => {
+    const { g, p } = setup();
+    const c = put(g, p, "runic-whale", "play");
+    const m = put(g, p, "tri-pole-magnet", "play");
+    g.s.cards[m].attachedTo = c;
+    const gear = put(g, p, "swordchucks", "discard");
+    act(g, p, { type: "ability", iid: m, index: g.q.abilities(m)[0].index });
+    if (g.s.pending?.type === "choose") answer(g, [gear]);
+    passAll(g);
+    expect(g.s.cards[m].zone).toBe("discard");
+    expect(g.s.cards[gear].zone).toBe("play");
+    expect(g.s.cards[gear].attachedTo).toBe(c);
   });
 });

@@ -9,3 +9,12 @@ text: |
   SHOOT
   COST: Pay 1. Pick a character.
   EFFECT: Inflict 1 damage to the character. Inflict 1 damage to this card.
+rules:
+  - ability:
+      name: Shoot
+      cost:
+        - pay: 1
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - damage: { card: c, amount: 1 }
+        - damage: { card: self, amount: 1 }

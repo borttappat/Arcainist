@@ -9,3 +9,9 @@ text: |
   UNIQUE VILGHAME
   Your opponents must pay 1 to deploy a tactic.
   The first resource each opponent plays each turn enters play attached to that player's faction.
+rules:
+  - unique: Vilghame
+  - static:
+      mods:
+        - { cost: 1, by: opponent, target: { tactic: { zone: stack } } }
+        - { first_resource_attached: true, by: opponent, target: none }

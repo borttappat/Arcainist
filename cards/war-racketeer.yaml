@@ -10,3 +10,11 @@ text: |
   UNDER THE TABLE
   COST: Discard 1 card.
   EFFECT: This turn, this character loses 1 life and gains 1 strength and COVERT.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect: [ draw: { count: { count: { character: any } } } ]
+  - ability:
+      name: Under the Table
+      cost: [ discard: 1 ]
+      effect:
+        - create_effect: { duration: turn, mods: [ { stat: { str: 1, life: -1 } }, { keyword: covert } ] }

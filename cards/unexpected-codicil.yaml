@@ -10,3 +10,19 @@ text: |
   FINE PRINT: [G][G][G][G]
   EXTRA COST: Reveal this card from your hand. Your faction loses 2 influence. Pay 2.
   EFFECT: Draw a card.
+rules:
+  - play:
+      cost:
+        - choose_number: { as: X, min: 0, max: { hand_size: you } }
+        - discard: X
+        - pay: "max(0, X - 2)"
+      effect: [ draw: X ]
+  - ability:
+      name: Fine Print
+      threshold: { greed: 4 }
+      from: hand
+      cost:
+        - reveal: self
+        - lose_influence: { who: you, amount: 2 }
+        - pay: 2
+      effect: [ draw: 1 ]

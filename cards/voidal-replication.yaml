@@ -7,3 +7,9 @@ rarity: uncommon
 text: |
   EXTRA COST: Your opponents cannot respond to this card. Deploy this only if a tactic has been deployed this turn.
   Duplicate the last tactic deployed this turn.
+rules:
+  - play:
+      no_response: true
+      cost:
+        - require: { gt: [ { played_this_turn: { type: tactic } }, 0 ] }
+      effect: [ duplicate: last_tactic ]

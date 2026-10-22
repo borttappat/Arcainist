@@ -7,3 +7,6 @@ set: "Shade of the Devoured Emperor"
 rarity: common
 text: |
   This card gains 1 strength and 1 life for each [V] you control.
+rules:
+  - static:
+      mods: [ { stat: { str: { icons: volition }, life: { icons: volition } } } ]

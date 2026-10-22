@@ -8,3 +8,15 @@ text: |
   UNIQUE WATCHTOWER
   At the start of your turn, you may look at the top 2 cards of your deck. If you do, put 1 into your hand and 1 on the bottom of your deck.
   When this card is destroyed, you may search your deck for a card named "Zenobia's Tower", reveal it, and put it into your hand.
+rules:
+  - unique: Watchtower
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - may:
+          prompt: "look at the top 2 cards of your deck (1 to your hand, 1 to the bottom)"
+          steps: [ look: { deck: you, count: 2, to_hand: 1, bottom: rest } ]
+  - trigger: { on: destroyed, card: self }
+    effect:
+      - may:
+          prompt: "search your deck for a Zenobia's Tower"
+          steps: [ search: { deck: you, for: { card: { name: "Zenobia's Tower" } }, reveal: true, to: hand } ]

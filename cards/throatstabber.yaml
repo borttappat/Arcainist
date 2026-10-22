@@ -7,3 +7,10 @@ set: "1st Edition Part 2"
 rarity: uncommon
 text: |
   When this card enters play, flip a coin. If you lose, deplete this card.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - coin_flip: { as: won }
+      - if:
+          cond: { did: false }
+          then: [ deplete: self ]

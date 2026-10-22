@@ -6,3 +6,10 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   When a character enters play under your control, you may pay 1. If you do, search your deck for a staple resource and reveal it. Put it into your hand.
+rules:
+  - trigger: { on: enters_play, card: { character: { controller: you } } }
+    effect:
+      - may_pay:
+          amount: 1
+          prompt: "search your deck for a staple resource"
+          then: [ search: { deck: you, for: { resource: { staple: true } }, reveal: true, to: hand } ]

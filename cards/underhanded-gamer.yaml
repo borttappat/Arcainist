@@ -9,3 +9,11 @@ text: |
   OUTSMART
   COST: Use this only if an opponent controls more characters than you. Pay 3.
   EFFECT: This turn, this card cannot be blocked by those players.
+rules:
+  - ability:
+      name: Outsmart
+      cost:
+        - require: { gt: [ { count: { character: { controller: opponent } } }, { count: { character: { controller: you } } } ] }
+        - pay: 3
+      effect:
+        - create_effect: { duration: turn, mods: [ { cannot_be_blocked: true } ] }

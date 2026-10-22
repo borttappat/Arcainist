@@ -9,3 +9,12 @@ text: |
   At the start of your turn, you may put a token on this card.
   This card gains 1 speed for each token on it.
   While there are at least 5 tokens on this card, it's unblockable.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - may: { prompt: "put a token on Uncontrollable Jalopy", steps: [ tokens: { card: self, add: 1 } ] }
+  - static:
+      mods: [ { stat: { spd: { tokens: self } } } ]
+  - static:
+      while: { gte: [ { tokens: self }, 5 ] }
+      mods: [ { cannot_be_blocked: true } ]

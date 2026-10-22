@@ -346,7 +346,7 @@ export class Game {
         if (def.types.includes("resource")) return "Resources are played through your faction's develop rule or abilities.";
         if (!grant?.ignoreThreshold && !q.meets(p, def.threshold, q.thresholdReduction(a.iid))) return "You don't meet that card's threshold.";
       } else {
-        const fu = q.ruleOf(a.iid, "flip_up");
+        const fu = q.flipUpRule(a.iid);
         if (!fu) return "That card has no Flip Up.";
         // "Your opponents cannot use FLIP UP" (Lockbox of the Aeons).
         if (q.cannot("flip_up", a.iid, p)) return "You can't use Flip Up right now.";
@@ -384,6 +384,8 @@ export class Game {
       if (!where) return "You can't use that ability from where the card is.";
       if (q.cannot("use_ability", a.iid, p)) return "That card's abilities can't be used right now.";
       if (ab.rule.once_per_turn && s.turnLog.abilities?.[`${a.iid}:${a.index}`]) return "That ability can only be used once each turn.";
+      // "Use this only 5 times each turn": uses_per_turn: 5
+      if (ab.rule.uses_per_turn !== undefined && (s.turnLog.abilities?.[`${a.iid}:${a.index}`] ?? 0) >= ab.rule.uses_per_turn) return `That ability can only be used ${ab.rule.uses_per_turn} times each turn.`;
       if (!q.meets(p, ab.rule.threshold)) return "You don't meet that ability's threshold.";
       return this.timingOk(ab.rule.timing, p, { controller: p, source: a.iid, vars: {} });
     }
@@ -684,7 +686,7 @@ export class Game {
     const play = this.q.ruleOf(iid, "play") ?? {};
     const extra: Step[] = [];
     if (task.flipUp) {
-      const fu = this.q.ruleOf(iid, "flip_up");
+      const fu = this.q.flipUpRule(iid);
       ctx.costOverride = fu.pay;
       extra.push(...(fu.cost ?? []));
       this.log(`${this.pname(p)} flips up ${def.name}.`);
@@ -819,7 +821,8 @@ export class Game {
 
   protected t_activated(task: Task): void {
     const ctx = this.s.ctxs[task.ctx];
-    (this.s.turnLog.abilities ??= {})[`${task.iid}:${task.index}`] = true;
+    const used = (this.s.turnLog.abilities ??= {});
+    used[`${task.iid}:${task.index}`] = (used[`${task.iid}:${task.index}`] ?? 0) + 1;
     this.commitCosts();
     this.s.stack.push({ id: rng.id(this.s), kind: "ability", controller: ctx.actor, iid: task.iid, rule: task.index, ctx: ctx.id, label: task.label, noResponse: task.noResponse, pickedInCost: ctx.picked });
     this.s.priority = other(ctx.actor);
@@ -1764,7 +1767,7 @@ export class Game {
     const cands = this.q.find(arg.from, this.scope(ctx));
     if (!cands.length) return "ok";
     const total = this.num(ctx, arg.total);
-    return this.ask(task, { type: "assign", player: ctx.actor, prompt: `${this.q.name(ctx.source)}: put up to ${total} tokens on cards you control.`, total, min: 0, targets: cands });
+    return this.ask(task, { type: "assign", player: ctx.actor, prompt: `${this.q.name(ctx.source)}: put up to ${total} tokens divided however you want.`, total, min: 0, targets: cands });
   }
 
   /** "Inflict X damage divided however you want among ...": { amount, from: <selector>, up_to } */
@@ -1969,7 +1972,14 @@ export class Game {
         const n = Math.min(arg.bottom, remaining().length);
         return this.ask(task, { type: "choose", player: looker, prompt: `Put ${n} on the bottom of the deck.`, options: this.cardOptions(remaining()), min: n, max: n, list: true });
       }
-      const toBottom: string[] = arg.bottom === "rest" ? remaining() : (task.answer?.ids ?? []);
+      // "You may put one of those cards on the top of your deck. Put the remaining cards on
+      // the bottom": keep_top: 1
+      if (arg.keep_top !== undefined && !task.answer && remaining().length) {
+        const n = Math.min(this.num(ctx, arg.keep_top), remaining().length);
+        return this.ask(task, { type: "choose", player: looker, prompt: `Choose up to ${n} to keep on top; the rest go to the bottom of the deck.`, options: this.cardOptions(remaining()), min: 0, max: n, list: true });
+      }
+      const toBottom: string[] =
+        arg.bottom === "rest" ? remaining() : arg.keep_top !== undefined ? remaining().filter((i) => !(task.answer?.ids ?? []).includes(i)) : (task.answer?.ids ?? []);
       for (const iid of toBottom) this.move(iid, "deck", { bottom: true });
       task.placed.push(...toBottom);
       if (toBottom.length) this.log(`${toBottom.length} card${toBottom.length === 1 ? " goes" : "s go"} to the bottom of ${whose} deck.`);
@@ -2023,6 +2033,14 @@ export class Game {
           this.log(`${this.pname(p)} plays a face-down resource.`);
           this.log(`(face-down: ${this.q.name(ans.iid)})`, p);
         } else this.log(`${this.pname(p)} plays ${this.q.name(ans.iid)} as a resource.`);
+        // "The first resource each opponent plays each turn enters play attached to that
+        // player's faction" (Vilghame).
+        const played = (this.s.turnLog.resourcesPlayed ??= {});
+        played[p] = (played[p] ?? 0) + 1;
+        if (played[p] === 1 && this.q.mods("first_resource_attached").some((m) => this.q.by(m, p))) {
+          this.s.cards[ans.iid].attachedTo = "faction";
+          this.log(`It enters play attached to ${this.pname(p)}'s faction.`);
+        }
         this.setDid(ctx, true);
       }
       const left = (task.left ?? this.num(ctx, a.count ?? 1)) - 1;
@@ -2115,12 +2133,14 @@ export class Game {
       return "ok";
     }
     // "responded", a stack item id, or a card reference (the card being deployed).
-    const id = arg === "responded" ? this.root(ctx).responding : arg;
-    const card = arg === "responded" ? undefined : this.ref(ctx, arg);
+    const which = arg && typeof arg === "object" ? arg.card : arg;
+    const id = which === "responded" ? this.root(ctx).responding : which;
+    const card = which === "responded" ? undefined : this.ref(ctx, which);
     const i = this.s.stack.findIndex((x) => x.id === id || (card !== undefined && x.kind === "card" && x.iid === card));
     if (i < 0) return "ok";
     const [item] = this.s.stack.splice(i, 1);
-    if (item.kind === "card") this.move(item.iid, "discard");
+    // "Terminate the card, but put it into its owner's hand instead": { card: responded, to: hand }
+    if (item.kind === "card") this.move(item.iid, arg?.to ?? "discard");
     this.dropCtx(item.ctx);
     this.log(`${item.label} is terminated.`);
     return "ok";
@@ -2753,10 +2773,12 @@ export class Game {
         if (r.replace.while !== undefined && !q.cond(r.replace.while, scope)) continue;
         if (r.replace.optional) {
           if (skipOptional) continue;
-          // "you may pay N to ... instead": only offered when its owner can pay.
-          if (r.replace.pay !== undefined && this.q.unattached(this.s.cards[iid].owner).length < q.value(r.replace.pay, scope)) continue;
+          // Its owner decides, or `who` ("any opponent may pay 2", Unloyal Necromorph).
+          const asker = r.replace.who !== undefined ? q.who(r.replace.who, scope) : this.s.cards[iid].owner;
+          // "you may pay N to ... instead": only offered when that player can pay.
+          if (r.replace.pay !== undefined && this.q.unattached(asker).length < q.value(r.replace.pay, scope)) continue;
           this.s.cards[iid].replacing = true;
-          this.push({ t: "optionalReplace", iid, cause, by, instead: r.instead, prompt: r.replace.prompt, pay: r.replace.pay !== undefined ? q.value(r.replace.pay, scope) : undefined, controller: scope.controller, source: scope.source, vars: scope.vars });
+          this.push({ t: "optionalReplace", iid, cause, by, asker, instead: r.instead, prompt: r.replace.prompt, pay: r.replace.pay !== undefined ? q.value(r.replace.pay, scope) : undefined, controller: scope.controller, source: scope.source, vars: scope.vars });
           return true;
         }
         const ctx = this.newCtx(scope.controller, scope.source);
@@ -2785,6 +2807,7 @@ export class Game {
   /** "Its owner may ... instead": ask the destroyed card's owner, then replace or destroy. */
   protected t_optionalReplace(task: Task): void {
     const c = this.s.cards[task.iid];
+    const asker: PlayerId = task.asker ?? c.owner;
     if (!task.answer) {
       if (!this.q.inPlay(task.iid)) {
         c.replacing = undefined;
@@ -2792,7 +2815,7 @@ export class Game {
       }
       this.ask(task, {
         type: "choose",
-        player: c.owner,
+        player: asker,
         prompt: `${this.q.name(task.iid)} would be destroyed. ${task.prompt ?? "Replace it"}?`,
         options: [
           { id: "yes", label: "Yes" },
@@ -2804,11 +2827,11 @@ export class Game {
       return;
     }
     c.replacing = undefined;
-    if (task.answer.ids[0] !== "yes" || (task.pay !== undefined && !this.payNow(c.owner, task.pay))) {
+    if (task.answer.ids[0] !== "yes" || (task.pay !== undefined && !this.payNow(asker, task.pay))) {
       this.destroy(task.iid, task.cause, true, task.by);
       return;
     }
-    if (task.pay !== undefined) this.log(`${this.pname(c.owner)} pays ${task.pay}.`);
+    if (task.pay !== undefined) this.log(`${this.pname(asker)} pays ${task.pay}.`);
     const ctx = this.newCtx(task.controller, task.source);
     Object.assign(ctx.vars, task.vars, { it: task.iid });
     this.log(`${this.q.name(task.iid)} would be destroyed; ${this.q.name(task.source)} replaces it.`);
@@ -2877,6 +2900,14 @@ export class Game {
     if (asTokens) {
       this.s.cards[iid].tokens += n;
       this.log(`${q.name(iid)} gets ${n} token${n === 1 ? "" : "s"} instead of damage.`);
+      return;
+    }
+    // "If this character would inflict battle damage to a character, put that character into
+    // its owner's hand instead" (Vexing Nullifier); `from` limits the sources.
+    const toHand = q.modsFor("damage_to_hand", iid).find((m) => (m.value?.battle === undefined || !!m.value.battle === battle) && (m.value?.from === undefined || sources.some((x) => q.matches(m.value.from, x, m.scope, null))));
+    if (toHand && q.isCharacter(iid)) {
+      this.log(`${q.name(iid)} is put into its owner's hand instead of taking damage.`);
+      this.move(iid, "hand");
       return;
     }
     n = this.modifyDamage(iid, n, battle, sources);

@@ -12,3 +12,15 @@ text: |
   STUDY
   COST: Remove 3 tokens from this card.
   EFFECT: Draw a card.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - may: { prompt: "put a token on Voidal Observatory", steps: [ tokens: { card: self, add: 1 } ] }
+  - ability:
+      name: Energize
+      cost: [ pay: 2 ]
+      effect: [ tokens: { card: self, add: 1 } ]
+  - ability:
+      name: Study
+      cost: [ tokens: { card: self, remove: 3 } ]
+      effect: [ draw: 1 ]

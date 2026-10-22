@@ -9,3 +9,8 @@ text: |
   ASSAIL
   COST: Pay 2.
   EFFECT: This turn, this card gains 1 strength.
+rules:
+  - ability:
+      name: Assail
+      cost: [ pay: 2 ]
+      effect: [ modify: { card: self, stat: str, gain: 1 } ]

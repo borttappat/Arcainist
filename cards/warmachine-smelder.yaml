@@ -12,3 +12,28 @@ text: |
   LIFE'S WORK: [E][E][E][E][E][E]
   COST: Pick and item you control. Destroy this card.
   EFFECT: Destroy the item. Search your deck for an item with numeric cost 7 or less and reveal it. You may deploy that card for free. If you don't, put it into your hand.
+rules:
+  - ability:
+      name: In the Fire
+      cost:
+        - deplete: self
+        - pick: { as: i, from: { item: { controller: you } } }
+      effect:
+        - destroy: i
+        - search: { deck: you, for: { item: any }, reveal: true, to: hand }
+  - ability:
+      name: Life's Work
+      threshold: { elitism: 6 }
+      cost:
+        - pick: { as: i, from: { item: { controller: you } } }
+        - destroy: self
+      effect:
+        - destroy: i
+        - search: { deck: you, for: { item: { cost_lte: 7 } }, reveal: true, to: keep, as: found }
+        - if:
+            cond: { defined: found }
+            then:
+              - may:
+                  prompt: "deploy that card for free (if you don't, put it into your hand)"
+                  steps: [ play_card: { card: found, free: true } ]
+                  else: [ move: { card: found, to: hand } ]

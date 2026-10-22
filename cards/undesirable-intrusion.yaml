@@ -8,3 +8,17 @@ text: |
   EXTRA COST: Your opponents cannot respond to this card. Deploy this only in response to a character's ability.
   Terminate the ability. Destroy the character. Its controller puts a micromajig token into play under their control.
   FLIP UP: 2 [E]
+rules:
+  - play:
+      timing: { response_to: { ability: { character: any } } }
+      no_response: true
+      effect:
+        - let: { ch: { card: responded } }
+        - terminate: responded
+        - if:
+            cond: { in_play: ch }
+            then:
+              # The token is made first, while the character's controller is still known.
+              - create_token: { card: micromajig-token, controller: { controller_of: ch } }
+              - destroy: ch
+  - flip_up: { pay: 2, threshold: { elitism: 1 } }

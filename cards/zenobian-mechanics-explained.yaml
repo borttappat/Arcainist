@@ -8,3 +8,13 @@ text: |
   EXTRA COST: Choose a character an opponent controls.
   Put the character into its owner's hand. If you control an attacking party of at least 2 members, that player discards a card.
   FLIP UP: 4 [O]
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { controller: opponent } }, choose: true, prompt: "Choose a character an opponent controls." }
+      effect:
+        - move: { card: c, to: hand }
+        - if:
+            cond: { gte: [ { count: { character: { controller: you, attacking: true } } }, 2 ] }
+            then: [ discard: { who: opponent, count: 1 } ]
+  - flip_up: { pay: 4, threshold: { obsession: 1 } }

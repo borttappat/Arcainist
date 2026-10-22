@@ -7,3 +7,12 @@ rarity: common
 text: |
   EXTRA COST: Pick 2 or fewer non-resource cards.
   Put up to 2 tokens divided however you want on the cards. Draw a card.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { card: { not_type: resource } }, count: 2, up_to: true }
+      effect:
+        - if:
+            cond: { defined: c }
+            then: [ distribute_tokens: { total: 2, from: { card: { not_type: resource, among: c } } } ]
+        - draw: 1

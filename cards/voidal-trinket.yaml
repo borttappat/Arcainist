@@ -8,3 +8,17 @@ text: |
   AUGUR
   COST: Deplete this card. Choose a number for X that is 3 or less. Pick an opponent. That opponent may detach up to X resources from their faction.
   EFFECT: Look at the top X cards of your deck. You may put one of those cards on the top of your deck. Put the remaining cards on the bottom of your deck in any order.
+rules:
+  - ability:
+      name: Augur
+      cost:
+        - deplete: self
+        - choose_number: { as: X, min: 0, max: 3 }
+        - as:
+            who: opponent
+            steps:
+              - pick: { as: r, from: { resource: { controller: you, spent: true } }, count: X, up_to: true, choose: true, optional: true, prompt: "You may detach up to X resources from your faction." }
+              - if:
+                  cond: { defined: r }
+                  then: [ detach: { card: r } ]
+      effect: [ look: { deck: you, count: X, keep_top: 1 } ]

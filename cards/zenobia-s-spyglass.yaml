@@ -8,3 +8,10 @@ text: |
   FORESIGHT
   COST: Choose a number for X. Pay X.
   EFFECT: Look at up to the top X+X cards of your deck. Put them back in any order.
+rules:
+  - ability:
+      name: Foresight
+      cost:
+        - choose_number: { as: X, min: 0, max: 20 }
+        - pay: X
+      effect: [ look: { deck: you, count: "X + X" } ]

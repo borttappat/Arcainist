@@ -8,3 +8,8 @@ rarity: common
 text: |
   If this character would inflict battle damage to a character, put that character into its owner's hand instead.
   If a character would inflict battle damage to this character, put this character into its owner's hand instead.
+rules:
+  - static:
+      mods:
+        - { damage_to_hand: { battle: true, from: self }, target: { character: { not_self: true } } }
+        - { damage_to_hand: { battle: true } }

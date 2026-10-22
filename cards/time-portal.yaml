@@ -6,3 +6,9 @@ set: "Seed Saga"
 rarity: rare
 text: |
   At the start of your turn, you may put a Micromajig token into play.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - may:
+          prompt: "put a Micromajig token into play"
+          steps: [ create_token: { card: micromajig-token } ]

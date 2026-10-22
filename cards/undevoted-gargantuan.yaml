@@ -9,3 +9,13 @@ rarity: rare
 text: |
   COVERT
   When this card enters play, each opponent may detach up to 3 resources from their faction.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - as:
+          who: opponent
+          steps:
+            - pick: { as: r, from: { resource: { controller: you, spent: true } }, count: 3, up_to: true, choose: true, optional: true, prompt: "You may detach up to 3 resources from your faction." }
+            - if:
+                cond: { defined: r }
+                then: [ detach: { card: r } ]

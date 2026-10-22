@@ -8,3 +8,22 @@ rarity: uncommon
 text: |
   While this card is in your hand you may reveal this card as you are playing a resource. If you do, you may deploy this card for 1.
   When this card enters play, you may put a resource you control into its owner's hand. If you do, you may play a resource.
+rules:
+  - trigger: { on: enters_play, card: { resource: { controller: you } }, zone: hand }
+    effect:
+      - may:
+          prompt: "reveal Witty Worm and deploy it for 1"
+          steps:
+            - reveal: self
+            - may_pay:
+                amount: 1
+                prompt: "deploy Witty Worm"
+                then: [ play_card: { card: self, free: true } ]
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - may:
+          prompt: "put a resource you control into its owner's hand (then you may play a resource)"
+          steps:
+            - pick: { as: r, from: { resource: { controller: you } }, choose: true }
+            - move: { card: r, to: hand }
+            - play_resource: { optional: true }

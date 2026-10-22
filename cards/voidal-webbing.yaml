@@ -7,3 +7,8 @@ rarity: common
 text: |
   EXTRA COST: Pick a character.
   This turn, the character loses 1 speed.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect: [ modify: { card: c, stat: spd, lose: 1 } ]

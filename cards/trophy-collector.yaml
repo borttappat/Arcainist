@@ -7,3 +7,7 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   EXTRA COST: Deploy this only if an opponent's faction has 10 influence or less.
+rules:
+  - play:
+      cost:
+        - require: { lte: [ { influence: opponent }, 10 ] }

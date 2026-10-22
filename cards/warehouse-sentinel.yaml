@@ -9,3 +9,17 @@ text: |
   RECUR: [D][D][D]
   COST: Use this only if this card is in your discard pile. Pay 1. Remove this card from the game. Pick a character.
   EFFECT: If the character is depleted, destroy it.
+rules:
+  - ability:
+      name: Recur
+      keyword: recur
+      threshold: { deception: 3 }
+      from: discard
+      cost:
+        - pay: 1
+        - void: self
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - if:
+            cond: { matches: [ c, { character: { depleted: true } } ] }
+            then: [ destroy: c ]

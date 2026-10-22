@@ -9,3 +9,9 @@ rarity: common
 text: |
   TACTICAL
   When this card enters play, if you deployed it during an opponent's turn, discard a card or destroy this card.
+rules:
+  - trigger: { on: enters_play, card: self, while: { your_turn: false } }
+    effect:
+      - choose_one:
+          - { label: "Discard a card", when: { gt: [ { hand_size: you }, 0 ] }, steps: [ discard: 1 ] }
+          - { label: "Destroy Unexpected Boobysnake", steps: [ destroy: self ] }

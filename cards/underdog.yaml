@@ -7,3 +7,6 @@ set: "Holy Heist"
 rarity: uncommon
 text: |
   This card gains X strength, where X is the number of characters in play that your opponents own.
+rules:
+  - static:
+      mods: [ { stat: { str: { count: { character: { owner: opponent } } } } } ]

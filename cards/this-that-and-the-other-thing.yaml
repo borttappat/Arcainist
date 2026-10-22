@@ -7,3 +7,14 @@ rarity: uncommon
 text: |
   EXTRA COST: Pick 3 tactics in your discard pile.
   Shuffle 1 of the tatics into your deck. Put 1 of the tatics into play under your control as a face-down resource. Put 1 of the tatics into your hand.
+rules:
+  - play:
+      cost:
+        - pick: { as: t, from: { tactic: { zone: discard, owner: you } }, count: 3, exactly: true }
+      effect:
+        - pick: { as: a, from: { tactic: { zone: discard, among: t } }, choose: true, prompt: "Choose the tactic to shuffle into your deck." }
+        - move: { card: a, to: deck_shuffle }
+        - pick: { as: b, from: { tactic: { zone: discard, among: t } }, choose: true, prompt: "Choose the tactic to put into play as a face-down resource." }
+        - put_into_play: { card: b, controller: you, as: face_down_resource }
+        - pick: { as: h, from: { tactic: { zone: discard, among: t } }, choose: true, prompt: "Choose the tactic to put into your hand." }
+        - move: { card: h, to: hand }

@@ -8,3 +8,9 @@ text: |
   EXTRA COST: Pick an item.
   Flip the item face-down under its owner's control.
   FLIP UP: 1 [E] and draw a card.
+rules:
+  - play:
+      cost:
+        - pick: { as: i, from: { item: any } }
+      effect: [ flip_face_down: { card: i, controller: owner } ]
+  - flip_up: { pay: 1, threshold: { elitism: 1 }, cost: [ draw: 1 ] }

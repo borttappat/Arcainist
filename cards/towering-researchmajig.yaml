@@ -10,3 +10,12 @@ text: |
   RESEARCH
   COST: Remove a token from this card.
   EFFECT: Reduce the next numeric cost you pay this turn by 1.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - may: { prompt: "put a token on Towering Researchmajig", steps: [ tokens: { card: self, add: 1 } ] }
+  - ability:
+      name: Research
+      cost: [ tokens: { card: self, remove: 1 } ]
+      effect:
+        - create_effect: { duration: next, mods: [ { cost: -1, applies: any, by: you, target: all } ] }

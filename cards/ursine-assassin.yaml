@@ -12,3 +12,19 @@ text: |
   JUST UNBEARABLE: [R][R][R][R][R][R]
   COST: Pay 2. Pick a character. Destroy a restored character you control.
   EFFECT: Inflict 5 damage to the character.
+rules:
+  - ability:
+      name: To Bear Arms
+      cost:
+        - pay: 1
+        - pick: { as: c, from: { character: any } }
+        - destroy: { from: { character: { controller: you, depleted: false } }, choose: true }
+      effect: [ damage: { card: c, amount: 2 } ]
+  - ability:
+      name: Just Unbearable
+      threshold: { rage: 6 }
+      cost:
+        - pay: 2
+        - pick: { as: c, from: { character: any } }
+        - destroy: { from: { character: { controller: you, depleted: false } }, choose: true }
+      effect: [ damage: { card: c, amount: 5 } ]

@@ -7,3 +7,11 @@ set: "Ungodly Mess"
 rarity: common
 text: |
   When this card leaves play, look at an opponent's hand and chose a card in it. That player discards that card.
+rules:
+  - trigger: { on: leaves_play, card: self }
+    effect:
+      - peek: { who: opponent, hand: true }
+      - pick: { as: h, from: { card: { zone: hand, owner: opponent } }, choose: true, prompt: "Choose a card in your opponent's hand for them to discard." }
+      - if:
+          cond: { defined: h }
+          then: [ discard: { who: opponent, cards: h } ]

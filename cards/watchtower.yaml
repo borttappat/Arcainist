@@ -7,3 +7,7 @@ rarity: rare
 text: |
   UNIQUE WATCHTOWER
   When a character enters play under an opponent's control, inflict 1 damage to it.
+rules:
+  - unique: Watchtower
+  - trigger: { on: enters_play, card: { character: { controller: opponent } } }
+    effect: [ damage: { card: it, amount: 1 } ]

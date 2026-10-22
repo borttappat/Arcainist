@@ -6,3 +6,10 @@ set: "Seed Saga"
 rarity: rare
 text: |
   At the end of each turn, put the character with the lowest numeric cost into its owner's hand. If there is a tie, you decide which character is affected.
+rules:
+  - trigger: { on: end_of_turn, player: any }
+    effect:
+      - pick: { as: c, from: { character: { cheapest: all } }, choose: true, prompt: "Choose the character with the lowest numeric cost to put into its owner's hand." }
+      - if:
+          cond: { defined: c }
+          then: [ move: { card: c, to: hand } ]

@@ -9,3 +9,13 @@ text: |
   When this card inflicts damage to a faction, you may pay 1. If you do, search that faction's deck for a tactic, reveal it and put it into the void.
   While this card is depleted, you may deploy tactics in the void as though they were in your hand without
   meeting their threshold.
+rules:
+  - trigger: { on: damage, source: self, faction: true }
+    effect:
+      - may_pay:
+          amount: 1
+          prompt: "search that faction's deck for a tactic and put it into the void"
+          then: [ search: { deck: opponent, for: { tactic: any }, reveal: true, to: void } ]
+  - static:
+      while: { matches: [ self, { character: { depleted: true } } ] }
+      mods: [ { play_from: { ignore_threshold: true }, by: you, target: { tactic: { zone: void } } } ]

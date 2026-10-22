@@ -12,3 +12,12 @@ text: |
   HANDOFF
   COST: Deplete a character you control that is not in a battle.
   EFFECT: Attach this card to the character.
+rules:
+  - static:
+      mods: [ { keyword: covert, target: host } ]
+  - ability:
+      name: Handoff
+      cost:
+        - pick: { as: c, from: { character: { controller: you, attacking: false, blocking: false, depleted: false } }, choose: true, prompt: "Deplete a character you control that is not in a battle." }
+        - deplete: c
+      effect: [ attach: { card: self, to: c } ]

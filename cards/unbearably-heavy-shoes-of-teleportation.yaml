@@ -10,3 +10,9 @@ text: |
   ATTACH TO CHARACTER
   The attached character loses 2 strength and cannot be blocked.
   FLIP UP: 5 [E][E][E]
+rules:
+  - static:
+      mods:
+        - { stat: { str: -2 }, target: host }
+        - { cannot_be_blocked: true, target: host }
+  - flip_up: { pay: 5, threshold: { elitism: 3 } }

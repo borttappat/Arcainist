@@ -8,3 +8,19 @@ text: |
   EXTRA COST: Pick a player. X is the number of different staple resources that player controls. Pay X
   +X.
   That player puts X non-resource cards they control into their owners' hands.
+rules:
+  - play:
+      cost:
+        - pick: { as: f, from: { faction: any }, prompt: "Pick a player." }
+        - as:
+            who: { controller_of: f }
+            steps: [ let: { X: { different_staples: you } } ]
+        - pay: "X + X"
+      effect:
+        - as:
+            who: { controller_of: f }
+            steps:
+              - pick: { as: c, from: { card: { controller: you, not_type: resource } }, count: X, exactly: true, choose: true, prompt: "Put X non-resource cards you control into their owners' hands." }
+              - if:
+                  cond: { defined: c }
+                  then: [ move: { card: c, to: hand } ]

@@ -7,3 +7,15 @@ rarity: rare
 text: |
   EXTRA COST: Choose a number for X. Remove X tokens from cards you control.
   Put X tokens divided however you want on any non-resource cards. Draw a card.
+rules:
+  - play:
+      cost:
+        - choose_number: { as: X, min: 0, max: 20 }
+        - repeat:
+            times: X
+            steps:
+              - pick: { as: t, from: { card: { controller: you, has_tokens: true } }, choose: true, prompt: "Remove a token from a card you control." }
+              - tokens: { card: t, remove: 1 }
+      effect:
+        - distribute_tokens: { total: X, from: { card: { not_type: resource } } }
+        - draw: 1

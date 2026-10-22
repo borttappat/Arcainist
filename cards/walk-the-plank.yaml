@@ -6,3 +6,8 @@ set: "Seed Saga"
 rarity: rare
 text: |
   Destroy all characters with numeric cost X or less, where X is the number of [G] you control.
+rules:
+  - play:
+      effect:
+        - let: { X: { icons: greed } }
+        - destroy: { character: { cost_lte: X } }

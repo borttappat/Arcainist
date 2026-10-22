@@ -11,3 +11,23 @@ text: |
   [E]: This turn, the character gains AGGRO.
   [D]: This turn, the character gains 1 speed.
   [R]: This turn, the character gains 2 strength.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - if:
+            cond: { icons: { obsession: 1 } }
+            then: [ create_effect: { duration: turn, mods: [ { keyword: covert, target: c } ] } ]
+        - if:
+            cond: { icons: { greed: 1 } }
+            then: [ modify: { card: c, stat: life, gain: 2 } ]
+        - if:
+            cond: { icons: { elitism: 1 } }
+            then: [ create_effect: { duration: turn, mods: [ { keyword: aggro, target: c } ] } ]
+        - if:
+            cond: { icons: { deception: 1 } }
+            then: [ modify: { card: c, stat: spd, gain: 1 } ]
+        - if:
+            cond: { icons: { rage: 1 } }
+            then: [ modify: { card: c, stat: str, gain: 2 } ]

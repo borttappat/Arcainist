@@ -6,3 +6,7 @@ set: "2nd Edition"
 rarity: rare
 text: |
   At the start of your turn, each player puts the top 2 cards of their deck into their discard pile.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - each_player: [ mill: { who: you, count: 2 } ]

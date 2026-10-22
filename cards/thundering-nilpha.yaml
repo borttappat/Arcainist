@@ -7,3 +7,9 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   While this card is attacking a location, it gains 1 strength and cannot be blocked.
+rules:
+  - static:
+      while: { all: [ { attacking: self }, { not: { attack_target: faction } } ] }
+      mods:
+        - { stat: { str: 1 } }
+        - { cannot_be_blocked: true }

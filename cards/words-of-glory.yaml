@@ -7,3 +7,9 @@ rarity: rare
 text: |
   EXTRA COST: Deploy this only during your turn and not during a battle.
   X is the total strength of all characters your opponents control. Inflict X-3 damage to all characters.
+rules:
+  - play:
+      timing: { your_turn: true, not_in_battle: true }
+      effect:
+        - let: { X: { total_str: { character: { controller: opponent } } } }
+        - damage: { card: { character: any }, amount: "X - 3" }

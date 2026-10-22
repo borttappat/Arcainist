@@ -9,3 +9,10 @@ text: |
   UNIQUE VEXILLARIUS
   All your other characters gain 2 strength and 2 life.
   When this card is destroyed, all character lose 2 strength and 2 life this turn.
+rules:
+  - unique: Vexillarius
+  - static:
+      mods: [ { stat: { str: 2, life: 2 }, target: { character: { controller: you, not_self: true } } } ]
+  - trigger: { on: destroyed, card: self }
+    effect:
+      - create_effect: { duration: turn, mods: [ { stat: { str: -2, life: -2 }, target: { character: any } } ] }

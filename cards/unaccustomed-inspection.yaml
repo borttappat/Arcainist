@@ -8,3 +8,15 @@ text: |
   EXTRA COST: Pick a non-resource card.
   If the card has a [V] icon in its rules text, destroy the card. Otherwise your faction loses influence equal to the card's numeric cost and flip the card face-down under its owner's control.
   FLIP UP: 2 [G][G]
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { card: { not_type: resource } } }
+      effect:
+        - if:
+            cond: { matches: [ c, { card: { text_has: "[V]" } } ] }
+            then: [ destroy: c ]
+            else:
+              - lose_influence: { who: you, amount: { cost: c } }
+              - flip_face_down: { card: c, controller: owner }
+  - flip_up: { pay: 2, threshold: { greed: 2 } }

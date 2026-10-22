@@ -11,3 +11,22 @@ text: |
   MICROMAJIG APOCALYPSE: [E][E][E][E][E][E]
   COST: Use this only if there are at least 20 tokens on this card. Destroy this card.
   EFFECT: Put X Micromajig tokens into play under your control, where X is the number of cards in an opponent's deck.
+rules:
+  - ability:
+      name: Ensnare
+      cost:
+        - choose_one:
+            - { label: "Pay 1", steps: [ pay: 1 ] }
+            - label: "Destroy a Micromajig token you control"
+              when: { exists: { character: { controller: you, token: true } } }
+              steps: [ destroy: { from: { character: { controller: you, token: true } }, choose: true } ]
+      effect: [ tokens: { card: self, add: 1 } ]
+  - ability:
+      name: Micromajig Apocalypse
+      threshold: { elitism: 6 }
+      cost:
+        - require: { gte: [ { tokens: self }, 20 ] }
+        - destroy: self
+      effect:
+        - let: { X: { count: { card: { zone: deck, owner: opponent } } } }
+        - create_token: { card: micromajig-token, count: X }

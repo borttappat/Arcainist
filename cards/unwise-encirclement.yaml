@@ -8,3 +8,14 @@ text: |
   EXTRA COST: Pick a character.
   Put a token on the character. If you deployed this card using FLIP UP, put 4 more tokens on the character. Inflict damage to it equal to the number of tokens on it.
   FLIP UP: 5 [R]
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - tokens: { card: c, add: 1 }
+        - if:
+            cond: { via: flip_up }
+            then: [ tokens: { card: c, add: 4 } ]
+        - damage: { card: c, amount: { tokens: c } }
+  - flip_up: { pay: 5, threshold: { rage: 1 } }

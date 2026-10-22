@@ -8,3 +8,10 @@ text: |
   POSSESS
   COST: Pay 2. Deplete this card.
   EFFECT: Put a Micromajig token with COVERT into play.
+rules:
+  - ability:
+      name: Possess
+      cost: [ pay: 2, deplete: self ]
+      effect:
+        - create_token: { card: micromajig-token, as: t }
+        - create_effect: { duration: game, mods: [ { keyword: covert, target: t } ] }

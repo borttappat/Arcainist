@@ -8,3 +8,7 @@ rarity: rare
 text: |
   UNIQUE GLOAMSPIKE
   All your face-down tactics gain FLIP UP with numeric cost and threshold equal to their regular numeric cost and threshold.
+rules:
+  - unique: Gloamspike
+  - static:
+      mods: [ { grant_flip_up: true, target: { resource: { controller: you, face_down: true, printed_type: tactic } } } ]

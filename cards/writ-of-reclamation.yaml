@@ -7,3 +7,15 @@ rarity: rare
 text: |
   EXTRA COST: Choose a number for X that is 3 or less. Remove X cards in your discard pile from the game. Pick X other cards in your discard pile.
   Shuffle the other cards into your deck. Draw a card.
+rules:
+  - play:
+      cost:
+        - choose_number: { as: X, min: 0, max: 3 }
+        - pick: { as: v, from: { card: { zone: discard, owner: you } }, count: X, exactly: true, choose: true, prompt: "Remove X cards in your discard pile from the game." }
+        - void: v
+        - pick: { as: o, from: { card: { zone: discard, owner: you } }, count: X, exactly: true }
+      effect:
+        - if:
+            cond: { defined: o }
+            then: [ move: { card: o, to: deck_shuffle } ]
+        - draw: 1

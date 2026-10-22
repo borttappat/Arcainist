@@ -8,3 +8,18 @@ rarity: rare
 text: |
   UNIQUE WYRMFANG
   When you attack, the controller of the faction or location you are attacking picks any number of characters they control. Those characters must block during this battle if they can, and only those characters can block.
+rules:
+  - unique: Wyrmfang
+  - trigger: { on: party_formed, player: you, side: attacking }
+    effect:
+      - pick: { as: b, from: { character: { controller: opponent } }, count: 99, up_to: true, optional: true, who: opponent, prompt: "Pick any number of characters you control: they must block if they can, and only they can block." }
+      - if:
+          cond: { defined: b }
+          then:
+            - create_effect:
+                duration: battle
+                mods:
+                  - { must_block: true, target: b }
+                  - { cannot: block, target: { character: { controller: opponent, not: b } } }
+          else:
+            - create_effect: { duration: battle, mods: [ { cannot: block, target: { character: { controller: opponent } } } ] }

@@ -7,3 +7,17 @@ rarity: rare
 text: |
   When a character you control with 3 speed or less attacks, restore it at the end of the battle.
   Characters you control can attack only once each turn.
+rules:
+  - trigger: { on: attacks, card: { character: { controller: you } } }
+    effect:
+      - let: { c: { card: it } }
+      - if:
+          cond: { lte: [ { stat: [ c, spd ] }, 3 ] }
+          then:
+            - create_effect:
+                duration: game
+                rules:
+                  - trigger: { on: battle_end, once: true }
+                    effect: [ restore: c ]
+  - static:
+      mods: [ { attack_limit: 1, target: { character: { controller: you } } } ]

@@ -11,3 +11,18 @@ text: |
   TURN TO MUSH
   COST: Pay 2. Pick a card with a token on it.
   EFFECT: Flip the card face-down under its owner's control.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - pick: { as: t, from: { card: { not_type: resource } }, count: { icons: volition }, up_to: true, choose: true, optional: true, prompt: "You may put a token on up to X non-resource cards." }
+      - if:
+          cond: { defined: t }
+          then: [ tokens: { card: t, add: 1 } ]
+  - trigger: { on: destroyed, card: self }
+    effect: [ destroy: { card: { not_type: resource, has_tokens: true } } ]
+  - ability:
+      name: Turn to Mush
+      cost:
+        - pay: 2
+        - pick: { as: c, from: { card: { has_tokens: true } } }
+      effect: [ flip_face_down: { card: c, controller: owner } ]

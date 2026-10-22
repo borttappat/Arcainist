@@ -7,3 +7,16 @@ rarity: uncommon
 text: |
   EXTRA COST: Deploy this only in response to a card being deployed. (Playing a resource doesn't count.)
   Terminate the card, but put it into its owner's hand instead of their discard pile. Its owner puts a card from their hand on the top of their deck.
+rules:
+  - play:
+      timing: { response_to: { deploying: { card: any } } }
+      effect:
+        - let: { d: { card: responded } }
+        - terminate: { card: responded, to: hand }
+        - as:
+            who: { owner_of: d }
+            steps:
+              - pick: { as: h, from: { card: { zone: hand, owner: you } }, choose: true, prompt: "Put a card from your hand on top of your deck." }
+              - if:
+                  cond: { defined: h }
+                  then: [ move: { card: h, to: deck_top } ]

@@ -12,3 +12,18 @@ text: |
   DISSOLVE
   COST: Use this only if there are an even number of characters in play. Remove 4 tokens from this card. Pick a character.
   EFFECT: Destroy the character.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - may: { prompt: "put a token on Voidal Nullification Chamber", steps: [ tokens: { card: self, add: 1 } ] }
+  - ability:
+      name: Energize
+      cost: [ pay: 2 ]
+      effect: [ tokens: { card: self, add: 1 } ]
+  - ability:
+      name: Dissolve
+      cost:
+        - require: { even: { count: { character: any } } }
+        - tokens: { card: self, remove: 4 }
+        - pick: { as: c, from: { character: any } }
+      effect: [ destroy: c ]

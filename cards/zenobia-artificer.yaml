@@ -13,3 +13,21 @@ text: |
   CLAIRVOYANCE
   COST: Deplete this card. Chose a number greater than 0 for X. Remove X tokens from this card.
   EFFECT: Search your deck for a card with numeric cost X or less, reveal it, and put it into your hand.
+rules:
+  - unique: Zenobia
+  - ability:
+      name: Disenchant
+      cost:
+        - deplete: self
+        - pick: { as: i, from: { item: { zone: hand, owner: you } }, choose: true, prompt: "Discard an item (X is its numeric cost)." }
+        - let: { X: { cost: i } }
+        - discard: { cards: i }
+      effect: [ tokens: { card: self, add: X } ]
+  - ability:
+      name: Clairvoyance
+      cost:
+        - deplete: self
+        - choose_number: { as: X, min: 1, max: { tokens: self } }
+        - tokens: { card: self, remove: X }
+      effect:
+        - search: { deck: you, for: { card: { cost_lte: X } }, reveal: true, to: hand }

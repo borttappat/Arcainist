@@ -9,3 +9,10 @@ text: |
   FIRE!
   COST: Pay 1. Pick a location.
   EFFECT: Inflict 1 damage to the location.
+rules:
+  - ability:
+      name: FIRE!
+      cost:
+        - pay: 1
+        - pick: { as: l, from: { location: any } }
+      effect: [ damage: { card: l, amount: 1 } ]

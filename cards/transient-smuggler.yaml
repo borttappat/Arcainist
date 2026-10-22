@@ -9,3 +9,11 @@ text: |
   SMUGGLE
   COST: Deplete this card. Pick a character with 2 strength or less.
   EFFECT: This turn, the character gains COVERT.
+rules:
+  - ability:
+      name: Smuggle
+      cost:
+        - deplete: self
+        - pick: { as: c, from: { character: { str_lte: 2 } } }
+      effect:
+        - create_effect: { duration: turn, mods: [ { keyword: covert, target: c } ] }

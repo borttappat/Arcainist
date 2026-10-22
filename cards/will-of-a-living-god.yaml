@@ -12,3 +12,13 @@ text: |
   This card enters play with 3 tokens on it.
   The attached character gains 1 strength and 1 life for each token on this card.
   At the start of your turn, remove a token from this card. If you cannot, destroy the attached character.
+enters_with_tokens: 3
+rules:
+  - static:
+      mods: [ { stat: { str: { tokens: self }, life: { tokens: self } }, target: host } ]
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - if:
+          cond: { gt: [ { tokens: self }, 0 ] }
+          then: [ tokens: { card: self, remove: 1 } ]
+          else: [ destroy: host ]

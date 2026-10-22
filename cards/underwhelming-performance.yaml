@@ -7,3 +7,17 @@ rarity: common
 text: |
   EXTRA COST: Pick a character. That character's controller may detach up to 2 resources.
   This turn, the character loses 6 strength. Draw a card.
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+        - as:
+            who: { controller_of: c }
+            steps:
+              - pick: { as: r, from: { resource: { controller: you, spent: true } }, count: 2, up_to: true, choose: true, optional: true, prompt: "You may detach up to 2 resources." }
+              - if:
+                  cond: { defined: r }
+                  then: [ detach: { card: r } ]
+      effect:
+        - modify: { card: c, stat: str, lose: 6 }
+        - draw: 1

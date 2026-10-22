@@ -11,3 +11,14 @@ text: |
   GRAPPLE
   COST: Pick a gear card in your discard pile. Destroy this card.
   EFFECT: Put the gear card into play under your control attached to the character.
+rules:
+  - ability:
+      name: Grapple
+      cost:
+        - pick: { as: g, from: { item: { zone: discard, owner: you, subtype: gear } } }
+        - let: { h: { card: host } }
+        - destroy: self
+      effect:
+        - if:
+            cond: { in_play: h }
+            then: [ put_into_play: { card: g, controller: you, attach_to: h } ]

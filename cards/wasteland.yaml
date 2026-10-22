@@ -9,3 +9,14 @@ text: |
   When this card is inflicted damage by a character, destroy the character.
   At the start of your turn, put a token on this card.
   When there are at least 3 tokens on this card, void all non-resource cards.
+rules:
+  - unique: Wasteland
+  - trigger: { on: damage, card: self, source: { character: any } }
+    effect: [ destroy: source ]
+  # Its tokens only change through this rule, so the 3-token check follows it.
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - tokens: { card: self, add: 1 }
+      - if:
+          cond: { gte: [ { tokens: self }, 3 ] }
+          then: [ void: { card: { card: { not_type: resource } } } ]

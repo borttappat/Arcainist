@@ -13,3 +13,21 @@ text: |
   EQUIP
   COST: Pick a character. If it is a UNIQUE IOHANE then X is 0, otherwise X is 3. Pay X.
   EFFECT: Attach this card to the character.
+rules:
+  - unique: Waylay Blade
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - coin_flip: { as: won }
+      - if:
+          cond: { did: true }
+          then: [ draw: 1 ]
+  - ability:
+      name: Equip
+      cost:
+        - pick: { as: c, from: { character: any } }
+        - if:
+            cond: { matches: [ c, { character: { unique: Iohane } } ] }
+            then: [ let: { X: 0 } ]
+            else: [ let: { X: 3 } ]
+        - pay: X
+      effect: [ attach: { card: self, to: c } ]

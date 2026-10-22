@@ -296,8 +296,10 @@ export interface TurnLog {
   attacks: Record<string, number>;
   /** Attacks declared this turn (Narrow Passage). */
   declared?: number;
-  /** "iid:index" of abilities used this turn (for once-per-turn abilities). */
-  abilities?: Record<string, boolean>;
+  /** Resources each player played this turn through PLAY A RESOURCE (Vilghame). */
+  resourcesPlayed?: Partial<Record<PlayerId, number>>;
+  /** "iid:index" of abilities used this turn, with how many times (per-turn limits). */
+  abilities?: Record<string, number>;
   /** Characters that assigned battle damage this turn. */
   assigned?: Record<string, boolean>;
   /** Cards that inflicted damage to each card this turn (by damaged card). */

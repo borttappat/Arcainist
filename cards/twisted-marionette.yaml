@@ -7,3 +7,17 @@ set: "Ungodly Mess"
 rarity: common
 text: |
   When this card inflicts battle damage to a faction, you may pay 1. If you do, that faction's controller puts a character they control into its owner's hand.
+rules:
+  - trigger: { on: damage, source: self, faction: true, battle: true }
+    effect:
+      - may_pay:
+          amount: 1
+          prompt: "make that faction's controller return a character they control to its owner's hand"
+          then:
+            - as:
+                who: player
+                steps:
+                  - pick: { as: c, from: { character: { controller: you } }, choose: true, prompt: "Put a character you control into its owner's hand." }
+                  - if:
+                      cond: { defined: c }
+                      then: [ move: { card: c, to: hand } ]

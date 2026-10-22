@@ -8,3 +8,5 @@ set: "Holy Heist"
 rarity: common
 text: |
   TACTICAL
+# TACTICAL is its only rule (a keyword).
+rules: []

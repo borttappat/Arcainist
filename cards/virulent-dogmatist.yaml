@@ -9,3 +9,14 @@ text: |
   BERATE
   COST: Pay 2. Deplete this card. Pick a character.
   EFFECT: This turn, the character loses 2 strength or 1 speed.
+rules:
+  - ability:
+      name: Berate
+      cost:
+        - pay: 2
+        - deplete: self
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - choose_one:
+            - { label: "It loses 2 strength this turn", steps: [ modify: { card: c, stat: str, lose: 2 } ] }
+            - { label: "It loses 1 speed this turn", steps: [ modify: { card: c, stat: spd, lose: 1 } ] }

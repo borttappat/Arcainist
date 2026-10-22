@@ -13,3 +13,17 @@ text: |
   SNICKER SNACK
   COST: Use this only while this card is a face-down resource. Reveal this card. Pay 3. Discard a card. Pick a character.
   EFFECT: Inflict 2 damage to the character. Inflict 1 damage to your faction.
+rules:
+  - replace: { event: destroy, card: self }
+    instead: [ flip_face_down: { card: self, controller: owner } ]
+  - ability:
+      name: Snicker Snack
+      from: face_down_resource
+      cost:
+        - reveal: self
+        - pay: 3
+        - discard: 1
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - damage: { card: c, amount: 2 }
+        - damage: { faction: you, amount: 1 }

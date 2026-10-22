@@ -10,3 +10,21 @@ text: |
   This card gains 2 strength and 2 life for each item your opponents control.
   All items gain the rules text "At the start of your turn, you may pay 1. If you don't, destroy this card."
   FLIP UP: 1 [G][G][G]
+rules:
+  - unique: LLP
+  - static:
+      mods:
+        - stat:
+            str: { sum: [ { count: { item: { controller: opponent } } }, { count: { item: { controller: opponent } } } ] }
+            life: { sum: [ { count: { item: { controller: opponent } } }, { count: { item: { controller: opponent } } } ] }
+  - static:
+      mods:
+        - grant_rules:
+            - trigger: { on: start_of_turn, player: you }
+              effect:
+                - may_pay:
+                    amount: 1
+                    prompt: "keep this item (if you don't pay, it is destroyed)"
+                    else: [ destroy: self ]
+          target: { item: any }
+  - flip_up: { pay: 1, threshold: { greed: 3 } }

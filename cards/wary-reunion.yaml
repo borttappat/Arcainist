@@ -8,3 +8,12 @@ text: |
   EXTRA COST: Pick a character.
   Remove the character from the game if it has X life or less, where X is the number of different trades among cards you control.
   FLIP UP: 2 [D]
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: any } }
+      effect:
+        - if:
+            cond: { lte: [ { stat: [ c, life ] }, { different_trades: you } ] }
+            then: [ void: c ]
+  - flip_up: { pay: 2, threshold: { deception: 1 } }

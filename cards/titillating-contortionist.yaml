@@ -7,3 +7,11 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   When this card attacks, you may pick a character. If you do, it must block this card if it can this turn.
+rules:
+  - trigger: { on: attacks, card: self }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then:
+            - create_effect: { duration: turn, mods: [ { must_block: true, target: c, while: { attacking: self } } ] }

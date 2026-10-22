@@ -114,6 +114,17 @@ Where things stand and what's left. Update this as work lands.
   skipped. The dump script still starts at index 10. Next card in order: Theological
   Opportunist.
 
+- **2026-10-22 (eleventh session):** the last 122 cards, Theological Opportunist to
+  Zigalburgonglgr. Only the 10 skipped cards still lack rules. New building blocks:
+  `who` on optional destroy replacements (the opponent decides and pays), `uses_per_turn`
+  on abilities, `cheapest: all`, the `spd_lte` filter, the `different_trades` value,
+  `look` with `keep_top`, `terminate` into the owner's hand, and the
+  `first_resource_attached`, `damage_to_hand` and `grant_flip_up` modifiers. Data fixes:
+  `attach_to: character` on Unstable Modification, gear bonuses for Vorpal Sword and
+  Waylay Blade. 14 new interpretation rows (Theological Theft to Wyrmfang Deathskull),
+  including Unwise Encirclement, which is listed as a character but reads like a
+  tactic. 1,431 tests pass.
+
 ## State at the end of the first session (2026-10-21)
 
 - **Cards:** 1,230 cards from the spoilstoolbox.com database, plus a Micromajig token card.
@@ -151,7 +162,7 @@ Where things stand and what's left. Update this as work lands.
 ## 2. Automate every card (the main job)
 
 - [ ] Write `rules` for every card without them, in alphabetical batches of about 25
-  (about 1,065 of 1,230 done; 132 cards with text remain):
+  (about 1,187 of 1,230 done; only the 10 skipped cards below remain):
   - list the batch's cards with their text and numbers;
   - write the rules;
   - append them to the YAML files;

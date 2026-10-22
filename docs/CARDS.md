@@ -142,6 +142,8 @@ the stack, before the opponent can respond.
 ```
 
 RECUR is just an ability with `from: discard` whose cost voids the card.
+`once_per_turn: true` limits it to one use each turn; `uses_per_turn: 5` to that many
+("Use this only 5 times each turn", Vast Mastabatorium).
 `both_players: true` lets either player use the ability; `both_players: opponent`
 means only an opponent may use it (iDumb De-Itemizer).
 
@@ -209,7 +211,8 @@ the same card can be destroyed again. A `destroy` replacement with `optional: tr
 destroyed card's owner first, with `prompt` as the question; on "no" the card is
 destroyed as normal (Adriel, Supreme General). With `pay: N` ("you may pay 1 to flip it
 face-down instead") it is only offered when the owner can pay, and "yes" pays it
-(Node-in-a-Box).
+(Node-in-a-Box). With `who: opponent` the opponent decides, and pays (Unloyal Necromorph: "any
+opponent may pay 2. If they do, that player takes control of this card instead").
 
 Zone changes ("would be put into X, put it into Y instead") are the `redirect`
 modifier. Damage amount changes are the `damage` modifier.
@@ -287,7 +290,7 @@ while paying costs are recorded for Mistaken Identity.
 | `play_card` | `play_card: { card: c, free: true, ignore_threshold: true }` |
 | `play_resource` | `play_resource: 1`, `play_resource: { who: opponent, count: 2, optional: true }`; `face_down: true`: "play a card as a face-down resource" |
 | `attach_resource` | `attach_resource: r`: attach that resource to its controller's faction (Swindle) |
-| `terminate` | `terminate: responded` (the card or ability responded to), `terminate: self` (stop resolving this card), `terminate: all` (every other unresolved card and ability) |
+| `terminate` | `terminate: responded` (the card or ability responded to), `terminate: { card: responded, to: hand }` (into its owner's hand instead of the discard pile), `terminate: self` (stop resolving this card), `terminate: all` (every other unresolved card and ability) |
 | `nullify` | `nullify: responded` ("the ability has no effect") |
 | `duplicate` | `duplicate: last_tactic`, `duplicate: responded` (the tactic this card responds to) |
 | `cancel_end_turn` | `cancel_end_turn: true` |
@@ -303,7 +306,7 @@ while paying costs are recorded for Mistaken Identity.
 |---|---|
 | `draw` | `draw: 2`, `draw: { who: opponent, count: X }` |
 | `search` | `search: { deck: you \| opponent, for: <selector>, count: 1 \| any, to: hand \| discard \| play \| void \| deck_top \| keep, reveal: true, attach_to: self, different_names: true, face_down: true, tag: true, as: found }` |
-| `look` | `look: { deck: you \| opponent \| choose, count: 3, to_hand: 1, bottom: any \| rest \| 1 }` (a number: exactly that many go to the bottom; the rest go back on top, in an order the player chooses) |
+| `look` | `look: { deck: you \| opponent \| choose, count: 3, to_hand: 1, bottom: any \| rest \| 1 }` (a number: exactly that many go to the bottom; the rest go back on top, in an order the player chooses). `keep_top: 1`: "you may put one of those cards on the top of your deck; put the rest on the bottom" |
 | `mill` | `mill: { who: opponent, count: 4, to: discard \| hand \| void, face_down: true, tag: true, as: x }` (top N cards) |
 | `reveal_top` | `reveal_top: { who: opponent, count: 7, as: rev }` (they stay on the deck) |
 | `shuffle` | `shuffle: you` |
@@ -377,7 +380,7 @@ Type keys: `character`, `item`, `location`, `tactic`, `resource`, `faction`, or
 | `str_gte` | Strength at least (current in play, printed elsewhere) |
 | `strongest` | The character with the highest strength in play; `strongest: controller`: the highest among its controller's characters |
 | `costliest` | The character with the highest numeric cost its controller controls |
-| `cheapest` | The character with the lowest numeric cost its controller controls |
+| `cheapest` | The character with the lowest numeric cost its controller controls; `cheapest: all`: the lowest among all characters in play |
 | `keyword` | `keyword: covert`: has the keyword now |
 | `equipped` | Has an item attached |
 | `text_has` | `text_has: "[V]"`: the printed text contains it |
@@ -391,7 +394,7 @@ Type keys: `character`, `item`, `location`, `tactic`, `resource`, `faction`, or
 | `trade`, `name`, `name_not` | `name` can be a variable holding a named card |
 | `name_not_among: <selector>` | No other card matching the selector has its name ("a resource with a name you don't control") |
 | `cost_lte`, `cost_gte` | Numeric cost, any value |
-| `str_lte`, `life_lte` | Current strength or life in play, printed values elsewhere |
+| `str_lte`, `life_lte`, `spd_lte` | Current strength, life or speed in play, printed values elsewhere |
 | `top` | `top: 8`: among the top 8 cards of a deck ("look at the top 8 cards") |
 | `trade_not_among: <selector>` | Doesn't share a trade with any card matching the selector |
 | `face_down`, `depleted`, `staple` | true / false |
@@ -417,6 +420,7 @@ Type keys: `character`, `item`, `location`, `tactic`, `resource`, `faction`, or
 | `{ cost: c }` | Numeric cost |
 | `{ icons: greed }` | Your icon count |
 | `{ different_staples: you }` | Different staple resources you control |
+| `{ different_trades: you }` | Different trades among face-up cards you control, staple resources included (Wary Reunion) |
 | `{ hand_size: opponent }` | |
 | `{ printed: [ c, str ] }` | A card's printed stat |
 | `{ threshold: c }` | Total icons in a card's threshold |
@@ -504,6 +508,9 @@ Modifiers are continuous effects. They appear in `static` rules and
 | `numeric_cost` | `{ numeric_cost: 1, target: c }` | Changes a card's numeric cost in play (cost filters and values use it). |
 | `add_subtype` | `{ add_subtype: sarcophyle, target: it }` | It gains a subtype. Only in `create_effect`, aimed at specific cards. |
 | `attack_ready` | `{ attack_ready: true, target: { character: { controller: you } } }` | Can attack even if it hasn't been in play under its controller since the start of the turn (Testudine Autoframe). |
+| `first_resource_attached` | `{ first_resource_attached: true, by: opponent, target: none }` | The first resource that player plays each turn enters play attached to their faction (Vilghame). |
+| `damage_to_hand` | `{ damage_to_hand: { battle: true, from: self }, target: { character: any } }` | Damage to the target is replaced: it goes to its owner's hand instead (Vexing Nullifier). `from` limits the sources. |
+| `grant_flip_up` | `{ grant_flip_up: true, target: { resource: { controller: you, face_down: true, printed_type: tactic } } }` | The target gains FLIP UP with its regular numeric cost and threshold, unless it has its own (Woadenworm). |
 
 Derived values are recomputed from scratch, so modifiers switch on and off by
 themselves when their source leaves play or their condition changes. Increases
@@ -630,4 +637,18 @@ marked "Confirmed" are user rulings; the rest are still open.
 | The Stone of Shame | A character that would go to a hand (from anywhere, including draws) goes to its owner's discard pile instead; this isn't a destruction, so "when destroyed" doesn't trigger. |
 | The Poshernacle | "At the start of your turn, you may use an ability" is left to the players. |
 | Spurious Anthropologist | The recruited character and the Anthropologist go to the void instead of leaving play any other way this turn, and when either leaves, the other is voided too. |
+| Theological Theft | X is 0, 1 or 2: with two players, X = 2 means both players. |
+| Tumescent Guilt Bladder | The tokens are removed only when it changes control (otherwise it could never reach 3). |
+| Torchlight District | The 3-speed check happens when the character attacks. |
+| Totally Random Kid | X is the battle damage it inflicted to that faction in that one hit. |
+| Underhanded Gamer | "Cannot be blocked by those players": it can't be blocked this turn. |
+| Unstable Modification | The chosen text applies to the character it is attached to when the choice is made. |
+| Unwise Encirclement | Listed as a character with no stats, though its text reads like a tactic. Its effect runs when deployed; afterwards it is destroyed with 0 life. To verify. |
+| Venomous Sacspider | "Destroyed by battle damage": destroyed by damage during a battle. |
+| Vast Mastabatorium | Each use adds its own end-of-turn token and control change. |
+| Voidal Tactician | Tactics in either player's void. |
+| Wasteland | "Void all non-resource cards" includes itself, but not factions. |
+| Witty Worm | Offered from your hand whenever a resource enters play under your control; you still need its threshold. |
+| Workshop | "A card of the same type": its printed type. |
+| Wyrmfang Deathskull | If the defender picks no characters, nobody can block. |
 | Limited Liability | Confirmed: it also stops the unique rule, so duplicates (several Gideons) stay in play that turn. When it ends, the unique rule applies again and their controller keeps one. |

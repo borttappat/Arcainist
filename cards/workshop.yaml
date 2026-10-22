@@ -8,3 +8,29 @@ text: |
   CONSTRUCT
   COST: Pay 3. Remove a card in your discard pile from the game.
   EFFECT: You may search your deck for a card of the same type as the removed card and reveal it. If you do, put it on the top of your deck.
+rules:
+  - ability:
+      name: Construct
+      cost:
+        - pay: 3
+        - pick: { as: c, from: { card: { zone: discard, owner: you } }, choose: true, prompt: "Remove a card in your discard pile from the game." }
+        - void: c
+      effect:
+        - may:
+            prompt: "search your deck for a card of the same type and put it on top of your deck"
+            steps:
+              - if:
+                  cond: { matches: [ c, { character: { zone: void } } ] }
+                  then: [ search: { deck: you, for: { character: any }, reveal: true, to: deck_top } ]
+              - if:
+                  cond: { matches: [ c, { tactic: { zone: void } } ] }
+                  then: [ search: { deck: you, for: { tactic: any }, reveal: true, to: deck_top } ]
+              - if:
+                  cond: { matches: [ c, { item: { zone: void } } ] }
+                  then: [ search: { deck: you, for: { item: any }, reveal: true, to: deck_top } ]
+              - if:
+                  cond: { matches: [ c, { location: { zone: void } } ] }
+                  then: [ search: { deck: you, for: { location: any }, reveal: true, to: deck_top } ]
+              - if:
+                  cond: { matches: [ c, { resource: { zone: void } } ] }
+                  then: [ search: { deck: you, for: { resource: any }, reveal: true, to: deck_top } ]

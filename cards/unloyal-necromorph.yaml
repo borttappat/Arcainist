@@ -7,3 +7,8 @@ set: "Holy Heist"
 rarity: uncommon
 text: |
   If this card would be destroyed, any opponent may pay 2. If they do, that player takes control of this card instead and all damage already inflicted to this card this turn is reduced to 0.
+rules:
+  - replace: { event: destroy, card: self, optional: true, who: opponent, pay: 2, prompt: "Pay 2 to take control of it instead (its damage is removed)" }
+    instead:
+      - take_control: { card: self, who: opponent }
+      - heal: { card: self, all: true }

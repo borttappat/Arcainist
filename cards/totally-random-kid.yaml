@@ -7,3 +7,12 @@ set: "Shade of the Devoured Emperor"
 rarity: common
 text: |
   When this character inflicts battle damage to a faction, put the top X cards of that opponent's deck into their discard pile where X is the amount of damage inflicted by this character. You may pick an item with X or less numeric cost and destroy it.
+rules:
+  - trigger: { on: damage, source: self, faction: true, battle: true }
+    effect:
+      - let: { X: amount }
+      - mill: { who: player, count: X }
+      - pick: { as: i, from: { item: { cost_lte: X } }, optional: true }
+      - if:
+          cond: { defined: i }
+          then: [ destroy: i ]

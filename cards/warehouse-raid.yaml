@@ -7,3 +7,14 @@ rarity: common
 text: |
   EXTRA COST: Flip a coin. If you win, X is 2. Otherwise, X is 1.
   An opponent discards X cards at random. Put any items discarded this way into play under your control.
+rules:
+  - play:
+      cost:
+        - coin_flip: { as: won }
+        - if:
+            cond: { did: true }
+            then: [ let: { X: 2 } ]
+            else: [ let: { X: 1 } ]
+      effect:
+        - discard: { who: opponent, count: X, random: true, as: d }
+        - put_into_play: { card: { item: { zone: discard, among: d } }, controller: you }

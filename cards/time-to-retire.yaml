@@ -8,3 +8,15 @@ text: |
   EXTRA COST: Pick a character you control.
   You may put a resource you control into its owner's hand. Flip the character face-down under its owner's control.
   FLIP UP: 2 [V]
+rules:
+  - play:
+      cost:
+        - pick: { as: c, from: { character: { controller: you } } }
+      effect:
+        - may:
+            prompt: "put a resource you control into its owner's hand"
+            steps:
+              - pick: { as: r, from: { resource: { controller: you } }, choose: true }
+              - move: { card: r, to: hand }
+        - flip_face_down: { card: c, controller: owner }
+  - flip_up: { pay: 2, threshold: { volition: 1 } }

@@ -8,3 +8,18 @@ rarity: uncommon
 text: |
   When this card enters play, look at an opponent's hand and choose a card in it. That player discards that card.
   When this card leaves play, you may pick a non-resource card. If you do, put it into its owner's hand. Draw a card.
+rules:
+  - trigger: { on: enters_play, card: self }
+    effect:
+      - peek: { who: opponent, hand: true }
+      - pick: { as: h, from: { card: { zone: hand, owner: opponent } }, choose: true, prompt: "Choose a card in your opponent's hand for them to discard." }
+      - if:
+          cond: { defined: h }
+          then: [ discard: { who: opponent, cards: h } ]
+  - trigger: { on: leaves_play, card: self }
+    effect:
+      - pick: { as: c, from: { card: { not_type: resource } }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ move: { card: c, to: hand } ]
+      - draw: 1

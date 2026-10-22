@@ -9,3 +9,6 @@ rarity: rare
 text: |
   COVERT
   This card gains 1 strength and 1 life for each [O] you control.
+rules:
+  - static:
+      mods: [ { stat: { str: { icons: obsession }, life: { icons: obsession } } } ]

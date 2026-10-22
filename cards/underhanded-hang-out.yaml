@@ -8,3 +8,11 @@ text: |
   DIRTY DEALS
   COST: Pay 2. Pick a location you own and inflict 1 damage to it.
   EFFECT: Draw a card.
+rules:
+  - ability:
+      name: Dirty Deals
+      cost:
+        - pay: 2
+        - pick: { as: l, from: { location: { owner: you } } }
+        - damage: { card: l, amount: 1 }
+      effect: [ draw: 1 ]

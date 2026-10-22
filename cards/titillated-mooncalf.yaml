@@ -7,3 +7,10 @@ set: "Seed Saga"
 rarity: common
 text: |
   When a card that provides at least [O] enters play under your control, you may pick a character. If you do, it gains COVERT this turn.
+rules:
+  - trigger: { on: enters_play, card: { controller: you, provides_at_least: { obsession: 1 } } }
+    effect:
+      - pick: { as: c, from: { character: any }, optional: true }
+      - if:
+          cond: { defined: c }
+          then: [ create_effect: { duration: turn, mods: [ { keyword: covert, target: c } ] } ]

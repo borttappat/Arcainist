@@ -7,3 +7,9 @@ rarity: common
 text: |
   EXTRA COST: Deploy this only while you are being attacked.
   Inflict up to 3 damage divided however you want to the attacking characters.
+rules:
+  - play:
+      cost:
+        - require: { all: [ { in_battle: true }, { your_turn: false } ] }
+      effect:
+        - divide_damage: { amount: 3, from: { character: { attacking: true } }, up_to: true }

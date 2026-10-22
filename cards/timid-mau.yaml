@@ -7,3 +7,9 @@ set: "Shade of the Devoured Emperor"
 rarity: common
 text: |
   When this card is blocked by an opposing party of 2 or more characters, it loses 1 speed this turn.
+rules:
+  - trigger: { on: blocked, card: self }
+    effect:
+      - if:
+          cond: { gte: [ { count: { character: { blocking: true } } }, 2 ] }
+          then: [ modify: { card: self, stat: spd, lose: 1 } ]

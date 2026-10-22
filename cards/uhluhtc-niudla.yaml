@@ -13,3 +13,36 @@ text: |
   AVAIL ANEW
   COST: Reveal a resource from your hand and shuffle it into your deck. Pay 1.
   EFFECT: If the revealed card was named "Obsession", this card gains COVERT this turn. Draw a card.
+rules:
+  - unique: Uhluhtc
+  - ability:
+      name: Prevail Upon
+      cost:
+        - pick: { as: r, from: { resource: { controller: you } }, choose: true, prompt: "Put a resource you control into its owner's hand." }
+        - move: { card: r, to: hand }
+        - pick: { as: f, from: { faction: any }, prompt: "Pick a player." }
+        - pay: 1
+      effect:
+        - as:
+            who: { controller_of: f }
+            steps:
+              - pick: { as: d, from: { resource: { controller: you, face_down: true } }, choose: true, prompt: "Put a face-down resource you control into its owner's hand." }
+              - if:
+                  cond: { defined: d }
+                  then: [ move: { card: d, to: hand } ]
+  - ability:
+      name: Avail Anew
+      cost:
+        - pick: { as: r, from: { resource: { zone: hand, owner: you } }, choose: true, prompt: "Reveal a resource from your hand and shuffle it into your deck." }
+        - let: { ob: 0 }
+        - if:
+            cond: { matches: [ r, { resource: { zone: hand, name: Obsession } } ] }
+            then: [ let: { ob: 1 } ]
+        - reveal: r
+        - move: { card: r, to: deck_shuffle }
+        - pay: 1
+      effect:
+        - if:
+            cond: { eq: [ ob, 1 ] }
+            then: [ create_effect: { duration: turn, mods: [ { keyword: covert } ] } ]
+        - draw: 1

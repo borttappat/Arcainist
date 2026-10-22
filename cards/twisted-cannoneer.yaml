@@ -9,3 +9,12 @@ text: |
   FIRE!
   COST: Use this only not during a battle. Pick a faction. Destroy a character you control. Pay 1.
   EFFECT: Inflict 1 damage to the faction.
+rules:
+  - ability:
+      name: FIRE!
+      timing: { not_in_battle: true }
+      cost:
+        - pick: { as: f, from: { faction: any } }
+        - destroy: { from: { character: { controller: you } }, choose: true }
+        - pay: 1
+      effect: [ damage: { faction: { controller_of: f }, amount: 1 } ]

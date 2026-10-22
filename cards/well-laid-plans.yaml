@@ -8,3 +8,14 @@ text: |
   EXTRA COST: Pick an opponent.
   Search that player's deck for a card and reveal it. Put it into play under its owner's control as a face-down resource.
   Search your deck for a character and reveal it. Put it into play under its owner's control as a face-down resource.
+rules:
+  - play:
+      effect:
+        - search: { deck: opponent, for: { card: any }, reveal: true, to: keep, as: a }
+        - if:
+            cond: { defined: a }
+            then: [ put_into_play: { card: a, controller: owner, as: face_down_resource } ]
+        - search: { deck: you, for: { character: any }, reveal: true, to: keep, as: b }
+        - if:
+            cond: { defined: b }
+            then: [ put_into_play: { card: b, controller: owner, as: face_down_resource } ]

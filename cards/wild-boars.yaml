@@ -7,3 +7,7 @@ set: "2nd Edition"
 rarity: uncommon
 text: |
   While this card is the only member of an attacking party, only characters with at least X speed can block it, where X is this card's speed.
+rules:
+  - static:
+      while: { all: [ { attacking: self }, { eq: [ { count: { character: { attacking: true } } }, 1 ] } ] }
+      mods: [ { cannot_be_blocked: { by: { character: { spd_lte: { sum: [ { stat: [ self, spd ] }, -1 ] } } } } } ]

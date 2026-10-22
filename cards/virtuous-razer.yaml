@@ -7,3 +7,11 @@ set: "Seed Saga"
 rarity: uncommon
 text: |
   When this card inflicts battle damage, you may pick a location. If you do, inflict the same amount of damage to that location.
+rules:
+  - trigger: { on: damage, source: self, battle: true }
+    effect:
+      - let: { n: amount }
+      - pick: { as: l, from: { location: any }, optional: true }
+      - if:
+          cond: { defined: l }
+          then: [ damage: { card: l, amount: n } ]

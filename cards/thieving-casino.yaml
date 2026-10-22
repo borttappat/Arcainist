@@ -9,3 +9,20 @@ text: |
   CASH OUT
   COST: Deplete this card. Pick a character in an opponent's discard pile. X is its numeric cost. Pay X+4.
   EFFECT: Put it into play under your control.
+rules:
+  - trigger: { on: start_of_turn, player: you }
+    effect:
+      - coin_flip: { as: won }
+      - if:
+          cond: { did: true }
+          then:
+            - pick: { as: f, from: { faction: any }, prompt: "Pick a player to put the top 4 cards of their deck into their discard pile." }
+            - mill: { who: { controller_of: f }, count: 4 }
+  - ability:
+      name: Cash Out
+      cost:
+        - deplete: self
+        - pick: { as: c, from: { character: { zone: discard, owner: opponent } } }
+        - let: { X: { cost: c } }
+        - pay: "X + 4"
+      effect: [ put_into_play: { card: c, controller: you } ]

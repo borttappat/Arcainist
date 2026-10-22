@@ -11,3 +11,25 @@ text: |
   SWEET RELEASE
   COST: Pay 2. Remove a token from this card.
   EFFECT: You may play a resource.
+rules:
+  - ability:
+      name: You Know You Want To...
+      uses_per_turn: 5
+      cost:
+        - pay: 1
+        - damage: { faction: you, amount: 1 }
+      effect:
+        - draw: 1
+        - create_effect:
+            duration: game
+            rules:
+              - trigger: { on: end_of_turn, player: any, once: true }
+                effect:
+                  - tokens: { card: self, add: 1 }
+                  - take_control: { card: self, who: opponent }
+  - ability:
+      name: Sweet Release
+      cost:
+        - pay: 2
+        - tokens: { card: self, remove: 1 }
+      effect: [ play_resource: { optional: true } ]

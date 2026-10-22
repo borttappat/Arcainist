@@ -7,3 +7,7 @@ set: "Holy Heist"
 rarity: common
 text: |
   While a player controls a character with COVERT, this character gains COVERT.
+rules:
+  - static:
+      while: { exists: { character: { keyword: covert, not_self: true } } }
+      mods: [ { keyword: covert } ]

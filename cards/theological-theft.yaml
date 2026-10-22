@@ -8,3 +8,28 @@ text: |
   EXTRA COST: Choose a number for X. Pick X players.
   Each of those players puts the top 10 cards of their deck into their discard pile. Pick X characters in an opponent's discard pile. Put those characters into play under your control.
   FLIP UP: 7 [D][D][D][D]
+rules:
+  - play:
+      cost:
+        - choose_number: { as: X, min: 0, max: 2 }
+        - if:
+            cond: { eq: [ X, 1 ] }
+            then:
+              - pick: { as: f, from: { faction: any }, prompt: "Pick a player." }
+      effect:
+        - if:
+            cond: { eq: [ X, 2 ] }
+            then:
+              - each_player: [ mill: { who: you, count: 10 } ]
+        - if:
+            cond: { eq: [ X, 1 ] }
+            then:
+              - mill: { who: { controller_of: f }, count: 10 }
+        - if:
+            cond: { gt: [ X, 0 ] }
+            then:
+              - pick: { as: c, from: { character: { zone: discard, owner: opponent } }, count: X, up_to: true }
+              - if:
+                  cond: { defined: c }
+                  then: [ put_into_play: { card: c, controller: you } ]
+  - flip_up: { pay: 7, threshold: { deception: 4 } }

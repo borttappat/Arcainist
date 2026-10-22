@@ -7,3 +7,9 @@ set: "Ungodly Mess"
 rarity: common
 text: |
   This card loses strength and life equal to the number of cards in all hands.
+rules:
+  - static:
+      mods:
+        - stat:
+            str: { neg: { sum: [ { hand_size: you }, { hand_size: opponent } ] } }
+            life: { neg: { sum: [ { hand_size: you }, { hand_size: opponent } ] } }
