@@ -1,6 +1,7 @@
 # Monty
 Faction: The Tournament Faction
 4 Montgomery Blatherscythe
+4 Death Investor
 4 Dwarvish Grimalkin
 4 Erotic Assassin
 4 Gilded Yurt
@@ -9,7 +10,7 @@ Faction: The Tournament Faction
 3 Crest of Greed
 5 Greed
 1 Elitism
-4 3cc3n7r1c 73chn1c14n
+2 3cc3n7r1c 73chn1c14n
 3 Master Scavenger
 4 The Garbageman
 3 Mysterious Invasion
@@ -21,5 +22,4 @@ Faction: The Tournament Faction
 4 Karmic Cake
 3 Quilt of Old Banners
 4 Department of Rejections
-2 Limited Liability
 2 Mass Subjugation
