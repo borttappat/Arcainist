@@ -1,25 +1,21 @@
-{
-  "name": "Rage Sligh",
-  "cards": [
-    "4x Gideon, the Ultimate Warrior",
-    "3x Adriel, Defender of Marduun",
-    "3x Adriel, Supreme General of the Imperial Army",
-    "4x Spry Archer",
-    "4x Dying Hero",
-    "4x Noble Sacrifice",
-    "3x Chain Reaction",
-    "4x Crest of Rage",
-    "4x Violence",
-    "6x Rage",
-    "4x Quilt of Old Banners",
-    "4x Aroused Stiffbone",
-    "4x Deadly Striker",
-    "4x Sadistic Colonel",
-    "2x Athalamund Mangod, The Iron Fist",
-    "4x A Blazing Zero",
-    "4x Dark Awakening",
-    "4x Rudo Mangod, Holder of Light",
-    "2x Vexillarius Dacian-Draco",
-    "4x Bloodcrazed Berserker"
-  ]
-}
+Faction: The Tournament Faction
+4x Gideon, the Ultimate Warrior
+3x Adriel, Defender of Marduun
+3x Adriel, Supreme General of the Imperial Army
+4x Spry Archer
+4x Dying Hero
+4x Noble Sacrifice
+3x Chain Reaction
+4x Crest of Rage
+4x Violence
+6x Rage
+4x Quilt of Old Banners
+4x Aroused Stiffbone
+4x Deadly Striker
+4x Sadistic Colonel
+2x Athalamund Mangod, The Iron Fist
+4x A Blazing Zero
+4x Dark Awakening
+4x Rudo Mangod, Holder of Light
+2x Vexillarius Dacian-Draco
+4x Bloodcrazed Berserker
