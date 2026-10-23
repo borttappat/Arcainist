@@ -269,3 +269,11 @@ h1, h2, h3 { margin: 0 0 8px; font-family: Cinzel, serif; font-weight: 700; }
   .topbar { gap: 6px; padding: 6px 10px; }
   .room-name .muted { display: none; }
 }
+
+/* Seats, presence and spectators */
+.seatbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 4px 16px; border-bottom: 1px solid var(--line); background: var(--bg-2); font-size: 13px; }
+.seatbar .seat { display: inline-flex; align-items: center; gap: 6px; }
+.seatbar .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+.seatbar .dot.on { background: var(--good); }
+.seatbar .dot.off { background: var(--bad); }
+.seatbar .dot.open { background: var(--accent); }

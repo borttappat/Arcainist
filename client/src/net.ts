@@ -18,12 +18,26 @@ export interface RoomInfo {
   ended: boolean;
   first?: "random" | "creator" | "joiner";
   format?: string;
+  spectators?: number;
+  openSeat?: boolean;
+}
+export interface SeatInfo {
+  seat: "A" | "B";
+  player: string | null;
+  connected: boolean;
+  /** Given up by its player: a spectator can take it. */
+  open: boolean;
+  /** When the opponent may open it, if this player stays disconnected (ms timestamp). */
+  openableAt: number | null;
 }
 export interface CurrentRoom {
   id: string;
   name: string;
-  seat: "A" | "B";
+  /** Null while spectating. */
+  seat: "A" | "B" | null;
   players: string[];
+  seats: SeatInfo[];
+  spectators: string[];
 }
 
 const SECRET_KEY = "arcainist.secret";

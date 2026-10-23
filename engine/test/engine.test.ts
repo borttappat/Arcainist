@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { Game } from "../game.ts";
-import { viewFor } from "../view.ts";
+import { viewFor, viewForSpectator } from "../view.ts";
 import { other } from "../types.ts";
 import { act, answer, expectPending, lib, newGame, pass, passAll, put, quickStart, resources, toMain } from "./helpers.ts";
 
@@ -481,5 +481,25 @@ describe("views", () => {
 
   it("all card files load and validate", () => {
     expect(Object.keys(lib).length).toBeGreaterThanOrEqual(121);
+  });
+});
+
+describe("spectators", () => {
+  it("see only public information and get no decisions", () => {
+    const g = newGame();
+    const p = toMain(g);
+    const fd = put(g, p, "fired-hand", "play", { faceDown: true });
+    const v = viewForSpectator(g);
+    expect(v.spectator).toBe(true);
+    expect(v.players.A.hand).toBeNull();
+    expect(v.players.B.hand).toBeNull();
+    expect(v.pending).toBeNull();
+    expect(v.legal).toBeNull();
+    expect(v.waiting?.player).toBe(p);
+    expect(v.log.every((l) => !l.to)).toBe(true);
+    expect(v.players[p].play.find((c) => c.iid === fd)?.defId).toBeNull();
+    // The player still sees their own face-down card and hand.
+    expect(viewFor(g, p).players[p].play.find((c) => c.iid === fd)?.defId).toBe("fired-hand");
+    expect(viewFor(g, p).players[p].hand).not.toBeNull();
   });
 });

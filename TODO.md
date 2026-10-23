@@ -147,6 +147,14 @@ Where things stand and what's left. Update this as work lands.
   destroyed card are destroyed right after it, so their replacements apply (Super
   Shiny Caltrops of DOOM!). 1,454 tests pass.
 
+- **2026-10-23 (spectators and seats):** anyone can watch a running game from the
+  lobby. Spectators get a public-only view (no hands, decks, face-down cards, private
+  log lines or prompts) and can't act. Leaving a running game now offers "Give up my
+  seat" next to "Concede": the seat stays in the game, open for a spectator to take
+  over (the original player can also take it back). A seat bar shows who is connected;
+  after an opponent has been disconnected for 2 minutes, you can open their seat.
+  1,455 tests pass.
+
 ## State at the end of the first session (2026-10-21)
 
 - **Cards:** 1,230 cards from the spoilstoolbox.com database, plus a Micromajig token card.
@@ -216,6 +224,12 @@ Where things stand and what's left. Update this as work lands.
   - infinite loops are left to the players.
 
 ## 4. Features
+
+- [ ] **Before hosting publicly:** save rooms to SQLite after every action and restore
+  them on startup (games currently end on every restart or deploy); per-connection
+  rate limits; an allowed-origin check on the WebSocket. Host on something with
+  long-lived WebSockets and a persistent disk (Fly.io, Railway, Render, a VPS), one
+  instance only.
 
 - [ ] **Custom game mode (rulesets):** JSON files overriding per-card numbers
   (`cards/*.json` keys), chosen per room next to the format. Show what changed from

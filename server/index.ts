@@ -6,7 +6,7 @@ import { createReadStream, existsSync, statSync } from "node:fs";
 import { createServer } from "node:http";
 import { extname, join, normalize } from "node:path";
 import { WebSocketServer, type WebSocket } from "ws";
-import { Game, GameError, parseDeck, validateDeck, viewFor, type Action, type Format, type PlayerId } from "../engine/index.ts";
+import { Game, GameError, parseDeck, validateDeck, viewFor, viewForSpectator, type Action, type Format, type PlayerId } from "../engine/index.ts";
 import { loadFormats, loadLibrary } from "./library.ts";
 
 const ROOT = join(import.meta.dirname, "..");
@@ -40,7 +40,14 @@ interface Seat {
   user: User;
   faction: string;
   cards: string[];
+  /** Offered to the room's spectators: the first to take it plays on from here. */
+  open?: boolean;
+  /** When the seated player's last connection closed (absent while connected). */
+  disconnectedSince?: number;
 }
+
+/** How long a seated player may stay disconnected before their opponent can open the seat. */
+const DISCONNECT_GRACE_MS = 2 * 60 * 1000;
 
 interface Room {
   id: string;
@@ -68,6 +75,8 @@ function roomList() {
     name: r.name,
     players: (["A", "B"] as PlayerId[]).filter((p) => r.seats[p]).map((p) => display(r.seats[p]!.user)),
     started: !!r.game,
+    spectators: spectatorsOf(r).length,
+    openSeat: (["A", "B"] as PlayerId[]).some((p) => r.seats[p]?.open),
     first: r.first,
     format: formats[r.format]?.name ?? r.format,
     ended: r.game?.s.phase === "ended",
@@ -79,21 +88,48 @@ function broadcastLobby(): void {
   for (const ws of clients.keys()) send(ws, msg);
 }
 
+/** The seat this user plays. An open seat no longer belongs to the player who gave it up. */
 function seatOf(room: Room, user: User): PlayerId | null {
-  if (room.seats.A?.user.id === user.id) return "A";
-  if (room.seats.B?.user.id === user.id) return "B";
+  for (const p of ["A", "B"] as PlayerId[]) if (room.seats[p]?.user.id === user.id && !room.seats[p]!.open) return p;
   return null;
 }
 
+/** Is this user connected to the room right now? */
+function connected(room: Room, userId: string): boolean {
+  for (const c of clients.values()) if (c.room === room.id && c.user?.id === userId) return true;
+  return false;
+}
+
+/** Users watching the room without a seat (each listed once). */
+function spectatorsOf(room: Room): User[] {
+  const out = new Map<string, User>();
+  for (const c of clients.values()) if (c.room === room.id && c.user && !seatOf(room, c.user)) out.set(c.user.id, c.user);
+  return [...out.values()];
+}
+
+/** Seats as the client shows them: who sits there, presence, and whether it can be taken. */
+function seatInfo(room: Room) {
+  return (["A", "B"] as PlayerId[]).map((p) => {
+    const st = room.seats[p];
+    return st ? { seat: p, player: display(st.user), connected: connected(room, st.user.id), open: !!st.open, openableAt: st.disconnectedSince ? st.disconnectedSince + DISCONNECT_GRACE_MS : null } : { seat: p, player: null, connected: false, open: false, openableAt: null };
+  });
+}
+
 function pushRoom(room: Room): void {
+  const info = {
+    id: room.id,
+    name: room.name,
+    players: roomList().find((r) => r.id === room.id)?.players ?? [],
+    seats: seatInfo(room),
+    spectators: spectatorsOf(room).map(display),
+  };
   for (const [ws, c] of clients) {
     if (c.room !== room.id || !c.user) continue;
     const seat = seatOf(room, c.user);
-    if (!seat) continue;
     send(ws, {
       t: "room",
-      room: { id: room.id, name: room.name, seat, players: roomList().find((r) => r.id === room.id)?.players ?? [] },
-      view: room.game ? viewFor(room.game, seat) : null,
+      room: { ...info, seat },
+      view: room.game ? (seat ? viewFor(room.game, seat) : viewForSpectator(room.game)) : null,
     });
   }
 }
@@ -124,9 +160,18 @@ function startIfReady(room: Room): void {
   );
 }
 
-function leave(room: Room, user: User): void {
+/**
+ * Leave a room. A seated player in a running game either concedes, or (`openSeat`)
+ * gives up the seat: it stays in the game, open for a spectator to take over.
+ */
+function leave(room: Room, user: User, openSeat = false): void {
   const seat = seatOf(room, user);
   if (!seat) return;
+  if (openSeat && room.game && room.game.s.phase !== "ended") {
+    room.seats[seat]!.open = true;
+    room.game.log(`${display(user)} gives up their seat. A spectator can take it over.`);
+    return;
+  }
   if (room.game && room.game.s.phase !== "ended") room.game.act(seat, { type: "concede" });
   if (!room.game) delete room.seats[seat];
   if (!room.seats.A && !room.seats.B) rooms.delete(room.id);
@@ -147,8 +192,10 @@ function handle(ws: WebSocket, msg: any): void {
     send(ws, { t: "rooms", rooms: roomList() });
     // Reconnect to a room this identity is seated in.
     for (const room of rooms.values()) {
-      if (seatOf(room, c.user)) {
+      const seat = seatOf(room, c.user);
+      if (seat) {
         c.room = room.id;
+        delete room.seats[seat]!.disconnectedSince;
         pushRoom(room);
         break;
       }
@@ -175,8 +222,12 @@ function handle(ws: WebSocket, msg: any): void {
     case "join": {
       const room = rooms.get(msg.room);
       if (!room) throw new GameError("That room no longer exists.");
-      if (!seatOf(room, user)) {
-        if (room.seats.A && room.seats.B) throw new GameError("That room is full.");
+      const mySeat = seatOf(room, user);
+      if (mySeat) delete room.seats[mySeat]!.disconnectedSince;
+      else if ((["A", "B"] as PlayerId[]).some((p) => room.seats[p]?.open && room.seats[p]!.user.id === user.id)) {
+        // You gave this seat up: you come back as a spectator and can take it again.
+      } else {
+        if (room.seats.A && room.seats.B) throw new GameError("That room is full. You can watch it instead.");
         const deck = deckFrom(msg.deck, formats[room.format] ?? formats.casual, ws);
         room.seats[room.seats.A ? "B" : "A"] = { user, ...deck };
         startIfReady(room);
@@ -187,11 +238,54 @@ function handle(ws: WebSocket, msg: any): void {
       broadcastLobby();
       return;
     }
+    case "watch": {
+      const room = rooms.get(msg.room);
+      if (!room) throw new GameError("That room no longer exists.");
+      if (seatOf(room, user)) throw new GameError("You are playing in that room: rejoin it instead.");
+      c.room = room.id;
+      pushRoom(room);
+      broadcastLobby();
+      return;
+    }
+    case "take_seat": {
+      // A spectator takes over an open seat and plays on from where it is.
+      const room = c.room ? rooms.get(c.room) : undefined;
+      if (!room?.game || room.game.s.phase === "ended") throw new GameError("No game in progress.");
+      const p = msg.seat === "A" || msg.seat === "B" ? (msg.seat as PlayerId) : null;
+      const st = p ? room.seats[p] : undefined;
+      if (!p || !st?.open) throw new GameError("That seat isn't open.");
+      if (seatOf(room, user)) throw new GameError("You are already playing in this room.");
+      const before = display(st.user);
+      st.user = user;
+      st.open = false;
+      delete st.disconnectedSince;
+      room.game.s.players[p].name = display(user);
+      room.game.log(`${display(user)} takes over ${before}'s seat.`);
+      room.touched = Date.now();
+      pushRoom(room);
+      broadcastLobby();
+      return;
+    }
+    case "open_seat": {
+      // The opponent of a player who has been disconnected too long opens their seat.
+      const room = c.room ? rooms.get(c.room) : undefined;
+      const mine = room && seatOf(room, user);
+      if (!room?.game || room.game.s.phase === "ended" || !mine) throw new GameError("No game in progress.");
+      const p: PlayerId = mine === "A" ? "B" : "A";
+      const st = room.seats[p];
+      if (!st || st.open) return;
+      if (connected(room, st.user.id) || !st.disconnectedSince || Date.now() < st.disconnectedSince + DISCONNECT_GRACE_MS) throw new GameError("Your opponent hasn't been gone long enough.");
+      st.open = true;
+      room.game.log(`${display(st.user)} has been disconnected for a while; their seat is open for a spectator.`);
+      pushRoom(room);
+      broadcastLobby();
+      return;
+    }
     case "leave": {
       const room = c.room ? rooms.get(c.room) : undefined;
       c.room = null;
       if (room) {
-        leave(room, user);
+        leave(room, user, msg.mode === "open_seat");
         pushRoom(room);
       }
       send(ws, { t: "left" });
@@ -202,7 +296,7 @@ function handle(ws: WebSocket, msg: any): void {
       const room = c.room ? rooms.get(c.room) : undefined;
       if (!room?.game) throw new GameError("No game in progress.");
       const seat = seatOf(room, user);
-      if (!seat) throw new GameError("You are not playing in this room.");
+      if (!seat) throw new GameError("You are watching this game, not playing in it.");
       // An unexpected engine error must not leave the game half-updated: restore it.
       const before = JSON.stringify(room.game.s);
       try {
@@ -273,7 +367,17 @@ wss.on("connection", (ws) => {
       }
     }
   });
-  ws.on("close", () => clients.delete(ws));
+  ws.on("close", () => {
+    const c = clients.get(ws);
+    clients.delete(ws);
+    const room = c?.room ? rooms.get(c.room) : undefined;
+    if (!room || !c?.user) return;
+    // Presence: a seated player whose last connection closed starts the disconnect clock.
+    const seat = seatOf(room, c.user);
+    if (seat && !connected(room, c.user.id)) room.seats[seat]!.disconnectedSince = Date.now();
+    pushRoom(room);
+    broadcastLobby();
+  });
 });
 
 // Drop rooms nobody has touched for an hour.

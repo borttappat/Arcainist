@@ -69,6 +69,8 @@ export interface GameView {
   you: PlayerId;
   /** Your seat: the side whose deck you own, which is who wins with it. */
   seat: PlayerId;
+  /** A spectator's view: only public information, no decisions. `you` is the side shown at the bottom. */
+  spectator: boolean;
   turn: number;
   active: PlayerId;
   phase: string;
@@ -86,19 +88,25 @@ export interface GameView {
 }
 
 export function viewFor(g: Game, seat: PlayerId): GameView {
-  return g.q.frozen(() => buildView(g, g.sideOf(seat), seat));
+  return g.q.frozen(() => buildView(g, g.sideOf(seat), g.sideOf(seat), seat));
 }
 
-function buildView(g: Game, you: PlayerId, seat: PlayerId): GameView {
+/** What a spectator sees: public information only (no hands, decks, face-down cards or private log lines). */
+export function viewForSpectator(g: Game, side: PlayerId = "A"): GameView {
+  return g.q.frozen(() => buildView(g, null, side, side));
+}
+
+/** `viewer`: whose hidden information is shown (null for a spectator); `you`: the side shown at the bottom. */
+function buildView(g: Game, viewer: PlayerId | null, you: PlayerId, seat: PlayerId): GameView {
   const s = g.s;
   const q = g.q;
 
   const cv = (iid: string): CardView => {
     const c = s.cards[iid];
-    const hiddenFaceDown = c.zone === "play" && c.faceDown && c.controller !== you && c.owner !== you && !c.revealed;
-    const handRevealed = c.zone === "hand" && q.mods("reveal_hand").some((m) => m.controller === you);
-    const hiddenZone = ((c.zone === "hand" && !handRevealed) || c.zone === "deck") && c.owner !== you;
-    const hiddenVoid = c.zone === "void" && !!c.voidFaceDown && !(c.knownTo ?? []).includes(you);
+    const hiddenFaceDown = c.zone === "play" && c.faceDown && c.controller !== viewer && c.owner !== viewer && !c.revealed;
+    const handRevealed = c.zone === "hand" && q.mods("reveal_hand").some((m) => m.controller === viewer);
+    const hiddenZone = ((c.zone === "hand" && !handRevealed) || c.zone === "deck") && c.owner !== viewer;
+    const hiddenVoid = c.zone === "void" && !!c.voidFaceDown && !(viewer && (c.knownTo ?? []).includes(viewer));
     const v: CardView = {
       iid,
       defId: hiddenFaceDown || hiddenZone || hiddenVoid ? null : c.defId,
@@ -140,8 +148,8 @@ function buildView(g: Game, you: PlayerId, seat: PlayerId): GameView {
       influence: ps.influence,
       deckCount: ps.deck.length,
       handCount: ps.hand.length,
-      hand: p === you || q.mods("reveal_hand").some((m) => m.controller === you) ? ps.hand.map(cv) : null,
-      deck: p === you && ps.searching ? ps.deck.map(cv) : null,
+      hand: p === viewer || q.mods("reveal_hand").some((m) => m.controller === viewer) ? ps.hand.map(cv) : null,
+      deck: p === viewer && ps.searching ? ps.deck.map(cv) : null,
       // "The top card of your deck is revealed at all times."
       topCard: ps.deck.length && q.mods("reveal_top").some((m) => (m.value === "opponent" ? other(m.controller) : m.controller) === p) ? { ...cv(ps.deck[0]), defId: s.cards[ps.deck[0]].defId } : null,
       play: ps.play.map(cv),
@@ -155,7 +163,7 @@ function buildView(g: Game, you: PlayerId, seat: PlayerId): GameView {
   let pending: GameView["pending"] = null;
   let waiting: GameView["waiting"] = null;
   if (s.pending) {
-    if (s.pending.player === you) {
+    if (s.pending.player === viewer) {
       pending = { ...s.pending } as any;
       if (s.pending.type === "choose") {
         const defs: Record<string, string | null> = {};
@@ -168,6 +176,7 @@ function buildView(g: Game, you: PlayerId, seat: PlayerId): GameView {
   return {
     you,
     seat,
+    spectator: viewer === null,
     turn: s.turn,
     active: s.active,
     phase: s.phase,
@@ -178,8 +187,8 @@ function buildView(g: Game, you: PlayerId, seat: PlayerId): GameView {
     window: s.window,
     pending,
     waiting,
-    log: s.log.filter((e) => !e.to || e.to === you).slice(-200),
-    legal: legalFor(g, you),
+    log: s.log.filter((e) => !e.to || e.to === viewer).slice(-200),
+    legal: viewer ? legalFor(g, viewer) : null,
   };
 }
 

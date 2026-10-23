@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Board } from "./Board.tsx";
 import { Lobby } from "./Lobby.tsx";
-import { newSecret, savedIdentity, saveIdentity, useNet } from "./net.ts";
+import { newSecret, savedIdentity, saveIdentity, useNet, type Net } from "./net.ts";
 
 export function App() {
   const [identity, setIdentity] = useState<{ secret: string; name: string } | null>(null);
@@ -26,12 +26,9 @@ export function App() {
             <span className="muted">#{net.user.tag}</span>
           </span>
         )}
-        {net.room && (
-          <button className="ghost" onClick={() => (!net.view || net.view.phase === "ended" || confirm("Leave and concede this game?")) && net.send({ t: "leave" })}>
-            Leave
-          </button>
-        )}
+        {net.room && <LeaveButton net={net} />}
       </header>
+      {net.room && net.view && <SeatBar net={net} />}
       {(net.error || net.notice) && (
         <div className={`toast ${net.error ? "" : "notice"}`} onClick={net.clearError}>
           <pre>{net.error ?? net.notice}</pre>
@@ -53,6 +50,81 @@ export function App() {
       ) : (
         <Lobby net={net} />
       )}
+    </div>
+  );
+}
+
+/**
+ * Leaving a running game you play in: concede, or give up your seat so a spectator
+ * can take over. Spectators and finished games just leave.
+ */
+function LeaveButton({ net }: { net: Net }) {
+  const [asking, setAsking] = useState(false);
+  const playing = !!net.room?.seat && !!net.view && net.view.phase !== "ended";
+  if (!playing) {
+    return (
+      <button className="ghost" onClick={() => net.send({ t: "leave" })}>
+        Leave
+      </button>
+    );
+  }
+  if (!asking) {
+    return (
+      <button className="ghost" onClick={() => setAsking(true)}>
+        Leave…
+      </button>
+    );
+  }
+  return (
+    <span className="row">
+      <button onClick={() => net.send({ t: "leave", mode: "open_seat" })} title="The game goes on; a spectator can take your seat">
+        Give up my seat
+      </button>
+      <button onClick={() => confirm("Concede this game?") && net.send({ t: "leave" })}>Concede</button>
+      <button className="ghost" onClick={() => setAsking(false)}>
+        Stay
+      </button>
+    </span>
+  );
+}
+
+/** Who sits where, who is connected, and the seat actions: take an open seat, or open a long-disconnected opponent's. */
+function SeatBar({ net }: { net: Net }) {
+  const room = net.room!;
+  const [now, setNow] = useState(Date.now());
+  useEffect(() => {
+    const t = setInterval(() => setNow(Date.now()), 5000);
+    return () => clearInterval(t);
+  }, []);
+  const running = net.view!.phase !== "ended";
+  return (
+    <div className="seatbar">
+      {room.seats.map((s) => {
+        const mine = room.seat === s.seat;
+        const opponentGone = !!room.seat && !mine && !s.connected && !s.open && s.openableAt !== null;
+        return (
+          <span key={s.seat} className="seat">
+            <span className={`dot ${s.open ? "open" : s.connected ? "on" : "off"}`} />
+            {s.player ?? "empty"}
+            {s.open ? <span className="muted"> (seat open)</span> : !s.connected && <span className="muted"> (disconnected)</span>}
+            {running && s.open && !room.seat && (
+              <button className="small" onClick={() => net.send({ t: "take_seat", seat: s.seat })}>
+                Take seat
+              </button>
+            )}
+            {running && opponentGone && (
+              <button className="small" disabled={now < s.openableAt!} onClick={() => net.send({ t: "open_seat" })} title="Let a spectator take over for them">
+                {now < s.openableAt! ? `Open seat in ${Math.ceil((s.openableAt! - now) / 1000)}s` : "Open their seat"}
+              </button>
+            )}
+          </span>
+        );
+      })}
+      <span className="spacer" />
+      <span className="muted">
+        {room.seat ? "" : "Spectating · "}
+        {room.spectators.length ? `Watching: ${room.spectators.join(", ")}` : "No spectators"}
+      </span>
     </div>
   );
 }

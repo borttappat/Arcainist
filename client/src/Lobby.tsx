@@ -101,13 +101,18 @@ export function Lobby({ net }: { net: Net }) {
                   <b>{r.name}</b>
                   <div className="muted">
                     {r.players.join(" vs ") || "empty"} · {r.format ?? "Casual"} · {r.ended ? "finished" : r.started ? "in progress" : "waiting"}
+                    {r.spectators ? ` · ${r.spectators} watching` : ""}
+                    {r.openSeat && !r.ended ? " · seat open" : ""}
                   </div>
                 </div>
-                {(open || mine) && (
-                  <button disabled={!mine && !!parsed.errors.length} onClick={() => net.send({ t: "join", room: r.id, deck })}>
-                    {mine ? "Rejoin" : "Join"}
-                  </button>
-                )}
+                <div className="row">
+                  {(open || mine) && (
+                    <button disabled={!mine && !!parsed.errors.length} onClick={() => net.send({ t: "join", room: r.id, deck })}>
+                      {mine ? "Rejoin" : "Join"}
+                    </button>
+                  )}
+                  {r.started && !mine && <button onClick={() => net.send({ t: "watch", room: r.id })}>{r.openSeat && !r.ended ? "Watch / take seat" : "Watch"}</button>}
+                </div>
               </li>
             );
           })}

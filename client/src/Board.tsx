@@ -74,7 +74,8 @@ export function Board({ view, cards, send }: { view: GameView; cards: CardLibrar
       toggle(iid);
       return;
     }
-    setMenu({ iid, x: e.clientX, y: e.clientY });
+    // Spectators can look, not act.
+    if (!view.spectator) setMenu({ iid, x: e.clientX, y: e.clientY });
   };
 
   const classFor = (iid: string) => {
@@ -334,12 +335,13 @@ function Prompt({ view, cards, send, sel, setSel, defOf, attack, setAttack, setH
 
   if (view.phase === "ended") {
     const w = view.winner;
-    return <div className="prompt end">{w === "draw" ? "The game is a draw." : w === (view.seat ?? view.you) ? "You win!" : `${view.players[w!].name} wins.`}</div>;
+    return <div className="prompt end">{w === "draw" ? "The game is a draw." : !view.spectator && w === (view.seat ?? view.you) ? "You win!" : `${view.players[w!].name} wins.`}</div>;
   }
   if (!d) {
     const w = view.waiting;
     return (
       <div className="prompt waiting">
+        {view.spectator && <b>Spectating. </b>}
         {w ? (
           <>
             Waiting for <b>{view.players[w.player].name}</b> {describeWaiting(w.type)}…
