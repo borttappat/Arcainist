@@ -12,7 +12,7 @@ text: |
   COST: Pay 2. Destroy this card.
   EFFECT: Draw 2 cards.
 rules:
-  - trigger: { on: enters_play, card: { controller: you, provides_at_least: { obsession: 1 } } }
+  - trigger: { on: enters_play, card: { controller: you, provides_at_least: { obsession: 1 }, not_self: true } }
     effect:
       - may_pay:
           amount: 1

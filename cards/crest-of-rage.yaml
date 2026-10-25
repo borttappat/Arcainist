@@ -11,7 +11,7 @@ text: |
   When a card that provides at least [R] enters play under your control, you may search your deck for a character and reveal it. If you do, put it on top of your deck.
 rules:
   - unique: Crest
-  - trigger: { on: enters_play, card: { controller: you, provides_at_least: { rage: 1 } } }
+  - trigger: { on: enters_play, card: { controller: you, provides_at_least: { rage: 1 }, not_self: true } }
     effect:
       - may:
           - search: { deck: you, for: { character: any }, reveal: true, to: deck_top }

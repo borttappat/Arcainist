@@ -11,7 +11,7 @@ text: |
   When a card that provides at least [E] enters play under your control, you may put a Micromajig token into play under your control.
 rules:
   - unique: Crest
-  - trigger: { on: enters_play, card: { controller: you, provides_at_least: { elitism: 1 } } }
+  - trigger: { on: enters_play, card: { controller: you, provides_at_least: { elitism: 1 }, not_self: true } }
     effect:
       - may:
           prompt: "put a Micromajig token into play"

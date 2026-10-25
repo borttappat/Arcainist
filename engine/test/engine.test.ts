@@ -391,9 +391,8 @@ describe("cards", () => {
     act(g, p, { type: "deploy", iid: crest });
     pass(g);
     expect(g.q.icons(p).obsession).toBe(before + 2);
-    // Crest sees itself enter play (it provides obsession).
-    expect(expectPending(g, "choose", p).prompt).toMatch(/search your deck/);
-    answer(g, ["no"]);
+    // It doesn't trigger on itself entering play.
+    expectPending(g, "main", p);
     // Playing an obsession staple via the faction's Resource ability triggers it again.
     resources(g, p, "rage", 4);
     const ob = put(g, p, "obsession", "hand");

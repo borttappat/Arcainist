@@ -15,7 +15,7 @@ rules:
   - static: { mods: [ { provides: { obsession: 2 } } ] }
   - trigger:
       on: enters_play
-      card: { controller: you, provides_at_least: { obsession: 1 } }
+      card: { controller: you, provides_at_least: { obsession: 1 }, not_self: true }
     effect:
       - may:
           - search: { deck: you, for: { type: tactic }, count: 1, reveal: true, to: deck_top }

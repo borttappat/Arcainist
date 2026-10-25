@@ -683,4 +683,5 @@ marked "Confirmed" are user rulings; the rest are still open.
 | Mustache Aficionado | The players divide and choose one after the other; the piles stay hidden until both are chosen. |
 | Notion Sickness | The card is destroyed right after the ability goes on the stack; the ability still resolves. |
 | Phantasmagoric Tollbooth | The player whose character it is decides whether to pay. A deployed character that goes to the discard pile skips the rest of its effect. Moving from the stack to a discard pile now counts as "put into their discard pile from anywhere". |
+| Crests and Banners | Confirmed: "When a card that provides at least [R] enters play under your control" doesn't count the Crest or Banner itself entering play (`not_self`). |
 | Limited Liability | Confirmed: it also stops the unique rule, so duplicates (several Gideons) stay in play that turn. When it ends, the unique rule applies again and their controller keeps one. |

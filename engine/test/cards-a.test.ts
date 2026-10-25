@@ -250,7 +250,7 @@ describe("cards: A", () => {
     expect(g.s.cards[entered].zone).toBe("void");
   });
 
-  it("Banners: PROVIDES from the card's numbers, and the trigger sees the banner itself", () => {
+  it("Banners: PROVIDES from the card's numbers, and the trigger sees later cards but not the banner itself", () => {
     const { g, p } = setup();
     resources(g, p, "rage", 3);
     const ban = put(g, p, "banner-of-fury", "hand");
@@ -259,6 +259,10 @@ describe("cards: A", () => {
     act(g, p, { type: "deploy", iid: ban });
     passAll(g);
     expect(g.q.icons(p).rage).toBe(before + 1);
+    expectPending(g, "main", p);
+    (g as any).putResource(p, put(g, p, "rage", "hand"), false, false);
+    g.s.pending = null;
+    (g as any).run();
     const d = expectPending(g, "choose", p);
     expect(d.prompt).toContain("pay 1");
     answer(g, ["yes"]);

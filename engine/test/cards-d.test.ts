@@ -1871,4 +1871,18 @@ describe("cards: D onwards", () => {
     expect(g.s.cards[cal].faceDown).toBe(true);
     expect(g.s.cards[cal].controller).toBe(p);
   });
+
+  it("Crests and Banners don't trigger on themselves entering play, only on later cards", () => {
+    const { g, p } = setup();
+    const crest = put(g, p, "crest-of-rage", "hand"); // numeric cost 0
+    act(g, p, { type: "deploy", iid: crest });
+    pass(g);
+    expect(g.s.cards[crest].zone).toBe("play");
+    expectPending(g, "main", p); // no "search your deck" offer for itself
+    // A rage resource entering play afterwards does trigger it.
+    (g as any).putResource(p, put(g, p, "rage", "hand"), false, false);
+    settle(g);
+    const d = expectPending(g, "choose", p);
+    expect(d.prompt).toMatch(/Crest of Rage/);
+  });
 });
