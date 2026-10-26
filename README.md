@@ -25,6 +25,22 @@ npm run build      # builds the client into dist/
 npm start          # serves dist/ and the game socket on $PORT (default 8080)
 ```
 
+### Hosting
+
+On a fresh machine with Node 22 or newer (`nix develop` provides one):
+
+```sh
+git clone https://github.com/<owner>/Arcainist && cd Arcainist
+npm ci             # exact versions from package-lock.json
+npm run build
+PORT=8080 npm start
+```
+
+Expose only this production server (for example `tailscale funnel --bg 8080`),
+never the development server on :5173, which can serve source files. All state is
+in memory: restarting the server ends every game in progress. To update, run
+`git pull && npm ci && npm run build`, then restart.
+
 Other commands: `npm test` (engine tests), `npm run typecheck`, `npm run patterns` (rule-pattern report over every card, written to `docs/PATTERNS.md`).
 
 ## How it works
