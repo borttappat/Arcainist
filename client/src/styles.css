@@ -85,6 +85,15 @@ h1, h2, h3 { margin: 0 0 8px; font-family: Cinzel, serif; font-weight: 700; }
 
 .login .panel { width: min(420px, 100%); display: grid; gap: 12px; }
 .waiting-room { text-align: center; }
+.waiting-room { display: grid; gap: 12px; width: min(460px, 100%); }
+.waiting-room .seats { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; text-align: left; }
+.waiting-room .seats li { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg-2); }
+.waiting-room .seats .grow { flex: 1; }
+.waiting-room .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+.waiting-room .dot.on { background: var(--good); }
+.waiting-room .dot.off { background: var(--bad); }
+.waiting-room .dot.open { background: var(--accent); }
+.waiting-room .primary { justify-self: center; }
 
 .lobby { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; padding: 16px; max-width: 1100px; margin: 0 auto; width: 100%; }
 @media (max-width: 760px) { .lobby { grid-template-columns: 1fr; } }

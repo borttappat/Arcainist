@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Board } from "./Board.tsx";
-import { Lobby } from "./Lobby.tsx";
+import { Lobby, savedDeck } from "./Lobby.tsx";
 import { newSecret, savedIdentity, saveIdentity, useNet, type Net } from "./net.ts";
 
 export function App() {
@@ -40,13 +40,7 @@ export function App() {
       ) : net.room && net.view ? (
         <Board view={net.view} cards={net.cards} send={(action) => net.send({ t: "action", action })} />
       ) : net.room ? (
-        <div className="center">
-          <div className="panel waiting-room">
-            <h2>{net.room.name}</h2>
-            <p>Waiting for an opponent to join…</p>
-            <p className="muted">Anyone connected to this server will see the room in their lobby.</p>
-          </div>
-        </div>
+        <WaitingRoom net={net} />
       ) : (
         <Lobby net={net} />
       )}
@@ -125,6 +119,59 @@ function SeatBar({ net }: { net: Net }) {
         {room.seat ? "" : "Spectating · "}
         {room.spectators.length ? `Watching: ${room.spectators.join(", ")}` : "No spectators"}
       </span>
+    </div>
+  );
+}
+
+/**
+ * Before the game: players take and leave seats, spectators wait, and the owner
+ * starts the game once both seats are filled.
+ */
+function WaitingRoom({ net }: { net: Net }) {
+  const room = net.room!;
+  const full = room.seats.every((s) => s.player);
+  const first = room.first === "random" ? "die roll" : room.first === "creator" ? `${room.owner} goes first` : `${room.owner}'s opponent goes first`;
+  return (
+    <div className="center">
+      <div className="panel waiting-room">
+        <h2>{room.name}</h2>
+        <p className="muted">
+          {room.format} · {first} · owner {room.owner}
+        </p>
+        <ul className="seats">
+          {room.seats.map((s) => (
+            <li key={s.seat}>
+              <span className={`dot ${s.player ? (s.connected ? "on" : "off") : "open"}`} />
+              <span className="grow">
+                {s.player ?? <span className="muted">empty seat</span>}
+                {s.player === room.owner && <span className="muted"> (owner)</span>}
+                {s.player && !s.connected && <span className="muted"> (disconnected)</span>}
+              </span>
+              {room.seat === s.seat ? (
+                <button className="small" onClick={() => net.send({ t: "stand" })} title="Watch instead; someone else can sit here">
+                  Leave seat
+                </button>
+              ) : (
+                !s.player &&
+                !room.seat && (
+                  <button className="small" onClick={() => net.send({ t: "sit", seat: s.seat, deck: savedDeck() })} title="Sit down with the deck from the lobby">
+                    Take seat
+                  </button>
+                )
+              )}
+            </li>
+          ))}
+        </ul>
+        <p className="muted">{room.spectators.length ? `Watching: ${room.spectators.join(", ")}` : "No spectators"}</p>
+        {room.isOwner ? (
+          <button className="primary" disabled={!full} onClick={() => net.send({ t: "start" })}>
+            {full ? "Start game" : "Waiting for players…"}
+          </button>
+        ) : (
+          <p>Waiting for {room.owner} to start the game…</p>
+        )}
+        <p className="muted">Anyone connected to this server will see the room in their lobby.</p>
+      </div>
     </div>
   );
 }

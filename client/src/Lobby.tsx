@@ -10,8 +10,11 @@ const SAMPLES = Object.entries(import.meta.glob("../../decks/*.txt", { query: "?
   .map(([path, text]) => ({ name: path.split("/").pop()!.replace(/\.txt$/, "").replace(/-/g, " "), text }))
   .sort((a, b) => a.name.localeCompare(b.name));
 
+/** The deck last edited in the lobby: what a player sits down with in a waiting room. */
+export const savedDeck = () => store(DECK_KEY) ?? SAMPLES[0]?.text ?? "";
+
 export function Lobby({ net }: { net: Net }) {
-  const [deck, setDeck] = useState(() => store(DECK_KEY) ?? SAMPLES[0]?.text ?? "");
+  const [deck, setDeck] = useState(savedDeck);
   const [roomName, setRoomName] = useState("");
   const [first, setFirst] = useState<"random" | "me" | "opponent">("random");
   const [format, setFormat] = useState("casual");
@@ -93,14 +96,15 @@ export function Lobby({ net }: { net: Net }) {
         {net.rooms.length === 0 && <p className="muted">No open games. Create one and share this server's address with a friend.</p>}
         <ul className="rooms">
           {net.rooms.map((r) => {
-            const mine = r.players.some((p) => p === `${net.user!.name}#${net.user!.tag}`);
+            const me = `${net.user!.name}#${net.user!.tag}`;
+            const mine = r.players.includes(me);
             const open = !r.started && r.players.length < 2;
             return (
               <li key={r.id}>
                 <div>
                   <b>{r.name}</b>
                   <div className="muted">
-                    {r.players.join(" vs ") || "empty"} · {r.format ?? "Casual"} · {r.ended ? "finished" : r.started ? "in progress" : "waiting"}
+                    {r.players.join(" vs ") || "no players yet"} · {r.format ?? "Casual"} · {r.ended ? "finished" : r.started ? "in progress" : `waiting for ${r.owner} to start`}
                     {r.spectators ? ` · ${r.spectators} watching` : ""}
                     {r.openSeat && !r.ended ? " · seat open" : ""}
                   </div>
@@ -111,7 +115,11 @@ export function Lobby({ net }: { net: Net }) {
                       {mine ? "Rejoin" : "Join"}
                     </button>
                   )}
-                  {r.started && !mine && <button onClick={() => net.send({ t: "watch", room: r.id })}>{r.openSeat && !r.ended ? "Watch / take seat" : "Watch"}</button>}
+                  {!mine && (
+                    <button onClick={() => net.send({ t: "watch", room: r.id })}>
+                      {!r.started ? (r.owner === me ? "Enter" : "Watch") : r.openSeat && !r.ended ? "Watch / take seat" : "Watch"}
+                    </button>
+                  )}
                 </div>
               </li>
             );

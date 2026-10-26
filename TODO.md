@@ -155,6 +155,13 @@ Where things stand and what's left. Update this as work lands.
   after an opponent has been disconnected for 2 minutes, you can open their seat.
   1,455 tests pass.
 
+- **2026-10-26 (waiting room):** a room no longer starts when the second player joins.
+  Before the game, anyone can enter a room from the lobby; players take and leave seats
+  (sitting down uses the lobby's deck), and the rest wait as spectators. Only the room's
+  owner can start the game, once both seats are filled. If the owner leaves, the room
+  passes to a seated player, else a spectator. An owner who isn't seated can still start
+  the game ("owner goes first" then becomes a die roll).
+
 ## State at the end of the first session (2026-10-21)
 
 - **Cards:** 1,230 cards from the spoilstoolbox.com database, plus a Micromajig token card.
@@ -226,8 +233,9 @@ Where things stand and what's left. Update this as work lands.
 ## 4. Features
 
 - [ ] **Before hosting publicly:** save rooms to SQLite after every action and restore
-  them on startup (games currently end on every restart or deploy); per-connection
-  rate limits; an allowed-origin check on the WebSocket. Host on something with
+  them on startup (games currently end on every restart or deploy); an
+  allowed-origin check on the WebSocket. Per-connection message limits and room caps
+  are in. Host on something with
   long-lived WebSockets and a persistent disk (Fly.io, Railway, Render, a VPS), one
   instance only.
 

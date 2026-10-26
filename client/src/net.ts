@@ -14,6 +14,8 @@ export interface RoomInfo {
   id: string;
   name: string;
   players: string[];
+  /** Can start the game. */
+  owner: string;
   started: boolean;
   ended: boolean;
   first?: "random" | "creator" | "joiner";
@@ -38,6 +40,12 @@ export interface CurrentRoom {
   players: string[];
   seats: SeatInfo[];
   spectators: string[];
+  owner: string;
+  /** This client is the owner: it alone can start the game. */
+  isOwner: boolean;
+  started: boolean;
+  first: "random" | "creator" | "joiner";
+  format: string;
 }
 
 const SECRET_KEY = "arcainist.secret";
