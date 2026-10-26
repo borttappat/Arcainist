@@ -30,6 +30,22 @@ export function Board({ view, cards, send }: { view: GameView; cards: CardLibrar
     if (d?.type !== "main") setAttack(null);
   }, [decisionKey]);
 
+  // Space passes whenever a Pass button is on offer, except while typing. A button
+  // left focused by an earlier click is blurred, so Space doesn't click it as well.
+  const canPass = d?.type === "priority" || d?.type === "window" || d?.type === "endturn";
+  useEffect(() => {
+    if (!canPass) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.code !== "Space" || e.repeat || e.ctrlKey || e.metaKey || e.altKey) return;
+      if (e.target instanceof Element && e.target.closest("input, textarea, select, [contenteditable]")) return;
+      e.preventDefault();
+      if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
+      send({ type: "pass" });
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [canPass, decisionKey]);
+
   const all = useMemo(() => {
     const m = new Map<string, CardView>();
     for (const p of [view.players.A, view.players.B]) {
@@ -398,7 +414,7 @@ function Prompt({ view, cards, send, sel, setSel, defOf, attack, setAttack, setH
         <div className="prompt mine">
           <b>{top?.controller === view.you ? "Your" : "Opponent's"} {top?.label}</b> is waiting to resolve. Respond with a tactic or ability, or pass.
           <div className="row">
-            <button className="primary" onClick={() => send({ type: "pass" })}>
+            <button className="primary" onClick={() => send({ type: "pass" })} title="Space">
               Pass
             </button>
           </div>
@@ -409,7 +425,7 @@ function Prompt({ view, cards, send, sel, setSel, defOf, attack, setAttack, setH
         <div className="prompt mine">
           <b>{d.label}.</b> You may play tactics or use abilities.
           <div className="row">
-            <button className="primary" onClick={() => send({ type: "pass" })}>
+            <button className="primary" onClick={() => send({ type: "pass" })} title="Space">
               Pass
             </button>
           </div>
@@ -420,7 +436,7 @@ function Prompt({ view, cards, send, sel, setSel, defOf, attack, setAttack, setH
         <div className="prompt mine">
           <b>{view.players[view.active].name} is ending their turn.</b> Respond, or let the turn end.
           <div className="row">
-            <button className="primary" onClick={() => send({ type: "pass" })}>
+            <button className="primary" onClick={() => send({ type: "pass" })} title="Space">
               Let it end
             </button>
           </div>
