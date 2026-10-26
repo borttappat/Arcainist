@@ -118,6 +118,14 @@ export class Game {
       this.end(other(p));
       return;
     }
+    // Card ids come from clients: only the game's own cards (not "__proto__" and the like).
+    const ids = [(a as any).iid, ...((a as any).attackers ?? [])].filter((x) => x !== undefined);
+    if (ids.some((x) => typeof x !== "string" || !Object.hasOwn(this.s.cards, x))) throw new GameError("No such card.");
+    // A seat preference, so it is set before the sides are swapped.
+    if (a.type === "auto_pay") {
+      this.s.players[p].autoPay = a.on;
+      return;
+    }
     // Emergency Obfuscation: each player controls the other side while it is in play.
     p = this.sideOf(p);
     if (a.type === "manual") {
@@ -766,6 +774,8 @@ export class Game {
     if (task.flipUp) {
       const fu = this.q.flipUpRule(iid);
       ctx.costOverride = fu.pay;
+      // An unattached resource is attached to pay for itself before it flips up.
+      ctx.selfPay = c.attachedTo === null;
       extra.push(...(fu.cost ?? []));
       this.log(`${this.pname(p)} flips up ${def.name}.`);
     } else {
@@ -848,31 +858,55 @@ export class Game {
       this.numericCost(ctx, task.base, task.deploying, true);
       return;
     }
+    // FLIP UP: an unattached card pays 1 of its own cost.
+    const self = ctx.selfPay ? 1 : 0;
+    const need = Math.max(0, total - self);
     const avail = this.q.unattached(p);
-    if (avail.length < total) {
-      this.fail(`Not enough resources: need ${total}, have ${avail.length}.`);
+    if (avail.length < need) {
+      this.fail(`Not enough resources: need ${total}, have ${avail.length + self}.`);
       return;
     }
     const finish = (ids: string[]) => {
       this.numericCost(ctx, task.base, task.deploying, true);
+      if (self) this.log(`${this.q.name(ctx.source)} pays 1 of its own cost.`);
       this.attach(ids);
     };
     if (task.answer) return finish(task.answer.ids);
+    if (need === 0) return finish([]);
+    if (this.s.players[this.sideOf(p)].autoPay) return finish(this.payOrder(p).slice(0, need));
     // Which face-up resource is attached never matters (threshold counts attached
     // resources too), so attach those first. Only ask when some, but not all, of
     // the face-down resources must be used, since their abilities may care.
     const up = avail.filter((i) => !this.s.cards[i].faceDown);
-    if (total <= up.length) return finish(up.slice(0, total));
-    if (total === avail.length) return finish(avail);
+    if (need <= up.length) return finish(up.slice(0, need));
+    if (need === avail.length) return finish(avail);
     this.ask(task, {
       type: "choose",
       player: p,
-      prompt: `Pay ${total}: choose resources to attach to your faction.`,
+      prompt: `Pay ${need}: choose resources to attach to your faction.`,
       options: avail.map((iid) => ({ id: iid, iid, label: this.resourceLabel(iid) })),
-      min: total,
-      max: total,
+      min: need,
+      max: need,
       cancellable: !!this.s.snapshot,
     });
+  }
+
+  /**
+   * Automatic payment order: face-down resources first, those with FLIP UP before
+   * the rest, cheapest FLIP UP first (an attached card can still flip up, and one
+   * with FLIP UP 0 gains nothing from paying for itself). Face-up resources last.
+   */
+  private payOrder(p: PlayerId): string[] {
+    const rank = (iid: string): number => {
+      if (!this.s.cards[iid].faceDown) return 2000;
+      const fu = this.q.flipUpRule(iid);
+      return fu ? (typeof fu.pay === "number" ? Math.min(fu.pay, 999) : 999) : 1000;
+    };
+    return this.q
+      .unattached(p)
+      .map((iid, i) => ({ iid, i, r: rank(iid) }))
+      .sort((a, b) => a.r - b.r || a.i - b.i)
+      .map((x) => x.iid);
   }
 
   private attach(ids: string[]): void {
@@ -884,7 +918,7 @@ export class Game {
     if (n <= 0) return true;
     const avail = this.q.unattached(p);
     if (avail.length < n) return false;
-    const sorted = [...avail.filter((i) => !this.s.cards[i].faceDown), ...avail.filter((i) => this.s.cards[i].faceDown)];
+    const sorted = this.s.players[this.sideOf(p)].autoPay ? this.payOrder(p) : [...avail.filter((i) => !this.s.cards[i].faceDown), ...avail.filter((i) => this.s.cards[i].faceDown)];
     this.attach(sorted.slice(0, n));
     return true;
   }

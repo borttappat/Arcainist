@@ -141,6 +141,8 @@ export interface PlayerState {
   void: string[];
   /** Looking through their own deck with the manual controls. */
   searching?: boolean;
+  /** Pay numeric costs without asking (this seat's preference, toggled in the client). */
+  autoPay?: boolean;
 }
 
 export interface StackItem {
@@ -175,6 +177,8 @@ export interface Ctx {
   parent?: string;
   pay: number;
   costOverride?: number;
+  /** FLIP UP from an unattached resource: the card itself pays 1 of the cost. */
+  selfPay?: boolean;
   free?: boolean;
   ignoreThreshold?: boolean;
   via?: "flip_up" | "normal" | "effect";
@@ -370,7 +374,8 @@ export type Action =
   | { type: "cancel" }
   // always available
   | { type: "manual"; op: ManualOp }
-  | { type: "concede" };
+  | { type: "concede" }
+  | { type: "auto_pay"; on: boolean };
 
 export type ManualOp =
   | { op: "move"; iid: string; zone: Zone; faceDown?: boolean }

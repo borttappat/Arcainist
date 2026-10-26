@@ -436,8 +436,8 @@ describe("responses and the stack", () => {
     const infl = g.s.players[o].influence;
     const m = g.q.unattached(o).length;
     act(g, o, { type: "flip_up", iid: an2 });
-    // Pays 1, and the flipped card itself stops being an available resource.
-    expect(m - g.q.unattached(o).length).toBe(2);
+    // Pays 1: the flipped card was unattached, so it pays for itself.
+    expect(m - g.q.unattached(o).length).toBe(1);
     expect(g.s.players[o].influence).toBe(infl - 5);
   });
 

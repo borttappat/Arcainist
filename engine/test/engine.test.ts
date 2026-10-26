@@ -502,3 +502,61 @@ describe("spectators", () => {
     expect(viewFor(g, p).players[p].hand).not.toBeNull();
   });
 });
+
+describe("Paying costs", () => {
+  const juiceSale = (g: Game) => {
+    const p = toMain(g);
+    put(g, other(p), "plodding-brute", "play");
+    return p;
+  };
+
+  it("an unattached card pays 1 of its own FLIP UP cost", () => {
+    const g = newGame();
+    const p = juiceSale(g);
+    for (const r of g.q.resources(p)) g.s.cards[r].attachedTo = "faction";
+    const [rage] = resources(g, p, "rage", 1);
+    const js = put(g, p, "juice-sale", "play", { faceDown: true });
+    act(g, p, { type: "flip_up", iid: js });
+    if (g.s.pending?.type === "choose" && g.s.pending.prompt.includes("Juice Sale")) answer(g, [g.s.pending.options[0].id]);
+    expect(g.s.cards[js].zone).toBe("stack");
+    expect(g.s.cards[rage].attachedTo).toBe("faction");
+    expect(g.s.log.some((l) => l.text === "Juice Sale! pays 1 of its own cost.")).toBe(true);
+  });
+
+  it("an attached card doesn't pay for itself", () => {
+    const g = newGame();
+    const p = juiceSale(g);
+    for (const r of g.q.resources(p)) g.s.cards[r].attachedTo = "faction";
+    resources(g, p, "rage", 1);
+    const js = put(g, p, "juice-sale", "play", { faceDown: true });
+    g.s.cards[js].attachedTo = "faction";
+    act(g, p, { type: "flip_up", iid: js });
+    if (g.s.pending?.type === "choose" && g.s.pending.prompt.includes("Juice Sale")) answer(g, [g.s.pending.options[0].id]);
+    // Only 1 unattached resource for a cost of 2: rolled back.
+    expect(g.s.cards[js].zone).toBe("play");
+  });
+
+  it("auto-pay uses face-down resources first, cheapest FLIP UP first", () => {
+    const g = newGame();
+    const p = toMain(g);
+    for (const r of g.q.resources(p)) g.s.cards[r].attachedTo = "faction";
+    const up = resources(g, p, "rage", 2);
+    const plain = put(g, p, "plodding-brute", "play", { faceDown: true });
+    const js = put(g, p, "juice-sale", "play", { faceDown: true });
+    const ns = put(g, p, "noble-sacrifice", "play", { faceDown: true });
+    act(g, p, { type: "auto_pay", on: true });
+    expect(g.s.players[p].autoPay).toBe(true);
+    expect((g as any).payOrder(p)).toEqual([ns, js, plain, ...up]);
+    expect(g.payNow(p, 2)).toBe(true);
+    expect(g.s.cards[ns].attachedTo).toBe("faction");
+    expect(g.s.cards[js].attachedTo).toBe("faction");
+    expect(g.s.cards[plain].attachedTo).toBe(null);
+  });
+
+  it("rejects card ids that aren't the game's cards", () => {
+    const g = newGame();
+    const p = toMain(g);
+    expect(() => act(g, p, { type: "deploy", iid: "__proto__" })).toThrow("No such card.");
+    expect(() => act(g, p, { type: "attack", target: "faction", attackers: ["constructor"] })).toThrow("No such card.");
+  });
+});

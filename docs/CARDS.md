@@ -684,4 +684,5 @@ marked "Confirmed" are user rulings; the rest are still open.
 | Notion Sickness | The card is destroyed right after the ability goes on the stack; the ability still resolves. |
 | Phantasmagoric Tollbooth | The player whose character it is decides whether to pay. A deployed character that goes to the discard pile skips the rest of its effect. Moving from the stack to a discard pile now counts as "put into their discard pile from anywhere". |
 | Crests and Banners | Confirmed: "When a card that provides at least [R] enters play under your control" doesn't count the Crest or Banner itself entering play (`not_self`). |
+| FLIP UP payment | Confirmed: an unattached face-down card pays 1 of its own FLIP UP cost (it is attached to pay, then flips up). An attached one doesn't. |
 | Limited Liability | Confirmed: it also stops the unique rule, so duplicates (several Gideons) stay in play that turn. When it ends, the unique rule applies again and their controller keeps one. |

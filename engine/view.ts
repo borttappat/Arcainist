@@ -52,6 +52,8 @@ export interface PlayerView {
   void: CardView[];
   icons: Record<Icon, number>;
   unattached: number;
+  resources: number;
+  autoPay: boolean;
 }
 
 export interface Legal {
@@ -157,6 +159,8 @@ function buildView(g: Game, viewer: PlayerId | null, you: PlayerId, seat: Player
       void: ps.void.map(cv),
       icons: q.icons(p),
       unattached: q.unattached(p).length,
+      resources: q.resources(p).length,
+      autoPay: !!ps.autoPay,
     };
   };
 

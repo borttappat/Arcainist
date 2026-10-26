@@ -115,6 +115,7 @@ h1, h2, h3 { margin: 0 0 8px; font-family: Cinzel, serif; font-weight: 700; }
 .influence { display: flex; align-items: center; gap: 6px; font-family: Cinzel, serif; font-size: 26px; font-weight: 700; color: var(--accent); }
 .counts { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 13px; }
 .icons { display: flex; gap: 8px; align-items: center; font-size: 12px; }
+.autopay { display: inline-flex; gap: 4px; align-items: center; cursor: pointer; }
 .resources { display: flex; gap: 4px; flex-wrap: wrap; min-height: 26px; }
 .field { display: flex; flex-wrap: wrap; gap: 8px; padding: 4px; align-items: flex-start; }
 .region { border: 1px dashed var(--line); border-radius: 8px; padding: 4px 6px 8px; min-width: 0; flex: 1 1 auto; }

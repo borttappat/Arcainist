@@ -207,7 +207,15 @@ function Side({ p, me, view, cards, renderCard, clickCard, classFor, setHover, s
       </div>
       <div className="icons" title="Threshold icons you control">
         <Pips icons={p.icons} />
-        <span className="muted">{p.unattached} available</span>
+        <span className="muted" title="Unattached resources / all resources">
+          {p.unattached}/{p.resources} available
+        </span>
+        {me && !view.spectator && (
+          <label className="autopay" title="On: costs are paid without asking, using face-down resources first (cheapest FLIP UP first). Off: you choose when it matters.">
+            <input type="checkbox" checked={view.players[view.seat].autoPay} onChange={(e) => send({ type: "auto_pay", on: e.target.checked })} />
+            Auto-pay
+          </label>
+        )}
       </div>
     </div>
   );
