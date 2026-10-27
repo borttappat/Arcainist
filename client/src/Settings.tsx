@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { CardLibrary } from "../../engine/index.ts";
 import { clearImages, importImages, useCardImages } from "./images.ts";
+import { LAYER, useKeys } from "./keys.ts";
 import { setSettings, THEMES, useSettings, type ImageMode } from "./prefs.ts";
 import { SourceNote } from "./SourceNote.tsx";
 
@@ -10,6 +11,8 @@ export function Settings({ cards, close }: { cards: CardLibrary | null; close: (
   const settings = useSettings();
   const stored = Object.keys(useCardImages()).length;
   const [status, setStatus] = useState<string | null>(null);
+  // Over the board: Esc closes, and the game's keys wait.
+  useKeys({ escape: close }, true, LAYER.window);
 
   const pick = async (list: FileList | null) => {
     if (!list?.length || !cards) return;

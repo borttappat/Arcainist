@@ -193,7 +193,7 @@ describe("prohibitions and requirements", () => {
     expect(g.s.stack).toHaveLength(0);
     expectPending(g, "main", p);
     expect(o).not.toBe(p);
-    resources(g, p, "greed", 2);
+    resources(g, p, "greed", 3);
     expect(g.canStart(p, { type: "deploy", iid: put(g, p, "cash-out", "hand") }, true)).toMatch(/can't be played/);
   });
 });

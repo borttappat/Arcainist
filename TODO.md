@@ -210,8 +210,8 @@ Where things stand and what's left. Update this as work lands.
   Mau, Clockman Skydocks, Counter-Attack, Emergency Obfuscation, Geiseric the
   Souleater, God's Autograph, Mustache Aficionado, Notion Sickness, Phantasmagoric
   Tollbooth (twelfth session).
-- [x] Gear bonuses: every gear card that gives a stat bonus has it, as `gear` in its
-  JSON or as a static rule on its host.
+- [x] Gear bonuses: every gear card that gives a stat bonus has it, as its `gear`
+  field or as a static rule on its host.
 - [x] **Coverage test** (`engine/test/smoke.test.ts`): fails if a non-faction card
   with rules text lacks `rules`.
 - [ ] Re-run `npm run patterns` after each batch to track progress.
@@ -239,8 +239,8 @@ Where things stand and what's left. Update this as work lands.
   long-lived WebSockets and a persistent disk (Fly.io, Railway, Render, a VPS), one
   instance only.
 
-- [ ] **Custom game mode (rulesets):** JSON files overriding per-card numbers
-  (`cards/*.json` keys), chosen per room next to the format. Show what changed from
+- [ ] **Custom game mode (rulesets):** files overriding per-card numbers (`cost`,
+  `threshold`, `stats`, `flip_up` and the other number fields), chosen per room next to the format. Show what changed from
   the original in the card preview.
 - [ ] **Format enforcement in practice:** Constructed and Limited exist
   (`formats/*.json`). Decide when to offer them by default; add Block/Chronicles
@@ -253,6 +253,13 @@ Where things stand and what's left. Update this as work lands.
   read: the OCTGN `.o8c` packs (zips whose image names are OCTGN GUIDs).
 - [x] **Colour themes:** `client/src/themes/<name>.css`, picked in Settings.
   `npm run theme -- <name> [colors.json]` generates one from a pywal scheme.
+- [ ] **Chat:** a small chat window in a game room, next to the log. Messages go
+  through the existing WebSocket (`{ t: "chat", text }`), relayed to everyone in the
+  room (players and spectators) with the sender's `name#tag`. Keep the last ~100 in
+  memory with the room; no history after the room closes. Cap message length and
+  rate (the per-connection message limit already exists), escape text (React does),
+  and let a player mute the chat in Settings. Typing in it must not trigger the game
+  keys (`useKeys` already ignores text fields).
 - [ ] **Hide the card being paid for:** while a player chooses how to pay, the
   opponent sees their hand count drop by one.
 - [ ] **Open R&D faction:** its "invent an ability" rule is manual.
@@ -269,6 +276,19 @@ Where things stand and what's left. Update this as work lands.
   behind its character, the stack zone, the "manual" tag, and the deck viewer.
 - [ ] Themes (Arcainist, Hydrix, Spoils) and card images on tiles and in the
   preview, including damage, tokens and changed stats drawn over the art.
+- [ ] Keyboard play: Space for the highlighted action (never ending the turn), E
+  to end the turn, arrows and Enter over every prompt (choose, blockers, assign,
+  play a resource in two steps with Esc to go back, order, name, number), the remembered Develop Rule choice, and
+  that Space and Enter don't also press a button left focused by a click.
+- [ ] Keyboard free play: arrows over the hand, B to the battlefield and back, Space
+  for a card's menu (and arrows and Space inside it), F faction, D deck (decklist or
+  search), X discard, V void, Esc closing windows, and Space passing while
+  responding until the cursor is put on a card.
+- [ ] Starting resources picked in one marked choice; Enter marks and Space confirms
+  in every choice (optional ones like Spry Archer's and Karmic Cake's included, with
+  nothing marked meaning none); A for attack mode.
+- [ ] Layout on tall browser windows (reported broken on a tall window; needs a
+  screenshot to see what).
 
 ## Reference
 

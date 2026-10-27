@@ -65,7 +65,7 @@ export function Tile({ def, card, className = "", tag, onClick, onHover }: TileP
     return <span className={`stat stat-${k} ${v > printed ? "up" : v < printed ? "down" : ""}`}>{v}</span>;
   };
   return (
-    <div className={cls} onClick={onClick} onMouseEnter={() => onHover?.(def)} onMouseLeave={() => onHover?.(null)}>
+    <div data-iid={card?.iid} className={cls} onClick={onClick} onMouseEnter={() => onHover?.(def)} onMouseLeave={() => onHover?.(null)}>
       {hidden ? (
         <div className="back-face">{card?.isResource ? "V" : "?"}</div>
       ) : (
@@ -123,6 +123,7 @@ export function ResourceChip({ def, card, onClick, onHover, className = "" }: Ti
   const icon: Icon | undefined = card?.faceDown ? "volition" : (def?.icon ?? (Object.keys(def?.provides ?? {})[0] as Icon | undefined));
   return (
     <div
+      data-iid={card?.iid}
       className={`res ${card?.attached ? "spent" : ""} ${className}`}
       onClick={onClick}
       onMouseEnter={() => onHover?.(def)}

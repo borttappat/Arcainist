@@ -14,8 +14,7 @@ describe("setup", () => {
     expect(g.s.first).toBe(other(winner));
     // The first player chooses and reveals their starting resources before the second.
     expect(g.s.pending?.player).toBe(other(winner));
-    answer(g, [(g.s.pending as any).options[0].id]);
-    answer(g, [(g.s.pending as any).options[0].id]);
+    pickFirst(g);
     expect(g.s.log.some((l) => l.text.startsWith(`${g.s.players[other(winner)].name} starts with`))).toBe(true);
     expect(g.s.pending?.player).toBe(winner);
   });
@@ -50,13 +49,16 @@ describe("setup", () => {
     // The die roll winner chooses to go first.
     answer(g, ["first"]);
     const p = g.s.first!;
-    answer(g, [(g.s.pending as any).options[0].id]);
-    const second = expectPending(g, "choose", p);
-    expect(second.options.map((o: any) => o.id)).not.toContain(g.s.cards[g.q.resources(p)[0]].defId);
-    answer(g, [second.options[0].id]);
+    // Both starting staples in one choice, marked and then confirmed: one option per staple.
+    const both = expectPending(g, "choose", p);
+    expect([both.min, both.max]).toEqual([2, 2]);
+    const types = both.options.map((o: any) => o.id.split("#")[0]);
+    expect(new Set(types).size).toBe(types.length);
+    answer(g, [both.options[0].id, both.options[1].id]);
+    const picked = g.q.resources(p).map((i) => g.s.cards[i].defId);
+    expect(new Set(picked).size).toBe(2);
     // Other player's resources.
-    answer(g, [(g.s.pending as any).options[0].id]);
-    answer(g, [(g.s.pending as any).options[0].id]);
+    pickFirst(g);
     // Starting draw search: offers only staples not among starting resources.
     const search = expectPending(g, "choose", p);
     const starting = g.q.resources(p).map((i) => g.s.cards[i].defId);
@@ -67,7 +69,7 @@ describe("setup", () => {
 
   it("mulligan puts cards on the bottom and redraws the same number", () => {
     const g = newGame(11);
-    for (let i = 0; i < 5; i++) answer(g, [(g.s.pending as any).options[0].id]); // die roll, then 2 staples each
+    for (let i = 0; i < 3; i++) pickFirst(g); // die roll, then 2 staples each (one choice per player)
     const p = g.s.first!;
     const before = [...g.s.players[p].hand];
     answer(g, before.slice(0, 3));
@@ -76,6 +78,12 @@ describe("setup", () => {
     expect(ps.deck.slice(-3)).toEqual(before.slice(0, 3));
   });
 });
+
+/** Answer the pending choice with its first options, as many as it needs. */
+function pickFirst(g: Game) {
+  const d = g.s.pending as any;
+  answer(g, d.options.slice(0, Math.max(1, d.min)).map((o: any) => o.id));
+}
 
 describe("deploying and the stack", () => {
   it("pays numeric cost by attaching resources, resolves after opponent passes, detaches next turn", () => {
@@ -558,5 +566,17 @@ describe("Paying costs", () => {
     const p = toMain(g);
     expect(() => act(g, p, { type: "deploy", iid: "__proto__" })).toThrow("No such card.");
     expect(() => act(g, p, { type: "attack", target: "faction", attackers: ["constructor"] })).toThrow("No such card.");
+  });
+
+  it("decklists: each player sees only their own, as registered", () => {
+    const g = newGame(1);
+    const p = toMain(g);
+    const o = other(p);
+    const v = viewFor(g, p);
+    const total = Object.values(v.players[p].decklist ?? {}).reduce((a, b) => a + b, 0);
+    expect(total).toBe(50);
+    expect(v.players[p].decklist?.rage).toBe(10);
+    expect(v.players[o].decklist).toBe(null);
+    expect(viewForSpectator(g).players[p].decklist).toBe(null);
   });
 });

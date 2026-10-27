@@ -139,6 +139,8 @@ export interface PlayerState {
   factionIid: string;
   influence: number;
   deck: string[]; // top of deck is index 0
+  /** The cards the deck was registered with (card ids), for the player's own decklist. */
+  decklist?: string[];
   hand: string[];
   play: string[];
   discard: string[]; // top is the last element

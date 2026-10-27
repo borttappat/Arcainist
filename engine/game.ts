@@ -72,7 +72,7 @@ export class Game {
       const fdef = lib[d.faction];
       if (!fdef || !fdef.types.includes("faction")) throw new GameError(`${d.name}: not a faction: ${d.faction}`);
       const fiid = g.newCard(d.faction, p, "play");
-      s.players[p] = { id: p, name: d.name, factionId: d.faction, factionIid: fiid, influence: fdef.influence ?? 25, deck: [], hand: [], play: [], discard: [], void: [] };
+      s.players[p] = { id: p, name: d.name, factionId: d.faction, factionIid: fiid, influence: fdef.influence ?? 25, deck: [], decklist: [...d.cards], hand: [], play: [], discard: [], void: [] };
       for (const id of d.cards) {
         if (!lib[id]) throw new GameError(`Unknown card: ${id}`);
         s.players[p].deck.push(g.newCard(id, p, "deck"));
@@ -576,14 +576,24 @@ export class Game {
       task.chosen = [] as string[];
     }
     if (task.answer) {
-      const step = task.plan.shift();
+      const step = task.plan[0];
       if (step.kind === "choose_x") {
+        task.plan.shift();
         for (let i = 0; i < task.answer.value; i++) task.plan.unshift({ kind: "staple" });
-      } else {
-        const id = task.answer.ids[0];
-        const iid = step.kind === "card_face_down" ? id : ps.deck.find((i) => this.s.cards[i].defId === id)!;
-        this.putResource(p, iid, step.kind === "card_face_down", true);
+      } else if (step.kind === "card_face_down") {
+        task.plan.shift();
+        const iid = task.answer.ids[0];
+        this.putResource(p, iid, true, true);
         task.chosen.push(this.s.cards[iid].defId);
+      } else {
+        // All the picks of this kind at once: "<card id>#<copy>" for each marked copy.
+        for (const id of task.answer.ids as string[]) {
+          task.plan.shift();
+          const defId = id.split("#")[0];
+          const iid = ps.deck.find((i) => this.s.cards[i].defId === defId)!;
+          this.putResource(p, iid, false, true);
+          task.chosen.push(defId);
+        }
       }
       delete task.answer;
     }
@@ -618,13 +628,25 @@ export class Game {
         this.log(`${this.pname(p)} has no more ${step.kind === "resource" ? "resources" : "staple resources"} to start with.`);
         continue;
       }
+      // Every pick of this kind in one choice: the player marks them all, then confirms.
+      let n = 0;
+      while (task.plan[n]?.kind === step.kind) n++;
+      // One option per copy that could be picked: a type can be picked up to n times
+      // (only once for different staples).
+      const options: Option[] = [];
+      for (const [id, inDeck] of available) {
+        const copies = step.kind === "different_staple" ? 1 : Math.min(inDeck, n);
+        for (let i = 0; i < copies; i++) options.push({ id: `${id}#${i}`, label: copies > 1 ? `${this.lib[id].name} ${i + 1}` : this.lib[id].name });
+      }
+      const k = Math.min(n, options.length);
+      const what = step.kind === "resource" ? "resource" : "staple resource";
       return void this.ask(task, {
         type: "choose",
         player: p,
-        prompt: `Choose a starting ${step.kind === "resource" ? "resource" : "staple resource"}${step.kind === "different_staple" ? " (different from your others)" : ""}.`,
-        options: [...available].map(([id, n]) => ({ id, label: `${this.lib[id].name} (${n} in deck)` })),
-        min: 1,
-        max: 1,
+        prompt: k === 1 ? `Choose a starting ${what}${step.kind === "different_staple" ? " (different from your others)" : ""}.` : `Choose ${k} starting ${what}s${step.kind === "different_staple" ? ", all different" : ""}.`,
+        options,
+        min: k,
+        max: k,
       });
     }
     // The first player's starting resources are revealed before the second player chooses.

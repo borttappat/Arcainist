@@ -23,7 +23,7 @@ export function quickStart(g: Game): void {
     if (d.type !== "choose") throw new Error("Unexpected setup decision " + d.type);
     if (d.prompt.includes("Mulligan")) g.act(d.player, { type: "answer", ids: [] });
     else if (d.prompt.includes("search your deck")) g.act(d.player, { type: "answer", ids: [] });
-    else g.act(d.player, { type: "answer", ids: [d.options[0].id] });
+    else g.act(d.player, { type: "answer", ids: d.options.slice(0, Math.max(1, d.min)).map((o) => o.id) });
   }
 }
 

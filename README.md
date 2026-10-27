@@ -73,7 +73,7 @@ Other commands: `npm test` (engine tests), `npm run typecheck`, `npm run pattern
 | `engine/test/` | Scenario tests per mechanic, plus a fuzz test that plays random games with every card. |
 | `server/` | WebSocket server: identity, rooms, sends each player their view. |
 | `client/` | React UI. |
-| `cards/` | Two files per card: `<id>.json` (numbers) and `<id>.yaml` (text and rules). All 1,231 cards from the card database; 1,197 have rules the engine runs, the rest are played with manual controls. |
+| `cards/` | One file per card, `<id>.yaml`: numbers, text and rules. All 1,231 cards from the card database; 1,197 have rules the engine runs, the rest are played with manual controls. |
 | `formats/` | Deck-building formats (Casual, Constructed, Limited) as JSON; checked by `engine/formats.ts`. |
 | `decks/` | Sample decklists; every file here shows up as a sample in the lobby. |
 
@@ -92,15 +92,36 @@ their own scans into their browser (matched to cards by file name, or by the
 **Themes.** Colour themes are `client/src/themes/<name>.css`. `npm run theme --
 <name> [colors.json]` makes one from a pywal scheme.
 
+**Keyboard.** Two groups of keys. **Space** does the highlighted action (pass,
+confirm, block, play the resource) and **E** ends your turn; Space never does.
+The **arrow keys** move a cursor over the choices, which always starts on one (the
+answer you gave last time to the same question, if any). The same rule everywhere:
+**Enter** marks the choice under the cursor, **Space** confirms what's marked
+(with nothing marked, where that's allowed, that means none), and **Esc** goes
+back. Only when exactly one answer is required (yes or no, the Develop Rule) is the
+cursor itself the answer, so Space confirms it at once.
+**A** starts an attack: the arrows move over your characters and enemy locations,
+Enter adds or removes one, Space attacks. When ordering cards,
+Enter picks a card up and the arrows move it. Playing a resource is two steps:
+choose the card, then face-up or face-down. **Esc** cancels, closes or goes back a
+step.
+
+With no question being asked, the arrows move over your hand (or, after **B**, the
+battlefield: your cards and any you may use) and Space opens the card's actions, the
+same menu a click opens; the arrows and Space work in it too. When responding, Space
+passes until the arrows put the cursor on a card. **F** opens your faction's
+actions, **D** your deck (your decklist, private, or a search of the deck itself,
+which your opponent sees), **X** your discard pile and **V** your void.
+
 **Manual controls.** Click any of your cards for manual actions (move, flip,
 deplete, damage, attach) and use the influence, Draw and Shuffle buttons. These
 are logged in orange and let you play cards the engine doesn't handle yet.
 
 ## Adding or changing cards
 
-Each card is `cards/<id>.json` (cost, threshold, stats and other numbers) plus
-`cards/<id>.yaml` (name, text and rules). To rebalance a card, edit its JSON. To
-add one, create both files and restart the server. The card language is documented
+Each card is one file, `cards/<id>.yaml`: name and type line, its numbers (cost,
+threshold, stats, FLIP UP), its printed text and its rules. To rebalance a card,
+change its numbers; to add one, create a file and restart the server. The card language is documented
 in `docs/CARDS.md`, and the existing files are the best examples. Card files are
 validated at startup, so a mistake is reported immediately rather than failing
 mid-game.

@@ -311,3 +311,21 @@ h1, h2, h3 { margin: 0 0 8px; font-family: Cinzel, serif; font-weight: 700; }
 .preview-art { display: block; width: 100%; max-height: 45vh; object-fit: contain; border-radius: 10px; margin-bottom: 8px; }
 .source-note { font-size: 12px; margin: 0; }
 .source-note a { color: inherit; }
+
+/* Keyboard: the cursor (arrow keys) and key hints. */
+.option.cursor, .assign-row.cursor, .order li.cursor, .prompt button.cursor { outline: 2px solid var(--select); outline-offset: 1px; }
+.tile.cursor, .res.cursor { outline: 2px dashed var(--select); outline-offset: 2px; }
+.order li.held { background: color-mix(in srgb, var(--select) 18%, transparent); border-radius: 4px; }
+.assign-row, .order li { padding: 2px 4px; }
+kbd { font: 600 10px/1 ui-monospace, monospace; padding: 2px 4px; margin-left: 4px; border: 1px solid currentColor; border-radius: 3px; opacity: 0.6; vertical-align: 1px; }
+.hint { font-size: 12px; }
+.hint kbd { margin: 0 2px; }
+.faction.cursor, .menu-item.cursor, .decklist li.cursor, .deck-choice .option.cursor { outline: 2px solid var(--select); outline-offset: 1px; }
+.menu-item.cursor { background: var(--panel-2); }
+/* The area the arrow keys are working in (B switches). */
+.kb-area { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--select) 45%, transparent); border-radius: 8px; }
+.deck-choice { width: min(420px, 100%); display: grid; gap: 8px; }
+.deck-choice .option { display: grid; gap: 2px; text-align: left; padding: 8px 10px; }
+.decklist ul { list-style: none; margin: 8px 0 0; padding: 0; columns: 2; }
+.decklist li { padding: 2px 6px; border-radius: 4px; break-inside: avoid; }
+.decklist .decklist-type { text-transform: capitalize; color: var(--muted); font-size: 12px; margin-top: 6px; }

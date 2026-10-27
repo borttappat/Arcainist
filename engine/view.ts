@@ -45,6 +45,8 @@ export interface PlayerView {
   hand: CardView[] | null;
   /** Your own deck, top first, only while you are searching it. */
   deck: CardView[] | null;
+  /** Your own registered decklist (card id to copies); not where the cards are now. */
+  decklist: Record<string, number> | null;
   /** Top card of this deck, when an effect reveals it at all times. */
   topCard: CardView | null;
   play: CardView[];
@@ -152,6 +154,7 @@ function buildView(g: Game, viewer: PlayerId | null, you: PlayerId, seat: Player
       handCount: ps.hand.length,
       hand: p === viewer || q.mods("reveal_hand").some((m) => m.controller === viewer) ? ps.hand.map(cv) : null,
       deck: p === viewer && ps.searching ? ps.deck.map(cv) : null,
+      decklist: p === viewer ? countIds(ps.decklist ?? []) : null,
       // "The top card of your deck is revealed at all times."
       topCard: ps.deck.length && q.mods("reveal_top").some((m) => (m.value === "opponent" ? other(m.controller) : m.controller) === p) ? { ...cv(ps.deck[0]), defId: s.cards[ps.deck[0]].defId } : null,
       play: ps.play.map(cv),
@@ -232,4 +235,10 @@ function buildLegal(g: Game, p: PlayerId): Legal | null {
   const attackers = main && !limited ? q.characters(p).filter((iid) => q.canAttack(iid)) : [];
   const targets = main ? [...(q.cannot("attack_faction", null, p) ? [] : ["faction"]), ...s.players[other(p)].play.filter((iid) => q.active(iid) && q.is(iid, "location"))] : [];
   return { deploy, abilities, flipUp, attackers, targets, canEndTurn: main, canPass: !main };
+}
+
+function countIds(ids: string[]): Record<string, number> {
+  const out: Record<string, number> = {};
+  for (const id of ids) out[id] = (out[id] ?? 0) + 1;
+  return out;
 }
