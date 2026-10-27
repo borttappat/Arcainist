@@ -12,10 +12,13 @@ When sources disagree, the higher entry wins:
 
 1. **The card.** "If a card contradicts the rules, the card is always right."
 2. **User rulings** (section 13). Authoritative where no official text exists.
-3. **`RULES.pdf`**: 2016 Deckade of Decadence Official Rule Book (quick start).
-4. **`RULES.txt`**: Rulebook v2.2 (Tenacious Games). Older, but more detailed on
-   triggers, replacements, requirements, numbers and loops; used wherever the
-   2016 book is silent.
+3. **The 2016 Deckade of Decadence Official Rule Book** (quick start).
+4. **Rulebook v2.2** (Tenacious Games). Older, but more detailed on triggers,
+   replacements, requirements, numbers and loops; used wherever the 2016 book is
+   silent.
+
+The rulebooks are not part of this repository: they belong to the game's rights
+holders. This spec restates what the engine implements.
 
 The 2016 book defers to a "Comprehensive Rules" document that is not available.
 
