@@ -44,6 +44,8 @@ interface Seat {
   open?: boolean;
   /** When the seated player's last connection closed (absent while connected). */
   disconnectedSince?: number;
+  /** The player left the finished game: no reconnecting to it. */
+  left?: boolean;
 }
 
 /** Limits for a server open to strangers: rooms live in memory. */
@@ -198,12 +200,26 @@ function leave(room: Room, user: User, openSeat = false): void {
     room.game.log(`${display(user)} gives up their seat. A spectator can take it over.`);
     return;
   }
-  if (room.game && room.game.s.phase !== "ended") room.game.act(seat, { type: "concede" });
-  if (!room.game) delete room.seats[seat];
-  if (!room.seats.A && !room.seats.B) rooms.delete(room.id);
-  else if (room.game && room.game.s.phase === "ended") {
-    // Keep finished games around briefly so the other player can see the result.
-    room.touched = Date.now();
+  if (room.game.s.phase !== "ended") room.game.act(seat, { type: "concede" });
+  // The other player still sees the result until they leave too.
+  room.seats[seat]!.left = true;
+  room.touched = Date.now();
+  closeIfOver(room);
+}
+
+/** A finished game closes once none of its players is still in the room. */
+function closeIfOver(room: Room): void {
+  if (room.game?.s.phase !== "ended") return;
+  const here = (["A", "B"] as PlayerId[]).some((p) => {
+    const st = room.seats[p];
+    return st && !st.left && connected(room, st.user.id);
+  });
+  if (here) return;
+  rooms.delete(room.id);
+  for (const [ws, c] of clients) {
+    if (c.room !== room.id) continue;
+    c.room = null;
+    send(ws, { t: "left" });
   }
 }
 
@@ -219,7 +235,7 @@ function handle(ws: WebSocket, msg: any): void {
     // Reconnect to a room this identity is seated in, or owns before its game starts.
     for (const room of rooms.values()) {
       const seat = seatOf(room, c.user);
-      if (seat || (!room.game && room.owner.id === c.user.id)) {
+      if ((seat && !room.seats[seat]!.left) || (!room.game && room.owner.id === c.user.id)) {
         c.room = room.id;
         if (seat) delete room.seats[seat]!.disconnectedSince;
         pushRoom(room);
@@ -251,7 +267,10 @@ function handle(ws: WebSocket, msg: any): void {
       const room = rooms.get(msg.room);
       if (!room) throw new GameError("That room no longer exists.");
       const mySeat = seatOf(room, user);
-      if (mySeat) delete room.seats[mySeat]!.disconnectedSince;
+      if (mySeat) {
+        delete room.seats[mySeat]!.disconnectedSince;
+        delete room.seats[mySeat]!.left;
+      }
       else if ((["A", "B"] as PlayerId[]).some((p) => room.seats[p]?.open && room.seats[p]!.user.id === user.id)) {
         // You gave this seat up: you come back as a spectator and can take it again.
       } else {
@@ -452,7 +471,8 @@ wss.on("connection", (ws) => {
     // Presence: a seated player whose last connection closed starts the disconnect clock.
     const seat = seatOf(room, c.user);
     if (seat && !connected(room, c.user.id)) room.seats[seat]!.disconnectedSince = Date.now();
-    pushRoom(room);
+    closeIfOver(room);
+    if (rooms.has(room.id)) pushRoom(room);
     broadcastLobby();
   });
 });
