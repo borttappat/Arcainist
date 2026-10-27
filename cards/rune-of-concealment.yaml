@@ -20,7 +20,7 @@ rules:
         - create_effect:
             duration: turn
             rules:
-              - replace: { event: destroy, card: c, cause: damage, optional: true, while: { in_play: self }, prompt: "Destroy Rune of Concealment instead (its damage is removed)" }
+              - replace: { event: destroy, card: c, cause: damage, battle: true, optional: true, while: { in_play: self }, prompt: "Destroy Rune of Concealment instead (its damage is removed)" }
                 instead:
                   - destroy: self
                   - heal: { card: it, all: true }

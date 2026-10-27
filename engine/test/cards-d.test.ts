@@ -1939,4 +1939,67 @@ describe("cards: D onwards", () => {
     expect(g.s.cards[t].faceDown).toBe(true);
     expect(g.s.log.some((l) => l.text.includes("puts Arcane Research into play as a face-down resource"))).toBe(true);
   });
+
+  it("Draconarius Slitherform: X is the strength it had when destroyed, gear included", () => {
+    const { g, p, o } = setup();
+    put(g, o, "fired-hand", "play");
+    const d = put(g, p, "draconarius-slitherform", "play");
+    const sword = put(g, p, "heavy-sword", "play");
+    g.s.cards[sword].attachedTo = d;
+    expect(g.q.stat(d, "str")).toBe(g.q.printed(d, "str") + 2);
+    g.destroy(d, "effect");
+    settle(g);
+    const pend = expectPending(g, "assign", p);
+    expect(pend.total).toBe(g.q.printed(d, "str") + 2);
+  });
+
+  it("Goutflame Talonclaw: removed from the game, it flips face-down instead", () => {
+    const { g, p } = setup();
+    const t = put(g, p, "goutflame-talonclaw", "play");
+    g.move(t, "void");
+    expect(g.s.cards[t].zone).toBe("play");
+    expect(g.s.cards[t].faceDown).toBe(true);
+  });
+
+  it("Cicibeo, The Implicator: only another cicibeo deployed from hand triggers it", () => {
+    const { g, p } = setup();
+    resources(g, p, "deception", 4);
+    const imp = put(g, p, "cicibeo-the-implicator", "play");
+    const swift = put(g, p, "cicibeo-the-swift", "play");
+    const fired = (deployedFrom?: string) => (g as any).triggersFor({ e: "enters_play", iid: swift, player: p, deployedFrom }).filter((t: any) => t.iid === imp).length;
+    expect(fired("hand")).toBe(1);
+    expect(fired("discard")).toBe(0);
+    expect(fired(undefined)).toBe(0);
+  });
+
+  it("Venomous Sacspider: only battle damage destroying it makes the opponent discard", () => {
+    for (const battle of [false, true]) {
+      const { g, p, o } = setup();
+      const spider = put(g, p, "venomous-sacspider", "play");
+      for (let i = 0; i < 3; i++) put(g, o, "fired-hand", "hand");
+      const src = put(g, o, "fired-hand", "play");
+      g.inflict(spider, 10, battle, [src]);
+      settle(g);
+      expect(g.s.cards[spider].zone).toBe("discard");
+      expect(g.s.players[o].hand.length).toBe(battle ? 0 : 3);
+    }
+  });
+
+  it("Stuttershy: flipped face-down by any effect, its rule still happens", () => {
+    const { g, p, o } = setup();
+    const st = put(g, p, "stuttershy", "play");
+    const before = g.s.players[o].influence;
+    g.flipFaceDown(st, p);
+    settle(g);
+    expect(g.s.players[o].influence).toBe(before + 1);
+  });
+
+  it("Corrosive Waste Dispenser: flips face-down whenever its last token goes", () => {
+    const { g, p } = setup();
+    const cw = put(g, p, "corrosive-waste-dispenser", "play");
+    g.s.cards[cw].tokens = 1;
+    g.setTokens(cw, 0);
+    settle(g);
+    expect(g.s.cards[cw].faceDown).toBe(true);
+  });
 });

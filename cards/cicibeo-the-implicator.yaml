@@ -28,7 +28,7 @@ rules:
         - if:
             cond: { all: [ { defined: rev }, { matches: [ rev, { character: { zone: deck } } ] } ] }
             then: [ take_control: { card: c, who: you, duration: turn } ]
-  - trigger: { on: enters_play, card: { character: { subtype: cicibeo, controller: you, not_self: true } }, requires: { deception: 4 } }
+  - trigger: { on: enters_play, card: { character: { subtype: cicibeo, controller: you, not_self: true } }, deployed_from: hand, requires: { deception: 4 } }
     effect:
       - pick: { as: d, from: { character: { depleted: true } }, optional: true }
       - if:

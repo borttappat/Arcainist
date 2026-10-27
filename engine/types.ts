@@ -108,6 +108,8 @@ export interface CardInst {
   attachedTo: string | null;
   /** The card it was attached to when it last left play ("when this card leaves play, the attached item..."). */
   lastHost?: string;
+  /** Its stats, modifiers included, at the moment it last left play ("when destroyed, X is its strength"). */
+  lastStats?: { str: number; life: number; spd: number };
   depleted: boolean;
   damage: number;
   markers: number;
@@ -120,6 +122,8 @@ export interface CardInst {
   knownTo?: PlayerId[];
   /** Controller of the card that last inflicted damage to this card (who destroyed it). */
   hitBy?: PlayerId;
+  /** The last damage to this card was battle damage ("destroyed by battle damage"). */
+  hitInBattle?: boolean;
   /** An optional destroy replacement is waiting on its owner's answer. */
   replacing?: boolean;
   /** Source iids that put this card where it is (for "removed by this card"). */
@@ -182,6 +186,8 @@ export interface Ctx {
   free?: boolean;
   ignoreThreshold?: boolean;
   via?: "flip_up" | "normal" | "effect";
+  /** Zone the deployed card came from ("if it was deployed from your hand"). */
+  from?: Zone;
   /** Stack item this was deployed in response to. */
   responding?: string;
   /** Result of the last optional step ("If you do"). */

@@ -459,6 +459,11 @@ are only available while the engine is not waiting on the opponent.
 13. **"This card inflicts damage"** covers any damage the card inflicts, through its
     own rules text as well as in battle (Sadistic Colonel's trigger damage sets off
     an attached Dethmurderbludgeon).
+14. **Stats read when something happens** ("X is its strength") are current stats,
+    modifiers included, never printed ones unless the card says "printed". A card
+    that has left play uses the stats it had as it left. (2026-10-27)
+15. **Unique** applies per controller: you can't control two cards with the same
+    UNIQUE line, but your opponent may control their own. (2026-10-27)
 
 ### Assumptions (still unconfirmed)
 

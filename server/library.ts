@@ -39,6 +39,7 @@ export const EVENTS = new Set([
   "played", "ability_used", "enters_play", "leaves_play", "destroyed", "attacks", "blocks", "blocked", "damage",
   "influence_lost", "start_of_turn", "end_of_turn", "draw", "picked", "discarded",
   "restored", "depleted", "moved", "battle_end", "coin_flipped", "party_formed", "search",
+  "flipped_down", "tokens_changed",
 ]);
 
 /**

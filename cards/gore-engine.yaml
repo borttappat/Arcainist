@@ -14,8 +14,7 @@ text: |
 rules:
   - trigger: { on: destroyed, card: { character: { damaged_by: self } }, player: any }
     effect:
-      # Out of play its current strength is gone; its printed strength is used.
-      - tokens: { card: self, add: { printed: [ it, str ] } }
+      - tokens: { card: self, add: { last_known: [ it, str ] } }
   - static:
       mods: [ { stat: { str: { tokens: self } } } ]
   - ability:

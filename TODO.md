@@ -210,8 +210,8 @@ Where things stand and what's left. Update this as work lands.
   Mau, Clockman Skydocks, Counter-Attack, Emergency Obfuscation, Geiseric the
   Souleater, God's Autograph, Mustache Aficionado, Notion Sickness, Phantasmagoric
   Tollbooth (twelfth session).
-- [ ] Gear bonuses: the database has no gear stats. Read "The attached character
-  gains N strength..." from each gear card's text into `gear` in its JSON.
+- [x] Gear bonuses: every gear card that gives a stat bonus has it, as `gear` in its
+  JSON or as a static rule on its host.
 - [x] **Coverage test** (`engine/test/smoke.test.ts`): fails if a non-faction card
   with rules text lacks `rules`.
 - [ ] Re-run `npm run patterns` after each batch to track progress.

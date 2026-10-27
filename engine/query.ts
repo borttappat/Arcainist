@@ -651,6 +651,14 @@ export class Q {
       const r = this.ref(x.threshold, scope);
       return r ? Object.values(this.def(r).threshold ?? {}).reduce((n: number, v) => n + (v ?? 0), 0) : 0;
     }
+    if ("last_known" in x) {
+      // Current stat in play; once it has left play, the stat it had as it left.
+      const [ref, st] = x.last_known;
+      const r = this.ref(ref, scope);
+      if (!r) return 0;
+      if (this.inPlay(r)) return this.stat(r, st);
+      return this.card(r).lastStats?.[st as "str" | "life" | "spd"] ?? this.printed(r, st);
+    }
     if ("printed" in x) {
       const [ref, st] = x.printed;
       const r = this.ref(ref, scope);

@@ -16,5 +16,4 @@ rules:
       - divide_damage: { amount: { stat: [ self, str ] }, from: { character: { blocking: true } } }
   - trigger: { on: destroyed, card: self }
     effect:
-      # Out of play its current strength is gone; its printed strength is used.
-      - divide_damage: { amount: { printed: [ self, str ] }, from: { character: { controller: opponent } } }
+      - divide_damage: { amount: { last_known: [ self, str ] }, from: { character: { controller: opponent } } }

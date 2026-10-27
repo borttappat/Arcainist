@@ -16,7 +16,7 @@ rules:
   - play:
       cost:
         - discard: { count: 1, filter: { card: { trade: rogue, not_type: resource } } }
-  - trigger: { on: enters_play, card: { card: { subtype: cicibeo, controller: you, not_self: true } }, requires: { deception: 6 } }
+  - trigger: { on: enters_play, card: { card: { subtype: cicibeo, controller: you, not_self: true } }, deployed_from: hand, requires: { deception: 6 } }
     effect:
       - pick: { as: c, from: { character: any }, optional: true }
       - if:

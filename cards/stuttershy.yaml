@@ -9,11 +9,10 @@ text: |
   If this card would be destroyed, flip it face-down under its owner's control instead.
   When this card is flipped down, each opponent's faction gains 1 influence and you may put a Micromajig token into play under your control for each influence gained this way.
 rules:
-  # Its own replacement is the only way it is flipped down here, so the
-  # "when flipped down" rule runs as part of it.
   - replace: { event: destroy, card: self }
-    instead:
-      - flip_face_down: { card: self, controller: owner }
+    instead: [ flip_face_down: { card: self, controller: owner } ]
+  - trigger: { on: flipped_down, card: self }
+    effect:
       - gain_influence: { who: opponent, amount: 1 }
       - may:
           prompt: "put a Micromajig token into play under your control"

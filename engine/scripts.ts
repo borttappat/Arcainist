@@ -297,12 +297,12 @@ export const SCRIPTS: Record<string, Script> = {
       const plan = (task.answer?.assign ?? {}) as Record<string, number>;
       for (const [iid, n] of Object.entries(plan)) {
         const take = Math.min(n, s.cards[iid].tokens, left);
-        s.cards[iid].tokens -= take;
+        g.setTokens(iid, s.cards[iid].tokens - take);
         left -= take;
       }
       for (const iid of holders()) {
         const take = Math.min(left, s.cards[iid].tokens);
-        s.cards[iid].tokens -= take;
+        g.setTokens(iid, s.cards[iid].tokens - take);
         left -= take;
       }
       g.log(`Voidal Poisoning: ${choice.label}.`);

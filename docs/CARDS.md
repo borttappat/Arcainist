@@ -165,9 +165,10 @@ Trigger filters, all optional:
 | `player: you \| opponent \| any` | Whose event it is ("at the start of your turn"). |
 | `source: <selector>` | For `damage` events: what inflicted it. |
 | `faction: true` | For `damage` events: damage to a faction. |
-| `battle: true` | Battle damage only. |
+| `battle: true` | Battle damage only. On `destroyed` (and destroy replacements): destroyed by battle damage, the last damage it took being from a battle's damage step. |
 | `zone: discard` | Where the card must be for the trigger to work (default: in play). |
 | `requires: { greed: 2 }` | Threshold icons printed next to the text. |
+| `deployed_from: hand` | For `enters_play`: the card was deployed (not put into play by an effect) from that zone ("if it was deployed from your hand"). |
 | `while: <condition>` | Only while the condition holds. |
 
 "When this card is destroyed / leaves play" works: with `card: self` the engine
@@ -207,10 +208,11 @@ Static rules are only active while the card is face-up in play, or in `zone` (`h
 | `faction_damage` | Damage to a faction (`by: you`, `to: opponent`, `label`). The controller chooses how much is replaced. `amount` and `player` are set (Trickster's Globe). |
 | `discard` | A card would be discarded from a hand (Arcane Escrow: "if you would discard a card, you may put it in the void face-down instead"). |
 | `to_hand` | A card would be put into a hand from play (Geiseric: "if a character would be put into an opponent's hand from play, you may pay 1"). Tokens are skipped; they go to the void anyway. |
+| `to_void` | A card would be removed from the game (put into the void) from play (Goutflame Talonclaw). Tokens are skipped. |
 | `enter_play` | A card would enter play: deployed, or put into play by an effect (Phantasmagoric Tollbooth). When a deployed card doesn't enter, the rest of its effect is skipped. |
 | `develop_draw` | Each card the Develop Rule would draw may instead be a card matching `choose_from`, put into its owner's hand; the player picks card by card (Arcane Escrow, `choose_from: { card: { zone: void, tagged_by: self } }`). No `instead`. |
 
-`discard`, `to_hand` and `enter_play` share these fields: `card` (a selector for the
+`discard`, `to_hand`, `to_void` and `enter_play` share these fields (plus `always: true` for a replacement that isn't optional, so nobody is asked): `card` (a selector for the
 card), `player` (whom it happens to: the discarding player, the owner of the card going
 to hand, or the player it would enter play under; `you` or `opponent`), `requires`
 (icons), `who` (who decides; default the replacing card's controller; `player` names
@@ -443,6 +445,7 @@ Type keys: `character`, `item`, `location`, `tactic`, `resource`, `faction`, or
 | `{ different_trades: you }` | Different trades among face-up cards you control, staple resources included (Wary Reunion) |
 | `{ hand_size: opponent }` | |
 | `{ printed: [ c, str ] }` | A card's printed stat |
+| `{ last_known: [ c, str ] }` | Its current stat in play; after it left play, the stat it had (modifiers included) as it left. For "when destroyed, X is its strength". |
 | `{ threshold: c }` | Total icons in a card's threshold |
 | `{ influence: you }` | A player's influence |
 | `{ len: list }` | Size of a list variable |
@@ -545,6 +548,14 @@ apply before reductions, and numbers never go below 0.
 `blocks`, `blocked` (each attacker, when blockers are declared), `damage`,
 `influence_lost`, `start_of_turn`, `end_of_turn`, `draw`, `picked`, `discarded`.
 
+`tokens_changed`: the number of tokens on a card in play changed through an effect
+or cost (not a manual change). With `while`, for "when this card has no tokens on
+it" (Corrosive Waste Dispenser).
+
+`flipped_down`: a card in play was flipped face-down, by any effect, replacement or
+manual flip. With `card: self` the card still triggers although it is face-down
+(Stuttershy); `player` is who controlled it before the flip.
+
 `discarded` takes `by: opponent` for "when an effect controlled by an opponent causes
 you to discard" (Phalludrix); `it` is the discarded card.
 
@@ -615,21 +626,25 @@ holds the most recent wordings. All cards match it.
 
 **Interpretations:** places where the printed text left room, and the reading
 implemented. Mistaken Identity only offers characters the original card could have
-picked. Trickster's Globe, Ecto-Conduit, Hidden Sandwich, Auction House and the rows
-marked "Confirmed" are user rulings; the rest are still open.
+picked. Every row is a user ruling (all confirmed 2026-10-27).
+
+**General ruling:** when a card reads a stat because something happens ("X is its
+strength"), it uses the current stat, modifiers included, not the printed one. A card
+that has left play uses the stat it had as it left (`last_known`). Only a card that
+says "printed" (Fornicaves) reads printed numbers.
 
 | Card | Implemented as |
 |---|---|
 | Trickster's Globe | The controller chooses how many points of the damage become milled cards instead (0 to all). |
 | Ecto-Conduit (Harness) | The voided tactic may be deployed immediately, not later. |
 | Eldridge Gosche | Up to 3 tokens divided among any of your non-resource cards. |
-| Cantankerous Claywork | Confirmed: only characters already in play when it attacks. |
+| Cantankerous Claywork | only characters already in play when it attacks. |
 | Auction House | If nobody bids, the character is shuffled back with the other revealed cards. |
 | Free Trade Agreement (option 3) | Each player chooses how many cards (0 to 2) to draw. |
-| Meat of the Mountain | Confirmed: an effect needs a real token change; "remove" isn't offered at 0 tokens. |
-| One-Legged Hopping Pogo-Bear | Confirmed: HIDE! removes the character type but the card keeps Covert. |
+| Meat of the Mountain | an effect needs a real token change; "remove" isn't offered at 0 tokens. |
+| One-Legged Hopping Pogo-Bear | HIDE! removes the character type but the card keeps Covert. |
 | Hidden Sandwich | Protects the host from any destruction, including costs. |
-| Quotidian Misfire | Confirmed: every card going to a hand, drawn, searched or returned. |
+| Quotidian Misfire | every card going to a hand, drawn, searched or returned. |
 | Two-Headed Coin | Not automated: coins are only flipped at setup. |
 | Lost on Floor 3 | Playable whenever you have priority after declaring the end of your turn. |
 | 6r4wny 60dy9u4rd5 | "Leaves play in that way instead" covers destruction only; other ways of leaving play aren't redirected. |
@@ -637,24 +652,24 @@ marked "Confirmed" are user rulings; the rest are still open.
 | Akashic Notes | "Play a face-down resource attached to your faction": choose a card from hand; it enters face-down and attached. |
 | Bewilderbeast | Gains 1 strength and 1 life per card discarded, one trigger per card. |
 | Carnival Funhouse | Swaps printed stats; each character keeps its own other modifiers. |
-| Cicibeo the Implicator / the Swift | "If it was deployed from your hand" isn't checked: any other cicibeo entering play under your control counts. |
+| Cicibeo the Implicator / the Swift | Only another cicibeo deployed from your hand (`deployed_from: hand`) counts, not one put into play by an effect. |
 | Community Chest | The mulligan clause (reveal it to draw at the start of your turn) is resolved by hand. |
-| Corrosive Waste Dispenser | Flips face-down when Convert removes its last token (the only way it loses tokens). |
+| Corrosive Waste Dispenser | Flips face-down whenever an effect or cost removes its last token (`tokens_changed`). |
 | Department of Rejections | The search tax is paid when the search resolves; if it can't be paid, there is no search. |
-| Draconarius Slitherform | "When destroyed, X is this card's strength": its printed strength. |
+| Draconarius Slitherform | "When destroyed, X is this card's strength": its strength as it was destroyed, modifiers included. |
 | Downsizing | X counts the characters in play before the destruction, including any that a replacement saves. |
 | Essence of Deception (option 3) | "Damage has been inflicted this turn": the character has damage on it. |
 | Direstock Stronghold | "When you deploy a character" triggers when it is deployed (put on the stack). |
-| Goutflame Talonclaw | Only "would be destroyed" flips it face-down; "removed from the game" is not replaced. |
+| Goutflame Talonclaw | Destroyed or removed from the game, it flips face-down instead (`to_void`). |
 | Golden Charm | The draw happens when the search starts, before the searching player chooses. |
 | Gideon's Legacy (Hide) | Any card in a discard pile; the players other than that card's owner gain X influence. |
-| Gore Engine | Tokens equal to the destroyed character's printed strength. |
+| Gore Engine | Tokens equal to the destroyed character's strength as it was destroyed, modifiers included. |
 | Flaming Cube, Framptle | Their token counts are checked right after the rules that change them. |
-| Fornicaves | Confirmed: two in play both apply, so every character with printed life 4 or more is destroyed. |
+| Fornicaves | two in play both apply, so every character with printed life 4 or more is destroyed. |
 | Rudo Mangod, Dragonweight Champion | The characters it depletes can't be restored by the RESTORE RULE for the rest of the game (other effects still restore them). |
-| Rune of Concealment | "Destroyed by battle damage" is read as destroyed by any damage. |
+| Rune of Concealment | Only destruction by battle damage (the last damage came from a battle's damage step). |
 | Reality Shift | You deploy the returned cards (or any other cards in your hand) one at a time, each costing nothing, while their numeric costs fit in what is left of X. |
-| Stuttershy | "When this card is flipped down" only follows its own replacement (the engine has no flip-down event). |
+| Stuttershy | "When this card is flipped down": any flip by an effect or replacement (`flipped_down`); manual flips don't fire triggers. |
 | Swinish Elder | "When an opponent plays a resource": any resource entering play under an opponent. |
 | Subsection 5, Paragraph 12 | "It cannot be used again this turn": none of that card's abilities can be used this turn. |
 | The Stone of Shame | A character that would go to a hand (from anywhere, including draws) goes to its owner's discard pile instead; this isn't a destruction, so "when destroyed" doesn't trigger. |
@@ -667,7 +682,7 @@ marked "Confirmed" are user rulings; the rest are still open.
 | Underhanded Gamer | "Cannot be blocked by those players": it can't be blocked this turn. |
 | Unstable Modification | The chosen text applies to the character it is attached to when the choice is made. |
 | Unwise Encirclement | Listed as a character with no stats, though its text reads like a tactic. Its effect runs when deployed; afterwards it is destroyed with 0 life. To verify. |
-| Venomous Sacspider | "Destroyed by battle damage": destroyed by damage during a battle. |
+| Venomous Sacspider | "Destroyed by battle damage": the last damage came from a battle's damage step, not a tactic played during the battle. |
 | Vast Mastabatorium | Each use adds its own end-of-turn token and control change. |
 | Voidal Tactician | Tactics in either player's void. |
 | Wasteland | "Void all non-resource cards" includes itself, but not factions. |
@@ -683,6 +698,6 @@ marked "Confirmed" are user rulings; the rest are still open.
 | Mustache Aficionado | The players divide and choose one after the other; the piles stay hidden until both are chosen. |
 | Notion Sickness | The card is destroyed right after the ability goes on the stack; the ability still resolves. |
 | Phantasmagoric Tollbooth | The player whose character it is decides whether to pay. A deployed character that goes to the discard pile skips the rest of its effect. Moving from the stack to a discard pile now counts as "put into their discard pile from anywhere". |
-| Crests and Banners | Confirmed: "When a card that provides at least [R] enters play under your control" doesn't count the Crest or Banner itself entering play (`not_self`). |
-| FLIP UP payment | Confirmed: an unattached face-down card pays 1 of its own FLIP UP cost (it is attached to pay, then flips up). An attached one doesn't. |
-| Limited Liability | Confirmed: it also stops the unique rule, so duplicates (several Gideons) stay in play that turn. When it ends, the unique rule applies again and their controller keeps one. |
+| Crests and Banners | "When a card that provides at least [R] enters play under your control" doesn't count the Crest or Banner itself entering play (`not_self`). |
+| FLIP UP payment | an unattached face-down card pays 1 of its own FLIP UP cost (it is attached to pay, then flips up). An attached one doesn't. |
+| Limited Liability | it also stops the unique rule, so duplicates (several Gideons) stay in play that turn. When it ends, the unique rule applies again and their controller keeps one. |

@@ -8,5 +8,5 @@ rarity: rare
 text: |
   When this card is destroyed by battle damage, an opponent discards their hand.
 rules:
-  - trigger: { on: destroyed, card: self, cause: damage, while: { in_battle: true } }
+  - trigger: { on: destroyed, card: self, cause: damage, battle: true }
     effect: [ discard: { who: opponent, count: { hand_size: opponent } } ]

@@ -766,6 +766,7 @@ export class Game {
     const ctx = this.newCtx(p, iid);
     ctx.responding = task.responding;
     ctx.via = task.flipUp ? "flip_up" : task.viaEffect ? "effect" : "normal";
+    ctx.from = c.zone;
     ctx.free = !!task.free;
     const grant = c.zone !== "hand" ? this.q.playGrant(iid, p) : null;
     ctx.ignoreThreshold = !!task.ignoreThreshold || !!grant?.ignoreThreshold;
@@ -1068,10 +1069,11 @@ export class Game {
     const q = this.q;
     for (const c of Object.values(this.s.cards)) {
       // "When this card is destroyed / leaves play": it has already left, so look back.
-      const lookback = (ev.e === "destroyed" || ev.e === "leaves_play") && ev.iid === c.iid;
+      // "When this card is flipped down": face-down, it has no text either.
+      const lookback = (ev.e === "destroyed" || ev.e === "leaves_play" || ev.e === "flipped_down") && ev.iid === c.iid;
       // "When the attached character leaves play": the attachment looks back too.
       const hostLeft = ev.e === "leaves_play" && (ev.attached ?? []).includes(c.iid);
-      const rules = c.zone === "play" ? q.rules(c.iid) : q.baseRules(c.iid);
+      const rules = c.zone === "play" && !lookback ? q.rules(c.iid) : q.baseRules(c.iid);
       for (const r of rules) {
         if (!r.trigger) continue;
         const zone = r.trigger.zone ?? "play";
@@ -1122,6 +1124,8 @@ export class Game {
         if (r.from !== undefined && ev.from !== r.from) continue;
         if (r.to !== undefined && ev.to !== r.to) continue;
         if (r.side !== undefined && ev.side !== r.side) continue;
+        // "if it was deployed from your hand": deployed_from: hand
+        if (r.deployed_from !== undefined && ev.deployedFrom !== r.deployed_from) continue;
         // "a character with a token on it leaves play": had_tokens: true
         if (r.had_tokens !== undefined && (ev.tokens ?? 0) > 0 !== !!r.had_tokens) continue;
         // "destroyed by an opposing card": by: opponent | you
@@ -1810,6 +1814,7 @@ export class Game {
 
   flipFaceDown(iid: string, ctl: PlayerId): void {
     const c = this.s.cards[iid];
+    const was = c.controller;
     this.log(`${this.q.name(iid)} is flipped face-down as a resource under ${this.pname(ctl)}'s control.`);
     this.leavePlayCleanup(iid);
     for (const a of this.q.attachments(iid)) this.destroy(a, "rule");
@@ -1820,6 +1825,7 @@ export class Game {
     c.tokens = 0;
     this.relist(iid, ctl);
     c.controlSince = this.s.turn;
+    this.emit({ e: "flipped_down", iid, player: was });
   }
 
   /** Put a card into play: { card, controller, as: face_down_resource|resource, attach_to } */
@@ -1919,18 +1925,30 @@ export class Game {
     return "ok";
   }
 
+  /** Change the tokens on a card, raising `tokens_changed` ("when this card has no tokens on it"). */
+  setTokens(iid: string, n: number): void {
+    const c = this.s.cards[iid];
+    n = Math.max(0, n);
+    if (c.tokens === n) return;
+    c.tokens = n;
+    if (c.zone === "play") this.emit({ e: "tokens_changed", iid, player: c.controller });
+  }
+
   /** Tokens: { card, add, remove (number or "all"), set, as } */
   protected op_tokens(arg: any, ctx: Ctx, task: Task): StepResult {
     for (const iid of this.refs(ctx, arg.card ?? "self")) {
       const c = this.s.cards[iid];
+      const before = c.tokens;
+      let n = c.tokens;
       if (arg.remove !== undefined) {
-        const n = arg.remove === "all" ? c.tokens : this.num(ctx, arg.remove);
-        if (c.tokens < n && task.phase === "cost") return "fail";
-        if (arg.as) this.root(ctx).vars[arg.as] = Math.min(n, c.tokens);
-        c.tokens = Math.max(0, c.tokens - n);
+        const k = arg.remove === "all" ? n : this.num(ctx, arg.remove);
+        if (n < k && task.phase === "cost") return "fail";
+        if (arg.as) this.root(ctx).vars[arg.as] = Math.min(k, n);
+        n = Math.max(0, n - k);
       }
-      if (arg.add !== undefined) c.tokens += this.num(ctx, arg.add);
-      if (arg.set !== undefined) c.tokens = this.num(ctx, arg.set);
+      if (arg.add !== undefined) n += this.num(ctx, arg.add);
+      if (arg.set !== undefined) n = this.num(ctx, arg.set);
+      if (n !== before) this.setTokens(iid, n);
     }
     return "ok";
   }
@@ -1938,7 +1956,7 @@ export class Game {
   /** Put up to N tokens divided among chosen cards: { total, from } */
   protected op_distribute_tokens(arg: any, ctx: Ctx, task: Task): StepResult {
     if (task.answer) {
-      for (const [iid, n] of Object.entries(task.answer.assign as Record<string, number>)) this.s.cards[iid].tokens += n;
+      for (const [iid, n] of Object.entries(task.answer.assign as Record<string, number>)) this.setTokens(iid, this.s.cards[iid].tokens + n);
       return "ok";
     }
     const cands = this.q.find(arg.from, this.scope(ctx));
@@ -2900,7 +2918,11 @@ export class Game {
     // "If a character would be put into an opponent's hand from play, you may pay 1. If
     // you do, remove it from the game ... instead" (Geiseric, the Souleater).
     if (from === "play" && zone === "hand" && !opts.noReplace && !this.lib[c.defId].token && this.askReplacement("to_hand", iid, c.owner, { move: "hand" })) return;
+    // "If this card would be removed from the game, flip it face-down instead" (Goutflame Talonclaw).
+    if (from === "play" && zone === "void" && !opts.noReplace && !this.lib[c.defId].token && this.askReplacement("to_void", iid, c.owner, { move: "void" })) return;
     const wasInPlay = from === "play";
+    // Read while it is still in play, so its modifiers count.
+    if (wasInPlay && zone !== "play") c.lastStats = { str: this.q.stat(iid, "str"), life: this.q.stat(iid, "life"), spd: this.q.stat(iid, "spd") };
     // Tokens that would leave play are removed from the game instead.
     if (wasInPlay && zone !== "play" && this.lib[c.defId].token) zone = "void";
     const attached = wasInPlay ? this.q.attachments(iid) : [];
@@ -2983,6 +3005,7 @@ export class Game {
     const c = this.s.cards[iid];
     c.damage = 0;
     c.hitBy = undefined;
+    c.hitInBattle = undefined;
     c.depleted = false;
     for (const e of this.s.effects) {
       for (const m of e.mods ?? []) if (m.target?.iids) m.target.iids = m.target.iids.filter((i: string) => i !== iid);
@@ -3016,7 +3039,7 @@ export class Game {
       c.tokens = Math.max(0, this.q.value(def.enters_with_tokens, scope));
     }
     this.log(`${def.name} enters play under ${this.pname(ctl)}'s control${c.attachedTo ? `, attached to ${this.q.name(c.attachedTo)}` : ""}.`);
-    this.emit({ e: "enters_play", iid, player: ctl });
+    this.emit({ e: "enters_play", iid, player: ctl, deployedFrom: opts.deployed ? opts.ctx?.from : undefined });
   }
 
   putResource(p: PlayerId, iid: string, faceDown: boolean, silent: boolean): void {
@@ -3041,6 +3064,7 @@ export class Game {
     if (!q.inPlay(iid) || q.isFaction(iid)) return false;
     // Waiting on an optional replacement ("its owner may ... instead").
     if (this.s.cards[iid].replacing) return true;
+    const byBattle = cause === "damage" && !!this.s.cards[iid].hitInBattle;
     // "Can only be destroyed by costs" (Limited Liability) also stops the game's rules,
     // such as the unique rule, from destroying the card.
     if (cause !== "cost" && this.destroyProtected(iid)) return false;
@@ -3056,6 +3080,7 @@ export class Game {
         if (r.replace.by !== undefined && (!by || by !== q.who(r.replace.by, scope))) continue;
         // "would be destroyed by battle damage": cause: damage
         if (r.replace.cause !== undefined && r.replace.cause !== cause) continue;
+        if (r.replace.battle !== undefined && !!r.replace.battle !== byBattle) continue;
         // "If there are no tokens on this card and it would be destroyed": while: <condition>
         if (r.replace.while !== undefined && !q.cond(r.replace.while, scope)) continue;
         if (r.replace.optional) {
@@ -3081,7 +3106,7 @@ export class Game {
     }
     const ctl = this.s.cards[iid].controller;
     if (cause === "damage") this.log(`${q.name(iid)} is destroyed.`);
-    this.emit({ e: "destroyed", iid, player: ctl, cause, ...(by ? { by } : {}) });
+    this.emit({ e: "destroyed", iid, player: ctl, cause, battle: byBattle, ...(by ? { by } : {}) });
     // "If something causes a card to leave play, any cards attached to it leave play in
     // the same way": attachments are destroyed too, right after it, so their own
     // replacements apply (Super Shiny Caltrops of DOOM!). They still count as attached
@@ -3118,8 +3143,8 @@ export class Game {
         const unless = rp.unless_pay !== undefined ? q.value(rp.unless_pay, scope) : undefined;
         if (pay !== undefined && q.unattached(asker).length < pay) continue;
         const task: Task = { t: "replaceChoice", iid, zone: this.s.cards[iid].zone, asker, pay, unless, prompt: rp.prompt, instead: r.instead, controller: scope.controller, source: src, vars: scope.vars, fallback };
-        // Nothing to decide: they can't pay to stop it.
-        if (unless !== undefined && q.unattached(asker).length < unless) this.replaceInstead(task);
+        // Nothing to decide: a mandatory replacement, or they can't pay to stop it.
+        if (rp.always || (unless !== undefined && q.unattached(asker).length < unless)) this.replaceInstead(task);
         else this.push(task);
         return true;
       }
@@ -3275,7 +3300,7 @@ export class Game {
     // "If battle damage would be inflicted to this card, add that many tokens instead" (Expert Debater).
     const asTokens = q.modsFor("damage_as_tokens", iid).find((m) => m.value?.battle === undefined || !!m.value.battle === battle);
     if (asTokens) {
-      this.s.cards[iid].tokens += n;
+      this.setTokens(iid, this.s.cards[iid].tokens + n);
       this.log(`${q.name(iid)} gets ${n} token${n === 1 ? "" : "s"} instead of damage.`);
       return;
     }
@@ -3331,6 +3356,7 @@ export class Game {
     const q = this.q;
     const c = this.s.cards[iid];
     if (sources.length && this.s.cards[sources[0]]) c.hitBy = this.s.cards[sources[0]].controller;
+    c.hitInBattle = battle;
     const hits = ((this.s.turnLog.hits ??= {})[iid] ??= []);
     for (const x of sources) if (!hits.includes(x)) hits.push(x);
     if (q.isCharacter(iid)) c.damage += n;
