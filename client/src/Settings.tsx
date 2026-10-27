@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { CardLibrary } from "../../engine/index.ts";
 import { clearImages, importImages, useCardImages } from "./images.ts";
 import { setSettings, THEMES, useSettings, type ImageMode } from "./prefs.ts";
+import { SourceNote } from "./SourceNote.tsx";
 
 const label = (theme: string) => theme[0].toUpperCase() + theme.slice(1);
 
@@ -63,6 +64,7 @@ export function Settings({ cards, close }: { cards: CardLibrary | null; close: (
           )}
         </div>
         {status && <p className="muted">{status}</p>}
+        <SourceNote />
         <div className="row">
           <span className="spacer" />
           <button className="primary" onClick={close}>

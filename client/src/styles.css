@@ -309,3 +309,5 @@ h1, h2, h3 { margin: 0 0 8px; font-family: Cinzel, serif; font-weight: 700; }
 .tile.has-art .kw, .tile.has-art .notes, .tile.has-art .fd-label { margin: 0 3px; background: #000b; border-radius: 3px; padding: 0 3px; align-self: flex-start; }
 .tile.has-art .dmg, .tile.has-art .tokens, .tile.has-art .tag, .tile.has-art .revealed, .tile.has-art .manual-badge { position: absolute; }
 .preview-art { display: block; width: 100%; max-height: 45vh; object-fit: contain; border-radius: 10px; margin-bottom: 8px; }
+.source-note { font-size: 12px; margin: 0; }
+.source-note a { color: inherit; }

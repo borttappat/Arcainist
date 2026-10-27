@@ -2,6 +2,12 @@
   "name": "arcainist",
   "private": true,
   "version": "0.1.0",
+  "description": "Unofficial online client for The Spoils card game",
+  "license": "AGPL-3.0-only",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/borttappat/Arcainist"
+  },
   "type": "module",
   "scripts": {
     "dev": "concurrently -k -n server,client \"npm:dev:server\" \"npm:dev:client\"",

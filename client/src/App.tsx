@@ -3,6 +3,7 @@ import { Board } from "./Board.tsx";
 import { Lobby, savedDeck } from "./Lobby.tsx";
 import { newSecret, savedIdentity, saveIdentity, useNet, type Net } from "./net.ts";
 import { Settings } from "./Settings.tsx";
+import { SourceNote } from "./SourceNote.tsx";
 
 export function App() {
   const [identity, setIdentity] = useState<{ secret: string; name: string } | null>(null);
@@ -220,6 +221,7 @@ function Login({ onLogin }: { onLogin: (id: { secret: string; name: string }) =>
         <button className="link" onClick={() => setImporting(!importing)}>
           {importing ? "Use this browser's identity" : "Use an identity from another device"}
         </button>
+        <SourceNote />
       </div>
     </div>
   );

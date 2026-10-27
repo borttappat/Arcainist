@@ -1,0 +1,25 @@
+Arcainist
+Copyright (C) 2026 the Arcainist contributors
+
+The software in this repository (engine, server, client, tools, tests and the
+card rules written in its card language) is licensed under the GNU Affero
+General Public License, version 3 only. See LICENSE.
+
+Game content
+------------
+
+Arcainist is an unofficial fan project. It is not affiliated with, endorsed by
+or sponsored by Arcane Tinmen, Tenacious Games or any other owner of The Spoils.
+
+"The Spoils" and the names, rules text, flavor text and numbers of its cards are
+the property of their respective owners. They appear in this repository (the
+card files in cards/ and the card names in decks/ and docs/) only so the game
+can be played, for free and non-commercially, and are not covered by the AGPL.
+Forks that redistribute them do so under the same terms.
+
+No card art, rulebooks or other official material is distributed. Players who
+want card images load their own copies into their browser; they are never
+uploaded to the server.
+
+If you hold rights to The Spoils and want any of this content removed, please
+open an issue on the project's repository and it will be taken down.
