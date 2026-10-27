@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["wizard"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 4
+threshold: { obsession: 2 }
+stats: { str: 1, life: 3, spd: 2 }
+
 text: |
   EXTRA COST: You may pick a character.
   When this card enters play, if you picked a character as part of its cost, put that character into its owner's hand.

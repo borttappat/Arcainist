@@ -5,6 +5,11 @@ types: [character]
 subtypes: [mau]
 set: "Seed Saga"
 rarity: rare
+
+cost: 1
+threshold: { greed: 3 }
+stats: { str: 0, life: 1, spd: 3 }
+
 text: |
   UNIQUE MONTGOMERY
   RESURRECT

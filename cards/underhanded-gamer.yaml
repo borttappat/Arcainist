@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["gambler"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 5
+threshold: { deception: 1 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   OUTSMART
   COST: Use this only if an opponent controls more characters than you. Pay 3.

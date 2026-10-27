@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["dragon"]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 4
+threshold: { rage: 1 }
+stats: { str: 4, life: 3, spd: 2 }
+
 text: |
   [R][R][R][R][R][R]: This card gains 1 strength, 1 life and 1 speed.
 rules:

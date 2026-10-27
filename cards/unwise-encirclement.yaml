@@ -4,6 +4,11 @@ trade: warlord
 types: [character]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 1
+threshold: { rage: 2 }
+flip_up: { cost: 5, threshold: { rage: 1 } }
+
 text: |
   EXTRA COST: Pick a character.
   Put a token on the character. If you deployed this card using FLIP UP, put 4 more tokens on the character. Inflict damage to it equal to the number of tokens on it.
@@ -18,4 +23,3 @@ rules:
             cond: { via: flip_up }
             then: [ tokens: { card: c, add: 4 } ]
         - damage: { card: c, amount: { tokens: c } }
-  - flip_up: { pay: 5, threshold: { rage: 1 } }

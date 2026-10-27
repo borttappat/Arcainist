@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["fighter"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 4
+threshold: { rage: 4 }
+stats: { str: 4, life: 4, spd: 3 }
+
 text: |
   When this card is blocked, this turn it gains 4 strength for each member in the opposing party.
 rules:

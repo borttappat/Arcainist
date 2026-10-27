@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Seed Saga"
 rarity: rare
+
+cost: 0
+threshold: { obsession: 3 }
+
 text: |
   EXTRA COST: Deploy this only in response to a tactic being deployed. Pay X, where X is its numeric cost.
   Duplicate the tactic. Terminate the tactic.

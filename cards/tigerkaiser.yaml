@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["kaiser"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 4
+threshold: { elitism: 2 }
+stats: { str: 3, life: 1, spd: 4 }
+
 text: |
   TIGER ROAR
   COST: Pay 2. Deplete this card. Pick a character.

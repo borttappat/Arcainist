@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "2nd Edition"
 rarity: rare
+
+cost: 10
+threshold: { greed: 4 }
+
 text: |
   Destroy all characters. Each opponent's faction gains X influence, where X is the number of characters destroyed this way.
 rules:

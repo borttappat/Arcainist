@@ -4,6 +4,10 @@ trade: rogue
 types: [item]
 set: "2nd Edition"
 rarity: rare
+
+cost: 0
+threshold: { deception: 2 }
+
 text: |
   If you would lose a coin flip, you may shuffle this card into its owner's deck. If you do, reflip that coin and use that result instead and draw a card.
 rules:

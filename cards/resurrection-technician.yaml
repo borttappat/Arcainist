@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["lackey"]
 set: "2nd Edition"
 rarity: common
+
+cost: 5
+threshold: { greed: 2 }
+stats: { str: 2, life: 3, spd: 2 }
+
 text: |
   When this card enters play, you may pick a character in your discard pile. If you do, put it into your hand.
 rules:

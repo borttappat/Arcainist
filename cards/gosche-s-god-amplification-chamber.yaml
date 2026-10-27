@@ -4,6 +4,11 @@ trade: arcanist
 types: [location]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 2
+threshold: { obsession: 1 }
+structure: 2
+
 text: |
   When a character you control with a token on it leaves play, you may look at the top card of your deck. If you do, you may put it on the bottom.
   TRANSITION

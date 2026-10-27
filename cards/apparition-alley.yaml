@@ -4,6 +4,11 @@ trade: rogue
 types: [location]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 3
+threshold: { deception: 2 }
+structure: 3
+
 text: |
   WOOSH
   COST: Deplete this card. Pick a character.

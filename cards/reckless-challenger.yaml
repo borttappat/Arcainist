@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["fighter"]
 set: "2nd Edition"
 rarity: common
+
+cost: 4
+threshold: { rage: 1 }
+stats: { str: 7, life: 1, spd: 3 }
+
 text: |
   At the end of your turn, if this card started the turn under your control and did not attack this turn, destroy it.
 rules:

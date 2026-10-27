@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["31f"]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 3
+threshold: { elitism: 2 }
+stats: { str: 3, life: 3, spd: 2 }
+flip_up: { cost: 2, threshold: { elitism: 2 } }
+
 text: |
   Abilities on locations cannot be used.
   [E][E][E][E][E][E]: Locations opponents control lose 1 structure.
@@ -15,4 +21,3 @@ rules:
   - static:
       requires: { elitism: 6 }
       mods: [ { stat: { structure: -1 }, target: { location: { controller: opponent } } } ]
-  - flip_up: { pay: 2, threshold: { elitism: 2 } }

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["warbeast"]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 5
+threshold: { rage: 1 }
+stats: { str: 0, life: 0, spd: 3 }
+
 text: |
   This card gains 1 strength and 1 life for each [V] you control.
 rules:

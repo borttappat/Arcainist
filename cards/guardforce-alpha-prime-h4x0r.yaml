@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["guardforce", "31f"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 5
+threshold: { elitism: 3 }
+stats: { str: 4, life: 4, spd: 3 }
+
 text: |
   UNIQUE GUARDFORCE ALPHA PRIME H4X0R
   This card can attack even if it has not been in play under your control since the start of the turn.

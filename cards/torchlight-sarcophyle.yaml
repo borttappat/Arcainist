@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["sarcophyle"]
 set: "Holy Heist"
 rarity: common
+
+cost: 6
+threshold: { deception: 1 }
+stats: { str: 4, life: 4, spd: 3 }
+
 text: |
   While a player controls a character with COVERT, this character gains COVERT.
 rules:

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["sorceress"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 1
+threshold: { obsession: 3 }
+stats: { str: 1, life: 1, spd: 1 }
+
 text: |
   UNIQUE HEXTILDA
   TOIL AND TROUBLE

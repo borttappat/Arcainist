@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["hedonist", "sarcophyle"]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 1
+threshold: { deception: 2 }
+stats: { str: 1, life: 1, spd: 4 }
+
 text: |
   When this card enters play, flip a coin. If you win, put a token on this card.
   While there is a token on this card, it gains COVERT.

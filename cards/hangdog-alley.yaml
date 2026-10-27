@@ -4,6 +4,11 @@ trade: rogue
 types: [location]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 3
+threshold: { deception: 1 }
+structure: 2
+
 text: |
   When an attacking party is formed, it must have only 1 member.
 rules:

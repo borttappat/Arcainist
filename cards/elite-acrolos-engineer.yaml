@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["inventor"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 2
+threshold: { elitism: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   This card gains 1 strength and 1 life for each different staple resource you control.
 rules:

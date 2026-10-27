@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["pirate", "mau"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 4
+threshold: { greed: 2 }
+stats: { str: 3, life: 5, spd: 3 }
+
 text: |
   EXTRA COST: Remove 4 cards in your discard pile from the game.
 rules:

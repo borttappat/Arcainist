@@ -4,6 +4,11 @@ trade: warlord
 types: [tactic]
 set: "Holy Heist"
 rarity: common
+
+cost: 3
+threshold: { rage: 1 }
+flip_up: { cost: 4, threshold: { rage: 1 } }
+
 text: |
   EXTRA COST: Pick a player that controls more resources than you.
   That player destroys a face-down resource they control.
@@ -14,4 +19,3 @@ rules:
         - require: { gt: [ { count: { resource: { controller: opponent } } }, { count: { resource: { controller: you } } } ] }
       effect:
         - destroy_resource: { who: opponent, face_down: true }
-  - flip_up: { pay: 4, threshold: { rage: 1 } }

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["sorceress"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 4
+threshold: { rage: 3 }
+stats: { str: 1, life: 3, spd: 3 }
+
 text: |
   UNIQUE ELZIBETH
   REANIMATE

@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Seed Saga"
 rarity: rare
+
+cost: 7
+threshold: { obsession: 5 }
+
 text: |
   X is the total numeric cost of all non-resource cards you control. Put those cards into their owners's hand. You may deploy any number of cards for free with total numeric cost X or less. (You still need to meet their threshold and satisfy their extra costs.)
 rules:

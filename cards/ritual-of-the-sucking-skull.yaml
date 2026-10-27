@@ -4,6 +4,11 @@ trade: arcanist
 types: [tactic]
 set: "Ungodly Mess"
 rarity: rare
+
+cost: 1
+threshold: { obsession: 1 }
+flip_up: { cost: 4, threshold: { obsession: 1 } }
+
 text: |
   EXTRA COST: Deploy this card only in response to a card being deployed using FLIP UP. X is the cards's numeric cost.
   Terminate the card. If you did not deploy this card using FLIP UP, the terminated card's controller may detach up to X resources from their faction.
@@ -23,4 +28,3 @@ rules:
                   steps:
                     - choose_number: { as: N, min: 0, max: X }
                     - detach: { count: N }
-  - flip_up: { pay: 4, threshold: { obsession: 1 } }

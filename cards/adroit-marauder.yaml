@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["pirate"]
 set: "2nd Edition"
 rarity: common
+
+cost: 4
+threshold: { deception: 3 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   While an opponent has at least 10 cards in their discard pile, this card gains 3 strength and 3 life.
 rules:

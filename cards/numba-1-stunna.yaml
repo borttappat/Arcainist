@@ -6,6 +6,12 @@ keywords: [tactical]
 subtypes: ["grifter"]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 3
+threshold: { deception: 1 }
+stats: { str: 1, life: 4, spd: 3 }
+flip_up: { cost: 3, threshold: { deception: 2 } }
+
 text: |
   TACTICAL
   When this card inflicts damage to a character, that character does not restore during its controller's next RESTORE RULE.
@@ -14,4 +20,3 @@ rules:
   - trigger: { on: damage, source: self, card: { character: any } }
     effect:
       - create_effect: { duration: next_restore, who: { controller_of: it }, mods: [ { cannot: restore_by_rule, target: it } ] }
-  - flip_up: { pay: 3, threshold: { deception: 2 } }

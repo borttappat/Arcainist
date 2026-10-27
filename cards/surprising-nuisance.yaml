@@ -4,6 +4,10 @@ trade: gearsmith
 types: [tactic]
 set: "Seed Saga"
 rarity: common
+
+cost: 3
+threshold: { elitism: 1 }
+
 text: |
   Put 2 Micromajig tokens into play.
 rules:

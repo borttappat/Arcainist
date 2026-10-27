@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["31f"]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 1
+threshold: { elitism: 3 }
+stats: { str: 1, life: 1, spd: 1 }
+
 text: |
   RESEARCH
   COST: Deplete this card.

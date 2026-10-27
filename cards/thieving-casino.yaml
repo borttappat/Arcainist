@@ -4,6 +4,11 @@ trade: rogue
 types: [location]
 set: "Holy Heist"
 rarity: rare
+
+cost: 4
+threshold: { deception: 1 }
+structure: 4
+
 text: |
   At the start of your turn, flip a coin. If you win, pick a player and put the top 4 cards of their deck into their discard pile.
   CASH OUT

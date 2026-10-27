@@ -4,6 +4,10 @@ trade: rogue
 types: [item]
 set: "2nd Edition"
 rarity: rare
+
+cost: 0
+threshold: { deception: 2 }
+
 text: |
   This card enters play under an opponent's control.
   At the start of your turn, your faction loses 1 influence.

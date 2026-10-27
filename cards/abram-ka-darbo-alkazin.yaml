@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["pluck", "performer", "blade of questionable morality"]
 set: "Ungodly Mess"
 rarity: super-rare
+
+cost: 3
+threshold: { deception: 4 }
+stats: { str: 1, life: 1, spd: 4 }
+
 text: |
   UNIQUE PLUCK
   FEALTY: While this card is in your hand and you control at least 4 staple resources of different trades, reduce this card's threshold requirement by any 3 resource icons.

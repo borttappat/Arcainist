@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["employee", "mau"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 3
+threshold: { greed: 2 }
+stats: { str: 4, life: 4, spd: 3 }
+
 text: |
   When this card enters play, an opponent draws a card.
 rules:

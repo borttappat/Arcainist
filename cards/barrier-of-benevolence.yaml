@@ -4,6 +4,10 @@ trade: warlord
 types: [tactic]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 0
+threshold: { rage: 2 }
+
 text: |
   EXTRA COST: Choose a number for X. Pay X+X. Pick 2 or fewer characters.
   This turn, the characters gain X strength and X life.

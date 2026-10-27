@@ -4,6 +4,12 @@ trade: none
 types: [faction]
 tournament_legal: false
 set: "Seed 3"
+
+influence: 30
+starting_resources: { any_resources: 1, any_cards_face_down: 1 }
+starting_draw: { first: 10, second: 9 }
+min_deck: 300
+
 text: |
   This card cannot be used in tournament play. (But please, play with it for fun!)
   STARTING RESOURCES: Any 1 resource, Any 1 card (if it's not a resource, put it into play face-down.)

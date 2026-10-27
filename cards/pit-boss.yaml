@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["crimelord"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 2
+threshold: { deception: 1 }
+stats: { str: 2, life: 2, spd: 0 }
+
 text: |
   This card gains 1 speed for each [D] you control.
 rules:

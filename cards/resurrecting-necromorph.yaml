@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mau", "necromorph"]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 1
+threshold: { greed: 3 }
+stats: { str: 2, life: 2, spd: 2 }
+
 text: |
   When another character is put into your discard pile from play, if this card is in your discard pile, you may pay 1. If you do, put this card into play under your control. Deplete it.
 rules:

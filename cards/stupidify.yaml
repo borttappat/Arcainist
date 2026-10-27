@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 3
+threshold: { obsession: 1 }
+
 text: |
   An opponent discards 2 cards.
   RECUR: [O]

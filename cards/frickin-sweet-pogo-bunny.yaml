@@ -4,6 +4,10 @@ trade: gearsmith
 types: [item]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 1
+threshold: { elitism: 2 }
+
 text: |
   RAAR!
   COST: Use this only if this card is not a character and only once each turn. Pay 1.

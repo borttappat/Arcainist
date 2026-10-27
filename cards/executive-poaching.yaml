@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 5
+threshold: { greed: 2 }
+
 text: |
   Destroy the character an opponent controls with the highest numeric cost. If there is a tie, you decide which character is destroyed.
 rules:

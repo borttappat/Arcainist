@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "Seed Saga"
 rarity: common
+
+cost: 2
+threshold: { deception: 1 }
+
 text: |
   EXTRA COST: Pick a character.
   Remove the character from the game if it has X life or less, where X is the number of [D] you control.

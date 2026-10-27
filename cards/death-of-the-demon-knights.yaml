@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 5
+threshold: { obsession: 3 }
+
 text: |
   EXTRA COST: Pick a character an opponent controls. You may pay 2. If you do, that character's controller picks another character they control.
   Put the characters on the bottom of their owner's deck. Draw a card.

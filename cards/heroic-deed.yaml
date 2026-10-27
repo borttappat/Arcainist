@@ -4,6 +4,11 @@ trade: warlord
 types: [tactic]
 set: "Seed"
 rarity: uncommon
+
+cost: 3
+threshold: { rage: 1 }
+flip_up: { cost: 9, threshold: { rage: 1 } }
+
 text: |
   EXTRA COST: Pick 2 or fewer characters.
   This turn, the characters cannot block.
@@ -14,4 +19,3 @@ rules:
         - pick: { as: c, from: { character: any }, count: 2, up_to: true }
       effect:
         - create_effect: { duration: turn, mods: [ { cannot: block, target: c } ] }
-  - flip_up: { pay: 9, threshold: { rage: 1 } }

@@ -4,6 +4,11 @@ trade: warlord
 types: [location]
 set: "Seed Saga"
 rarity: rare
+
+cost: 3
+threshold: { rage: 1 }
+structure: 5
+
 text: |
   UNIQUE DRILL GARRISON
   [R][R][R]: At the start of your turn, you may inflict 1 damage to an opponent's faction.

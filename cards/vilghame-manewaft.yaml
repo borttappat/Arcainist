@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["vilghame", "sword of great justice"]
 set: "Seed 3"
 rarity: fixed
+
+cost: 5
+threshold: { greed: 3 }
+stats: { str: 5, life: 3, spd: 3 }
+
 text: |
   UNIQUE VILGHAME
   Your opponents must pay 1 to deploy a tactic.

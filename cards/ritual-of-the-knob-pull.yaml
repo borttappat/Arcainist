@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "2nd Edition"
 rarity: common
+
+cost: 3
+threshold: { obsession: 2 }
+
 text: |
   EXTRA COST: Pick a character. X is its strength.
   If that character's controller controls at least X face-down resources, destroy the character.

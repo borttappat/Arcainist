@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["manager"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 3
+threshold: { elitism: 2 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   When this card enters play, you may put 2 Micromajig tokens into play.
   TINY SACRIFICES

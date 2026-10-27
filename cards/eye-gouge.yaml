@@ -4,6 +4,10 @@ trade: warlord
 types: [tactic]
 set: "2nd Edition"
 rarity: common
+
+cost: 3
+threshold: { rage: 2 }
+
 text: |
   EXTRA COST: Pick a blocking character.
   Inflict 3 damage to the character.

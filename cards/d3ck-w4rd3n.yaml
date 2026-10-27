@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["pirate", "mercenary", "mau"]
 set: "Seed Saga"
 rarity: common
+
+cost: 5
+threshold: { greed: 2 }
+stats: { str: 4, life: 4, spd: 3 }
+
 text: |
   When this card enters play, your faction loses 2 influence.
 rules:

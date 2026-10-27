@@ -4,6 +4,11 @@ trade: gearsmith
 types: [location]
 set: "Seed Saga"
 rarity: rare
+
+cost: 3
+threshold: { elitism: 2 }
+structure: 4
+
 text: |
   INNOVATE
   COST: Pay 1. Discard a card.

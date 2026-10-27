@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "1st Edition"
 rarity: uncommon
+
+cost: 4
+threshold: { greed: 2 }
+
 text: |
   EXTRA COST: Flip a coin. If you win, X is 3. Otherwise, X is 2.
   Draw X cards.

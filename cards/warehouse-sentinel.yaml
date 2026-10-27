@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["guard", "tough guy"]
 set: "Holy Heist"
 rarity: common
+
+cost: 8
+threshold: { deception: 1 }
+stats: { str: 6, life: 5, spd: 4 }
+
 text: |
   RECUR: [D][D][D]
   COST: Use this only if this card is in your discard pile. Pay 1. Remove this card from the game. Pick a character.

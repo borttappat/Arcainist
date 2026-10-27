@@ -6,6 +6,11 @@ attach_to: character
 subtypes: ["gear"]
 set: "2nd Edition"
 rarity: common
+
+cost: 6
+threshold: { elitism: 2 }
+gear: { str: 4, life: 4 }
+
 text: |
   ATTACH TO CHARACTER
   When this card enters play, you may detach up to 2 resources from your faction.

@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 3
+threshold: { greed: 1 }
+
 text: |
   Search your deck for up to 2 different types of staple resources, not named "Greed", and reveal them. Put them into your hand. Your faction gains 1 influence.
 rules:

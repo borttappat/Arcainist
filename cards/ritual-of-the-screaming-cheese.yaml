@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "1st Edition"
 rarity: common
+
+cost: 1
+threshold: { obsession: 1 }
+
 text: |
   EXTRA COST: Pick an opponent.
   That player chooses one of the following as this card's effect:

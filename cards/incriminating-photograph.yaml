@@ -4,6 +4,10 @@ trade: rogue
 types: [item]
 set: "2nd Edition"
 rarity: rare
+
+cost: 3
+threshold: { deception: 1 }
+
 text: |
   When this card enters play, name a non-resource card.
   The named card cannot be deployed.

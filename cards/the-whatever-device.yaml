@@ -4,6 +4,10 @@ trade: gearsmith
 types: [item]
 set: "2nd Edition"
 rarity: rare
+
+cost: 2
+threshold: { elitism: 4 }
+
 text: |
   THANK GOD WE INVENTED THE...
   COST: Choose a number for X. Pay X. Destroy this card.

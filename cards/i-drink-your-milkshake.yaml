@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "Seed Saga"
 rarity: rare
+
+cost: 3
+threshold: { deception: 4 }
+
 text: |
   You may search an opponent's deck for a card. If you do, put it in the void face-down. For the rest of the game, when that opponent deploys a card, you may reveal the voided card if it has the same name. If you do, you may deploy it for free even if you cannot meet its threshold. If you deploy it, terminate the opponent's card. (Playing a resource does not trigger this effect.)
 rules:

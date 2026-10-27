@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mechanic"]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 4
+threshold: { elitism: 2 }
+stats: { str: 2, life: 1, spd: 3 }
+
 text: |
   When this card enters play, you may search your deck for an item and reveal it. If you do, put it into play as a face-down resource.
   TRASH: [E][E][E][E][E][E]

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["priest"]
 set: "Holy Heist"
 rarity: common
+
+cost: 4
+threshold: { greed: 1 }
+stats: { str: 1, life: 3, spd: 3 }
+
 text: |
   When a card that provides at least [V] enters play under your control, you may pick a faction. If you do, it gains 1 influence.
 rules:

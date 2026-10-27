@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["fighter"]
 set: "Holy Heist"
 rarity: common
+
+cost: 5
+threshold: { rage: 1 }
+stats: { str: 4, life: 2, spd: 3 }
+
 text: |
   [R][R][R][R][R][R]: This card gains 2 strength and 4 life.
 rules:

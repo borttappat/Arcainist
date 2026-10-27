@@ -4,6 +4,11 @@ trade: arcanist
 types: [tactic]
 set: "Seed Saga"
 rarity: common
+
+cost: 2
+threshold: { obsession: 1 }
+flip_up: { cost: 2, threshold: { obsession: 1 } }
+
 text: |
   EXTRA COST: Pick a character you control. That character loses 2 life this turn. Pick another character.
   The character gains 1 strength and COVERT this turn. Draw a card.
@@ -17,4 +22,3 @@ rules:
       effect:
         - create_effect: { duration: turn, mods: [ { stat: { str: 1 }, target: c }, { keyword: covert, target: c } ] }
         - draw: 1
-  - flip_up: { pay: 2, threshold: { obsession: 1 } }

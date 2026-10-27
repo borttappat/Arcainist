@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["lurker"]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 1
+threshold: { obsession: 1 }
+stats: { str: 1, life: 2, spd: 3 }
+
 text: |
   When this card is destroyed, put it into its owner's hand, then discard a card.
 rules:

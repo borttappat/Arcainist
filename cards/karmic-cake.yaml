@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "Seed Saga"
 rarity: common
+
+cost: 2
+threshold: { greed: 1 }
+
 text: |
   Search your deck for a resource and reveal it. Put it into your hand.
   RECUR: [G]

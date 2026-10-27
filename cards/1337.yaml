@@ -4,6 +4,10 @@ trade: gearsmith
 types: [tactic]
 set: "2nd Edition"
 rarity: common
+
+cost: 3
+threshold: { elitism: 1 }
+
 text: |
   Reduce the numeric cost of the next card you deploy this turn by 4. Draw a card.
 rules:

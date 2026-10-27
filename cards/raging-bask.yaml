@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["dragon"]
 set: "2nd Edition"
 rarity: common
+
+cost: 6
+threshold: { rage: 2 }
+stats: { str: 4, life: 4, spd: 3 }
+
 text: |
   While this card is attacking, you may assign its battle damage to the target of the attack instead of the blocking party.
 rules:

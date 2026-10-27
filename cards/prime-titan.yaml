@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["warmachine"]
 set: "Holy Heist"
 rarity: rare
+
+cost: 6
+threshold: { elitism: 2 }
+stats: { str: 4, life: 4, spd: 4 }
+
 text: |
   UNIQUE PT
   This card gains 1 strength and 1 life for each token on it.

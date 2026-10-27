@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["lurker"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 3
+threshold: { obsession: 2 }
+stats: { str: 2, life: 1, spd: 3 }
+
 text: |
   When this card is destroyed by battle damage, an opponent discards their hand.
 rules:

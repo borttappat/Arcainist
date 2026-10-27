@@ -6,6 +6,10 @@ attach_to: character
 subtypes: ["mutation"]
 set: "Holy Heist"
 rarity: common
+
+cost: 1
+threshold: { elitism: 1 }
+
 text: |
   ATTACH TO CHARACTER (put this card into play attached to that character instead of into its owner's discard pile)
   At the start of your turn, choose one of the following as this card's rules text until the start of your next turn:

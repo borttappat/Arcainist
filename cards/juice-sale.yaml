@@ -4,6 +4,11 @@ trade: warlord
 types: [tactic]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 1
+threshold: { rage: 2 }
+flip_up: { cost: 2, threshold: { rage: 1 } }
+
 text: |
   EXTRA COST: Pick an opponent's character with the highest strength. (If there is tie, you decide which character is picked.)
   This turn, the character cannot block.
@@ -14,4 +19,3 @@ rules:
         - pick: { as: c, from: { character: { controller: opponent, strongest: controller } } }
       effect:
         - create_effect: { duration: turn, mods: [ { cannot: block, target: c } ] }
-  - flip_up: { pay: 2, threshold: { rage: 1 } }

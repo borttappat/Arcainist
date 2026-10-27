@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["31f", "mercenary"]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 5
+threshold: { rage: 2 }
+stats: { str: 3, life: 5, spd: 3 }
+
 text: |
   EXTRA COST: Pick a character you control.
   If the picked character would be dealt damage, deal damage to this card instead. If the picked character would leave play, this character leaves play in that way instead.

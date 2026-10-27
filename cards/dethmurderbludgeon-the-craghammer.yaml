@@ -5,6 +5,11 @@ types: [item]
 subtypes: [gear]
 set: "2nd Edition"
 rarity: rare
+
+cost: 5
+threshold: { rage: 2 }
+gear: { str: 2, life: 2, spd: 0 }
+
 text: |
   UNIQUE DETHMÜRDERBLÜDGEON
   ATTACH TO CHARACTER

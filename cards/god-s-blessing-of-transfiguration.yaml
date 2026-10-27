@@ -6,6 +6,10 @@ attach_to: character
 subtypes: ["mutation"]
 set: "Ungodly Mess"
 rarity: rare
+
+cost: 6
+threshold: { deception: 3 }
+
 text: |
   UNIQUE BLESSING
   ATTACH TO CHARACTER

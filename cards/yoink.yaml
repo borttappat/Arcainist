@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 1
+threshold: { deception: 1 }
+
 text: |
   EXTRA COST: Pick a gear card. Pick a character.
   Take control of the gear card. Attach it to the character.

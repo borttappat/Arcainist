@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["grifter"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 9
+threshold: { deception: 2 }
+stats: { str: 5, life: 5, spd: 3 }
+
 text: |
   UNIQUE MAXWELL
   STRUT

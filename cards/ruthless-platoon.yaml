@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 3
+threshold: { rage: 3 }
+stats: { str: 2, life: 3, spd: 3 }
+
 text: |
   CANNIBALIZE
   COST: Destroy a character you control.

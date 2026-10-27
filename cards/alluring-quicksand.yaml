@@ -5,6 +5,10 @@ trade: banker
 types: [tactic]
 set: "Seed Saga"
 rarity: common
+
+cost: 4
+threshold: { greed: 2 }
+
 text: |
   EXTRA COST: Pick a character.
   Flip the character face-down under its owner's control.

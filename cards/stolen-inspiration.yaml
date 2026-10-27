@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "2nd Edition"
 rarity: common
+
+cost: 3
+threshold: { obsession: 2 }
+
 text: |
   Look at an opponent's hand and choose a non-resource card in it. That player discards that card. You may deploy a non-resource card with numeric cost X or less for free, where X is half the numeric cost of the discarded card, rounded up. (You still need to meet its threshold and satisfy its extra costs.)
 rules:

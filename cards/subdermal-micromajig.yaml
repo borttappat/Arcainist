@@ -4,6 +4,11 @@ trade: gearsmith
 types: [tactic]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 1
+threshold: { elitism: 3 }
+flip_up: { cost: 2, threshold: { elitism: 2 }, steps: [ { draw: 1 } ] }
+
 text: |
   EXTRA COST: Pick an opponent. Destroy a Micromajig token you control.
   Destroy an attacking character that player controls. That player puts a Micromajig token into play under their control.
@@ -15,4 +20,3 @@ rules:
       effect:
         - destroy: { from: { character: { controller: opponent, attacking: true } }, choose: true }
         - create_token: { card: micromajig-token, controller: opponent }
-  - flip_up: { pay: 2, threshold: { elitism: 2 }, cost: [ draw: 1 ] }

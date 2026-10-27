@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "Ungodly Mess"
 rarity: ultra-rare
+
+cost: 2
+threshold: { deception: 2 }
+
 text: |
   Choose one of the following as this card's rules text:
   OPTION 1

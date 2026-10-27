@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["lurker"]
 set: "1st Edition Part 2"
 rarity: common
+
+cost: 4
+threshold: { obsession: 1 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   When this card leaves play, you may look at the top 2 cards of any one deck. If you do, put 1 card on the bottom of that deck and 1 card on the top. Draw a card.
 rules:

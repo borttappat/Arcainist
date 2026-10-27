@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 1
+threshold: { rage: 1 }
+stats: { str: 2, life: 2, spd: 2 }
+
 text: |
   At the end of your turn, if this card is depleted, destroy it.
   [R][R][R][R][R][R]: This character gains 1 strength and 1 speed.

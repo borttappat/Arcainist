@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["grandchest", "seraphim", "dragon"]
 set: "Seed 3"
 rarity: fixed
+
+cost: 4
+threshold: { deception: 3 }
+stats: { str: 0, life: 4, spd: 4 }
+
 text: |
   UNIQUE GRANDCHEST
   The top card of your deck is revealed at all times.

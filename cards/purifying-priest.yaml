@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["priest", "mau"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 4
+threshold: { greed: 1 }
+stats: { str: 2, life: 4, spd: 3 }
+
 text: |
   BANISH
   COST: Pick a location.

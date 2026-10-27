@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["ghost"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 4
+threshold: { greed: 1 }
+stats: { str: 3, life: 2, spd: 3 }
+
 text: |
   When this card enters play, your faction loses 2 influence.
   [V]V][V][V]: This card gains COVERT.

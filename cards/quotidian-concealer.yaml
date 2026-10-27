@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["ritualist"]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 2
+threshold: { obsession: 2 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   This card enters play with a token on it.
   OBSCURE

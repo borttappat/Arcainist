@@ -4,6 +4,10 @@ trade: banker
 types: [item]
 set: "1st Edition Part 2"
 rarity: rare
+
+cost: 3
+threshold: { greed: 2 }
+
 text: |
   PROFIT
   COST: Deplete this card.

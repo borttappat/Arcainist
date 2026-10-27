@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["majig"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 2
+threshold: { elitism: 2 }
+stats: { str: 1, life: 1, spd: 2 }
+
 text: |
   This card cannot be blocked.
   [E][E][E][E][E][E]: This card gains 2 strength and 2 life.

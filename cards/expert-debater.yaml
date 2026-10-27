@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["politician"]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 2
+threshold: { greed: 2 }
+stats: { str: 0, life: 6, spd: 3 }
+
 text: |
   This card loses 1 life for each token on it.
   If battle damage would be inflicted to this card while it's blocking, add that many tokens to this card instead.

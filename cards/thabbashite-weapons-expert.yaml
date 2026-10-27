@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["fighter"]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 2
+threshold: { rage: 1 }
+stats: { str: 2, life: 1, spd: 3 }
+
 text: |
   At the start of your turn, X is this card's strength and you may destroy this character. If you do, inflict X damage to each opponent's faction or pick an item with numeric cost X or less and destroy it.
   [V][V][V][V][V]: This card gains 2 strength.

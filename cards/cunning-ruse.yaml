@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 2
+threshold: { deception: 3 }
+
 text: |
   EXTRA COST: Pick an item.
   Flip the item face-down under its opponent's control.

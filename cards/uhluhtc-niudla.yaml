@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["uhluhtc", "seraphim", "dragon"]
 set: "Holy Heist"
 rarity: rare
+
+cost: 6
+threshold: { obsession: 3 }
+stats: { str: 5, life: 4, spd: 3 }
+
 text: |
   UNIQUE UHLUHTC
   PREVAIL UPON

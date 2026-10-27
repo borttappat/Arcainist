@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mud whisperer", "31f"]
 set: "Seed Saga"
 rarity: common
+
+cost: 4
+threshold: { elitism: 2 }
+stats: { str: 2, life: 4, spd: 3 }
+
 text: |
   When this card blocks, you may pick a character. If you do, restore that character.
 rules:

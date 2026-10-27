@@ -4,6 +4,11 @@ trade: rogue
 types: [location]
 set: "2nd Edition"
 rarity: rare
+
+cost: 3
+threshold: { deception: 3 }
+structure: 4
+
 text: |
   At the start of each player's turn, that player reveals cards from the top of their deck until a character is revealed or no cards are left. If a character is revealed, players take turns bidding on the character (starting with the active player). Players cannot bid a number greater than the number of detached resources they control. Whichever player makes the winning bid pays that many resources and puts the character into play under their control. Shuffle all other revealed cards into their owners's deck.
 rules:

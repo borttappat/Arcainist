@@ -4,6 +4,11 @@ trade: universal
 types: [tactic]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 2
+threshold: { volition: 1 }
+flip_up: { cost: 2, threshold: { volition: 1 } }
+
 text: |
   EXTRA COST: Pick a character you control.
   You may put a resource you control into its owner's hand. Flip the character face-down under its owner's control.
@@ -19,4 +24,3 @@ rules:
               - pick: { as: r, from: { resource: { controller: you } }, choose: true }
               - move: { card: r, to: hand }
         - flip_face_down: { card: c, controller: owner }
-  - flip_up: { pay: 2, threshold: { volition: 1 } }

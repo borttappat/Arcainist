@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 5
+threshold: { deception: 2 }
+
 text: |
   EXTRA COST: Pick a character you control. X is its strength. Destroy it.
   Draw X cards.

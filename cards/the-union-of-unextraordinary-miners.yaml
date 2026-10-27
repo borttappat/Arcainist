@@ -4,6 +4,11 @@ trade: none
 types: [faction]
 tournament_legal: false
 set: "Seed 3"
+
+influence: 22
+starting_resources: { specific: { deception: 1 }, choose_staples: 10 }
+starting_draw: { first: 5, second: 6 }
+
 text: |
   This card cannot be used in tournament play. (But please, play with it for fun!)
   STARTING RESOURCES - MONEY FOR NOTHING: Before the game begins, choose a number for X that is greater than 0 and less than 11. You start with X staple resources and 1 Deception. Your opponent starts with their usual resources plus enough staple resources so that both players have the same number of starting resources.

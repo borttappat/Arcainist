@@ -4,6 +4,10 @@ trade: gearsmith
 types: [tactic]
 set: "1st Edition"
 rarity: common
+
+cost: 2
+threshold: { elitism: 1 }
+
 text: |
   EXTRA COST: Pick a character.
   If the character is COVERT, it loses COVERT this turn. Draw a card.

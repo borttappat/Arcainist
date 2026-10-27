@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["obsessor"]
 set: "1st Edition Part 2"
 rarity: common
+
+cost: 3
+threshold: { obsession: 2 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   When an attacking or blocking party is formed including this card, it must have an even number of members.
 rules:

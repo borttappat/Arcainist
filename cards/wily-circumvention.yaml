@@ -4,6 +4,11 @@ trade: gearsmith
 types: [tactic]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 1
+threshold: { elitism: 1 }
+flip_up: { cost: 1, threshold: { elitism: 1 } }
+
 text: |
   EXTRA COST: Pick a depleted character.
   That character does not restore during its controller's next RESTORE RULE.
@@ -14,4 +19,3 @@ rules:
         - pick: { as: c, from: { character: { depleted: true } } }
       effect:
         - create_effect: { duration: next_restore, who: { controller_of: c }, mods: [ { cannot: restore_by_rule, target: c } ] }
-  - flip_up: { pay: 1, threshold: { elitism: 1 } }

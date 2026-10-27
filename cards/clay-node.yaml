@@ -5,6 +5,12 @@ types: [character]
 subtypes: [node]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 2
+threshold: { elitism: 3 }
+stats: { str: 2, life: 1, spd: 3 }
+flip_up: { cost: 1, threshold: { elitism: 1 } }
+
 text: |
   When this card enters play, you may search your deck for a node card and reveal it. If you do, put it into your hand.
   When this card leaves play, destroy all other node cards.
@@ -24,4 +30,3 @@ rules:
       name: Dissolve
       cost: [ pay: 2 ]
       effect: [ flip_face_down: self ]
-  - flip_up: { pay: 1, threshold: { elitism: 1 } }

@@ -5,4 +5,9 @@ types: [character]
 subtypes: ["ghost", "mau"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 5
+threshold: { greed: 1 }
+stats: { str: 5, life: 2, spd: 2 }
+
 text: ""

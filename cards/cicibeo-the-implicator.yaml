@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["grifter", "cicibeo", "sarcophyle"]
 set: "Ungodly Mess"
 rarity: rare
+
+cost: 2
+threshold: { deception: 3 }
+stats: { str: 2, life: 3, spd: 3 }
+
 text: |
   UNIQUE CICIBEO
   IMPLY

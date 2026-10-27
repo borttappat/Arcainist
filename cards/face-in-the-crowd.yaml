@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["outcast"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 6
+threshold: { deception: 2 }
+stats: { str: 4, life: 5, spd: 3 }
+
 text: |
   While an opponent controls at least 4 characters, this card cannot be blocked.
 rules:

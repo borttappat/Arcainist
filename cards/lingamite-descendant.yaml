@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 3
+threshold: { rage: 1 }
+stats: { str: 2, life: 1, spd: 4 }
+
 text: |
   When battle damage is inflicted to this card while it's attacking, reduce the amount to 0.
 rules:

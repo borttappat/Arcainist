@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "Holy Heist"
 rarity: rare
+
+cost: 4
+threshold: { rage: 2 }
+stats: { str: 4, life: 3, spd: 2 }
+
 text: |
   UNDERCOVERT OPERATIONS
   COST: Pay 3.

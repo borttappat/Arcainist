@@ -4,6 +4,10 @@ trade: universal
 types: [item]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 3
+threshold: { volition: 2 }
+
 text: |
   UNIQUE FOREMAN PETE
   CLOCK IN: [V][V][V]

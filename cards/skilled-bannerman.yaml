@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["soldier"]
 set: "Holy Heist"
 rarity: common
+
+cost: 4
+threshold: { rage: 1 }
+stats: { str: 3, life: 3, spd: 3 }
+provides: { rage: 1 }
+
 text: |
   PROVIDES: [R]
 # PROVIDES is its only rule (a number in its JSON).

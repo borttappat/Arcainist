@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["majig"]
 set: "Holy Heist"
 rarity: rare
+
+cost: 2
+threshold: { elitism: 2 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   WARDROBE CHANGE
   COST: Deplete this card. Pick a character. Pick a "gear" card you control.

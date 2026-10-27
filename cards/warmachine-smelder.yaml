@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["31f", "craftsman"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 4
+threshold: { elitism: 2 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   IN THE FIRE
   COST: Deplete this card. Pick an item you control.

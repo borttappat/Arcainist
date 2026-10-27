@@ -4,6 +4,10 @@ trade: banker
 types: [item]
 set: "Holy Heist"
 rarity: common
+
+cost: 3
+threshold: { greed: 2 }
+
 text: |
   When a character is destroyed, you may gain 1 influence.
 rules:

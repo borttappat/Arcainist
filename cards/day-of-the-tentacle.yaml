@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 0
+threshold: { obsession: 1 }
+
 text: |
   Look at an opponent's hand and choose a non-resource card in it. Put it into play under that opponent's control as a face-down resource.
 rules:

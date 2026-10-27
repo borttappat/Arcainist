@@ -4,6 +4,11 @@ trade: warlord
 types: [item]
 set: "Seed Saga"
 rarity: common
+
+cost: 2
+threshold: { rage: 1 }
+flip_up: { cost: 5, threshold: { rage: 1 } }
+
 text: |
   AMBUSH
   COST: Pick an attacking character.
@@ -17,4 +22,3 @@ rules:
       effect:
         - damage: { card: c, amount: 2 }
         - flip_face_down: { card: self, controller: owner }
-  - flip_up: { pay: 5, threshold: { rage: 1 } }

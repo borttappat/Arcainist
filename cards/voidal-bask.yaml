@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["dragon"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 6
+threshold: { obsession: 1 }
+stats: { str: 4, life: 3, spd: 2 }
+
 text: |
   When this card leaves play, look at an opponent's hand and chose a card in it. That player discards that card.
 rules:

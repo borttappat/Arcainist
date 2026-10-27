@@ -4,6 +4,10 @@ trade: arcanist
 types: [item]
 set: "Seed 3"
 rarity: fixed
+
+cost: 2
+threshold: { obsession: 2 }
+
 text: |
   All non-resource cards gain the rules text Unique X, where X is the card's name.
 rules:

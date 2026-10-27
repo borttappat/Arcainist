@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mau"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 5
+threshold: { greed: 3 }
+stats: { str: 1, life: 2, spd: 4 }
+
 text: |
   UNIQUE BEATRIX
   When you draw any number of cards, increase the amount by 1.

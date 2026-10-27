@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "1st Edition"
 rarity: rare
+
+cost: 3
+threshold: { greed: 3 }
+
 text: |
   Draw 10 cards. Discard 9 cards.
 rules:

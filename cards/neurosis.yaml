@@ -4,6 +4,9 @@ trade: arcanist
 types: [resource]
 set: "Seed Saga"
 rarity: rare
+
+provides: { obsession: 2 }
+
 text: |
   When this card enters play, your faction loses 1 influence.
   PROVIDES: [O][O]

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mau", "soldier"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 6
+threshold: { greed: 2 }
+stats: { str: 4, life: 5, spd: 3 }
+
 text: |
   When this card inflicts damage, if your faction has 10 influence or less, your faction gains 2 influence.
 rules:

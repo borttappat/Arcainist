@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mud whisperer"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 6
+threshold: { elitism: 2 }
+stats: { str: 4, life: 4, spd: 2 }
+
 text: |
   At the start of each opponent's turn, you may restore all characters you control.
 rules:

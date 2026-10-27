@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["assassin"]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 1
+threshold: { deception: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   [V]: This card gains 1 life.
   [V][V]: This card gains 1 strength.

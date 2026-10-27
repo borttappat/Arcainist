@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["monstrosity"]
 set: "Holy Heist"
 rarity: common
+
+cost: 3
+threshold: { elitism: 1 }
+stats: { str: 1, life: 1, spd: 1 }
+
 text: |
   When a card that provides at least [V] enters play under your control, reduce the numeric cost of the next card you play this turn by 1.
 rules:

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["majig"]
 set: "1st Edition Part 2"
 rarity: common
+
+cost: 3
+threshold: { elitism: 1 }
+stats: { str: 2, life: 3, spd: 1 }
+
 text: |
   INSULT
   COST: Deplete this card. Pick a character with COVERT.

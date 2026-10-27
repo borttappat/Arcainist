@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["31f"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 5
+threshold: { elitism: 2 }
+stats: { str: 4, life: 4, spd: 1 }
+
 text: |
   While there is a location or item in play, this card gains 2 strength and 2 life.
 rules:

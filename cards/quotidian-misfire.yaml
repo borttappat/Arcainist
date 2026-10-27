@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 2
+threshold: { obsession: 2 }
+
 text: |
   This turn, if a card would be put into a player's hand, put it into their discard pile instead.
 rules:

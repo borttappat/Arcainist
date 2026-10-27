@@ -5,4 +5,9 @@ types: [character]
 subtypes: ["lawyer", "necromorph"]
 set: "Holy Heist"
 rarity: common
+
+cost: 6
+threshold: { greed: 1 }
+stats: { str: 5, life: 4, spd: 3 }
+
 text: ""

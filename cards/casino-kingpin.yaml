@@ -5,4 +5,9 @@ types: [character]
 subtypes: ["crimelord"]
 set: "Seed Saga"
 rarity: common
+
+cost: 7
+threshold: { deception: 2 }
+stats: { str: 3, life: 6, spd: 4 }
+
 text: ""

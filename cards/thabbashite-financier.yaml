@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["merchant"]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 5
+threshold: { greed: 1 }
+stats: { str: 3, life: 3, spd: 2 }
+
 text: |
   BLOOD GOLD: [V][V]
   COST: Pay 2. Lose 1 influence.

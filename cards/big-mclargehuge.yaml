@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["dragon"]
 set: "Ungodly Mess"
 rarity: rare
+
+cost: 2
+threshold: { rage: 4 }
+stats: { str: 4, life: 5, spd: 3 }
+flip_up: { cost: 4, threshold: { rage: 1 } }
+
 text: |
   UNIQUE MCLARGEHUGE
   EXTRA COST: Destroy 2 resources you control.
@@ -21,4 +27,3 @@ rules:
       - choose_one:
           - { label: "Play a resource", steps: [ play_resource: { optional: true } ] }
           - { label: "Your opponent destroys a face-down resource they control", steps: [ destroy_resource: { who: opponent, face_down: true } ] }
-  - flip_up: { pay: 4, threshold: { rage: 1 } }

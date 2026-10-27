@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "Seed Saga"
 rarity: rare
+
+cost: 5
+threshold: { deception: 1 }
+
 text: |
   EXTRA COST: Deploy this only in response to a character with numeric cost X or less being deployed, where X is number of [D] you control.
   The character enters play under your control.

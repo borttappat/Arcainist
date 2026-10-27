@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["dragon"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 5
+threshold: { rage: 2 }
+stats: { str: 3, life: 5, spd: 3 }
+
 text: |
   EXTRA COST: You may pick a character.
   When this card enters play, if you picked a character as part of its cost, X is that character's strength and Y is this card's strength. Inflict X damage to this card. Inflict Y damage to that character.

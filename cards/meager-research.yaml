@@ -4,6 +4,10 @@ trade: gearsmith
 types: [tactic]
 set: "1st Edition"
 rarity: common
+
+cost: 1
+threshold: { elitism: 1 }
+
 text: |
   Reveal the top card of an opponent's deck. Put it into their hand. You may search your deck for a card of the same type as the card and reveal it. If you do, put it into your hand.
 rules:

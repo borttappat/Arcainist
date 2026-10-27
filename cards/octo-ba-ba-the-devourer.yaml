@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["octo-ba-ba", "sword of great justice"]
 set: "Seed 3"
 rarity: fixed
+
+cost: 5
+threshold: { rage: 3 }
+stats: { str: 3, life: 6, spd: 3 }
+
 text: |
   UNIQUE OCTO-BA-BA
   When a character an opponent controls is destroyed, put a token on this card.

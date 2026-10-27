@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["inventor"]
 set: "1st Edition"
 rarity: common
+
+cost: 9
+threshold: { elitism: 2 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   DEVELOPMENT
   COST: Deplete this card.

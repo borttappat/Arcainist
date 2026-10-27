@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["advisor"]
 set: "Ungodly Mess"
 rarity: rare
+
+cost: 4
+threshold: { obsession: 4 }
+stats: { str: 2, life: 3, spd: 3 }
+
 text: |
   When this card inflicts damage to a faction, you may pay 1. If you do, search that faction's deck for a tactic, reveal it and put it into the void.
   While this card is depleted, you may deploy tactics in the void as though they were in your hand without

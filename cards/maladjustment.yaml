@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 1
+threshold: { obsession: 1 }
+
 text: |
   EXTRA COST: Pick a resource you control. (You can pick face-down resources.)
   Put the resource into its owner's hand. You may play a resource.

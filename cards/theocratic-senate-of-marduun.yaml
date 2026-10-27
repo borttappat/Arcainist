@@ -4,6 +4,11 @@ trade: banker
 types: [location]
 set: "Seed Saga"
 rarity: rare
+
+cost: 5
+threshold: { greed: 3 }
+structure: 5
+
 text: |
   UNIQUE THEOCRATIC SENATE OF MARDUUN
   Your opponents cannot attack your faction.

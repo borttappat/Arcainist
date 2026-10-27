@@ -5,6 +5,11 @@ types: [character]
 subtypes: [diva]
 set: "2nd Edition"
 rarity: rare
+
+cost: 2
+threshold: { obsession: 2 }
+stats: { str: 1, life: 2, spd: 3 }
+
 text: |
   Each opponent's hand is revealed at all times.
   DISAPPROVE

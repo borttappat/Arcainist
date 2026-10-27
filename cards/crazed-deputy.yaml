@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["tyrant"]
 set: "2nd Edition"
 rarity: common
+
+cost: 1
+threshold: { rage: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   When this card is blocked, it gains 2 strength and 2 life this turn.
 rules:

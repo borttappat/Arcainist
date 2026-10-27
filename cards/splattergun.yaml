@@ -4,6 +4,10 @@ trade: warlord
 types: [item]
 set: "2nd Edition"
 rarity: rare
+
+cost: 3
+threshold: { rage: 2 }
+
 text: |
   UNLOAD
   COST: Deplete this card. Pick a character or faction.

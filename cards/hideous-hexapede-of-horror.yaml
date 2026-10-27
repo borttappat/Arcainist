@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["insect", "monstrosity"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 6
+threshold: { obsession: 6 }
+stats: { str: 6, life: 6, spd: 6 }
+
 text: |
   HIDEOUSLY HORRENDOUS HEX OF HELLISHLY HORRIFYING HATRED
   COST: Pay 6. Destroy this card. Pick 6 characters.

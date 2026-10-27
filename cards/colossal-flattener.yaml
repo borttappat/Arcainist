@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["beast"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 7
+threshold: { rage: 2 }
+stats: { str: 6, life: 3, spd: 3 }
+
 text: |
   While this card is attacking, you may assign its battle damage to the target of the attack instead of the blocking party.
 rules:

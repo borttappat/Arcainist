@@ -6,6 +6,11 @@ keywords: [aggro]
 subtypes: ["seraphim", "dragon"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 5
+threshold: { elitism: 1 }
+stats: { str: 4, life: 4, spd: 3 }
+
 text: |
   AGGRO, UNIQUE OCEANHIDE
   [E][E][E][E][E]: When this card inflicts damage to a faction, this turn, characters you control and deploy gain AGGRO.

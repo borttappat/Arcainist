@@ -6,6 +6,10 @@ attach_to: character
 subtypes: ["gear"]
 set: "1st Edition"
 rarity: common
+
+cost: 3
+threshold: { obsession: 1 }
+
 text: |
   ATTACH TO CHARACTER
   The attached character gains COVERT.

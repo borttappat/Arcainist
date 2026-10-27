@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["priest"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 1
+threshold: { obsession: 2 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   When this card enters or leaves play, you may draw a card. If you do, put a card from your hand on the bottom of your deck.
 rules:

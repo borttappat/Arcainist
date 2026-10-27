@@ -4,6 +4,10 @@ trade: warlord
 types: [tactic]
 set: "Seed Saga"
 rarity: rare
+
+cost: 1
+threshold: { rage: 1 }
+
 text: |
   If you deployed this card in response to a tactic, terminate that tactic. Put that tactic into play under its owner's control as a face-down resource instead of into their discard pile.
 rules:

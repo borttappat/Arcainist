@@ -4,10 +4,14 @@ trade: rogue
 types: [tactic]
 set: "Seed Saga"
 rarity: rare
+
+cost: 5
+threshold: { deception: 2 }
+flip_up: { cost: 3, threshold: { deception: 2 } }
+
 text: |
   Destroy all characters that inflicted damage to your faction this turn.
   FLIP UP: 3 [D][D]
 rules:
   - play:
       effect: [ destroy: { card: { character: { damaged_faction: you } } } ]
-  - flip_up: { pay: 3, threshold: { deception: 2 } }

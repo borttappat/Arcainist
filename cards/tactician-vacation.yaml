@@ -4,6 +4,10 @@ trade: warlord
 types: [tactic]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 4
+threshold: { rage: 1 }
+
 text: |
   EXTRA COST: Your opponents cannot respond to this card.
   If you deployed this card in response to a tactic, terminate the tactic. This turn, tactics cannot be deployed.

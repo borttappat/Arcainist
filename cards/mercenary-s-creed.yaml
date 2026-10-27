@@ -6,6 +6,10 @@ attach_to: character
 subtypes: ["gear"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 3
+threshold: { deception: 2 }
+
 text: |
   ATTACH TO CHARACTER
   BRIBE

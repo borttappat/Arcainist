@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "2nd Edition"
 rarity: rare
+
+cost: 2
+threshold: { greed: 2 }
+
 text: |
   EXTRA COST: Choose a number for X that is 3 or less. Remove X cards in your discard pile from the game. Pick X other cards in your discard pile.
   Shuffle the other cards into your deck. Draw a card.

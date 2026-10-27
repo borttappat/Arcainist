@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "Seed Saga"
 rarity: rare
+
+cost: 3
+threshold: { greed: 1 }
+
 text: |
   Put the top 8 cards of your deck into your discard pile. Draw a card.
   RECUR: [G]

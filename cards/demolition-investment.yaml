@@ -4,6 +4,11 @@ trade: banker
 types: [tactic]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 4
+threshold: { greed: 1 }
+flip_up: { cost: 4, threshold: { greed: 1 } }
+
 text: |
   EXTRA COST: Pick a player. Your faction loses 3 influence.
   That player reveals a face-down resource they control. Your faction gains influence equal to that card's numeric cost. Destroy that card.
@@ -24,4 +29,3 @@ rules:
               - reveal: r
               - gain_influence: { who: you, amount: { cost: r } }
               - destroy: r
-  - flip_up: { pay: 4, threshold: { greed: 1 } }

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["warmachine"]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 9
+threshold: { elitism: 4 }
+stats: { str: 9, life: 9, spd: 3 }
+
 text: |
   This card cannot be picked by non-item cards or non-item abilities.
   Opponents cannot take control of this card.

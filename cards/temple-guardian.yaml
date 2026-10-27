@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["priest", "mau"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 2
+threshold: { greed: 2 }
+stats: { str: 0, life: 1, spd: 3 }
+
 text: |
   DEFLECT
   COST: Pay 3. Deplete this card. Pick an attacking character.

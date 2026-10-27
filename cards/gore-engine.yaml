@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["warmachine"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 10
+threshold: { rage: 2 }
+stats: { str: 5, life: 10, spd: 3 }
+
 text: |
   When a character is destroyed during a turn when this card damaged it, put X tokens on this card, where X is the strength of that character.
   This card gains 1 strength for each token on it.

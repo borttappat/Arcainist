@@ -6,6 +6,10 @@ attach_to: character
 subtypes: ["gear"]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 2
+threshold: { greed: 2 }
+
 text: |
   ATTACH TO CHARACTER
   The attached character gains COVERT. If the attached card inflicts damage to a faction, inflict that much damage to your faction.

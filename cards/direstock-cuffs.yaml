@@ -6,6 +6,11 @@ attach_to: character
 subtypes: ["gear"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 1
+threshold: { elitism: 1 }
+flip_up: { cost: 1, threshold: { elitism: 1 } }
+
 text: |
   ATTACH TO CHARACTER
   The attached character loses COVERT. If the attached character has a [V] icon in its rules text, treat the attached character as though it had no rules text.
@@ -24,4 +29,3 @@ rules:
         - pick: { as: c, from: { character: { attacking: false, blocking: false } } }
         - pay: 2
       effect: [ attach: { card: self, to: c } ]
-  - flip_up: { pay: 1, threshold: { elitism: 1 } }

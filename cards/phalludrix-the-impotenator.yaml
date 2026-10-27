@@ -4,6 +4,10 @@ trade: warlord
 types: [item]
 set: "Seed Saga"
 rarity: rare
+
+cost: 1
+threshold: { rage: 1 }
+
 text: |
   UNIQUE PHALLUDRIX
   When an effect controlled by an opponent causes you to discard any number of cards, you may put them back into your hand.

@@ -6,6 +6,11 @@ attach_to: character
 subtypes: ["gear"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 2
+threshold: { deception: 2 }
+gear: { str: 2 }
+
 text: |
   ATTACH TO CHARACTER
   The attached character gains 2 strength and loses 2 speed.

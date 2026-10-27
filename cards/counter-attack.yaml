@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "2nd Edition"
 rarity: rare
+
+cost: 3
+threshold: { deception: 2 }
+
 text: |
   EXTRA COST: Deploy this only during an opponent's turn and not during a battle.
   Attack that player. Draw a card. (This effect only allows you to attack once. You must resolve the battle immediately and before you draw the card.)

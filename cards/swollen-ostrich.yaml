@@ -6,6 +6,12 @@ keywords: [tactical]
 subtypes: ["beast"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 3
+threshold: { deception: 2 }
+stats: { str: 2, life: 2, spd: 3 }
+flip_up: { cost: 1, threshold: { deception: 2 } }
+
 text: |
   TACTICAL
   When this card enters play, you may pick a character. If you do, it gains 1 strength and 1 life this turn.
@@ -17,4 +23,3 @@ rules:
       - if:
           cond: { defined: c }
           then: [ create_effect: { duration: turn, mods: [ { stat: { str: 1, life: 1 }, target: c } ] } ]
-  - flip_up: { pay: 1, threshold: { deception: 2 } }

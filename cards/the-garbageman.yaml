@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["lackey", "mau"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 2
+threshold: { greed: 2 }
+stats: { str: 1, life: 3, spd: 3 }
+
 text: |
   This card can attack only once each turn.
   SIFT

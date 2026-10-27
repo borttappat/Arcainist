@@ -4,6 +4,11 @@ trade: banker
 types: [location]
 set: "Seed 3"
 rarity: fixed
+
+cost: 2
+threshold: { greed: 1 }
+structure: 3
+
 text: |
   When this card enters play, name a card subtype.
   Players must pay 2 to deploy cards with the named subtype.

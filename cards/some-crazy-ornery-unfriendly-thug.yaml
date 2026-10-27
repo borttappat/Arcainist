@@ -5,4 +5,9 @@ types: [character]
 subtypes: ["fighter", "tough guy"]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 5
+threshold: { rage: 4 }
+stats: { str: 5, life: 5, spd: 4 }
+
 text: ""

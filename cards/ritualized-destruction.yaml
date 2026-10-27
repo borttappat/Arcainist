@@ -4,6 +4,11 @@ trade: arcanist
 types: [tactic]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 4
+threshold: { obsession: 1 }
+flip_up: { cost: 3, threshold: { obsession: 1 } }
+
 text: |
   EXTRA COST: Pick a non-resource card.
   If the card has a [V] icon in its rules text, put the card into the void. Otherwise, put the card into its owner's hand.
@@ -17,4 +22,3 @@ rules:
             cond: { matches: [ c, { card: { text_has: "[V]" } } ] }
             then: [ void: c ]
             else: [ move: { card: c, to: hand } ]
-  - flip_up: { pay: 3, threshold: { obsession: 1 } }

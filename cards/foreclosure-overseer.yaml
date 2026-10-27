@@ -5,6 +5,17 @@ types: [character]
 subtypes: ["employee", "mau"]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 4
+threshold: { greed: 2 }
+stats: { str: 2, life: 4, spd: 3 }
+flip_up:
+  cost: 4
+  threshold: { greed: 2 }
+  steps:
+    - pick: { as: l, from: { location: any }, optional: true, prompt: "You may add or remove a damage marker from a location." }
+    - if: { cond: { defined: l }, then: [ { choose_one: [ { label: "Add a damage marker", steps: [ { markers: { card: l, add: 1 } } ] }, { label: "Remove a damage marker", steps: [ { heal: { card: l, amount: 1 } } ] } ] } ] }
+
 text: |
   While this card is depleted, your opponents must pay 1 to deploy cards.
   FLIP UP: 4 [G][G] and you may add or remove a damage marker from a location.
@@ -12,14 +23,3 @@ rules:
   - static:
       while: { matches: [ self, { character: { depleted: true } } ] }
       mods: [ { cost: 1, by: opponent, target: { card: { zone: stack } } } ]
-  - flip_up:
-      pay: 4
-      threshold: { greed: 2 }
-      cost:
-        - pick: { as: l, from: { location: any }, optional: true, prompt: "You may add or remove a damage marker from a location." }
-        - if:
-            cond: { defined: l }
-            then:
-              - choose_one:
-                  - { label: "Add a damage marker", steps: [ markers: { card: l, add: 1 } ] }
-                  - { label: "Remove a damage marker", steps: [ heal: { card: l, amount: 1 } ] }

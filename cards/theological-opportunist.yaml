@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["priest"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 4
+threshold: { obsession: 2 }
+stats: { str: 8, life: 8, spd: 3 }
+
 text: |
   This card loses strength and life equal to the number of cards in all hands.
 rules:

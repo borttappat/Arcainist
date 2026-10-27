@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["guardforce", "31f"]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 3
+threshold: { elitism: 3 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   This card can attack even if it has not been in play under your control since the start of the turn.
   When this card enters play, you may pay 2. If you do, put a token on it.

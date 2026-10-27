@@ -5,6 +5,11 @@ types: [character]
 subtypes: [lackey, ghost]
 set: "2nd Edition"
 rarity: rare
+
+cost: 4
+threshold: { greed: 2 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   While you control only 1 character, this card gains COVERT.
   When this card inflicts damage to a faction, draw 2 cards.

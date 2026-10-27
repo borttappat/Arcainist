@@ -6,6 +6,11 @@ keywords: [tactical]
 subtypes: ["gear"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 2
+threshold: { deception: 3 }
+gear: { str: 1, life: 1 }
+
 text: |
   TACTICAL, UNIQUE WAYLAY BLADE
   At the start of your turn, flip a coin. If you win, draw a card.

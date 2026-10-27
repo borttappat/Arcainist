@@ -4,6 +4,11 @@ trade: banker
 types: [location]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 2
+threshold: { greed: 3 }
+structure: 1
+
 text: |
   At the start of your turn, you may destroy this card. If you do, search your deck for a location, reveal it, and put it into your hand.
 rules:

@@ -6,6 +6,11 @@ keywords: [tactical]
 subtypes: ["performer"]
 set: "Ungodly Mess"
 rarity: uber
+
+cost: 4
+threshold: { deception: 2 }
+stats: { str: 3, life: 3, spd: 4 }
+
 text: |
   TACTICAL
   GRAND THEFT

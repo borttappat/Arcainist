@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["golem"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 4
+threshold: { elitism: 4 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   UNIQUE GOLOAM
   This card gains 1 strength and 1 life for each item in play.

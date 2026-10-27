@@ -4,6 +4,11 @@ trade: banker
 types: [location]
 set: "Seed 3"
 rarity: fixed
+
+cost: 5
+threshold: { greed: 4 }
+structure: 2
+
 text: |
   EXTRA COST: Pick 2 characters.
   When this card enters play, deplete those characters.

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["wizard"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 2
+threshold: { obsession: 4 }
+stats: { str: 2, life: 1, spd: 3 }
+
 text: |
   CORRUPT
   COST: Pay 2. Pick a character.

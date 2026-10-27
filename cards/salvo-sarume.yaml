@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["dragon"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 4
+threshold: { rage: 2 }
+stats: { str: 3, life: 2, spd: 3 }
+
 text: |
   When this card inflicts battle damage to a faction, you may put a resource you control into its owner's hand. If you do, inflict 1 damage to all characters.
 rules:

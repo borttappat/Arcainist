@@ -4,6 +4,9 @@ trade: gearsmith
 types: [resource]
 set: "Seed Saga"
 rarity: rare
+
+provides: { elitism: 2 }
+
 text: |
   When this card enters play, your faction loses 1 influence.
   PROVIDES: [E][E]

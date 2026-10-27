@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["investor"]
 set: "2nd Edition"
 rarity: common
+
+cost: 3
+threshold: { greed: 2 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   This card loses 1 strength and 1 life for each token on it.
   EXCHANGE

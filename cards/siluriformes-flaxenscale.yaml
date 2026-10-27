@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["siluriformes", "seraphim", "dragon"]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 7
+threshold: { greed: 4 }
+stats: { str: 4, life: 5, spd: 3 }
+
 text: |
   UNIQUE SILURIFORMES
   All UNIQUE EUSTACE gain 3 strength and 3 life.

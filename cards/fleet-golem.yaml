@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["golem"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 3
+threshold: { elitism: 2 }
+stats: { str: 3, life: 3, spd: 2 }
+
 text: |
   When this card enters play, you may pay 5. If you do, put a token on it.
   While there is a token on this card, it cannot be blocked.

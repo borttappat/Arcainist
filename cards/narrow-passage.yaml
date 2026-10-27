@@ -4,6 +4,11 @@ trade: rogue
 types: [location]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 1
+threshold: { deception: 2 }
+structure: 3
+
 text: |
   Players can attack only once each turn.
 rules:

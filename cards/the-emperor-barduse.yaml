@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["emperor barduse", "dragon"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 8
+threshold: { rage: 6 }
+stats: { str: 7, life: 7, spd: 2 }
+
 text: |
   UNIQUE EMPEROR BARDUSE
   When this card enters play, you may pick any number of characters. If you do, inflict X damage divided however you want to the characters, where X is twice the number of dragon characters you control.

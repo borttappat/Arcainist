@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mau"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 4
+threshold: { greed: 4 }
+stats: { str: 2, life: 3, spd: 3 }
+
 text: |
   UNIQUE RANDOLPH
   When this card enters play, draw a card.

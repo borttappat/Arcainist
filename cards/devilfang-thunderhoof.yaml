@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["thunderhoof", "seraphim", "dragon"]
 set: "Seed 3"
 rarity: fixed
+
+cost: 5
+threshold: { obsession: 1 }
+stats: { str: 1, life: 4, spd: 3 }
+
 text: |
   UNIQUE THUNDERHOOF
   When this card enters play, put X tokens on it, where X is the number of [O] you control.

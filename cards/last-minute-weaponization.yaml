@@ -4,6 +4,11 @@ trade: gearsmith
 types: [tactic]
 set: "Ungodly Mess"
 rarity: rare
+
+cost: 1
+threshold: { elitism: 4 }
+flip_up: { cost: 2, threshold: { elitism: 4 } }
+
 text: |
   EXTRA COST: Destroy an item you control. X was its numeric cost. Pick a character.
   Inflict X+1 damage to the character. You may search your deck for an item with numeric cost X or less, reveal it, and put it into your hand.
@@ -19,4 +24,3 @@ rules:
         - damage: { card: c, amount: "X + 1" }
         - may:
             - search: { deck: you, for: { item: { cost_lte: X } }, reveal: true, to: hand }
-  - flip_up: { pay: 2, threshold: { elitism: 4 } }

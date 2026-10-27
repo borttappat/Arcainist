@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "Seed Saga"
 rarity: common
+
+cost: 0
+threshold: { greed: 2 }
+
 text: |
   EXTRA COST: Choose a number for X. Pay X. Pick a character with numeric cost X or less.
   Destroy the character.

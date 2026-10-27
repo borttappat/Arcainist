@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["wizard"]
 set: "Seed"
 rarity: common
+
+cost: 4
+threshold: { obsession: 1 }
+stats: { str: 3, life: 4, spd: 3 }
+
 text: |
   EXTRA COST: Remove a tactic in your discard pile from the game.
 rules:

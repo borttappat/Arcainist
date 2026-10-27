@@ -4,6 +4,10 @@ trade: warlord
 types: [tactic]
 set: "2nd Edition"
 rarity: common
+
+cost: 0
+threshold: { rage: 1 }
+
 text: |
   EXTRA COST: Choose a number for X. Pay X+X. Pick a character.
   Inflict X damage to the character.

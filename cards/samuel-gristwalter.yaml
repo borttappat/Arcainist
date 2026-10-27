@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["lawyer", "mau"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 4
+threshold: { greed: 4 }
+stats: { str: 0, life: 3, spd: 1 }
+
 text: |
   UNIQUE SAMUEL
   Reduce all damage inflicted to your faction to 0.

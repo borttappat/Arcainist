@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["vehicle"]
 set: "Ungodly Mess"
 rarity: super-rare
+
+cost: 1
+threshold: { greed: 3 }
+stats: { str: 1, life: 1, spd: 3 }
+flip_up: { cost: 1, threshold: { greed: 3 } }
+
 text: |
   UNIQUE LLP
   This card gains 2 strength and 2 life for each item your opponents control.
@@ -27,4 +33,3 @@ rules:
                     prompt: "keep this item (if you don't pay, it is destroyed)"
                     else: [ destroy: self ]
           target: { item: any }
-  - flip_up: { pay: 1, threshold: { greed: 3 } }

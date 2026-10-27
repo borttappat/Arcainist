@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "Seed Saga"
 rarity: rare
+
+cost: 0
+threshold: { deception: 3 }
+
 text: |
   EXTRA COST: Pick a character, item, or location in an opponent's discard pile. Pay X, where X is its numeric cost.
   Put the card into play under your control.

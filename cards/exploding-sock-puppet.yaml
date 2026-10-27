@@ -4,6 +4,10 @@ trade: gearsmith
 types: [tactic]
 set: "2nd Edition"
 rarity: common
+
+cost: 2
+threshold: { elitism: 1 }
+
 text: |
   EXTRA COST: Your opponents cannot respond to this card. Deploy this only in response to a character's ability.
   Terminate the ability. Destroy the character.

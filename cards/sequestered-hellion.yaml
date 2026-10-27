@@ -6,8 +6,13 @@ keywords: [covert]
 subtypes: ["monstrosity"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 8
+threshold: { obsession: 2 }
+stats: { str: 5, life: 5, spd: 3 }
+flip_up: { cost: 7, threshold: { obsession: 2 } }
+
 text: |
   COVERT
   FLIP UP: 7 [O][O]
-rules:
-  - flip_up: { pay: 7, threshold: { obsession: 2 } }
+rules: []

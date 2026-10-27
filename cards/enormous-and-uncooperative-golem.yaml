@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["golem"]
 set: "Seed Saga"
 rarity: common
+
+cost: 1
+threshold: { elitism: 2 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   EXTRA COST: Choose a number for X. Pay X.
   This card enters play with X tokens on it.

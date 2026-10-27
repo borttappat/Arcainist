@@ -6,6 +6,10 @@ attach_to: character
 subtypes: ["gear"]
 set: "2nd Edition"
 rarity: common
+
+cost: 2
+threshold: { elitism: 1 }
+
 text: |
   ATTACH TO CHARACTER
   Treat the attached character as though it has no rules text. (This includes abilities.)

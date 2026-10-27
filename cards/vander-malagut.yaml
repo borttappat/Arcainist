@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["sarcophyle"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 9
+threshold: { deception: 4 }
+stats: { str: 5, life: 7, spd: 6 }
+
 text: |
   UNIQUE EVONDAN
   All your other sarcophyle characters gain 1 speed.

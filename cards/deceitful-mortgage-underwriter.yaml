@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["lackey", "mau"]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 4
+threshold: { greed: 3 }
+stats: { str: 5, life: 5, spd: 3 }
+flip_up: { cost: 4, threshold: { greed: 3 } }
+
 text: |
   This card enters play with 3 tokens on it.
   This card loses 1 strength and 1 life for each token on it.
@@ -23,4 +29,3 @@ rules:
         - tokens: { card: self, remove: 1 }
         - pick: { as: l, from: { location: any } }
       effect: [ markers: { card: l, add: 1 } ]
-  - flip_up: { pay: 4, threshold: { greed: 3 } }

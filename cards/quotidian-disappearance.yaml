@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "1st Edition Part 2"
 rarity: common
+
+cost: 0
+threshold: { obsession: 1 }
+
 text: |
   An opponent picks a non-resource card they control if they can. If they do, put it into its owner's hand.
 rules:

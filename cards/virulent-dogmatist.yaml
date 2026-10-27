@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["wizard"]
 set: "Seed Saga"
 rarity: common
+
+cost: 2
+threshold: { obsession: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   BERATE
   COST: Pay 2. Deplete this card. Pick a character.

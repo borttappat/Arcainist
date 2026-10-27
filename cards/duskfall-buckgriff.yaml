@@ -6,6 +6,11 @@ keywords: [tactical]
 subtypes: ["seraphim", "dragon"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 3
+threshold: { deception: 3 }
+stats: { str: 3, life: 3, spd: 4 }
+
 text: |
   TACTICAL, UNIQUE BUCKGRIFF
   SNEAK

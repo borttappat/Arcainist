@@ -4,6 +4,11 @@ trade: arcanist
 types: [location]
 set: "2nd Edition"
 rarity: rare
+
+cost: 0
+threshold: { obsession: 2 }
+structure: 5
+
 text: |
   RECALL
   COST: Pick a resource you control. (You can pick face-down resources.)

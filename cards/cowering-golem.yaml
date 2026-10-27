@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["golem"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 4
+threshold: { elitism: 1 }
+stats: { str: 5, life: 5, spd: 3 }
+
 text: |
   While this card is in a battle, it loses 1 strength and 1 life for each member of the opposing party.
 rules:

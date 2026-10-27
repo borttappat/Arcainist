@@ -4,6 +4,10 @@ trade: gearsmith
 types: [tactic]
 set: "2nd Edition"
 rarity: rare
+
+cost: 0
+threshold: { elitism: 3 }
+
 text: |
   EXTRA COST: Deploy this only in response to an item being deployed. Pay X, where X is its numeric cost.
   The item enters play under your control.

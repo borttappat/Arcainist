@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "2nd Edition"
 rarity: common
+
+cost: 3
+threshold: { greed: 2 }
+
 text: |
   EXTRA COST: Pick a character. X is its strength.
   Destroy the character. That character’s controller's faction gains X influence.

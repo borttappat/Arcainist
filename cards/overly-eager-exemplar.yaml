@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 5
+threshold: { rage: 2 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   FOR MY BROTHERS!
   COST: Pay 1. Destroy this card.

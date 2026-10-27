@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["outcast"]
 set: "2nd Edition"
 rarity: common
+
+cost: 2
+threshold: { deception: 2 }
+stats: { str: 1, life: 1, spd: 4 }
+
 text: |
   PANHANDLE
   COST: Deplete this card. Pick a character.

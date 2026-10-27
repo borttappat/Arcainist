@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mercenary", "mau"]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 6
+threshold: { greed: 2 }
+stats: { str: 3, life: 4, spd: 3 }
+
 text: |
   When this card attacks, restore it at the end of the battle.
   This card can only attack once each turn.

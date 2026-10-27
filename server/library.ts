@@ -42,18 +42,20 @@ export const EVENTS = new Set([
   "flipped_down", "tokens_changed",
 ]);
 
-/**
- * Card numbers live in cards/<id>.json, everything else in cards/<id>.yaml.
- * These are the only keys allowed in the JSON file, and they're rejected in YAML.
- */
-export const NUMBER_KEYS = ["cost", "threshold", "stats", "structure", "gear", "provides", "influence", "starting_resources", "starting_draw", "min_deck"] as const;
+/** Every top-level field a card file may have, so a typo (`cots: 3`) is an error, not ignored. */
+const CARD_KEYS = new Set([
+  "id", "name", "flavor_title", "trade", "types", "subtypes", "staple", "set", "rarity",
+  // numbers
+  "cost", "threshold", "stats", "structure", "gear", "provides", "icon", "influence", "starting_resources", "starting_draw", "min_deck",
+  "flip_up", "text", "rules", "keywords", "attach_to", "deck_limit", "enters_with_tokens", "enters_depleted", "enters_under", "token",
+  "face_down_only", "tournament_legal", "incomplete", "incomplete_reason", "back_of", "opponent_rules", "restore_rule", "develop_rule",
+]);
 
 const ICON_NAMES = ["obsession", "greed", "elitism", "deception", "rage", "volition"];
 
-/** Check a card's numbers file: known keys, whole numbers >= 0, known icon and stat names. */
+/** Check a card's numbers: whole numbers >= 0, known icon and stat names. */
 export function validateNumbers(n: any): string[] {
   const errs: string[] = [];
-  if (!n || typeof n !== "object" || Array.isArray(n)) return ["must be a JSON object"];
   const whole = (v: unknown) => Number.isInteger(v) && (v as number) >= 0;
   const map = (k: string, allowed: string[]) => {
     const v = n[k];
@@ -64,7 +66,6 @@ export function validateNumbers(n: any): string[] {
       if (!whole(vv)) errs.push(`${k}.${kk} must be a whole number >= 0`);
     }
   };
-  for (const k of Object.keys(n)) if (!(NUMBER_KEYS as readonly string[]).includes(k)) errs.push(`unknown key "${k}" (allowed: ${NUMBER_KEYS.join(", ")})`);
   for (const k of ["cost", "structure", "influence", "min_deck"]) if (n[k] !== undefined && !whole(n[k])) errs.push(`${k} must be a whole number >= 0`);
   map("threshold", ICON_NAMES);
   map("provides", ICON_NAMES);
@@ -83,7 +84,27 @@ export function validateNumbers(n: any): string[] {
       else if (!whole(v)) errs.push(`starting_resources.${k} must be a whole number >= 0`);
     }
   }
-  map("starting_draw", ["first", "second"]);
+  // A faction's starting draw: `first` and `second` counts, plus optional `before` steps.
+  const sd = n.starting_draw;
+  if (sd !== undefined) {
+    if (!sd || typeof sd !== "object") errs.push("starting_draw must be an object");
+    else
+      for (const [k, v] of Object.entries(sd)) {
+        if (k === "before") continue;
+        if (k !== "first" && k !== "second") errs.push(`starting_draw.${k} is not one of first, second, before`);
+        else if (!whole(v)) errs.push(`starting_draw.${k} must be a whole number >= 0`);
+      }
+  }
+  return errs;
+}
+
+/** `flip_up: { cost, threshold, steps }` at the top of a card: FLIP UP: <cost> <icons>, plus extra costs. */
+function validateFlipUp(fu: any): string[] {
+  if (!fu || typeof fu !== "object" || Array.isArray(fu)) return ["flip_up must be { cost, threshold, steps }"];
+  const errs: string[] = [];
+  for (const k of Object.keys(fu)) if (!["cost", "threshold", "steps"].includes(k)) errs.push(`flip_up.${k} is not one of cost, threshold, steps`);
+  if (!Number.isInteger(fu.cost) || fu.cost < 0) errs.push("flip_up.cost must be a whole number >= 0");
+  if (fu.threshold !== undefined) for (const e of validateNumbers({ threshold: fu.threshold })) errs.push(`flip_up.${e}`);
   return errs;
 }
 
@@ -108,32 +129,22 @@ export function loadLibrary(dir: string): CardLibrary {
       errors.push(`${file}: needs id, name and types`);
       continue;
     }
-    // Numbers come from the matching JSON file.
-    const jsonFile = file.replace(/\.ya?ml$/, ".json");
-    for (const k of NUMBER_KEYS) {
-      const v = (def as any)[k];
-      if (v === undefined) continue;
-      // Factions keep their starting-draw steps (`before`) in YAML.
-      if (k === "starting_draw" && Object.keys(v).every((x) => x === "before")) continue;
-      errors.push(`${file}: "${k}" is a number and belongs in ${jsonFile}`);
+    for (const k of Object.keys(def)) if (!CARD_KEYS.has(k)) errors.push(`${file}: unknown field "${k}"`);
+    for (const e of validateNumbers(def)) errors.push(`${file}: ${e}`);
+    // FLIP UP is written at the top of the card; the engine reads it as a rule.
+    const raw = def as any;
+    if (raw.rules?.some?.((r: any) => r && typeof r === "object" && "flip_up" in r)) errors.push(`${file}: flip_up belongs at the top of the card (flip_up: { cost, threshold }), not in rules`);
+    if (raw.flip_up !== undefined) {
+      for (const e of validateFlipUp(raw.flip_up)) errors.push(`${file}: ${e}`);
+      const { cost, threshold, steps } = raw.flip_up ?? {};
+      raw.rules = [...(raw.rules ?? []), { flip_up: { pay: cost, ...(threshold ? { threshold } : {}), ...(steps ? { cost: steps } : {}) } }];
+      delete raw.flip_up;
     }
-    let numbers: any;
-    try {
-      numbers = JSON.parse(readFileSync(join(dir, jsonFile), "utf8"));
-    } catch (e) {
-      errors.push(`${jsonFile}: ${(e as NodeJS.ErrnoException).code === "ENOENT" ? "missing (every card needs a numbers file, even if it is just {})" : (e as Error).message}`);
-      continue;
-    }
-    for (const e of validateNumbers(numbers)) errors.push(`${jsonFile}: ${e}`);
-    def = mergeNumbers(def, numbers);
     if (lib[def.id]) errors.push(`${file}: duplicate id "${def.id}"`);
     for (const e of validate(def)) errors.push(`${file}: ${e}`);
     lib[def.id] = def;
   }
-  const yamls = new Set(files);
-  for (const file of files.filter((f) => f.endsWith(".json"))) {
-    if (!yamls.has(file.replace(/\.json$/, ".yaml"))) errors.push(`${file}: no matching .yaml file`);
-  }
+  for (const file of files.filter((f) => f.endsWith(".json"))) errors.push(`${file}: a card is one YAML file now; move its numbers into ${file.replace(/\.json$/, ".yaml")}`);
   if (errors.length) throw new Error("Card data errors:\n  " + errors.join("\n  "));
   return lib;
 }
@@ -146,13 +157,6 @@ export function loadFormats(dir: string): Record<string, import("../engine/forma
     out[id] = { id, ...JSON.parse(readFileSync(join(dir, f), "utf8")) };
   }
   if (!out.casual) throw new Error("formats/casual.json is required");
-  return out;
-}
-
-/** Card definition = YAML (text and rules) + JSON (numbers). */
-export function mergeNumbers(def: CardDef, numbers: Record<string, any>): CardDef {
-  const out: any = { ...def, ...numbers };
-  if (def.starting_draw || numbers.starting_draw) out.starting_draw = { ...(def.starting_draw ?? {}), ...(numbers.starting_draw ?? {}) };
   return out;
 }
 

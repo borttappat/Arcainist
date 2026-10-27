@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Ungodly Mess"
 rarity: ultra-rare
+
+cost: 1
+threshold: { obsession: 2 }
+
 text: |
   Draw 2 cards. Put a card from your hand on the bottom of your deck.
   RECUR: [O][O]

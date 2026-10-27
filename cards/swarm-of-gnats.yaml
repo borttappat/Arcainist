@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["lurker"]
 set: "2nd Edition"
 rarity: common
+
+cost: 4
+threshold: { obsession: 2 }
+stats: { str: 2, life: 3, spd: 2 }
+
 text: |
   When this card enters or leaves play, an opponent discards a card.
 rules:

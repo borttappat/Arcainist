@@ -6,6 +6,10 @@ attach_to: character
 subtypes: ["mutation"]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 5
+threshold: { obsession: 2 }
+
 text: |
   ATTACH TO CHARACTER
   (put this card into play attached to that character instead of into its owner's discard pile)

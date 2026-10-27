@@ -6,6 +6,10 @@ attach_to: { character: { controller: you } }
 subtypes: ["gear"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 0
+threshold: { obsession: 2 }
+
 text: |
   ATTACH TO CHARACTER YOU CONTROL
   EXTRA COST: Pick an opponent. That player may detach up to 2 resources from their faction.

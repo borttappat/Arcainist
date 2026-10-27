@@ -4,6 +4,11 @@ trade: arcanist
 types: [location]
 set: "1st Edition Part 2"
 rarity: rare
+
+cost: 0
+threshold: { obsession: 5 }
+structure: 1
+
 text: |
   TELEPORT
   COST: Pay 4. Deplete this card. Pick a character.

@@ -5,6 +5,12 @@ types: [character]
 subtypes: [dragon]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 4
+threshold: { rage: 2 }
+stats: { str: 3, life: 1, spd: 4 }
+flip_up: { cost: 3, threshold: { rage: 2 } }
+
 text: |
   When this card enters play, you may pick an item. If you do, destroy that item and your faction loses 2 influence.
   FLY AWAY
@@ -26,4 +32,3 @@ rules:
         - pick: { as: x, from: { item: { zone: discard, owner: opponent } } }
         - void: x
       effect: [ flip_face_down: self ]
-  - flip_up: { pay: 3, threshold: { rage: 2 } }

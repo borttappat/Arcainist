@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["dragon"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 7
+threshold: { rage: 1 }
+stats: { str: 5, life: 5, spd: 2 }
+flip_up: { cost: 4, threshold: { rage: 3 } }
+
 text: |
   [R][R][R][R][R][R]: When this card enters play, you may pick a character. If you do, inflict 5 damage to it.
   FLIP UP: 4 [R][R][R]
@@ -15,4 +21,3 @@ rules:
       - if:
           cond: { defined: c }
           then: [ damage: { card: c, amount: 5 } ]
-  - flip_up: { pay: 4, threshold: { rage: 3 } }

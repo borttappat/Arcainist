@@ -4,6 +4,10 @@ trade: universal
 types: [tactic]
 set: "Holy Heist"
 rarity: rare
+
+cost: 3
+threshold: { volition: 1 }
+
 text: |
   EXTRA COST: Deploy this only during your turn and not during a battle. Pick an opponent.
   That player names 2 non-Universal trades. Search your deck for a character that is one of the named trades and reveal it. If you do, put it into your hand. Draw a card.

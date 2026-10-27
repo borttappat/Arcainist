@@ -5,6 +5,11 @@ types: [character]
 subtypes: [thief]
 set: "2nd Edition"
 rarity: rare
+
+cost: 4
+threshold: { deception: 2 }
+stats: { str: 0, life: 0, spd: 3 }
+
 text: |
   EXTRA COST: Discard a character or item. X is its numeric cost.
   This card enters play with X tokens on it.

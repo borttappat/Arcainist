@@ -5,6 +5,11 @@ types: [character]
 subtypes: [investor, mau]
 set: "Ungodly Mess"
 rarity: uber
+
+cost: 1
+threshold: { greed: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   When this card enters play, you may put a character in your discard pile on top of its owner's deck.
   [G][G][G][G][G][G]: This card gains 3 strength and 3 life.

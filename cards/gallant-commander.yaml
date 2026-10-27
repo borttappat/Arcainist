@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 3
+threshold: { rage: 1 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   CHARGE!
   COST: Pay 2. Destroy this card.

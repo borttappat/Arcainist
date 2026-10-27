@@ -6,6 +6,11 @@ keywords: [covert]
 subtypes: ["wizard"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 6
+threshold: { obsession: 1 }
+stats: { str: 3, life: 2, spd: 3 }
+
 text: |
   COVERT
   DENOUNCE

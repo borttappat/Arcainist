@@ -5,10 +5,15 @@ types: [character]
 subtypes: ["soldier"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 1
+threshold: { rage: 1 }
+stats: { str: 2, life: 2, spd: 3 }
+flip_up: { cost: 0, threshold: { rage: 1 } }
+
 text: |
   When this card inflicts battle damage to a faction, put this character into its owner's hand.
   FLIP UP: 0 [R]
 rules:
   - trigger: { on: damage, source: self, faction: true, battle: true }
     effect: [ move: { card: self, to: hand } ]
-  - flip_up: { pay: 0, threshold: { rage: 1 } }

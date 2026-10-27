@@ -4,6 +4,10 @@ trade: gearsmith
 types: [tactic]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 4
+threshold: { elitism: 2 }
+
 text: |
   You may play up to 2 resources.
 rules:

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["outcast"]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 1
+threshold: { deception: 3 }
+stats: { str: 0, life: 1, spd: 4 }
+
 text: |
   This card gains X strength, where X is the number of characters in play that your opponents own.
 rules:

@@ -6,6 +6,12 @@ attach_to: character
 subtypes: ["gear"]
 set: "Seed Saga"
 rarity: common
+
+cost: 1
+threshold: { deception: 1 }
+gear: { str: 1, life: 1 }
+flip_up: { cost: 1, threshold: { deception: 1 } }
+
 text: |
   ATTACH TO CHARACTER
   The attached character gains 1 strength and 1 life.
@@ -14,4 +20,3 @@ text: |
 rules:
   - replace: { event: destroy, card: self }
     instead: [ flip_face_down: { card: self, controller: owner } ]
-  - flip_up: { pay: 1, threshold: { deception: 1 } }

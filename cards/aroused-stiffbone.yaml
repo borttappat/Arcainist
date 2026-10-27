@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["dragon"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 0
+threshold: { rage: 1 }
+stats: { str: 4, life: 4, spd: 3 }
+
 text: |
   EXTRA COST: Pay X, where X is 7 minus the number of [R] you control.
 rules:

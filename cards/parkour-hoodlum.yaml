@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["daredevil"]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 3
+threshold: { deception: 2 }
+stats: { str: 3, life: 1, spd: 4 }
+
 text: |
   While this card is in your hand and there is a location in play, this card gains tactical.
   This card ignores all rules text on locations. (this card cannot be picked by locations and any effects from locations do not affect this card.)

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "Seed Saga"
 rarity: common
+
+cost: 2
+threshold: { rage: 2 }
+stats: { str: 2, life: 1, spd: 3 }
+
 text: |
   EXTRA COST: You may pick a character.
   When this card enters play, if you picked a character as part of its cost, deplete that character.

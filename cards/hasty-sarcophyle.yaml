@@ -5,4 +5,9 @@ types: [character]
 subtypes: ["sarcophyle"]
 set: "2nd Edition"
 rarity: common
+
+cost: 5
+threshold: { deception: 2 }
+stats: { str: 3, life: 3, spd: 5 }
+
 text: ""

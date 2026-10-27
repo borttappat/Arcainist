@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["advisor"]
 set: "Holy Heist"
 rarity: common
+
+cost: 5
+threshold: { greed: 1 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   When this card enters play, you may draw 2 cards then discard 2 cards.
   RECUR: [G][G][G]

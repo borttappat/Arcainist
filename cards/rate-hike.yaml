@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "1st Edition"
 rarity: common
+
+cost: 3
+threshold: { greed: 1 }
+
 text: |
   Your faction gains 2 influence. Draw a card.
 rules:

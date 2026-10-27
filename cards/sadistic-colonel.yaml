@@ -5,6 +5,11 @@ types: [character]
 subtypes: [soldier]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 3
+threshold: { rage: 1 }
+stats: { str: 3, life: 1, spd: 3 }
+
 text: |
   When an opponent deploys a tactic, inflict 2 damage to their faction.
 rules:

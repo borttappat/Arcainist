@@ -4,6 +4,10 @@ trade: rogue
 types: [item]
 set: "Seed 2"
 rarity: rare
+
+cost: 4
+threshold: { deception: 2 }
+
 text: |
   At the end of your turn, an opponent picks a character they control and own if they can. If they do, take control of that character.
   At the end of your turn, an opponent takes control of this card.

@@ -4,6 +4,11 @@ trade: warlord
 types: [tactic]
 set: "Seed"
 rarity: rare
+
+cost: 2
+threshold: { rage: 2 }
+flip_up: { cost: 0, threshold: { rage: 2 } }
+
 text: |
   EXTRA COST: Pick a character you own. Pick a character an opponent owns.
   Destroy the characters. Draw a card.
@@ -17,4 +22,3 @@ rules:
         - destroy: a
         - destroy: b
         - draw: 1
-  - flip_up: { pay: 0, threshold: { rage: 2 } }

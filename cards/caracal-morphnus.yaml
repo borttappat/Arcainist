@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["seraphim", "dragon"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 6
+threshold: { greed: 1 }
+stats: { str: 0, life: 0, spd: 3 }
+
 text: |
   UNIQUE CARACAL
   When this card enters play, put 5 tokens on it.

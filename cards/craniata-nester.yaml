@@ -5,6 +5,11 @@ types: [character]
 subtypes: [monstrosity]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 3
+threshold: { deception: 3 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   When a card that provides at least [V] enters play under your control, you may pick an opponent. If you do, put the top card of their deck into their discard pile.
   This card gains 1 strength and 1 life for each character card in each opponent's discard pile.

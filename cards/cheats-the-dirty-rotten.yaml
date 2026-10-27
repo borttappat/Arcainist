@@ -5,6 +5,11 @@ types: [character]
 subtypes: [pluck, grifter]
 set: "Holy Heist"
 rarity: rare
+
+cost: 4
+threshold: { deception: 4 }
+stats: { str: 1, life: 3, spd: 4 }
+
 text: |
   UNIQUE PLUCK
   EXTRA COST: Pick an opponent.

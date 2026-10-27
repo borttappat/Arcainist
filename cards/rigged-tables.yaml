@@ -4,6 +4,10 @@ trade: rogue
 types: [item]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 0
+threshold: { deception: 2 }
+
 text: |
   SIZE UP
   COST: Deplete this card.

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["fighter", "soldier"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 5
+threshold: { rage: 4 }
+stats: { str: 4, life: 4, spd: 3 }
+
 text: |
   UNIQUE ECNERET
   When this card is destroyed by an opposing card, characters you control gain 2 strength and 2 life until the end of your next turn.

@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Seed Saga"
 rarity: common
+
+cost: 3
+threshold: { obsession: 1 }
+
 text: |
   Draw a card. Put a card from your hand on the bottom of your deck. Put this card into play under its owner's control as a face-down resource instead of into their discard pile.
 rules:

@@ -5,6 +5,10 @@ types: [item]
 subtypes: ["node"]
 set: "1st Edition"
 rarity: rare
+
+cost: 4
+threshold: { elitism: 3 }
+
 text: |
   This card cannot be destroyed by the effects of node cards.
   RECONSTRUCT

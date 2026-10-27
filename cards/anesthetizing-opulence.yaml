@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "2nd Edition"
 rarity: common
+
+cost: 4
+threshold: { greed: 2 }
+
 text: |
   EXTRA COST: Pick a character.
   Destroy the character. An opponent draws a card.

@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "Seed 3"
 rarity: fixed
+
+cost: 3
+threshold: { greed: 1 }
+
 text: |
   EXTRA COST: Choose a number for X that is less than or equal to the number of [G] you control.
   Draw X cards. Your faction loses X+X influence.

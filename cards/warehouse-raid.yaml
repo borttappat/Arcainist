@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "1st Edition"
 rarity: common
+
+cost: 3
+threshold: { deception: 1 }
+
 text: |
   EXTRA COST: Flip a coin. If you win, X is 2. Otherwise, X is 1.
   An opponent discards X cards at random. Put any items discarded this way into play under your control.

@@ -4,6 +4,10 @@ trade: arcanist
 types: [item]
 set: "1st Edition"
 rarity: uncommon
+
+cost: 0
+threshold: { obsession: 1 }
+
 text: |
   FORESIGHT
   COST: Choose a number for X. Pay X.

@@ -4,6 +4,10 @@ trade: warlord
 types: [item]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 2
+threshold: { rage: 1 }
+
 text: |
   At the start of your turn you may pick a character. If you do, that character gains 1 strength this turn.
 rules:

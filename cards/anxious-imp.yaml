@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["familiar"]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 3
+threshold: { obsession: 1 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   OBSESS
   COST: Pay 2.

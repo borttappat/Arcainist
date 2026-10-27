@@ -4,6 +4,11 @@ trade: arcanist
 types: [location]
 set: "Holy Heist"
 rarity: rare
+
+cost: 4
+threshold: { obsession: 1 }
+structure: 6
+
 text: |
   CALL UPON THE GODS
   COST: Deplete this card. X is the number of [V] you control. Pay 10-X.

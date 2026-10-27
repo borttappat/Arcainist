@@ -6,6 +6,12 @@ keywords: [tactical]
 subtypes: ["dancer"]
 set: "Seed Saga"
 rarity: common
+
+cost: 3
+threshold: { deception: 2 }
+stats: { str: 2, life: 2, spd: 3 }
+flip_up: { cost: 4, threshold: { deception: 2 }, steps: [ { play_resource: 1 } ] }
+
 text: |
   TACTICAL
   GRACEFUL EXIT
@@ -18,4 +24,3 @@ rules:
       cost: [ discard: 1 ]
       effect:
         - flip_face_down: { card: self, controller: owner }
-  - flip_up: { pay: 4, threshold: { deception: 2 }, cost: [ play_resource: 1 ] }

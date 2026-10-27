@@ -4,6 +4,10 @@ trade: rogue
 types: [item]
 set: "2nd Edition"
 rarity: rare
+
+cost: 3
+threshold: { deception: 2 }
+
 text: |
   STEAL
   COST: Deplete this card. Pick a character or item in an opponent's discard pile.

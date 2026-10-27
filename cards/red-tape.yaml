@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 2
+threshold: { greed: 2 }
+
 text: |
   EXTRA COST: Pick a character.
   This turn, the character loses 3 strength. Draw a card.

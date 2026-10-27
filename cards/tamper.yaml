@@ -4,6 +4,11 @@ trade: gearsmith
 types: [tactic]
 set: "Seed Saga"
 rarity: common
+
+cost: 3
+threshold: { elitism: 2 }
+flip_up: { cost: 1, threshold: { elitism: 2 } }
+
 text: |
   EXTRA COST: Pick a character with an ability in its rules text.
   Destroy the character.
@@ -13,4 +18,3 @@ rules:
       cost:
         - pick: { as: c, from: { character: { text_has: "COST:" } } }
       effect: [ destroy: c ]
-  - flip_up: { pay: 1, threshold: { elitism: 2 } }

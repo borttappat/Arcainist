@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["necromorph", "mercenary"]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 3
+threshold: { greed: 1 }
+stats: { str: 4, life: 4, spd: 3 }
+
 text: |
   If this card would be destroyed, any opponent may pay 2. If they do, that player takes control of this card instead and all damage already inflicted to this card this turn is reduced to 0.
 rules:

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["lawyer", "mau"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 5
+threshold: { greed: 3 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   All your other lawyer characters gain 1 strength and 1 life.
 rules:

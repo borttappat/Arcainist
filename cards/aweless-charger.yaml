@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 2
+threshold: { rage: 2 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   BORE
   COST: Pay 3. Deplete this card. Pick a blocking character.

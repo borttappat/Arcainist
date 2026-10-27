@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["ritualist"]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 2
+threshold: { obsession: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   DELINIATE: [V][V]
   COST: Pay 2. Deplete this card. Name a threshold icon. X is that icon.

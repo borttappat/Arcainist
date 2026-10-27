@@ -5,7 +5,12 @@ types: [character]
 subtypes: ["politician", "mau"]
 set: "Seed Saga"
 rarity: common
+
+cost: 2
+threshold: { greed: 1 }
+stats: { str: 1, life: 3, spd: 3 }
+flip_up: { cost: 0, threshold: { greed: 1 } }
+
 text: |
   FLIP UP: 0 [G]
-rules:
-  - flip_up: { pay: 0, threshold: { greed: 1 } }
+rules: []

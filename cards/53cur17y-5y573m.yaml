@@ -4,10 +4,15 @@ trade: gearsmith
 types: [location]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 4
+threshold: { elitism: 1 }
+structure: 5
+flip_up: { cost: 2, threshold: { elitism: 1 } }
+
 text: |
   COVERT parties can be blocked by characters without COVERT.
   FLIP UP: 2 [E]
 rules:
   - static:
       mods: [ { covert_blockable: true, target: all } ]
-  - flip_up: { pay: 2, threshold: { elitism: 1 } }

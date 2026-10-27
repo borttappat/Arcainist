@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["dragon"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 8
+threshold: { rage: 5 }
+stats: { str: 9, life: 8, spd: 3 }
+flip_up: { cost: 9, threshold: { rage: 5 } }
+
 text: |
   UNIQUE GOUTFLAME TALONCLAW
   When this card enters play, you may pick a location, item and/or character. If you do, destroy the picked cards.
@@ -35,4 +41,3 @@ rules:
     instead: [ flip_face_down: { card: self, controller: owner } ]
   - replace: { event: to_void, card: self, always: true }
     instead: [ flip_face_down: { card: self, controller: owner } ]
-  - flip_up: { pay: 9, threshold: { rage: 5 } }

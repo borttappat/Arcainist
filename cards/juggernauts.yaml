@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["vehicle"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 6
+threshold: { elitism: 1 }
+stats: { str: 4, life: 4, spd: 1 }
+
 text: |
   EXTRA COST: You may pick up to 3 characters you control.
   When this card enters play, if you picked any characters as part of its cost, flip the characters face-down under their owner's control.

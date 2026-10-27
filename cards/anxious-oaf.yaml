@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["berserker"]
 set: "1st Edition Part 2"
 rarity: common
+
+cost: 2
+threshold: { rage: 1 }
+stats: { str: 3, life: 1, spd: 3 }
+
 text: |
   When an attacking or blocking party is formed including this card, it must have at least 2 members.
 rules:

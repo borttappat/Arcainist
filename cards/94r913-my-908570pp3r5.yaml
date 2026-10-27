@@ -4,6 +4,11 @@ trade: gearsmith
 types: [tactic]
 set: "Seed 3"
 rarity: fixed
+
+cost: 3
+threshold: { elitism: 1 }
+flip_up: { cost: 2, threshold: { elitism: 1 } }
+
 text: |
   EXTRA COST: If you deployed this card using FLIP UP X is 4, otherwise X is 2. Pick X or fewer characters.
   This turn, the characters must attack if they can. Draw a card.
@@ -19,4 +24,3 @@ rules:
       effect:
         - create_effect: { duration: turn, mods: [ { must_attack: true, target: c } ] }
         - draw: 1
-  - flip_up: { pay: 2, threshold: { elitism: 1 } }

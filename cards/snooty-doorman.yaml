@@ -5,6 +5,11 @@ types: [character]
 subtypes: [lackey]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 3
+threshold: { greed: 1 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   DENIED!
   COST: Use this only in response to a character being deployed. Destroy this card.

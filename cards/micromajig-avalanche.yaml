@@ -4,6 +4,10 @@ trade: gearsmith
 types: [tactic]
 set: "2nd Edition"
 rarity: rare
+
+cost: 0
+threshold: { elitism: 4 }
+
 text: |
   EXTRA COST: Choose a number for X. Pay X+X.
   Put X Micromajig tokens into play.

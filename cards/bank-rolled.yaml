@@ -4,6 +4,11 @@ trade: banker
 types: [tactic]
 set: "Ungodly Mess"
 rarity: rare
+
+cost: 1
+threshold: { greed: 3 }
+flip_up: { cost: 4, threshold: { greed: 2 }, steps: [ { gain_influence: { who: you, amount: 4 } } ] }
+
 text: |
   EXTRA COST: Choose a number for X. Your faction loses X influence.
   Destroy a character with numeric cost X.
@@ -15,4 +20,3 @@ rules:
         - lose_influence: { who: you, amount: X }
       effect:
         - destroy: { from: { character: { cost_gte: X, cost_lte: X } }, choose: true }
-  - flip_up: { pay: 4, threshold: { greed: 2 }, cost: [ gain_influence: { who: you, amount: 4 } ] }

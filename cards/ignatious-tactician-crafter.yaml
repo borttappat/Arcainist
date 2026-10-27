@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["ignatious", "blade of questionable morality"]
 set: "Ungodly Mess"
 rarity: rare
+
+cost: 4
+threshold: { obsession: 4 }
+stats: { str: 1, life: 5, spd: 3 }
+
 text: |
   UNIQUE IGNATIOUS
   FEALTY: While this card is in your hand and you control at least 4 staple resources of different trades, reduce this card's threshold requirement by any 3 resource icons.

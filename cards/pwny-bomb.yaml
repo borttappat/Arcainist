@@ -5,6 +5,11 @@ types: [item]
 subtypes: ["gear"]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 0
+threshold: { elitism: 1 }
+gear: { str: 1, life: 1 }
+
 text: |
   The attached character gains 1 strength and 1 life.
   When a Micromajig token or "horsemajig" character enters play under your control, you may attach this card to it.

@@ -5,10 +5,15 @@ types: [character]
 subtypes: ["dragon"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 5
+threshold: { rage: 1 }
+stats: { str: 3, life: 2, spd: 3 }
+flip_up: { cost: 3, threshold: { rage: 1 } }
+
 text: |
   When this card enters play, inflict 1 damage to all characters an opponent controls.
   FLIP UP: 3 [R]
 rules:
   - trigger: { on: enters_play, card: self }
     effect: [ damage: { card: { character: { controller: opponent } }, amount: 1 } ]
-  - flip_up: { pay: 3, threshold: { rage: 1 } }

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["golem"]
 set: "Seed Saga"
 rarity: common
+
+cost: 5
+threshold: { elitism: 1 }
+stats: { str: 4, life: 3, spd: 3 }
+
 text: |
   [E][E][E]: This card can attack even if it has not been in play under your control since the start of the turn.
 rules:

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 3
+threshold: { rage: 3 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   PUSH
   COST: Pay 1. Deplete a character you control.

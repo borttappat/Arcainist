@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["ghost", "vehicle"]
 set: "Ungodly Mess"
 rarity: rare
+
+cost: 5
+threshold: { greed: 4 }
+stats: { str: 4, life: 2, spd: 3 }
+
 text: |
   RESIST
   COST: Pay 1. Your faction loses 1 influence.

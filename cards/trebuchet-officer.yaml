@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 4
+threshold: { rage: 2 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   FIRE!
   COST: Pay 1. Pick a location.

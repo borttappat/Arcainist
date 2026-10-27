@@ -4,6 +4,11 @@ trade: warlord
 types: [location]
 set: "Ungodly Mess"
 rarity: rare
+
+cost: 3
+threshold: { rage: 2 }
+structure: 5
+
 text: |
   You opponents may only play tactics during their own turn.
 rules:

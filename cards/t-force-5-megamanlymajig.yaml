@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["t force 5", "majig"]
 set: "Holy Heist"
 rarity: common
+
+cost: 8
+threshold: { elitism: 3 }
+stats: { str: 8, life: 6, spd: 3 }
+
 text: |
   When this card enters play, you may detach up to 3 resources from your faction.
 rules:

@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 2
+threshold: { deception: 2 }
+
 text: |
   An opponent discards a card at random. Put the top 2 cards of their deck into their discard pile.
 rules:

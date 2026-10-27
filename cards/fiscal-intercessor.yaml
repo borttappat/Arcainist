@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mau"]
 set: "Seed Saga"
 rarity: common
+
+cost: 3
+threshold: { greed: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   PLEAD
   COST: Deplete this card. Pick a character.

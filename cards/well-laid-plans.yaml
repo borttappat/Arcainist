@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "Seed Saga"
 rarity: common
+
+cost: 4
+threshold: { deception: 1 }
+
 text: |
   EXTRA COST: Pick an opponent.
   Search that player's deck for a card and reveal it. Put it into play under its owner's control as a face-down resource.

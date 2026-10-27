@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["changeling"]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 2
+threshold: { volition: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   [O]: This card gains COVERT.
   [G]: This card gains 2 life.

@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 5
+threshold: { deception: 2 }
+
 text: |
   EXTRA COST: Destroy a character or item you control. Pick a character.
   Take control of the picked character.

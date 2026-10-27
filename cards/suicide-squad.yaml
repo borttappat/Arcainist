@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 4
+threshold: { rage: 2 }
+stats: { str: 3, life: 1, spd: 3 }
+
 text: |
   ULTIMATE SACRIFICE
   COST: X is this card's strength. Destroy this card. Pick a character.

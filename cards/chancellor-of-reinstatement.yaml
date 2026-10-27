@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mau"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 3
+threshold: { greed: 1 }
+stats: { str: 2, life: 1, spd: 3 }
+
 text: |
   REINSTATE
   COST: Pay 4. Destroy this card. Pick a character in your discard pile.

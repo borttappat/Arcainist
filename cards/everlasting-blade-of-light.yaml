@@ -5,6 +5,11 @@ types: [item]
 subtypes: ["gear"]
 set: "Holy Heist"
 rarity: rare
+
+cost: 5
+threshold: { rage: 2 }
+gear: { str: 3, life: 3 }
+
 text: |
   UNIQUE BLADE OF LIGHT
   The attached character gains 3 strength and 3 life.

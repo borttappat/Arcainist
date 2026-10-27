@@ -4,6 +4,10 @@ trade: arcanist
 types: [item]
 set: "2nd Edition"
 rarity: rare
+
+cost: 3
+threshold: { obsession: 2 }
+
 text: |
   LOBOTOMIZE
   COST: Deplete this card.

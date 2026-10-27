@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["muddler"]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 5
+threshold: { obsession: 2 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   When this card attacks, pick an opponent. That player discards a card.
   [O][O][O][O][O][O]: When this card inflicts battle damage to an opponent's faction, that faction's owner discards a card.

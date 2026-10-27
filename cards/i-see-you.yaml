@@ -4,6 +4,16 @@ trade: gearsmith
 types: [tactic]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 2
+threshold: { elitism: 2 }
+flip_up:
+  cost: 3
+  threshold: { elitism: 2 }
+  steps:
+    - pick: { as: r, from: { resource: { controller: you } }, choose: true, prompt: "Destroy another resource you control." }
+    - destroy: r
+
 text: |
   EXTRA COST: Pick a character with COVERT.
   This turn, the character loses COVERT. If you control [V][V][V], this turn, the character loses 1 speed. Put this card into play under its owner's control as a face-down resource instead of into their discard pile.
@@ -18,9 +28,3 @@ rules:
             cond: { icons: { volition: 3 } }
             then: [ modify: { card: c, stat: spd, lose: 1 } ]
       then: face_down_resource
-  - flip_up:
-      pay: 3
-      threshold: { elitism: 2 }
-      cost:
-        - pick: { as: r, from: { resource: { controller: you } }, choose: true, prompt: "Destroy another resource you control." }
-        - destroy: r

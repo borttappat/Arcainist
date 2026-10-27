@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["kaiser"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 4
+threshold: { elitism: 2 }
+stats: { str: 1, life: 3, spd: 2 }
+
 text: |
   PANTHER SHIELD
   COST: Pay 2. Deplete this card. Pick a character.

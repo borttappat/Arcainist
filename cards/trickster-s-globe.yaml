@@ -4,6 +4,10 @@ trade: rogue
 types: [item]
 set: "Ungodly Mess"
 rarity: uber
+
+cost: 4
+threshold: { deception: 3 }
+
 text: |
   If you would inflict damage to an opponent's faction, for each damage you would inflict, you may put up to that many cards from the top of its owner's deck into their discard pile instead.
   When a player has no cards in their deck, they lose the game.

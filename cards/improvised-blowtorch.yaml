@@ -4,6 +4,11 @@ trade: warlord
 types: [tactic]
 set: "Seed Saga"
 rarity: common
+
+cost: 3
+threshold: { rage: 1 }
+flip_up: { cost: 1, threshold: { rage: 1 } }
+
 text: |
   EXTRA COST: Pick a character.
   Inflict 2 damage to the character.
@@ -13,4 +18,3 @@ rules:
       cost:
         - pick: { as: c, from: { character: any } }
       effect: [ damage: { card: c, amount: 2 } ]
-  - flip_up: { pay: 1, threshold: { rage: 1 } }

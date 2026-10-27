@@ -4,6 +4,11 @@ trade: gearsmith
 types: [tactic]
 set: "Seed Saga"
 rarity: rare
+
+cost: 3
+threshold: { elitism: 1 }
+flip_up: { cost: 4, threshold: { elitism: 1 }, steps: [ { discard: 1 } ] }
+
 text: |
   EXTRA COST: Deploy this only in response to an ability.
   Terminate the ability. Put this card into play under its owner's control as a face-down resource instead of into its owner's discard pile.
@@ -14,4 +19,3 @@ rules:
       then: face_down_resource
       effect:
         - terminate: responded
-  - flip_up: { pay: 4, threshold: { elitism: 1 }, cost: [ discard: 1 ] }

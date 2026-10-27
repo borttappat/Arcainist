@@ -6,6 +6,11 @@ keywords: [covert]
 subtypes: ["lurker"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 5
+threshold: { obsession: 2 }
+stats: { str: 3, life: 1, spd: 3 }
+
 text: |
   COVERT
   When this card enters play, you may pick a tactic in your discard pile. If you do, put it into your hand.

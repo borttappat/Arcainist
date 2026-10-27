@@ -4,6 +4,10 @@ trade: arcanist
 types: [item]
 set: "Seed Saga"
 rarity: rare
+
+cost: 5
+threshold: { obsession: 2 }
+
 text: |
   At the end of each turn, put the character with the lowest numeric cost into its owner's hand. If there is a tie, you decide which character is affected.
 rules:

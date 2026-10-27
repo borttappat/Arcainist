@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "2nd Edition"
 rarity: rare
+
+cost: 5
+threshold: { greed: 4 }
+
 text: |
   EXTRA COST: Deploy this only during your turn.
   Draw 5 cards. Your faction gains 2 influence.

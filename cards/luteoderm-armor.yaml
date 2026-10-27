@@ -6,6 +6,11 @@ attach_to: character
 subtypes: ["gear"]
 set: "1st Edition"
 rarity: common
+
+cost: 3
+threshold: { elitism: 2 }
+gear: { str: 2, life: 2 }
+
 text: |
   ATTACH TO CHARACTER
   The attached character gains 2 strength and 2 life.

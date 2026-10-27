@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["31f", "fighter"]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 5
+threshold: { elitism: 1 }
+stats: { str: 4, life: 4, spd: 2 }
+flip_up: { cost: 4, threshold: { volition: 4 } }
+
 text: |
   [E][E][V][V]: This card gains 1 strength and 1 life. When this card attacks, you may pick a face-up resource you control. If you do, flip it face-down under its owner's control.
   FLIP UP: 4 [V][V][V][V]
@@ -18,4 +24,3 @@ rules:
       - if:
           cond: { defined: r }
           then: [ flip_face_down: { card: r, controller: owner } ]
-  - flip_up: { pay: 4, threshold: { volition: 4 } }

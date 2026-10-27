@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["performer"]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 5
+threshold: { deception: 3 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   BETRAY
   COST: Pick a non-tactic card in an opponent's discard pile. Destroy this card. 

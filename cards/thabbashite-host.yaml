@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["fighter"]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 8
+threshold: { rage: 1 }
+stats: { str: 5, life: 6, spd: 3 }
+flip_up: { cost: 7, threshold: { volition: 4 } }
+
 text: |
   [R][R][V][V]: This card gains 4 strength. When this card leaves play, you may pick a character. If you do, that character gains 4 strength this turn.
   FLIP UP: 7 [V][V][V][V]
@@ -18,4 +24,3 @@ rules:
       - if:
           cond: { defined: c }
           then: [ modify: { card: c, stat: str, gain: 4 } ]
-  - flip_up: { pay: 7, threshold: { volition: 4 } }

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mau"]
 set: "Seed Saga"
 rarity: common
+
+cost: 3
+threshold: { greed: 2 }
+stats: { str: 2, life: 3, spd: 3 }
+
 text: |
   If this card would be destroyed, flip it face-down under its owner's control instead.
 rules:

@@ -4,6 +4,10 @@ trade: arcanist
 types: [item]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 4
+threshold: { obsession: 2 }
+
 text: |
   FORESIGHT
   COST: Deplete this card.

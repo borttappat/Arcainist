@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["dragon"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 3
+threshold: { rage: 1 }
+stats: { str: 2, life: 1, spd: 3 }
+
 text: |
   INFLAME
   COST: Pay 2. Destroy this card. Pick a character or location.

@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 4
+threshold: { obsession: 2 }
+
 text: |
   EXTRA COST: Pick a character. That character's controller may detach up to 2 resources from their faction.
   This turn, the character loses 1 speed. Draw a card.

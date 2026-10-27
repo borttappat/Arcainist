@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["wizard"]
 set: "Seed Saga"
 rarity: common
+
+cost: 2
+threshold: { obsession: 1 }
+stats: { str: 1, life: 2, spd: 3 }
+
 text: |
   GAZE UPON THE STARS
   COST: Deplete this card.

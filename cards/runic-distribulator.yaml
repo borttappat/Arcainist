@@ -4,6 +4,10 @@ trade: gearsmith
 types: [item]
 set: "Holy Heist"
 rarity: rare
+
+cost: 0
+threshold: { elitism: 3 }
+
 text: |
   LOAD
   COST: Pay 2.

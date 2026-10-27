@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["warbeast"]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 4
+threshold: { rage: 2 }
+stats: { str: 4, life: 2, spd: 3 }
+
 text: |
   TO BEAR ARMS
   COST: Pay 1. Pick a character. Destroy a restored character you control.

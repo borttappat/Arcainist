@@ -3,6 +3,11 @@ name: "The Primitive Tribes of Thabbash"
 trade: none
 types: [faction]
 set: "Holy Heist"
+
+influence: 24
+starting_resources: { face_down: { obsession: 1 }, any_staples: 1 }
+starting_draw: { first: 8, second: 9 }
+
 text: |
   STARTING RESOURCES: 1 face-down Obsession, 1 staple resource
   STARTING DRAW: 8 going first, 9 going second

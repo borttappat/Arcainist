@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "1st Edition"
 rarity: common
+
+cost: 9
+threshold: { rage: 2 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   FIRE!
   COST: Deplete this card. Pick 2 or fewer characters.

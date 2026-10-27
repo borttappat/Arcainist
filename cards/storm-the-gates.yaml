@@ -4,6 +4,11 @@ trade: warlord
 types: [tactic]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 1
+threshold: { rage: 2 }
+flip_up: { cost: 1, threshold: { rage: 1 } }
+
 text: |
   EXTRA COST: Destroy a character you own. Pick a character your opponent owns.
   Inflict 5 damage to the character. If the character was destroyed by that damage, draw a card.
@@ -18,4 +23,3 @@ rules:
         - if:
             cond: { destroyed: c }
             then: [ draw: 1 ]
-  - flip_up: { pay: 1, threshold: { rage: 1 } }

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["jo", "blade of questionable morality"]
 set: "Ungodly Mess"
 rarity: rare
+
+cost: 3
+threshold: { elitism: 4 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   UNIQUE JO
   FEALTY: While this card is in your hand and you control at least 4 staple resources of different trades, reduce this card's threshold requirement by any 3 resource icons.

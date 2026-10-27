@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["31f"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 3
+threshold: { elitism: 2 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   When you deploy a gear card attached to this card, you may detach a resource from your faction.
   While a gear card is attached to this card, it gains 1 strength and 1 life.

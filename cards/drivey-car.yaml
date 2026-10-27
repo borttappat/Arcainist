@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["vehicle"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 1
+threshold: { elitism: 2 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   When this card leaves play, put X Micromajig tokens into play, where X is the number of characters an opponent controls minus the number of characters you control.
 rules:

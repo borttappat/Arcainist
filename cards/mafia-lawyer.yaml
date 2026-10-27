@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mercenary", "lawyer", "mau"]
 set: "2nd Edition"
 rarity: common
+
+cost: 4
+threshold: { greed: 2 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   When this card enters play, your faction loses 2 influence.
   When this card is destroyed during a battle, your faction gains X influence, where X is the total strength of the opposing party.

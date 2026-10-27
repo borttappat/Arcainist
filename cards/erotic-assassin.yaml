@@ -5,6 +5,11 @@ types: [character]
 subtypes: [mercenary, assassin]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 0
+threshold: { greed: 2 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   This card cannot be restored by your faction's Restore Rule.
   This card can attack only once each turn.

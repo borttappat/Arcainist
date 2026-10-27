@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "Seed Saga"
 rarity: rare
+
+cost: 2
+threshold: { deception: 3 }
+
 text: |
   EXTRA COST: Pick a character attacking your faction or a location you control. X is that character's numeric cost.
   Reveal cards from the top of your deck until a character with numeric cost X or less is revealed or no cards are left. If an appropriate character is revealed, put it into play under your control as a member of the blocking party. Shuffle all other revealed cards into your deck.

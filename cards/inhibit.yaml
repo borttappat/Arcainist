@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Seed Saga"
 rarity: rare
+
+cost: 1
+threshold: { obsession: 1 }
+
 text: |
   EXTRA COST: Pick a non-resource card.
   Until the start of your next turn, treat the card as though it has no rules text. Draw a card.

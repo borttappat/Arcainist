@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["dancer"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 5
+threshold: { deception: 3 }
+stats: { str: 3, life: 2, spd: 5 }
+
 text: |
   When this card attacks, all other members of its party gain 1 speed this turn.
 rules:

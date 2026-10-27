@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["lawyer"]
 set: "2nd Edition"
 rarity: common
+
+cost: 3
+threshold: { greed: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   When this card blocks, destroy it and all members of the attacking party.
 rules:

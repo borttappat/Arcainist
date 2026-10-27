@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["lurker"]
 set: "2nd Edition"
 rarity: common
+
+cost: 4
+threshold: { obsession: 1 }
+stats: { str: 1, life: 3, spd: 3 }
+
 text: |
   When this card enters play, you may search your deck for a tactic and reveal it. If you do, put it into your hand.
 rules:

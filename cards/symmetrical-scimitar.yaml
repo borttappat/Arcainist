@@ -6,6 +6,10 @@ attach_to: character
 subtypes: ["gear"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 1
+threshold: { elitism: 1 }
+
 text: |
   ATTACH TO CHARACTER
   While this card is attached to a character you control, that character gains 1 strength and 1 life.

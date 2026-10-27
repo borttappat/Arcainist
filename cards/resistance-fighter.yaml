@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["miner"]
 set: "Seed Saga"
 rarity: common
+
+cost: 1
+threshold: { deception: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+provides: { deception: 1 }
+
 text: |
   PROVIDES: [D]
   While you control a character you don't own, this card gains 2 strength, 2 life, and 1 speed.

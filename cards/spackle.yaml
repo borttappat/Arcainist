@@ -4,6 +4,10 @@ trade: gearsmith
 types: [item]
 set: "1st Edition Part 2"
 rarity: uncommon
+
+cost: 1
+threshold: { elitism: 1 }
+
 text: |
   REPAIR
   COST: Deplete this card. Pick a location.

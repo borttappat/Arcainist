@@ -4,6 +4,11 @@ trade: gearsmith
 types: [location]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 4
+threshold: { elitism: 3 }
+structure: 6
+
 text: |
   At the start of your turn, you may pay 3. If you do you may play a resource.
 rules:

@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "Holy Heist"
 rarity: rare
+
+cost: 6
+threshold: { greed: 5 }
+
 text: |
   EXTRA COST: Deploy this card only during your turn.
   Draw 4 cards. At the start of your opponent's next turn detach up to 3 staple resources you control, a character you control gains 2 life that turn, and restore a character you control.

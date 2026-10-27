@@ -4,6 +4,11 @@ trade: gearsmith
 types: [item]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 2
+threshold: { elitism: 2 }
+flip_up: { cost: 0, threshold: { elitism: 2 } }
+
 text: |
   PROTECT
   COST: Pay 2. Deplete this card. Pick a character.
@@ -24,4 +29,3 @@ rules:
                 instead:
                   - destroy: self
                   - heal: { card: it, all: true }
-  - flip_up: { pay: 0, threshold: { elitism: 2 } }

@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["majig"]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 5
+threshold: { elitism: 2 }
+stats: { str: 3, life: 5, spd: 2 }
+flip_up: { cost: 4, threshold: { elitism: 3 } }
+
 text: |
   EXTRA COST: You may pick a location and deplete it.
   While this card is in play, the location cannot be restored by its controller's RESTORE RULE.
@@ -26,4 +32,3 @@ rules:
   - static:
       while: { matches: [ picked, { location: { depleted: true } } ] }
       mods: [ { stat: { str: 3, life: 1 } } ]
-  - flip_up: { pay: 4, threshold: { elitism: 3 } }

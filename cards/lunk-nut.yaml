@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["machine"]
 set: "Holy Heist"
 rarity: common
+
+cost: 4
+threshold: { elitism: 1 }
+stats: { str: 3, life: 4, spd: 2 }
+
 text: |
   At the start of each opponent's turn, restore this card.
 rules:

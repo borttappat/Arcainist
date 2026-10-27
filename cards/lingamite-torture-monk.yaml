@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["priest"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 2
+threshold: { obsession: 2 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   TORTURE
   COST: Pick a character you own. Destroy this card.

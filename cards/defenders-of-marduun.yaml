@@ -3,6 +3,11 @@ name: "Defenders of Marduun"
 trade: none
 types: [faction]
 set: "Seed Saga"
+
+influence: 20
+starting_resources: { different_staples: 2 }
+starting_draw: { first: 8, second: 9 }
+
 text: |
   STARTING RESOURCES: Any 2 different staple resources.
   STARTING DRAW: 8 going first, 9 going second.

@@ -4,6 +4,11 @@ trade: banker
 types: [location]
 set: "Seed Saga"
 rarity: rare
+
+cost: 3
+threshold: { greed: 1 }
+structure: 2
+
 text: |
   UNIQUE LODGE DOCK FLORIST
   All characters gain the rules text "At the start of your turn, you may pay 1. If you don't, destroy this card."

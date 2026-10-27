@@ -6,6 +6,11 @@ attach_to: character
 subtypes: ["gear"]
 set: "Seed Saga"
 rarity: common
+
+cost: 1
+threshold: { elitism: 1 }
+flip_up: { cost: 4, threshold: { elitism: 3 } }
+
 text: |
   ATTACH TO CHARACTER
   The attached character loses 1 speed for each token on it.
@@ -29,4 +34,3 @@ rules:
                       then: [ destroy: host ]
   - replace: { event: destroy, card: self, optional: true, prompt: "Flip it face-down under its owner's control instead" }
     instead: [ flip_face_down: { card: self, controller: owner } ]
-  - flip_up: { pay: 4, threshold: { elitism: 3 } }

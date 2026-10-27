@@ -4,6 +4,9 @@ trade: universal
 types: [tactic]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 2
+
 text: |
   EXTRA COST: Pick a character.
   [O]: This turn, the character gains COVERT.

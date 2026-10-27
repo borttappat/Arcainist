@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["31f"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 5
+threshold: { elitism: 2 }
+stats: { str: 3, life: 5, spd: 3 }
+
 text: |
   This card loses 1 life for each token on it.
   FALL APART

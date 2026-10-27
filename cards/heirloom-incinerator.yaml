@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["tyrant"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 1
+threshold: { rage: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   When this card inflicts damage to a faction, you may pick an item. If you do, destroy it.
 rules:

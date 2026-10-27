@@ -4,6 +4,11 @@ trade: gearsmith
 types: [location]
 set: "Seed Saga"
 rarity: rare
+
+cost: 2
+threshold: { elitism: 1 }
+structure: 12
+
 text: |
   ENSNARE
   COST: Pay 1 or destroy a Micromajig token you control.

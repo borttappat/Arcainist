@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["beast"]
 set: "Holy Heist"
 rarity: common
+
+cost: 5
+threshold: { deception: 1 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   REND
   COST: Use this ability only once each turn. Destroy a face-down resource you control.

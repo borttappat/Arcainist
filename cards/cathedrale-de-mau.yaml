@@ -4,6 +4,11 @@ trade: banker
 types: [location]
 set: "Holy Heist"
 rarity: rare
+
+cost: 3
+threshold: { greed: 3 }
+structure: 4
+
 text: |
   UNIQUE CATHEDRAL
   When damage is inflicted to a location you control, you may reduce the amount by 1. If you do, your faction loses 1 influence.

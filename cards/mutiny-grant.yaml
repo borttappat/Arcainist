@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 2
+threshold: { greed: 2 }
+
 text: |
   EXTRA COST: Pick a character an opponent controls. Your faction loses X influence, where X is the numeric cost of that character.
   This turn, take control of the character. Restore it.

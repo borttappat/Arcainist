@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["lawyer", "mau"]
 set: "2nd Edition"
 rarity: common
+
+cost: 6
+threshold: { greed: 2 }
+stats: { str: 4, life: 3, spd: 3 }
+
 text: |
   UNDERHANDED DEAL
   COST: Discard a card.

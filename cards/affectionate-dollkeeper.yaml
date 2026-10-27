@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["hedonist"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 4
+threshold: { deception: 1 }
+stats: { str: 2, life: 2, spd: 4 }
+
 text: |
   [D][D][D]: When this card inflicts damage to a character, destroy that character.
 rules:

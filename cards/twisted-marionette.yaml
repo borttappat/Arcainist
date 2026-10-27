@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["doll"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 4
+threshold: { obsession: 2 }
+stats: { str: 3, life: 2, spd: 3 }
+
 text: |
   When this card inflicts battle damage to a faction, you may pay 1. If you do, that faction's controller puts a character they control into its owner's hand.
 rules:

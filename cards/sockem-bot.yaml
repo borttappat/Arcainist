@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["warmachine"]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 6
+threshold: { elitism: 3 }
+stats: { str: 8, life: 6, spd: 2 }
+
 text: |
   PAY OFF
   COST: Any player may use this ability. Pay 1.

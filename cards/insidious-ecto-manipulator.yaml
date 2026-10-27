@@ -6,6 +6,11 @@ keywords: [covert]
 subtypes: ["ecto-manipulator"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 4
+threshold: { obsession: 2 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   COVERT
   At the start of your turn, you may pick a non-resource card you control. If you do, put a token on it.

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mau", "merchant"]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 4
+threshold: { greed: 2 }
+stats: { str: 2, life: 4, spd: 3 }
+
 text: |
   When this card enters play, you may pick a character. If you do, this turn, that character gains 2 life.
 rules:

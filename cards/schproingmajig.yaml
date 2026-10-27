@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["majig"]
 set: "1st Edition Part 2"
 rarity: uncommon
+
+cost: 6
+threshold: { elitism: 2 }
+stats: { str: 4, life: 4, spd: 2 }
+
 text: |
   PUMP-UP
   COST: Deplete another character you control.

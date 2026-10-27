@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 4
+threshold: { obsession: 1 }
+
 text: |
   An opponent discards a card. You may search your deck for a card of the same type as the discarded card and reveal it. If you do, put it into your hand.
 rules:

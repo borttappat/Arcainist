@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 3
+threshold: { rage: 1 }
+stats: { str: 2, life: 3, spd: 3 }
+
 text: |
   When this card is restored, you may pick a faction. If you do, inflict 1 damage to it.
 rules:

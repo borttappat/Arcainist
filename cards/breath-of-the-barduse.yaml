@@ -4,6 +4,10 @@ trade: warlord
 types: [tactic]
 set: "Ungodly Mess"
 rarity: rare
+
+cost: 4
+threshold: { rage: 2 }
+
 text: |
   EXTRA COST: Deploy this only during your turn.
   Each player destroys 2 character they own. Otherwise, destroy all of that player's characters.

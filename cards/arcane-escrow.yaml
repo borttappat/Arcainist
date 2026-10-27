@@ -4,6 +4,11 @@ trade: banker
 types: [item]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 2
+threshold: { greed: 2 }
+flip_up: { cost: 1, threshold: { greed: 2 } }
+
 text: |
   If you would discard a card, you may put it in the void face-down instead.
   You may look at cards voided by this card.
@@ -23,4 +28,3 @@ rules:
       effect:
         - draw: 1
         - discard: 2
-  - flip_up: { pay: 1, threshold: { greed: 2 } }

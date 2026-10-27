@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["mountain", "golem"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 13
+threshold: { elitism: 2 }
+stats: { str: 13, life: 13, spd: 1 }
+flip_up: { cost: 13, threshold: { elitism: 2 } }
+
 text: |
   Your opponents cannot take control of this card.
   When this card is put into your discard pile from anywhere, remove it from the game.
@@ -15,4 +21,3 @@ rules:
   - static:
       zone: any
       mods: [ { redirect: { to: discard, instead: void } } ]
-  - flip_up: { pay: 13, threshold: { elitism: 2 } }

@@ -4,6 +4,10 @@ trade: gearsmith
 types: [item]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 1
+threshold: { elitism: 2 }
+
 text: |
   This card enters play with 2 tokens on it.
   CONSTRUCT

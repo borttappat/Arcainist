@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["eustace", "blade of questionable morality"]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 4
+threshold: { greed: 3 }
+stats: { str: 1, life: 3, spd: 3 }
+
 text: |
   UNIQUE EUSTACE
   FUTURE IMPLICATIONS

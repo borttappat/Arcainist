@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["ecto-manipulator"]
 set: "2nd Edition"
 rarity: common
+
+cost: 5
+threshold: { obsession: 2 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   EXTRA COST: You may pick a character you control.
   When this card enters play, if you picked a character as part of its cost, put 2 tokens on that character.

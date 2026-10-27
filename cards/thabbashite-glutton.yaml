@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["fighter"]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 3
+threshold: { greed: 1 }
+stats: { str: 1, life: 4, spd: 3 }
+flip_up: { cost: 2, threshold: { volition: 4 } }
+
 text: |
   [G][G][V][V]: When this card is destroyed, draw a card. When this card attacks, you may pick a card in a discard pile. If you do, remove it from the game.
   FLIP UP: 2 [V][V][V][V]
@@ -17,4 +23,3 @@ rules:
       - if:
           cond: { defined: d }
           then: [ move: { card: d, to: void } ]
-  - flip_up: { pay: 2, threshold: { volition: 4 } }

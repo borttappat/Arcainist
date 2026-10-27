@@ -6,6 +6,11 @@ keywords: [tactical]
 subtypes: ["dragon"]
 set: "Holy Heist"
 rarity: rare
+
+cost: 2
+threshold: { deception: 2 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   TACTICAL, UNIQUE CHUM
   EXTRA COST: Pick a card in a discard pile. X is its numeric cost.

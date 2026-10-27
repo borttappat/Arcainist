@@ -3,6 +3,11 @@ name: "Alliance of Handy Weirdos"
 trade: none
 types: [faction]
 set: "Seed Saga"
+
+influence: 20
+starting_resources: { specific: { elitism: 1 }, any_staples: 1 }
+starting_draw: { first: 8, second: 9 }
+
 text: |
   STARTING RESOURCES: 1 Elitism, 1 staple resource
   STARTING DRAW: 8 going first, 9 going second

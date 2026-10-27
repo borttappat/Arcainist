@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["golem"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 5
+threshold: { elitism: 1 }
+stats: { str: 1, life: 1, spd: 2 }
+
 text: |
   This card enters play with 5 tokens on it.
   This card gains 1 strength and 1 life for each token on it.

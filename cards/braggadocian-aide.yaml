@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["craftsman"]
 set: "Seed Saga"
 rarity: common
+
+cost: 4
+threshold: { elitism: 1 }
+stats: { str: 2, life: 3, spd: 3 }
+provides: { elitism: 1 }
+
 text: |
   PROVIDES: [E]
   At the start of each opponent's turn, you may pick a resource attached to your faction. If you do, detach it from your faction.

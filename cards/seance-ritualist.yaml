@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["ritualist"]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 5
+threshold: { obsession: 1 }
+stats: { str: 4, life: 2, spd: 1 }
+
 text: |
   VIOLATE
   COST: Deplete this card. Pick an opponent. X is the number of tokens on this card. Pay X.

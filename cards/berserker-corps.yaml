@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["berserker"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 3
+threshold: { rage: 3 }
+stats: { str: 5, life: 5, spd: 3 }
+
 text: |
   This card gains 1 strength for each token on it.
   At the start of your turn, you may pick a character you control. If you do, destroy it. Put X tokens on this card, where X is the destroyed character's strength when it was destroyed. Otherwise, destroy this card.

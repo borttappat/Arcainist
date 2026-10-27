@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["advisor"]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 2
+threshold: { obsession: 4 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   UNIQUE COUNCIL
   CONVENE

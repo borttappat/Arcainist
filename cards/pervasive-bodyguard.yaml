@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mercenary", "mau"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 6
+threshold: { greed: 2 }
+stats: { str: 4, life: 4, spd: 2 }
+
 text: |
   PROTECT
   COST: Pay 1. Pick a character in a party with this card.

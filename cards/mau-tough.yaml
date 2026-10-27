@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mercenary", "mau"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 4
+threshold: { greed: 2 }
+stats: { str: 4, life: 5, spd: 3 }
+
 text: |
   When this card enters play, your faction loses 4 influence.
 rules:

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["majig"]
 set: "1st Edition"
 rarity: uncommon
+
+cost: 7
+threshold: { elitism: 2 }
+stats: { str: 4, life: 5, spd: 2 }
+
 text: |
   At the start of your turn, you may put a token on this card.
   RESEARCH

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["sorceress"]
 set: "Ungodly Mess"
 rarity: super-rare
+
+cost: 2
+threshold: { elitism: 2 }
+stats: { str: 1, life: 3, spd: 3 }
+
 text: |
   UNIQUE ZENOBIA
   DISENCHANT

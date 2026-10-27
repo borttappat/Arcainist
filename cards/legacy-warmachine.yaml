@@ -5,4 +5,9 @@ types: [character]
 subtypes: ["warmachine"]
 set: "1st Edition"
 rarity: common
+
+cost: 5
+threshold: { elitism: 1 }
+stats: { str: 4, life: 5, spd: 1 }
+
 text: ""

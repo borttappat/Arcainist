@@ -6,6 +6,10 @@ attach_to: character
 subtypes: ["gear"]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 1
+threshold: { obsession: 1 }
+
 text: |
   ATTACH TO CHARACTER
   SOUL DRAIN

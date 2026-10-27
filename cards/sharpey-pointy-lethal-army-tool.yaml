@@ -6,6 +6,11 @@ attach_to: { character: { controller: you } }
 subtypes: ["gear"]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 2
+threshold: { deception: 1 }
+gear: { str: 2 }
+
 text: |
   ATTACH TO CHARACTER YOU CONTROL
   The attached character gains 2 strength.

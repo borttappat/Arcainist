@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mau"]
 set: "1st Edition Part 2"
 rarity: uncommon
+
+cost: 2
+threshold: { greed: 1 }
+stats: { str: 1, life: 3, spd: 3 }
+
 text: |
   INSPECT
   COST: Deplete this card. Pick a location.

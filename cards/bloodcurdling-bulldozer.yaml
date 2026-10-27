@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["berserker"]
 set: "2nd Edition"
 rarity: common
+
+cost: 3
+threshold: { rage: 1 }
+stats: { str: 2, life: 1, spd: 3 }
+
 text: |
   When this card attacks, you may pick a character. If you do, deplete it.
 rules:

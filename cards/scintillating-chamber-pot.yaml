@@ -4,6 +4,10 @@ trade: banker
 types: [item]
 set: "Seed"
 rarity: common
+
+cost: 2
+threshold: { greed: 1 }
+
 text: |
   TANTALIZE
   COST: Pay 1. Deplete this card. Pick a character.

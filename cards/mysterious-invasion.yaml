@@ -4,6 +4,10 @@ trade: gearsmith
 types: [item]
 set: "Seed Saga"
 rarity: rare
+
+cost: 1
+threshold: { elitism: 1 }
+
 text: |
   OVERWHELM
   COST: Deplete this card. Destroy 2 characters you control. Pick a character.

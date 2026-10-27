@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "2nd Edition"
 rarity: common
+
+cost: 3
+threshold: { deception: 1 }
+
 text: |
   EXTRA COST: Pick a character.
   If the character has received damage this turn, destroy it. Draw a card.

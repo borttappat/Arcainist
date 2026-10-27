@@ -4,6 +4,10 @@ trade: warlord
 types: [tactic]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 7
+threshold: { rage: 6 }
+
 text: |
   EXTRA COST: Deploy this only during your turn and not during a battle.
   X is the total strength of all characters your opponents control. Inflict X-3 damage to all characters.

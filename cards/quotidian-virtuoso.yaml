@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["ritualist"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 5
+threshold: { obsession: 2 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   DISRUPT
   COST: Pay 2. Discard a card. Deplete this card.

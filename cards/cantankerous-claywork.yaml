@@ -5,6 +5,11 @@ types: [character]
 subtypes: [golem]
 set: "Seed Saga"
 rarity: rare
+
+cost: 7
+threshold: { elitism: 3 }
+stats: { str: 6, life: 5, spd: 3 }
+
 text: |
   This card can attack even if it has not been in play under your control since the start of the turn.
   When this card attacks, all your other characters gain 1 strength and 1 life this turn.

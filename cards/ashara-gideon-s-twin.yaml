@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["sorceress"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 1
+threshold: { deception: 3 }
+stats: { str: 1, life: 3, spd: 3 }
+
 text: |
   UNIQUE ASHARA
   EXTRA COST: You may pick a character in an opponent's discard pile with 3 life or less.

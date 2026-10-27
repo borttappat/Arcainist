@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["monstrosity"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 1
+threshold: { obsession: 2 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   When this card enters play, pick a resource you control. Put it into its owner's hand. (You may pick face-down resources.)
 rules:

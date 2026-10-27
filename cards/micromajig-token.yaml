@@ -4,6 +4,10 @@ trade: gearsmith
 types: [character]
 subtypes: [majig]
 token: true
+
+cost: 0
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   Token. Treat Micromajig tokens as Gearsmith character cards with 1 strength, 1 life, 3 speed, and the majig subtype. When a Micromajig token leaves play, it is removed from the game.
 rules: []

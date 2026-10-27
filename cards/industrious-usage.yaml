@@ -4,6 +4,11 @@ trade: gearsmith
 types: [tactic]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 4
+threshold: { elitism: 2 }
+flip_up: { cost: 2, threshold: { elitism: 2 } }
+
 text: |
   EXTRA COST: Pick an item.
   Destroy the item. Put a Micromajig token into play under your control.
@@ -15,4 +20,3 @@ rules:
       effect:
         - destroy: i
         - create_token: { card: micromajig-token }
-  - flip_up: { pay: 2, threshold: { elitism: 2 } }

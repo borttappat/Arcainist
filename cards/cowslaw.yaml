@@ -4,6 +4,11 @@ trade: arcanist
 types: [tactic]
 set: "Seed 3"
 rarity: fixed
+
+cost: 1
+threshold: { obsession: 1 }
+flip_up: { cost: 1, threshold: { obsession: 1 }, steps: [ { draw: 1 } ] }
+
 text: |
   EXTRA COST: Choose a number for X that is greater than 0. Remove X tactics in your discard pile from the game.
   You may search your deck for a tactic with numeric cost X or less and reveal it. If you do, put it into your hand.
@@ -16,4 +21,3 @@ rules:
         - void: v
       effect:
         - search: { deck: you, for: { tactic: { cost_lte: X } }, reveal: true, to: hand }
-  - flip_up: { pay: 1, threshold: { obsession: 1 }, cost: [ draw: 1 ] }

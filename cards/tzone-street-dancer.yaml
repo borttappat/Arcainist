@@ -6,6 +6,11 @@ keywords: [tactical]
 subtypes: ["dancer", "outcast", "performer"]
 set: "Holy Heist"
 rarity: common
+
+cost: 4
+threshold: { deception: 1 }
+stats: { str: 2, life: 2, spd: 4 }
+
 text: |
   TACTICAL
 # TACTICAL is its only rule (a keyword).

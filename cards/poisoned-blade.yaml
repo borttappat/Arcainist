@@ -6,6 +6,10 @@ attach_to: character
 subtypes: ["gear"]
 set: "2nd Edition"
 rarity: common
+
+cost: 3
+threshold: { deception: 1 }
+
 text: |
   ATTACH TO CHARACTER
   When the attached character inflicts damage to a character, destroy the damaged character.

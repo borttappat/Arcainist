@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["dragon"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 12
+threshold: { rage: 5 }
+stats: { str: 10, life: 10, spd: 4 }
+
 text: |
   At the start of your turn, you may pick a character an opponent controls. If you do, destroy it. Otherwise, destroy this card.
 rules:

@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "Ungodly Mess"
 rarity: ultra-rare
+
+cost: 2
+threshold: { greed: 1 }
+
 text: |
   This turn, cards in play and cards deployed can only be destroyed by costs, and all inflicted damage is reduced to 0.
 rules:

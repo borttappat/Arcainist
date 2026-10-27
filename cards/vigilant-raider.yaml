@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "Seed Saga"
 rarity: common
+
+cost: 5
+threshold: { rage: 2 }
+stats: { str: 4, life: 4, spd: 3 }
+
 text: |
   ASSAIL
   COST: Pay 2.

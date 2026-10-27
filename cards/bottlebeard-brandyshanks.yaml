@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["pluck", "drunk"]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 4
+threshold: { deception: 3 }
+stats: { str: 3, life: 3, spd: 1 }
+
 text: |
   UNIQUE PLUCK
   The top card of each opponent's deck is revealed at all times. If any of those cards are a character, this card gains 3 speed.

@@ -4,6 +4,11 @@ trade: gearsmith
 types: [tactic]
 set: "Ungodly Mess"
 rarity: uber
+
+cost: 4
+threshold: { elitism: 3 }
+flip_up: { cost: 5, threshold: { elitism: 3 }, steps: [ { create_token: { card: "micromajig-token" } } ] }
+
 text: |
   EXTRA COST: Deploy this only in response to a card being deployed.
   Terminate the card.
@@ -12,4 +17,3 @@ rules:
   - play:
       timing: { response_to: { deploying: { card: any } } }
       effect: [ terminate: responded ]
-  - flip_up: { pay: 5, threshold: { elitism: 3 }, cost: [ create_token: { card: micromajig-token } ] }

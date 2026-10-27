@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 2
+threshold: { deception: 2 }
+
 text: |
   EXTRA COST: Deploy this only in response to a character being deployed. Pay X, where X is its numeric cost.
   The character enters play under your control.

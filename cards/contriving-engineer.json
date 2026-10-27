@@ -1,5 +1,0 @@
-{
-  "cost": 4,
-  "threshold": { "elitism": 1 },
-  "stats": { "str": 2, "life": 1, "spd": 3 }
-}

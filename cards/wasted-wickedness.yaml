@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 0
+threshold: { obsession: 2 }
+
 text: |
   EXTRA COST: Pick a player. X is the number of different staple resources that player controls. Pay X
   +X.

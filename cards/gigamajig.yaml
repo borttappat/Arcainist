@@ -5,4 +5,9 @@ types: [character]
 subtypes: ["majig"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 6
+threshold: { elitism: 6 }
+stats: { str: 10, life: 10, spd: 2 }
+
 text: ""

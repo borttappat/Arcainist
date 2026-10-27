@@ -4,6 +4,10 @@ trade: gearsmith
 types: [item]
 set: "Seed Saga"
 rarity: rare
+
+cost: 3
+threshold: { elitism: 1 }
+
 text: |
   At the start of your turn, you may put a token on this card.
   [E][E][E]: At the start of your turn, you may put a token on this card.

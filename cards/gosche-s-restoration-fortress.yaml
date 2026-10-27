@@ -4,6 +4,11 @@ trade: warlord
 types: [location]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 2
+threshold: { rage: 1 }
+structure: 2
+
 text: |
   When a character you control with a token on it leaves play, you may pick a character with less strength than that character and restore it.
   IMPLANT

@@ -4,6 +4,10 @@ trade: banker
 types: [item]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 2
+threshold: { greed: 2 }
+
 text: |
   At the start of an opponent's turn you may pay 2 and pick a character. If you do, deplete that character and this turn, it cannot be restored by its controller's faction's RESTORE RULE.
 rules:

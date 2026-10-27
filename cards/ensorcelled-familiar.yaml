@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["familiar"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 5
+threshold: { obsession: 3 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   When this card enters play, you may search your deck for a tactic and reveal it. If you do, put it into your hand.
   RECUR: [O][O][O]

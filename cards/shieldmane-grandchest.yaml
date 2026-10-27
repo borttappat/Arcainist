@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["grandchest", "seraphim", "dragon"]
 set: "Seed 3"
 rarity: fixed
+
+cost: 8
+threshold: { rage: 1 }
+stats: { str: 6, life: 6, spd: 3 }
+
 text: |
   UNIQUE GRANDCHEST
   When battle damage is inflicted to a character you control, reduce the amount by 2.

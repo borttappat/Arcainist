@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["muddler", "lurker"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 6
+threshold: { obsession: 2 }
+stats: { str: 2, life: 4, spd: 2 }
+
 text: |
   When this card enters play, look at an opponent's hand and choose a card in it. That player discards that card.
   When this card leaves play, you may pick a non-resource card. If you do, put it into its owner's hand. Draw a card.

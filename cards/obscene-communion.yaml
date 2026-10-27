@@ -4,6 +4,10 @@ trade: arcanist
 types: [item]
 set: "Seed Saga"
 rarity: rare
+
+cost: 2
+threshold: { obsession: 2 }
+
 text: |
   At the start of each player's turn, that player chooses one of the following:
   OPTION 1: Each player draws a card. Each player puts a card from their hand on the bottom of their deck.

@@ -5,6 +5,9 @@ types: [resource]
 face_down_only: true
 set: "Holy Heist"
 rarity: uncommon
+
+provides: { deception: 1 }
+
 text: |
   This resource may only be played from your hand face-down.
   PROVIDES: [D]

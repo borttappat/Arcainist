@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["giada", "sword of great justice"]
 set: "Seed 3"
 rarity: fixed
+
+cost: 4
+threshold: { rage: 3 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   UNIQUE GIADA
   This card loses 1 strength and 1 life for each token on it.

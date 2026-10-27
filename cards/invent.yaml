@@ -5,6 +5,10 @@ trade: gearsmith
 types: [tactic]
 set: "2nd Edition"
 rarity: rare
+
+cost: 0
+threshold: { elitism: 3 }
+
 text: |
   EXTRA COST: Choose a number for X. Pay X+X.
   Search your deck for X-1 cards. Put them into your hand.

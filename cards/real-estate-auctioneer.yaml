@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["auctioneer"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 5
+threshold: { greed: 2 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   LIQUIDATE
   COST: Pay 2. Discard a card. Deplete this card.

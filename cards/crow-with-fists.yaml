@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["beast"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 1
+threshold: { deception: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   You may include as many copies of this card in your deck as you want.
 deck_limit: null

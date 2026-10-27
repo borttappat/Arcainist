@@ -5,6 +5,11 @@ types: [character]
 subtypes: [gideon, sword of great justice]
 set: "Seed Saga"
 rarity: rare
+
+cost: 1
+threshold: { rage: 3 }
+stats: { str: 2, life: 3, spd: 3 }
+
 text: |
   UNIQUE GIDEON
   When battle damage is inflicted to this card while it's attacking, reduce the amount to 0.

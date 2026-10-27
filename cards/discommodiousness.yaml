@@ -4,6 +4,10 @@ trade: gearsmith
 types: [tactic]
 set: "2nd Edition"
 rarity: rare
+
+cost: 2
+threshold: { elitism: 2 }
+
 text: |
   An opponent reveals their hand. Shuffle all tactics revealed this way into their deck. That player draws X cards, where X is the number of tactics shuffled into their deck. Draw a card.
 rules:

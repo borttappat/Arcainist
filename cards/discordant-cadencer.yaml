@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 3
+threshold: { rage: 1 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   AGITATE
   COST: Pay 1. Lose 2 influence.

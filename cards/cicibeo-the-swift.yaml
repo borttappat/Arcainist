@@ -6,6 +6,11 @@ keywords: [tactical]
 subtypes: ["grifter", "cicibeo"]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 0
+threshold: { deception: 4 }
+stats: { str: 2, life: 3, spd: 4 }
+
 text: |
   UNIQUE CICIBEO
   TACTICAL

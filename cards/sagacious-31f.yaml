@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["31f"]
 set: "1st Edition Part 2"
 rarity: rare
+
+cost: 4
+threshold: { elitism: 3 }
+stats: { str: 2, life: 3, spd: 1 }
+
 text: |
   When an attacking party is formed including this card and at least 2 other characters, you may search your deck for a card. If you do, put it into your hand.
 rules:

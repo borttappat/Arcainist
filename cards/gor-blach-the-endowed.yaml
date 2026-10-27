@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["fighter", "tough guy"]
 set: "Ungodly Mess"
 rarity: rare
+
+cost: 5
+threshold: { rage: 1 }
+stats: { str: 4, life: 5, spd: 3 }
+
 text: |
   UNIQUE GOR-BLACH
   GET IN THERE: [V][V][V]

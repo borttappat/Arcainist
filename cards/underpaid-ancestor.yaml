@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["ghost", "mau"]
 set: "Seed Saga"
 rarity: common
+
+cost: 5
+threshold: { greed: 1 }
+stats: { str: 3, life: 4, spd: 2 }
+
 text: |
   When this card is put into your discard pile from play, you may pay 3. If you do, put it into play under your control. Deplete it.
 rules:

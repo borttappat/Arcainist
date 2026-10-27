@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["vehicle"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 4
+threshold: { deception: 2 }
+stats: { str: 3, life: 3, spd: 1 }
+
 text: |
   At the start of your turn, you may put a token on this card.
   This card gains 1 speed for each token on it.

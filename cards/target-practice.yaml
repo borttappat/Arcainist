@@ -4,6 +4,10 @@ trade: warlord
 types: [tactic]
 set: "2nd Edition"
 rarity: common
+
+cost: 2
+threshold: { rage: 2 }
+
 text: |
   EXTRA COST: Pick a character.
   Inflict 2 damage to the character.

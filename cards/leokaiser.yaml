@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["kaiser"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 4
+threshold: { elitism: 3 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   GO MEGA-NEKO-KAISER!
   COST: Deplete a card named PantherKaiser you control. Deplete a card named TigerKaiser you control.

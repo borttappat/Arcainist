@@ -4,6 +4,11 @@ trade: warlord
 types: [location]
 set: "2nd Edition"
 rarity: rare
+
+cost: 2
+threshold: { rage: 3 }
+structure: 4
+
 text: |
   At the start of your turn, you may pick a character. If you do, this card inflicts X+1 damage to it, where X is the number of dragon cards you control.
 rules:

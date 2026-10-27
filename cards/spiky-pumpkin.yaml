@@ -4,6 +4,10 @@ trade: warlord
 types: [item]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 4
+threshold: { rage: 3 }
+
 text: |
   This card enters play with 3 tokens on it.
   At the start of your turn, remove a token from this card. If there are no tokens on it, destroy it.

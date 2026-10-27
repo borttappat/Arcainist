@@ -5,7 +5,12 @@ types: [character]
 subtypes: ["god"]
 set: "Holy Heist"
 rarity: common
+
+cost: 8
+threshold: { obsession: 1 }
+stats: { str: 6, life: 6, spd: 1 }
+flip_up: { cost: 7, threshold: { obsession: 1 } }
+
 text: |
   FLIP UP: 7 [O]
-rules:
-  - flip_up: { pay: 7, threshold: { obsession: 1 } }
+rules: []

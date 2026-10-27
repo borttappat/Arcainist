@@ -4,6 +4,11 @@ trade: banker
 types: [tactic]
 set: "Seed Saga"
 rarity: common
+
+cost: 1
+threshold: { greed: 2 }
+flip_up: { cost: 2, threshold: { greed: 2 } }
+
 text: |
   EXTRA COST: Pick a character.
   This turn, the character gains 2 life. If you deployed this card using FLIP UP, put this card into its owner's hand instead of their discard pile.
@@ -17,4 +22,3 @@ rules:
         - if:
             cond: { via: flip_up }
             then: [ move: { card: self, to: hand } ]
-  - flip_up: { pay: 2, threshold: { greed: 2 } }

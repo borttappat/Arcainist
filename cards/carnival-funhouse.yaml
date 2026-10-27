@@ -4,6 +4,11 @@ trade: rogue
 types: [location]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 4
+threshold: { deception: 2 }
+structure: 4
+
 text: |
   When this card enters play, pick one character your opponent controls and one character you control.
   Switch the picked character's strength, life, and speed for as long as this card is in play.

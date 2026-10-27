@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["majig"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 4
+threshold: { elitism: 1 }
+stats: { str: 3, life: 4, spd: 3 }
+
 text: |
   While this card in in an attacking party of 2 or more characters, it loses 1 speed.
   [E][E][E][E]: When this card is destroyed, put 2 Micromajig tokens into play under your control.

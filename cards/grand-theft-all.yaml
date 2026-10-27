@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "2nd Edition"
 rarity: rare
+
+cost: 10
+threshold: { deception: 4 }
+
 text: |
   Put up to 4 non-tactic cards in an opponent's discard pile into play under your control.
 rules:

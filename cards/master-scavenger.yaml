@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["outcast"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 2
+threshold: { deception: 3 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   RECLAIM
   COST: Remove 3 cards in an opponent's discard pile from the game.

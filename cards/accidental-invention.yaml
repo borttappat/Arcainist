@@ -4,6 +4,11 @@ trade: gearsmith
 types: [tactic]
 set: "Seed Saga"
 rarity: rare
+
+cost: 1
+threshold: { elitism: 1 }
+flip_up: { cost: 1, threshold: { elitism: 1 } }
+
 text: |
   EXTRA COST: Reveal a face-down item you control.
   You may deploy the item. Draw a card.
@@ -25,4 +30,3 @@ rules:
           amount: 2
           prompt: "put Accidental Invention into play as a face-down resource"
           then: [ put_into_play: { card: self, controller: you, as: face_down_resource } ]
-  - flip_up: { pay: 1, threshold: { elitism: 1 } }

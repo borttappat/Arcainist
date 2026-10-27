@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["pirate"]
 set: "2nd Edition"
 rarity: common
+
+cost: 2
+threshold: { deception: 2 }
+stats: { str: 2, life: 1, spd: 4 }
+
 text: |
   When this card enters play, put the top 2 cards of an opponent's deck into their discard pile.
 rules:

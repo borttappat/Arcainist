@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["t force 5", "majig"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 7
+threshold: { elitism: 2 }
+stats: { str: 8, life: 5, spd: 2 }
+
 text: |
   When this card enters play, you may detach up to 2 resources from your faction.
 rules:

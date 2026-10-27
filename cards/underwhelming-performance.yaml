@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 3
+threshold: { obsession: 2 }
+
 text: |
   EXTRA COST: Pick a character. That character's controller may detach up to 2 resources.
   This turn, the character loses 6 strength. Draw a card.

@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["berserker"]
 set: "Ungodly Mess"
 rarity: uber
+
+cost: 5
+threshold: { rage: 3 }
+stats: { str: 6, life: 2, spd: 3 }
+flip_up: { cost: 4, threshold: { rage: 1 } }
+
 text: |
   HEMORAGE
   COST: Destroy this card. Pick a faction or character.
@@ -18,4 +24,3 @@ rules:
         - pick: { as: c, from: [ { faction: any }, { character: any } ] }
       effect:
         - damage: { card: c, amount: 4 }
-  - flip_up: { pay: 4, threshold: { rage: 1 } }

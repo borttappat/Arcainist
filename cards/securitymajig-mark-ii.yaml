@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["majig"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 4
+threshold: { elitism: 1 }
+stats: { str: 1, life: 4, spd: 3 }
+flip_up: { cost: 5, threshold: { elitism: 1 } }
+
 text: |
   If you deployed this card using FLIP UP, it enters play with 3 tokens on it.
   This card gains 1 strength for each token on it.
@@ -20,4 +26,3 @@ rules:
       mods:
         - { stat: { str: { tokens: self } } }
         - { blocks_any: true }
-  - flip_up: { pay: 5, threshold: { elitism: 1 } }

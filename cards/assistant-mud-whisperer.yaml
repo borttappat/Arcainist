@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mud whisperer", "31f"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 5
+threshold: { elitism: 1 }
+stats: { str: 3, life: 4, spd: 2 }
+
 text: |
   At the start of each opponent's turn, you may pick a character. If you do, restore it.
 rules:

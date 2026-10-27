@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "2nd Edition"
 rarity: common
+
+cost: 2
+threshold: { obsession: 1 }
+
 text: |
   EXTRA COST: Pick a character.
   This turn, the character gains COVERT. Draw a card.

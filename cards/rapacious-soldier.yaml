@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "Holy Heist"
 rarity: common
+
+cost: 2
+threshold: { rage: 2 }
+stats: { str: 4, life: 1, spd: 3 }
+
 text: |
   This character cannot block.
 rules:

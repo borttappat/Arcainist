@@ -5,7 +5,12 @@ types: [character]
 subtypes: ["dragon"]
 set: "Seed Saga"
 rarity: common
+
+cost: 0
+threshold: { rage: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+flip_up: { cost: 0, threshold: { rage: 1 } }
+
 text: |
   FLIP UP: 0 [R]
-rules:
-  - flip_up: { pay: 0, threshold: { rage: 1 } }
+rules: []

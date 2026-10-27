@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["berserker"]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 4
+threshold: { rage: 2 }
+stats: { str: 3, life: 2, spd: 3 }
+
 text: |
   When this card enters play you may pick a character. If you do, deplete that character.
 rules:

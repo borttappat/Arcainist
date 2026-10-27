@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 5
+threshold: { obsession: 3 }
+
 text: |
   EXTRA COST: Pick 3 tactics in your discard pile.
   Shuffle 1 of the tatics into your deck. Put 1 of the tatics into play under your control as a face-down resource. Put 1 of the tatics into your hand.

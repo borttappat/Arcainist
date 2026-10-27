@@ -5,4 +5,9 @@ types: [character]
 subtypes: ["plant", "golem"]
 set: "Seed Saga"
 rarity: common
+
+cost: 5
+threshold: { elitism: 2 }
+stats: { str: 5, life: 3, spd: 2 }
+
 text: ""

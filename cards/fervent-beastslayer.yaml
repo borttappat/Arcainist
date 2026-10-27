@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "Seed Saga"
 rarity: common
+
+cost: 5
+threshold: { rage: 1 }
+stats: { str: 5, life: 2, spd: 3 }
+
 text: |
   [R][R][R][R][R]: This card gains 3 life.
 rules:

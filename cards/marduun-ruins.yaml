@@ -4,6 +4,11 @@ trade: universal
 types: [location]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 3
+threshold: { volition: 3 }
+structure: 4
+
 text: |
   UNIQUE MARDUUN RUINS
   Characters you control with a [V] icon in their rules text gain 2 strength and 2 life.

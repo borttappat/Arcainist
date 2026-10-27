@@ -4,6 +4,11 @@ trade: rogue
 types: [tactic]
 set: "Seed Saga"
 rarity: common
+
+cost: 4
+threshold: { deception: 1 }
+flip_up: { cost: 2, threshold: { deception: 1 } }
+
 text: |
   EXTRA COST: Pick a character.
   If the character has 4 life or less, destroy it.
@@ -16,4 +21,3 @@ rules:
         - if:
             cond: { matches: [ c, { character: { life_lte: 4 } } ] }
             then: [ destroy: c ]
-  - flip_up: { pay: 2, threshold: { deception: 1 } }

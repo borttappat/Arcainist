@@ -5,7 +5,12 @@ types: [character]
 subtypes: ["soldier"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 4
+threshold: { rage: 1 }
+stats: { str: 4, life: 2, spd: 3 }
+flip_up: { cost: 2, threshold: { rage: 1 } }
+
 text: |
   FLIP UP: 2 [R]
-rules:
-  - flip_up: { pay: 2, threshold: { rage: 1 } }
+rules: []

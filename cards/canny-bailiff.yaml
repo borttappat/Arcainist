@@ -5,6 +5,11 @@ types: [character]
 subtypes: [attendant, lackey]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 3
+threshold: { greed: 2 }
+stats: { str: 2, life: 1, spd: 3 }
+
 text: |
   While an opponent is deploying a tactic, its numeric cost is increased to a minimum of 3.
 rules:

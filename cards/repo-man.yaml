@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["lackey", "mau"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 5
+threshold: { greed: 1 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   When this card enters play, you may pick a location. If you do, destroy it.
 rules:

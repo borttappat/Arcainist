@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["golem"]
 set: "Seed Saga"
 rarity: common
+
+cost: 2
+threshold: { elitism: 1 }
+stats: { str: 0, life: 4, spd: 3 }
+
 text: |
   When this card enters play, you may pay 1. If you do, put a token on it.
   While there is a token on this card, it can block COVERT parties.

@@ -4,6 +4,11 @@ trade: banker
 types: [location]
 set: "Seed 2"
 rarity: common
+
+cost: 1
+threshold: { greed: 2 }
+structure: 3
+
 text: |
   CHILLAX
   COST: Deplete this card. Pick a character you control.

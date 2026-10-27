@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["guardforce", "majig"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 5
+threshold: { elitism: 2 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   This card can attack even if it has not been in play under your control since the start of the turn.
   When you deploy a card, put a token on this card. (Playing a resource doesn't count.)

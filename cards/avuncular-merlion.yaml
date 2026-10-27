@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["merlion"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 9
+threshold: { greed: 2 }
+stats: { str: 7, life: 7, spd: 3 }
+
 text: |
   This card enters play with 2 tokens on it.
   When a character you control is put into your discard pile from play, you may pay 1 and remove a token from this card. If you do, put that character into play under your control. Deplete it.

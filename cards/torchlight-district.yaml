@@ -4,6 +4,11 @@ trade: rogue
 types: [location]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 4
+threshold: { deception: 3 }
+structure: 4
+
 text: |
   When a character you control with 3 speed or less attacks, restore it at the end of the battle.
   Characters you control can attack only once each turn.

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["beast"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 4
+threshold: { deception: 2 }
+stats: { str: 2, life: 2, spd: 4 }
+
 text: |
   While this card is the only member of an attacking party, only characters with at least X speed can block it, where X is this card's speed.
 rules:

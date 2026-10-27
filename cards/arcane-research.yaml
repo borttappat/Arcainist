@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Seed"
 rarity: rare
+
+cost: 2
+threshold: { obsession: 1 }
+
 text: |
   Search your deck for up to 4 tactics. Put them into your discard pile.
 rules:

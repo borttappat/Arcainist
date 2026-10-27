@@ -6,6 +6,10 @@ attach_to: character
 subtypes: ["gear"]
 set: "2nd Edition"
 rarity: common
+
+cost: 3
+threshold: { obsession: 2 }
+
 text: |
   ATTACH TO CHARACTER
   When this card enters play, put a token on the attached character.

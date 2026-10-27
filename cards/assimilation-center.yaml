@@ -4,6 +4,11 @@ trade: warlord
 types: [location]
 set: "2nd Edition"
 rarity: rare
+
+cost: 2
+threshold: { rage: 2 }
+structure: 4
+
 text: |
   RECRUIT
   COST: Pay 1. Deplete this card.

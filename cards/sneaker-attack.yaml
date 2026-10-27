@@ -4,6 +4,11 @@ trade: rogue
 types: [tactic]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 2
+threshold: { deception: 2 }
+flip_up: { cost: 2, threshold: { deception: 2 } }
+
 text: |
   EXTRA COST: Deploy this only during a battle. Deplete a character you control that is not in a battle party.
   Add the character you depleted to an attacking or blocking party you control. It gains 1 speed this turn.
@@ -17,4 +22,3 @@ rules:
       effect:
         - add_to_battle: { card: c }
         - modify: { card: c, stat: spd, gain: 1 }
-  - flip_up: { pay: 2, threshold: { deception: 2 } }

@@ -4,6 +4,10 @@ trade: arcanist
 types: [item]
 set: "2nd Edition"
 rarity: rare
+
+cost: 2
+threshold: { obsession: 4 }
+
 text: |
   COUNTERFEIT
   COST: Use this only if a tactic has been deployed this turn. Pay 2+X, where X is the numeric cost of the last tactic deployed this turn. Deplete this card.

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "1st Edition Part 2"
 rarity: common
+
+cost: 3
+threshold: { rage: 2 }
+stats: { str: 2, life: 2, spd: 2 }
+
 text: |
   When this card enters play, all your characters gain 1 strength this turn.
 rules:

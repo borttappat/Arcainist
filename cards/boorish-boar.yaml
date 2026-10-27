@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["beast"]
 set: "Holy Heist"
 rarity: rare
+
+cost: 3
+threshold: { rage: 1 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   [R][R]: This card gains 1 strength and loses 1 life.
   [R][R][R]: Destroy this card.

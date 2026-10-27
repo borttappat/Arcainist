@@ -1,5 +1,0 @@
-{
-  "influence": 22,
-  "starting_resources": { "specific": { "deception": 1 }, "choose_staples": 10 },
-  "starting_draw": { "first": 5, "second": 6 }
-}

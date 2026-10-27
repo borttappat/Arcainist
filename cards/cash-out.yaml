@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "2nd Edition"
 rarity: rare
+
+cost: 0
+threshold: { greed: 3 }
+
 text: |
   EXTRA COST: Choose a number for X. Pay X+X.
   Draw X+1 cards.

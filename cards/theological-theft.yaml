@@ -4,6 +4,11 @@ trade: rogue
 types: [tactic]
 set: "Holy Heist"
 rarity: rare
+
+cost: 8
+threshold: { deception: 4 }
+flip_up: { cost: 7, threshold: { deception: 4 } }
+
 text: |
   EXTRA COST: Choose a number for X. Pick X players.
   Each of those players puts the top 10 cards of their deck into their discard pile. Pick X characters in an opponent's discard pile. Put those characters into play under your control.
@@ -32,4 +37,3 @@ rules:
               - if:
                   cond: { defined: c }
                   then: [ put_into_play: { card: c, controller: you } ]
-  - flip_up: { pay: 7, threshold: { deception: 4 } }

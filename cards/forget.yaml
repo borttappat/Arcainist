@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "2nd Edition"
 rarity: common
+
+cost: 5
+threshold: { obsession: 2 }
+
 text: |
   EXTRA COST: Pick a non-resource card.
   Put the card into its owner's hand. Look at an opponent's hand and choose a card in it. That player discards that card.

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["padamose", "emperor", "mau"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 5
+threshold: { rage: 6 }
+stats: { str: 1, life: 10, spd: 1 }
+
 text: |
   UNIQUE PADAMOSE
   All your "sword of great justice" characters gain 1 strength and 1 life.

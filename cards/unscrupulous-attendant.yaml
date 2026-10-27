@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["attendant"]
 set: "Seed Saga"
 rarity: common
+
+cost: 4
+threshold: { greed: 1 }
+stats: { str: 2, life: 3, spd: 2 }
+
 text: |
   When a character you control blocks, it gains 1 life this turn.
 rules:

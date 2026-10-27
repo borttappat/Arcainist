@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 5
+threshold: { obsession: 3 }
+
 text: |
   EXTRA COST: Pick a non-resource card.
   Put the card on the top of its owner's deck.

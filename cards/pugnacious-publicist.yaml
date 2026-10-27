@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["publicist"]
 set: "1st Edition Part 2"
 rarity: common
+
+cost: 3
+threshold: { greed: 2 }
+stats: { str: 1, life: 3, spd: 3 }
+
 text: |
   When this card enters play, all your characters gain 1 life this turn.
 rules:

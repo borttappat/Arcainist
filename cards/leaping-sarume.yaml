@@ -6,6 +6,11 @@ keywords: [tactical]
 subtypes: ["dragon"]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 4
+threshold: { rage: 3 }
+stats: { str: 3, life: 2, spd: 3 }
+
 text: |
   TACTICAL
   EXTRA COST: Deploy this only not during a battle.

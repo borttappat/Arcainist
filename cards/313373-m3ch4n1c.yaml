@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["31f"]
 set: "Seed Saga"
 rarity: common
+
+cost: 3
+threshold: { elitism: 1 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   REPAIR
   COST: Choose a number for X that is less than or equal to the number of [E] you control. Pay X. Destroy this card. Pick an item in your discard pile with numeric cost X or less.

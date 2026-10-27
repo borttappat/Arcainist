@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["dancer"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 6
+threshold: { deception: 2 }
+stats: { str: 4, life: 4, spd: 4 }
+
 text: |
   UNIQUE ROSY
   When this card is destroyed, reveal the top 5 cards of an opponent's deck. You may choose a revealed character. If you do, put it into play under your control. That player puts the remaining cards on the bottom of their deck in any order.

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["golem"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 5
+threshold: { elitism: 3 }
+stats: { str: 5, life: 5, spd: 3 }
+
 text: |
   When this card enters play, you may pay 3. If you do, put a token on it.
   While there is a token on this card, it gains 4 strength and 4 life.

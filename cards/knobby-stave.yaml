@@ -4,6 +4,10 @@ trade: arcanist
 types: [item]
 set: "1st Edition"
 rarity: common
+
+cost: 0
+threshold: { obsession: 2 }
+
 text: |
   This card enters play with 2 tokens on it.
   DISRUPT

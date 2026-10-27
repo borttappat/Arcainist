@@ -4,6 +4,11 @@ trade: banker
 types: [location]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 3
+threshold: { greed: 1 }
+structure: 1
+
 text: |
   When this card enters play, draw a card.
   Your opponents cannot attack your faction.

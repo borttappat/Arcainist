@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["sarcophyle"]
 set: "2nd Edition"
 rarity: common
+
+cost: 4
+threshold: { deception: 1 }
+stats: { str: 2, life: 3, spd: 4 }
+
 text: |
   When this card enters play, flip a coin. If you win, put a token on this card.
   This card gains 1 strength and 1 life for each token on it.

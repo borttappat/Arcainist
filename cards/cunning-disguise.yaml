@@ -6,6 +6,11 @@ attach_to: character
 subtypes: ["gear"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 2
+threshold: { deception: 2 }
+flip_up: { cost: 0, threshold: { deception: 2 } }
+
 text: |
   ATTACH TO CHARACTER
   The attached character loses 1 strength, 1 life, and gains COVERT.
@@ -15,4 +20,3 @@ rules:
       mods:
         - { stat: { str: -1, life: -1 }, target: host }
         - { keyword: covert, target: host }
-  - flip_up: { pay: 0, threshold: { deception: 2 } }

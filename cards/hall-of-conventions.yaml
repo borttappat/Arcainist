@@ -4,6 +4,11 @@ trade: gearsmith
 types: [location]
 set: "Seed Saga"
 rarity: rare
+
+cost: 3
+threshold: { elitism: 1 }
+structure: 5
+
 text: |
   UNIQUE HALL OF CONVENTIONS
   [E][E][E]: At the start of your turn, reduce the next numeric cost you pay this turn by 1.

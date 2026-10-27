@@ -4,6 +4,10 @@ trade: warlord
 types: [item]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 6
+threshold: { rage: 3 }
+
 text: |
   This card enters play with 3 tokens on it.
   At the start of your turn put a token on this card.

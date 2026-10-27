@@ -1,17 +1,14 @@
 # The card language
 
-Every card is two files in `cards/` with the same name:
+Every card is one file, `cards/<id>.yaml`, laid out like the printed card: name and
+type line, then the numbers (cost, threshold, stats, FLIP UP), then the printed
+`text` (display only) and the `rules`, the behaviour, written with the building
+blocks below. To rebalance a card, change its numbers; to change what it does,
+change its `rules` (and its `text`, so players read the same thing).
 
-- **`<id>.json`: the numbers.** Cost, threshold, stats, structure, gear bonus,
-  provided icons, and for factions influence and starting resources and draw. This
-  is the file to edit when rebalancing.
-- **`<id>.yaml`: everything else.** Name, type line, printed `text` (display only)
-  and `rules`, the behaviour, written with the building blocks below.
-
-The server loads and validates both at startup, so a typo (an unknown instruction,
-modifier, event or number key, a number left in the YAML, a missing JSON file) is
-reported immediately with the file and path. Restart the server after editing a
-card.
+The server loads and validates every card at startup, so a typo (an unknown field,
+instruction, modifier or event, a bad number or icon) is reported immediately with
+the file and path. Restart the server after editing a card.
 
 A card with no `rules` (or an instruction the engine doesn't know) is still
 playable: players use the manual controls, as on Jinteki. `rules: []` marks a card
@@ -32,32 +29,7 @@ whose text needs no automation (Crow With Fists' deckbuilding rule).
 
 ## 1. Printed data
 
-`cards/fired-hand.json`, the numbers:
-
-```json
-{
-  "cost": 6,
-  "threshold": { "deception": 1 },
-  "stats": { "str": 5, "life": 4, "spd": 3 }
-}
-```
-
-| Key | Meaning |
-|---|---|
-| `cost` | Cost number. |
-| `threshold` | Icons: `obsession`, `greed`, `elitism`, `deception`, `rage`, `volition`. |
-| `stats` | `str`, `life`, `spd` (characters). |
-| `structure` | Locations. |
-| `gear` | `str`, `life`, `spd` bonus a gear item gives the character it's attached to. |
-| `provides` | Icons a face-up non-staple resource provides (Violence: `{ "rage": 2 }`), or a permanent with PROVIDES (the Banners). |
-| `influence`, `starting_draw` | Factions: `{ "first": 8, "second": 9 }`. |
-| `starting_resources` | Factions, any combination of: `specific: { "rage": 2 }` (these staples), `face_down: { "obsession": 1 }`, `any_staples: N`, `different_staples: N`, `any_resources: N` (non-staple too), `any_cards_face_down: N`, `choose_staples: 10` (choose X from 1 to 10, then X staples). |
-
-Every value is a whole number of 0 or more. A card with no numbers (a staple)
-still has a JSON file, containing `{}`. Numbers written inside `rules` ("Pay 3",
-"draw 2") stay in the YAML, because they're part of the effect.
-
-`cards/fired-hand.yaml`, everything else:
+`cards/fired-hand.yaml`:
 
 ```yaml
 id: fired-hand              # unique, used in code and tests (quote it if it looks like a number)
@@ -66,10 +38,34 @@ flavor_title: '"I''m finished!"'
 trade: rogue                # arcanist | banker | gearsmith | rogue | warlord | universal | staple
 types: [character]          # character | tactic | item | location | resource | faction
 subtypes: [miner]
+set: "Seed Saga"
+rarity: uncommon
+
+cost: 6
+threshold: { deception: 1 }
+stats: { str: 5, life: 4, spd: 3 }
+
 text: |
   Printed rules text, shown on hover.
 rules: [ ... ]
 ```
+
+The numbers:
+
+| Field | Meaning |
+|---|---|
+| `cost` | Cost number. |
+| `threshold` | Icons: `obsession`, `greed`, `elitism`, `deception`, `rage`, `volition`. |
+| `stats` | `str`, `life`, `spd` (characters). |
+| `structure` | Locations. |
+| `gear` | `str`, `life`, `spd` bonus a gear item gives the character it's attached to. |
+| `provides` | Icons a face-up non-staple resource provides (Violence: `{ rage: 2 }`), or a permanent with PROVIDES (the Banners). |
+| `influence`, `starting_draw` | Factions: `{ first: 8, second: 9 }`. |
+| `starting_resources` | Factions, any combination of: `specific: { rage: 2 }` (these staples), `face_down: { obsession: 1 }`, `any_staples: N`, `different_staples: N`, `any_resources: N` (non-staple too), `any_cards_face_down: N`, `choose_staples: 10` (choose X from 1 to 10, then X staples). |
+| `flip_up` | FLIP UP: `{ cost: 2, threshold: { rage: 1 } }` is "FLIP UP: 2 [R]". Extra costs go in `steps`: `{ cost: 1, threshold: { deception: 1 }, steps: [ discard: 1 ] }`, or as a block with one step per line. |
+
+Every value is a whole number of 0 or more. Numbers written inside `rules` ("Pay 3",
+"draw 2") are part of the effect, not the card's numbers.
 
 Other optional YAML fields:
 
@@ -97,8 +93,8 @@ fields:
 Abilities with `both_players: true` can be used by either player ("Both players may use
 this ability", "Any player may use this ability"), on factions and on any card in play;
 the player using it is "you". A faction's extra starting-draw steps
-(Unlikely Heroes' search) go in YAML as `starting_draw: { before: [ ... ] }`; the
-draw counts are in the JSON. See `cards/tournament-faction.*`.
+(Unlikely Heroes' search) go next to its draw counts: `starting_draw: { first: 7,
+second: 8, before: [ ... ] }`. See `cards/tournament-faction.yaml`.
 
 ## 2. Rules
 
@@ -240,9 +236,10 @@ modifier. Damage amount changes are the `damage` modifier.
 
 ```yaml
 - unique: Adriel                          # Unique X
-- flip_up: { pay: 2, threshold: { rage: 1 }, cost: [ discard: 1 ] }   # FLIP UP
 - script: name                            # see section 8
 ```
+
+FLIP UP is not a rule entry: it's the `flip_up` field next to the card's cost (section 1).
 
 ## 3. Steps (costs and effects)
 

@@ -4,6 +4,11 @@ trade: arcanist
 types: [tactic]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 2
+threshold: { obsession: 2 }
+flip_up: { cost: 0, threshold: { obsession: 2 } }
+
 text: |
   You may look at an opponent's hand, the top card of their deck, and their face-down resources. Draw a card.
   FLIP UP: 0 [O][O]
@@ -12,4 +17,3 @@ rules:
       effect:
         - peek: { who: opponent, hand: true, top: true, face_down: true }
         - draw: 1
-  - flip_up: { pay: 0, threshold: { obsession: 2 } }

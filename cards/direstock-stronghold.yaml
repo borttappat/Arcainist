@@ -4,6 +4,11 @@ trade: warlord
 types: [location]
 set: "Ungodly Mess"
 rarity: rare
+
+cost: 6
+threshold: { rage: 6 }
+structure: 12
+
 text: |
   UNIQUE STRONGHOLD
   At the end of your turn, you may search your deck for a warlord character and reveal it. If you do, put it on top of your deck.

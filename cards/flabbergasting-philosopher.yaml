@@ -6,6 +6,12 @@ keywords: [tactical]
 subtypes: ["mau"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 6
+threshold: { greed: 2 }
+stats: { str: 3, life: 3, spd: 3 }
+flip_up: { cost: 4, threshold: { greed: 2 } }
+
 text: |
   TACTICAL
   When this card enters play, your faction gains 4 influence.
@@ -13,4 +19,3 @@ text: |
 rules:
   - trigger: { on: enters_play, card: self }
     effect: [ gain_influence: { who: you, amount: 4 } ]
-  - flip_up: { pay: 4, threshold: { greed: 2 } }

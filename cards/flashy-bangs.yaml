@@ -4,6 +4,11 @@ trade: rogue
 types: [item]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 1
+threshold: { deception: 2 }
+flip_up: { cost: 1, threshold: { deception: 2 } }
+
 text: |
   BURST
   COST: Pick a blocking character. Destroy this card.
@@ -18,4 +23,3 @@ rules:
       effect:
         - remove_from_battle: c
         - deplete: c
-  - flip_up: { pay: 1, threshold: { deception: 2 } }

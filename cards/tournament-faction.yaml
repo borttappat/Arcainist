@@ -10,6 +10,11 @@ develop_rule:
       - draw: 1
       - play_resource: 1
 set: "Seed Saga"
+
+influence: 25
+starting_resources: { any_staples: 2 }
+starting_draw: { first: 8, second: 9 }
+
 text: |
   STARTING RESOURCES - Any 2 staple resources.
   STARTING DRAW - 8 going first, 9 going second.

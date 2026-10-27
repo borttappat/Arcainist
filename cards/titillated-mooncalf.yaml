@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["monstrosity"]
 set: "Seed Saga"
 rarity: common
+
+cost: 1
+threshold: { obsession: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   When a card that provides at least [O] enters play under your control, you may pick a character. If you do, it gains COVERT this turn.
 rules:

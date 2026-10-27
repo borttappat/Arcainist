@@ -5,6 +5,10 @@ types: [item]
 subtypes: ["crest"]
 set: "Seed 2"
 rarity: rare
+
+cost: 0
+provides: { greed: 2 }
+
 text: |
   UNIQUE CREST
   PROVIDES: [G][G]

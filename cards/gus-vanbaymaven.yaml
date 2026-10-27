@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["mau"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 2
+threshold: { greed: 3 }
+stats: { str: 1, life: 1, spd: 3 }
+flip_up: { cost: 2, threshold: { greed: 3 } }
+
 text: |
   UNIQUE GUS
   ALL YOUR BAYS ARE BELONG TO GUS
@@ -20,4 +26,3 @@ rules:
         - deplete: self
         - pick: { as: l, from: { location: any } }
       effect: [ take_control: { card: l, who: you } ]
-  - flip_up: { pay: 2, threshold: { greed: 3 } }

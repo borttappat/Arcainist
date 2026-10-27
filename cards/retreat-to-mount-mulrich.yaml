@@ -4,6 +4,11 @@ trade: rogue
 types: [tactic]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 3
+threshold: { deception: 1 }
+flip_up: { cost: 1, threshold: { deception: 1 } }
+
 text: |
   EXTRA COST: Pick a character.
   If the character would leave play this turn, put it into its owner's hand instead.
@@ -19,4 +24,3 @@ rules:
               - { redirect: { from: play, to: discard, instead: hand }, target: c }
               - { redirect: { from: play, to: void, instead: hand }, target: c }
               - { redirect: { from: play, to: deck, instead: hand }, target: c }
-  - flip_up: { pay: 1, threshold: { deception: 1 } }

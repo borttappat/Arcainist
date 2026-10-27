@@ -4,6 +4,11 @@ trade: banker
 types: [location]
 set: "2nd Edition"
 rarity: rare
+
+cost: 2
+threshold: { greed: 1 }
+structure: 3
+
 text: |
   DEPOSIT
   COST: Pay 1.

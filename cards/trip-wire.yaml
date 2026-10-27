@@ -4,6 +4,10 @@ trade: warlord
 types: [tactic]
 set: "2nd Edition"
 rarity: common
+
+cost: 4
+threshold: { rage: 1 }
+
 text: |
   EXTRA COST: Deploy this only while you are being attacked.
   Inflict up to 3 damage divided however you want to the attacking characters.

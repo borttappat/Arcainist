@@ -4,6 +4,11 @@ trade: arcanist
 types: [tactic]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 3
+threshold: { obsession: 2 }
+flip_up: { cost: 5, threshold: { obsession: 2 } }
+
 text: |
   EXTRA COST: Pick a character.
   If you deployed this card using FLIP UP, that character's controller discards 2 cards. If that character's controller has 3 or fewer cards in their hand, remove the character from the game.
@@ -23,4 +28,3 @@ rules:
                     - if:
                         cond: { lte: [ { hand_size: you }, 3 ] }
                         then: [ void: c ]
-  - flip_up: { pay: 5, threshold: { obsession: 2 } }

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["ritualist"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 8
+threshold: { obsession: 2 }
+stats: { str: 4, life: 5, spd: 3 }
+
 text: |
   UNIQUE ELDRIDGE
   At the start of your turn, you may pick 2 or fewer non-resource cards you control. If you do, put up to 2 tokens divided however you want on those cards.

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mau", "pacifist"]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 3
+threshold: { greed: 2 }
+stats: { str: 3, life: 2, spd: 3 }
+
 text: |
   All damage assigned to this card by characters with items attached to them is reduced to 0.
   TRANSCEND

@@ -4,6 +4,11 @@ trade: arcanist
 types: [tactic]
 set: "Seed 2"
 rarity: common
+
+cost: 1
+threshold: { obsession: 1 }
+flip_up: { cost: 2, threshold: { obsession: 1 } }
+
 text: |
   An opponent discards a card. If you control [O][O][O], that player discards another card. If you control [O][O][O][O][O][O][O][O], that player discards another card.
   FLIP UP: 2 [O]
@@ -13,4 +18,3 @@ rules:
         - discard: { who: opponent, count: 1 }
         - if: { cond: { icons: { obsession: 3 } }, then: [ discard: { who: opponent, count: 1 } ] }
         - if: { cond: { icons: { obsession: 8 } }, then: [ discard: { who: opponent, count: 1 } ] }
-  - flip_up: { pay: 2, threshold: { obsession: 1 } }

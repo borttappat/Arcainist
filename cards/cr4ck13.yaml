@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["31f"]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 4
+threshold: { elitism: 2 }
+stats: { str: 2, life: 3, spd: 2 }
+
 text: |
   When damage is inflicted to this card, put that many Micromajig tokens into play under your control.
 rules:

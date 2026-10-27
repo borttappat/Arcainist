@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["thief"]
 set: "1st Edition Part 2"
 rarity: common
+
+cost: 3
+threshold: { deception: 2 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   When this card enters play, all your characters gain 1 speed this turn.
 rules:

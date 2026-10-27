@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["pirate", "mau"]
 set: "Ungodly Mess"
 rarity: ultra-rare
+
+cost: 3
+threshold: { greed: 1 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   [G][G][G]: When this card enters play, draw a card.
   RETREAT

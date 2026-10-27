@@ -4,6 +4,10 @@ trade: gearsmith
 types: [item]
 set: "Seed 3"
 rarity: fixed
+
+cost: 4
+threshold: { elitism: 3 }
+
 text: |
   When this card enters play, draw a card.
   Reduce the numeric cost of characters you play by 2, to a minimum of 1.

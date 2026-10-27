@@ -4,6 +4,10 @@ trade: warlord
 types: [item]
 set: "2nd Edition"
 rarity: rare
+
+cost: 0
+threshold: { rage: 4 }
+
 text: |
   BATTERING RAM
   COST: Pay 2. Destroy a resource you control.

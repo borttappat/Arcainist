@@ -6,6 +6,11 @@ keywords: [covert]
 subtypes: ["thief"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 4
+threshold: { deception: 1 }
+stats: { str: 2, life: 1, spd: 3 }
+
 text: |
   COVERT
   When this card enters play, you may search an opponent's deck for a card. If you do, put it into their discard pile.

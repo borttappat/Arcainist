@@ -4,6 +4,10 @@ trade: warlord
 types: [tactic]
 set: "2nd Edition"
 rarity: rare
+
+cost: 2
+threshold: { rage: 4 }
+
 text: |
   EXTRA COST: Pick a character you control. X is its strength. Pick a character an opponent controls. Y is its strength.
   Inflict X damage to that opponent's character and Y damage to your character simultaneously. If only 1 of the characters would be destroyed by this damage, remove it from the game instead. The surviving character gains all rules text of the removed character.

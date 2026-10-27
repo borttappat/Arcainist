@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "2nd Edition"
 rarity: common
+
+cost: 0
+threshold: { greed: 1 }
+
 text: |
   EXTRA COST: Pick a character in your discard pile.
   Put the character into your hand.

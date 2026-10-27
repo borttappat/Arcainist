@@ -5,7 +5,12 @@ types: [character]
 subtypes: ["sarcophyle"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 9
+threshold: { deception: 1 }
+stats: { str: 6, life: 6, spd: 4 }
+flip_up: { cost: 8, threshold: { deception: 1 } }
+
 text: |
   FLIP UP: 8 [D]
-rules:
-  - flip_up: { pay: 8, threshold: { deception: 1 } }
+rules: []

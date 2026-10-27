@@ -6,6 +6,11 @@ keywords: [covert]
 subtypes: ["lurker"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 3
+threshold: { obsession: 3 }
+stats: { str: 2, life: 1, spd: 1 }
+
 text: |
   COVERT
   When this card enters play, look at up to the top 5 cards of any one deck. Put them back in any order.

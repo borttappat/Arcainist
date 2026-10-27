@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mechanic", "31f"]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 2
+threshold: { elitism: 2 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   When this card enters play, you may pay 2. If you do, you may put a token on up to 2 different non-resource cards.
   While there is a token on this card, it gains 2 strength and 2 life.

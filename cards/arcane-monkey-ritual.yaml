@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 1
+threshold: { obsession: 1 }
+
 text: |
   Search your deck for up to 2 tactics. Put them into your discard pile.
   RECUR: [O][O][O][O]

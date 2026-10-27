@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["pirate"]
 set: "1st Edition Part 2"
 rarity: uncommon
+
+cost: 3
+threshold: { deception: 3 }
+stats: { str: 3, life: 2, spd: 4 }
+
 text: |
   When this card enters play, flip a coin. If you lose, deplete this card.
 rules:

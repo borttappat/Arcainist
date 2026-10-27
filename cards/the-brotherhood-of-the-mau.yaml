@@ -6,6 +6,11 @@ keywords: [covert]
 subtypes: ["advisor", "politician", "mau"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 3
+threshold: { greed: 2 }
+stats: { str: 4, life: 4, spd: 1 }
+
 text: |
   COVERT
   This card enters play with 7 tokens on it.

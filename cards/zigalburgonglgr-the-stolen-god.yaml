@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["god"]
 set: "Ungodly Mess"
 rarity: super-rare
+
+cost: 8
+threshold: { volition: 6 }
+stats: { str: 6, life: 6, spd: 1 }
+
 text: |
   When this card enters play, you may put a token on up to X non-resource cards, where X is the number of [V] you control.
   When this card is destroyed, destroy all non-resource cards with tokens on them.

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["seraphim", "dragon"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 6
+threshold: { rage: 3 }
+stats: { str: 4, life: 3, spd: 3 }
+
 text: |
   UNIQUE DRACONARIUS
   When this card is blocked, X is this card's strength. Inflict X damage divided however you want to the blocking party.

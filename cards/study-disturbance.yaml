@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 1
+threshold: { obsession: 2 }
+
 text: |
   EXTRA COST: Pick a player. That player may pay 2. If they do, look at the top card of your deck then terminate this card.
   The picked player cannot play characters this turn. Draw a card.

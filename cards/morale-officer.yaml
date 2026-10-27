@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 2
+threshold: { rage: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   CONVINCE
   COST: Deplete this card.

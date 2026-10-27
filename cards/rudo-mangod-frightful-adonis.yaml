@@ -5,6 +5,11 @@ types: [character]
 subtypes: [fighter]
 set: "2nd Edition"
 rarity: rare
+
+cost: 5
+threshold: { rage: 3 }
+stats: { str: 4, life: 3, spd: 3 }
+
 text: |
   UNIQUE RUDOLPHUS
   PUNCH

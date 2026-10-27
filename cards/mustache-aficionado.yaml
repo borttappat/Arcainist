@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["gambler"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 3
+threshold: { deception: 1 }
+stats: { str: 2, life: 3, spd: 4 }
+
 text: |
   MUSTACHE SHOWDOWN
   COST: Deplete this card.

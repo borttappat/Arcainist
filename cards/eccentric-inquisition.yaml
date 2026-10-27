@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "2nd Edition"
 rarity: rare
+
+cost: 2
+threshold: { obsession: 4 }
+
 text: |
   Reveal the top 7 cards of an opponent's deck. Put all tactics revealed this way into the void. Put the remaining cards on the bottom of that player's deck in any order. For the rest of the game, you may deploy tactics voided by this card as though they were in your hand without meeting their threshold.
 rules:

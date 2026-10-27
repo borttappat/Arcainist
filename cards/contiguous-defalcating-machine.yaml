@@ -4,6 +4,10 @@ trade: arcanist
 types: [item]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 5
+threshold: { obsession: 2 }
+
 text: |
   UNIQUE CONTIGUOUS DEFALCATING MACHINE
   When a character enters play, its controller must choose one of the following:

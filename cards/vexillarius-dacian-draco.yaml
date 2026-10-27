@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["vexillarius", "seraphim", "dragon"]
 set: "Ungodly Mess"
 rarity: uber
+
+cost: 6
+threshold: { rage: 4 }
+stats: { str: 6, life: 4, spd: 4 }
+
 text: |
   UNIQUE VEXILLARIUS
   All your other characters gain 2 strength and 2 life.

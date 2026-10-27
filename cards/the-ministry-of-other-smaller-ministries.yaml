@@ -4,6 +4,11 @@ trade: banker
 types: [location]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 3
+threshold: { greed: 2 }
+structure: 5
+
 text: |
   Each opponent must pay 2 to attack.
 rules:

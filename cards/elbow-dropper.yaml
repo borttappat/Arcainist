@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["fighter"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 4
+threshold: { rage: 2 }
+stats: { str: 3, life: 2, spd: 3 }
+
 text: |
   OFF THE TOP ROPE
   COST: Deplete this card. Pick a character.

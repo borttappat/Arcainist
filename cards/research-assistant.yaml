@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["31f"]
 set: "1st Edition"
 rarity: common
+
+cost: 2
+threshold: { elitism: 2 }
+stats: { str: 1, life: 1, spd: 2 }
+
 text: |
   RESEARCH
   COST: Deplete this card.

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["gambler"]
 set: "Seed Saga"
 rarity: common
+
+cost: 5
+threshold: { deception: 2 }
+stats: { str: 3, life: 3, spd: 4 }
+
 text: |
   SIZE UP
   COST: Pay 1.

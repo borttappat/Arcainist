@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 6
+threshold: { greed: 1 }
+
 text: |
   EXTRA COST: If you have at least 4 characters in your discard pile, reduce this card's numeric cost by 3. Pick a character.
   Destroy the character.

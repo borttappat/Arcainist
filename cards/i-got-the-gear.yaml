@@ -4,6 +4,10 @@ trade: gearsmith
 types: [tactic]
 set: "1st Edition"
 rarity: uncommon
+
+cost: 1
+threshold: { elitism: 1 }
+
 text: |
   You may search your deck for a gear card and reveal it. If you do, put it into your hand.
 rules:

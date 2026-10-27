@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 4
+threshold: { obsession: 1 }
+
 text: |
   EXTRA COST: Pick an opponent. X is the number of detached resources that player controls. Pick a character.
   If the character has X strength or less, destroy it.

@@ -4,6 +4,11 @@ trade: arcanist
 types: [location]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 6
+threshold: { obsession: 4 }
+structure: 5
+
 text: |
   This card cannot be picked.
   All characters in your hand gain TACTICAL.

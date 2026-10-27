@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mau", "tough guy"]
 set: "Ungodly Mess"
 rarity: uber
+
+cost: 7
+threshold: { greed: 2 }
+stats: { str: 5, life: 8, spd: 3 }
+
 text: |
   When this card enters play, draw a card for each character in play.
   UNDER THE TABLE

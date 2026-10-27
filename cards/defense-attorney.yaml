@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["lawyer"]
 set: "1st Edition"
 rarity: common
+
+cost: 3
+threshold: { greed: 1 }
+stats: { str: 1, life: 4, spd: 3 }
+
 text: |
   When you are attacked, this card must block if it can.
 rules:

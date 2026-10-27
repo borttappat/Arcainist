@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "Seed 3"
 rarity: fixed
+
+cost: 1
+threshold: { greed: 2 }
+
 text: |
   EXTRA COST: Pick a character with the UNIQUE keyword in its rules text.
   Remove the character from the game.

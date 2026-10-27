@@ -6,6 +6,11 @@ attach_to: item
 subtypes: ["upgrade"]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 3
+threshold: { greed: 1 }
+flip_up: { cost: 2, threshold: { greed: 1 } }
+
 text: |
   ATTACH TO ITEM
   The attached card has no rules text.
@@ -22,4 +27,3 @@ rules:
       cost: [ pay: 3 ]
       effect:
         - create_effect: { duration: turn, mods: [ { no_rules: true, target: self } ] }
-  - flip_up: { pay: 2, threshold: { greed: 1 } }

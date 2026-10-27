@@ -5,4 +5,9 @@ types: [character]
 subtypes: ["thief"]
 set: "1st Edition"
 rarity: common
+
+cost: 5
+threshold: { deception: 1 }
+stats: { str: 3, life: 1, spd: 4 }
+
 text: ""

@@ -6,6 +6,10 @@ attach_to: character
 subtypes: ["gear"]
 set: "2nd Edition"
 rarity: common
+
+cost: 3
+threshold: { greed: 2 }
+
 text: |
   ATTACH TO CHARACTER
   When this card enters play, deplete the attached character.

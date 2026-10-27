@@ -5,4 +5,9 @@ types: [character]
 subtypes: ["mau"]
 set: "2nd Edition"
 rarity: common
+
+cost: 7
+threshold: { greed: 2 }
+stats: { str: 5, life: 8, spd: 3 }
+
 text: ""

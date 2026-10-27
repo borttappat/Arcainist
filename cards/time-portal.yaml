@@ -4,6 +4,11 @@ trade: gearsmith
 types: [location]
 set: "Seed Saga"
 rarity: rare
+
+cost: 4
+threshold: { elitism: 3 }
+structure: 4
+
 text: |
   At the start of your turn, you may put a Micromajig token into play.
 rules:

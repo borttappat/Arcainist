@@ -6,6 +6,11 @@ keywords: [covert]
 subtypes: ["monstrosity"]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 5
+threshold: { obsession: 4 }
+stats: { str: 5, life: 5, spd: 3 }
+
 text: |
   COVERT
   When this card enters play, each opponent may detach up to 3 resources from their faction.

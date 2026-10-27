@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["majig"]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 3
+threshold: { elitism: 1 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   CRUNCH
   COST: Destroy a Micromajig token you control.

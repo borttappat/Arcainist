@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mercenary", "mau"]
 set: "1st Edition Part 2"
 rarity: common
+
+cost: 4
+threshold: { greed: 2 }
+stats: { str: 2, life: 4, spd: 3 }
+
 text: |
   When a character inflicts damage to this card, inflict 1 damage to that character.
 rules:

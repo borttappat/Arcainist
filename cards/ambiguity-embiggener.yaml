@@ -4,6 +4,10 @@ trade: arcanist
 types: [item]
 set: "1st Edition Part 2"
 rarity: rare
+
+cost: 3
+threshold: { obsession: 2 }
+
 text: |
   At the start of each player's turn, that player chooses a number for X. Each player puts X cards from their hand on the bottom of their deck in any order, or their entire hand if they have less than X cards in it. Each player puts the top Y cards of their deck into their hand, where Y is the number of cards that player put on the bottom of their deck.
 rules:

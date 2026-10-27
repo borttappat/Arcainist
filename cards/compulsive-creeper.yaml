@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["lurker"]
 set: "1st Edition"
 rarity: common
+
+cost: 3
+threshold: { obsession: 1 }
+stats: { str: 2, life: 1, spd: 2 }
+
 text: |
   While you have an even number of cards in your hand, this card gains 1 strength, 1 life, and 1 speed.
 rules:

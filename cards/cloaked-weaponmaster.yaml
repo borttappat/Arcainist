@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["outlaw"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 1
+threshold: { deception: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   You may deploy gear cards whenever you could deploy a tactic.
 rules:

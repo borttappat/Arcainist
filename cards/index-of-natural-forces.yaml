@@ -4,6 +4,10 @@ trade: banker
 types: [item]
 set: "1st Edition"
 rarity: rare
+
+cost: 5
+threshold: { greed: 3 }
+
 text: |
   CAPITALIZE
   COST: Pay 1. Deplete this card.

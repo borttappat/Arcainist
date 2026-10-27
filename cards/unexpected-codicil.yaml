@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 0
+threshold: { greed: 4 }
+
 text: |
   EXTRA COST: Choose a number for X. Discard X cards. Pay X - 2.
   Draw X cards.

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "2nd Edition"
 rarity: common
+
+cost: 3
+threshold: { rage: 2 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   When this card attacks in a party with more than 1 member, it gains 1 strength and 1 life this turn.
 rules:

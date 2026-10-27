@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["sorceress"]
 set: "Seed Saga"
 rarity: common
+
+cost: 2
+threshold: { rage: 1 }
+stats: { str: 1, life: 3, spd: 1 }
+
 text: |
   When battle damage is inflicted to a character in a party with this card, reduce the amount by 1. (This includes this character.)
 rules:

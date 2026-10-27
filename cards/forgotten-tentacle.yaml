@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 0
+threshold: { obsession: 2 }
+
 text: |
   EXTRA COST: Pick an opponent. Look at that player's face-down resources and pick one.
   You may destroy that card. If you do, that player may draw a card and may play a resource.

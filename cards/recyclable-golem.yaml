@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["golem"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 6
+threshold: { elitism: 1 }
+stats: { str: 6, life: 6, spd: 3 }
+flip_up: { cost: 4, threshold: { elitism: 1 } }
+
 text: |
   If you deployed this card using FLIP UP, it enters play with a token on it.
   While there is a token on this card, it loses 2 strength and 2 life and can block COVERT parties.
@@ -23,4 +29,3 @@ rules:
         - { blocks_any: true }
   - replace: { event: destroy, card: self, while: { eq: [ { tokens: self }, 0 ] } }
     instead: [ flip_face_down: { card: self, controller: owner } ]
-  - flip_up: { pay: 4, threshold: { elitism: 1 } }

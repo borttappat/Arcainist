@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mau", "politician"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 3
+threshold: { greed: 2 }
+stats: { str: 1, life: 3, spd: 3 }
+
 text: |
   PANDER
   COST: Deplete this card. Pick a character or item.

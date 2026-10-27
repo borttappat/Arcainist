@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["performer"]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 4
+threshold: { deception: 1 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   This character cannot be blocked by characters with a [V] icon in its rules text.
   This character gains 1 strength and 1 life for each token on it.

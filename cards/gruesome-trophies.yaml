@@ -4,6 +4,10 @@ trade: warlord
 types: [item]
 set: "1st Edition"
 rarity: uncommon
+
+cost: 6
+threshold: { rage: 1 }
+
 text: |
   At the start of your turn, you may pick a character. If you do, deplete it.
 rules:

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["jo", "blade of questionable morality"]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 5
+threshold: { elitism: 4 }
+stats: { str: 1, life: 2, spd: 3 }
+
 text: |
   UNIQUE JO
   Each character you control gains:

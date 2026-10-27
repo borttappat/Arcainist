@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["outcast", "vigilante"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 3
+threshold: { deception: 5 }
+stats: { str: 5, life: 5, spd: 4 }
+
 text: |
   When you control any other characters you own, destroy this card.
 rules:

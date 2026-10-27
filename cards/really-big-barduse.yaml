@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["dragon"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 6
+threshold: { rage: 6 }
+stats: { str: 5, life: 4, spd: 2 }
+
 text: |
   EXTRA COST: You may pick 2 or fewer characters.
   When this card enters play, if you picked characters as part of its cost, inflict up to 5 damage divided however you want to those characters.

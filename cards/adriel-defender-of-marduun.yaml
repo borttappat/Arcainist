@@ -5,6 +5,11 @@ types: [character]
 subtypes: [adriel, sword of great justice]
 set: "Seed Saga"
 rarity: rare
+
+cost: 2
+threshold: { rage: 3 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   UNIQUE ADRIEL
   When battle damage is inflicted to this card while it's blocking, reduce the amount to 0.

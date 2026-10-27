@@ -6,6 +6,11 @@ types: [character]
 subtypes: [miner]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 6
+threshold: { deception: 1 }
+stats: { str: 5, life: 4, spd: 3 }
+
 text: |
   If this card would be destroyed, flip it face-down under its owner's control instead.
   PETTY VENGEANCE

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["necromorph"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 4
+threshold: { greed: 1 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   UNIQUE GIADA
   This card enters play with 2 tokens on it.

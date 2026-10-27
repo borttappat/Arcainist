@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "2nd Edition"
 rarity: common
+
+cost: 2
+threshold: { rage: 2 }
+stats: { str: 2, life: 1, spd: 3 }
+
 text: |
   When this card enters play, inflict 1 damage to an opponent's faction.
 rules:

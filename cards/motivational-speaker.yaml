@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["salesman"]
 set: "1st Edition Part 2"
 rarity: uncommon
+
+cost: 4
+threshold: { greed: 2 }
+stats: { str: 0, life: 3, spd: 3 }
+
 text: |
   When this card blocks, all members of the blocking party gain 2 strength and 2 life this turn. (This includes this character.)
 rules:

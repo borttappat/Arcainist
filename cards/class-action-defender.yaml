@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["lawyer", "mau"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 3
+threshold: { greed: 3 }
+stats: { str: 2, life: 3, spd: 3 }
+
 text: |
   When any amount of damage greater than 4 is inflicted to this card, reduce it to 0.
   When you are attacked, you may pay 2. If you do, restore this card.

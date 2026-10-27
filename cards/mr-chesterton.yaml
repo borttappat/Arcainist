@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["advisor", "couch"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 2
+threshold: { obsession: 1 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   EXTRA COST: Pick a tactic in a discard pile.
   While the picked card is in its owner's discard pile, this card gains COVERT.

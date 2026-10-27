@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["lawyer", "mau"]
 set: "2nd Edition"
 rarity: common
+
+cost: 2
+threshold: { greed: 2 }
+stats: { str: 1, life: 2, spd: 3 }
+
 text: |
   When your faction loses influence, reduce the amount by 1.
 rules:

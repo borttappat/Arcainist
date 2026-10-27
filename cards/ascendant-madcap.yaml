@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 5
+threshold: { rage: 1 }
+stats: { str: 3, life: 4, spd: 3 }
+
 text: |
   When a card that provides at least [R] enters play under your control, put a token on this card.
   This card gains 1 strength for each token on it.

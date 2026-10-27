@@ -5,4 +5,9 @@ types: [character]
 subtypes: ["monstrosity"]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 6
+threshold: { obsession: 4 }
+stats: { str: 6, life: 6, spd: 3 }
+
 text: ""

@@ -5,6 +5,12 @@ types: [character]
 subtypes: [mau]
 set: "Seed Saga"
 rarity: common
+
+cost: 1
+threshold: { greed: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+flip_up: { cost: 2, threshold: { greed: 1 } }
+
 text: |
   [G][G]: When this card enters play, draw a card.
   [G][G][G][G][G]: When this card enters play, draw a card.
@@ -17,4 +23,3 @@ rules:
     effect: [ draw: 1 ]
   - trigger: { on: enters_play, card: self, requires: { greed: 9 } }
     effect: [ draw: 1 ]
-  - flip_up: { pay: 2, threshold: { greed: 1 } }

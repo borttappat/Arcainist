@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["inventor"]
 set: "Ungodly Mess"
 rarity: ultra-rare
+
+cost: 4
+threshold: { elitism: 1 }
+stats: { str: 2, life: 1, spd: 3 }
+
 text: |
   When this card enters play, you may search your deck for a card named Elitism and reveal it. If you do, put it into play. Attach it to your faction.
 rules:

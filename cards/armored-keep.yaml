@@ -4,6 +4,11 @@ trade: banker
 types: [location]
 set: "2nd Edition"
 rarity: rare
+
+cost: 6
+threshold: { greed: 3 }
+structure: 5
+
 text: |
   UNIQUE ARMORED KEEP
   TACTICAL

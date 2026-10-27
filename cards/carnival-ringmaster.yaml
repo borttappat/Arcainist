@@ -6,6 +6,11 @@ keywords: [tactical]
 subtypes: ["performer"]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 4
+threshold: { deception: 3 }
+stats: { str: 1, life: 1, spd: 2 }
+
 text: |
   TACTICAL
   When this card enters play you may add it to your attacking or blocking party. All characters in that party gain 1 speed.

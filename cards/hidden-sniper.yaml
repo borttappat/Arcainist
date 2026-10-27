@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 3
+threshold: { rage: 2 }
+stats: { str: 0, life: 1, spd: 3 }
+
 text: |
   SHARPSHOOT
   COST: Pay 1. Deplete this card. Pick a character.

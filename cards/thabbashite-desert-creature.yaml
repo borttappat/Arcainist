@@ -6,6 +6,11 @@ keywords: [covert]
 subtypes: ["monstrosity"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 5
+threshold: { obsession: 1 }
+stats: { str: 3, life: 2, spd: 3 }
+
 text: |
   COVERT
   While this card is in your hand, you may reveal this card when a card that provides [V] enters play under your control. If you do, you may pay 2 to deploy this card.

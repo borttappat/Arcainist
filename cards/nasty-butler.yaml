@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["lackey"]
 set: "2nd Edition"
 rarity: common
+
+cost: 5
+threshold: { greed: 2 }
+stats: { str: 2, life: 4, spd: 2 }
+
 text: |
   When this card enters play, your faction gains 4 influence.
 rules:

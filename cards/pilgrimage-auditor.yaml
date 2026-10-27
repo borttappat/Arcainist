@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mau"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 3
+threshold: { greed: 1 }
+stats: { str: 0, life: 5, spd: 3 }
+
 text: |
   IMPEDE
   COST: Deplete this card. Pick a character.

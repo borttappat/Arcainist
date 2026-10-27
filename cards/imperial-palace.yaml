@@ -4,6 +4,11 @@ trade: banker
 types: [location]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 0
+threshold: { greed: 1 }
+structure: 2
+
 text: |
   At the end of your turn you may pay 1. If you do, pick a character you control and put it into the void. At the start of your next turn put the voided character into play under your control.
 rules:

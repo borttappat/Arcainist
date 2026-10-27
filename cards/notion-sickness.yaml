@@ -4,6 +4,10 @@ trade: gearsmith
 types: [tactic]
 set: "Seed 3"
 rarity: fixed
+
+cost: 3
+threshold: { elitism: 2 }
+
 text: |
   EXTRA COST: Pick a card you control with an ability in its rules text.
   You may use one of the card's abilities. If you do, the effect happens twice instead of once. Destroy the card.

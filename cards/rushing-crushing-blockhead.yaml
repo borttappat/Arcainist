@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["berserker"]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 3
+threshold: { rage: 1 }
+stats: { str: 4, life: 2, spd: 4 }
+
 text: |
   When this card inflicts damage to a faction, destroy this card and inflict 2 damage to your faction.
   This character cannot block.

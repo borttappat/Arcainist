@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["beast"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 2
+threshold: { rage: 1 }
+stats: { str: 5, life: 1, spd: 3 }
+
 text: |
   This character cannot attack.
   [R][R][R][R][R][R]: This card gains 4 life and loses all other rules text.

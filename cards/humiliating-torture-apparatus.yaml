@@ -4,6 +4,10 @@ trade: warlord
 types: [item]
 set: "2nd Edition"
 rarity: rare
+
+cost: 4
+threshold: { rage: 3 }
+
 text: |
   When a card is depleted, that card's controller's faction loses 1 influence. (Resources don't deplete when used; they attach to your faction.)
 rules:

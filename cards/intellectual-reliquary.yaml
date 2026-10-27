@@ -4,6 +4,10 @@ trade: arcanist
 types: [item]
 set: "Seed Saga"
 rarity: rare
+
+cost: 1
+threshold: { obsession: 2 }
+
 text: |
   IMBIBE
   COST: Pay 1. Deplete this card.

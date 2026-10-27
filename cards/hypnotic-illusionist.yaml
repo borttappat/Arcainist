@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["performer"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 3
+threshold: { deception: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   HYPNOTIZE
   COST: Pay 5. Destroy this card. Pick a character.

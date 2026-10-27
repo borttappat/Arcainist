@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["pirate", "mercenary", "mau"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 7
+threshold: { greed: 1 }
+stats: { str: 4, life: 7, spd: 3 }
+
 text: |
   ENCROACH: [G][G][G][G][G]
   COST: Pay 1.

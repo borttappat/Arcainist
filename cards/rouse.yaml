@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 1
+threshold: { obsession: 3 }
+
 text: |
   EXTRA COST: Pick a tactic in your discard pile.
   Put the tactic on the top of your deck.

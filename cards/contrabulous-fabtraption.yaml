@@ -4,6 +4,10 @@ trade: gearsmith
 types: [item]
 set: "Seed Saga"
 rarity: rare
+
+cost: 2
+threshold: { elitism: 3 }
+
 text: |
   RUNE OF ENHANCEMENT
   COST: Destroy this card. Pick a character.

@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "2nd Edition"
 rarity: common
+
+cost: 5
+threshold: { deception: 1 }
+
 text: |
   EXTRA COST: Deploy this only while you are attacking. Pick a character in an opponent's discard pile.
   Put the character into play under your control as a member of the attacking party. Deplete it.

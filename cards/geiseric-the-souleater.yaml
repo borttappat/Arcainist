@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["geiseric", "demon knight"]
 set: "Seed 3"
 rarity: fixed
+
+cost: 3
+threshold: { obsession: 3 }
+stats: { str: 3, life: 2, spd: 3 }
+
 text: |
   UNIQUE GEISERIC
   If a character would be put into an opponent's hand from play, you may pay 1. If you do, remove it from the game and put a token on this card instead.

@@ -6,6 +6,11 @@ attach_to: character
 subtypes: ["gear"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 5
+threshold: { elitism: 3 }
+flip_up: { cost: 5, threshold: { elitism: 3 } }
+
 text: |
   ATTACH TO CHARACTER
   The attached character loses 2 strength and cannot be blocked.
@@ -15,4 +20,3 @@ rules:
       mods:
         - { stat: { str: -2 }, target: host }
         - { cannot_be_blocked: true, target: host }
-  - flip_up: { pay: 5, threshold: { elitism: 3 } }

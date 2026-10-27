@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["dancer", "mau"]
 set: "Holy Heist"
 rarity: rare
+
+cost: 3
+threshold: { greed: 3 }
+stats: { str: 2, life: 1, spd: 3 }
+
 text: |
   At the end of your turn, you may pay 1. If you do, pick a character and deplete it. That character cannot be restored by its controller's faction's next Restore Rule.
   PRIVATE DANCE

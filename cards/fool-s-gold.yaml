@@ -4,6 +4,10 @@ trade: rogue
 types: [item]
 set: "2nd Edition"
 rarity: rare
+
+cost: 2
+threshold: { deception: 2 }
+
 text: |
   TRADE
   COST: Pick an item an opponent controls. Pay X, where X is its numeric cost. Destroy this card.

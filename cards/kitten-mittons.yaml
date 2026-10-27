@@ -6,6 +6,10 @@ attach_to: character
 subtypes: ["gear"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 0
+threshold: { greed: 4 }
+
 text: |
   ATTACH TO CHARACTER
   When damage is inflicted to the attached card, your faction gains influence equal to that damage.

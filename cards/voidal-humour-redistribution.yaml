@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Holy Heist"
 rarity: rare
+
+cost: 3
+threshold: { obsession: 3 }
+
 text: |
   EXTRA COST: Choose a number for X. Remove X tokens from cards you control.
   Put X tokens divided however you want on any non-resource cards. Draw a card.

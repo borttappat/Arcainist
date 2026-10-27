@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["ignatius", "blade of questionable morality"]
 set: "Holy Heist"
 rarity: rare
+
+cost: 4
+threshold: { obsession: 3 }
+stats: { str: 1, life: 5, spd: 3 }
+
 text: |
   UNIQUE IGNATIOUS
   When this card attacks, look at the top 2 cards of your deck. You may put any number of those cards on the bottom of your deck in any order. Put the remaining cards on the top of your deck in any order.

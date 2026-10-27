@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["31f"]
 set: "Seed Saga"
 rarity: common
+
+cost: 2
+threshold: { elitism: 2 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   MARK
   COST: Deplete this card. Pick a character.

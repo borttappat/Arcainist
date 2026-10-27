@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["executive"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 6
+threshold: { greed: 2 }
+stats: { str: 3, life: 5, spd: 3 }
+
 text: |
   When this card leaves play, draw 2 cards.
 rules:

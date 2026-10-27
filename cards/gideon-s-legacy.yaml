@@ -4,6 +4,10 @@ trade: banker
 types: [item]
 set: "Seed Saga"
 rarity: common
+
+cost: 2
+threshold: { greed: 2 }
+
 text: |
   SEEK
   COST: Pay 2. Deplete this card.

@@ -4,6 +4,11 @@ trade: banker
 types: [tactic]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 3
+threshold: { greed: 2 }
+flip_up: { cost: 2, threshold: { greed: 2 } }
+
 text: |
   EXTRA COST: Pick a non-resource card.
   If the card has a [V] icon in its rules text, destroy the card. Otherwise your faction loses influence equal to the card's numeric cost and flip the card face-down under its owner's control.
@@ -19,4 +24,3 @@ rules:
             else:
               - lose_influence: { who: you, amount: { cost: c } }
               - flip_face_down: { card: c, controller: owner }
-  - flip_up: { pay: 2, threshold: { greed: 2 } }

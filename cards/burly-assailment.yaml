@@ -4,6 +4,11 @@ trade: rogue
 types: [tactic]
 set: "Seed Saga"
 rarity: rare
+
+cost: 1
+threshold: { deception: 1 }
+flip_up: { cost: 1, threshold: { deception: 1 } }
+
 text: |
   EXTRA COST: Reveal a face-down character you control.
   You may deploy the character. Draw a card.
@@ -24,4 +29,3 @@ rules:
           prompt: "put Burly Assailment into play as a face-down resource"
           then:
             - put_into_play: { card: self, as: face_down_resource }
-  - flip_up: { pay: 1, threshold: { deception: 1 } }

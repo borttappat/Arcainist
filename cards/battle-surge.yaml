@@ -4,6 +4,10 @@ trade: warlord
 types: [tactic]
 set: "1st Edition Part 2"
 rarity: common
+
+cost: 1
+threshold: { rage: 1 }
+
 text: |
   This turn, all your characters gain 1 strength.
 rules:

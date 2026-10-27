@@ -4,6 +4,10 @@ trade: warlord
 types: [tactic]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 0
+threshold: { rage: 1 }
+
 text: |
   EXTRA COST: Deploy this only not during a battle. Pick a character in your discard pile.
   You may deploy the character.

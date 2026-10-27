@@ -4,6 +4,11 @@ trade: gearsmith
 types: [item]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 6
+threshold: { elitism: 2 }
+flip_up: { cost: 5, threshold: { elitism: 2 } }
+
 text: |
   RESEARCH
   COST: Deplete this card.
@@ -17,4 +22,3 @@ rules:
         - create_effect:
             duration: next
             mods: [ { cost: -2, applies: any, by: you, target: all } ]
-  - flip_up: { pay: 5, threshold: { elitism: 2 } }

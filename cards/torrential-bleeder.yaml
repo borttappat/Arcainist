@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["dragon"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 5
+threshold: { rage: 2 }
+stats: { str: 4, life: 4, spd: 3 }
+
 text: |
   At the start of your turn, inflict 1 damage to all characters.
 rules:

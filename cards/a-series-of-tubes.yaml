@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["node"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 5
+threshold: { elitism: 4 }
+stats: { str: 5, life: 5, spd: 3 }
+
 text: |
   UNIQUE SERIES OF TUBES
   REDIRECT

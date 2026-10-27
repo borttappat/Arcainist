@@ -5,4 +5,9 @@ types: [character]
 subtypes: ["soldier"]
 set: "Seed"
 rarity: uncommon
+
+cost: 8
+threshold: { rage: 2 }
+stats: { str: 8, life: 5, spd: 3 }
+
 text: ""

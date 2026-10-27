@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["monstrosity"]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 6
+threshold: { elitism: 1 }
+stats: { str: 5, life: 6, spd: 3 }
+flip_up: { cost: 6, threshold: { elitism: 1 } }
+
 text: |
   When this card enters play, you may destroy an item.
   FLIP UP: 6 [E]
@@ -14,4 +20,3 @@ rules:
       - may:
           prompt: "destroy an item"
           steps: [ destroy: { from: { item: any }, choose: true } ]
-  - flip_up: { pay: 6, threshold: { elitism: 1 } }

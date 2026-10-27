@@ -6,6 +6,10 @@ attach_to: character
 subtypes: ["gear"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 4
+threshold: { elitism: 1 }
+
 text: |
   ATTACH TO CHARACTER
   The attached character gains 1 strength and 1 life for each [E] you control.

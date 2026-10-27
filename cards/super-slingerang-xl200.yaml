@@ -4,6 +4,11 @@ trade: rogue
 types: [item]
 set: "Holy Heist"
 rarity: rare
+
+cost: 1
+threshold: { deception: 1 }
+flip_up: { cost: 1, threshold: { deception: 1 } }
+
 text: |
   When this card enters play you may discard a card at random. If you do, you may pick a character and destroy it.
   SLING
@@ -38,4 +43,3 @@ rules:
               - { label: "Discard a non-resource Rogue card", steps: [ discard: { count: 1, filter: { card: { trade: rogue, not_type: resource } } } ] }
       effect:
         - move: { card: self, to: hand }
-  - flip_up: { pay: 1, threshold: { deception: 1 } }

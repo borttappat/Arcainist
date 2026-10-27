@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Holy Heist"
 rarity: rare
+
+cost: 6
+threshold: { obsession: 3 }
+
 text: |
   EXTRA COST: Pick an opponent.
   Search your deck for 5 cards with different names and reveal them. That player separates those cards into two piles. Put one pile into your hand and shuffle the other into your deck.

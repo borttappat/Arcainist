@@ -4,6 +4,10 @@ trade: banker
 types: [item]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 1
+threshold: { greed: 2 }
+
 text: |
   FEED
   COST: Pay 1. Pick a character.

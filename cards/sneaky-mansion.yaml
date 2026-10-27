@@ -6,6 +6,11 @@ keywords: [covert]
 subtypes: ["lurker"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 12
+threshold: { obsession: 3 }
+stats: { str: 12, life: 12, spd: 3 }
+
 text: |
   COVERT
 # COVERT is its only rule (a keyword).

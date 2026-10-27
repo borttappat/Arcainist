@@ -4,6 +4,9 @@ trade: universal
 types: [tactic]
 set: "Seed 3"
 rarity: fixed
+
+cost: 2
+
 text: |
   If you control at least [O][O], an opponent discards 1 card. If you control at least [G][G], draw 1 card. If you control at least [E][E], put 1 Micromajig token into play under your control. If you control at least [D][D], search an opponent's deck for 1 card and put it into their discard pile. If you control at least [R][R], you may pick a character. If you do, inflict 2 damage to it.
 rules:

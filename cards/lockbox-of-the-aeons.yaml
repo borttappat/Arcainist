@@ -4,6 +4,10 @@ trade: arcanist
 types: [item]
 set: "Ungodly Mess"
 rarity: super-rare
+
+cost: 2
+threshold: { obsession: 1 }
+
 text: |
   Your opponents cannot use FLIP UP and cards cannot be put into your opponents' hands from the void, discard pile or play
 rules:

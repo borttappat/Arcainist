@@ -4,6 +4,11 @@ trade: rogue
 types: [location]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 3
+threshold: { deception: 1 }
+structure: 3
+
 text: |
   At the start of your turn, you may pick a character. If you do, it loses 1 speed this turn.
 rules:

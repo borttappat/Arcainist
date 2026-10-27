@@ -4,6 +4,11 @@ trade: universal
 types: [tactic]
 set: "Ungodly Mess"
 rarity: rare
+
+cost: 6
+threshold: { volition: 4 }
+flip_up: { cost: 6, threshold: { obsession: 1, greed: 1, elitism: 1, deception: 1, rage: 1 } }
+
 text: |
   EXTRA COST: Play this only during your turn. Pick a faction.
   Destroy all items and locations. If you control cards with 'UNIQUE JO', 'UNIQUE EUSTACE', 'UNIQUE PLUCK', 'UNIQUE RUDOLPHUS', and 'UNIQUE IGNATIOUS', inflict 15 damage to the faction and each character that faction's controller controls.
@@ -29,4 +34,3 @@ rules:
                   cond: { matches: [ f, { faction: { controller: you } } ] }
                   then: [ damage: { card: { character: { controller: you } }, amount: 15 } ]
                   else: [ damage: { card: { character: { controller: opponent } }, amount: 15 } ]
-  - flip_up: { pay: 6, threshold: { obsession: 1, greed: 1, elitism: 1, deception: 1, rage: 1 } }

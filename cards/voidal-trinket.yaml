@@ -4,6 +4,10 @@ trade: arcanist
 types: [item]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 1
+threshold: { obsession: 2 }
+
 text: |
   AUGUR
   COST: Deplete this card. Choose a number for X that is 3 or less. Pick an opponent. That opponent may detach up to X resources from their faction.

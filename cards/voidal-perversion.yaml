@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "2nd Edition"
 rarity: common
+
+cost: 3
+threshold: { obsession: 1 }
+
 text: |
   EXTRA COST: Pick 2 or fewer non-resource cards.
   Put up to 2 tokens divided however you want on the cards. Draw a card.

@@ -4,6 +4,11 @@ trade: gearsmith
 types: [location]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 2
+threshold: { elitism: 1 }
+structure: 2
+
 text: |
   When a non-token character you control with a token on it leaves play, you may put a micromajig token into play under your control.
   PROCESS

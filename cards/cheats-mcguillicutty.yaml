@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["pluck", "grifter"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 6
+threshold: { deception: 2 }
+stats: { str: 2, life: 1, spd: 3 }
+
 text: |
   UNIQUE PLUCK
   The top card of your deck is revealed at all times.

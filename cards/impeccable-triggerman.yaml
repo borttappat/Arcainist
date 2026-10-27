@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["assassin"]
 set: "Holy Heist"
 rarity: rare
+
+cost: 4
+threshold: { deception: 3 }
+stats: { str: 2, life: 1, spd: 3 }
+
 text: |
   This card enters play depleted.
   ASSASSINATE

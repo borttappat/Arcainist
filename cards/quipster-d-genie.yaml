@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["muddler"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 2
+threshold: { obsession: 2 }
+stats: { str: 1, life: 2, spd: 3 }
+
 text: |
   WISH
   COST: Pay 2. Destroy this card.

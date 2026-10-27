@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["godwing", "seraphim", "dragon"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 9
+threshold: { rage: 1 }
+stats: { str: 5, life: 5, spd: 3 }
+
 text: |
   UNIQUE GODWING
   When this card attacks, you may pick a character. If you do, inflict X damage to it, where X is the number of [R] you control.

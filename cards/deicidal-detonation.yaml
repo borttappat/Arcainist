@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Ungodly Mess"
 rarity: uber
+
+cost: 5
+threshold: { obsession: 1 }
+
 text: |
   Put a token on any number of non-resource cards.
   RECUR: [O]

@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 4
+threshold: { obsession: 3 }
+
 text: |
   EXTRA COST: Pick a non-resource card. X is half its numeric cost, rounded up.
   Put the card into its owner's hand. You may deploy a non-resource card with numeric cost X or less for free. (You still need to meet its threshold and satisfy its extra costs.)

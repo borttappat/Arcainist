@@ -5,6 +5,10 @@ types: [item]
 subtypes: ["banner"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 2
+provides: { rage: 1 }
+
 text: |
   PROVIDES: [R]
   When a card that provides at least [R] enters play under your control, you may pay 1. If you do, pick a character and that character gains 1 strength this turn.

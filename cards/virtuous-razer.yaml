@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier", "vandal"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 3
+threshold: { rage: 1 }
+stats: { str: 3, life: 1, spd: 3 }
+
 text: |
   When this card inflicts battle damage, you may pick a location. If you do, inflict the same amount of damage to that location.
 rules:

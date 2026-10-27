@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "2nd Edition"
 rarity: rare
+
+cost: 4
+threshold: { obsession: 3 }
+
 text: |
   EXTRA COST: Name a card.
   Search your deck for any number of copies of the card and reveal them. Put 1 into your hand and the rest into your discard pile. An opponent may search your deck for any number of copies of the card. If they do, put them into your discard pile.

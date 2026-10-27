@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["warmachine"]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 3
+threshold: { rage: 3 }
+stats: { str: 4, life: 5, spd: 3 }
+
 text: |
   This card cannot be restored by your faction's RESTORE RULE.
   This card can attack only once each turn.

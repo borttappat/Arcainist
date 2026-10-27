@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "2nd Edition"
 rarity: common
+
+cost: 2
+threshold: { deception: 2 }
+
 text: |
   EXTRA COST: Pick a character. X is its life.
   If that character's controller has at least X cards in their discard pile, destroy the character.

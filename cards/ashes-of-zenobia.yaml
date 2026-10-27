@@ -4,6 +4,10 @@ trade: arcanist
 types: [item]
 set: "2nd Edition"
 rarity: rare
+
+cost: 7
+threshold: { obsession: 4 }
+
 text: |
   UNIQUE ASHES OF ZENOBIA
   At the start of your turn, draw a card.

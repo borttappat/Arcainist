@@ -6,6 +6,11 @@ keywords: [covert]
 subtypes: ["outlaw"]
 set: "Seed Saga"
 rarity: common
+
+cost: 2
+threshold: { deception: 1 }
+stats: { str: 1, life: 1, spd: 1 }
+
 text: |
   COVERT
   When this card inflicts damage to a faction, put a token on this card.

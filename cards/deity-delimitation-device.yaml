@@ -4,6 +4,10 @@ trade: gearsmith
 types: [item]
 set: "Holy Heist"
 rarity: rare
+
+cost: 3
+threshold: { elitism: 3 }
+
 text: |
   ENTRAPMENT
   COST: Deplete this card. Pick a character you control. X is its numeric cost.

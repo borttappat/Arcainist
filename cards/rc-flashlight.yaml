@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["machine"]
 set: "Holy Heist"
 rarity: common
+
+cost: 3
+threshold: { elitism: 2 }
+stats: { str: 1, life: 3, spd: 3 }
+
 text: |
   This card cannot be blocked.
   This card can block COVERT parties.

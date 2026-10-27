@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["fighter"]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 3
+threshold: { rage: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   When a card that provides at least [R] enters play under your control, you may put a token on this card.
   This card gains 1 strength and 1 life for each token on it.

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["node"]
 set: "Holy Heist"
 rarity: common
+
+cost: 2
+threshold: { elitism: 1 }
+stats: { str: 1, life: 2, spd: 1 }
+
 text: |
   When this card enters play, you may search your deck for a "node" card and reveal it. If you do, put it into your hand.
   If this card would be destroyed, you may pay 1 to flip it face-down under its owner's control instead.

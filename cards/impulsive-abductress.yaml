@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["pirate"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 5
+threshold: { deception: 2 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   KIDNAP
   COST: Destroy this card. Pick an attacking or blocking character.

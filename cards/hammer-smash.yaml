@@ -4,6 +4,10 @@ trade: warlord
 types: [tactic]
 set: "2nd Edition"
 rarity: common
+
+cost: 2
+threshold: { rage: 2 }
+
 text: |
   EXTRA COST: Flip a coin. If you win, X is 2. Otherwise, X is 1. Pick X or fewer items.
   Destroy the items.

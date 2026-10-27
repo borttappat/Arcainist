@@ -4,6 +4,10 @@ trade: rogue
 types: [item]
 set: "Seed Saga"
 rarity: rare
+
+cost: 3
+threshold: { deception: 3 }
+
 text: |
   BINGE
   COST: Deplete this card. Pick a character.

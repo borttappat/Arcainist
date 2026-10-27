@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["horsemajig"]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 1
+threshold: { elitism: 2 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   EXTRA COST: You may destroy a Micromajig token you control.
   When this card enters play, if you destroyed a Micromajig token as part of its cost, you may pick an item in your discard pile and put it into your hand.

@@ -4,6 +4,11 @@ trade: warlord
 types: [location]
 set: "2nd Edition"
 rarity: rare
+
+cost: 2
+threshold: { rage: 4 }
+structure: 5
+
 text: |
   All your characters gain 1 strength.
 rules:

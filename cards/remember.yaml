@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 3
+threshold: { obsession: 1 }
+
 text: |
   EXTRA COST: Pick a tactic in your discard pile.
   Put the tactic into your hand.

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["clown"]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 2
+threshold: { deception: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   This card gains 1 strength and 1 life for each token on it.
   BULGE: [V][V][V]

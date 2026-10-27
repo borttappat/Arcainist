@@ -4,6 +4,11 @@ trade: banker
 types: [tactic]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 2
+threshold: { greed: 3 }
+flip_up: { cost: 3, threshold: { greed: 1 } }
+
 text: |
   Look at the top 8 cards of your deck. You may choose a character among them with 1 strength or less and reveal it. If you do, put it into your hand. Shuffle your deck.
   FLIP UP: 3 [G]
@@ -15,4 +20,3 @@ rules:
             cond: { defined: c }
             then: [ reveal: c, move: { card: c, to: hand } ]
         - shuffle: you
-  - flip_up: { pay: 3, threshold: { greed: 1 } }

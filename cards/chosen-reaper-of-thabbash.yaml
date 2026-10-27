@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["outcast"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 6
+threshold: { deception: 2 }
+stats: { str: 5, life: 3, spd: 3 }
+flip_up: { cost: 4, threshold: { deception: 1 } }
+
 text: |
   CONSUME FORCE
   COST: Pay 1. Deplete another character you control.
@@ -19,4 +25,3 @@ rules:
         - deplete: d
       effect:
         - modify: { card: self, stat: spd, gain: 1 }
-  - flip_up: { pay: 4, threshold: { deception: 1 } }

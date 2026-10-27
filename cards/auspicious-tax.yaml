@@ -6,6 +6,10 @@ attach_to: character
 subtypes: ["gear"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 0
+threshold: { greed: 2 }
+
 text: |
   ATTACH TO CHARACTER
   The attached character's controller must pay 3 to attack with it.

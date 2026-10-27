@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Holy Heist"
 rarity: common
+
+cost: 2
+threshold: { obsession: 1 }
+
 text: |
   EXTRA COST: Deploy this only in response to a non-tactic card being deployed.
   If you control [V][V][V], you may look at the top card of your deck. If you do, you may put it on the bottom.

@@ -4,6 +4,11 @@ trade: none
 types: [faction]
 tournament_legal: false
 set: "Seed 3"
+
+influence: 28
+starting_resources: { specific: { greed: 2 } }
+starting_draw: { first: 3, second: 4 }
+
 text: |
   This card cannot be used in tournament play. (But please, play with it for fun!)
   STARTING RESOURCES: 2 Greed

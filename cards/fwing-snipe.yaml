@@ -6,6 +6,11 @@ keywords: [tactical]
 subtypes: ["beast"]
 set: "Holy Heist"
 rarity: common
+
+cost: 3
+threshold: { deception: 2 }
+stats: { str: 1, life: 1, spd: 4 }
+
 text: |
   TACTICAL
   When this card enters play, you may pick a character. If you do, the character gains 1 speed this turn. Flip a coin. If you win, the character also gains 1 strength this turn.

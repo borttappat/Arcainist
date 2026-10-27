@@ -4,6 +4,10 @@ trade: gearsmith
 types: [item]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 2
+threshold: { elitism: 2 }
+
 text: |
   This card enters play with 3 tokens on it.
   When an opponent deploys a character, you may remove a token from this card.

@@ -4,6 +4,11 @@ trade: warlord
 types: [location]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 3
+threshold: { rage: 2 }
+structure: 3
+
 text: |
   When an attacking character you control inflicts battle damage to a character, increase the amount by 1.
 rules:

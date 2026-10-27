@@ -5,6 +5,11 @@ types: [character]
 subtypes: [31f]
 set: "2nd Edition"
 rarity: rare
+
+cost: 5
+threshold: { elitism: 3 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   When this card enters play, you may deploy a non-tactic card for free. If you do, each opponent may do the same. (You still need to meet its threshold and satisfy its extra costs.)
 rules:

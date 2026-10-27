@@ -4,6 +4,10 @@ trade: banker
 types: [item]
 set: "1st Edition Part 2"
 rarity: rare
+
+cost: 2
+threshold: { greed: 2 }
+
 text: |
   This card comes into play with 2 tokens on it.
   At the start of your turn, remove a token from this card.

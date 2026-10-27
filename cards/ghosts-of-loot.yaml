@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["ghost"]
 set: "Ungodly Mess"
 rarity: rare
+
+cost: 2
+threshold: { greed: 3 }
+stats: { str: 1, life: 1, spd: 3 }
+flip_up: { cost: 3, threshold: { greed: 1 } }
+
 text: |
   UNIQUE GHOSTS
   When this card blocks, your faction loses 2 influence and this card gains 4 life this turn.
@@ -26,4 +32,3 @@ rules:
     effect: [ draw: 1 ]
   - trigger: { on: destroyed, card: self, requires: { volition: 5 } }
     effect: [ draw: 4 ]
-  - flip_up: { pay: 3, threshold: { greed: 1 } }

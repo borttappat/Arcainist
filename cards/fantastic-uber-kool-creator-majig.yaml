@@ -4,6 +4,10 @@ trade: gearsmith
 types: [item]
 set: "Ungodly Mess"
 rarity: rare
+
+cost: 10
+threshold: { elitism: 1 }
+
 text: |
   UNIQUE CREATOR MAJIG
   EXTRA COST: Reduce this card's numeric cost by the number of [E] you control.

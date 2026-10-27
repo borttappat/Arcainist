@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["merchant", "mau"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 2
+threshold: { greed: 2 }
+stats: { str: 0, life: 4, spd: 3 }
+
 text: |
   When this card blocks, draw X cards, where X is the number of characters in the attacking party.
 rules:

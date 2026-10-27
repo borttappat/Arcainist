@@ -4,6 +4,10 @@ trade: gearsmith
 types: [item]
 set: "1st Edition"
 rarity: rare
+
+cost: 6
+threshold: { elitism: 3 }
+
 text: |
   DEPLOY
   COST: Pay 1. Deplete this card.

@@ -4,6 +4,11 @@ trade: rogue
 types: [tactic]
 set: "Seed 3"
 rarity: fixed
+
+cost: 5
+threshold: { deception: 1 }
+flip_up: { cost: 1, threshold: { deception: 1 }, steps: [ { lose_influence: { who: you, amount: 5 } } ] }
+
 text: |
   Deplete all non-Rogue characters. Draw a card.
   FLIP UP: 1 [D] and your faction loses 5 influence.
@@ -12,4 +17,3 @@ rules:
       effect:
         - deplete: { character: { not_trade: rogue } }
         - draw: 1
-  - flip_up: { pay: 1, threshold: { deception: 1 }, cost: [ lose_influence: { who: you, amount: 5 } ] }

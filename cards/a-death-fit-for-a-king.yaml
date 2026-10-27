@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 1
+threshold: { obsession: 2 }
+
 text: |
   EXTRA COST: Pick a character with the UNIQUE keyword in its rules text or pick a character in an opponent's discard pile.
   Put the character into the void.

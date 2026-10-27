@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["vigilante"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 1
+threshold: { deception: 2 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   When this card inflicts battle damage to a character, destroy that character.
 rules:

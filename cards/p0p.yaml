@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["31f"]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 3
+threshold: { elitism: 2 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   BOLSTER
   COST: Deplete another character you control.

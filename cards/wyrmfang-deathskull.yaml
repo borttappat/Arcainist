@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["dragon"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 7
+threshold: { rage: 4 }
+stats: { str: 6, life: 6, spd: 3 }
+
 text: |
   UNIQUE WYRMFANG
   When you attack, the controller of the faction or location you are attacking picks any number of characters they control. Those characters must block during this battle if they can, and only those characters can block.

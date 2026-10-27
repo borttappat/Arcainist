@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["teller"]
 set: "Seed Saga"
 rarity: common
+
+cost: 4
+threshold: { deception: 2 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   DEMOTIVATE
   COST: Pay 1. Deplete this card. Pick a character.

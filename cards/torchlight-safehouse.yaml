@@ -4,6 +4,11 @@ trade: rogue
 types: [location]
 set: "Holy Heist"
 rarity: rare
+
+cost: 3
+threshold: { deception: 3 }
+structure: 5
+
 text: |
   When this card is destroyed, your faction loses 3 influence.
   At the start of your turn, you may pick up to 3 characters you control. If you do, they gain COVERT this turn.

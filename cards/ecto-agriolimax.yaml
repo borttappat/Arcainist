@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["insect"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 3
+threshold: { obsession: 2 }
+stats: { str: 1, life: 1, spd: 2 }
+
 text: |
   This card enters play with 2 tokens on it.
   SLITHER

@@ -6,6 +6,10 @@ attach_to: character
 subtypes: ["gear"]
 set: "Seed Saga"
 rarity: common
+
+cost: 3
+threshold: { obsession: 1 }
+
 text: |
   ATTACH TO CHARACTER
   The attached character loses 2 strength and cannot attack.

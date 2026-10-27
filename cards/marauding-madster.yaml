@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["berserker"]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 1
+threshold: { rage: 4 }
+stats: { str: 3, life: 4, spd: 3 }
+
 text: |
   EXTRA COST: Pick a character you control.
   When this card enters play, destroy the picked character.

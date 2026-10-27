@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["outcast"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 3
+threshold: { deception: 2 }
+stats: { str: 2, life: 1, spd: 3 }
+
 text: |
   CONGA LINE
   COST: Pay 3. Deplete this card. Pick a character not in a battle.

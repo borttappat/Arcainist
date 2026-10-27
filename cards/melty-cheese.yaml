@@ -6,6 +6,12 @@ attach_to: character
 subtypes: ["gear"]
 set: "Seed Saga"
 rarity: common
+
+cost: 2
+threshold: { greed: 1 }
+gear: { life: 2 }
+flip_up: { cost: 2, threshold: { greed: 1 }, steps: [ { gain_influence: { who: you, amount: 4 } } ] }
+
 text: |
   ATTACH TO CHARACTER
   The attached character gains 2 life and cannot attack.
@@ -13,4 +19,3 @@ text: |
 rules:
   - static:
       mods: [ { cannot: attack, target: host } ]
-  - flip_up: { pay: 2, threshold: { greed: 1 }, cost: [ gain_influence: { who: you, amount: 4 } ] }

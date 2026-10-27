@@ -5,6 +5,11 @@ types: [character]
 subtypes: [node]
 set: "2nd Edition"
 rarity: common
+
+cost: 1
+threshold: { elitism: 1 }
+stats: { str: 1, life: 1, spd: 4 }
+
 text: |
   When this card enters play, you may search your deck for a node card and reveal it. If you do, put it into your hand.
   When this card is destroyed, destroy all other node cards.

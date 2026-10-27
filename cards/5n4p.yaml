@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["31f"]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 5
+threshold: { elitism: 2 }
+stats: { str: 2, life: 5, spd: 2 }
+
 text: |
   When this card restores, put a Micromajig token into play under your control.
 rules:

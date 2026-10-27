@@ -4,4 +4,7 @@ trade: gearsmith
 types: [character]
 subtypes: ["majig"]
 set: "Ungodly Mess"
+
+stats: { str: 1, life: 1, spd: 3 }
+
 text: ""

@@ -5,6 +5,10 @@ types: [item]
 attach_to: character
 set: "Holy Heist"
 rarity: rare
+
+cost: 4
+threshold: { greed: 2 }
+
 text: |
   ATTACH TO CHARACTER
   While you control only 1 character, the attached card gains COVERT.

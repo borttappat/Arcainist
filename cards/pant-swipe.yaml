@@ -4,6 +4,11 @@ trade: rogue
 types: [tactic]
 set: "Seed Saga"
 rarity: rare
+
+cost: 7
+threshold: { deception: 3 }
+flip_up: { cost: 5, threshold: { deception: 3 } }
+
 text: |
   Put the top 4 cards of an opponent's deck into the void face-down. (You are still allowed to look at them.)
   For the rest of the game, you may deploy the voided cards as though they were in your hand even if you cannot meet their threshold.
@@ -16,4 +21,3 @@ rules:
             duration: game
             mods:
               - { play_from: { ignore_threshold: true }, target: { card: { zone: void, tagged_by: self } } }
-  - flip_up: { pay: 5, threshold: { deception: 3 } }

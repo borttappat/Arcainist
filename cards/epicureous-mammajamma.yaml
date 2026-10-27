@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["hedonist"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 5
+threshold: { deception: 1 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   SLAP IT UP
   COST: Pay 1.

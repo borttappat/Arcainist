@@ -4,6 +4,10 @@ trade: gearsmith
 types: [tactic]
 set: "2nd Edition"
 rarity: rare
+
+cost: 12
+threshold: { elitism: 4 }
+
 text: |
   EXTRA COST: Deploy this only during your turn.
   You may deploy up to 4 non-tactic cards for free. (You still need to meet its threshold and satisfy its extra costs.)

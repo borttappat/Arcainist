@@ -4,6 +4,11 @@ trade: banker
 types: [location]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 0
+threshold: { greed: 1 }
+structure: 3
+
 text: |
   TRADE
   COST: Pay 1. Discard a resource.

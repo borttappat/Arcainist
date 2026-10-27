@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["investor", "mau"]
 set: "2nd Edition"
 rarity: common
+
+cost: 2
+threshold: { greed: 1 }
+stats: { str: 1, life: 2, spd: 3 }
+
 text: |
   INVEST
   COST: Deplete this card. Pick a non-resource card you control.

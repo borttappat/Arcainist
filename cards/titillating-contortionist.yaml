@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["performer"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 4
+threshold: { deception: 2 }
+stats: { str: 2, life: 3, spd: 4 }
+
 text: |
   When this card attacks, you may pick a character. If you do, it must block this card if it can this turn.
 rules:

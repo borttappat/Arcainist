@@ -4,6 +4,11 @@ trade: none
 types: [faction]
 tournament_legal: false
 set: "Seed 3"
+
+influence: 25
+starting_resources: { any_staples: 2 }
+starting_draw: { first: 8, second: 9 }
+
 text: |
   STARTING RESOURCES: Any 2 staple resources
   STARTING DRAW: 8 going first, 9 going second

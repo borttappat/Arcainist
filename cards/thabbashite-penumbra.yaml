@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["sorceress"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 3
+threshold: { obsession: 1 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   COST: Pick an opponent. X is the number of different staple resources that player controls. Pay 6-X. 
   EFFECT: This turn, this card gains 1 life and COVERT

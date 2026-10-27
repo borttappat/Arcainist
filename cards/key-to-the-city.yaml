@@ -6,6 +6,10 @@ attach_to: character
 subtypes: ["gear"]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 0
+threshold: { greed: 1 }
+
 text: |
   ATTACH TO CHARACTER
   When the attached character leaves play, you may search your deck for a resource, reveal it, and put it into your hand.

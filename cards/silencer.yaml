@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mercenary"]
 set: "Ungodly Mess"
 rarity: rare
+
+cost: 2
+threshold: { rage: 1 }
+stats: { str: 3, life: 2, spd: 2 }
+
 text: |
   Characters with a token on them cannot block this card.
   If a character enters play under your opponent's control, you may pay 1. If you do, put a token on it.

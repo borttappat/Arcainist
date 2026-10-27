@@ -4,6 +4,11 @@ trade: banker
 types: [location]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 4
+threshold: { greed: 1 }
+structure: 2
+
 text: |
   HOCK
   COST: Pay 1. Deplete this card. Destroy a character you own.

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "Seed 2"
 rarity: common
+
+cost: 2
+threshold: { rage: 2 }
+stats: { str: 2, life: 1, spd: 4 }
+
 text: |
   When this card attacks, inflict 1 damage to an opponent's faction.
   [R][R][R][R]: When this card attacks, you may pick a character. If you do, inflict 1 damage to it.

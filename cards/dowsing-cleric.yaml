@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["priest", "mau"]
 set: "Seed Saga"
 rarity: common
+
+cost: 4
+threshold: { greed: 1 }
+stats: { str: 1, life: 2, spd: 3 }
+
 text: |
   When this card enters or leaves play, you may search your deck for a staple resource, reveal it, and put it into your hand.
 rules:

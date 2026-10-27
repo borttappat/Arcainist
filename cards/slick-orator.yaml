@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["politician", "mau"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 3
+threshold: { greed: 2 }
+stats: { str: 1, life: 4, spd: 2 }
+
 text: |
   RECUR: [G][G]
   COST: Use this only if this card is in your discard pile. Remove this card from the game.

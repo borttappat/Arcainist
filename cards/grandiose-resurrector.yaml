@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mau"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 8
+threshold: { greed: 2 }
+stats: { str: 6, life: 6, spd: 3 }
+
 text: |
   RECUR: [G][G]
   COST: Use this only while this card is in your discard pile. Pay 5. Remove this card from the game. Pick up to 4 characters in your discard pile.

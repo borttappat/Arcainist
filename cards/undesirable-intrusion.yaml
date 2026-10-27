@@ -4,6 +4,11 @@ trade: gearsmith
 types: [tactic]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 0
+threshold: { elitism: 3 }
+flip_up: { cost: 2, threshold: { elitism: 1 } }
+
 text: |
   EXTRA COST: Your opponents cannot respond to this card. Deploy this only in response to a character's ability.
   Terminate the ability. Destroy the character. Its controller puts a micromajig token into play under their control.
@@ -21,4 +26,3 @@ rules:
               # The token is made first, while the character's controller is still known.
               - create_token: { card: micromajig-token, controller: { controller_of: ch } }
               - destroy: ch
-  - flip_up: { pay: 2, threshold: { elitism: 1 } }

@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "Holy Heist"
 rarity: rare
+
+cost: 1
+threshold: { deception: 4 }
+
 text: |
   EXTRA COST: Pick a character you control. X is its cost. Put it on the bottom of its owner's deck. Choose a number for Y. Pay Y-X.
   Search your deck for a character with cost Y or less and reveal it. You may deploy it for free. If you don't, put it on top of your deck.

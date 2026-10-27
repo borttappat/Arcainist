@@ -4,6 +4,10 @@ trade: warlord
 types: [item]
 set: "Seed 3"
 rarity: fixed
+
+cost: 3
+threshold: { rage: 1 }
+
 text: |
   When a character you control is destroyed, you may pay 1. If you do, search your deck for a card with the same name, reveal it, and put it on top of your deck.
 rules:

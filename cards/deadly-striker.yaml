@@ -5,6 +5,11 @@ types: [character]
 subtypes: [dragon]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 4
+threshold: { rage: 2 }
+stats: { str: 4, life: 2, spd: 3 }
+
 text: |
   When this card is destroyed, an opponent's faction loses 4 influence.
 rules:

@@ -4,6 +4,10 @@ trade: warlord
 types: [tactic]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 1
+threshold: { rage: 2 }
+
 text: |
   EXTRA COST: Pick an attacking character you control.
   If the character would assign battle damage to the blocking party during this battle, assign it to the target of the attack instead.

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier", "tyrant"]
 set: "Ungodly Mess"
 rarity: rare
+
+cost: 4
+threshold: { rage: 4 }
+stats: { str: 3, life: 4, spd: 4 }
+
 text: |
   BLEED
   COST: Pick a character in battle. Destroy a resource you control.

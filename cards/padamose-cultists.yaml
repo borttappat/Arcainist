@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["cultist"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 2
+threshold: { greed: 1 }
+stats: { str: 2, life: 1, spd: 3 }
+
 text: |
   When this card enters play, if you have deployed a non-character card this turn, draw 2 cards.
 rules:

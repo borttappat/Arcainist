@@ -4,6 +4,11 @@ trade: gearsmith
 types: [location]
 set: "1st Edition"
 rarity: uncommon
+
+cost: 3
+threshold: { elitism: 2 }
+structure: 5
+
 text: |
   Reduce all battle damage inflicted to your faction by characters in COVERT parties to 0.
 rules:

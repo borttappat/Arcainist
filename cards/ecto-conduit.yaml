@@ -4,6 +4,10 @@ trade: arcanist
 types: [item]
 set: "Ungodly Mess"
 rarity: uber
+
+cost: 3
+threshold: { obsession: 3 }
+
 text: |
   At the start of your turn, you may draw three cards, then put two cards from your hand on top of your deck in any order.
   HARNESS

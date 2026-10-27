@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["horsemajig"]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 1
+threshold: { elitism: 2 }
+stats: { str: 0, life: 1, spd: 3 }
+
 text: |
   If this card would be destroyed, flip it face-down under its owner's control instead.
   When this card is flipped down, each opponent's faction gains 1 influence and you may put a Micromajig token into play under your control for each influence gained this way.

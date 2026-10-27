@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["gambler"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 7
+threshold: { deception: 2 }
+stats: { str: 3, life: 4, spd: 4 }
+
 text: |
   When this card enters play, draw a card.
   If this card would be destroyed, each player removes the top card of their deck from the game instead. If the numeric cost of your removed card is greater than or equal to the numeric cost of all opponent's, draw a card and reduce the amount of damage already inflicted to this card this turn to 0. Otherwise, remove this card from the game.

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["miner"]
 set: "Seed Saga"
 rarity: common
+
+cost: 2
+threshold: { deception: 1 }
+stats: { str: 2, life: 1, spd: 4 }
+
 text: |
   When a card that provides at least [D] enters play under your control, this card gains 1 strength and COVERT this turn.
 rules:

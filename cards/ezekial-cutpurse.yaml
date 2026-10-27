@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["thief"]
 set: "Ungodly Mess"
 rarity: rare
+
+cost: 3
+threshold: { deception: 3 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   UNIQUE EZEKIAL CUTPURSE
   Characters you control with numeric cost 2 or less gain 1 strength.

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["thief"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 3
+threshold: { deception: 2 }
+stats: { str: 2, life: 1, spd: 3 }
+
 text: |
   When this card enters play, you may search an opponent's deck for up to 3 cards with different names and reveal them. If you do, put them into that player's discard pile.
 rules:

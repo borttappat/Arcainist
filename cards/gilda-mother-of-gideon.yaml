@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["sorceress"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 3
+threshold: { obsession: 3 }
+stats: { str: 2, life: 3, spd: 3 }
+
 text: |
   UNIQUE GILDA
   At the start of your turn you may look at the top 2 cards of your deck. You may reveal a tactic among them. If you do, put it into the void. Put the remaining cards on the top of your deck in any order.

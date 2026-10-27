@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["priest"]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 4
+threshold: { obsession: 1 }
+stats: { str: 3, life: 3, spd: 1 }
+flip_up: { cost: 3, threshold: { volition: 4 } }
+
 text: |
   [O][O][V][V]: This card gains COVERT. When this card is destroyed, you may pick a non-resource card. If you do, put that card into its owner's hand.
   FLIP UP: 3 [V][V][V][V]
@@ -18,4 +24,3 @@ rules:
       - if:
           cond: { defined: c }
           then: [ move: { card: c, to: hand } ]
-  - flip_up: { pay: 3, threshold: { volition: 4 } }

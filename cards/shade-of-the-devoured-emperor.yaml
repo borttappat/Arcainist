@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["padamose", "emperor", "mau"]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 2
+threshold: { volition: 4 }
+stats: { str: 0, life: 1, spd: 0 }
+flip_up: { cost: 2, threshold: { volition: 4 } }
+
 text: |
   UNIQUE PADAMOSE
   At the end of an opponent's turn, you may remove this card from the game, then choose a player and search their deck for a UNIQUE JO, UNIQUE EUSTACE, UNIQUE PLUCK, UNIQUE RUDOLPHUS, or UNIQUE IGNATIOUS and reveal it. If you do, put it into play under your control.
@@ -29,4 +35,3 @@ rules:
                 reveal: true
                 to: play
                 controller: you
-  - flip_up: { pay: 2, threshold: { volition: 4 } }

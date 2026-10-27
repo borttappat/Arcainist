@@ -4,6 +4,11 @@ trade: banker
 types: [location]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 2
+threshold: { greed: 1 }
+structure: 2
+
 text: |
   When a character you control with a token on it leaves play, your faction gains 2 influence.
   INVEST

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["lawyer"]
 set: "1st Edition"
 rarity: common
+
+cost: 2
+threshold: { greed: 1 }
+stats: { str: 0, life: 1, spd: 3 }
+
 text: |
   HAGGLE
   COST: Deplete this card. Pick a character.

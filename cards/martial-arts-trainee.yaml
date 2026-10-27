@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["martial artist"]
 set: "2nd Edition"
 rarity: common
+
+cost: 3
+threshold: { deception: 2 }
+stats: { str: 2, life: 1, spd: 4 }
+
 text: |
   Your opponents cannot pick this card.
 rules:

@@ -6,6 +6,11 @@ keywords: [tactical]
 subtypes: ["outcast", "mau"]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 3
+threshold: { deception: 1 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   TACTICAL
   HELPING PAW: [D]

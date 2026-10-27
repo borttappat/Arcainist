@@ -6,6 +6,11 @@ keywords: [tactical]
 subtypes: ["omahkapi'si", "seraphim", "dragon"]
 set: "Ungodly Mess"
 rarity: rare
+
+cost: 6
+threshold: { deception: 5 }
+stats: { str: 4, life: 5, spd: 5 }
+
 text: |
   TACTICAL, UNIQUE OMAHKAPI'SI
   While there are at least 10 cards in an opponent's discard pile, that player cannot pick this card.

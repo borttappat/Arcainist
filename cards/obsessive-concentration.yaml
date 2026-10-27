@@ -4,6 +4,9 @@ trade: arcanist
 types: [resource]
 set: "Holy Heist"
 rarity: uncommon
+
+provides: { obsession: 1 }
+
 text: |
   This resource may only be played from your hand face-down.
   PROVIDES: [O]

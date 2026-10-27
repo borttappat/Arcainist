@@ -5,6 +5,11 @@ types: [character]
 subtypes: [pluck, grifter]
 set: "2nd Edition"
 rarity: rare
+
+cost: 5
+threshold: { deception: 4 }
+stats: { str: 2, life: 3, spd: 4 }
+
 text: |
   UNIQUE PLUCK
   You may use abilities on your opponent's cards, but you must pay any numeric cost with your own resources. Any additional costs must be satisfied as though your opponent is using the ability. The ability's effect happens as if your opponent used it.

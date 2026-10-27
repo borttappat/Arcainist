@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mechanic"]
 set: "Ungodly Mess"
 rarity: ultra-rare
+
+cost: 3
+threshold: { elitism: 1 }
+stats: { str: 2, life: 1, spd: 3 }
+
 text: |
   When this card is destroyed, you may search your deck for an item and reveal it. If you do, put it into your hand.
 rules:

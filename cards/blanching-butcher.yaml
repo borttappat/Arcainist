@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mercenary", "assassin"]
 set: "1st Edition"
 rarity: common
+
+cost: 2
+threshold: { greed: 1 }
+stats: { str: 1, life: 2, spd: 3 }
+
 text: |
   When this card enters play, your faction loses 3 influence.
   When this card blocks, it gains 4 strength and 4 life this turn.

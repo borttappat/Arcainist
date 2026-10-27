@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 5
+threshold: { greed: 2 }
+
 text: |
   Draw 3 cards.
   RECUR: [G][G]

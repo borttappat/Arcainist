@@ -5,6 +5,10 @@ types: [item]
 keywords: [tactical]
 set: "1st Edition"
 rarity: rare
+
+cost: 3
+threshold: { deception: 3 }
+
 text: |
   TACTICAL
   While this card is in play, each player moves 1 seat to the left. Each player is in control of that opponent's side. If the game ends, the owner of the winning deck wins the game.

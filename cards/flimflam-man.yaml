@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["grifter"]
 set: "Seed Saga"
 rarity: common
+
+cost: 4
+threshold: { deception: 1 }
+stats: { str: 3, life: 2, spd: 3 }
+
 text: |
   When this card enters play, you may choose a card type. If you do, reveal the top card of your deck. If it is the chosen type, put it into your hand. Otherwise, put it on the bottom of your deck.
 rules:

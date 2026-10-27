@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["wizard"]
 set: "Seed Saga"
 rarity: common
+
+cost: 3
+threshold: { obsession: 2 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   When this card enters play, each player may draw up to 2 cards.
 rules:

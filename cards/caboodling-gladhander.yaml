@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mau"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 7
+threshold: { greed: 2 }
+stats: { str: 3, life: 4, spd: 3 }
+
 text: |
   EXTRA COST: You may pick a character.
   When this card enters play, if you picked a character as part of its cost, destroy that character. That character's controller's faction gains X influence, where X is the strength of that character.

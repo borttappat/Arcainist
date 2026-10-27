@@ -4,6 +4,11 @@ trade: warlord
 types: [tactic]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 1
+threshold: { rage: 2 }
+flip_up: { cost: 3, threshold: { rage: 1 } }
+
 text: |
   EXTRA COST: Pick a character you control. X is its strength. Destroy it. Pick a location.
   If you control [V][V][V], inflict 3 damage to an opponent's faction. Inflict X damage to the location. If it is destroyed by that damage, draw a card.
@@ -23,4 +28,3 @@ rules:
         - if:
             cond: { destroyed: l }
             then: [ draw: 1 ]
-  - flip_up: { pay: 3, threshold: { rage: 1 } }

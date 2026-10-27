@@ -4,6 +4,11 @@ trade: banker
 types: [location]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 3
+threshold: { greed: 1 }
+structure: 3
+
 text: |
   UNIQUE A & D LAW
   Characters with numeric cost 2 or less cannot attack.

@@ -4,6 +4,11 @@ trade: warlord
 types: [location]
 set: "Seed 3"
 rarity: fixed
+
+cost: 5
+threshold: { rage: 4 }
+structure: 2
+
 text: |
   When a player deploys a tactic, terminate it and inflict 1 damage to this card.
 rules:

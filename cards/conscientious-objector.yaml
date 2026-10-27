@@ -6,6 +6,12 @@ keywords: [tactical]
 subtypes: ["pacifist"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 2
+threshold: { rage: 2 }
+stats: { str: 6, life: 6, spd: 3 }
+flip_up: { cost: 2, threshold: { rage: 2 } }
+
 text: |
   TACTICAL
   EXTRA COST: Pick a location you control.
@@ -24,4 +30,3 @@ rules:
             rules:
               - trigger: { on: leaves_play, card: self, player: any, once: true }
                 effect: [ clear_effects: self ]
-  - flip_up: { pay: 2, threshold: { rage: 2 } }

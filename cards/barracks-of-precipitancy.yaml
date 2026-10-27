@@ -4,6 +4,11 @@ trade: warlord
 types: [location]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 4
+threshold: { rage: 3 }
+structure: 5
+
 text: |
   GO TIME!
   COST: Deplete this card.

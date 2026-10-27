@@ -4,6 +4,10 @@ trade: gearsmith
 types: [tactic]
 set: "1st Edition Part 2"
 rarity: uncommon
+
+cost: 2
+threshold: { elitism: 1 }
+
 text: |
   EXTRA COST: Pick a gear card. X is its numeric cost.
   Inflict X damage to the character the gear card is attached to. Destroy the gear card.

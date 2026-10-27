@@ -6,6 +6,12 @@ keywords: [tactical]
 subtypes: ["advisor"]
 set: "Holy Heist"
 rarity: rare
+
+cost: 0
+threshold: { greed: 3 }
+stats: { str: 0, life: 2, spd: 2 }
+flip_up: { cost: 1, threshold: { greed: 3 } }
+
 text: |
   TACTICAL
   When this card blocks, you may pick a character in your discard pile. If you do, add that character to the blocking party. If that card or this card would leave play this turn, remove both cards from the game instead.
@@ -35,4 +41,3 @@ rules:
           rules:
             - trigger: { on: battle_end, once: true }
               effect: [ void: self ]
-  - flip_up: { pay: 1, threshold: { greed: 3 } }

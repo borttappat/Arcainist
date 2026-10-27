@@ -4,6 +4,10 @@ trade: gearsmith
 types: [item]
 set: "Holy Heist"
 rarity: rare
+
+cost: 5
+threshold: { elitism: 3 }
+
 text: |
   This card cannot be picked.
   RESEARCH

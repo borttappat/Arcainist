@@ -4,6 +4,11 @@ trade: gearsmith
 types: [tactic]
 set: "Seed Saga"
 rarity: common
+
+cost: 1
+threshold: { elitism: 1 }
+flip_up: { cost: 1, threshold: { elitism: 1 }, steps: [ { draw: 1 } ] }
+
 text: |
   EXTRA COST: Pick an item.
   Flip the item face-down under its owner's control.
@@ -13,4 +18,3 @@ rules:
       cost:
         - pick: { as: i, from: { item: any } }
       effect: [ flip_face_down: { card: i, controller: owner } ]
-  - flip_up: { pay: 1, threshold: { elitism: 1 }, cost: [ draw: 1 ] }

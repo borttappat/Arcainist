@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["sorceress"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 4
+threshold: { rage: 3 }
+stats: { str: 2, life: 4, spd: 3 }
+
 text: |
   UNIQUE ELZIBETH
   KEEP EM COMING

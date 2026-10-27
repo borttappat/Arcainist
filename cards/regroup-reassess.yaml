@@ -4,6 +4,11 @@ trade: banker
 types: [tactic]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 2
+threshold: { greed: 3 }
+flip_up: { cost: 5, threshold: { greed: 1 } }
+
 text: |
   Draw 2 cards. If you control an attacking party of at least 2 members, draw 2 more cards, then discard a card.
   FLIP UP: 5 [G]
@@ -16,4 +21,3 @@ rules:
             then:
               - draw: 2
               - discard: 1
-  - flip_up: { pay: 5, threshold: { greed: 1 } }

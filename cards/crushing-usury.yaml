@@ -4,6 +4,11 @@ trade: banker
 types: [tactic]
 set: "Seed Saga"
 rarity: common
+
+cost: 4
+threshold: { greed: 1 }
+flip_up: { cost: 2, threshold: { greed: 1 } }
+
 text: |
   EXTRA COST: Pick a character.
   Destroy the character. Your faction loses 3 influence.
@@ -15,4 +20,3 @@ rules:
       effect:
         - destroy: c
         - lose_influence: { who: you, amount: 3 }
-  - flip_up: { pay: 2, threshold: { greed: 1 } }

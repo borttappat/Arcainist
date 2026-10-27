@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["craftsman"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 3
+threshold: { elitism: 1 }
+stats: { str: 0, life: 1, spd: 2 }
+
 text: |
   FABRICATE
   COST: Deplete this card.

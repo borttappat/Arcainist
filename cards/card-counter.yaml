@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["thief"]
 set: "2nd Edition"
 rarity: common
+
+cost: 3
+threshold: { deception: 1 }
+stats: { str: 2, life: 1, spd: 3 }
+
 text: |
   When this card enters play, flip a coin. If you win, X is 3. Otherwise, X is 2. Put the top X cards of an opponent's deck into their discard pile.
 rules:

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["ipsighast", "demon knight"]
 set: "Seed 3"
 rarity: fixed
+
+cost: 3
+threshold: { deception: 3 }
+stats: { str: 3, life: 3, spd: 4 }
+
 text: |
   UNIQUE IPSIGHAST
   EXHUMATION

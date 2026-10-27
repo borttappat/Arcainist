@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["rudo", "blade of questionable morality"]
 set: "Holy Heist"
 rarity: rare
+
+cost: 2
+threshold: { rage: 3 }
+stats: { str: 1, life: 3, spd: 3 }
+
 text: |
   UNIQUE RUDOLPHUS
   While this card is restored, all characters you control gain 1 strength and 1 life.

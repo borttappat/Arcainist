@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["majig"]
 set: "Holy Heist"
 rarity: rare
+
+cost: 2
+threshold: { elitism: 2 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   This card gains 1 strength and 1 life for each token on it.
   ASSEMBLE

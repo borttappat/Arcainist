@@ -6,6 +6,11 @@ keywords: [tactical]
 subtypes: ["soldier"]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 3
+threshold: { rage: 1 }
+stats: { str: 2, life: 2, spd: 3 }
+
 text: |
   TACTICAL
   EXTRA COST: Deploy this only not during a battle.

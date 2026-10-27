@@ -4,6 +4,10 @@ trade: gearsmith
 types: [item]
 set: "2nd Edition"
 rarity: rare
+
+cost: 0
+threshold: { elitism: 3 }
+
 text: |
   RAAR!
   COST: Pay 2.

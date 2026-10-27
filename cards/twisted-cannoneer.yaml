@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["tyrant"]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 6
+threshold: { rage: 1 }
+stats: { str: 4, life: 4, spd: 3 }
+
 text: |
   FIRE!
   COST: Use this only not during a battle. Pick a faction. Destroy a character you control. Pay 1.

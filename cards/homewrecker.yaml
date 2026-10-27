@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mau", "assassin"]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 2
+threshold: { greed: 1 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   EXTRA COST: Inflict 2 damage to a location you own or pay 3.
   Locations you control gain 1 structure.

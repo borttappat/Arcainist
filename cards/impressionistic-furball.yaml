@@ -6,6 +6,11 @@ attach_to: character
 subtypes: ["gear"]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 1
+threshold: { greed: 2 }
+gear: { life: 2 }
+
 text: |
   ATTACH TO CHARACTER
   Attached character gains 2 life.

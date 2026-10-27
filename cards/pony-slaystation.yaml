@@ -4,6 +4,11 @@ trade: arcanist
 types: [location]
 set: "Seed 3"
 rarity: fixed
+
+cost: 3
+threshold: { obsession: 3 }
+structure: 3
+
 text: |
   When a character with 3 strength or less enters play under an opponent's control, destroy that character and inflict X damage to this card, where X is that character's strength.
 rules:

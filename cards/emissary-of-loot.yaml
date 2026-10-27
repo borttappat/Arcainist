@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["mau"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 5
+threshold: { greed: 1 }
+stats: { str: 3, life: 4, spd: 3 }
+
 text: |
   When a card that provides at least [G] enters play under your control, you may put a token on this card.
   DELIVER

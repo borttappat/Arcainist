@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Shade of the Devoured Emperor"
 rarity: rare
+
+cost: 3
+threshold: { obsession: 2 }
+
 text: |
   Choose one of the following as this card's rules text:
   OPTION 1

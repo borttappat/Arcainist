@@ -6,8 +6,13 @@ keywords: [tactical]
 subtypes: ["outcast"]
 set: "Seed Saga"
 rarity: common
+
+cost: 1
+threshold: { deception: 2 }
+stats: { str: 1, life: 1, spd: 4 }
+flip_up: { cost: 0, threshold: { deception: 2 } }
+
 text: |
   TACTICAL
   FLIP UP: 0 [D][D]
-rules:
-  - flip_up: { pay: 0, threshold: { deception: 2 } }
+rules: []

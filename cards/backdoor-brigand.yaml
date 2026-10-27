@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["outcast"]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 3
+threshold: { deception: 1 }
+stats: { str: 2, life: 3, spd: 4 }
+flip_up: { cost: 3, threshold: { deception: 2 } }
+
 text: |
   EXIT STAGE RIGHT
   COST: Use this only if this card has not assigned damage this turn. Pay 1.
@@ -18,4 +24,3 @@ rules:
         - pay: 1
       effect:
         - flip_face_down: { card: self, controller: owner }
-  - flip_up: { pay: 3, threshold: { deception: 2 } }

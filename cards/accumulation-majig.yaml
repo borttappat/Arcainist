@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["majig"]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 4
+threshold: { elitism: 1 }
+stats: { str: 4, life: 4, spd: 4 }
+
 text: |
   At the start of your turn, you may pay 1 for each token on this card. If you don't, destroy this card.
   At the end of your turn put a token on this card.

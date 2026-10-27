@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "1st Edition"
 rarity: common
+
+cost: 3
+threshold: { deception: 1 }
+
 text: |
   Put the top 2 cards of an opponent's deck into their discard pile. Draw a card.
 rules:

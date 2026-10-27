@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["horsemajig"]
 set: "2nd Edition"
 rarity: common
+
+cost: 2
+threshold: { elitism: 1 }
+stats: { str: 1, life: 3, spd: 3 }
+
 text: |
   All other horsemajig characters gain 1 life.
 rules:

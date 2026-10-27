@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["beast", "monstrosity"]
 set: "Holy Heist"
 rarity: common
+
+cost: 5
+threshold: { obsession: 2 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   When an opponent discards any number of cards, this card gains X strength and X life this turn, where X is the number of cards discarded.
 rules:

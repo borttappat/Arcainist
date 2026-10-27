@@ -4,6 +4,10 @@ trade: banker
 types: [item]
 set: "2nd Edition"
 rarity: rare
+
+cost: 2
+threshold: { greed: 2 }
+
 text: |
   At the start of each player's turn, that player chooses one of the following:
   OPTION 1: That player may draw a card and their opponents may play a resource.

@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["teller"]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 2
+threshold: { deception: 1 }
+stats: { str: 2, life: 1, spd: 4 }
+flip_up: { cost: 1, threshold: { volition: 4 } }
+
 text: |
   [D][D][V][V]: When this card enters play, leaves play, attacks, or blocks, you may look at the top card of any deck.
   FLIP UP: 1 [V][V][V][V]
@@ -21,4 +27,3 @@ rules:
     effect: *seer
   - trigger: { on: blocks, card: self, requires: { deception: 2, volition: 2 } }
     effect: *seer
-  - flip_up: { pay: 1, threshold: { volition: 4 } }

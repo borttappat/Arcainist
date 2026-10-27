@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 3
+threshold: { obsession: 1 }
+
 text: |
   EXTRA COST: Deploy this only in response to a card being deployed. (Playing a resource doesn't count.)
   Terminate the card, but put it into its owner's hand instead of their discard pile. Its owner puts a card from their hand on the top of their deck.

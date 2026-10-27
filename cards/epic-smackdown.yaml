@@ -4,6 +4,10 @@ trade: warlord
 types: [tactic]
 set: "Seed Saga"
 rarity: rare
+
+cost: 3
+threshold: { rage: 2 }
+
 text: |
   EXTRA COST: Choose a number for X. Destroy X characters you control.
   Each opponent that controls at least X characters, destroys X characters they control. Otherwise, destroy all of that opponent's characters. Draw a card.

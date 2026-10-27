@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["guardforce", "31f"]
 set: "2nd Edition"
 rarity: common
+
+cost: 4
+threshold: { elitism: 2 }
+stats: { str: 3, life: 2, spd: 3 }
+
 text: |
   This card can attack even if it has not been in play under your control since the start of the turn.
 rules:

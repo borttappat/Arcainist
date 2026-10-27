@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["dragon", "mau", "gargoyle"]
 set: "Holy Heist"
 rarity: rare
+
+cost: 6
+threshold: { greed: 2 }
+stats: { str: 4, life: 4, spd: 0 }
+
 text: |
   EXTRA COST: Your faction loses 3 influence. Draw 3 cards.
   While this card is in your hand and a location you control is being attacked, this card gains tactical.

@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "2nd Edition"
 rarity: rare
+
+cost: 6
+threshold: { greed: 5 }
+
 text: |
   EXTRA COST: Deploy this only during your turn. Pick 2 characters in your discard pile.
   Put 1 of the characters into play under your control. Put the other character into your hand.

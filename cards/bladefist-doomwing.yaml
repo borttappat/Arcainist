@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["dragon"]
 set: "2nd Edition"
 rarity: rare
+
+cost: 9
+threshold: { rage: 2 }
+stats: { str: 6, life: 6, spd: 3 }
+
 text: |
   UNIQUE BLADEFIST
   FIREBREATHING

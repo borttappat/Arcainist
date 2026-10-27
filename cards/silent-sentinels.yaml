@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["warmachine"]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 6
+threshold: { elitism: 1 }
+stats: { str: 4, life: 5, spd: 2 }
+
 text: |
   All characters must attack if they can.
   [E][E][E]: This card gains AGGRO.

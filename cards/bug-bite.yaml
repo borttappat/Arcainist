@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 1
+threshold: { deception: 2 }
+
 text: |
   EXTRA COST: Pick a character.
   Put a token on the character. Destroy it if it has at least X tokens on it, where X is its numeric cost.

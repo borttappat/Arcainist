@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["craftsman"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 2
+threshold: { elitism: 1 }
+stats: { str: 0, life: 2, spd: 3 }
+
 text: |
   SNUB
   COST: Pay 1. Deplete this card.

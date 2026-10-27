@@ -4,6 +4,11 @@ trade: banker
 types: [tactic]
 set: "Holy Heist"
 rarity: rare
+
+cost: 5
+threshold: { greed: 1 }
+flip_up: { cost: 3, threshold: { greed: 3 } }
+
 text: |
   EXTRA COST: Deploy this only during your turn and not during a battle.
   Destroy each character with numeric cost 1, 2, and 3.
@@ -12,4 +17,3 @@ rules:
   - play:
       timing: { your_turn: true, not_in_battle: true }
       effect: [ destroy: { card: { character: { cost_gte: 1, cost_lte: 3 } } } ]
-  - flip_up: { pay: 3, threshold: { greed: 3 } }

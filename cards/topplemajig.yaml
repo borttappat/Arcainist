@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["majig"]
 set: "2nd Edition"
 rarity: common
+
+cost: 5
+threshold: { elitism: 1 }
+stats: { str: 4, life: 4, spd: 1 }
+
 text: |
   While this card is in a battle, all characters in the opposing party lose 1 speed.
 rules:

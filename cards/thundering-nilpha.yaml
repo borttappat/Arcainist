@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["dragon"]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 5
+threshold: { rage: 1 }
+stats: { str: 4, life: 3, spd: 3 }
+
 text: |
   While this card is attacking a location, it gains 1 strength and cannot be blocked.
 rules:

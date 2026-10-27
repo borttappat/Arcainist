@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "Holy Heist"
 rarity: common
+
+cost: 5
+threshold: { greed: 1 }
+
 text: |
   EXTRA COST: Pick a character without an item attached to it.
   Destroy the character. If you control [V][V][V], draw a card.

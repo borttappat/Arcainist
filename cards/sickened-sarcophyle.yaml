@@ -5,4 +5,9 @@ types: [character]
 subtypes: ["sarcophyle"]
 set: "Shade of the Devoured Emperor"
 rarity: common
+
+cost: 4
+threshold: { deception: 2 }
+stats: { str: 3, life: 1, spd: 4 }
+
 text: ""

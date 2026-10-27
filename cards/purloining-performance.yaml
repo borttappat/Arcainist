@@ -4,6 +4,11 @@ trade: rogue
 types: [tactic]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 2
+threshold: { deception: 3 }
+flip_up: { cost: 4, threshold: { deception: 1 } }
+
 text: |
   EXTRA COST: Pick an opponent.
   Look at the top 4 cards of that player's deck and put them back in any order. If you control an attacking party of at least 2 members, you may put up to 3 cards from the top of that player's deck into their discard pile.
@@ -17,4 +22,3 @@ rules:
             then:
               - choose_number: { as: X, min: 0, max: 3, prompt: "Put up to 3 cards from the top of your opponent's deck into their discard pile." }
               - mill: { who: opponent, count: X }
-  - flip_up: { pay: 4, threshold: { deception: 1 } }

@@ -5,6 +5,9 @@ types: [item]
 subtypes: [banner]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 0
+
 text: |
   UNIQUE QUILT
   When this card enters play and at the start of each of your turns, name a non-[V] resource icon. X is that icon. Until the start of your next turn, this card gains "PROVIDES: X".

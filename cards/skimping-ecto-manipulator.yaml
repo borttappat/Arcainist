@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["ecto-manipulator"]
 set: "2nd Edition"
 rarity: common
+
+cost: 2
+threshold: { obsession: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   ENERGIZE
   COST: Deplete this card. Pick a non-resource card you control.

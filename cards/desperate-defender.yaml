@@ -6,6 +6,11 @@ keywords: [covert]
 subtypes: ["lawyer"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 3
+threshold: { greed: 2 }
+stats: { str: 1, life: 2, spd: 3 }
+
 text: |
   COVERT
   SHOW EVIDENCE

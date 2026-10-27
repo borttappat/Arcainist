@@ -4,6 +4,11 @@ trade: warlord
 types: [location]
 set: "Seed Saga"
 rarity: rare
+
+cost: 1
+threshold: { rage: 1 }
+structure: 4
+
 text: |
   UNIQUE WATCHTOWER
   When a character enters play under an opponent's control, inflict 1 damage to it.

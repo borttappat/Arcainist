@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["god"]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 2
+threshold: { obsession: 2 }
+stats: { str: 1, life: 2, spd: 1 }
+
 text: |
   This character loses 1 life and all non-Arcanist characters lose 1 strength for each token on this card.
   SPREAD THE HATE

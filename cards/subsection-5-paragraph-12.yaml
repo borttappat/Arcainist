@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "2nd Edition"
 rarity: rare
+
+cost: 2
+threshold: { greed: 2 }
+
 text: |
   EXTRA COST: Your opponents cannot respond to this card. Deploy this only in response to an ability that's source was not a faction.
   Terminate the ability. It cannot be used again this turn. Draw a card.

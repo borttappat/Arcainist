@@ -4,6 +4,11 @@ trade: gearsmith
 types: [location]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 1
+threshold: { elitism: 1 }
+structure: 2
+
 text: |
   SNUB
   COST: Pay 2. Deplete this card.

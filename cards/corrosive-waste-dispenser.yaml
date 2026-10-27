@@ -4,6 +4,10 @@ trade: warlord
 types: [item]
 set: "Ungodly Mess"
 rarity: rare
+
+cost: 3
+threshold: { rage: 3 }
+
 text: |
   This card enters play with 4 tokens on it.
   When this card has no tokens on it, flip it face-down under its owner's control.

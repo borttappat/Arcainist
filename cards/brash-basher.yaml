@@ -5,4 +5,9 @@ types: [character]
 subtypes: ["fighter"]
 set: "1st Edition Part 2"
 rarity: common
+
+cost: 5
+threshold: { rage: 1 }
+stats: { str: 6, life: 2, spd: 3 }
+
 text: ""

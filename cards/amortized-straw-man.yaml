@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["straw man"]
 set: "1st Edition"
 rarity: uncommon
+
+cost: 5
+threshold: { greed: 2 }
+stats: { str: 6, life: 6, spd: 3 }
+
 text: |
   This card enters play with 3 tokens on it.
   This card loses 1 strength and 1 life for each token on it.

@@ -4,6 +4,11 @@ trade: warlord
 types: [tactic]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 3
+threshold: { rage: 1 }
+flip_up: { cost: 4, threshold: { rage: 1 } }
+
 text: |
   EXTRA COST: Pick a character.
   Inflict 1 damage to that character. If it is destroyed by that damage, you may pick another character and
@@ -39,4 +44,3 @@ rules:
                                       - if:
                                           cond: { defined: c4 }
                                           then: [ damage: { card: c4, amount: 1 } ]
-  - flip_up: { pay: 4, threshold: { rage: 1 } }

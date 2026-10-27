@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["ecto-manipulator"]
 set: "Holy Heist"
 rarity: common
+
+cost: 1
+threshold: { obsession: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   When this card enters play you may pick a non-resource card. If you do, put a token on the card.
 rules:

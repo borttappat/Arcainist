@@ -4,6 +4,10 @@ trade: banker
 types: [item]
 set: "1st Edition"
 rarity: uncommon
+
+cost: 6
+threshold: { greed: 1 }
+
 text: |
   At the start of your turn, you may pick a faction. If you do, it gains 2 influence.
 rules:

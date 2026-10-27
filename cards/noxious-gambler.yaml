@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["gambler"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 4
+threshold: { deception: 1 }
+stats: { str: 2, life: 3, spd: 4 }
+
 text: |
   When this card is restored, you may look at the top card of your deck. If you do, you may put that card on the bottom of your deck.
 rules:

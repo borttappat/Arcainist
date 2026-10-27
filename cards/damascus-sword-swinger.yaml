@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "Holy Heist"
 rarity: common
+
+cost: 6
+threshold: { rage: 1 }
+stats: { str: 5, life: 5, spd: 2 }
+
 text: |
   While a "gear" card is attached to this card, it gains 2 strength.
 rules:

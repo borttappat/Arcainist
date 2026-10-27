@@ -4,6 +4,11 @@ trade: warlord
 types: [location]
 set: "Seed Saga"
 rarity: rare
+
+cost: 2
+threshold: { rage: 4 }
+structure: 10
+
 text: |
   This card enters play depleted.
   FIRE!

@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["prince", "advisor"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 4
+threshold: { obsession: 3 }
+stats: { str: 2, life: 4, spd: 3 }
+
 text: |
   UNIQUE GLOAMSPIKE
   All your face-down tactics gain FLIP UP with numeric cost and threshold equal to their regular numeric cost and threshold.

@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["soldier"]
 set: "Seed Saga"
 rarity: common
+
+cost: 3
+threshold: { rage: 1 }
+stats: { str: 3, life: 2, spd: 3 }
+provides: { rage: 1 }
+
 text: |
   PROVIDES: [R]
 # PROVIDES: [R] is in its numbers file.

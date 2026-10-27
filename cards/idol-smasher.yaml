@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["vandal"]
 set: "Seed Saga"
 rarity: common
+
+cost: 4
+threshold: { rage: 2 }
+stats: { str: 2, life: 3, spd: 3 }
+
 text: |
   EXTRA COST: You may pick an item.
   When this card enters play, if you picked an item as part of its cost, destroy that item.

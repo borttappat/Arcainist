@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 3
+threshold: { obsession: 3 }
+
 text: |
   EXTRA COST: Your opponents cannot respond to this card. Deploy this only if a tactic has been deployed this turn.
   Duplicate the last tactic deployed this turn.

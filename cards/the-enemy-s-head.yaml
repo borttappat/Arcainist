@@ -4,6 +4,10 @@ trade: warlord
 types: [item]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 4
+threshold: { rage: 2 }
+
 text: |
   When a character an opponent controls is destroyed, you may pay 1. If you do, put a token on this card.
   Characters you control gain 1 strength for each token on this card.

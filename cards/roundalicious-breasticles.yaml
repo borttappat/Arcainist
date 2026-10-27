@@ -4,6 +4,10 @@ trade: rogue
 types: [item]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 2
+threshold: { deception: 2 }
+
 text: |
   At the end of your turn, put a token on this card.
   JIGGLE JIGGLE

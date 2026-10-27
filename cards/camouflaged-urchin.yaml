@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["martial artist"]
 set: "Ungodly Mess"
 rarity: common
+
+cost: 2
+threshold: { deception: 1 }
+stats: { str: 1, life: 1, spd: 4 }
+flip_up: { cost: 1, threshold: { deception: 1 } }
+
 text: |
   While this card is depleted, your opponents cannot pick this card.
   FLIP UP:1 [D]
@@ -12,4 +18,3 @@ rules:
   - static:
       while: { matches: [ self, { character: { depleted: true } } ] }
       mods: [ { cannot: pick, by: opponent } ]
-  - flip_up: { pay: 1, threshold: { deception: 1 } }

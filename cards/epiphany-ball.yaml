@@ -4,6 +4,10 @@ trade: gearsmith
 types: [item]
 set: "2nd Edition"
 rarity: rare
+
+cost: 3
+threshold: { elitism: 2 }
+
 text: |
   SUDDEN INSIGHT
   COST: Deplete this card.

@@ -4,6 +4,11 @@ trade: arcanist
 types: [tactic]
 set: "Ungodly Mess"
 rarity: uncommon
+
+cost: 2
+threshold: { obsession: 1 }
+flip_up: { cost: 1, threshold: { obsession: 1 } }
+
 text: |
   EXTRA COST: Choose a number for X. Deplete X characters you control.
   Look at the top X+2 cards of your deck. You may put one of them into your hand. Put the remaining cards on the bottom of your deck in any order.
@@ -15,4 +20,3 @@ rules:
         - pick: { as: d, from: { character: { controller: you, depleted: false } }, count: X, exactly: true, choose: true, prompt: "Deplete X characters you control." }
         - deplete: d
       effect: [ look: { deck: you, count: "X + 2", to_hand: 1, bottom: rest } ]
-  - flip_up: { pay: 1, threshold: { obsession: 1 } }

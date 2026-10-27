@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 1
+threshold: { obsession: 2 }
+
 text: |
   Choose one of the following as this card's rules text:
   OPTION 1

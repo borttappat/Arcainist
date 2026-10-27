@@ -4,6 +4,11 @@ trade: gearsmith
 types: [location]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 5
+threshold: { elitism: 2 }
+structure: 3
+
 text: |
   When you form a blocking party with at least 1 character, you may pay 1. If you do, put a Micromajig token into play under your control. Add it to the blocking party.
 rules:

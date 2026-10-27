@@ -5,6 +5,12 @@ types: [character]
 subtypes: ["pirate", "mercenary", "mau"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 5
+threshold: { greed: 1 }
+stats: { str: 4, life: 4, spd: 3 }
+flip_up: { cost: 3, threshold: { greed: 1 } }
+
 text: |
   When this card enters play, your faction loses 3 influence. Put a random card from your discard pile into your hand.
   RETIRE: [G][G][G]
@@ -26,4 +32,3 @@ rules:
       cost: [ pay: 2 ]
       effect:
         - flip_face_down: { card: self, controller: owner }
-  - flip_up: { pay: 3, threshold: { greed: 1 } }

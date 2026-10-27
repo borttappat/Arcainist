@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["dragon"]
 set: "Seed Saga"
 rarity: common
+
+cost: 2
+threshold: { rage: 1 }
+stats: { str: 1, life: 2, spd: 3 }
+
 text: |
   When this card inflicts battle damage to a character, increase the amount by 2.
 rules:

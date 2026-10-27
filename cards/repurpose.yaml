@@ -4,6 +4,11 @@ trade: gearsmith
 types: [tactic]
 set: "Seed Saga"
 rarity: common
+
+cost: 4
+threshold: { elitism: 2 }
+flip_up: { cost: 2, threshold: { elitism: 2 } }
+
 text: |
   EXTRA COST: Pick an item.
   Destroy the item. Draw a card.
@@ -15,4 +20,3 @@ rules:
       effect:
         - destroy: i
         - draw: 1
-  - flip_up: { pay: 2, threshold: { elitism: 2 } }

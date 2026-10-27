@@ -4,6 +4,11 @@ trade: banker
 types: [location]
 set: "Seed Saga"
 rarity: rare
+
+cost: 3
+threshold: { greed: 1 }
+structure: 5
+
 text: |
   UNIQUE MARDUUN BAITINGS AND LOAN
   [G][G][G]: At the start of your turn, your faction gains 2 influence.

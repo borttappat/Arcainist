@@ -5,6 +5,10 @@ types: [tactic]
 subtypes: ["mutation"]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 3
+threshold: { rage: 2 }
+
 text: |
   ATTACH TO CHARACTER (put this card into play attached to that character instead of into its owner's discard pile)
   EXTRA COST: Deploy this only not during a battle.

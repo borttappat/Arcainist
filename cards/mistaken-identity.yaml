@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "Seed Saga"
 rarity: rare
+
+cost: 2
+threshold: { deception: 2 }
+
 text: |
   EXTRA COST: Deploy this only in response to a card or ability that picked a character as an extra cost. Pick another character that could be picked by that card or ability.
   When the card or ability resolves, its effect happens as though your opponent had picked the other character instead.

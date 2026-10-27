@@ -4,6 +4,11 @@ trade: banker
 types: [tactic]
 set: "Holy Heist"
 rarity: common
+
+cost: 3
+threshold: { greed: 2 }
+flip_up: { cost: 3, threshold: { greed: 2 } }
+
 text: |
   EXTRA COST: Pick a location.
   Remove 2 damage markers from the card or add 2 damage markers to the card.
@@ -16,4 +21,3 @@ rules:
         - choose_one:
             - { label: "Remove 2 damage markers", steps: [ heal: { card: l, amount: 2 } ] }
             - { label: "Add 2 damage markers", steps: [ markers: { card: l, add: 2 } ] }
-  - flip_up: { pay: 3, threshold: { greed: 2 } }

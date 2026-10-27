@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["lawyer", "mau"]
 set: "1st Edition"
 rarity: common
+
+cost: 3
+threshold: { greed: 1 }
+stats: { str: 1, life: 1, spd: 3 }
+
 text: |
   While you have at least 6 cards in your hand, this card gains 1 strength and COVERT.
 rules:

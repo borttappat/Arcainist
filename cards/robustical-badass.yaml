@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "Seed Saga"
 rarity: common
+
+cost: 4
+threshold: { rage: 1 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   [R][R][R]: At the start of your turn, you may inflict 1 damage to an opponent's faction.
 rules:

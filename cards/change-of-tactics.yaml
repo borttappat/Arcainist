@@ -4,6 +4,11 @@ trade: warlord
 types: [tactic]
 set: "Holy Heist"
 rarity: rare
+
+cost: 4
+threshold: { rage: 2 }
+flip_up: { cost: 4, threshold: { rage: 2 }, steps: [ { play_resource: { optional: true } } ] }
+
 text: |
   EXTRA COST: Deploy this only while you are attacking, while there is a blocking party and before any damage is assigned during this battle. X is the number of characters in the attacking party. Deplete X non-attacking characters you control.
   Remove all attacking characters from the battle. Add the depleted characters to the attacking party. Draw a card.
@@ -19,4 +24,3 @@ rules:
         - remove_from_battle: { character: { attacking: true } }
         - add_to_battle: { card: d, side: attacking }
         - draw: 1
-  - flip_up: { pay: 4, threshold: { rage: 2 }, cost: [ play_resource: { optional: true } ] }

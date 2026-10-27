@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["merbegon", "demon knight"]
 set: "Seed 3"
 rarity: fixed
+
+cost: 5
+threshold: { elitism: 4 }
+stats: { str: 5, life: 5, spd: 3 }
+
 text: |
   UNIQUE MERBEGON
   This card can attack even if it has not been in play under your control since the start of the turn.

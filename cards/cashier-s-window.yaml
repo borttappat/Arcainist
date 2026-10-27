@@ -4,6 +4,10 @@ trade: rogue
 types: [item]
 set: "Seed Saga"
 rarity: rare
+
+cost: 1
+threshold: { deception: 1 }
+
 text: |
   CASH IN
   COST: Destroy a character you control. Deplete this card.

@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "2nd Edition"
 rarity: rare
+
+cost: 0
+threshold: { obsession: 3 }
+
 text: |
   EXTRA COST: Choose a number for X. Pay X+X.
   Look at an opponent's hand and choose X or fewer cards in it. That player discards those cards.

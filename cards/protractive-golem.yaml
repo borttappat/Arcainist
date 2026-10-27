@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["golem"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 4
+threshold: { elitism: 1 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   [E][E][E][E][E][E]: This card gains 3 strength, 3 life, and loses 1 speed.
 rules:

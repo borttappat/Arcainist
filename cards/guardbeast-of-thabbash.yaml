@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["warbeast"]
 set: "Holy Heist"
 rarity: common
+
+cost: 7
+threshold: { obsession: 1 }
+stats: { str: 4, life: 5, spd: 3 }
+
 text: |
   [O][O][O][O]: COVERT
   [V][V][V][V]: This character can block COVERT parties and non-COVERT parties.

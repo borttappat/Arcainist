@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["adriel", "general"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 1
+threshold: { rage: 2 }
+stats: { str: 2, life: 1, spd: 3 }
+
 text: |
   UNIQUE ADRIEL
   When this character blocks or is blocked, you may pick a character or faction. If you do, inflict 1 damage to that character or faction.

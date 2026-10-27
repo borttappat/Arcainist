@@ -4,6 +4,10 @@ trade: rogue
 types: [item]
 set: "Seed 3"
 rarity: fixed
+
+cost: 2
+threshold: { deception: 1 }
+
 text: |
   UNIQUE COMMUNITY CHEST
   At the start of each player's turn, each player may draw a card or play a resource.

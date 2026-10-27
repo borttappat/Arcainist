@@ -4,6 +4,11 @@ trade: warlord
 types: [location]
 set: "Holy Heist"
 rarity: rare
+
+cost: 4
+threshold: { rage: 3 }
+structure: 6
+
 text: |
   UNIQUE TOLLBOOTH
   If a non-token character would enter play under an opponent's control, they may pay 1. If they don't, put that character into its owner's discard pile instead.

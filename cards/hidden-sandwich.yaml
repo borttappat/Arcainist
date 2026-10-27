@@ -5,6 +5,10 @@ types: [item]
 subtypes: [gear]
 set: "2nd Edition"
 rarity: common
+
+cost: 3
+threshold: { elitism: 2 }
+
 text: |
   TACTICAL
   ATTACH TO CHARACTER

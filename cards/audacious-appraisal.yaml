@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "Shade of the Devoured Emperor"
 rarity: uncommon
+
+cost: 2
+threshold: { greed: 1 }
+
 text: |
   EXTRA COST: Pick a character.
   That character's controller chooses a number for X. Choose one: That player's faction loses X influence, or destroy the picked character and your faction loses X+X influence.

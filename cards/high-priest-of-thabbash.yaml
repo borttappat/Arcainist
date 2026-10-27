@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["gloamspike", "priest"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 4
+threshold: { obsession: 3 }
+stats: { str: 3, life: 3, spd: 3 }
+
 text: |
   UNIQUE GLOAMSPIKE
   NEGATE

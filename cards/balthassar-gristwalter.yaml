@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["politician", "mau"]
 set: "Seed Saga"
 rarity: rare
+
+cost: 4
+threshold: { greed: 3 }
+stats: { str: 1, life: 5, spd: 3 }
+
 text: |
   UNIQUE BALTHASSAR
   SCHMOOZE

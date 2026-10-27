@@ -5,6 +5,11 @@ trade: warlord
 types: [tactic]
 set: "Seed 2"
 rarity: rare
+
+cost: 2
+threshold: { rage: 1 }
+flip_up: { cost: 2, threshold: { rage: 1 } }
+
 text: |
   EXTRA COST: Pick a non-resource card in your discard pile.
   You may deploy the card. Draw a card.
@@ -17,4 +22,3 @@ rules:
         - may:
             - play_card: { card: c }
         - draw: 1
-  - flip_up: { pay: 2, threshold: { rage: 1 } }

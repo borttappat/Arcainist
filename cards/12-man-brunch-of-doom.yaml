@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "2nd Edition"
 rarity: common
+
+cost: 2
+threshold: { obsession: 2 }
+
 text: |
   EXTRA COST: Choose a number for X. Deplete X characters you control. Pick a character.
   If the the picked character has X+X strength or less, destroy it.

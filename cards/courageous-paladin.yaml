@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["soldier"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 3
+threshold: { rage: 2 }
+stats: { str: 2, life: 3, spd: 3 }
+
 text: |
   All battle damage that could be assigned to this card must be assigned to it.
 rules:

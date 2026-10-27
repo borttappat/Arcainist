@@ -4,6 +4,10 @@ trade: arcanist
 types: [tactic]
 set: "Seed Saga"
 rarity: common
+
+cost: 5
+threshold: { obsession: 2 }
+
 text: |
   Look at an opponent's hand and pick a non-resource card in it. That player discards that card. You may pick a card of the same type as the discarded card. If you do, put it into its owner's hand.
 rules:

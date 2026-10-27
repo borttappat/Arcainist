@@ -4,6 +4,10 @@ trade: rogue
 types: [tactic]
 set: "2nd Edition"
 rarity: rare
+
+cost: 0
+threshold: { deception: 5 }
+
 text: |
   EXTRA COST: Choose a number for X. Pay X+X.
   Reveal up to the top X cards of an opponent's deck. Put all revealed characters and items into play under your control. Put the remaining cards into that player's discard pile.

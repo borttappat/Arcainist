@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["gambler"]
 set: "Seed Saga"
 rarity: common
+
+cost: 2
+threshold: { deception: 1 }
+stats: { str: 1, life: 2, spd: 4 }
+
 text: |
   GAMBLE
   COST: Pay 1. Choose a card type.

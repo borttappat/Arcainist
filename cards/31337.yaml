@@ -4,6 +4,10 @@ trade: gearsmith
 types: [tactic]
 set: "Seed 2"
 rarity: common
+
+cost: 3
+threshold: { elitism: 1 }
+
 text: |
   This turn, you control an additional [E][E][E][E]. Put this card into play under its owner's control as a face-down resource instead of into their discard pile.
 rules:

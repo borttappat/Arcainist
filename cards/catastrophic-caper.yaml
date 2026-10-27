@@ -4,6 +4,11 @@ trade: rogue
 types: [tactic]
 set: "Holy Heist"
 rarity: common
+
+cost: 3
+threshold: { deception: 1 }
+flip_up: { cost: 1, threshold: { deception: 1 } }
+
 text: |
   EXTRA COST: Deploy this only in response to a card or ability that picked a character as an extra cost.
   Put the character into its owner's hand. If you do and the character is a UNIQUE PLUCK, draw a card.
@@ -20,4 +25,3 @@ rules:
               - if:
                   cond: { matches: [ c, { character: { zone: hand, unique: Pluck } } ] }
                   then: [ draw: 1 ]
-  - flip_up: { pay: 1, threshold: { deception: 1 } }

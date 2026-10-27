@@ -4,6 +4,11 @@ trade: arcanist
 types: [tactic]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 0
+threshold: { obsession: 1 }
+flip_up: { cost: 2, threshold: { obsession: 1 } }
+
 text: |
   EXTRA COST: Pick a character.
   This turn, the character gains COVERT.
@@ -14,4 +19,3 @@ rules:
         - pick: { as: c, from: { character: any } }
       effect:
         - create_effect: { duration: turn, mods: [ { keyword: covert, target: c } ] }
-  - flip_up: { pay: 2, threshold: { obsession: 1 } }

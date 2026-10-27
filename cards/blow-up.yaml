@@ -4,6 +4,10 @@ trade: warlord
 types: [tactic]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 4
+threshold: { rage: 1 }
+
 text: |
   EXTRA COST: Pick an item.
   Destroy the item. That item's controller's faction loses 3 influence.

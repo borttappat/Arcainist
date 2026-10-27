@@ -5,6 +5,11 @@ types: [character]
 subtypes: [muddler]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 4
+threshold: { obsession: 1 }
+stats: { str: 2, life: 1, spd: 3 }
+
 text: |
   COVERT
   When this card inflicts damage to a faction, that faction's controller puts a card from their hand on the top of their deck if they can.

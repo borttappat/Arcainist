@@ -4,6 +4,10 @@ trade: banker
 types: [tactic]
 set: "2nd Edition"
 rarity: uncommon
+
+cost: 4
+threshold: { greed: 2 }
+
 text: |
   EXTRA COST: Pick a character an opponent controls. X is its strength.
   That character's controller may destroy the character. If they don't, draw X cards.

@@ -6,6 +6,12 @@ keywords: [covert]
 subtypes: ["monstrosity"]
 set: "Seed Saga"
 rarity: uncommon
+
+cost: 5
+threshold: { obsession: 2 }
+stats: { str: 3, life: 3, spd: 3 }
+flip_up: { cost: 3, threshold: { obsession: 2 } }
+
 text: |
   COVERT
   If you deployed this card using FLIP UP, it enters play with a token on it.
@@ -23,4 +29,3 @@ rules:
       mods: [ { lose_keyword: covert }, { stat: { str: 1, life: 1 } } ]
   - replace: { event: destroy, card: self, while: { eq: [ { tokens: self }, 0 ] } }
     instead: [ flip_face_down: { card: self, controller: owner } ]
-  - flip_up: { pay: 3, threshold: { obsession: 2 } }

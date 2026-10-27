@@ -5,6 +5,11 @@ types: [character]
 subtypes: ["dragon"]
 set: "Holy Heist"
 rarity: uncommon
+
+cost: 6
+threshold: { rage: 3 }
+stats: { str: 4, life: 3, spd: 3 }
+
 text: |
   When this card enters play, you may pick a character. If you do, inflict 3 damage to it.
   When this card is destroyed, you may pick a faction or location. If you do, inflict 3 damage to that card.
