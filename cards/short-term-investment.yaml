@@ -12,7 +12,7 @@ text: |
   EFFECT: Draw 3 cards.
 enters_with_tokens: 2
 rules:
-  - trigger: { on: start_of_turn, player: you }
+  - trigger: { on: start_of_turn, player: you, while: { gt: [ { tokens: self }, 0 ] } }
     effect:
       - if:
           cond: { gt: [ { tokens: self }, 0 ] }

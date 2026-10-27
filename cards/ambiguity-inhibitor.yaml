@@ -7,7 +7,7 @@ rarity: rare
 text: |
   At the start of your turn, put a card from your hand on the bottom of your deck if you can. If you do, draw a card.
 rules:
-  - trigger: { on: start_of_turn, player: you }
+  - trigger: { on: start_of_turn, player: you, while: { gt: [ { hand_size: you }, 0 ] } }
     effect:
       - if:
           cond: { gt: [ { hand_size: you }, 0 ] }

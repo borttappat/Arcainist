@@ -14,7 +14,7 @@ rules:
   - static:
       while: { matches: [ self, { character: { depleted: false } } ] }
       mods: [ { stat: { str: 1, life: 1 }, target: { character: { controller: you } } } ]
-  - trigger: { on: start_of_turn, player: any }
+  - trigger: { on: start_of_turn, player: any, while: { all: [ { exists: { item: { attached_to: self, subtype: gear } } }, { matches: [ self, { character: { depleted: true } } ] } ] } }
     effect:
       - if:
           cond: { exists: { item: { attached_to: self, subtype: gear } } }

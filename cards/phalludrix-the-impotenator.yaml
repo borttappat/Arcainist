@@ -31,7 +31,7 @@ rules:
       effect: [ attach: { card: self, to: c } ]
   - static:
       mods: [ { stat: { str: 2 }, target: host } ]
-  - trigger: { on: start_of_turn, player: opponent }
+  - trigger: { on: start_of_turn, player: opponent, while: { exists: { character: { host_of: self } } } }
     effect:
       - if:
           cond: { exists: { character: { host_of: self } } }

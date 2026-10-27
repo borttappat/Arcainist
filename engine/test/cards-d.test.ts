@@ -1885,4 +1885,58 @@ describe("cards: D onwards", () => {
     const d = expectPending(g, "choose", p);
     expect(d.prompt).toMatch(/Crest of Rage/);
   });
+
+  it("Rudo Mangod, Holder of Light: only triggers at the start of a turn while geared and depleted", () => {
+    const { g, p, o } = setup();
+    const rudo = put(g, p, "rudo-mangod-holder-of-light", "play");
+    g.s.cards[rudo].depleted = true;
+    act(g, p, { type: "end_turn" });
+    pass(g);
+    const d = expectPending(g, "choose", o);
+    expect(d.options.map((x: any) => x.label).join()).not.toMatch(/Rudo/);
+  });
+
+  it("Rudo Mangod, Holder of Light: restores itself at the start of the opponent's turn while geared", () => {
+    const { g, p, o } = setup();
+    const rudo = put(g, p, "rudo-mangod-holder-of-light", "play");
+    g.s.cards[rudo].depleted = true;
+    const sword = put(g, p, "heavy-sword", "play");
+    g.s.cards[sword].attachedTo = rudo;
+    nextTurn(g);
+    expect(g.s.active).toBe(o);
+    expect(g.s.cards[rudo].depleted).toBe(false);
+  });
+
+  it("Manual flip face-down: the card is detached, from its host or the faction", () => {
+    const { g, p } = setup();
+    const w = put(g, p, "rudo-mangod-holder-of-light", "play");
+    const sword = put(g, p, "heavy-sword", "play");
+    g.s.cards[sword].attachedTo = w;
+    const [staple] = resources(g, p, "rage", 1);
+    g.s.cards[staple].attachedTo = "faction";
+    act(g, p, { type: "manual", op: { op: "flip", iid: sword } });
+    act(g, p, { type: "manual", op: { op: "flip", iid: staple } });
+    for (const iid of [sword, staple]) {
+      expect(g.s.cards[iid].faceDown).toBe(true);
+      expect(g.s.cards[iid].isResource).toBe(true);
+      expect(g.s.cards[iid].attachedTo).toBe(null);
+    }
+  });
+
+  it("Putting a card from a discard pile into play face-down names it in the log", () => {
+    const { g, p } = setup();
+    resources(g, p, "obsession", 3);
+    const t = put(g, p, "arcane-research", "discard");
+    const w = put(g, p, "wanton-wizard", "hand");
+    act(g, p, { type: "deploy", iid: w });
+    pass(g);
+    for (let i = 0; i < 4 && g.s.cards[t].zone === "discard"; i++) {
+      const d = g.s.pending as any;
+      if (d?.type !== "choose") break;
+      const opt = d.options.find((x: any) => x.iid === t) ?? d.options.find((x: any) => /yes/i.test(x.label)) ?? d.options[0];
+      act(g, d.player, { type: "answer", ids: [opt.id] });
+    }
+    expect(g.s.cards[t].faceDown).toBe(true);
+    expect(g.s.log.some((l) => l.text.includes("puts Arcane Research into play as a face-down resource"))).toBe(true);
+  });
 });

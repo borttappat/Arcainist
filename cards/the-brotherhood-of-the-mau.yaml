@@ -16,7 +16,7 @@ rules:
   - static:
       while: { gt: [ { tokens: self }, 0 ] }
       mods: [ { cannot: attack } ]
-  - trigger: { on: start_of_turn, player: any }
+  - trigger: { on: start_of_turn, player: any, while: { all: [ { gt: [ { tokens: self }, 0 ] }, { exists: { character: { not_self: true } } } ] } }
     effect:
       - if:
           cond: { all: [ { gt: [ { tokens: self }, 0 ] }, { exists: { character: { not_self: true } } } ] }

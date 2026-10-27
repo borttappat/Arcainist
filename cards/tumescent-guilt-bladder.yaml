@@ -14,7 +14,7 @@ rules:
       - lose_influence: { who: you, amount: { tokens: self } }
       - play_resource: { optional: true }
   # The tokens only reset with the control change; otherwise they never reach 3.
-  - trigger: { on: start_of_turn, player: any }
+  - trigger: { on: start_of_turn, player: any, while: { gte: [ { tokens: self }, 3 ] } }
     effect:
       - if:
           cond: { gte: [ { tokens: self }, 3 ] }

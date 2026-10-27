@@ -1828,9 +1828,11 @@ export class Game {
       const c = this.s.cards[iid];
       const ctl = arg.controller === "owner" ? c.owner : this.who(ctx, arg.controller ?? "you");
       if (arg.as === "face_down_resource") {
+        // Named while it is still where it came from: a card out of a discard pile is known.
+        const shown = this.visibleName(iid);
         this.putResource(ctl, iid, true, false);
         if (arg.attached) this.s.cards[iid].attachedTo = "faction";
-        this.log(`${this.pname(ctl)} puts ${this.visibleName(iid)} into play as a face-down resource.`);
+        this.log(`${this.pname(ctl)} puts ${shown} into play as a face-down resource.`);
       } else if (arg.as === "resource" || (!arg.as && this.q.def(iid).types.includes("resource"))) {
         this.putResource(ctl, iid, false, false);
         if (arg.attached) this.s.cards[iid].attachedTo = "faction";
@@ -3485,6 +3487,11 @@ export class Game {
       case "flip": {
         const c = own(op.iid);
         if (c.zone !== "play") throw new GameError("Only cards in play can be flipped.");
+        // Face-down it is a new resource: detached, like a flip by a card's effect.
+        if (!c.faceDown) {
+          this.flipFaceDown(op.iid, c.controller);
+          break;
+        }
         c.faceDown = !c.faceDown;
         c.isResource = c.faceDown || this.q.def(op.iid).types.includes("resource");
         say(`flips ${this.q.name(op.iid)} ${c.faceDown ? "face-down" : "face-up"}.`);
