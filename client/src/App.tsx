@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { Board } from "./Board.tsx";
 import { Lobby, savedDeck } from "./Lobby.tsx";
 import { newSecret, savedIdentity, saveIdentity, useNet, type Net } from "./net.ts";
+import { Settings } from "./Settings.tsx";
 
 export function App() {
   const [identity, setIdentity] = useState<{ secret: string; name: string } | null>(null);
   const net = useNet(identity);
+  const [settings, setSettings] = useState(false);
 
   if (!identity) return <Login onLogin={setIdentity} />;
 
@@ -26,8 +28,12 @@ export function App() {
             <span className="muted">#{net.user.tag}</span>
           </span>
         )}
+        <button className="ghost" onClick={() => setSettings(true)}>
+          Settings
+        </button>
         {net.room && <LeaveButton net={net} />}
       </header>
+      {settings && <Settings cards={net.cards} close={() => setSettings(false)} />}
       {net.room && net.view && <SeatBar net={net} />}
       {(net.error || net.notice) && (
         <div className={`toast ${net.error ? "" : "notice"}`} onClick={net.clearError}>

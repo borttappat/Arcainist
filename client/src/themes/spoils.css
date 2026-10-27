@@ -1,0 +1,36 @@
+/* The colours of the printed cards: black borders, ivory text boxes, and each trade's frame. */
+:root[data-theme="spoils"] {
+  --bg: #0b0b0c;
+  --bg-2: #141416;
+  --panel: #1c1c20;
+  --panel-2: #26262b;
+  --line: #3b3b42;
+  --text: #f1ede4;
+  --muted: #a39e93;
+  --accent: #d9b45a;
+  --accent-ink: #1a1406;
+  --good: #5fae5a;
+  --bad: #d23a2c;
+  --select: #6fa8dc;
+  --mine: #4f86c6;
+  --theirs: #b2352a;
+  --bg-glow: #1d1a14;
+  --back-1: #1a1a1d;
+  --back-2: #232327;
+
+  --icon-obsession: #a46ad6;
+  --icon-greed: #7f9f6b;
+  --icon-elitism: #a9b0b8;
+  --icon-deception: #6f8fb0;
+  --icon-rage: #d8402f;
+  --icon-volition: #e6e1d6;
+
+  --trade-arcanist: #6b4592;
+  --trade-banker: #b89a4e;
+  --trade-gearsmith: #7c8088;
+  --trade-rogue: #a2271f;
+  --trade-warlord: #4f86c6;
+  --trade-universal: #4f8f8c;
+  --trade-staple: #4a4a50;
+  color-scheme: dark;
+}

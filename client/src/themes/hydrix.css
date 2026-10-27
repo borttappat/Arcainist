@@ -1,0 +1,16 @@
+/* Generated from ~/.cache/wal/colors.json by `npm run theme -- hydrix`. Edit the scheme and regenerate. */
+:root[data-theme="hydrix"] {
+  --bg: #050505;
+  --bg-2: #0e0e0e;
+  --panel: #161616;
+  --panel-2: #212121;
+  --line: #393939;
+  --text: #dfdfdf;
+  --muted: #7d7d7d;
+  --accent: #00FA7D;
+  --accent-ink: #030303;
+  --bg-glow: #05190f;
+  --back-1: #1b1b1b;
+  --back-2: #262626;
+  color-scheme: dark;
+}

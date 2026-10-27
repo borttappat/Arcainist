@@ -13,6 +13,10 @@
   --select: #4fc3f7;
   --mine: #3a6ea5;
   --theirs: #a5463a;
+  --bg-glow: #221d2b;
+  --back-1: #2b2436;
+  --back-2: #332a40;
+  --manual: #f0b37e;
 
   --icon-obsession: #9b59d0;
   --icon-greed: #d4a017;
@@ -37,7 +41,7 @@
 * { box-sizing: border-box; }
 html, body, #root { height: 100%; margin: 0; }
 body {
-  background: radial-gradient(ellipse at top, #221d2b, var(--bg) 60%);
+  background: radial-gradient(ellipse at top, var(--bg-glow), var(--bg) 60%);
   color: var(--text);
   font: 14px/1.4 Inter, system-ui, sans-serif;
 }
@@ -164,7 +168,7 @@ h1, h2, h3 { margin: 0 0 8px; font-family: Cinzel, serif; font-weight: 700; }
 }
 .tile:hover { transform: translateY(-2px); }
 .tile.depleted { transform: rotate(8deg); filter: brightness(0.7); }
-.tile.back { background: repeating-linear-gradient(45deg, #2b2436, #2b2436 6px, #332a40 6px, #332a40 12px); }
+.tile.back { background: repeating-linear-gradient(45deg, var(--back-1), var(--back-1) 6px, var(--back-2) 6px, var(--back-2) 12px); }
 .back-face { margin: auto; font-family: Cinzel, serif; font-size: 28px; color: var(--muted); }
 .tile.facedown-own { filter: saturate(0.3); }
 .trade-arcanist { --trade-color: var(--trade-arcanist); }
@@ -178,7 +182,7 @@ h1, h2, h3 { margin: 0 0 8px; font-family: Cinzel, serif; font-weight: 700; }
 .cost { display: inline-grid; place-items: center; min-width: 20px; height: 20px; border-radius: 50%; background: #0009; font-weight: 700; font-size: 12px; }
 .cost.big { min-width: 32px; height: 32px; font-size: 18px; }
 .tile-name { font-weight: 600; font-size: 12px; line-height: 1.15; }
-.tile-type { font-size: 10px; color: #ddd; opacity: 0.85; }
+.tile-type { font-size: 10px; opacity: 0.85; }
 .fd-label { font-size: 10px; font-style: italic; color: var(--muted); }
 .stats { margin-top: auto; display: flex; justify-content: space-between; }
 .stat { min-width: 24px; text-align: center; border-radius: 4px; font-weight: 700; padding: 1px 4px; background: #0008; font-size: 12px; }
@@ -208,7 +212,7 @@ h1, h2, h3 { margin: 0 0 8px; font-family: Cinzel, serif; font-weight: 700; }
 .stack-entry.theirs .tile { outline: 2px solid var(--theirs); }
 .stack-entry.mine .tile { outline: 2px solid var(--mine); }
 .stack-caption { font-size: 11px; text-align: center; line-height: 1.2; }
-.manual-badge { position: absolute; top: 2px; right: 2px; background: #0009; color: #f0b37e; font-size: 9px; padding: 0 4px; border-radius: 3px; text-transform: uppercase; }
+.manual-badge { position: absolute; top: 2px; right: 2px; background: #0009; color: var(--manual); font-size: 9px; padding: 0 4px; border-radius: 3px; text-transform: uppercase; }
 .stack-item { padding: 3px 10px; border-radius: 6px; background: var(--panel-2); border-left: 4px solid var(--mine); }
 .stack-item.theirs { border-left-color: var(--theirs); }
 .stack-item.top { outline: 1px solid var(--accent); }
@@ -236,14 +240,14 @@ h1, h2, h3 { margin: 0 0 8px; font-family: Cinzel, serif; font-weight: 700; }
 .log { flex: 1; overflow: auto; padding: 8px 12px; font-size: 12px; min-height: 0; }
 .log-line { padding: 2px 0; border-bottom: 1px solid #ffffff08; }
 .log-line.turn { color: var(--accent); font-weight: 600; margin-top: 6px; }
-.log-line.manual { color: #f0b37e; font-style: italic; }
+.log-line.manual { color: var(--manual); font-style: italic; }
 .log-line.private { color: var(--select); }
 
 .menu { position: fixed; z-index: 40; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 4px; min-width: 220px; display: grid; box-shadow: 0 8px 24px #000a; }
 .menu-title { font-weight: 600; padding: 4px 8px; color: var(--accent); }
 .menu-item { text-align: left; border: none; background: none; padding: 5px 8px; border-radius: 4px; }
 .menu-item:hover { background: var(--panel-2); }
-.menu-item.manual { color: #f0b37e; font-size: 12px; }
+.menu-item.manual { color: var(--manual); font-size: 12px; }
 .menu-item.sep { border-top: 1px solid var(--line); border-radius: 0; margin-top: 2px; }
 .menu-empty { padding: 4px 8px; }
 .overlay { position: fixed; inset: 0; background: #000a; display: grid; place-items: center; z-index: 30; padding: 16px; }
@@ -287,3 +291,21 @@ h1, h2, h3 { margin: 0 0 8px; font-family: Cinzel, serif; font-weight: 700; }
 .seatbar .dot.on { background: var(--good); }
 .seatbar .dot.off { background: var(--bad); }
 .seatbar .dot.open { background: var(--accent); }
+
+/* Settings */
+.settings { width: min(520px, 100%); display: grid; gap: 10px; max-height: 90vh; overflow: auto; }
+.settings h3 { margin: 8px 0 0; }
+.settings p { margin: 0; }
+.file-button { display: inline-block; cursor: pointer; color: var(--text); background: var(--panel-2); border: 1px solid var(--line); border-radius: 6px; padding: 6px 12px; }
+.file-button:hover { border-color: var(--accent); }
+.file-button input { display: none; }
+
+/* Card images: the scan fills the tile, game state stays on top of it. */
+.tile .art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 6px; pointer-events: none; }
+.tile.has-art { padding: 0 0 3px; justify-content: flex-end; }
+.tile.has-art .tile-head, .tile.has-art .pips, .tile.has-art .tile-type { display: none; }
+.tile.has-art > :not(.art) { position: relative; }
+.tile.has-art .stats { padding: 0 3px; margin-top: 0; }
+.tile.has-art .kw, .tile.has-art .notes, .tile.has-art .fd-label { margin: 0 3px; background: #000b; border-radius: 3px; padding: 0 3px; align-self: flex-start; }
+.tile.has-art .dmg, .tile.has-art .tokens, .tile.has-art .tag, .tile.has-art .revealed, .tile.has-art .manual-badge { position: absolute; }
+.preview-art { display: block; width: 100%; max-height: 45vh; object-fit: contain; border-radius: 10px; margin-bottom: 8px; }

@@ -247,8 +247,12 @@ Where things stand and what's left. Update this as work lands.
   once known.
 - [ ] **Deckbuilder:** search and filter the 1,230 cards, build a deck, and check it
   against the chosen format (the lobby only has a text box now).
-- [ ] **Card art (deferred):** players load their own images in the browser, matched
-  to cards by name, never uploaded.
+- [x] **Card art:** Settings, "Import a folder": images go to the browser's
+  IndexedDB (`client/src/images.ts`), matched by card name, or by printing uuid via
+  the spoilstoolbox `set.json` files (1,226 of 1,231 cards). Never uploaded. Not yet
+  read: the OCTGN `.o8c` packs (zips whose image names are OCTGN GUIDs).
+- [x] **Colour themes:** `client/src/themes/<name>.css`, picked in Settings.
+  `npm run theme -- <name> [colors.json]` generates one from a pywal scheme.
 - [ ] **Hide the card being paid for:** while a player chooses how to pay, the
   opponent sees their hand count drop by one.
 - [ ] **Open R&D faction:** its "invent an ability" rule is manual.
@@ -263,6 +267,8 @@ Where things stand and what's left. Update this as work lands.
 
 - [ ] The latest layout changes: collapsed empty regions, smaller screens, gear
   behind its character, the stack zone, the "manual" tag, and the deck viewer.
+- [ ] Themes (Arcainist, Hydrix, Spoils) and card images on tiles and in the
+  preview, including damage, tokens and changed stats drawn over the art.
 
 ## Reference
 

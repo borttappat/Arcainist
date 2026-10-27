@@ -1,4 +1,6 @@
 import type { CardDef, CardView, Icon, Icons } from "../../engine/index.ts";
+import { useCardImages } from "./images.ts";
+import { useSettings } from "./prefs.ts";
 
 export const ICON_LETTER: Record<Icon, string> = {
   obsession: "O",
@@ -44,9 +46,13 @@ interface TileProps {
 export function Tile({ def, card, className = "", tag, onClick, onHover }: TileProps) {
   const hidden = !def;
   const faceDown = card?.faceDown;
+  const images = useCardImages();
+  const mode = useSettings().images;
+  const art = !hidden && mode === "all" ? images[def!.id] : undefined;
   const cls = [
     "tile",
     hidden ? "back" : `trade-${def!.trade}`,
+    art ? "has-art" : "",
     card?.depleted ? "depleted" : "",
     faceDown && !hidden ? "facedown-own" : "",
     className,
@@ -64,6 +70,7 @@ export function Tile({ def, card, className = "", tag, onClick, onHover }: TileP
         <div className="back-face">{card?.isResource ? "V" : "?"}</div>
       ) : (
         <>
+          {art && <img className="art" src={art} alt={def!.name} draggable={false} />}
           <div className="tile-head">
             {def!.cost !== undefined && <span className="cost">{def!.cost}</span>}
             <span className="tile-name">{def!.name}</span>
@@ -129,9 +136,13 @@ export function ResourceChip({ def, card, onClick, onHover, className = "" }: Ti
 }
 
 export function Preview({ def }: { def: CardDef | null }) {
+  const images = useCardImages();
+  const showArt = useSettings().images !== "off";
   if (!def) return <div className="preview empty muted">Hover a card to read it.</div>;
+  const art = showArt ? images[def.id] : undefined;
   return (
     <div className={`preview trade-${def.trade}`}>
+      {art && <img className="preview-art" src={art} alt={def.name} />}
       <div className="preview-head">
         {def.cost !== undefined && <span className="cost big">{def.cost}</span>}
         <div>
