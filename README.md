@@ -1,4 +1,13 @@
-# Arcainist
+<pre>
+    ___                    _       _      __
+   /   |  ______________ _(_)___  (_)____/ /_
+  / /| | / ___/ ___/ __ `/ / __ \/ / ___/ __/
+ / ___ |/ /  / /__/ /_/ / / / / / (__  ) /_
+/_/  |_/_/   \___/\__,_/_/_/ /_/_/____/\__/
+                                
+                               Have fun
+                               Play Spoils
+</pre>
 
 An online two-player client for **The Spoils** card game, in the spirit of
 Jinteki.net. No accounts: pick a name, paste a decklist, create or join a game.
@@ -8,6 +17,9 @@ Spoils. See [License](#license).
 
 Proof of concept. The rules model and every ruling or assumption are in
 [`docs/SPEC.md`](docs/SPEC.md); the card language is in [`docs/CARDS.md`](docs/CARDS.md).
+
+
+
 
 ## Running it
 
