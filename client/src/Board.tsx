@@ -157,8 +157,8 @@ export function Board({ view, cards, send }: { view: GameView; cards: CardLibrar
     if (selectable.has(iid) && (d?.type === "choose" || d?.type === "blockers")) {
       const id = d.type === "choose" ? (d.options.find((o) => o.iid === iid)?.id ?? iid) : iid;
       setCursor(id);
-      // A required single answer is given by the click; otherwise cards are marked, then confirmed.
-      if (d.type === "choose" && d.min === 1 && d.max === 1) return send({ type: "answer", ids: [id] });
+      // A single pick is made by the click; when several cards can be chosen they are marked, then confirmed.
+      if (d.type === "choose" && d.max === 1) return send({ type: "answer", ids: [id] });
       toggle(iid);
       return;
     }
@@ -475,10 +475,9 @@ function Prompt({ view, cards, send, sel, setSel, defOf, attack, setAttack, setH
   const arrows: KeyHandlers = { up: () => move(-1), left: () => move(-1), down: () => move(1), right: () => move(1) };
 
   const choose = d?.type === "choose" ? d : null;
-  // Everywhere: Enter marks, Space confirms what's marked (nothing marked, where that's
-  // allowed: none), Esc goes back. Only when exactly one answer is required is the
-  // cursor itself the answer, so Space confirms it at once.
-  const instant = !!choose && choose.min === 1 && choose.max === 1;
+  // One card at most: Space (or Enter, or a click) picks the card under the cursor and
+  // continues; Esc picks none where that's allowed. Several: Enter marks, Space confirms.
+  const instant = !!choose && choose.max === 1;
   const answer = (ids: string[]) => {
     const o = ids.length === 1 ? choose?.options.find((x) => x.id === ids[0]) : undefined;
     if (choose && o) rememberChoice(choose.prompt, choose.options.map((x) => x.label), o.label);
@@ -703,9 +702,16 @@ function Prompt({ view, cards, send, sel, setSel, defOf, attack, setAttack, setH
           </div>
           <div className="row">
             {instant ? (
-              <span className="muted hint">
-                <K k="←→" /> move, <K k="Space" /> choose
-              </span>
+              <>
+                {d.min === 0 && (
+                  <button onClick={() => answer([])}>
+                    Choose none {!cancel && <K k="Esc" />}
+                  </button>
+                )}
+                <span className="muted hint">
+                  <K k="←→" /> move, <K k="Space" /> choose
+                </span>
+              </>
             ) : (
               <>
                 <button className="primary" disabled={!canConfirm} onClick={() => answer(sel)}>

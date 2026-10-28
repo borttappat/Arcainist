@@ -284,9 +284,9 @@ Where things stand and what's left. Update this as work lands.
   for a card's menu (and arrows and Space inside it), F faction, D deck (decklist or
   search), X discard, V void, Esc closing windows, and Space passing while
   responding until the cursor is put on a card.
-- [ ] Starting resources picked in one marked choice; Enter marks and Space confirms
-  in every choice (optional ones like Spry Archer's and Karmic Cake's included, with
-  nothing marked meaning none); A for attack mode.
+- [ ] Starting resources picked in one marked choice; single picks (Karmic Cake's
+  search, Spry Archer's target) made with one Space, Esc for none; Enter marks and
+  Space confirms only when several can be picked; A for attack mode.
 - [ ] Layout on tall browser windows (reported broken on a tall window; needs a
   screenshot to see what).
 

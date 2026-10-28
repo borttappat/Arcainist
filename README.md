@@ -95,11 +95,12 @@ their own scans into their browser (matched to cards by file name, or by the
 **Keyboard.** Two groups of keys. **Space** does the highlighted action (pass,
 confirm, block, play the resource) and **E** ends your turn; Space never does.
 The **arrow keys** move a cursor over the choices, which always starts on one (the
-answer you gave last time to the same question, if any). The same rule everywhere:
-**Enter** marks the choice under the cursor, **Space** confirms what's marked
-(with nothing marked, where that's allowed, that means none), and **Esc** goes
-back. Only when exactly one answer is required (yes or no, the Develop Rule) is the
-cursor itself the answer, so Space confirms it at once.
+answer you gave last time to the same question, if any). When one card (or one
+answer) is picked, **Space** picks the one under the cursor and continues, and
+**Esc** picks none where that's allowed (a search, Spry Archer's target). When
+several can be picked (starting resources, cards to put on the bottom), **Enter**
+marks or unmarks the one under the cursor and Space confirms. Esc otherwise goes
+back or cancels.
 **A** starts an attack: the arrows move over your characters and enemy locations,
 Enter adds or removes one, Space attacks. When ordering cards,
 Enter picks a card up and the arrows move it. Playing a resource is two steps:
