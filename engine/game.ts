@@ -1125,6 +1125,30 @@ export class Game {
     if (fired.length) s.tasks.push({ t: "orderTriggers", list: fired });
   }
 
+  /**
+   * What a trigger does, in a few words, for "choose which resolves next" (Spry Archer's
+   * two "when this card attacks"): the rule's own `label`, else the printed clause it
+   * automates, when the card's trigger clauses and trigger rules pair up one to one.
+   */
+  private triggerLabel(iid: string, trigger: any): string | undefined {
+    if (trigger.label) return trigger.label;
+    const def = this.q.def(iid);
+    const triggers = (def.rules ?? []).filter((r) => r.trigger).map((r) => r.trigger);
+    const i = triggers.indexOf(trigger);
+    if (i < 0) return undefined;
+    const clauses = (def.text ?? "").split("\n").flatMap((line) => {
+      const t = line.replace(/^(\[[A-Z]\])+:\s*/, "").trim();
+      return /^(When|Whenever|At the|After|Each time)\b/i.test(t) ? [t] : [];
+    });
+    if (clauses.length !== triggers.length) return undefined;
+    // "When this card attacks, inflict 1 damage...": the part after the condition.
+    let c = clauses[i];
+    const comma = c.indexOf(", ");
+    if (comma > 0 && comma < 70) c = c.slice(comma + 2);
+    c = c[0].toUpperCase() + c.slice(1);
+    return c.length > 80 ? c.slice(0, 77).trimEnd() + "…" : c;
+  }
+
   /** Trigger tasks for one event (not yet queued). */
   private triggersFor(ev: GameEvent): Task[] {
     const s = this.s;
@@ -1161,7 +1185,7 @@ export class Game {
         if (ev.amount !== undefined) ctx.vars.amount = ev.amount;
         if (ev.source) ctx.vars.source = ev.source;
         if (src.fromEffect && r.once) s.effects = s.effects.filter((x) => x !== src.fromEffect);
-        fired.push({ t: "trigger", iid: src.iid, effect: src.effect, ctx: ctx.id, effectSource: !!src.fromEffect });
+        fired.push({ t: "trigger", iid: src.iid, effect: src.effect, ctx: ctx.id, effectSource: !!src.fromEffect, label: src.fromEffect ? undefined : this.triggerLabel(src.iid, r) });
       }
     }
     return fired;

@@ -166,6 +166,7 @@ Trigger filters, all optional:
 | `requires: { greed: 2 }` | Threshold icons printed next to the text. |
 | `deployed_from: hand` | For `enters_play`: the card was deployed (not put into play by an effect) from that zone ("if it was deployed from your hand"). |
 | `while: <condition>` | Only while the condition holds. |
+| `label: "..."` | What the trigger does, shown when several triggers resolve and the player picks the order. Without it, the label is the printed clause it automates (the part after "When this card attacks,"), when the card's trigger clauses and trigger rules pair up one to one. |
 
 "When this card is destroyed / leaves play" works: with `card: self` the engine
 looks back at the card after it left. "When the attached character leaves play"

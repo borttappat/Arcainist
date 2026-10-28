@@ -564,9 +564,9 @@ describe("turn-based and scripted cards", () => {
     pass(g);
     const d = expectPending(g, "choose", p);
     expect(d.prompt).toMatch(/Start of turn/);
-    expect(d.options.map((o: any) => o.label)).toEqual(expect.arrayContaining([expect.stringMatching(/Restore rule$/), expect.stringMatching(/Develop rule$/), "Party Clowns"]));
+    expect(d.options.map((o: any) => o.label)).toEqual(expect.arrayContaining([expect.stringMatching(/Restore rule$/), expect.stringMatching(/Develop rule$/), expect.stringMatching(/^Party Clowns: /)]));
     // Resolve the card's trigger first: its "pay 1" prompt comes before the develop choice.
-    answer(g, [d.options.find((o: any) => o.label === "Party Clowns").id]);
+    answer(g, [d.options.find((o: any) => o.label.startsWith("Party Clowns")).id]);
     expect((g.s.pending as any).prompt).toMatch(/pay 1/);
   });
 

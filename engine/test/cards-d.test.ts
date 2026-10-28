@@ -2002,4 +2002,12 @@ describe("cards: D onwards", () => {
     settle(g);
     expect(g.s.cards[cw].faceDown).toBe(true);
   });
+
+  it("Spry Archer: its two attack triggers say what each does when choosing the order", () => {
+    const { g, p } = setup();
+    resources(g, p, "rage", 4);
+    const archer = put(g, p, "spry-archer", "play");
+    const order = (g as any).triggersFor({ e: "attacks", iid: archer, player: p }).map((t: any) => t.label);
+    expect(order).toEqual(["Inflict 1 damage to an opponent's faction.", "You may pick a character. If you do, inflict 1 damage to it."]);
+  });
 });
